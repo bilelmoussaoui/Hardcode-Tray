@@ -49,6 +49,7 @@ def csv_to_dic():
 def deep_copy(src,des):
 	liste_file = os.listdir(src)
 	for f in liste_file:
+		print(f)
 		if not is_dir(src+"/"+f):
 			os.system("sudo ln -fns "+src+"/"+f + " "+des)
 		else:
