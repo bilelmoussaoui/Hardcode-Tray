@@ -77,8 +77,4 @@ else:
 		print("You did choice "+theme+", the supported applications by your theme are : "+ ", ".join(supported_apps)+"\n")
 		print("Copying now..\n")
 		copy_files(theme)
-<<<<<<< HEAD
 		print("Done , Thank you for using the Hardcode-Tray fixer!")
-=======
-		print("Done , Thank you for using the Hardcode-Tray fixer!")
->>>>>>> 234d3ed9c1dcfc20587a3a3b591e7b925acefd4c
