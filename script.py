@@ -46,15 +46,23 @@ def csv_to_dic():
 			dic[infos[i][0]] = infos[i]
 	return dic
 
+def deep_copy(src,des):
+	liste_file = os.listdir(src)
+	for f in liste_file:
+		if not is_dir(src+"/"+f):
+			os.system("sudo ln -fns "+src+"/"+f + " "+des)
+		else:
+			deep_copy(src+"/"+f,des+"/"+f)
+
 #Copy files..
 def copy_files(theme):
 	apps_in_theme = check_supported_apps(theme)
 	apps_by_hardcoder = csv_to_dic()
 	for app in apps_in_theme:
 		if app in apps_by_hardcoder.keys() and is_dir("/"+apps_by_hardcoder[app][1]+"/"):
-			o_folder = "/"+apps_by_hardcoder[app][1]+"/" #Original folder
-			i_folder = "/usr/share/icons/"+theme+"/"+folder_tray+"/"+app+"/*"#Icons folder
-			os.system("sudo cp -rf"+i_folder+" "+o_folder)
+			o_folder = "/"+apps_by_hardcoder[app][1] #Original folder
+			i_folder = "/usr/share/icons/"+theme+"/"+folder_tray+"/"+app#Icons folder
+			deep_copy(i_folder,o_folder)
 
 supported_theme = check_supported_themes()
 l_supported_theme = len(supported_theme)
