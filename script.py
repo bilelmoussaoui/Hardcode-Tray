@@ -57,7 +57,7 @@ supported_theme = check_supported_themes()
 l_supported_theme = len(supported_theme)
 
 #The message shown to the user
-message = "Welcome to the tray icons hardcoder fixer! Please choose on of the supported themes\n"
+message = "Welcome to the tray icons hardcoder fixer! Please choose one of the supported themes\n"
 if l_supported_theme == 0:
 	print(message+ "No theme is supported at the moment.. please update your themes!")
 else:
@@ -74,4 +74,4 @@ else:
 		print("You did choice "+theme+", the supported applications by your theme are : "+ ", ".join(supported_apps)+"\n")
 		print("Copying now..\n")
 		copy_files(theme)
-		print("Done , Thank you for using the hardcoder fixer!")
+		print("Done , Thank you for using the Hardcode-Tray fixer!")
