@@ -54,7 +54,7 @@ def copy_files(theme):
 		if app in apps_by_hardcoder.keys() and is_dir("/"+apps_by_hardcoder[app][1]+"/"):
 			o_folder = "/"+apps_by_hardcoder[app][1]+"/" #Original folder
 			i_folder = "/usr/share/icons/"+theme+"/"+folder_tray+"/"+app+"/*"#Icons folder
-			os.system("sudo ln -s "+i_folder+" "+o_folder)
+			os.system("sudo cp -rf"+i_folder+" "+o_folder)
 
 supported_theme = check_supported_themes()
 l_supported_theme = len(supported_theme)
@@ -77,8 +77,4 @@ else:
 		print("You did choice "+theme+", the supported applications by your theme are : "+ ", ".join(supported_apps)+"\n")
 		print("Copying now..\n")
 		copy_files(theme)
-<<<<<<< HEAD
 		print("Done , Thank you for using the Hardcode-Tray fixer!")
-=======
-		print("Done , Thank you for using the Hardcode-Tray fixer!")
->>>>>>> 234d3ed9c1dcfc20587a3a3b591e7b925acefd4c
