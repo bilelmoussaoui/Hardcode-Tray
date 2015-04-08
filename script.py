@@ -1,7 +1,7 @@
 __author__ = "Bilal ELMOUSSAOUI"
 version = 0.1
 
-import os,shutil,pwd
+import os,pwd
 global data_file,folder_icons,folder_tray,username
 
 data_file = "data.csv"
@@ -10,25 +10,30 @@ folder_icons = "/usr/share/icons"
 supported_theme = []
 username = pwd.getpwuid( os.getuid() )[ 0 ]
 
+#Check if the directory exists
 def is_dir(dir):
 	return os.path.isdir(dir)
+
+#create a link from a list
+def do_link(ls,start=False):
+	return "/".join(ls)
 
 #get all the supported themes
 def check_supported_themes():
 	themes = os.listdir(folder_icons)
 	themes_supported = []
 	for t in themes:
-		if is_dir(folder_icons+"/"+t):
-			if is_dir(folder_icons+"/"+t+"/"+folder_tray):
+		if is_dir(do_link([folder_icons,t])):
+			if is_dir(do_link([folder_icons,t,folder_tray])):
 				themes_supported.append(t)
 	return themes_supported
 
 #get all the supported apps in a theme
 def check_supported_apps(theme):
 	apps_supported = []
-	apps = os.listdir(folder_icons+"/"+theme+"/"+folder_tray)
+	apps = os.listdir(do_link([folder_icons,theme,folder_tray]))
 	for app in apps:
-		if is_dir(folder_icons+"/"+theme+"/"+folder_tray+"/"+app):
+		if is_dir(do_link([folder_icons,theme,folder_tray,app])):
 			apps_supported.append(app)
 	return apps_supported
 
@@ -46,14 +51,14 @@ def csv_to_dic():
 			dic[infos[i][0]] = infos[i]
 	return dic
 
+#creat a symlink of all the files.
 def deep_copy(src,des):
-	liste_file = os.listdir(src)
-	for f in liste_file:
-		print(f)
-		if not is_dir(src+"/"+f):
-			os.system("sudo ln -fns "+src+"/"+f + " "+des)
+	files = os.listdir(src)
+	for f in files:
+		if not is_dir(do_link([src,f])):
+			os.system("sudo ln -fns "+do_link([src,f]) + " "+des)
 		else:
-			deep_copy(src+"/"+f,des+"/"+f)
+			deep_copy(do_link([src,f]),do_link([des,f]))
 
 #Copy files..
 def copy_files(theme):
@@ -62,7 +67,7 @@ def copy_files(theme):
 	for app in apps_in_theme:
 		if app in apps_by_hardcoder.keys() and is_dir("/"+apps_by_hardcoder[app][1]+"/"):
 			o_folder = "/"+apps_by_hardcoder[app][1] #Original folder
-			i_folder = "/usr/share/icons/"+theme+"/"+folder_tray+"/"+app#Icons folder
+			i_folder = do_link(["/usr/share/icons/",theme,folder_tray,app])#Icons folder
 			deep_copy(i_folder,o_folder)
 
 supported_theme = check_supported_themes()
