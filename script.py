@@ -30,7 +30,7 @@ def detect_desktop_environment():
             out = process.communicate()
             if ' = "xfce4"' in out:
                 return 'xfce'
-            else 
+            else:
                 return 'generic'
         except (OSError, RuntimeError):
             return 'generic'
