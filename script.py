@@ -13,7 +13,6 @@ db_file = "db.csv"
 username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
-desktopenv = os.environ.get('DESKTOP_SESSION')
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 if useros == 'elementary OS' or useros == 'Xubuntu':
