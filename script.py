@@ -68,6 +68,7 @@ def copy_files():
                     fout = open(o_file,'wb')
                     cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
                     fout.close()
+                    print("%s -- fixed using %s"%(app, filename))
                 else:
                     sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
         
