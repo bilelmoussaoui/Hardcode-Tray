@@ -4,7 +4,6 @@ version = 0.1
 import os, pwd, platform, csv, subprocess, sys
 import cairosvg
 from gi.repository import Gtk
-#global db_file,username,theme,default_icon_size
 
 if os.geteuid() != 0:
     sys.exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
@@ -70,7 +69,6 @@ def copy_files():
                 else:
                     sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
         
-
 #The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("Copying now..\n")
