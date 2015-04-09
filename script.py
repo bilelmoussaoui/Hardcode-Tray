@@ -2,10 +2,10 @@ __author__ = "Bilal ELMOUSSAOUI"
 version = 0.1
 
 import os,pwd
-global data_file,folder_icons,folder_tray,username
+global db_file,folder_icons,extra_folder,username
 
-data_file = "data.csv"
-folder_tray = "extra"
+db_file = "db.csv"
+extra_folder = "extra"
 folder_icons = "/usr/share/icons"
 supported_theme = []
 username = pwd.getpwuid( os.getuid() )[ 0 ]
@@ -22,24 +22,24 @@ def do_link(ls,start=False):
 def check_supported_themes():
 	themes = os.listdir(folder_icons)
 	themes_supported = []
-	for t in themes:
-		if is_dir(do_link([folder_icons,t])):
-			if is_dir(do_link([folder_icons,t,folder_tray])):
-				themes_supported.append(t)
+	for theme in themes:
+		if is_dir(do_link([folder_icons,theme])):
+			if is_dir(do_link([folder_icons,theme,extra_folder])):
+				themes_supported.append(theme)
 	return themes_supported
 
 #get all the supported apps in a theme
 def check_supported_apps(theme):
 	apps_supported = []
-	apps = os.listdir(do_link([folder_icons,theme,folder_tray]))
+	apps = os.listdir(do_link([folder_icons,theme,extra_folder]))
 	for app in apps:
-		if is_dir(do_link([folder_icons,theme,folder_tray,app])):
+		if is_dir(do_link([folder_icons,theme,extra_folder,app])):
 			apps_supported.append(app)
 	return apps_supported
 
 #convert the csv file to a dictionnary 
 def csv_to_dic():
-	d = open(data_file)
+	d = open(db_file)
 	content = d.readlines()
 	d.close()
 	dic = {}
@@ -67,7 +67,7 @@ def copy_files(theme):
 	for app in apps_in_theme:
 		if app in apps_by_hardcoder.keys() and is_dir("/"+apps_by_hardcoder[app][1]+"/"):
 			o_folder = "/"+apps_by_hardcoder[app][1] #Original folder
-			i_folder = do_link(["/usr/share/icons/",theme,folder_tray,app])#Icons folder
+			i_folder = do_link(["/usr/share/icons/",theme,extra_folder,app])#Icons folder
 			deep_copy(i_folder,o_folder)
 
 supported_theme = check_supported_themes()
@@ -88,7 +88,10 @@ else:
 	else:
 		theme = supported_theme[chosen_theme]
 		supported_apps = check_supported_apps(theme)
-		print("You did choice "+theme+", the supported applications by your theme are : "+ ", ".join(supported_apps)+"\n")
-		print("Copying now..\n")
-		copy_files(theme)
-		print("Done , Thank you for using the Hardcode-Tray fixer!")
+		if len(supported_apps) == 0:
+			print("The chosen theme dosen't support any application at the moment")
+		else:
+			print("You did choice "+theme+", the supported applications by your theme are : "+ ", ".join(supported_apps)+"\n")
+			print("Copying now..\n")
+			copy_files(theme)
+			print("Done , Thank you for using the Hardcode-Tray fixer!")
