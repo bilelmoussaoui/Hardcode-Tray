@@ -6,7 +6,5 @@ Fixes Hardcoded tray icons in Linux
   ```bash
     python3 script.py 
   ```
-  2 - Choose the theme you want to use for the tray-icons
-
-  3 - Enjoy!
+  2 - Enjoy!
   
