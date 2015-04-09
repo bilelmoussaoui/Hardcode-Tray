@@ -57,7 +57,6 @@ def copy_files():
                 filename = theme_icon.get_filename()
                 extension_theme = os.path.splitext(filename)[1]
                 o_file = "/"+apps[app][1]+"/"+icon #Output icon
-                print (o_file)
                 if extension_theme == extension_orig:
                     subprocess.Popen(['ln', '-sf', filename, o_file])
                     print("%s -- fixed using %s"%(app, filename))
