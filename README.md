@@ -8,3 +8,7 @@ Fixes Hardcoded tray icons in Linux
   ```
   2 - Enjoy!
   
+### Supported applications
+We now support : My-Weather-Indicator,Pushbullet-indicator, Touchpad-indicator,Variety, Grive-tools, Radiotray, yd-tools, Pomodoro-indicator
+
+If you use an other applications and it's not supported yet? [Report an issue](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues)
