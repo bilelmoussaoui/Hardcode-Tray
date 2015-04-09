@@ -1,10 +1,5 @@
-my-weather-indicator,opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
-pushbullet-indicator,opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
-touchpad-indicator,opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons
-variety,opt/extras.ubuntu.com/variety/share/variety/media
-grive-tools,opt/thefanclub/grive-tools/icons
-viber,opt/viber/icons
-telegram,home/{user_name}/.TelegramDesktop/tdata/ticons
-radiotray,usr/share/radiotray/images
-yd-tools,opt/yd-tools/icons
-pomodoro-indicator,opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
+pushbullet-indicator,opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons,pushbullet-indicator-dark.svg,pushbullet-indicator-sync0-dark.svg,pushbullet-indicator-sync1-dark.svg,pushbullet-indicator-sync2-dark.svg,pushbullet-indicator-sync3-dark.svg,pushbullet-indicator-light,pushbullet-indicator-sync0-light.svg,pushbullet-indicator-sync1-light.svg,pushbullet-indicator-sync2-light.svg,pushbullet-indicator-sync3-light.svg
+my-weather-indicator,opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons,mwi-arrow-cold.png,mwi-arrow-hot.png,mwid-chance-of-rain-night.png,mwid-chance-of-rain.png,mwid-chance-of-snow-night.png,mwid-chance-of-snow.png,mwid-chance-of-thunderstorms-night.png,mwid-chance-of-thunderstorms.png,mwid-clear-night.png,mwid-clear.png,mwid-cloudy.png,mwid-flurries.png,mwid-fog-night.png,mwid-fog.png,mwid-freezing-drizzle.png,mwid-hail.png,mwid-icy.png,mwid-light-rain.png,mwid-light-snow.png,mwid-mostly-cloudy-night.png,mwid-mostly-cloudy.png,mwid-mostly-sunny-night.png,mwid-mostly-sunny.png,mwid-not-available.png,mwid-partly-cloudy-night.png,mwid-partly-cloudy.png,mwid-rain-and-snow.png,mwid-rain-new.png,mwid-rain.png,mwid-snow.png,mwid-storm.png,mwid-windy.png,mwil-chance-of-rain-night.png,mwil-chance-of-rain.png,mwil-chance-of-snow-night.png,mwil-chance-of-snow.png,mwil-chance-of-thunderstorms-night.png,mwil-chance-of-thunderstorms.png,mwil-clear-night.png,mwil-clear.png,mwil-cloudy.png,mwil-flurries.png,mwil-fog-night.png,mwil-fog.png,mwil-freezing-drizzle.png,mwil-hail.png,mwil-icy.png,mwil-light-rain.png,mwil-light-snow.png,mwil-mostly-cloudy-night.png,mwil-mostly-cloudy.png,mwil-mostly-sunny-night.png,mwil-mostly-sunny.png,mwil-not-available.png,mwil-partly-cloudy-night.png,mwil-partly-cloudy.png,mwil-rain-and-snow.png,mwil-rain-new.png,mwil-rain.png,mwil-snow.png,mwil-storm.png,mwil-windy.png
+touchpad-indicator,opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons,touchpad-indicator-dark,touchpad-indicator-dark-disabled,touchpad-indicator-dark-enabled,touchpad-indicator-light,touchpad-indicator-light-disabled,touchpad-indicator-light-enabled,touchpad-indicator-normal,touchpad-indicator-normal-disabled,touchpad-indicator-normal-enabled
+variety,opt/extras.ubuntu.com/variety/share/variety/media,variety-indicator.png,variety-indicator-dark.png
+grive-tools,opt/thefanclub/grive-tools/icons,grive-app-ind.svg,grive-app-ind-con-1.svg,,grive-app-ind-con-2.svg,grive-app-ind-con-3.svg,grive-app-ind-sleep.svg
