@@ -9,9 +9,9 @@ extra_folder = "extra"
 folder_icons = "/usr/share/icons"
 supported_theme = []
 username = pwd.getpwuid( os.getuid() )[ 0 ]
-os = os.system("lsb_release -si")
+useros = os.system("lsb_release -si")
 default_icon_size = "24x24"
-if os == "elementary OS":
+if useros == "elementary OS":
 	default_icon_size = "22x22"
 
 #Check if the directory exists
