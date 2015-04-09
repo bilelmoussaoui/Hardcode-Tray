@@ -13,9 +13,28 @@ username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
+
 default_icon_size = 22
-if useros == 'elementary OS' or useros == 'Xubuntu':
+if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
 	default_icon_size = 24
+
+#detect desktop environment
+def detect_desktop_environment():
+    if os.environ.get('KDE_FULL_SESSION') == 'true':
+        return 'kde'
+    elif os.environ.get('GNOME_DESKTOP_SESSION_ID'):
+        return 'gnome'
+    else:
+        try:
+            process = subprocess.Popen(['ls', '-la', 'xprop -root _DT_SAVE_MODE'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out = process.communicate()
+            if ' = "xfce4"' in out:
+                return 'xfce'
+            else:
+                return 'generic'
+        except (OSError, RuntimeError):
+            return 'generic'
+
 
 #Check if the directory exists
 def is_dir(dir):
