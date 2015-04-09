@@ -2,9 +2,9 @@
 Fixes Hardcoded tray icons in Linux
 
 #How to use
-  1 - Open the script.py using this command
+  1 - Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
   ```bash
-    python3 script.py 
+    sudo python3 script.py 
   ```
   2 - Enjoy!
   
