@@ -1,15 +1,17 @@
 # Hardcode-Tray
 Fixes Hardcoded tray icons in Linux
 
-#How to use
+###How to use
   1 - Install python3-cairosvg (used in case the original icons are .svg and the hardcoded icons are .png)
     ```bash
     sudo apt-get install python3-cairosvg 
   	```
+  	
   2 - Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
   ```bash
     sudo python3 script.py 
   ```
+  
   3 - Enjoy!
   
 ### Supported applications
