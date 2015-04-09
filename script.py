@@ -9,6 +9,10 @@ extra_folder = "extra"
 folder_icons = "/usr/share/icons"
 supported_theme = []
 username = pwd.getpwuid( os.getuid() )[ 0 ]
+os = os.system("lsb_release -si")
+default_icon_size = "24x24"
+if os == "elementary OS":
+	default_icon_size = "22x22"
 
 #Check if the directory exists
 def is_dir(dir):
@@ -67,7 +71,7 @@ def copy_files(theme):
 	for app in apps_in_theme:
 		if app in apps_by_hardcoder.keys() and is_dir("/"+apps_by_hardcoder[app][1]+"/"):
 			o_folder = "/"+apps_by_hardcoder[app][1] #Original folder
-			i_folder = do_link(["/usr/share/icons/",theme,extra_folder,app])#Icons folder
+			i_folder = do_link(["/usr/share/icons/",theme,extra_folder,app,default_icon_size])#Icons folder
 			deep_copy(i_folder,o_folder)
 
 supported_theme = check_supported_themes()
@@ -83,7 +87,7 @@ else:
 		message += "\n"
 	chosen_theme = int(input(message))-1
 
-	if chosen_theme >= l_supported_theme:
+	if chosen_theme >= l_supported_theme or chosen_theme < 0:
 		raise Exception("The chosen theme dosen't exists, please try again")
 	else:
 		theme = supported_theme[chosen_theme]
