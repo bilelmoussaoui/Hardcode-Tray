@@ -7,13 +7,15 @@ Fixes Hardcoded tray icons in Linux
   ```bash
     sudo apt-get install python3-cairosvg 
   ```
-  	
+  
   2 - Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
   ```bash
     sudo python3 script.py 
   ```
   
-  3 - Enjoy!
+  3 - Choose the version you want to use (dark or light). Used for some apps like grive-tools
+  
+  4 - Enjoy!
   
 ### Supported applications
 We now support : My-Weather-Indicator,Pushbullet-indicator, Touchpad-indicator,Variety, Grive-tools, Radiotray, yd-tools, Pomodoro-indicator
