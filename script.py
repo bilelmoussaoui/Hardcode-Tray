@@ -13,27 +13,50 @@ username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
+
 default_icon_size = 22
-if useros == 'elementary OS' or useros == 'Xubuntu':
+if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
 	default_icon_size = 24
+
+#detect desktop environment
+def detect_desktop_environment():
+    if os.environ.get('KDE_FULL_SESSION') == 'true':
+        return 'kde'
+    elif os.environ.get('GNOME_DESKTOP_SESSION_ID'):
+        return 'gnome'
+    else:
+        try:
+            process = subprocess.Popen(['ls', '-la', 'xprop -root _DT_SAVE_MODE'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out = process.communicate()
+            if ' = "xfce4"' in out:
+                return 'xfce'
+            else:
+                return 'generic'
+        except (OSError, RuntimeError):
+            return 'generic'
+
 
 #Check if the directory exists
 def is_dir(dir):
 	return os.path.isdir(dir)
 
 #convert the csv file to a dictionnary 
-def csv_to_dic():
+def csv_to_dic(dark_light):
    	db = open(db_file)
    	r = csv.reader(db)
+   	if dark_light == 1:
+   		used_theme = "dark"
+   	else:
+   		used_theme = "light"
    	dic = {}
    	for row in r:
+   		row[1] = row[1].replace("{dark_light}",used_theme)
    		if is_dir("/"+row[1]):#check if the folder exists 
-   			dic[row[0]] = {'link' : row[1].replace("{user_name}",username), 'icons': [row [i] for i in range(2,len(row))]}
+   			dic[row[0]] = {'link' :row[1] , 'icons': [row [i] for i in range(2,len(row))]}
    	return dic
-
 #Copy files..
-def copy_files():
-	apps = csv_to_dic()
+def copy_files(dark_light):
+	apps = csv_to_dic(dark_light)
 	for app in apps:
 		app_icons = apps[app]['icons']
 		for icon in app_icons:
@@ -59,6 +82,9 @@ def copy_files():
         
 #The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
+dark_light = int(input("Do you wish to use light or dark icons? \n 1 - Dark \n 2 - Light \n"))
+if not (dark_light in [1,2]):
+	sys.exit("Please retry again!")
 print("Copying now..\n")
-copy_files()
+copy_files(dark_light)
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
