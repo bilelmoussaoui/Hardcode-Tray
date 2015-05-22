@@ -1,25 +1,23 @@
 # Hardcode-Tray
 Fixes Hardcoded tray icons in Linux
 
-###How to use
-  1 - Install python3-cairosvg (used in case the original icons are .svg and the hardcoded icons are .png)
-  
+### How to use
+  1. Install python3-cairosvg (used in case the original icons are .svg and the hardcoded icons are .png)
   ```bash
     sudo apt-get install python3-cairosvg 
   ```
   
-  2 - Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
+  2. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
   ```bash
     sudo python3 script.py 
   ```
   
-  3 - Choose the version you want to use (dark or light). Used for some apps like grive-tools
+  3. Choose the version you want to use (dark or light). Used for some apps like grive-tools
   
-  4 - Enjoy!
-  
-### Supported applications
-We now support : 
+  4. Enjoy!
 
+### Supported applications
+We now support: 
 * [Grive-tools](https://launchpad.net/~thefanclub/+archive/ubuntu/grive-tools)
 * [keepassx](https://www.keepassx.org/)
 * [My-Weather-Indicator](https://launchpad.net/my-weather-indicator)
