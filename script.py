@@ -13,10 +13,8 @@ username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
-
 default_icon_size = 22
-if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
-	default_icon_size = 24
+
 
 #detect desktop environment
 def detect_desktop_environment():
@@ -35,12 +33,30 @@ def detect_desktop_environment():
         except (OSError, RuntimeError):
             return 'generic'
 
+if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
+	default_icon_size = 24
+
 
 #Check if the directory exists
 def is_dir(dir):
 	return os.path.isdir(dir)
 
-#convert the csv file to a dictionnary 
+#get the icons name from the db directory
+def get_icons(app_name):
+	if os.path.isfile("db/"+app_name+".csv"):
+		f = open("db/"+app_name+".csv")
+		r = csv.reader(db)
+		icons = []
+		for icon in r:
+			if icon.strip() != "":
+				icons.append(icon.strip())
+		return icons
+	else:
+		sys.exit("The application does not exists, please report this to the dev.")
+
+
+
+#convert the csv file to a dictionnary
 def csv_to_dic(dark_light):
    	db = open(db_file)
    	r = csv.reader(db)
@@ -51,8 +67,8 @@ def csv_to_dic(dark_light):
    	dic = {}
    	for row in r:
    		row[1] = row[1].replace("{dark_light}",used_theme)
-   		if is_dir("/"+row[1]):#check if the folder exists 
-   			dic[row[0]] = {'link' :row[1] , 'icons': [row [i] for i in range(2,len(row))]}
+   		if is_dir("/"+row[1]):#check if the folder exists
+   			dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
    	return dic
 #Copy files..
 def copy_files(dark_light):
@@ -79,7 +95,7 @@ def copy_files(dark_light):
 					print("%s -- fixed using %s"%(app, filename))
 				else:
 					sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
-        
+
 #The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 dark_light = int(input("Do you wish to use light or dark icons? \n 1 - Dark \n 2 - Light \n"))
