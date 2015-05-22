@@ -20,14 +20,14 @@ Fixes Hardcoded tray icons in Linux
 ### Supported applications
 We now support : 
 
-      * My-Weather-Indicator
-      * Pushbullet-indicator
-      * Touchpad-indicator
-      * Variety
-      * Grive-tools
-      * Radiotray
-      * yd-tools
-      * Pomodoro-indicator
-      * keepassx
+* [Grive-tools](https://launchpad.net/~thefanclub/+archive/ubuntu/grive-tools)
+* [keepassx](https://www.keepassx.org/)
+* [My-Weather-Indicator](https://launchpad.net/my-weather-indicator)
+* [Pomodoro-indicator](https://github.com/malev/pomodoro-indicator)
+* [Pushbullet-indicator](https://launchpad.net/~atareao)
+* [Radiotray](http://radiotray.sourceforge.net/)
+* [Touchpad-indicator](https://launchpad.net/touchpad-indicator)
+* [Variety](http://peterlevi.com/variety/)
+* [yd-tools](https://github.com/slytomcat/yandex-disk-indicator)
 
 If you use an other applications and it's not supported yet? [Report an issue](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues)
