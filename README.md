@@ -24,6 +24,7 @@ We now support:
 * [Pomodoro-indicator](https://github.com/malev/pomodoro-indicator)
 * [Pushbullet-indicator](https://launchpad.net/~atareao)
 * [Radiotray](http://radiotray.sourceforge.net/)
+* [Telegram](https://desktop.telegram.org/)
 * [Touchpad-indicator](https://launchpad.net/touchpad-indicator)
 * [Variety](http://peterlevi.com/variety/)
 * [yd-tools](https://github.com/slytomcat/yandex-disk-indicator)
