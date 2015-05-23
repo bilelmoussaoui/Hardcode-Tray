@@ -8,3 +8,8 @@ yd-tools,/opt/yd-tools/icons
 pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
 keepassx,/usr/share/keepassx/icons
 telegram,{userhome}/.TelegramDesktop/tdata/ticons
+youtube-indicator,/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons
+cryptfolder-indicator,/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
+calendar-indicator,/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons
+google-tasks-indicator,/usr/share/google-tasks-indicator/icons
+catch-indicator,/usr/share/catch-indicator/icons

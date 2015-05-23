@@ -1,0 +1,4 @@
+catch-indicator-light-starred.svg
+catch-indicator-light-normal.svg
+catch-indicator-dark-starred.svg
+catch-indicator-dark-normal.svg
