@@ -10,6 +10,7 @@ if os.geteuid() != 0:
 
 db_file = "db.csv"
 db_folder = "database"
+userhome = os.path.expanduser("~")
 username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
@@ -45,7 +46,10 @@ def get_icons(app_name):
 		icons = []
 		for icon in r:
 			if icon.strip() != "":
-				icons.append(icon.strip())
+				if len(icon.split(",")) != 1:
+					icons.append(icon.strip().split(","))
+				else:
+					icons.append(icon.strip())
 		f.close()
 		return icons
 	else:
@@ -53,45 +57,57 @@ def get_icons(app_name):
 
 #convert the csv file to a dictionnary
 def csv_to_dic(dark_light):
-   	db = open(db_file)
-   	r = csv.reader(db)
-   	if dark_light == 1:
-   		used_theme = "dark"
-   	else:
-   		used_theme = "light"
-   	dic = {}
-   	for row in r:
-   		row[1] = row[1].replace("{dark_light}",used_theme)
-   		if is_dir("/"+row[1]):#check if the folder exists
-   			dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
+	db = open(db_file)
+	r = csv.reader(db)
+	if dark_light == 1:
+		used_theme = "dark"
+	else:
+		used_theme = "light"
+	dic = {}
+	for row in r:
+		row[1] = row[1].replace("{dark_light}",used_theme)
+		row[1] = row[1].replace("{userhome}",userhome)
+		if is_dir(row[1]+"/"):#check if the folder exists
+			dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
 	db.close()
-   	return dic
+	return dic
 
 #Copy files..
 def copy_files(dark_light):
 	apps = csv_to_dic(dark_light)
-	for app in apps:
-		app_icons = apps[app]['icons']
-		for icon in app_icons:
-			base_icon = os.path.splitext(icon)[0]
-			extension_orig = os.path.splitext(icon)[1]
-			theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
-			if theme_icon:
-				filename = theme_icon.get_filename()
-				extension_theme = os.path.splitext(filename)[1]
-				o_file = "/"+apps[app]['link']+"/"+icon #Output icon
-				if extension_theme == extension_orig:
-				    subprocess.Popen(['ln', '-sf', filename, o_file])
-				    print("%s -- fixed using %s"%(app, filename))
-				elif extension_theme == '.svg' and extension_orig == '.png':
-					with open(filename, 'r') as content_file:
-						svg = content_file.read()
-					fout = open(o_file,'wb')
-					cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
-					fout.close()
-					print("%s -- fixed using %s"%(app, filename))
+	if len(apps) != 0:
+		for app in apps:
+			app_icons = apps[app]['icons']
+			for icon in app_icons:
+				if isinstance(icon,list):
+					symlink_icon = icon[0]
+					icon = icon[1]
 				else:
-					sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
+					symlink_icon = icon
+				base_icon = os.path.splitext(icon)[0]
+				extension_orig = os.path.splitext(icon)[1]
+				theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
+				if theme_icon:
+					filename = theme_icon.get_filename()
+					extension_theme = os.path.splitext(filename)[1]
+					if symlink_icon:
+						o_file =  "/"+apps[app]['link']+"/"+symlink_icon
+					else:
+						o_file = "/"+apps[app]['link']+"/"+icon #Output icon
+					if extension_theme == extension_orig:
+					    subprocess.Popen(['ln', '-sf', filename, o_file])
+					    print("%s -- fixed using %s"%(app, filename))
+					elif extension_theme == '.svg' and extension_orig == '.png':
+						with open(filename, 'r') as content_file:
+							svg = content_file.read()
+						fout = open(o_file,'wb')
+						cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
+						fout.close()
+						print("%s -- fixed using %s"%(app, filename))
+					else:
+						sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
+	else:
+		sys.exit("The application we support are not installed. Please report this if if it's not the case")
 
 if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
 	default_icon_size = 24
