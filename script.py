@@ -45,11 +45,12 @@ def get_icons(app_name):
 		r = f.readlines()
 		icons = []
 		for icon in r:
-			if icon.strip() != "":
+			icon = icon.strip()
+			if icon != "":
 				if len(icon.split(",")) != 1:
-					icons.append(icon.strip().split(","))
+					icons.append(icon.split(","))
 				else:
-					icons.append(icon.strip())
+					icons.append(icon)
 		f.close()
 		return icons
 	else:
