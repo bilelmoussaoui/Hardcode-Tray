@@ -10,6 +10,7 @@ if os.geteuid() != 0:
 
 db_file = "db.csv"
 db_folder = "database"
+db_ext = "txt"
 userhome = os.path.expanduser("~")
 username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
@@ -35,13 +36,17 @@ def detect_desktop_environment():
             return 'generic'
 
 #Check if the directory exists
-def is_dir(dir):
-	return os.path.isdir(dir)
+def is_dir(d):
+	return os.path.isdir(d)
+
+#Check if the file exists
+def is_file(f):
+	return os.path.isfile(f)
 
 #get the icons name from the db directory
 def get_icons(app_name):
-	if os.path.isfile(db_folder+"/"+app_name+".txt"):
-		f = open(db_folder+"/"+app_name+".txt")
+	if is_file(db_folder + "/" + app_name + db_ext):
+		f = open(db_folder + "/" + app_name + db_ext)
 		r = f.readlines()
 		icons = []
 		for icon in r:
@@ -92,9 +97,9 @@ def copy_files(dark_light):
 					filename = theme_icon.get_filename()
 					extension_theme = os.path.splitext(filename)[1]
 					if symlink_icon:
-						o_file =  "/"+apps[app]['link']+"/"+symlink_icon
+						o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
 					else:
-						o_file = "/"+apps[app]['link']+"/"+icon #Output icon
+						o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
 					if extension_theme == extension_orig:
 					    subprocess.Popen(['ln', '-sf', filename, o_file])
 					    print("%s -- fixed using %s"%(app, filename))
