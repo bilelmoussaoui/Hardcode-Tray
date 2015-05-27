@@ -67,8 +67,8 @@ def get_icons(app_name):
 #gets the dropbox folder
 def dropbox_folder(d):
     dirs = d.split("{*}")
-    sub_dirs = os.lisdir(dirs[0]).sort()
-    if sub_dirs.split("-")[0] == "dropbox":
+    sub_dirs = os.listdir(""+dirs[0]).sort()
+    if sub_dirs[0].split("-")[0] == "dropbox":
         return dirs[0]+sub_dirs[0]+dirs[2]
     else: 
         return None
@@ -80,7 +80,8 @@ def csv_to_dic():
     dic = {}
     for row in r:
         row[1] = row[1].replace("{userhome}",userhome)
-        row[1] = row[1].replace("{*}",dropbox_folder(row[1]))
+        if "{*}" in row[1]:
+            row[1] = row[1].replace("{*}",dropbox_folder(row[1]))
         if is_dir(row[1]+"/"):#check if the folder exists
             icon = get_icons(row[0])
             if icon:
