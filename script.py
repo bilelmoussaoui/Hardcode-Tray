@@ -45,6 +45,15 @@ def is_dir(d):
 def is_file(f):
     return os.path.isfile(f)
 
+#Get a folder dirs
+def get_subdirs(d):
+    dirs = os.listdir(d)
+    dirs.sort()
+    result = []
+    for a in dirs:
+        if is_dir(d+"/"+a):
+            result.append(a)
+    return result
 #get the icons name from the db directory
 def get_icons(app_name):
     if is_file(db_folder + "/" + app_name + db_ext):
@@ -67,9 +76,10 @@ def get_icons(app_name):
 #gets the dropbox folder
 def dropbox_folder(d):
     dirs = d.split("{*}")
-    sub_dirs = os.listdir(""+dirs[0]).sort()
+    sub_dirs = get_subdirs(dirs[0])
+    sub_dirs.sort()
     if sub_dirs[0].split("-")[0] == "dropbox":
-        return dirs[0]+sub_dirs[0]+dirs[2]
+        return dirs[0]+sub_dirs[0]+dirs[1]
     else: 
         return None
 
@@ -81,7 +91,8 @@ def csv_to_dic():
     for row in r:
         row[1] = row[1].replace("{userhome}",userhome)
         if "{*}" in row[1]:
-            row[1] = row[1].replace("{*}",dropbox_folder(row[1]))
+            row[1] = dropbox_folder(row[1])
+            print(row[1])
         if is_dir(row[1]+"/"):#check if the folder exists
             icon = get_icons(row[0])
             if icon:
