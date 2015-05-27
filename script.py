@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 __author__ = "Bilal ELMOUSSAOUI"
 version = 0.2
 
