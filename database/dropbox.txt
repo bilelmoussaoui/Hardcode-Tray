@@ -1,0 +1,6 @@
+dropboxstatus-blank.png
+dropboxstatus-busy.png
+dropboxstatus-busy2.png
+dropboxstatus-idle.png
+dropboxstatus-logo.png
+dropboxstatus-x.png
