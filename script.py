@@ -11,7 +11,7 @@ if os.geteuid() != 0:
 
 db_file = "db.csv"
 db_folder = "database"
-db_ext = "txt"
+db_ext = ".txt"
 userhome = os.path.expanduser("~")
 username = pwd.getpwuid( os.getuid() )[ 0 ]
 useros = platform.linux_distribution()
@@ -60,7 +60,7 @@ def get_icons(app_name):
         f.close()
         return icons
     else:
-        print("The application " + app_name + " does not exists, please report this to the dev.")
+        print("The application " + app_name + " does not exist yet, please report this to the dev.")
 
 #convert the csv file to a dictionnary
 def csv_to_dic():
@@ -107,9 +107,9 @@ def copy_files():
                         fout.close()
                         print("%s -- fixed using %s"%(app, filename))
                     else:
-                        sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
+                        sys.exit('hardcoded file has to be svg or png. Other formats are not supported yet')
     else:
-        sys.exit("The application we support are not installed. Please report this if if it's not the case")
+        sys.exit("The application we support is not installed. Please report this if this is not the case")
 
 if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
     default_icon_size = 24
