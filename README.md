@@ -32,4 +32,6 @@ We now support:
 * [Yd-tools](https://github.com/slytomcat/yandex-disk-indicator)
 * [Youtube-indicator](https://github.com/slytomcat/yandex-disk-indicator)
 
+You can fix [Viber](https://www.viber.com/) using [Viberwrapper-indicator](https://github.com/karas84/viberwrapper-indicator)
+
 If you use an other applications and it's not supported yet? [Report an issue](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues)
