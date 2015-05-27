@@ -27,7 +27,7 @@ We now support:
 * [Pomodoro-indicator](https://github.com/malev/pomodoro-indicator)
 * [Pushbullet-indicator](https://launchpad.net/~atareao)
 * [Radiotray](http://radiotray.sourceforge.net/)
-* [keepassx](https://www.keepassx.org/)
+* [Keepassx](https://www.keepassx.org/)
 * [Telegram](https://desktop.telegram.org/)
 * [Touchpad-indicator](https://launchpad.net/touchpad-indicator)
 * [Variety](http://peterlevi.com/variety/)

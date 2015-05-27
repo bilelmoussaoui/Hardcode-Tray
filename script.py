@@ -56,16 +56,11 @@ def get_icons(app_name):
 		sys.exit("The application does not exists, please report this to the dev.")
 
 #convert the csv file to a dictionnary
-def csv_to_dic(dark_light):
+def csv_to_dic():
 	db = open(db_file)
 	r = csv.reader(db)
-	if dark_light == 1:
-		used_theme = "dark"
-	else:
-		used_theme = "light"
 	dic = {}
 	for row in r:
-		row[1] = row[1].replace("{dark_light}",used_theme)
 		row[1] = row[1].replace("{userhome}",userhome)
 		if is_dir(row[1]+"/"):#check if the folder exists
 			dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
@@ -73,8 +68,8 @@ def csv_to_dic(dark_light):
 	return dic
 
 #Copy files..
-def copy_files(dark_light):
-	apps = csv_to_dic(dark_light)
+def copy_files():
+	apps = csv_to_dic()
 	if len(apps) != 0:
 		for app in apps:
 			app_icons = apps[app]['icons']
@@ -114,9 +109,6 @@ if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
 
 #The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
-dark_light = int(input("Do you wish to use light or dark icons? \n 1 - Dark \n 2 - Light \n"))
-if not (dark_light in [1,2]):
-	sys.exit("Please retry again!")
 print("Copying now..\n")
-copy_files(dark_light)
+copy_files()
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")

@@ -2,7 +2,8 @@ calendar-indicator,/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indi
 catch-indicator,/usr/share/catch-indicator/icons
 cryptfolder-indicator,/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
 google-tasks-indicator,/usr/share/google-tasks-indicator/icons
-grive-tools,/opt/thefanclub/grive-tools/icons/{dark_light}
+grive-tools,/opt/thefanclub/grive-tools/icons/light
+grive-tools,/opt/thefanclub/grive-tools/icons/dark
 my-weather-indicator,/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
 pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
 pushbullet-indicator,/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
