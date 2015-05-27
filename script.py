@@ -6,7 +6,7 @@ import cairosvg
 from gi.repository import Gtk
 
 if os.geteuid() != 0:
-	sys.exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
+    sys.exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
 
 db_file = "db.csv"
 db_folder = "database"
@@ -37,81 +37,81 @@ def detect_desktop_environment():
 
 #Check if the directory exists
 def is_dir(d):
-	return os.path.isdir(d)
+    return os.path.isdir(d)
 
 #Check if the file exists
 def is_file(f):
-	return os.path.isfile(f)
+    return os.path.isfile(f)
 
 #get the icons name from the db directory
 def get_icons(app_name):
-	if is_file(db_folder + "/" + app_name + db_ext):
-		f = open(db_folder + "/" + app_name + db_ext)
-		r = f.readlines()
-		icons = []
-		for icon in r:
-			icon = icon.strip()
-			if icon != "":
-				if len(icon.split(",")) != 1:
-					icons.append(icon.split(","))
-				else:
-					icons.append(icon)
-		f.close()
-		return icons
-	else:
-		sys.exit("The application does not exists, please report this to the dev.")
+    if is_file(db_folder + "/" + app_name + db_ext):
+        f = open(db_folder + "/" + app_name + db_ext)
+        r = f.readlines()
+        icons = []
+        for icon in r:
+            icon = icon.strip()
+            if icon != "":
+                if len(icon.split(",")) != 1:
+                    icons.append(icon.split(","))
+                else:
+                    icons.append(icon)
+        f.close()
+        return icons
+    else:
+        print("The application " + app_name + " does not exists, please report this to the dev.")
 
 #convert the csv file to a dictionnary
 def csv_to_dic():
-	db = open(db_file)
-	r = csv.reader(db)
-	dic = {}
-	for row in r:
-		row[1] = row[1].replace("{userhome}",userhome)
-		if is_dir(row[1]+"/"):#check if the folder exists
-			dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
-	db.close()
-	return dic
+    db = open(db_file)
+    r = csv.reader(db)
+    dic = {}
+    for row in r:
+        row[1] = row[1].replace("{userhome}",userhome)
+        if is_dir(row[1]+"/"):#check if the folder exists
+            dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
+    db.close()
+    return dic
 
 #Copy files..
 def copy_files():
-	apps = csv_to_dic()
-	if len(apps) != 0:
-		for app in apps:
-			app_icons = apps[app]['icons']
-			for icon in app_icons:
-				if isinstance(icon,list):
-					symlink_icon = icon[0]
-					icon = icon[1]
-				else:
-					symlink_icon = icon
-				base_icon = os.path.splitext(icon)[0]
-				extension_orig = os.path.splitext(icon)[1]
-				theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
-				if theme_icon:
-					filename = theme_icon.get_filename()
-					extension_theme = os.path.splitext(filename)[1]
-					if symlink_icon:
-						o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
-					else:
-						o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
-					if extension_theme == extension_orig:
-					    subprocess.Popen(['ln', '-sf', filename, o_file])
-					    print("%s -- fixed using %s"%(app, filename))
-					elif extension_theme == '.svg' and extension_orig == '.png':
-						with open(filename, 'r') as content_file:
-							svg = content_file.read()
-						fout = open(o_file,'wb')
-						cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
-						fout.close()
-						print("%s -- fixed using %s"%(app, filename))
-					else:
-						sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
-	else:
-		sys.exit("The application we support are not installed. Please report this if if it's not the case")
+    apps = csv_to_dic()
+    if len(apps) != 0:
+        for app in apps:
+            app_icons = apps[app]['icons']
+            for icon in app_icons:
+                if isinstance(icon,list):
+                    symlink_icon = icon[0]
+                    icon = icon[1]
+                else:
+                    symlink_icon = icon
+                base_icon = os.path.splitext(icon)[0]
+                extension_orig = os.path.splitext(icon)[1]
+                theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
+                if theme_icon:
+                    filename = theme_icon.get_filename()
+                    extension_theme = os.path.splitext(filename)[1]
+                    if symlink_icon:
+                        o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
+                    else:
+                        o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
+                    if extension_theme == extension_orig:
+                        subprocess.Popen(['ln', '-sf', filename, o_file])
+                        print("%s -- fixed using %s"%(app, filename))
+                    elif extension_theme == '.svg' and extension_orig == '.png':
+                        with open(filename, 'r') as content_file:
+                            svg = content_file.read()
+                        fout = open(o_file,'wb')
+                        cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
+                        fout.close()
+                        print("%s -- fixed using %s"%(app, filename))
+                    else:
+                        sys.exit('hardcoded file has to be svg or png. Other formats not supported yet')
+    else:
+        sys.exit("The application we support are not installed. Please report this if if it's not the case")
 
 if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
-	default_icon_size = 24
+    default_icon_size = 24
 
 #The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
