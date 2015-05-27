@@ -92,7 +92,6 @@ def csv_to_dic():
         row[1] = row[1].replace("{userhome}",userhome)
         if "{*}" in row[1]:
             row[1] = dropbox_folder(row[1])
-            print(row[1])
         if is_dir(row[1]+"/"):#check if the folder exists
             icon = get_icons(row[0])
             if icon:
