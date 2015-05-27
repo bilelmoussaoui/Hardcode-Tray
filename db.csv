@@ -6,11 +6,14 @@ grive-tools,/opt/thefanclub/grive-tools/icons/light
 grive-tools,/opt/thefanclub/grive-tools/icons/dark
 my-weather-indicator,/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
 pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
+primeindicator,/usr/lib/primeindicator
 pushbullet-indicator,/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
 radiotray,/usr/share/radiotray/images
 keepassx,/usr/share/keepassx/icons
 telegram,{userhome}/.TelegramDesktop/tdata/ticons
 touchpad-indicator,/opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons
+twitch-indicator,/usr/lib/twitch-indicator
 variety,/opt/extras.ubuntu.com/variety/share/variety/media
+xkbmod-indicator,/usr/share/indicator-xkbmod/icons
 yd-tools,/opt/yd-tools/icons
 youtube-indicator,/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons
