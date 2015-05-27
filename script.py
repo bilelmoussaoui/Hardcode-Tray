@@ -11,6 +11,7 @@ if os.geteuid() != 0:
 
 db_file = "db.csv"
 db_folder = "database"
+script_folder = "scripts"
 db_ext = ".txt"
 userhome = os.path.expanduser("~")
 username = pwd.getpwuid( os.getuid() )[ 0 ]
@@ -86,8 +87,12 @@ def copy_files():
         for app in apps:
             app_icons = apps[app]['icons']
             for icon in app_icons:
+                script=False
                 if isinstance(icon,list):
                     base_icon = os.path.splitext(icon[0])[0]
+                    if len(icon)>2:
+                        script = True
+                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
                     if theme.lookup_icon(base_icon,default_icon_size,0):
                         icon = symlink_icon = icon[0]
                     else:   
@@ -101,22 +106,26 @@ def copy_files():
                 if theme_icon:
                     filename = theme_icon.get_filename()
                     extension_theme = os.path.splitext(filename)[1]
-                    if symlink_icon:
-                        o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
+                    if not script:
+                        if symlink_icon:
+                            o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
+                        else:
+                            o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
+                        if extension_theme == extension_orig:
+                            subprocess.Popen(['ln', '-sf', filename, o_file])
+                            print("%s -- fixed using %s"%(app, filename))
+                        elif extension_theme == '.svg' and extension_orig == '.png':
+                            with open(filename, 'r') as content_file:
+                                svg = content_file.read()
+                            fout = open(o_file,'wb')
+                            cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
+                            fout.close()
+                            print("%s -- fixed using %s"%(app, filename))
+                        else:
+                            sys.exit('hardcoded file has to be svg or png. Other formats are not supported yet')
                     else:
-                        o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
-                    if extension_theme == extension_orig:
-                        subprocess.Popen(['ln', '-sf', filename, o_file])
+                        subprocess.Popen([script_name, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         print("%s -- fixed using %s"%(app, filename))
-                    elif extension_theme == '.svg' and extension_orig == '.png':
-                        with open(filename, 'r') as content_file:
-                            svg = content_file.read()
-                        fout = open(o_file,'wb')
-                        cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
-                        fout.close()
-                        print("%s -- fixed using %s"%(app, filename))
-                    else:
-                        sys.exit('hardcoded file has to be svg or png. Other formats are not supported yet')
     else:
         sys.exit("The application we support is not installed. Please report this if this is not the case")
 
