@@ -11,10 +11,8 @@ Fixes Hardcoded tray icons in Linux
   ```bash
     sudo python3 script.py
   ```
-
-  3. Choose the version you want to use (dark or light). Used for some apps like grive-tools
-
-  4. Enjoy!
+  
+  3. Enjoy!
 
 ### Supported applications
 We now support:
