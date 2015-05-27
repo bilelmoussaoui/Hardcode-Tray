@@ -1,5 +1,5 @@
-icomute_22_0.png
-ico_22_1.png
+icomute_22_0.png,telegram-panel.svg
+ico_22_1.png,telegram-attention-panel.svg
 ico_22_2.png,ico_22_1.png
 ico_22_3.png,ico_22_1.png
 ico_22_4.png,ico_22_1.png
