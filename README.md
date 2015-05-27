@@ -7,7 +7,7 @@ Fixes Hardcoded tray icons in Linux
     sudo apt-get install python3-cairosvg
   ```
 
-  2. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt`)
+  2. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
   ```bash
     sudo python3 script.py
   ```
