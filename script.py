@@ -61,6 +61,7 @@ def get_icons(app_name):
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this to the dev.")
+        return None
 
 #convert the csv file to a dictionnary
 def csv_to_dic():
@@ -70,7 +71,11 @@ def csv_to_dic():
     for row in r:
         row[1] = row[1].replace("{userhome}",userhome)
         if is_dir(row[1]+"/"):#check if the folder exists
-            dic[row[0]] = {'link' :row[1] , 'icons': get_icons(row[0])}
+            icon = get_icons(row[0])
+            if icon:
+                dic[row[0]] = {'link' :row[1] , 'icons': icon}
+            else:
+                continue
     db.close()
     return dic
 
