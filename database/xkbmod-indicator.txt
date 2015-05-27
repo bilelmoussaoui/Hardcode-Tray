@@ -1,1 +1,1 @@
-.png,xkbmod-indicator.svg
+icon.png,xkbmod-indicator.svg
