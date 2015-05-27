@@ -87,8 +87,11 @@ def copy_files():
             app_icons = apps[app]['icons']
             for icon in app_icons:
                 if isinstance(icon,list):
-                    symlink_icon = icon[0]
-                    icon = icon[1]
+                    if theme.lookup_icon(icon[0],default_icon_size,0):
+                        icon = symlink_icon = icon[0]
+                    else:   
+                        symlink_icon = icon[0]
+                        icon = icon[1]
                 else:
                     symlink_icon = icon
                 base_icon = os.path.splitext(icon)[0]
