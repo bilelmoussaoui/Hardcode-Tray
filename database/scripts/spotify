@@ -6,9 +6,10 @@ unzip resources_old.zip -d resources_old/
 
 
 if [[ $1 == *.svg ]]; then
-    inkscape $1 --export-png=resources_old/_linux/spotify_icon.ico
+    inkscape $1 --export-png=resources_old/_linux/$2
+else
+    convert $1 --background none resources_old/_linux/$2
 fi
-    convert $1 --background none resources_old/_linux/spotify_icon.ico
     
 cd resources_old/
 zip -r resources_patched.zip .
