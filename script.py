@@ -145,7 +145,7 @@ def copy_files():
                         else:
                             sys.exit('hardcoded file has to be svg or png. Other formats are not supported yet')
                     else:
-                        subprocess.Popen([script_name, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        subprocess.call([script_name, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         print("%s -- fixed using %s"%(app, filename))
     else:
         sys.exit("The application we support is not installed. Please report this if this is not the case")
