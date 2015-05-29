@@ -13,7 +13,7 @@ fi
     
 cd resources_old/
 zip -r resources_patched.zip .
-mv resources_patched.zip /opt/spotify/spotify-client/Data/resources.zip
+mv resources_patched.zip $3/resources.zip
 cd ./..
 rm -f resources_old.zip
 rm -rf resources_old 
