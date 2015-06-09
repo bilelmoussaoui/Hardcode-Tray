@@ -14,10 +14,6 @@ db_folder = "database"
 script_folder = "scripts"
 db_ext = ".txt"
 userhome = os.path.expanduser("~")
-if os.getuid() != 0:
-    username = pwd.getpwuid( os.getuid() )[ 0 ]
-else:
-    username = os.getenv("SUDO_USER")
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
