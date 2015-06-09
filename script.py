@@ -13,7 +13,8 @@ db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 db_ext = ".txt"
-userhome = subprocess.check_output('sh -c "echo $HOME"',universal_newlines=True, shell=True).strip()
+username = os.getlogin()
+userhome = os.path.expanduser('~' + username)
 useros = platform.linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
