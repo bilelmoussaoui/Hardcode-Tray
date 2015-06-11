@@ -47,13 +47,16 @@ def is_file(f):
 
 #Get a folder dirs
 def get_subdirs(d):
-    dirs = os.listdir(d)
-    dirs.sort()
-    result = []
-    for a in dirs:
-        if is_dir(d+"/"+a):
-            result.append(a)
-    return result
+    if is_dir(d):
+        dirs = os.listdir(d)
+        dirs.sort()
+        result = []
+        for a in dirs:
+            if is_dir(d+"/"+a):
+                result.append(a)
+        return result
+    else:
+        return None
 #get the icons name from the db directory
 def get_icons(app_name):
     if is_file(db_folder + "/" + app_name + db_ext):
