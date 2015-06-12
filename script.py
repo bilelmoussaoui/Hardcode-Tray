@@ -80,10 +80,13 @@ def get_icons(app_name):
 def dropbox_folder(d):
     dirs = d.split("{*}")
     sub_dirs = get_subdirs(dirs[0])
-    sub_dirs.sort()
-    if sub_dirs[0].split("-")[0] == "dropbox":
-        return dirs[0]+sub_dirs[0]+dirs[1]
-    else: 
+    if sub_dirs:
+        sub_dirs.sort()
+        if sub_dirs[0].split("-")[0] == "dropbox":
+            return dirs[0]+sub_dirs[0]+dirs[1]
+        else: 
+            return None
+    else:
         return None
 
 #convert the csv file to a dictionnary
