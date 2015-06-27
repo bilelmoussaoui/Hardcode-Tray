@@ -1,38 +1,40 @@
 #!/usr/bin/python3
-__author__ = "Bilal ELMOUSSAOUI"
-version = 0.2
 
-import os, pwd, platform, csv, subprocess, sys
+from csv import reader
 from gi.repository import Gtk
+from os import environ, geteuid, getlogin, listdir, path
+from platform import linux_distribution
+from subprocess import Popen, PIPE
+from sys import exit
 
 try:
-    import cairosvg
+    from cairosvg import svg2png
 except:
-    sys.exit("You need to install python3-cairosvg to run this script.\nPlease install it and try again. Exiting.")
+    exit("You need to install python3-cairosvg to run this script.\nPlease install it and try again. Exiting.")
 
-if os.geteuid() != 0:
-    sys.exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
+if geteuid() != 0:
+    exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
 
 db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 db_ext = ".txt"
-username = os.getlogin()
-userhome = os.path.expanduser('~' + username)
-useros = platform.linux_distribution()
+username = getlogin()
+userhome = path.expanduser('~' + username)
+useros = linux_distribution()
 useros = useros[0].strip('"')
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 
 #detect desktop environment
 def detect_desktop_environment():
-    if os.environ.get('KDE_FULL_SESSION') == 'true':
+    if environ.get('KDE_FULL_SESSION') == 'true':
         return 'kde'
-    elif os.environ.get('GNOME_DESKTOP_SESSION_ID'):
+    elif environ.get('GNOME_DESKTOP_SESSION_ID'):
         return 'gnome'
     else:
         try:
-            process = subprocess.Popen(['ls', '-la', 'xprop -root _DT_SAVE_MODE'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = Popen(['ls', '-la', 'xprop -root _DT_SAVE_MODE'], stdout=PIPE, stderr=PIPE)
             out = process.communicate()
             if ' = "xfce4"' in out:
                 return 'xfce'
@@ -43,16 +45,16 @@ def detect_desktop_environment():
 
 #Check if the directory exists
 def is_dir(d):
-    return os.path.isdir(d)
+    return path.isdir(d)
 
 #Check if the file exists
 def is_file(f):
-    return os.path.isfile(f)
+    return path.isfile(f)
 
 #Get a folder dirs
 def get_subdirs(d):
     if is_dir(d):
-        dirs = os.listdir(d)
+        dirs = listdir(d)
         dirs.sort()
         result = []
         for a in dirs:
@@ -96,7 +98,7 @@ def dropbox_folder(d):
 #convert the csv file to a dictionnary
 def csv_to_dic():
     db = open(db_file)
-    r = csv.reader(db)
+    r = reader(db)
     dic = {}
     for row in r:
         row[1] = row[1].replace("{userhome}",userhome)
@@ -123,7 +125,7 @@ def copy_files():
             for icon in app_icons:
                 script=False
                 if isinstance(icon,list):
-                    base_icon = os.path.splitext(icon[0])[0]
+                    base_icon = path.splitext(icon[0])[0]
                     if len(icon)>2:
                         script = True
                         script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
@@ -134,35 +136,35 @@ def copy_files():
                         icon = icon[1]
                 else:
                     symlink_icon = icon
-                base_icon = os.path.splitext(icon)[0]
-                extension_orig = os.path.splitext(icon)[1]
+                base_icon = path.splitext(icon)[0]
+                extension_orig = path.splitext(icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
                     filename = theme_icon.get_filename()
-                    extension_theme = os.path.splitext(filename)[1]
+                    extension_theme = path.splitext(filename)[1]
                     if not script:
                         if symlink_icon:
                             o_file =  "/" + apps[app]['link'] + "/" + symlink_icon
                         else:
                             o_file = "/" + apps[app]['link'] + "/" + icon #Output icon
                         if extension_theme == extension_orig:
-                            subprocess.Popen(['ln', '-sf', filename, o_file])
+                            Popen(['ln', '-sf', filename, o_file])
                             print("%s -- fixed using %s"%(app, filename))
                         elif extension_theme == '.svg' and extension_orig == '.png':
                             with open(filename, 'r') as content_file:
                                 svg = content_file.read()
                             fout = open(o_file,'wb')
-                            cairosvg.svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
+                            svg2png(bytestring=bytes(svg,'UTF-8'),write_to=fout)
                             fout.close()
                             print("%s -- fixed using %s"%(app, filename))
                         else:
-                            sys.exit('hardcoded file has to be svg or png. Other formats are not supported yet')
+                            exit('hardcoded file has to be svg or png. Other formats are not supported yet')
                     else:
                         folder = apps[app]['link']
-                        subprocess.call([script_name, filename, symlink_icon, folder], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s"%(app, filename))
     else:
-        sys.exit("The application we support is not installed. Please report this if this is not the case")
+        exit("The application we support is not installed. Please report this if this is not the case")
 
 if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
     default_icon_size = 24
