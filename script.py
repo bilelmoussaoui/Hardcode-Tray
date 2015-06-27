@@ -3,8 +3,12 @@ __author__ = "Bilal ELMOUSSAOUI"
 version = 0.2
 
 import os, pwd, platform, csv, subprocess, sys
-import cairosvg
 from gi.repository import Gtk
+
+try:
+    import cairosvg
+except:
+    sys.exit("You need to install python3-cairosvg to run this script.\nPlease install it and try again. Exiting.")
 
 if os.geteuid() != 0:
     sys.exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
