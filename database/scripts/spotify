@@ -1,0 +1,20 @@
+#!/bin/bash
+cd ./database/scripts/
+cp /opt/spotify/spotify-client/Data/resources.zip resources_old.zip
+unzip resources_old.zip -d resources_old/
+
+
+
+if [[ $1 == *.svg ]]; then
+    inkscape $1 --export-png=resources_old/_linux/$2
+else
+    convert $1 --background none resources_old/_linux/$2
+fi
+    
+cd resources_old/
+zip -r resources_patched.zip .
+mv resources_patched.zip $3/resources.zip
+cd ./..
+rm -f resources_old.zip
+rm -rf resources_old 
+

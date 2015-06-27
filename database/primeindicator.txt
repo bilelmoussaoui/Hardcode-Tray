@@ -1,0 +1,2 @@
+intel.png,prime-intel.svg
+nividia.png,prime-nvidia.svg
