@@ -18,7 +18,6 @@ if geteuid() != 0:
 db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
-db_ext = ".txt"
 username = getlogin()
 userhome = path.expanduser('~' + username)
 useros = linux_distribution()
@@ -65,8 +64,8 @@ def get_subdirs(d):
         return None
 #get the icons name from the db directory
 def get_icons(app_name):
-    if is_file(db_folder + "/" + app_name + db_ext):
-        f = open(db_folder + "/" + app_name + db_ext)
+    if is_file(db_folder + "/" + app_name):
+        f = open(db_folder + "/" + app_name)
         r = f.readlines()
         icons = []
         for icon in r:
