@@ -3,7 +3,6 @@
 from csv import reader
 from gi.repository import Gtk
 from os import environ, geteuid, getlogin, listdir, path
-from platform import linux_distribution
 from subprocess import Popen, PIPE
 from sys import exit
 
@@ -18,10 +17,7 @@ if geteuid() != 0:
 db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
-username = getlogin()
-userhome = path.expanduser('~' + username)
-useros = linux_distribution()
-useros = useros[0].strip('"')
+userhome = path.expanduser('~' + getlogin())
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 
@@ -29,6 +25,8 @@ default_icon_size = 22
 def detect_desktop_environment():
     if environ.get('KDE_FULL_SESSION') == 'true':
         return 'kde'
+    elif environ.get('DESKTOP_SESSION') == 'pantheon':
+        return 'pantheon'
     elif environ.get('GNOME_DESKTOP_SESSION_ID'):
         return 'gnome'
     else:
@@ -42,29 +40,21 @@ def detect_desktop_environment():
         except (OSError, RuntimeError):
             return 'generic'
 
-#Check if the directory exists
-def is_dir(d):
-    return path.isdir(d)
-
-#Check if the file exists
-def is_file(f):
-    return path.isfile(f)
-
 #Get a folder dirs
 def get_subdirs(d):
-    if is_dir(d):
+    if path.isdir(d):
         dirs = listdir(d)
         dirs.sort()
         result = []
         for a in dirs:
-            if is_dir(d+"/"+a):
+            if path.isdir(d+"/"+a):
                 result.append(a)
         return result
     else:
         return None
 #get the icons name from the db directory
 def get_icons(app_name):
-    if is_file(db_folder + "/" + app_name):
+    if path.isfile(db_folder + "/" + app_name):
         f = open(db_folder + "/" + app_name)
         r = f.readlines()
         icons = []
@@ -104,7 +94,7 @@ def csv_to_dic():
         if "{*}" in row[1]:
             row[1] = dropbox_folder(row[1])
         if row[1]:
-            if is_dir(row[1]+"/"):#check if the folder exists
+            if path.isdir(row[1]+"/"):#check if the folder exists
                 icon = get_icons(row[0])
                 if icon:
                     dic[row[0]] = {'link' :row[1] , 'icons': icon}
@@ -165,7 +155,7 @@ def copy_files():
     else:
         exit("The application we support is not installed. Please report this if this is not the case")
 
-if useros == 'elementary OS' or detect_desktop_environment()=='xfce':
+if detect_desktop_environment() in ('pantheon', 'xfce'):
     default_icon_size = 24
 
 #The message shown to the user
