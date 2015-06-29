@@ -3,7 +3,7 @@
 from csv import reader
 from gi.repository import Gtk
 from os import environ, geteuid, getlogin, listdir, path
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, call
 from sys import exit
 
 try:
