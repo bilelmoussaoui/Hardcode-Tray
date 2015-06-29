@@ -79,7 +79,7 @@ def dropbox_folder(d):
     if sub_dirs:
         sub_dirs.sort()
         if sub_dirs[0].split("-")[0] == "dropbox":
-            return dirs[0]+sub_dirs[0]+dirs[1]
+            return dirs[0] + sub_dirs[0] + dirs[1]
         else:
             return None
     else:
