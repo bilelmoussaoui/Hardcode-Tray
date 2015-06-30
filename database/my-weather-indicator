@@ -6,8 +6,8 @@ mwid-chance-of-snow-night.png
 mwid-chance-of-snow.png
 mwid-chance-of-thunderstorms-night.png
 mwid-chance-of-thunderstorms.png
-mwid-clear-night.png
-mwid-clear.png
+mwid-clear-night.png,weather-clear-night.svg
+mwid-clear.png,weather-clear.svg
 mwid-cloudy.png
 mwid-flurries.png
 mwid-fog-night.png
@@ -17,13 +17,13 @@ mwid-hail.png
 mwid-icy.png
 mwid-light-rain.png
 mwid-light-snow.png
-mwid-mostly-cloudy-night.png
-mwid-mostly-cloudy.png
+mwid-mostly-cloudy-night.png,weather-clouds-night.svg
+mwid-mostly-cloudy.png,weather-clouds.svg
 mwid-mostly-sunny-night.png
 mwid-mostly-sunny.png
 mwid-not-available.png
-mwid-partly-cloudy-night.png
-mwid-partly-cloudy.png
+mwid-partly-cloudy-night.png,weather-few-clouds-night.svg
+mwid-partly-cloudy.png,weather-few-clouds.svg
 mwid-rain-and-snow.png
 mwid-rain-new.png
 mwid-rain.png
@@ -41,7 +41,7 @@ mwil-clear.png
 mwil-cloudy.png
 mwil-flurries.png
 mwil-fog-night.png
-mwil-fog.png
+mwil-fog.png,weather-fog.svg
 mwil-freezing-drizzle.png
 mwil-hail.png
 mwil-icy.png
@@ -57,6 +57,6 @@ mwil-partly-cloudy.png
 mwil-rain-and-snow.png
 mwil-rain-new.png
 mwil-rain.png
-mwil-snow.png
-mwil-storm.png
+mwil-snow.png,weather-snow.svg
+mwil-storm.png,weather-storm.svg
 mwil-windy.png
