@@ -11,13 +11,20 @@ Fixes Hardcoded tray icons in Linux
   ```bash
   sudo apt-get install inkscape
   ```
+  3. Install the patched version of ```sni-qt``` if you use any qt applications
+  ```bash
+  sudo add-apt-repository ppa:bkanuka/sni-qt
+  sudo apt-get update && sudo apt-get dist-upgrade
+  sudo apt-get install sni-qt
 
-  3. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
+  ```  
+
+  4. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
   ```bash
     sudo python3 script.py
   ```
   
-  4. Enjoy!
+  5. Enjoy!
 
 ### Supported applications
 We now support:
