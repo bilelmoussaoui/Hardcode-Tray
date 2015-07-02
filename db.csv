@@ -7,6 +7,7 @@ grive-tools,/opt/thefanclub/grive-tools/icons/light
 grive-tools,/opt/thefanclub/grive-tools/icons/dark
 keepassx,/usr/share/keepassx/icons
 my-weather-indicator,/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
+owncloud,/usr/share/owncloud/
 pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
 primeindicator,/usr/lib/primeindicator
 pushbullet-indicator,/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
