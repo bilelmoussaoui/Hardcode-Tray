@@ -144,6 +144,7 @@ def copy_files():
                             Popen(['ln', '-sf', filename, o_file])
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.svg' and extension_orig == '.png':
+                            print(app + " " + filename)
                             with open(filename, 'r') as content_file:
                                 svg = content_file.read()
                             fout = open(o_file, 'wb')
