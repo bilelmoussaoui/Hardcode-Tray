@@ -36,7 +36,7 @@ We now support:
 * [Grive-tools](https://launchpad.net/~thefanclub/+archive/ubuntu/grive-tools)
 * [Keepassx](https://www.keepassx.org/)
 * [My-Weather-Indicator](https://launchpad.net/my-weather-indicator)
-* [OwnClou](https://owncloud.org/)
+* [OwnCloud](https://owncloud.org/)
 * [Pomodoro-indicator](https://github.com/malev/pomodoro-indicator)
 * [Pushbullet-indicator](https://launchpad.net/~atareao)
 * [Prime-indicator](https://github.com/beidl/prime-indicator)
