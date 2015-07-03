@@ -13,7 +13,7 @@ Fixes Hardcoded tray icons in Linux
   ```
   3. Install the patched version of ```sni-qt``` if you use any qt applications
   ```bash
-  sudo add-apt-repository ppa:bkanuka/sni-qt
+  sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
   sudo apt-get install sni-qt
 
