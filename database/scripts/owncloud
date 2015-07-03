@@ -1,8 +1,20 @@
-#!/bin/bash
+#!/usr/bin/python3
 
+import sys
+from os import symlink
+from os.path import expanduser
+from cairosvg import svg2png
 
-if [[ $1 == *.svg ]]; then
-    inkscape $1 --export-png=$HOME/.local/share/sni-qt/icons/$2
-else
-    ln -sf $1 ~/.local/share/sni-qt/icons/$2
-fi
+home = expanduser("~")
+
+origfile = sys.argv[1]
+symlfile = sys.argv[2]
+
+if origfile.endswith(".svg"):
+    with open(origfile, 'r') as content_file:
+        svg = content_file.read()
+        fout = open(home+"/.local/share/sni-qt/icons/"+symlfile, 'wb')
+        svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
+        fout.close()
+else:
+    symlink(origfile, symlfile)
