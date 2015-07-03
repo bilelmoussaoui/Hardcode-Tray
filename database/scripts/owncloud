@@ -1,1 +1,8 @@
 #!/bin/bash
+
+
+if [[ $1 == *.svg ]]; then
+    convert $1 --background none ~/.local/share/sni-qt/icons/$2
+else
+    cp $1 ~/.local/share/sni-qt/icons/$2
+fi
