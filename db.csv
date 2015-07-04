@@ -1,31 +1,31 @@
-calendar-indicator,/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons
-catch-indicator,/usr/share/catch-indicator/icons
-cryptfolder-indicator,/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
-dropbox,{userhome}/.dropbox-dist/{*}/images/hicolor/16x16/status
-flareget,/usr/bin/flareget
-google-tasks-indicator,/usr/share/google-tasks-indicator/icons
-google-music-manager,/opt/google/musicmanager/google-musicmanager
-grive-tools,/opt/thefanclub/grive-tools/icons/light
-grive-tools,/opt/thefanclub/grive-tools/icons/dark
-hp-printing,/usr/bin/hp-systray
-keepassx,/usr/share/keepassx/icons
-megasync,/usr/bin/megasync
-mumble,/usr/bin/mumble
-my-weather-indicator,/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
-owncloud,/usr/share/owncloud/
-pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
-primeindicator,/usr/lib/primeindicator
-pushbullet-indicator,/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
-radiotray,/usr/share/radiotray/images
-seafile,/usr/bin/seafile-applet
-skype,/usr/bin/skype
-spotify,/opt/spotify/spotify-client/Data
-telegram,{userhome}/.TelegramDesktop/tdata/ticons
-tomahawk,/usr/bin/tomahawk
-touchpad-indicator,/opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons
-twitch-indicator,/usr/lib/twitch-indicator
-variety,/opt/extras.ubuntu.com/variety/share/variety/media
-wiznote,/usr/bin/WizNote
-xkbmod-indicator,/usr/share/indicator-xkbmod/icons
-yd-tools,/opt/yd-tools/icons
-youtube-indicator,/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons
+calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons
+catch-indicator, /usr/share/catch-indicator/icons
+cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
+dropbox, {userhome}/.dropbox-dist/{*}/images/hicolor/16x16/status
+flareget, /usr/bin/flareget
+google-tasks-indicator, /usr/share/google-tasks-indicator/icons
+google-music-manager, /opt/google/musicmanager/google-musicmanager
+grive-tools, /opt/thefanclub/grive-tools/icons/light
+grive-tools, /opt/thefanclub/grive-tools/icons/dark
+hp-printing, /usr/bin/hp-systray
+keepassx, /usr/share/keepassx/icons
+megasync, /usr/bin/megasync
+mumble, /usr/bin/mumble
+my-weather-indicator, /opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
+owncloud, /usr/share/owncloud/
+pomodoro-indicator, /opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons
+primeindicator, /usr/lib/primeindicator
+pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
+radiotray, /usr/share/radiotray/images
+seafile, /usr/bin/seafile-applet
+skype, /usr/bin/skype
+spotify, /opt/spotify/spotify-client/Data
+telegram, {userhome}/.TelegramDesktop/tdata/ticons
+tomahawk, /usr/bin/tomahawk
+touchpad-indicator, /opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons
+twitch-indicator, /usr/lib/twitch-indicator
+variety, /opt/extras.ubuntu.com/variety/share/variety/media
+wiznote, /usr/bin/WizNote
+xkbmod-indicator, /usr/share/indicator-xkbmod/icons
+yd-tools, /opt/yd-tools/icons
+youtube-indicator, /opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons
