@@ -2,10 +2,12 @@ calendar-indicator,/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indi
 catch-indicator,/usr/share/catch-indicator/icons
 cryptfolder-indicator,/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
 dropbox,{userhome}/.dropbox-dist/{*}/images/hicolor/16x16/status
+flareget,/usr/bin/flareget
 google-tasks-indicator,/usr/share/google-tasks-indicator/icons
 google-music-manager,/opt/google/musicmanager/google-musicmanager
 grive-tools,/opt/thefanclub/grive-tools/icons/light
 grive-tools,/opt/thefanclub/grive-tools/icons/dark
+hp-printing,/usr/bin/hp-systray
 keepassx,/usr/share/keepassx/icons
 megasync,/usr/bin/megasync
 my-weather-indicator,/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons
