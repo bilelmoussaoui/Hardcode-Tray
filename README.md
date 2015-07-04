@@ -11,7 +11,7 @@ Fixes Hardcoded tray icons in Linux
   ```bash
   sudo apt-get install inkscape
   ```
-  3. Install the patched version of ```sni-qt``` if you use any qt applications
+  3. Install the patched version of ```sni-qt``` if you use any QT applications
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
