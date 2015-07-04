@@ -8,6 +8,8 @@ google-music-manager, /opt/google/musicmanager/google-musicmanager
 grive-tools, /opt/thefanclub/grive-tools/icons/light
 grive-tools, /opt/thefanclub/grive-tools/icons/dark
 hp-printing, /usr/bin/hp-systray
+ibus-anthy, /usr/share/ibus-anthy/icons
+ibus-mozc, /usr/share/ibus-mozc
 keepassx, /usr/share/keepassx/icons
 megasync, /usr/bin/megasync
 mumble, /usr/bin/mumble
