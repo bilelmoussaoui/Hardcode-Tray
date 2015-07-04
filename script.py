@@ -56,15 +56,14 @@ def get_subdirs(d):
 def get_icons(app_name):
     if path.isfile(db_folder + "/" + app_name):
         f = open(db_folder + "/" + app_name)
-        r = f.readlines()
+        r = reader(f,skipinitialspace=True)
         icons = []
         for icon in r:
-            icon = icon.strip()
             if icon != "":
-                if len(icon.split(",")) != 1:
-                    icons.append(icon.split(","))
-                else:
+                if len(icon) != 1:
                     icons.append(icon)
+                else:
+                    icons.extend(icon)
         f.close()
         return icons
     else:
@@ -89,10 +88,10 @@ def dropbox_folder(d):
 # Converts the csv file to a dictionary
 def csv_to_dic():
     db = open(db_file)
-    r = reader(db)
+    r = reader(db,skipinitialspace=True)
     dic = {}
     for row in r:
-        row[1] = row[1].replace("{userhome}", userhome)
+        row[1] = row[1].replace("{userhome}", userhome).strip()
         if "{*}" in row[1]:
             row[1] = dropbox_folder(row[1])
         if row[1]:
