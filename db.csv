@@ -16,6 +16,7 @@ pomodoro-indicator,/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indi
 primeindicator,/usr/lib/primeindicator
 pushbullet-indicator,/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
 radiotray,/usr/share/radiotray/images
+skype,/usr/bin/skype
 spotify,/opt/spotify/spotify-client/Data
 telegram,{userhome}/.TelegramDesktop/tdata/ticons
 touchpad-indicator,/opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons
