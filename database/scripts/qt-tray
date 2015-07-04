@@ -8,7 +8,7 @@ from cairosvg import svg2png
 home = expanduser("~")
 
 origfile = sys.argv[1]
-symlfile = home+"/.local/share/sni-qt/icons/"+sys.argv[2]
+symlfile = home + "/.local/share/sni-qt/icons/" + sys.argv[2]
 
 if origfile.endswith(".svg"):
     with open(origfile, 'r') as content_file:
