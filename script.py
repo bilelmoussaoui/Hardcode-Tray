@@ -18,7 +18,6 @@ db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser('~' + getlogin())
-sni_qt = userhome + "/.local/share/sni-qt/icons" # Sni-qt directory 
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 
@@ -46,7 +45,7 @@ def get_subdirs(d):
         dirs.sort()
         result = []
         for a in dirs:
-            if path.isdir(d+"/"+a):
+            if path.isdir(d + "/" + a):
                 result.append(a)
         return result
     else:
