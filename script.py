@@ -156,6 +156,7 @@ def copy_files():
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.svg' and extension_orig == '.png':
                             convert2svg(filename,output)
+                            chown(output, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.png' and extension_orig == '.svg':
                             print('Icon theme is png and hardcoded icon is svg. There is nothing we can do about that :(')

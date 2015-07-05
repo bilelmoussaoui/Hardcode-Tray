@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-from os import symlink
+from os import symlink, chown, getenv
 from cairosvg import svg2png
 from subprocess import call
 
@@ -14,6 +14,6 @@ if origfile.endswith(".svg"):
         fout = open(symlfile, 'wb')
         svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
         fout.close()
-    call(['chmod', '0777', symlfile])
+    chown(symlfile, int(getenv('SUDO_UID')), int(getenv('SUDO_GID'))) 
 else:
     symlink(origfile, symlfile)
