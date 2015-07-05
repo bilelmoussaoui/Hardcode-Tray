@@ -2,7 +2,7 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path
+from os import environ, geteuid, getlogin, listdir, path, makedirs
 from subprocess import Popen, PIPE, call
 from sys import exit
 
@@ -166,6 +166,8 @@ def copy_files():
                     else:
                         folder = apps[app]['link']
                         if script_name == qt_script:
+                            if not path.exists(sni_qt_folder):
+                                makedirs(sni_qt_folder)
                             call([script_name, filename, symlink_icon, sni_qt_folder], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
