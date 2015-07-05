@@ -3,6 +3,7 @@
 import sys
 from os import symlink
 from cairosvg import svg2png
+from subprocess import call
 
 origfile = sys.argv[1]
 symlfile = sys.argv[3] + "/" + sys.argv[2]
@@ -13,5 +14,6 @@ if origfile.endswith(".svg"):
         fout = open(symlfile, 'wb')
         svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
         fout.close()
+    call(['chmod', '0777', symlfile])
 else:
     symlink(origfile, symlfile)

@@ -2,7 +2,7 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
 from subprocess import Popen, PIPE, call
 from sys import exit
 
@@ -169,6 +169,7 @@ def copy_files():
                         if script_name.endswith(qt_script):
                             if not path.exists(new_path):
                                 makedirs(new_path)
+                                chown(new_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             call([script_name, filename, symlink_icon, new_path], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
