@@ -183,9 +183,7 @@ def copy_files():
 
 if detect_de() in ('pantheon', 'xfce'):
     default_icon_size = 24
-print(environ.get('DESKTOP_SESSION'))
 
-print(default_icon_size)
 # The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("Copying now..\n")
