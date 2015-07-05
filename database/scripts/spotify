@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ./database/scripts/
-cp /opt/spotify/spotify-client/Data/resources.zip resources_old.zip
+cp $3/resources.zip resources_old.zip
 unzip resources_old.zip -d resources_old/
 
 
