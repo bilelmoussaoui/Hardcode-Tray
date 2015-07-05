@@ -4,6 +4,7 @@ from csv import reader
 from gi.repository import Gtk
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
 from subprocess import Popen, PIPE, call
+from platform import linux_distribution
 from sys import exit
 
 try:
@@ -26,7 +27,7 @@ default_icon_size = 22
 
 # Detects the desktop environment
 def detect_de():
-    if environ.get('DESKTOP_SESSION') == 'pantheon':
+    if environ.get('DESKTOP_SESSION') == 'pantheon' or linux_distribution()[0].strip('"') == "elementary OS":
         return 'pantheon'
     else:
         try:
@@ -182,7 +183,9 @@ def copy_files():
 
 if detect_de() in ('pantheon', 'xfce'):
     default_icon_size = 24
+print(environ.get('DESKTOP_SESSION'))
 
+print(default_icon_size)
 # The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("Copying now..\n")
