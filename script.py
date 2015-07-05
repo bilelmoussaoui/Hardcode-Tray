@@ -165,7 +165,7 @@ def copy_files():
                             continue
                     else:
                         folder = apps[app]['link']
-                        if script_name == qt_script:
+                        if script_name.endswith(qt_script):
                             if not path.exists(sni_qt_folder):
                                 makedirs(sni_qt_folder)
                             call([script_name, filename, symlink_icon, sni_qt_folder], stdout=PIPE, stderr=PIPE)
