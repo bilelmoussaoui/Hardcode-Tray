@@ -112,12 +112,12 @@ def csv_to_dic():
 def convert2svg(filename,output_file):
     with open(filename, 'r') as content_file:
         svg = content_file.read()
-        fout = open(output_file, 'wb')
-        try:
-            svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
-        except:
-            print("The svg file `" + filename + "` is invalid.")
-        fout.close()
+    fout = open(output_file, 'wb')
+    try:
+        svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
+    except:
+        print("The svg file `" + filename + "` is invalid.")
+    fout.close()
 
 # Copy files..
 def copy_files():
