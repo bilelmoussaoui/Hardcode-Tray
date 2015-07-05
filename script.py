@@ -139,7 +139,7 @@ def copy_files():
                 else:
                     symlink_icon = icon
                 base_icon = path.splitext(icon)[0]
-                extension_orig = path.splitext(icon)[1]
+                extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
                     filename = theme_icon.get_filename()
