@@ -16,7 +16,7 @@ Fixes Hardcoded tray icons in Linux
   ```
   3. Install ```nodejs``` if you use Google Chrome
   ```bash
-  sudo apt-get install nodejs
+  sudo apt-get install nodejs nodejs-legacy
   ``` 
 
   4. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
