@@ -157,8 +157,12 @@ def copy_files():
                         elif extension_theme == '.svg' and extension_orig == '.png':
                             convert2svg(filename,output)
                             print("%s -- fixed using %s" % (app, filename))
+                        elif extension_theme == '.png' and extension_orig == '.svg':
+                            print('Icon theme is png and hardcoded icon is svg. There is nothing we can do about that :(')
+                            continue
                         else:
-                            exit('Hardcoded file has to be svg or png. Other formats are not supported yet')
+                            print('Hardcoded file has to be svg or png. Other formats are not supported yet')
+                            continue
                     else:
                         folder = apps[app]['link']
                         if script_name == qt_script:
