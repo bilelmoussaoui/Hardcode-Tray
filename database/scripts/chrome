@@ -6,7 +6,7 @@ node ./node-chrome-pak.js unpack chrome_100_percent_old.pak
 if [[ $1 == *.svg ]]; then
     inkscape $1 --export-png=extracted/$2
 else
-    convert $1 --background none extracted/$2
+    cp $1 extracted/$2
 fi
 
 node ./node-chrome-pak.js pack ./extracted ./chrome_100_percent_old.pak
