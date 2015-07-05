@@ -163,7 +163,7 @@ def copy_files():
                         folder = apps[app]['link']
                         if script_name == qt_script:
                             if not path.exists(directory):
-                                os.makedirs(sni_qt_folder)
+                                makedirs(sni_qt_folder)
                             call([script_name, filename, symlink_icon, sni_qt_folder], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
