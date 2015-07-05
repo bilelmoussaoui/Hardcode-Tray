@@ -144,11 +144,13 @@ def copy_files():
                 if theme_icon:
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
+                    if extension_theme not in ('.png', '.svg'): #catching the unrealistic case that theme is neither svg nor png
+                        exit('Theme icons need to be svg or png files other formats are not supported')
                     if not script:
                         if symlink_icon:
-                            output = "/" + apps[app]['link'] + "/" + symlink_icon
+                            output = apps[app]['link'] + "/" + symlink_icon
                         else:
-                            output = "/" + apps[app]['link'] + "/" + icon  # Output icon
+                            output = apps[app]['link'] + "/" + icon  # Output icon
                         if extension_theme == extension_orig:
                             Popen(['ln', '-sf', filename, output])
                             print("%s -- fixed using %s" % (app, filename))
@@ -156,7 +158,7 @@ def copy_files():
                             convert2svg(filename,output)
                             print("%s -- fixed using %s" % (app, filename))
                         else:
-                            exit('hardcoded file has to be svg or png. Other formats are not supported yet')
+                            exit('Hardcoded file has to be svg or png. Other formats are not supported yet')
                     else:
                         folder = apps[app]['link']
                         if script_name == qt_script:
@@ -164,6 +166,8 @@ def copy_files():
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s" % (app, filename))
+                else:
+                    print("%s -- theme icon not found. You should report that to the theme maintainer!" %(base_icon))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 

@@ -6,29 +6,25 @@ Fixes Hardcoded tray icons in Linux
   ```bash
     sudo apt-get install python3-cairosvg
   ```
-  
-  2. Install inkscape, if you don't use Spotify ignore this step (used to convert .svg icons to .ico)
-  ```bash
-  sudo apt-get install inkscape
-  ```
-  3. Install the patched version of ```sni-qt``` if you use any QT applications
+
+  2. Install the patched version of ```sni-qt``` if you use any QT applications
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
   sudo apt-get install sni-qt
 
-  ```  
-  4. Install ```nodejs``` if you use Google Chrome
+  ```
+  3. Install ```nodejs``` if you use Google Chrome
   ```bash
   sudo apt-get install nodejs
   ``` 
 
-  5. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
+  4. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
   ```bash
     sudo python3 script.py
   ```
   
-  6. Enjoy!
+  5. Enjoy!
 
 ### Supported applications
 We now support:
