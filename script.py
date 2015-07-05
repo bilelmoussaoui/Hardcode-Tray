@@ -146,9 +146,9 @@ def copy_files():
                     extension_theme = path.splitext(filename)[1]
                     if not script:
                         if symlink_icon:
-                            output = "/" + apps[app]['link'] + "/" + symlink_icon
+                            output = apps[app]['link'] + "/" + symlink_icon
                         else:
-                            output = "/" + apps[app]['link'] + "/" + icon  # Output icon
+                            output = apps[app]['link'] + "/" + icon  # Output icon
                         if extension_theme == extension_orig:
                             Popen(['ln', '-sf', filename, output])
                             print("%s -- fixed using %s" % (app, filename))
@@ -164,6 +164,8 @@ def copy_files():
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s" % (app, filename))
+                else:
+                    print("Theme icon for %s not found. You should report that to the theme maintainer!" %(base_icon))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
