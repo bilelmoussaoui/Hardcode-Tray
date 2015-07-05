@@ -144,6 +144,8 @@ def copy_files():
                 if theme_icon:
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
+                    if extension_theme not in ('.png', '.svg'): #catching the unrealistic case that theme is neither svg nor png
+                        exit('theme icons need to be svg or png files other formats not supported yet')
                     if not script:
                         if symlink_icon:
                             output = apps[app]['link'] + "/" + symlink_icon
