@@ -6,29 +6,29 @@ mwid-chance-of-snow-night.png
 mwid-chance-of-snow.png
 mwid-chance-of-thunderstorms-night.png
 mwid-chance-of-thunderstorms.png
-mwid-clear-night.png,weather-clear-night.svg
-mwid-clear.png,weather-clear.svg
+mwid-clear-night.png, weather-clear-night
+mwid-clear.png, weather-clear
 mwid-cloudy.png
 mwid-flurries.png
 mwid-fog-night.png
-mwid-fog.png
+mwid-fog.png, weather-fog
 mwid-freezing-drizzle.png
-mwid-hail.png
+mwid-hail.png, weather-hail
 mwid-icy.png
 mwid-light-rain.png
 mwid-light-snow.png
-mwid-mostly-cloudy-night.png,weather-clouds-night.svg
-mwid-mostly-cloudy.png,weather-clouds.svg
+mwid-mostly-cloudy-night.png, weather-clouds-night
+mwid-mostly-cloudy.png, weather-clouds
 mwid-mostly-sunny-night.png
 mwid-mostly-sunny.png
 mwid-not-available.png
-mwid-partly-cloudy-night.png,weather-few-clouds-night.svg
-mwid-partly-cloudy.png,weather-few-clouds.svg
+mwid-partly-cloudy-night.png, weather-few-clouds-night
+mwid-partly-cloudy.png, weather-few-clouds
 mwid-rain-and-snow.png
 mwid-rain-new.png
 mwid-rain.png
-mwid-snow.png
-mwid-storm.png
+mwid-snow.png, weather-snow
+mwid-storm.png, weather-storm
 mwid-windy.png
 mwil-chance-of-rain-night.png
 mwil-chance-of-rain.png
@@ -36,27 +36,27 @@ mwil-chance-of-snow-night.png
 mwil-chance-of-snow.png
 mwil-chance-of-thunderstorms-night.png
 mwil-chance-of-thunderstorms.png
-mwil-clear-night.png
-mwil-clear.png
+mwil-clear-night.png, weather-clear-night
+mwil-clear.png, weather-clear
 mwil-cloudy.png
 mwil-flurries.png
 mwil-fog-night.png
-mwil-fog.png,weather-fog.svg
+mwil-fog.png, weather-fog
 mwil-freezing-drizzle.png
-mwil-hail.png
+mwil-hail.png, weather-hail
 mwil-icy.png
 mwil-light-rain.png
 mwil-light-snow.png
-mwil-mostly-cloudy-night.png
-mwil-mostly-cloudy.png
+mwil-mostly-cloudy-night.png, weather-clouds-night
+mwil-mostly-cloudy.png, weather-clouds
 mwil-mostly-sunny-night.png
 mwil-mostly-sunny.png
 mwil-not-available.png
-mwil-partly-cloudy-night.png
-mwil-partly-cloudy.png
-mwil-rain-and-snow.png
+mwil-partly-cloudy-night.png, weather-few-clouds-night
+mwil-partly-cloudy.png, weather-few-clouds
+mwil-rain-and-snow.png, weather-snow-rain
 mwil-rain-new.png
 mwil-rain.png
-mwil-snow.png,weather-snow.svg
-mwil-storm.png,weather-storm.svg
+mwil-snow.png, weather-snow
+mwil-storm.png, weather-storm
 mwil-windy.png

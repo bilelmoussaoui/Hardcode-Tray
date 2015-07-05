@@ -6,18 +6,25 @@ Fixes Hardcoded tray icons in Linux
   ```bash
     sudo apt-get install python3-cairosvg
   ```
-  
-  2. Install inkscape, if you don't use Spotify ignore this step (used to convert .svg icons to .ico)
-  ```bash
-  sudo apt-get install inkscape
-  ```
 
-  3. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
+  2. Install the patched version of ```sni-qt``` if you use any QT applications
+  ```bash
+  sudo add-apt-repository ppa:cybre/sni-qt-eplus
+  sudo apt-get update && sudo apt-get dist-upgrade
+  sudo apt-get install sni-qt
+
+  ```
+  3. Install ```nodejs``` if you use Google Chrome
+  ```bash
+  sudo apt-get install nodejs nodejs-legacy
+  ``` 
+
+  4. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
   ```bash
     sudo python3 script.py
   ```
   
-  4. Enjoy!
+  5. Enjoy!
 
 ### Supported applications
 We now support:
@@ -25,14 +32,19 @@ We now support:
 * [Catch-indicator](https://launchpad.net/~atareao)
 * [Cryptfolder-indicator](https://launchpad.net/~atareao)
 * [Dropbox](https://www.dropbox.com/)
+* [Google Chrome](http://www.google.com/chrome/)
+* [Google Music Manager](https://play.google.com/intl/ALL_fr/about/music/)
 * [Google-tasks-indicator](https://launchpad.net/~atareao)
 * [Grive-tools](https://launchpad.net/~thefanclub/+archive/ubuntu/grive-tools)
 * [Keepassx](https://www.keepassx.org/)
+* [Megasync](https://mega.co.nz/)
 * [My-Weather-Indicator](https://launchpad.net/my-weather-indicator)
+* [OwnCloud](https://owncloud.org/)
 * [Pomodoro-indicator](https://github.com/malev/pomodoro-indicator)
 * [Pushbullet-indicator](https://launchpad.net/~atareao)
 * [Prime-indicator](https://github.com/beidl/prime-indicator)
 * [Radiotray](http://radiotray.sourceforge.net/)
+* [Skype](http://www.skype.com/)
 * [Spotify](https://www.spotify.com)
 * [Telegram](https://desktop.telegram.org/)
 * [Touchpad-indicator](https://launchpad.net/touchpad-indicator)
