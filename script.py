@@ -113,10 +113,7 @@ def convert2svg(filename,output_file):
     with open(filename, 'r') as content_file:
         svg = content_file.read()
     fout = open(output_file, 'wb')
-    try:
-        svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
-    except:
-        print("The svg file `" + filename + "` is invalid.")
+    svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
     fout.close()
 
 # Copy files..
@@ -156,7 +153,11 @@ def copy_files():
                             Popen(['ln', '-sf', filename, output])
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.svg' and extension_orig == '.png':
-                            convert2svg(filename,output)
+                            try:
+                                convert2svg(filename,output)
+                            except:
+                                print("The svg file `" + filename + "` is invalid.")
+                                continue
                             chown(output, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.png' and extension_orig == '.svg':
