@@ -21,7 +21,7 @@ primeindicator, /usr/lib/primeindicator
 pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons
 radiotray, /usr/share/radiotray/images
 seafile, /usr/bin/seafile-applet
-skype, /usr/bin/skype
+skype, /usr/share/skype
 spotify, /opt/spotify/spotify-client/Data
 telegram, {userhome}/.TelegramDesktop/tdata/ticons
 tomahawk, /usr/bin/tomahawk
