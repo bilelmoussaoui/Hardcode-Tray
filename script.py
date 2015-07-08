@@ -130,13 +130,13 @@ def copy_files():
                         script = True
                         script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
-                        icon = symlink_icon = icon[0]
+                        repl_icon = symlink_icon = icon[0]
                     else:
-                        symlink_icon = icon[0]
-                        icon = icon[1]
+                        symlink_icon = icon[0]  #Hardcoded icon to be replaced
+                        repl_icon = icon[1]  #Theme Icon that will replace hardcoded icon
                 else:
-                    symlink_icon = icon
-                base_icon = path.splitext(icon)[0]
+                    symlink_icon = repl_icon = icon
+                base_icon = path.splitext(repl_icon)[0]
                 extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
@@ -148,7 +148,7 @@ def copy_files():
                         if symlink_icon:
                             output = apps[app]['link'] + "/" + symlink_icon
                         else:
-                            output = apps[app]['link'] + "/" + icon  # Output icon
+                            output = apps[app]['link'] + "/" + repl_icon  # Output icon
                         if extension_theme == extension_orig:
                             Popen(['ln', '-sf', filename, output])
                             print("%s -- fixed using %s" % (app, filename))
@@ -161,7 +161,7 @@ def copy_files():
                             chown(output, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.png' and extension_orig == '.svg':
-                            print('Icon theme is png and hardcoded icon is svg. There is nothing we can do about that :(')
+                            print('Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(')
                             continue
                         else:
                             print('Hardcoded file has to be svg or png. Other formats are not supported yet')
@@ -169,7 +169,7 @@ def copy_files():
                     else:
                         folder = apps[app]['link']
                         new_path = sni_qt_folder + app
-                        if script_name.endswith(qt_script):
+                        if icon[2] == qt_script:
                             if not path.exists(new_path):
                                 makedirs(new_path)
                                 chown(new_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
