@@ -173,7 +173,10 @@ def copy_files():
                             if not path.exists(new_path):
                                 makedirs(new_path)
                                 chown(new_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-                            call([script_name, filename, symlink_icon, new_path], stdout=PIPE, stderr=PIPE)
+                            if len(icon) == 4:
+                                call([script_name, filename, symlink_icon, new_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                            else:
+                                call([script_name, filename, symlink_icon, new_path, False], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s" % (app, filename))
