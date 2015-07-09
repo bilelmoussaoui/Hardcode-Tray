@@ -2,7 +2,7 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv,system
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
