@@ -23,7 +23,7 @@ sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
-
+fixed_icons = []
 
 # Detects the desktop environment
 def detect_de():
@@ -162,7 +162,9 @@ def copy_files():
                                 print("The svg file `" + filename + "` is invalid.")
                                 continue
                             chown(output, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-                            print("%s -- fixed using %s" % (app, filename))
+                            if not (filename in fixed_icons):
+                                print("%s -- fixed using %s" % (app, filename))
+                                fixed_icons.append(filename)
                         elif extension_theme == '.png' and extension_orig == '.svg':
                             print('Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(')
                             continue
@@ -183,7 +185,9 @@ def copy_files():
                                 call([script_name, filename, symlink_icon, new_path], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
-                        print("%s -- fixed using %s" % (app, filename))
+                        if not (filename in fixed_icons):
+                            print("%s -- fixed using %s" % (app, filename))
+                            fixed_icons.append(filename)
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
