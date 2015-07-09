@@ -19,4 +19,4 @@ if len(sys.argv) <= 4:
 	else:
 	    symlink(origfile, symlfile)
 else:
-	symlink(origfile, sys.argv[3] + "/" + sys.argv[4])
+	symlink(sys.argv[3] + "/" + sys.argv[4], symlfile)
