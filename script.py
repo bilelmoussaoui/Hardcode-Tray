@@ -101,7 +101,10 @@ def csv_to_dic():
             if path.isdir(row[1]+"/"):  # check if the folder exists
                 icon = get_icons(row[0])
                 if icon:
-                    dic[row[0]] = {'link': row[1], 'icons': icon}
+                    if row[2]:
+                        dic[row[0]] = {'link': row[1], 'icons': icon, 'sni-qt':row[2]}
+                    else:
+                        dic[row[0]] = {'link': row[1], 'icons': icon}
                 else:
                     continue
         else:
@@ -166,9 +169,13 @@ def copy_files():
                         else:
                             print('Hardcoded file has to be svg or png. Other formats are not supported yet')
                             continue
-                    else:
+                    else: #Sni-qt icons & Chrome/Spotify script 
                         folder = apps[app]['link']
-                        new_path = sni_qt_folder + app
+                        if apps[app]['sni-qt']:
+                            sni_qt = apps[app]['sni-qt']
+                        else:
+                            sni_qt = app
+                        new_path = sni_qt_folder + sni_qt
                         if icon[2] == qt_script:
                             if not path.exists(new_path):
                                 makedirs(new_path)

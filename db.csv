@@ -4,7 +4,7 @@ cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptf
 dropbox, {userhome}/.dropbox-dist/{*}/images/hicolor/16x16/status
 flareget, /usr/bin/flareget
 google-chrome, /opt/google/chrome
-google-music-manager, /opt/google/musicmanager/google-musicmanager
+google-music-manager, /opt/google/musicmanager/google-musicmanager, MusicManager
 google-tasks-indicator, /usr/share/google-tasks-indicator/icons
 grive-tools, /opt/thefanclub/grive-tools/icons/light
 grive-tools, /opt/thefanclub/grive-tools/icons/dark
