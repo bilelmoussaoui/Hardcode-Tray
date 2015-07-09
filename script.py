@@ -171,10 +171,7 @@ def copy_files():
                             continue
                     else: #Sni-qt icons & Chrome/Spotify script 
                         folder = apps[app]['link']
-                        if apps[app]['sni-qt']:
-                            sni_qt = apps[app]['sni-qt']
-                        else:
-                            sni_qt = app
+                        sni_qt = apps[app].get("sni-qt", app)
                         new_path = sni_qt_folder + sni_qt
                         if icon[2] == qt_script:
                             if not path.exists(new_path):
