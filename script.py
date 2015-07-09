@@ -42,21 +42,21 @@ def detect_de():
 
 
 # Creates a list of subdirectories
-def get_subdirs(d):
-    if path.isdir(d):
-        dirs = listdir(d)
+def get_subdirs(directory):
+    if path.isdir(directory):
+        dirs = listdir(directory)
         dirs.sort()
-        result = []
-        for a in dirs:
-            if path.isdir(d + "/" + a):
-                result.append(a)
-        return result
+        sub_dirs = []
+        for d in sub_dirs:
+            if path.isdir(directory + "/" + a):
+                sub_dirs.append(a)
+        return sub_dirs
     else:
         return None
 
 
 # Get the icons name from the db directory
-def get_icons(app_name):
+def get_app_icons(app_name):
     if path.isfile(db_folder + "/" + app_name):
         f = open(db_folder + "/" + app_name)
         r = reader(f, skipinitialspace=True)
@@ -74,8 +74,8 @@ def get_icons(app_name):
         return None
 
 
-# Gets the dropbox folder
-def dropbox_folder(d):
+# Correct/get the original dropbox directory
+def replace_dropbox_dir(d):
     dirs = d.split("{*}")
     sub_dirs = get_subdirs(dirs[0])
     if sub_dirs:
@@ -96,15 +96,15 @@ def csv_to_dic():
     for row in r:
         row[1] = row[1].replace("{userhome}", userhome).strip()
         if "{*}" in row[1]:
-            row[1] = dropbox_folder(row[1])
+            row[1] = replace_dropbox_dir(row[1])
         if row[1]:
             if path.isdir(row[1]+"/"):  # check if the folder exists
-                icon = get_icons(row[0])
-                if icon:
+                icons = get_app_icons(row[0])
+                if icons:
                     if len(row) == 3:
-                        dic[row[0]] = {'link': row[1], 'icons': icon, 'sni-qt':row[2]}
+                        dic[row[0]] = {'link': row[1], 'icons': icons, 'sni-qt':row[2]}
                     else:
-                        dic[row[0]] = {'link': row[1], 'icons': icon}
+                        dic[row[0]] = {'link': row[1], 'icons': icons}
                 else:
                     continue
         else:

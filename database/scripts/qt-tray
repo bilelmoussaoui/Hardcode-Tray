@@ -2,7 +2,6 @@
 
 import sys
 from os import symlink, chown, getenv
-from cairosvg import svg2png
 from subprocess import call
 
 origfile = sys.argv[1]
@@ -10,11 +9,7 @@ symlfile = sys.argv[3] + "/" + sys.argv[2]
 
 if len(sys.argv) <= 4:
 	if origfile.endswith(".svg"):
-	    with open(origfile, 'r') as content_file:
-	        svg = content_file.read()
-	    fout = open(symlfile, 'wb')
-	    svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
-	    fout.close()
+        call(["svg2png.py", origfile, symlfile], stdout=PIPE, stderr=PIPE)
 	    chown(symlfile, int(getenv('SUDO_UID')), int(getenv('SUDO_GID'))) 
 	else:
 	    symlink(origfile, symlfile)
