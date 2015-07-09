@@ -184,8 +184,6 @@ def copy_files():
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s" % (app, filename))
-                else:
-                    print("%s -- theme icon not found. You should report that to the theme maintainer!" %(base_icon))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
