@@ -25,8 +25,8 @@ c2ee5f08e8df31fd4dcef88f95ed4a16.png, skype-status-connected-notification, qt-tr
 0fce05395e6040b3fd0838935b3aa115.png, skype-status-connected-notification, qt-tray, 0d96a65d843060dab4836712307a256b.png
 2ad68f9fa3b206fa4416d357cb824006.png, skype-status-connected-notification, qt-tray, 0d96a65d843060dab4836712307a256b.png
 bd2e3972c2a97520bbabac7e275d7b9f.png, skype-status-disturb, qt-tray
-fd56304306a9b229dbdaf4cf7dc4cbc7.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
-cb8451bfa5891c2f5aba6bd779aa72e3.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png, fd56304306a9b229dbdaf4cf7dc4cbc7.png
+fd56304306a9b229dbdaf4cf7dc4cbc7.png, skype-status-disturb-notification, qt-tray
+cb8451bfa5891c2f5aba6bd779aa72e3.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
 f7ba77ccc5c3e6b18673031845708a42.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
 1f398923152e421ae929499aef839d81.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
 c39a8b146b7ece25430f0e522db05a3d.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
@@ -47,7 +47,7 @@ cf3964a66e999b9496236d44aba66fa1.png, skype-status-invisible-notification, qt-tr
 39a77a303ff1cad03a08c394cf8e3455.png, skype-status-invisible-notification, qt-tray, c083094322ffc728a53f83dfe24194de.png
 86623faa12e1d62e147b372326a120b6.png, skype-status-invisible-notification, qt-tray, c083094322ffc728a53f83dfe24194de.png
 2d1ee5482260fd9cd180b32787792683.png, skype-status-offline, qt-tray
-4fb7a30c39fb0b95f300952ad4df27dc.png, skype-status-offline-notification, qt-tray, 4fb7a30c39fb0b95f300952ad4df27dc.png
+4fb7a30c39fb0b95f300952ad4df27dc.png, skype-status-offline-notification, qt-tray
 94f64c1b13a2e45520e6e469a369ff2b.png, skype-status-offline-notification, qt-tray, 4fb7a30c39fb0b95f300952ad4df27dc.png
 287ee46e101cabf27ff0509d79bbf636.png, skype-status-offline-notification, qt-tray, 4fb7a30c39fb0b95f300952ad4df27dc.png
 bf2cdd61102d7629699e062ceee3eb6f.png, skype-status-offline-notification, qt-tray, 4fb7a30c39fb0b95f300952ad4df27dc.png
