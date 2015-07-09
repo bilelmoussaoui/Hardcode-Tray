@@ -183,7 +183,7 @@ def copy_files():
                             if len(icon) == 4:
                                 call([script_name, filename, symlink_icon, new_path, icon[3]], stdout=PIPE, stderr=PIPE)
                             else:
-                                call([script_name, filename, symlink_icon, new_path, False], stdout=PIPE, stderr=PIPE)
+                                call([script_name, filename, symlink_icon, new_path], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                         print("%s -- fixed using %s" % (app, filename))
