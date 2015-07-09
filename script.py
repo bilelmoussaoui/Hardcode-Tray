@@ -2,7 +2,7 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv,system
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
@@ -76,7 +76,7 @@ def get_app_icons(app_name):
 
 # Correct/get the original dropbox directory
 def replace_dropbox_dir(d):
-    dirs = d.split("{*}")
+    dirs = d.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
     if sub_dirs:
         sub_dirs.sort()
@@ -88,36 +88,29 @@ def replace_dropbox_dir(d):
         return None
 
 
-# Converts the csv file to a dictionary
+# Converts the csv database to a dictionary
 def csv_to_dic():
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
-    dic = {}
-    for row in r:
-        row[1] = row[1].replace("{userhome}", userhome).strip()
-        if "{*}" in row[1]:
-            row[1] = replace_dropbox_dir(row[1])
-        if row[1]:
-            if path.isdir(row[1]+"/"):  # check if the folder exists
-                icons = get_app_icons(row[0])
+    apps = {}
+    for app in r:
+        app[1] = app[1].replace("{userhome}", userhome).strip()
+        if "{dropbox}" in app[1]:
+            app[1] = replace_dropbox_dir(app[1])
+        if app[1]:
+            if path.isdir(app[1]+"/"):  # check if the folder exists
+                icons = get_app_icons(app[0])
                 if icons:
-                    if len(row) == 3:
-                        dic[row[0]] = {'link': row[1], 'icons': icons, 'sni-qt':row[2]}
+                    if len(app) == 3:
+                        apps[app[0]] = {'link': app[1], 'icons': icons, 'sni-qt':app[2]}
                     else:
-                        dic[row[0]] = {'link': row[1], 'icons': icons}
+                        apps[app[0]] = {'link': app[1], 'icons': icons}
                 else:
                     continue
         else:
             continue
     db.close()
-    return dic
-
-def convert2svg(filename,output_file):
-    with open(filename, 'r') as content_file:
-        svg = content_file.read()
-    fout = open(output_file, 'wb')
-    svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
-    fout.close()
+    return apps
 
 # Copy files..
 def copy_files():
@@ -149,19 +142,24 @@ def copy_files():
                         exit('Theme icons need to be svg or png files other formats are not supported')
                     if not script:
                         if symlink_icon:
-                            output = apps[app]['link'] + "/" + symlink_icon
+                            output_icon = apps[app]['link'] + "/" + symlink_icon
                         else:
-                            output = apps[app]['link'] + "/" + repl_icon  # Output icon
+                            output_icon = apps[app]['link'] + "/" + repl_icon  # Output icon
                         if extension_theme == extension_orig:
-                            Popen(['ln', '-sf', filename, output])
+                            Popen(['ln', '-sf', filename, output_icon])
                             print("%s -- fixed using %s" % (app, filename))
                         elif extension_theme == '.svg' and extension_orig == '.png':
-                            try:
-                                convert2svg(filename,output)
+                            try:#Convert the svg file to a png one
+                                with open(filename, 'r') as content_file:
+                                    svg = content_file.read()
+                                fout = open(output_icon, 'wb')
+                                svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
+                                fout.close()
+                                chown(output_icon, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             except:
                                 print("The svg file `" + filename + "` is invalid.")
                                 continue
-                            chown(output, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+                            #to avoid identical messages
                             if not (filename in fixed_icons):
                                 print("%s -- fixed using %s" % (app, filename))
                                 fixed_icons.append(filename)
@@ -173,18 +171,22 @@ def copy_files():
                             continue
                     else: #Sni-qt icons & Chrome/Spotify script 
                         folder = apps[app]['link']
-                        sni_qt = apps[app].get("sni-qt", app)
-                        new_path = sni_qt_folder + sni_qt
+                        app_sni_qt_prefix = apps[app].get("sni-qt", app)
+                        app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
+                        #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
-                            if not path.exists(new_path):
-                                makedirs(new_path)
-                                chown(new_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+                            #Create a new folder and give permissions to normal user
+                            if not path.exists(app_sni_qt_path): 
+                                makedirs(app_sni_qt_path)
+                                chown(app_sni_qt_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+                            #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
-                                call([script_name, filename, symlink_icon, new_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                                call([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
                             else:
-                                call([script_name, filename, symlink_icon, new_path], stdout=PIPE, stderr=PIPE)
+                                call([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                         else:
                             call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                        #to avoid identical messages
                         if not (filename in fixed_icons):
                             print("%s -- fixed using %s" % (app, filename))
                             fixed_icons.append(filename)

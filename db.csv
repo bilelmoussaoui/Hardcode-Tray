@@ -1,7 +1,7 @@
 calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons
 catch-indicator, /usr/share/catch-indicator/icons
 cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons
-dropbox, {userhome}/.dropbox-dist/{*}/images/hicolor/16x16/status
+dropbox, {userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status
 flareget, /usr/bin/flareget
 google-chrome, /opt/google/chrome
 google-music-manager, /opt/google/musicmanager/google-musicmanager, MusicManager
