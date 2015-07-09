@@ -101,7 +101,7 @@ def csv_to_dic():
             if path.isdir(row[1]+"/"):  # check if the folder exists
                 icon = get_icons(row[0])
                 if icon:
-                    if row[2]:
+                    if len(row) == 3:
                         dic[row[0]] = {'link': row[1], 'icons': icon, 'sni-qt':row[2]}
                     else:
                         dic[row[0]] = {'link': row[1], 'icons': icon}
