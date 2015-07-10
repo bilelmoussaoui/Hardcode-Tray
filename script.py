@@ -201,8 +201,7 @@ def copy_files():
                                     script_errors.append(err)
                                     err = err.decode('ascii')
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
-                                    print("fixing %s failed with error:"%(app))
-                                    print(err)
+                                    print("fixing %s failed with error:\n%s"%(app, err))
                                     
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
