@@ -124,7 +124,7 @@ def copy_files():
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
-                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
+                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2].strip()
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
                         repl_icon = symlink_icon = icon[0]
                     else:
