@@ -198,11 +198,12 @@ def copy_files():
                                 fixed_icons.append(filename)
                             else: 
                                 if not err in script_errors:
+                                    script_errors.append(err)
                                     err = err.decode('ascii')
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
                                     print("fixing %s failed with error:"%(app))
                                     print(err)
-                                    script_errors.append(err)
+                                    
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
