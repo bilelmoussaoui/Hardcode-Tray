@@ -24,6 +24,7 @@ theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
+script_errors = []
 
 # Detects the desktop environment
 def detect_de():
@@ -102,9 +103,9 @@ def csv_to_dic():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {'link': app[1], 'icons': icons.strip(), 'sni-qt':app[2].strip()}
+                        apps[app[0]] = {'link': app[1], 'icons': icons, 'sni-qt':app[2]}
                     else:
-                        apps[app[0]] = {'link': app[1], 'icons': icons.strip()}
+                        apps[app[0]] = {'link': app[1], 'icons': icons}
                 else:
                     continue
         else:
@@ -121,6 +122,7 @@ def copy_files():
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
+                    icon = [item.strip() for item in icon]
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
@@ -131,7 +133,7 @@ def copy_files():
                         symlink_icon = icon[0]  #Hardcoded icon to be replaced
                         repl_icon = icon[1]  #Theme Icon that will replace hardcoded icon
                 else:
-                    symlink_icon = repl_icon = icon
+                    symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
                 extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
@@ -181,15 +183,26 @@ def copy_files():
                                 chown(app_sni_qt_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
-                                call([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                                output, err = p.communicate()
                             else:
-                                call([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                output, err = p.communicate()
                         else:
-                            call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                            p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                            output, err = p.communicate()
                         #to avoid identical messages
                         if not (filename in fixed_icons):
-                            print("%s -- fixed using %s" % (app, filename))
-                            fixed_icons.append(filename)
+                            if not err:
+                                print("%s -- fixed using %s" % (app, filename))
+                                fixed_icons.append(filename)
+                            else: 
+                                if not err in script_errors:
+                                    script_errors.append(err)
+                                    err = err.decode('ascii')
+                                    err = "\n".join(["\t" + e for e in err.split("\n")])
+                                    print("fixing %s failed with error:\n%s"%(app, err))
+                                    
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
