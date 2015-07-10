@@ -24,6 +24,7 @@ theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
+script_errors = []
 
 # Detects the desktop environment
 def detect_de():
@@ -196,7 +197,10 @@ def copy_files():
                                 print("%s -- fixed using %s" % (app, filename))
                                 fixed_icons.append(filename)
                             else: 
-                                print("fixing %s failed with error: %s"%(app, err))
+                                if not err in script_errors:
+                                    print("fixing %s failed with error:\n"%(app))
+                                    print(err.decode('ascii')+'\n')
+                                    script_errors.append(err)
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
