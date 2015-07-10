@@ -2,11 +2,12 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, remove
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
-
+from shutil import rmtree, move
+from distutils import dir_util
 try:
     from cairosvg import svg2png
 except:
@@ -19,11 +20,13 @@ db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser('~' + getlogin())
+backup_folder = userhome + "/.Hardcode-Tray-Backup/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
+script_errors = [] 
 
 # Detects the desktop environment
 def detect_de():
@@ -102,9 +105,9 @@ def csv_to_dic():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {'link': app[1], 'icons': icons.strip(), 'sni-qt':app[2].strip()}
+                        apps[app[0]] = {'link': app[1], 'icons': icons, 'sni-qt':app[2]}
                     else:
-                        apps[app[0]] = {'link': app[1], 'icons': icons.strip()}
+                        apps[app[0]] = {'link': app[1], 'icons': icons}
                 else:
                     continue
         else:
@@ -112,15 +115,89 @@ def csv_to_dic():
     db.close()
     return apps
 
+def backup(app_name,icons_folder,icons):
+    backup_app_path = backup_folder + app_name
+    if is_sni_qt_app(icons):
+        script_file = icons[0][2] 
+        if script_file != qt_script:
+            if not path.exists(backup_app_path):
+                makedirs(backup_app_path)
+                chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+            if script_file == "spotify":
+                backup_spotify(icons_folder)
+            elif script_file == "chrome":
+                backup_chrome(icons_folder)
+    else:
+        if not path.exists(backup_app_path): 
+            makedirs(backup_app_path)
+            chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+        dir_util.copy_tree(icons_folder,backup_app_path)                 
+            
+def is_sni_qt_app(app_icons):
+    return len(app_icons[0]) > 2
+
+def backup_spotify(directory,revert=False):
+    backup_app_path = backup_folder + "spotify"
+    if not path.exists(backup_folder): 
+        makedirs(backup_app_path)
+        chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+    if not revert:
+        src = directory + "/resources.zip"
+        if path.isfile(src):
+            move(src, backup_app_path)
+    else:
+        src = backup_app_path + "/resources.zip"
+        if path.isfile(src):
+            remove(directory + "/resources.zip")
+            move(src, directory)
+
+def backup_chrome(directory,revert=False):
+    backup_app_path = backup_folder + "chrome"
+    if not path.exists(backup_folder): 
+        makedirs(backup_app_path)
+        chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+    if not revert:
+        src = directory + "/chrome_100_percent.pak"
+        if path.isfile(src):
+            move(src, backup_app_path)
+    else:
+        src = backup_app_path + "/chrome_100_percent.pak"
+        if path.isfile(src):
+            remove(directory + "/chrome_100_percent.pak")
+            move(src, directory)
+
+def reinstall():
+    apps = csv_to_dic()
+    for app in apps:
+        icons = apps[app]['icons']
+        if not is_sni_qt_app(icons):
+            backup_app_path = backup_folder + app
+            if path.exists(backup_app_path): 
+                move(backup_app_path, apps[app]['link'])
+            print("%s -- reverted using " % app)
+        else:
+            script_file = icons[0][2]
+            if script_file == "spotify":
+                backup_spotify(apps[app]['link'], True)
+            elif script_file == "chrome":
+                backup_chrome(apps[app]['link'], True)
+            else:
+                sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
+                if path.exists(sni_qt_path):
+                    rmtree(sni_qt_path)
+            print("%s -- reverted using " % app)
+        
 # Copy files..
-def copy_files():
+def install():
     apps = csv_to_dic()
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]['icons']
+            backup(app,apps[app]['link'],app_icons)
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
+                    icon = [item.strip() for item in icon] 
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
@@ -131,7 +208,7 @@ def copy_files():
                         symlink_icon = icon[0]  #Hardcoded icon to be replaced
                         repl_icon = icon[1]  #Theme Icon that will replace hardcoded icon
                 else:
-                    symlink_icon = repl_icon = icon
+                    symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
                 extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
@@ -181,15 +258,25 @@ def copy_files():
                                 chown(app_sni_qt_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
-                                call([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
+                                output, err = p.communicate()
                             else:
-                                call([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                output, err = p.communicate()
                         else:
-                            call([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                            p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                            output, err = p.communicate()
                         #to avoid identical messages
                         if not (filename in fixed_icons):
-                            print("%s -- fixed using %s" % (app, filename))
-                            fixed_icons.append(filename)
+                            if not err:
+                                print("%s -- fixed using %s" % (app, filename))
+                                fixed_icons.append(filename)
+                            else: 
+                                if not err in script_errors:
+                                    script_errors.append(err)
+                                    err = err.decode('ascii')
+                                    err = "\n".join(["\t" + e for e in err.split("\n")])
+                                    print("fixing %s failed with error:\n%s"%(app, err))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
@@ -198,6 +285,16 @@ if detect_de() in ('pantheon', 'xfce'):
 
 # The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
-print("Copying now..\n")
-copy_files()
+print("1 - Install \n")
+print("2 - Reinstall \n")
+choice  = int(input("Please choose :"))
+if choice == 1:
+    print("Installing now..\n")
+    install() 
+elif choice == 2:
+    print("Reinstalling now..\n")
+    reinstall()
+else:   
+    exit("Please try again")
+
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
