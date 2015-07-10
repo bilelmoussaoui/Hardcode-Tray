@@ -102,9 +102,9 @@ def csv_to_dic():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {'link': app[1], 'icons': icons, 'sni-qt':app[2]}
+                        apps[app[0]] = {'link': app[1], 'icons': icons.strip(), 'sni-qt':app[2].strip()}
                     else:
-                        apps[app[0]] = {'link': app[1], 'icons': icons}
+                        apps[app[0]] = {'link': app[1], 'icons': icons.strip()}
                 else:
                     continue
         else:
@@ -124,7 +124,7 @@ def copy_files():
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
-                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2].strip()
+                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
                         repl_icon = symlink_icon = icon[0]
                     else:
