@@ -274,7 +274,7 @@ def install():
                             else: 
                                 if not err in script_errors:
                                     script_errors.append(err)
-                                    err = err.decode('ascii')
+                                    err = err.decode('utf-8')
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
                                     print("fixing %s failed with error:\n%s"%(app, err))
     else:
