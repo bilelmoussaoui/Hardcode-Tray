@@ -6,7 +6,7 @@ from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, geten
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
-from shutil import rmtree, copyfile
+from shutil import rmtree, copyfile, move
 try:
     from cairosvg import svg2png
 except:
@@ -19,12 +19,12 @@ db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser('~' + getlogin())
-backup_folder = userhome + "/.Hardcode-Tray-Backup/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
+reverted_icons = []
 script_errors = [] 
 
 # Detects the desktop environment
@@ -56,12 +56,12 @@ def get_subdirs(directory):
     else:
         return None
 
-def copy_file(src, dest, filename,overwrite = False):
+def copy_file(src, dest, overwrite=False):
     if overwrite:
-        copyfile(src + "/" + filename, dest + "/" + filename)
+        copyfile(src, dest)
     else:
-        if not path.isfile(dest + "/" + filename):
-            copyfile(src + "/" + filename, dest + "/" + filename)
+        if not path.isfile(dest):
+            copyfile(src, dest)
 
 # Get the icons name from the db directory
 def get_app_icons(app_name):
@@ -120,68 +120,70 @@ def csv_to_dic():
     db.close()
     return apps
 
-def backup(app_name,icons_folder,icons):
-    backup_app_path = backup_folder + app_name
-    if is_sni_qt_app(icons):
-        script_file = icons[0][2] 
-        if script_file != qt_script:
-            if not path.exists(backup_app_path):
-                makedirs(backup_app_path)
-                chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-            if script_file == "spotify":
-                backup_app_file(icons_folder,"spotify","resources.zip")
-            elif script_file == "chrome":
-                backup_app_file(icons_folder,"chrome","chrome_100_percent.pak")
-    else:
-        if not path.exists(backup_app_path): 
-            makedirs(backup_app_path)
-            chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-        for icon in icons:
-            if isinstance(icon,list):
-                icon = icon[0]
-            if path.isfile(icons_folder + "/" + icon):
-                copy_file(icons_folder, backup_app_path,icon)                 
-            
-def is_sni_qt_app(app_icons):
-    return isinstance(app_icons[0], list) and len(app_icons[0]) > 2 
-
-def backup_app_file(directory,app_name,file_name,revert=False):
-    backup_app_path = backup_folder + app_name
-    if not path.exists(backup_folder): 
-        makedirs(backup_app_path)
-        chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+def backup(icon, revert=False):
+    back_file = icon+'.bak'
     if not revert:
-        src = directory
-        dis = backup_app_path
+        copy_file(icon, back_file)
+    elif revert:
+        move(back_file, icon)
+
+def backup_app_file(script_name, folder,revert=False):
+    if script_name == 'spotify':
+        back_file = 'resources.zip'
+    elif script_name == 'chrome':
+        back_file = 'chrome_100_percent.pak'
     else:
-        src = backup_app_path
-        dis = directory
-    if path.isfile(src):
-        copy_file(src, dis, file_name)
+        return
+    if not revert:
+        copy_file(folder+'/'+back_file, folder+'/'+back_file+'.bak')
+    elif revert:
+        move(folder+'/'+back_file+'.bak', folder+'/'+back_file)
+        
 
 def reinstall():
+    sni_qt_reverted = False
     apps = csv_to_dic()
-    for app in apps:
-        icons = apps[app]['icons']
-        if not is_sni_qt_app(icons):
-            backup_app_path = backup_folder + app
-            for icon in icons:
+    if len(apps) != 0:
+        for app in apps:
+            app_icons = apps[app]['icons']
+            folder = apps[app]['link']
+            for icon in app_icons:
+                script = False
                 if isinstance(icon, list):
-                    icon = icon[0]
-                if path.isfile(backup_app_path + "/" + icon):
-                    copy_file(backup_app_path, apps[app]['link'], icon , True)
-            print("%s -- reverted using " % app)
-        else:
-            script_file = icons[0][2]
-            if script_file == "spotify":
-                backup_app_file(apps[app]['link'],"spotify","resources.zip",True)
-            elif script_file == "chrome":
-                backup_app_file(apps[app]['link'],"chrome","chrome_100_percent.pak",True)
-            else:
-                sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
-                if path.exists(sni_qt_path):
-                    rmtree(sni_qt_path)
-            print("%s -- reverted using " % app)
+                    icon = [item.strip() for item in icon] 
+                    if len(icon) > 2:
+                        script = True
+                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
+                        if icon[2] == qt_script:
+                            if sni_qt_reverted: continue
+                            sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
+                            if path.exists(sni_qt_path):
+                                rmtree(sni_qt_path)
+                                print("hardcoded qt apps reverted")
+                            sni_qt_reverted = True
+                            continue
+                    else:
+                        revert_icon = icon[0]  #Hardcoded icon to be reverted
+                else:
+                    revert_icon = icon.strip()
+                if not script:
+                    try:
+                        backup(folder+'/'+revert_icon, revert=True)
+                    except:
+                        continue
+                    if not revert_icon in reverted_icons:
+                        print("%s -- reverted" % (revert_icon))
+                        reverted_icons.append(revert_icon)
+                elif script:
+                    continue
+                    try:
+                        backup_app_file(icon[2], folder, revert=True)
+                    except:
+                        continue
+                    if not icon[2] in reverted_icons:
+                        print("%s -- reverted" % (app))
+                        reverted_icons.append(icon[2])
+                    
         
 # Copy files..
 def install():
@@ -189,7 +191,7 @@ def install():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]['icons']
-            for ctr, icon in enumerate(app_icons):
+            for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon] 
@@ -208,7 +210,6 @@ def install():
                 extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
-                    if ctr==0: backup(app,apps[app]['link'],app_icons)
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
                     if extension_theme not in ('.png', '.svg'): #catching the unrealistic case that theme is neither svg nor png
@@ -218,6 +219,7 @@ def install():
                             output_icon = apps[app]['link'] + "/" + symlink_icon
                         else:
                             output_icon = apps[app]['link'] + "/" + repl_icon  # Output icon
+                        backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(['ln', '-sf', filename, output_icon])
                             print("%s -- fixed using %s" % (app, filename))
@@ -244,10 +246,10 @@ def install():
                             continue
                     else: #Sni-qt icons & Chrome/Spotify script 
                         folder = apps[app]['link']
-                        app_sni_qt_prefix = apps[app].get("sni-qt", app)
-                        app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
+                            app_sni_qt_prefix = apps[app].get("sni-qt", app)
+                            app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                             #Create a new folder and give permissions to normal user
                             if not path.exists(app_sni_qt_path): 
                                 makedirs(app_sni_qt_path)
@@ -260,6 +262,7 @@ def install():
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                         else:
+                            backup_app_file(icon[2], folder)
                             p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                             output, err = p.communicate()
                         #to avoid identical messages
