@@ -6,7 +6,7 @@ from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, geten
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
-from shutil import rmtree, move
+from shutil import rmtree, copyfile
 from distutils import dir_util
 try:
     from cairosvg import svg2png
@@ -131,7 +131,11 @@ def backup(app_name,icons_folder,icons):
         if not path.exists(backup_app_path): 
             makedirs(backup_app_path)
             chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-        dir_util.copy_tree(icons_folder,backup_app_path)                 
+        for icon in icons:
+            if isinstance(icon,list):
+                icon = icon[0]
+            if path.isfile(icons_folder + "/" + icon):
+                copyfile(icons_folder + "/" + icon, backup_app_path + "/" + icon)                 
             
 def is_sni_qt_app(app_icons):
     return isinstance(app_icons[0], list) and len(app_icons[0]) > 2 
@@ -143,13 +147,13 @@ def backup_spotify(directory,revert=False):
         chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
     if not revert:
         src = directory + "/resources.zip"
-        if path.isfile(src):
-            move(src, backup_app_path)
+        dis = backup_app_path + "/resources.zip"
+        
     else:
         src = backup_app_path + "/resources.zip"
-        if path.isfile(src):
-            remove(directory + "/resources.zip")
-            move(src, directory)
+        dis = directory  + "/resources.zip"
+    if path.isfile(src):
+        copyfile(src, dis)
 
 def backup_chrome(directory,revert=False):
     backup_app_path = backup_folder + "chrome"
@@ -158,13 +162,12 @@ def backup_chrome(directory,revert=False):
         chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
     if not revert:
         src = directory + "/chrome_100_percent.pak"
-        if path.isfile(src):
-            move(src, backup_app_path)
+        dis = backup_app_path + "/chrome_100_percent.pak"
     else:
         src = backup_app_path + "/chrome_100_percent.pak"
-        if path.isfile(src):
-            remove(directory + "/chrome_100_percent.pak")
-            move(src, directory)
+        dis = directory + "/chrome_100_percent.pak"
+    if path.isfile(src):
+        copyfile(src, dis)
 
 def reinstall():
     apps = csv_to_dic()
@@ -172,8 +175,11 @@ def reinstall():
         icons = apps[app]['icons']
         if not is_sni_qt_app(icons):
             backup_app_path = backup_folder + app
-            if path.exists(backup_app_path): 
-                move(backup_app_path, apps[app]['link'])
+            for icon in icons:
+                if isinstance(icon, list):
+                    icon = icon[0]
+                if path.isfile(backup_app_path + "/" + icon):
+                    copyfile(backup_app_path + "/" + icon, apps[app]['link'] + "/" + icon)
             print("%s -- reverted using " % app)
         else:
             script_file = icons[0][2]
