@@ -134,7 +134,7 @@ def backup(app_name,icons_folder,icons):
         dir_util.copy_tree(icons_folder,backup_app_path)                 
             
 def is_sni_qt_app(app_icons):
-    return len(app_icons[0]) > 2
+    return isinstance(app_icons[0], list) and len(app_icons[0]) > 2 
 
 def backup_spotify(directory,revert=False):
     backup_app_path = backup_folder + "spotify"
