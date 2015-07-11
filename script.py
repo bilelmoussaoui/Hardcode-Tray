@@ -2,12 +2,11 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, remove
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
 from shutil import rmtree, copyfile
-from distutils import dir_util
 try:
     from cairosvg import svg2png
 except:
