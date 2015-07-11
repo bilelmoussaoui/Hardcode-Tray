@@ -189,8 +189,7 @@ def install():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]['icons']
-            backup(app,apps[app]['link'],app_icons)
-            for icon in app_icons:
+            for ctr, icon in enumerate(app_icons):
                 script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon] 
@@ -209,6 +208,7 @@ def install():
                 extension_orig = path.splitext(symlink_icon)[1]
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
+                    if ctr==0: backup(app,apps[app]['link'],app_icons)
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
                     if extension_theme not in ('.png', '.svg'): #catching the unrealistic case that theme is neither svg nor png
@@ -283,7 +283,7 @@ if detect_de() in ('pantheon', 'xfce'):
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("1 - Install \n")
 print("2 - Reinstall \n")
-choice  = int(input("Please choose : "))
+choice  = int(input("Please choose: "))
 if choice == 1:
     print("Installing now..\n")
     install() 
