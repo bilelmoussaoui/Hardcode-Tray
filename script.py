@@ -56,6 +56,12 @@ def get_subdirs(directory):
     else:
         return None
 
+def copy_file(src, dest, filename,overwrite = False):
+    if overwrite:
+        copyfile(src + "/" + filename, dest + "/" + filename)
+    else:
+        if not path.isfile(dest + "/" + filename):
+            copyfile(src + "/" + filename, dest + "/" + filename)
 
 # Get the icons name from the db directory
 def get_app_icons(app_name):
@@ -134,7 +140,7 @@ def backup(app_name,icons_folder,icons):
             if isinstance(icon,list):
                 icon = icon[0]
             if path.isfile(icons_folder + "/" + icon):
-                copyfile(icons_folder + "/" + icon, backup_app_path + "/" + icon)                 
+                copy_file(icons_folder, backup_app_path,icon)                 
             
 def is_sni_qt_app(app_icons):
     return isinstance(app_icons[0], list) and len(app_icons[0]) > 2 
@@ -145,13 +151,13 @@ def backup_app_file(directory,app_name,file_name,revert=False):
         makedirs(backup_app_path)
         chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
     if not revert:
-        src = directory + "/" + file_name
-        dis = backup_app_path + "/" + file_name
+        src = directory
+        dis = backup_app_path
     else:
-        src = backup_app_path + "/" + file_name
-        dis = directory + "/" + file_name
+        src = backup_app_path
+        dis = directory
     if path.isfile(src):
-        copyfile(src, dis)
+        copy_file(src, dis, file_name)
 
 def reinstall():
     apps = csv_to_dic()
@@ -163,7 +169,7 @@ def reinstall():
                 if isinstance(icon, list):
                     icon = icon[0]
                 if path.isfile(backup_app_path + "/" + icon):
-                    copyfile(backup_app_path + "/" + icon, apps[app]['link'] + "/" + icon)
+                    copy_file(backup_app_path, apps[app]['link'], icon , True)
             print("%s -- reverted using " % app)
         else:
             script_file = icons[0][2]
