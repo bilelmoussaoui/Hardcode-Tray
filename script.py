@@ -123,9 +123,9 @@ def backup(app_name,icons_folder,icons):
                 makedirs(backup_app_path)
                 chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
             if script_file == "spotify":
-                backup_spotify(icons_folder)
+                backup_app_file(icons_folder,"spotify","resources.zip")
             elif script_file == "chrome":
-                backup_chrome(icons_folder)
+                backup_app_file(icons_folder,"chrome","chrome_100_percent.pak")
     else:
         if not path.exists(backup_app_path): 
             makedirs(backup_app_path)
@@ -139,32 +139,17 @@ def backup(app_name,icons_folder,icons):
 def is_sni_qt_app(app_icons):
     return isinstance(app_icons[0], list) and len(app_icons[0]) > 2 
 
-def backup_spotify(directory,revert=False):
-    backup_app_path = backup_folder + "spotify"
+def backup_app_file(directory,app_name,file_name,revert=False):
+    backup_app_path = backup_folder + app_name
     if not path.exists(backup_folder): 
         makedirs(backup_app_path)
         chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
     if not revert:
-        src = directory + "/resources.zip"
-        dis = backup_app_path + "/resources.zip"
-        
+        src = directory + "/" + file_name
+        dis = backup_app_path + "/" + file_name
     else:
-        src = backup_app_path + "/resources.zip"
-        dis = directory  + "/resources.zip"
-    if path.isfile(src):
-        copyfile(src, dis)
-
-def backup_chrome(directory,revert=False):
-    backup_app_path = backup_folder + "chrome"
-    if not path.exists(backup_folder): 
-        makedirs(backup_app_path)
-        chown(backup_app_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
-    if not revert:
-        src = directory + "/chrome_100_percent.pak"
-        dis = backup_app_path + "/chrome_100_percent.pak"
-    else:
-        src = backup_app_path + "/chrome_100_percent.pak"
-        dis = directory + "/chrome_100_percent.pak"
+        src = backup_app_path + "/" + file_name
+        dis = directory + "/" + file_name
     if path.isfile(src):
         copyfile(src, dis)
 
@@ -183,9 +168,9 @@ def reinstall():
         else:
             script_file = icons[0][2]
             if script_file == "spotify":
-                backup_spotify(apps[app]['link'], True)
+                backup_app_file(apps[app]['link'],"spotify","resources.zip",True)
             elif script_file == "chrome":
-                backup_chrome(apps[app]['link'], True)
+                backup_app_file(apps[app]['link'],"chrome","chrome_100_percent.pak",True)
             else:
                 sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
                 if path.exists(sni_qt_path):
@@ -292,7 +277,7 @@ if detect_de() in ('pantheon', 'xfce'):
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("1 - Install \n")
 print("2 - Reinstall \n")
-choice  = int(input("Please choose :"))
+choice  = int(input("Please choose : "))
 if choice == 1:
     print("Installing now..\n")
     install() 
