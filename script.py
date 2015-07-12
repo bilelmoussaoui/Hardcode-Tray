@@ -27,6 +27,7 @@ fixed_icons = []
 reverted_icons = []
 script_errors = [] 
 
+
 # Detects the desktop environment
 def detect_de():
     if environ.get('DESKTOP_SESSION') == 'pantheon' or linux_distribution()[0].strip('"') == "elementary OS":
@@ -106,7 +107,7 @@ def csv_to_dic():
         if "{dropbox}" in app[1]:
             app[1] = replace_dropbox_dir(app[1])
         if app[1]:
-            if path.isdir(app[1]+"/"):  # check if the folder exists
+            if path.isdir(app[1] + "/"):  # check if the folder exists
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
@@ -121,7 +122,7 @@ def csv_to_dic():
     return apps
 
 def backup(icon, revert=False):
-    back_file = icon+'.bak'
+    back_file = icon + '.bak'
     if not revert:
         copy_file(icon, back_file)
     elif revert:
@@ -135,9 +136,9 @@ def backup_app_file(script_name, folder,revert=False):
     else:
         return
     if not revert:
-        copy_file(folder+'/'+back_file, folder+'/'+back_file+'.bak')
+        copy_file(folder + '/' + back_file, folder + '/' + back_file + '.bak')
     elif revert:
-        move(folder+'/'+back_file+'.bak', folder+'/'+back_file)
+        move(folder + '/' + back_file + '.bak', folder + '/' + back_file)
         
 
 def reinstall():
@@ -159,7 +160,7 @@ def reinstall():
                             sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
                             if path.exists(sni_qt_path):
                                 rmtree(sni_qt_path)
-                                print("hardcoded qt apps reverted")
+                                print("hardcoded Qt apps reverted")
                             sni_qt_reverted = True
                             continue
                     else:
@@ -168,7 +169,7 @@ def reinstall():
                     revert_icon = icon.strip()
                 if not script:
                     try:
-                        backup(folder+'/'+revert_icon, revert=True)
+                        backup(folder + '/' + revert_icon, revert=True)
                     except:
                         continue
                     if not revert_icon in reverted_icons:

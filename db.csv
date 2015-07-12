@@ -8,7 +8,7 @@ google-music-manager, /opt/google/musicmanager/google-musicmanager, MusicManager
 google-tasks-indicator, /usr/share/google-tasks-indicator/icons,
 grive-tools, /opt/thefanclub/grive-tools/icons/light,
 grive-tools, /opt/thefanclub/grive-tools/icons/dark,
-hp-printing, /usr/bin/hp-systray,
+hp-printing, /usr/bin/hp-systray, python2.7
 ibus-anthy, /usr/share/ibus-anthy/icons,
 ibus-mozc, /usr/share/ibus-mozc,
 keepassx, /usr/share/keepassx/icons,
@@ -20,7 +20,7 @@ pomodoro-indicator, /opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-ind
 primeindicator, /usr/lib/primeindicator,
 pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons,
 radiotray, /usr/share/radiotray/images,
-seafile, /usr/bin/seafile-applet,
+seafile, /usr/bin/seafile-applet, seafile-applet
 skype, /usr/share/skype,
 spotify, /opt/spotify/spotify-client/Data,
 telegram, {userhome}/.TelegramDesktop/tdata/ticons,
@@ -28,7 +28,7 @@ tomahawk, /usr/bin/tomahawk,
 touchpad-indicator, /opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons,
 twitch-indicator, /usr/lib/twitch-indicator,
 variety, /opt/extras.ubuntu.com/variety/share/variety/media,
-wiznote, /usr/bin/WizNote,
+wiznote, /usr/bin/WizNote, WizNote
 xkbmod-indicator, /usr/share/indicator-xkbmod/icons,
 yd-tools, /opt/yd-tools/icons,
 youtube-indicator, /opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons,
