@@ -57,6 +57,7 @@ def get_subdirs(directory):
     else:
         return None
 
+
 def copy_file(src, dest, overwrite=False):
     if overwrite:
         copyfile(src, dest)
@@ -121,6 +122,7 @@ def csv_to_dic():
     db.close()
     return apps
 
+
 def backup(icon, revert=False):
     back_file = icon + '.bak'
     if not revert:
@@ -128,18 +130,6 @@ def backup(icon, revert=False):
     elif revert:
         move(back_file, icon)
 
-def backup_app_file(script_name, folder,revert=False):
-    if script_name == 'spotify':
-        back_file = 'resources.zip'
-    elif script_name == 'chrome':
-        back_file = 'chrome_100_percent.pak'
-    else:
-        return
-    if not revert:
-        copy_file(folder + '/' + back_file, folder + '/' + back_file + '.bak')
-    elif revert:
-        move(folder + '/' + back_file + '.bak', folder + '/' + back_file)
-        
 
 def reinstall():
     sni_qt_reverted = False
@@ -176,7 +166,7 @@ def reinstall():
                 elif script:
                     continue
                     try:
-                        backup_app_file(icon[2], folder, revert=True)
+                        backup(folder+'/'+icon[3], revert=True)
                     except:
                         continue
                     if not icon[2] in reverted_icons:
@@ -261,7 +251,7 @@ def install():
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                         else:
-                            backup_app_file(icon[2], folder)
+                            backup(folder+'/'+icon[3])
                             p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                             output, err = p.communicate()
                         #to avoid identical messages
