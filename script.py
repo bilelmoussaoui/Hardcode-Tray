@@ -2,7 +2,7 @@
 
 from csv import reader
 from gi.repository import Gtk
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv
+from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, symlink
 from subprocess import Popen, PIPE, call
 from platform import linux_distribution
 from sys import exit
@@ -164,7 +164,6 @@ def reinstall():
                         print("%s -- reverted" % (revert_icon))
                         reverted_icons.append(revert_icon)
                 elif script:
-                    continue
                     try:
                         backup(folder+'/'+icon[3], revert=True)
                     except:
@@ -246,7 +245,7 @@ def install():
                             #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
-                                output, err = p.communicate()
+                                symlink(app_sni_qt_path+"/"+icon[3],app_sni_qt_path+"/"+symlink_icon)
                             else:
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
