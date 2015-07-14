@@ -154,12 +154,10 @@ def reinstall():
                     icon = [item.strip() for item in icon] 
                     if len(icon) > 2:
                         script = True
-                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
                         if icon[2] == qt_script:
                             if sni_qt_reverted: continue
-                            sni_qt_path = sni_qt_folder + apps[app].get("sni-qt", app)
-                            if path.exists(sni_qt_path):
-                                rmtree(sni_qt_path)
+                            if path.exists(sni_qt_folder):
+                                rmtree(sni_qt_folder)
                                 print("hardcoded Qt apps reverted")
                             sni_qt_reverted = True
                             continue
