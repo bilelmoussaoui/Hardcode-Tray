@@ -244,8 +244,7 @@ def install():
                                 chown(app_sni_qt_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
                             #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
-                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path, icon[3]], stdout=PIPE, stderr=PIPE)
-                                symlink(app_sni_qt_path+"/"+icon[3],app_sni_qt_path+"/"+symlink_icon)
+                                symlink(app_sni_qt_path+"/"+icon[3], app_sni_qt_path+"/"+symlink_icon)
                             else:
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
