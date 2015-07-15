@@ -27,7 +27,7 @@ Fixes Hardcoded tray icons in Linux
   5. Enjoy!
 
 ### Credits
-- [Node Chrome pak](https://bitbucket.org/hikipro/node-chrome-pak/) by Hwang, C. W. (hikipro95@gmail.com) released under MIT License
+- [Node Chrome PAK](https://bitbucket.org/hikipro/node-chrome-pak/) by Hwang, C. W. (hikipro95@gmail.com) released under MIT License
 
 ### Supported applications
 We now support:
