@@ -11,7 +11,6 @@ from csv import reader
 from gi.repository import Gtk
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, symlink, remove
 from subprocess import Popen, PIPE, call
-from platform import linux_distribution
 from sys import exit
 from shutil import rmtree, copyfile, move
 try:
@@ -39,7 +38,7 @@ def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size 
     """
-    if environ.get("DESKTOP_SESSION") == "pantheon" or linux_distribution()[0].strip("\"") == "elementary OS":
+    if environ.get("DESKTOP_SESSION") == "pantheon" or environ.get("XDG_CURRENT_DESKTOP") == "pantheon":
         return "pantheon"
     else:
         try:
