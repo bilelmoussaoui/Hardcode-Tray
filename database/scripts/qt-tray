@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-from os import symlink, chown, getenv
+from os import symlink, chown, getenv, remove
 from cairosvg import svg2png
 
 origfile = sys.argv[1]
@@ -15,4 +15,8 @@ if origfile.endswith(".svg"):
     fout.close()
     chown(symlfile, int(getenv('SUDO_UID')), int(getenv('SUDO_GID'))) 
 else:
-    symlink(origfile, symlfile)
+    try:
+        remove(symlfile)
+        symlink(origfile, symlfile)
+    except FileNotFoundError:
+        symlink(origfile, symlfile)
