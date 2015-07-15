@@ -15,7 +15,7 @@ from sys import exit
 from shutil import rmtree, copyfile, move
 try:
     from cairosvg import svg2png
-except:
+except ImportError:
     exit("You need to install python3-cairosvg to run this script.\nPlease install it and try again. Exiting.")
 
 if geteuid() != 0:
@@ -135,7 +135,7 @@ def csv_to_dic():
         if "{dropbox}" in app[1]:
             app[1] = replace_dropbox_dir(app[1])
         if app[1]:
-            if path.isdir(app[1] + "/"):  # check if the folder exists
+            if path.isdir(app[1] + "/"):
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
@@ -244,7 +244,7 @@ def install():
                         if symlink_icon:
                             output_icon = apps[app]["link"] + "/" + symlink_icon
                         else:
-                            output_icon = apps[app]["link"] + "/" + repl_icon  # Output icon
+                            output_icon = apps[app]["link"] + "/" + repl_icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
