@@ -26,6 +26,9 @@ Fixes Hardcoded tray icons in Linux
   
   5. Enjoy!
 
+### Credits
+- Hwang, C. W. (hikipro95@gmail.com) : [node-chrome-pak](https://bitbucket.org/hikipro/node-chrome-pak/)
+
 ### Supported applications
 We now support:
 * [Calendar-indicator](https://bugs.launchpad.net/calendar-indicator)
