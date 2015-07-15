@@ -35,8 +35,10 @@ reverted_icons = []
 script_errors = [] 
 
 
-# Detects the desktop environment
 def detect_de():
+    """
+        Detects the desktop environment, used to choose the proper icons size 
+    """
     if environ.get("DESKTOP_SESSION") == "pantheon" or linux_distribution()[0].strip("\"") == "elementary OS":
         return "pantheon"
     else:
@@ -53,6 +55,10 @@ def detect_de():
 
 # Creates a list of subdirectories
 def get_subdirs(directory):
+    """
+        Return a list of subdirectories, used in replace_dropbox_dir
+        @directory : String, the path of the directory 
+    """
     if path.isdir(directory):
         dirs = listdir(directory)
         dirs.sort()
@@ -66,14 +72,24 @@ def get_subdirs(directory):
 
 
 def copy_file(src, dest, overwrite=False):
+    """
+        Simple copy file function with the possibility to overwrite the file
+        @src : String, the source file
+        @dest : String, the destination folder 
+        @overwrite : Boolean, to overwrite the file 
+    """
     if overwrite:
         copyfile(src, dest)
     else:
         if not path.isfile(dest):
             copyfile(src, dest)
 
-# Get the icons name from the db directory
+
 def get_app_icons(app_name):
+    """
+        get a list of icons in /database/applicationname of each application 
+        @app_name : String, the application name
+    """
     if path.isfile(db_folder + "/" + app_name):
         f = open(db_folder + "/" + app_name)
         r = reader(f, skipinitialspace=True)
@@ -91,8 +107,11 @@ def get_app_icons(app_name):
         return None
 
 
-# Correct/get the original dropbox directory
 def replace_dropbox_dir(d):
+    """
+        Correct the hardcoded dropbox directory
+        @d : String, the default dropbox directory
+    """
     dirs = d.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
     if sub_dirs:
@@ -105,8 +124,10 @@ def replace_dropbox_dir(d):
         return None
 
 
-# Converts the csv database to a dictionary
 def csv_to_dic():
+    """
+        Read the database file and return a dictionnary with all the informations needed
+    """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
     apps = {}
@@ -131,6 +152,11 @@ def csv_to_dic():
 
 
 def backup(icon, revert=False):
+    """
+        A backup fonction, used to make reverting to the original icons possible
+        @icon : String, the original icon name 
+        @revert : Boolean, possibility to revert the icons later 
+    """
     back_file = icon + ".bak"
     if not revert:
         copy_file(icon, back_file)
@@ -139,6 +165,9 @@ def backup(icon, revert=False):
 
 
 def reinstall():
+    """
+        Reverting to the original icons
+    """
     sni_qt_reverted = False
     apps = csv_to_dic()
     if len(apps) != 0:
@@ -180,8 +209,10 @@ def reinstall():
                         reverted_icons.append(icon[2])
                     
         
-# Copy files..
 def install():
+    """
+        Installing the new supported icons 
+    """
     apps = csv_to_dic()
     if len(apps) != 0:
         for app in apps:
@@ -207,7 +238,8 @@ def install():
                 if theme_icon:
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
-                    if extension_theme not in (".png", ".svg"): #catching the unrealistic case that theme is neither svg nor png
+                     #catching the unrealistic case that theme is neither svg nor png
+                    if extension_theme not in (".png", ".svg"):
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
@@ -239,7 +271,7 @@ def install():
                         else:
                             print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
-                    else: #Sni-qt icons & Chrome/Spotify script 
+                    else: #sni-qt icons & Chrome/Spotify script 
                         folder = apps[app]["link"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
@@ -280,7 +312,6 @@ def install():
 if detect_de() in ("pantheon", "xfce"):
     default_icon_size = 24
 
-# The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("1 - Install \n")
 print("2 - Reinstall \n")
