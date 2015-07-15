@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
-Contributors : wa4557
+Contributors : wa4557 , Foggalong
 Credits : Hwang, C. W. (hikipro95@gmail.com)
 Version : 1.0
 Licence : GPL
