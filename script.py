@@ -25,7 +25,7 @@ if geteuid() != 0:
 db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
-userhome = path.expanduser('~' + getlogin())
+userhome = path.expanduser("~" + getlogin())
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
@@ -37,18 +37,18 @@ script_errors = []
 
 # Detects the desktop environment
 def detect_de():
-    if environ.get('DESKTOP_SESSION') == 'pantheon' or linux_distribution()[0].strip('"') == "elementary OS":
-        return 'pantheon'
+    if environ.get("DESKTOP_SESSION") == "pantheon" or linux_distribution()[0].strip("\"") == "elementary OS":
+        return "pantheon"
     else:
         try:
-            process = Popen(['ls', '-la', 'xprop -root _DT_SAVE_MODE'], stdout=PIPE, stderr=PIPE)
+            process = Popen(["ls", "-la", "xprop -root _DT_SAVE_MODE"], stdout=PIPE, stderr=PIPE)
             out = process.communicate()
-            if ' = "xfce4"' in out:
-                return 'xfce'
+            if " = \"xfce4\"" in out:
+                return "xfce"
             else:
-                return 'other'
+                return "other"
         except (OSError, RuntimeError):
-            return 'other'
+            return "other"
 
 
 # Creates a list of subdirectories
@@ -119,9 +119,9 @@ def csv_to_dic():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {'link': app[1], 'icons': icons, 'sni-qt':app[2]}
+                        apps[app[0]] = {"link": app[1], "icons": icons, "sni-qt":app[2]}
                     else:
-                        apps[app[0]] = {'link': app[1], 'icons': icons}
+                        apps[app[0]] = {"link": app[1], "icons": icons}
                 else:
                     continue
         else:
@@ -131,7 +131,7 @@ def csv_to_dic():
 
 
 def backup(icon, revert=False):
-    back_file = icon + '.bak'
+    back_file = icon + ".bak"
     if not revert:
         copy_file(icon, back_file)
     elif revert:
@@ -143,8 +143,8 @@ def reinstall():
     apps = csv_to_dic()
     if len(apps) != 0:
         for app in apps:
-            app_icons = apps[app]['icons']
-            folder = apps[app]['link']
+            app_icons = apps[app]["icons"]
+            folder = apps[app]["link"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -164,7 +164,7 @@ def reinstall():
                     revert_icon = icon.strip()
                 if not script:
                     try:
-                        backup(folder + '/' + revert_icon, revert=True)
+                        backup(folder + "/" + revert_icon, revert=True)
                     except:
                         continue
                     if not revert_icon in reverted_icons:
@@ -172,7 +172,7 @@ def reinstall():
                         reverted_icons.append(revert_icon)
                 elif script:
                     try:
-                        backup(folder+'/'+icon[3], revert=True)
+                        backup(folder + "/" + icon[3], revert=True)
                     except:
                         continue
                     if not icon[2] in reverted_icons:
@@ -185,7 +185,7 @@ def install():
     apps = csv_to_dic()
     if len(apps) != 0:
         for app in apps:
-            app_icons = apps[app]['icons']
+            app_icons = apps[app]["icons"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -207,25 +207,25 @@ def install():
                 if theme_icon:
                     filename = theme_icon.get_filename()
                     extension_theme = path.splitext(filename)[1]
-                    if extension_theme not in ('.png', '.svg'): #catching the unrealistic case that theme is neither svg nor png
-                        exit('Theme icons need to be svg or png files other formats are not supported')
+                    if extension_theme not in (".png", ".svg"): #catching the unrealistic case that theme is neither svg nor png
+                        exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
-                            output_icon = apps[app]['link'] + "/" + symlink_icon
+                            output_icon = apps[app]["link"] + "/" + symlink_icon
                         else:
-                            output_icon = apps[app]['link'] + "/" + repl_icon  # Output icon
+                            output_icon = apps[app]["link"] + "/" + repl_icon  # Output icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
-                            Popen(['ln', '-sf', filename, output_icon])
+                            Popen(["ln", "-sf", filename, output_icon])
                             print("%s -- fixed using %s" % (app, filename))
-                        elif extension_theme == '.svg' and extension_orig == '.png':
+                        elif extension_theme == ".svg" and extension_orig == ".png":
                             try:#Convert the svg file to a png one
-                                with open(filename, 'r') as content_file:
+                                with open(filename, "r") as content_file:
                                     svg = content_file.read()
-                                fout = open(output_icon, 'wb')
-                                svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
+                                fout = open(output_icon, "wb")
+                                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
                                 fout.close()
-                                chown(output_icon, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+                                chown(output_icon, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
                             except:
                                 print("The svg file `" + filename + "` is invalid.")
                                 continue
@@ -233,14 +233,14 @@ def install():
                             if not (filename in fixed_icons):
                                 print("%s -- fixed using %s" % (app, filename))
                                 fixed_icons.append(filename)
-                        elif extension_theme == '.png' and extension_orig == '.svg':
-                            print('Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(')
+                        elif extension_theme == ".png" and extension_orig == ".svg":
+                            print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
                             continue
                         else:
-                            print('Hardcoded file has to be svg or png. Other formats are not supported yet')
+                            print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
                     else: #Sni-qt icons & Chrome/Spotify script 
-                        folder = apps[app]['link']
+                        folder = apps[app]["link"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sni-qt", app)
@@ -248,19 +248,19 @@ def install():
                             #Create a new folder and give permissions to normal user
                             if not path.exists(app_sni_qt_path): 
                                 makedirs(app_sni_qt_path)
-                                chown(app_sni_qt_path, int(getenv('SUDO_UID')), int(getenv('SUDO_GID')))
+                                chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
                             #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
                                 try:
-                                    remove(app_sni_qt_path+"/"+symlink_icon)
-                                    symlink(app_sni_qt_path+"/"+icon[3], app_sni_qt_path+"/"+symlink_icon)
+                                    remove(app_sni_qt_path + "/" + symlink_icon)
+                                    symlink(app_sni_qt_path + "/" + icon[3], app_sni_qt_path + "/" + symlink_icon)
                                 except FileNotFoundError:
-                                    symlink(app_sni_qt_path+"/"+icon[3], app_sni_qt_path+"/"+symlink_icon)
+                                    symlink(app_sni_qt_path + "/" + icon[3], app_sni_qt_path + "/" + symlink_icon)
                             else:
                                 p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                         else:
-                            backup(folder+'/'+icon[3])
+                            backup(folder + "/" + icon[3])
                             p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                             output, err = p.communicate()
                         #to avoid identical messages
@@ -271,27 +271,30 @@ def install():
                             else: 
                                 if not err in script_errors:
                                     script_errors.append(err)
-                                    err = err.decode('utf-8')
+                                    err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
                                     print("fixing %s failed with error:\n%s"%(app, err))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-if detect_de() in ('pantheon', 'xfce'):
+if detect_de() in ("pantheon", "xfce"):
     default_icon_size = 24
 
 # The message shown to the user
 print("Welcome to the tray icons hardcoder fixer! \n")
 print("1 - Install \n")
 print("2 - Reinstall \n")
-choice  = int(input("Please choose: "))
-if choice == 1:
-    print("Installing now..\n")
-    install() 
-elif choice == 2:
-    print("Reinstalling now..\n")
-    reinstall()
-else:   
-    exit("Please try again")
+try:
+    choice  = int(input("Please choose: "))
+    if choice == 1:
+        print("Installing now..\n")
+        install() 
+    elif choice == 2:
+        print("Reinstalling now..\n")
+        reinstall()
+    else:   
+        exit("Please try again")
+except ValueError:
+    exit("Please choose a valid value")
 
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
