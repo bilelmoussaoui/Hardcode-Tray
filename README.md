@@ -7,7 +7,7 @@ Fixes Hardcoded tray icons in Linux
     sudo apt-get install python3-cairosvg
   ```
 
-  2. Install the patched version of ```sni-qt``` if you use any QT applications
+  2. Install the patched version of ```sni-qt``` if you use any Qt applications
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
