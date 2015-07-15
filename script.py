@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+'''
+Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
+Contributors : wa4557
+Credits : Hwang, C. W. (hikipro95@gmail.com)
+Version : 1.0
+Licence : GPL
+'''
 
 from csv import reader
 from gi.repository import Gtk
