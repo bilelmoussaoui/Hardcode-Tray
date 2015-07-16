@@ -22,7 +22,7 @@ if geteuid() != 0:
     exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
 
 if not environ.get("DESKTOP_SESSION"):
-    exit("Please run the script using 'sudo -E' to conserve environment variables")
+    exit("Please run the script using 'sudo -E' to preserve environment variables")
 
 db_file = "db.csv"
 db_folder = "database"
