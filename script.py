@@ -38,7 +38,7 @@ def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size 
     """
-    if environ.get("DESKTOP_SESSION") == "pantheon" or environ.get("XDG_CURRENT_DESKTOP").lower() == "pantheon":
+    if "pantheon" in [environ.get("DESKTOP_SESSION"), environ.get("XDG_CURRENT_DESKTOP").lower()]:
         return "pantheon"
     else:
         try:
