@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
-Contributors : wa4557 , Foggalong
+Contributors : Andreas Angerer , Joshua Fogg 
 Credits : Hwang, C. W. (hikipro95@gmail.com)
-Version : 1.0
+Version : 1.1
 Licence : GPL
 '''
 
@@ -65,9 +65,9 @@ def get_subdirs(directory):
         dirs = listdir(directory)
         dirs.sort()
         sub_dirs = []
-        for d in sub_dirs:
-            if path.isdir(directory + "/" + a):
-                sub_dirs.append(a)
+        for sub_dir in sub_dirs:
+            if path.isdir(directory + "/" + sub_dir):
+                sub_dirs.append(sub_dir)
         return sub_dirs
     else:
         return None
@@ -109,12 +109,12 @@ def get_app_icons(app_name):
         return None
 
 
-def replace_dropbox_dir(d):
+def replace_dropbox_dir(directory):
     """
         Correct the hardcoded dropbox directory
-        @d : String, the default dropbox directory
+        @directory : String, the default dropbox directory
     """
-    dirs = d.split("{dropbox}")
+    dirs = directory.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
     if sub_dirs:
         sub_dirs.sort()
@@ -126,7 +126,7 @@ def replace_dropbox_dir(d):
         return None
 
 
-def csv_to_dic():
+def get_apps_informations():
     """
         Read the database file and return a dictionnary with all the informations needed
     """
@@ -142,7 +142,7 @@ def csv_to_dic():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {"link": app[1], "icons": icons, "sni-qt":app[2]}
+                        apps[app[0]] = {"link": app[1], "icons": icons, "sniqtprefix": app[2]}
                     else:
                         apps[app[0]] = {"link": app[1], "icons": icons}
                 else:
@@ -171,7 +171,7 @@ def reinstall():
         Reverting to the original icons
     """
     sni_qt_reverted = False
-    apps = csv_to_dic()
+    apps = get_apps_informations()
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -215,7 +215,7 @@ def install():
     """
         Installing the new supported icons 
     """
-    apps = csv_to_dic()
+    apps = get_apps_informations()
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -277,7 +277,7 @@ def install():
                         folder = apps[app]["link"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
-                            app_sni_qt_prefix = apps[app].get("sni-qt", app)
+                            app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                             #Create a new folder and give permissions to normal user
                             if not path.exists(app_sni_qt_path): 
