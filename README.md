@@ -29,6 +29,7 @@ Fixes Hardcoded tray icons in Linux
 
 ### Credits
 - [Node Chrome PAK](https://bitbucket.org/hikipro/node-chrome-pak/) by Hwang, C. W. (hikipro95@gmail.com) released under MIT License
+- Qt applications icons name by [elementaryPlus](https://github.com/mank319/elementaryPlus) team
 
 ### Supported applications
 We now support:
