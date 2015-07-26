@@ -81,6 +81,8 @@ def copy_file(src, dest, overwrite=False):
         @overwrite : Boolean, to overwrite the file 
     """
     if overwrite:
+        if path.isfile(dest):
+            remove(dest)
         copyfile(src, dest)
     else:
         if not path.isfile(dest):
@@ -160,10 +162,11 @@ def backup(icon, revert=False):
         @revert : Boolean, possibility to revert the icons later 
     """
     back_file = icon + ".bak"
-    if not revert:
-        copy_file(icon, back_file)
-    elif revert:
-        move(back_file, icon)
+    if path.isfile(icon):
+        if not revert:
+            copy_file(icon, back_file)
+        elif revert:
+            move(back_file, icon)
 
 
 def reinstall():
