@@ -294,12 +294,18 @@ def install():
                                 except FileNotFoundError:
                                     symlink(app_sni_qt_path + "/" + icon[3], app_sni_qt_path + "/" + symlink_icon)
                             else:
-                                p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
-                                output, err = p.communicate()
+                                if path.isfile(script_name):
+                                    p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                    output, err = p.communicate()
+                                else:
+                                    print("%s -- script file does not exists" % script_name)
                         else:
-                            backup(folder + "/" + icon[3])
-                            p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
-                            output, err = p.communicate()
+                            if path.isfile(script_name):
+                                backup(folder + "/" + icon[3])
+                                p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                                output, err = p.communicate()
+                            else:
+                                print("%s -- script file does not exists" % script_name)
                         #to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
