@@ -107,13 +107,6 @@ def get_app_icons(app_name):
                 else:
                     icons.extend(icon)
         f.close()
-        if app_name == "google-chrome":
-            apps = get_apps_informations()
-            real_icons = get_real_chrome_icons(apps[app_name]["path"])
-            for new_icon in real_icons:
-                for old_icon in icons:
-                    if old_icon[1] == new_icon:
-                        icons[0] = real_icons[new_icon]
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
@@ -126,20 +119,21 @@ def get_extension(filename):
         None
 
 def get_real_chrome_icons(chrome_link):
-    icons_folder = icons_folder + "/chrome"
-    extracted_chrome_dir = "/extracted"
+    images_dir = icons_folder + "/chrome"
+    extracted_chrome_dir = "/tmp/extracted"
     default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    Popen(["cp", chrome_link + "/chrome_100_percent.pak", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    Popen(["node",db_folder + "/" + script_folder + "/node-chrome-pak.js " , "unpack", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    p = Popen(["cp", chrome_link + "/chrome_100_percent.pak", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    r = Popen(["node", db_folder + "/" + script_folder + "/node-chrome-pak.js " , "unpack", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    print(p.communicate() , r.communicate()) # show error
     for icon in listdir(extracted_chrome_dir):
         if path.isfile(icon):
             if get_extension(icon) and get_extension(icon) == "png":
                 for default_icon in default_icons:
-                    default_content = open(icons_folder + default_icon + ".png").read()
+                    default_content = open(images_dir + default_icon + ".png").read()
                     lookup_content = open(extracted_chrome_dir + icon).read()
                     if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                         list_icons[default_icon] = icon
@@ -176,6 +170,12 @@ def get_apps_informations():
         if app[1]:
             if path.isdir(app[1] + "/"):
                 icons = get_app_icons(app[0])
+                if app[0] == "google-chrome":
+                        real_icons = get_real_chrome_icons(app[1])
+                        for new_icon in real_icons:
+                            for old_icon in icons:
+                                if old_icon[1] == new_icon:
+                                    icons[0] = real_icons[new_icon]
                 if icons:
                     if len(app) == 3:
                         apps[app[0]] = {"path": app[1], "icons": icons, "sniqtprefix": app[2]}
