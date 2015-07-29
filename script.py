@@ -13,6 +13,7 @@ from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, geten
 from subprocess import Popen, PIPE, call
 from sys import exit
 from shutil import rmtree, copyfile, move
+from hashlib import md5
 try:
     from cairosvg import svg2png
 except ImportError:
@@ -29,6 +30,7 @@ db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser("~" + getlogin())
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
+icons_folder = db_folder + "/images"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
@@ -105,11 +107,43 @@ def get_app_icons(app_name):
                 else:
                     icons.extend(icon)
         f.close()
+        if app_name == "google-chrome":
+            apps = get_apps_informations()
+            real_icons = get_real_chrome_icons(apps[app_name]["path"])
+            for new_icon in real_icons:
+                for old_icon in icons:
+                    if old_icon[1] == new_icon:
+                        icons[0] = real_icons[new_icon]
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
         return None
 
+def get_extension(filename):
+    if len(filename.split(".")) > 1 :
+        return (filename.split(".")[len(filename.split(".")) - 1]).strip()
+    else:
+        None
+
+def get_real_chrome_icons(chrome_link):
+    icons_folder = icons_folder + "/chrome"
+    extracted_chrome_dir = "/extracted"
+    default_icons = ["google-chrome-notification",
+            "google-chrome-notification-disabled",
+            "google-chrome-no-notification",
+            "google-chrome-no-notification-disabled"]
+    list_icons = {}
+    Popen(["cp", chrome_link + "/chrome_100_percent.pak", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    Popen(["node",db_folder + "/" + script_folder + "/node-chrome-pak.js " , "unpack", "/tmp/chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    for icon in listdir(extracted_chrome_dir):
+        if path.isfile(icon):
+            if get_extension(icon) and get_extension(icon) == "png":
+                for default_icon in default_icons:
+                    default_content = open(icons_folder + default_icon + ".png").read()
+                    lookup_content = open(extracted_chrome_dir + icon).read()
+                    if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
+                        list_icons[default_icon] = icon
+        return list_icons 
 
 def replace_dropbox_dir(directory):
     """
@@ -144,9 +178,9 @@ def get_apps_informations():
                 icons = get_app_icons(app[0])
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {"link": app[1], "icons": icons, "sniqtprefix": app[2]}
+                        apps[app[0]] = {"path": app[1], "icons": icons, "sniqtprefix": app[2]}
                     else:
-                        apps[app[0]] = {"link": app[1], "icons": icons}
+                        apps[app[0]] = {"path": app[1], "icons": icons}
                 else:
                     continue
         else:
@@ -178,7 +212,7 @@ def reinstall():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
-            folder = apps[app]["link"]
+            folder = apps[app]["path"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -248,9 +282,9 @@ def install():
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
-                            output_icon = apps[app]["link"] + "/" + symlink_icon
+                            output_icon = apps[app]["path"] + "/" + symlink_icon
                         else:
-                            output_icon = apps[app]["link"] + "/" + repl_icon
+                            output_icon = apps[app]["path"] + "/" + repl_icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
@@ -277,7 +311,7 @@ def install():
                             print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
                     else: #sni-qt icons & Chrome/Spotify script 
-                        folder = apps[app]["link"]
+                        folder = apps[app]["path"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
