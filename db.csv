@@ -1,5 +1,6 @@
 calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons,
 catch-indicator, /usr/share/catch-indicator/icons,
+chromium, /usr/lib/chromium-browser, 
 cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons,
 dropbox, {userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status,
 flareget, /usr/bin/flareget,

@@ -181,7 +181,7 @@ def get_apps_informations():
         if app[1]:
             if path.isdir(app[1] + "/"):
                 icons = get_app_icons(app[0])
-                if app[0] == "google-chrome":
+                if app[0] in ("google-chrome", "chromium"):
                         real_icons = get_real_chrome_icons(app[1])
                         for new_icon in real_icons:
                             for old_icon in icons:
