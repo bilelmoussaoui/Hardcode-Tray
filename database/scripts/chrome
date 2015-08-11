@@ -1,15 +1,11 @@
 #!/bin/bash
 cd ./database/scripts/
-cp $3/chrome_100_percent.pak chrome_100_percent_old.pak
-node ./node-chrome-pak.js unpack chrome_100_percent_old.pak
-
 if [[ $1 == *.svg ]]; then
-    python3 svg2png.py $1 extracted/$2
+    python3 svg2png.py $1 ./extracted/$2
 else
-    cp $1 extracted/$2
+    cp $1 ./extracted/$2
 fi
 
-node ./node-chrome-pak.js pack ./extracted ./chrome_100_percent_old.pak
-cp ./chrome_100_percent_old.pak $3/chrome_100_percent.pak
+node ./node-chrome-pak.js pack ./extracted chrome_100_percent_old.pak
+cp chrome_100_percent_old.pak $3/chrome_100_percent.pak
 rm -f chrome_100_percent_old.pak
-rm -rf extracted
