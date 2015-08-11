@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
-Contributors : Andreas Angerer , Joshua Fogg 
+Contributors : Andreas Angerer , Joshua Fogg
 Credits : Hwang, C. W. (hikipro95@gmail.com)
 Version : 1.1
 Licence : GPL
@@ -13,6 +13,8 @@ from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, geten
 from subprocess import Popen, PIPE, call
 from sys import exit
 from shutil import rmtree, copyfile, move
+from hashlib import md5
+from PIL import ImageFile
 try:
     from cairosvg import svg2png
 except ImportError:
@@ -29,17 +31,18 @@ db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser("~" + getlogin())
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
+icons_folder = db_folder + "/images"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
 reverted_icons = []
-script_errors = [] 
+script_errors = []
 
 
 def detect_de():
     """
-        Detects the desktop environment, used to choose the proper icons size 
+        Detects the desktop environment, used to choose the proper icons size
     """
     if "pantheon" in [environ.get("DESKTOP_SESSION"), environ.get("XDG_CURRENT_DESKTOP").lower()]:
         return "pantheon"
@@ -59,7 +62,7 @@ def detect_de():
 def get_subdirs(directory):
     """
         Return a list of subdirectories, used in replace_dropbox_dir
-        @directory : String, the path of the directory 
+        @directory : String, the path of the directory
     """
     if path.isdir(directory):
         dirs = listdir(directory)
@@ -77,8 +80,8 @@ def copy_file(src, dest, overwrite=False):
     """
         Simple copy file function with the possibility to overwrite the file
         @src : String, the source file
-        @dest : String, the destination folder 
-        @overwrite : Boolean, to overwrite the file 
+        @dest : String, the destination folder
+        @overwrite : Boolean, to overwrite the file
     """
     if overwrite:
         if path.isfile(dest):
@@ -91,7 +94,7 @@ def copy_file(src, dest, overwrite=False):
 
 def get_app_icons(app_name):
     """
-        get a list of icons in /database/applicationname of each application 
+        get a list of icons in /database/applicationname of each application
         @app_name : String, the application name
     """
     if path.isfile(db_folder + "/" + app_name):
@@ -110,6 +113,37 @@ def get_app_icons(app_name):
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
         return None
 
+def get_extension(filename):
+    if len(filename.split(".")) > 1 :
+        return (filename.split(".")[len(filename.split(".")) - 1]).strip()
+    else:
+        None
+
+def get_real_chrome_icons(chrome_link):
+    images_dir = icons_folder + "/chrome"
+    dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
+    default_icons = ["google-chrome-notification",
+            "google-chrome-notification-disabled",
+            "google-chrome-no-notification",
+            "google-chrome-no-notification-disabled"]
+    list_icons = {}
+    Popen(["cp", chrome_link + "/chrome_100_percent.pak", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    r = Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    output,err = r.communicate()
+    if path.isdir(dirname + "extracted/"):
+        for icon in listdir(dirname + "extracted/"):
+            icon_name = icon
+            icon = dirname + "extracted/" + icon
+            if path.isfile(icon):
+                if get_extension(icon) and get_extension(icon) == "png":
+                    for default_icon in default_icons:
+                        default_content = open(path.split(path.abspath(__file__))[0] + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
+                        lookup_content = open(icon ,"rb").read()
+                        if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
+                            list_icons[default_icon] = icon_name
+        return list_icons
+    else:
+        exit("Canno't extract google chrome icons. please report that on Github")
 
 def replace_dropbox_dir(directory):
     """
@@ -127,6 +161,11 @@ def replace_dropbox_dir(directory):
     else:
         return None
 
+def filter_icon(liste_icons, value):
+    for i in range(len(liste_icons)):
+        for j in range(len(liste_icons[i])):
+            if liste_icons[i][j] == value:
+                return i
 
 def get_apps_informations():
     """
@@ -142,13 +181,20 @@ def get_apps_informations():
         if app[1]:
             if path.isdir(app[1] + "/"):
                 icons = get_app_icons(app[0])
+                if app[0] == "google-chrome":
+                        real_icons = get_real_chrome_icons(app[1])
+                        for new_icon in real_icons:
+                            for old_icon in icons:
+                                if old_icon[1] == new_icon:
+                                    icons[filter_icon(icons,new_icon)][0] = real_icons[new_icon]
                 if icons:
                     if len(app) == 3:
-                        apps[app[0]] = {"link": app[1], "icons": icons, "sniqtprefix": app[2]}
+                        apps[app[0]] = {"path": app[1], "icons": icons, "sniqtprefix": app[2]}
                     else:
-                        apps[app[0]] = {"link": app[1], "icons": icons}
+                        apps[app[0]] = {"path": app[1], "icons": icons}
                 else:
                     continue
+            continue
         else:
             continue
     db.close()
@@ -158,8 +204,8 @@ def get_apps_informations():
 def backup(icon, revert=False):
     """
         A backup fonction, used to make reverting to the original icons possible
-        @icon : String, the original icon name 
-        @revert : Boolean, possibility to revert the icons later 
+        @icon : String, the original icon name
+        @revert : Boolean, possibility to revert the icons later
     """
     back_file = icon + ".bak"
     if path.isfile(icon):
@@ -178,11 +224,11 @@ def reinstall():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
-            folder = apps[app]["link"]
+            folder = apps[app]["path"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
-                    icon = [item.strip() for item in icon] 
+                    icon = [item.strip() for item in icon]
                     if len(icon) > 2:
                         script = True
                         if icon[2] == qt_script:
@@ -212,11 +258,11 @@ def reinstall():
                     if not icon[2] in reverted_icons:
                         print("%s -- reverted" % (app))
                         reverted_icons.append(icon[2])
-                    
-        
+
+
 def install():
     """
-        Installing the new supported icons 
+        Installing the new supported icons
     """
     apps = get_apps_informations()
     if len(apps) != 0:
@@ -225,7 +271,7 @@ def install():
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
-                    icon = [item.strip() for item in icon] 
+                    icon = [item.strip() for item in icon]
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
@@ -248,9 +294,9 @@ def install():
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
-                            output_icon = apps[app]["link"] + "/" + symlink_icon
+                            output_icon = apps[app]["path"] + "/" + symlink_icon
                         else:
-                            output_icon = apps[app]["link"] + "/" + repl_icon
+                            output_icon = apps[app]["path"] + "/" + repl_icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
@@ -276,14 +322,14 @@ def install():
                         else:
                             print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
-                    else: #sni-qt icons & Chrome/Spotify script 
-                        folder = apps[app]["link"]
+                    else: #sni-qt icons & Chrome/Spotify script
+                        folder = apps[app]["path"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                             #Create a new folder and give permissions to normal user
-                            if not path.exists(app_sni_qt_path): 
+                            if not path.exists(app_sni_qt_path):
                                 makedirs(app_sni_qt_path)
                                 chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
                             #If the sni-qt icon can be symlinked to an other one
@@ -311,7 +357,7 @@ def install():
                             if not err:
                                 print("%s -- fixed using %s" % (app, filename))
                                 fixed_icons.append(filename)
-                            else: 
+                            else:
                                 if not err in script_errors:
                                     script_errors.append(err)
                                     err = err.decode("utf-8")
@@ -330,13 +376,13 @@ try:
     choice  = int(input("Please choose: "))
     if choice == 1:
         print("Installing now..\n")
-        install() 
+        install()
     elif choice == 2:
         print("Reinstalling now..\n")
         reinstall()
-    else:   
+    else:
         exit("Please try again")
 except ValueError:
-    exit("Please choose a valid value")
+    exit("Please choose a valid value!")
 
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
