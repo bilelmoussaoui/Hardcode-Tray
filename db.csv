@@ -1,6 +1,7 @@
+bitcoin, /usr/bin/bitcoin-qt, bitcoin-qt
 calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons,
 catch-indicator, /usr/share/catch-indicator/icons,
-chromium, /usr/lib/chromium-browser, 
+chromium, /usr/lib/chromium-browser,
 cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons,
 dropbox, {userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status,
 flareget, /usr/bin/flareget,
@@ -21,6 +22,7 @@ pomodoro-indicator, /opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-ind
 primeindicator, /usr/lib/primeindicator,
 pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons,
 radiotray, /usr/share/radiotray/images,
+screencloud, /usr/bin/screencloud
 seafile, /usr/bin/seafile-applet, seafile-applet
 skype, /usr/share/skype,
 spotify, /opt/spotify/spotify-client/Data,
