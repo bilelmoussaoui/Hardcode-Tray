@@ -57,7 +57,6 @@ def detect_de():
             return "other"
 
 
-# Creates a list of subdirectories
 def get_subdirs(directory):
     """
         Return a list of subdirectories, used in replace_dropbox_dir
@@ -80,7 +79,7 @@ def copy_file(src, dest, overwrite=False):
         Simple copy file function with the possibility to overwrite the file
         @src : String, the source file
         @dest : String, the destination folder
-        @overwrite : Boolean, to overwrite the file
+        @overwrite : Boolean, True to overwrite the file False by default
     """
     if overwrite:
         if path.isfile(dest):
@@ -136,8 +135,7 @@ def get_real_chrome_icons(chrome_link):
             "google-chrome-no-notification-disabled"]
     list_icons = {}
     Popen(["cp", chrome_link + "/chrome_100_percent.pak", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    r = Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    output,err = r.communicate()
+    Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
     if path.isdir(dirname + "extracted/"):
         for icon in listdir(dirname + "extracted/"):
             icon_name = icon
