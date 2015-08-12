@@ -22,7 +22,7 @@ pomodoro-indicator, /opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-ind
 primeindicator, /usr/lib/primeindicator,
 pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons,
 radiotray, /usr/share/radiotray/images,
-screencloud, /usr/bin/screencloud
+screencloud, /usr/bin/screencloud,
 seafile, /usr/bin/seafile-applet, seafile-applet
 skype, /usr/share/skype,
 spotify, /opt/spotify/spotify-client/Data,
