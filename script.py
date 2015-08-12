@@ -68,7 +68,7 @@ def get_subdirs(directory):
         dirs = listdir(directory)
         dirs.sort()
         sub_dirs = []
-        for sub_dir in sub_dirs:
+        for sub_dir in dirs:
             if path.isdir(directory + "/" + sub_dir):
                 sub_dirs.append(sub_dir)
         return sub_dirs
