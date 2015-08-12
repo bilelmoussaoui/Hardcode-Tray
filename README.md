@@ -53,6 +53,7 @@ We now support:
 * [Variety](http://peterlevi.com/variety/)
 * [WizNote](http://www.wiznote.com/)
 * [Yd-tools](https://github.com/slytomcat/yandex-disk-indicator)
+
 We support a lot of applications, [More here..](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv)
 
 You can fix [Viber](https://www.viber.com/) using [Viberwrapper-indicator](https://github.com/karas84/viberwrapper-indicator)
