@@ -337,7 +337,10 @@ def install():
                         folder = apps[app]["path"]
                         #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
-                            app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
+                            if apps[app]["sniqtprefix"]:
+                                app_sni_qt_prefix = apps[app]["sniqtprefix"]
+                            else:
+                                app_sni_qt_prefix = app                            
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                             #Create a new folder and give permissions to normal user
                             if not path.exists(app_sni_qt_path):
