@@ -70,7 +70,7 @@ def get_subdirs(directory):
         return sub_dirs
     else:
         return None
-        
+
 def get_extension(filename):
     """
         return the file extension
@@ -110,7 +110,7 @@ def filter_icon(liste_icons, value):
 def get_real_chrome_icons(chrome_link):
     """
         getting the real chrome indicator icons name in the pak file
-        @chrome_link : String, the chrome/chromium installation path 
+        @chrome_link : String, the chrome/chromium installation path
     """
     images_dir = icons_folder + "/chrome"
     executed_dir = path.split(path.abspath(__file__))[0]
@@ -121,8 +121,14 @@ def get_real_chrome_icons(chrome_link):
             "google-chrome-no-notification-disabled"]
     list_icons = {}
     Popen(["cp", chrome_link + "/chrome_100_percent.pak", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    if path.isdir(dirname + "extracted/"):
+    p = Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
+    output, err = p.communicate()
+    if not err in script_errors:
+        script_errors.append(err)
+        err = err.decode("utf-8")
+        err = "\n".join(["\t" + e for e in err.split("\n")])
+        print("fixing Google Chrome failed with error:\n%s"% err)
+    if path.isdir(dirname + "extracted/") and not err:
         for icon in listdir(dirname + "extracted/"):
             icon_name = icon
             icon = dirname + "extracted/" + icon
@@ -135,7 +141,7 @@ def get_real_chrome_icons(chrome_link):
                             list_icons[default_icon] = icon_name
         return list_icons
     else:
-        exit("Canno't extract google chrome icons. please report that on Github")
+        return None
 
 def replace_dropbox_dir(directory):
     """
@@ -160,29 +166,36 @@ def get_apps_informations():
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
     apps = {}
+    dont_add = False
+    i = 0
     for app in r:
-        app[1] = app[1].replace("{userhome}", userhome).strip()
-        if "{dropbox}" in app[1]:
-            app[1] = replace_dropbox_dir(app[1])
-        if app[1]:
-            if path.isdir(app[1] + "/"):
-                icons = get_app_icons(app[0])
-                if app[0] in ("google-chrome", "chromium"):
-                        real_icons = get_real_chrome_icons(app[1])
-                        for new_icon in real_icons:
-                            for old_icon in icons:
-                                if old_icon[1] == new_icon:
-                                    icons[filter_icon(icons,new_icon)][0] = real_icons[new_icon]
-                if icons:
-                    if len(app) == 3:
-                        apps[app[0]] = {"path": app[1], "icons": icons, "sniqtprefix": app[2]}
-                    else:
-                        apps[app[0]] = {"path": app[1], "icons": icons}
+        if i == 0:
+            pass
+        app[2] = app[2].replace("{userhome}", userhome).strip()
+        if "{dropbox}" in app[2]:
+            app[2] = replace_dropbox_dir(app[2])
+        if app[2]:
+            if path.isdir(app[2] + "/"):
+                icons = get_app_icons(app[1])
+                if app[1] in ("google-chrome", "chromium"):
+                        real_icons = get_real_chrome_icons(app[2])
+                        if real_icons:
+                            for new_icon in real_icons:
+                                for old_icon in icons:
+                                    if old_icon[1] == new_icon:
+                                        icons[filter_icon(icons,new_icon)][0] = real_icons[new_icon]
+                        else:
+                            dont_add = True
+                if icons and dont_add:
+                    apps[app[1]] = {"name": app[0], "dbfile" : app[1], "path": app[2], "icons": icons}
+                    if len(app) == 4:
+                        apps[app[1]]["sniqtprefix"] = app[3]
                 else:
                     continue
             continue
         else:
             continue
+        i+=1
     db.close()
     return apps
 
@@ -206,7 +219,7 @@ def get_app_icons(app_name):
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
         return None
-        
+
 def backup(icon, revert=False):
     """
         A backup fonction, used to make reverting to the original icons possible
@@ -304,7 +317,7 @@ def install():
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
-                            print("%s -- fixed using %s" % (app, filename))
+                            print("%s -- fixed using %s" % (apps[app]["name"], filename))
                         elif extension_theme == ".svg" and extension_orig == ".png":
                             try:#Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
@@ -318,7 +331,7 @@ def install():
                                 continue
                             #to avoid identical messages
                             if not (filename in fixed_icons):
-                                print("%s -- fixed using %s" % (app, filename))
+                                print("%s -- fixed using %s" % (apps[app]["name"], filename))
                                 fixed_icons.append(filename)
                         elif extension_theme == ".png" and extension_orig == ".svg":
                             print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
@@ -333,7 +346,7 @@ def install():
                             if apps[app]["sniqtprefix"]:
                                 app_sni_qt_prefix = apps[app]["sniqtprefix"]
                             else:
-                                app_sni_qt_prefix = app                            
+                                app_sni_qt_prefix = app
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
                             if not path.exists(app_sni_qt_path):
                                 makedirs(app_sni_qt_path)
@@ -360,14 +373,14 @@ def install():
                         #to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
-                                print("%s -- fixed using %s" % (app, filename))
+                                print("%s -- fixed using %s" % (apps[app]["name"], filename))
                                 fixed_icons.append(filename)
                             else:
                                 if not err in script_errors:
                                     script_errors.append(err)
                                     err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
-                                    print("fixing %s failed with error:\n%s"%(app, err))
+                                    print("fixing %s failed with error:\n%s"%(apps[app]["name"], err))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
