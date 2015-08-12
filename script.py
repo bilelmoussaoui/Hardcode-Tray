@@ -38,7 +38,6 @@ fixed_icons = []
 reverted_icons = []
 script_errors = []
 
-
 def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size
@@ -56,7 +55,6 @@ def detect_de():
         except (OSError, RuntimeError):
             return "other"
 
-
 def get_subdirs(directory):
     """
         Return a list of subdirectories, used in replace_dropbox_dir
@@ -72,7 +70,16 @@ def get_subdirs(directory):
         return sub_dirs
     else:
         return None
-
+        
+def get_extension(filename):
+    """
+        return the file extension
+        @filename : String, the file name
+    """
+    if len(filename.split(".")) > 1 :
+        return (filename.split(".")[len(filename.split(".")) - 1]).strip()
+    else:
+        None
 
 def copy_file(src, dest, overwrite=False):
     """
@@ -89,37 +96,16 @@ def copy_file(src, dest, overwrite=False):
         if not path.isfile(dest):
             copyfile(src, dest)
 
-
-def get_app_icons(app_name):
+def filter_icon(liste_icons, value):
     """
-        get a list of icons in /database/applicationname of each application
-        @app_name : String, the application name
+        Return an integer :  the index of an icon in liste
+        @liste_icons : List, contains icons, each icon in a sublist
+        @value : String, the name of icon that you're looking for
     """
-    if path.isfile(db_folder + "/" + app_name):
-        f = open(db_folder + "/" + app_name)
-        r = reader(f, skipinitialspace=True)
-        icons = []
-        for icon in r:
-            if icon != "":
-                if len(icon) != 1:
-                    icons.append(icon)
-                else:
-                    icons.extend(icon)
-        f.close()
-        return icons
-    else:
-        print("The application " + app_name + " does not exist yet, please report this on GitHub")
-        return None
-
-def get_extension(filename):
-    """
-        return the file extension
-        @filename : String, the file name
-    """
-    if len(filename.split(".")) > 1 :
-        return (filename.split(".")[len(filename.split(".")) - 1]).strip()
-    else:
-        None
+    for i in range(len(liste_icons)):
+        for j in range(len(liste_icons[i])):
+            if liste_icons[i][j] == value:
+                return i
 
 def get_real_chrome_icons(chrome_link):
     """
@@ -167,17 +153,6 @@ def replace_dropbox_dir(directory):
     else:
         return None
 
-def filter_icon(liste_icons, value):
-    """
-        Return an integer :  the index of an icon in liste
-        @liste_icons : List, contains icons, each icon in a sublist
-        @value : String, the name of icon that you're looking for
-    """
-    for i in range(len(liste_icons)):
-        for j in range(len(liste_icons[i])):
-            if liste_icons[i][j] == value:
-                return i
-
 def get_apps_informations():
     """
         Read the database file and return a dictionnary with all the informations needed
@@ -211,7 +186,27 @@ def get_apps_informations():
     db.close()
     return apps
 
-
+def get_app_icons(app_name):
+    """
+        get a list of icons in /database/applicationname of each application
+        @app_name : String, the application name
+    """
+    if path.isfile(db_folder + "/" + app_name):
+        f = open(db_folder + "/" + app_name)
+        r = reader(f, skipinitialspace=True)
+        icons = []
+        for icon in r:
+            if icon != "":
+                if len(icon) != 1:
+                    icons.append(icon)
+                else:
+                    icons.extend(icon)
+        f.close()
+        return icons
+    else:
+        print("The application " + app_name + " does not exist yet, please report this on GitHub")
+        return None
+        
 def backup(icon, revert=False):
     """
         A backup fonction, used to make reverting to the original icons possible
@@ -224,7 +219,6 @@ def backup(icon, revert=False):
             copy_file(icon, back_file)
         elif revert:
             move(back_file, icon)
-
 
 def reinstall():
     """
@@ -269,7 +263,6 @@ def reinstall():
                     if not icon[2] in reverted_icons:
                         print("%s -- reverted" % (app))
                         reverted_icons.append(icon[2])
-
 
 def install():
     """
@@ -333,20 +326,18 @@ def install():
                         else:
                             print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
-                    else: #sni-qt icons & Chrome/Spotify script
+                    #Qt applications
+                    else:
                         folder = apps[app]["path"]
-                        #Check if it's a Qt indicator icon
                         if icon[2] == qt_script:
                             if apps[app]["sniqtprefix"]:
                                 app_sni_qt_prefix = apps[app]["sniqtprefix"]
                             else:
                                 app_sni_qt_prefix = app                            
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
-                            #Create a new folder and give permissions to normal user
                             if not path.exists(app_sni_qt_path):
                                 makedirs(app_sni_qt_path)
                                 chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-                            #If the sni-qt icon can be symlinked to an other one
                             if len(icon) == 4:
                                 try:
                                     remove(app_sni_qt_path + "/" + symlink_icon)
