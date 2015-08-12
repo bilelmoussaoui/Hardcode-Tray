@@ -1,4 +1,4 @@
-Application Name, Database File, Application Path, Sni Qt Prefix
+Application name, Database file, Application path, Sni Qt prefix
 Bitcoin, bitcoin, /usr/bin/bitcoin-qt, bitcoin-qt
 Calendar Indicator, calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons,
 Catch Indicator, catch-indicator, /usr/share/catch-indicator/icons,
