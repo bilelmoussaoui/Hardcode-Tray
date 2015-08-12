@@ -14,7 +14,6 @@ from subprocess import Popen, PIPE, call
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
-from PIL import ImageFile
 try:
     from cairosvg import svg2png
 except ImportError:
@@ -114,14 +113,23 @@ def get_app_icons(app_name):
         return None
 
 def get_extension(filename):
+    """
+        return the file extension
+        @filename : String, the file name
+    """
     if len(filename.split(".")) > 1 :
         return (filename.split(".")[len(filename.split(".")) - 1]).strip()
     else:
         None
 
 def get_real_chrome_icons(chrome_link):
+    """
+        getting the real chrome indicator icons name in the pak file
+        @chrome_link : String, the chrome/chromium installation path 
+    """
     images_dir = icons_folder + "/chrome"
-    dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
+    executed_dir = path.split(path.abspath(__file__))[0]
+    dirname = executed_dir + "/" + db_folder + "/"+ script_folder + "/"
     default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
@@ -137,7 +145,7 @@ def get_real_chrome_icons(chrome_link):
             if path.isfile(icon):
                 if get_extension(icon) and get_extension(icon) == "png":
                     for default_icon in default_icons:
-                        default_content = open(path.split(path.abspath(__file__))[0] + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
+                        default_content = open(executed_dir + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
                         lookup_content = open(icon ,"rb").read()
                         if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                             list_icons[default_icon] = icon_name
@@ -162,6 +170,11 @@ def replace_dropbox_dir(directory):
         return None
 
 def filter_icon(liste_icons, value):
+    """
+        Return an integer :  the index of an icon in liste
+        @liste_icons : List, contains icons, each icon in a sublist
+        @value : String, the name of icon that you're looking for
+    """
     for i in range(len(liste_icons)):
         for j in range(len(liste_icons[i])):
             if liste_icons[i][j] == value:
