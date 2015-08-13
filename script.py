@@ -268,7 +268,7 @@ def reinstall():
                     except:
                         continue
                     if not revert_icon in reverted_icons:
-                        print("%s -- reverted" % (revert_icon))
+                        print("%s -- reverted" % (path.basename(revert_icon)))
                         reverted_icons.append(revert_icon)
                 elif script:
                     try:
@@ -276,7 +276,7 @@ def reinstall():
                     except:
                         continue
                     if not icon[2] in reverted_icons:
-                        print("%s -- reverted" % (app))
+                        print("%s -- reverted" % (apps[app]["name"]))
                         reverted_icons.append(icon[2])
 
 def install():
