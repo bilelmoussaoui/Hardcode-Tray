@@ -164,9 +164,9 @@ def get_apps_informations():
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
     apps = OrderedDict()
-    dont_add = False
     i = 0
     for app in r:
+        dont_add = False
         if i == 0:
             pass
         app[2] = app[2].replace("{userhome}", userhome).strip()
@@ -184,7 +184,7 @@ def get_apps_informations():
                                         icons[filter_icon(icons,new_icon)][0] = real_icons[new_icon]
                         else:
                             dont_add = True
-                if icons and dont_add:
+                if icons and not dont_add:
                     apps[app[1]] = {"name": app[0], "dbfile" : app[1], "path": app[2], "icons": icons}
                     if len(app) == 4:
                         apps[app[1]]["sniqtprefix"] = app[3]
