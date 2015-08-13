@@ -37,7 +37,7 @@ theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
-reverted_icons = []
+reverted_apps = []
 script_errors = []
 
 def detect_de():
@@ -241,6 +241,7 @@ def reinstall():
         for app in apps:
             app_icons = apps[app]["icons"]
             folder = apps[app]["path"]
+            revert_app = apps[app]["name"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -251,7 +252,7 @@ def reinstall():
                             if sni_qt_reverted: continue
                             if path.exists(sni_qt_folder):
                                 rmtree(sni_qt_folder)
-                                print("hardcoded Qt apps reverted")
+                                print("Qt apps -- reverted")
                             sni_qt_reverted = True
                             continue
                     else:
@@ -263,17 +264,17 @@ def reinstall():
                         backup(folder + "/" + revert_icon, revert=True)
                     except:
                         continue
-                    if not revert_icon in reverted_icons:
-                        print("%s -- reverted" % (path.basename(revert_icon)))
-                        reverted_icons.append(revert_icon)
+                    if not revert_app in reverted_apps:
+                        print("%s -- reverted" % (revert_app))
+                        reverted_apps.append(revert_app)
                 elif script:
                     try:
                         backup(folder + "/" + icon[3], revert=True)
                     except:
                         continue
-                    if not icon[2] in reverted_icons:
+                    if not revert_app in reverted_apps:
                         print("%s -- reverted" % (apps[app]["name"]))
-                        reverted_icons.append(icon[2])
+                        reverted_apps.append(revert_app)
 
 def install():
     """
