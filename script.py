@@ -14,6 +14,8 @@ from subprocess import Popen, PIPE, call
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
+from collections import OrderedDict
+
 try:
     from cairosvg import svg2png
 except ImportError:
@@ -165,7 +167,7 @@ def get_apps_informations():
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
-    apps = {}
+    apps = OrderedDict()
     dont_add = False
     i = 0
     for app in r:
@@ -282,6 +284,7 @@ def install():
         Installing the new supported icons
     """
     apps = get_apps_informations()
+    print(apps)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -317,7 +320,7 @@ def install():
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
-                            print("%s -- fixed using %s" % (apps[app]["name"], filename))
+                            print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
                         elif extension_theme == ".svg" and extension_orig == ".png":
                             try:#Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
@@ -331,7 +334,7 @@ def install():
                                 continue
                             #to avoid identical messages
                             if not (filename in fixed_icons):
-                                print("%s -- fixed using %s" % (apps[app]["name"], filename))
+                                print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
                                 fixed_icons.append(filename)
                         elif extension_theme == ".png" and extension_orig == ".svg":
                             print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
@@ -373,7 +376,7 @@ def install():
                         #to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
-                                print("%s -- fixed using %s" % (apps[app]["name"], filename))
+                                print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
                                 fixed_icons.append(filename)
                             else:
                                 if not err in script_errors:
