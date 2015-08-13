@@ -115,35 +115,31 @@ def get_real_chrome_icons(chrome_link):
         @chrome_link : String, the chrome/chromium installation path
     """
     images_dir = icons_folder + "/chrome"
-    executed_dir = path.split(path.abspath(__file__))[0]
-    dirname = executed_dir + "/" + db_folder + "/"+ script_folder + "/"
+    dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
     default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    Popen(["cp", chrome_link + "/chrome_100_percent.pak", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    p = Popen(["node", dirname + "node-chrome-pak.js" , "unpack", dirname + "chrome_100_percent_old.pak"], stdout=PIPE, stderr=PIPE)
-    output, err = p.communicate()
-    if not err in script_errors:
-        script_errors.append(err)
-        err = err.decode("utf-8")
-        err = "\n".join(["\t" + e for e in err.split("\n")])
-        print("fixing Google Chrome failed with error:\n%s"% err)
-    if path.isdir(dirname + "extracted/") and not err:
-        for icon in listdir(dirname + "extracted/"):
-            icon_name = icon
-            icon = dirname + "extracted/" + icon
-            if path.isfile(icon):
-                if get_extension(icon) and get_extension(icon) == "png":
-                    for default_icon in default_icons:
-                        default_content = open(executed_dir + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
-                        lookup_content = open(icon ,"rb").read()
-                        if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
-                            list_icons[default_icon] = icon_name
-        return list_icons
-    else:
-        return None
+    r = Popen(["cp", chrome_link + "/chrome_100_percent.pak", dirname + "chrome_100_percent.pak"], stdout=PIPE, stderr=PIPE)
+    output,err = r.communicate()
+    try:
+        rmtree(dirname+'extracted/')
+    except:
+        pass
+    makedirs(path.dirname(dirname+'extracted/'), exist_ok=True)
+    r = Popen([dirname + "data_pack.py" , dirname + "chrome_100_percent.pak"], stdout=PIPE, stderr=PIPE)
+    output,err = r.communicate()
+    for icon in listdir(dirname + "extracted/"):
+        icon_name = icon
+        icon = dirname + "extracted/" + icon
+        if path.isfile(icon):
+            for default_icon in default_icons:
+                default_content = open(path.split(path.abspath(__file__))[0] + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
+                lookup_content = open(icon ,"rb").read()
+                if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
+                    list_icons[default_icon] = icon_name
+    return list_icons
 
 def replace_dropbox_dir(directory):
     """
