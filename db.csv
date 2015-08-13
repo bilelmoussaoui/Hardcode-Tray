@@ -10,8 +10,8 @@ Google Chrome, google-chrome, /opt/google/chrome,
 Google Music Manager, google-music-manager, /opt/google/musicmanager/google-musicmanager, MusicManager
 Google Tasks Indicator, google-tasks-indicator, /usr/share/google-tasks-indicator/icons,
 Grive Tools, grive-tools, /opt/thefanclub/grive-tools/icons/light,
-Hangouts (Chrome extension), hangouts, {userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence
-Hangouts (Chromium extension) , hangouts, {userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence
+Hangouts (Chrome extension), hangouts, {userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence, 
+Hangouts (Chromium extension) , hangouts, {userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence,
 Grive Tools, grive-tools, /opt/thefanclub/grive-tools/icons/dark,
 HP Printer, hp-printing, /usr/bin/hp-systray, python2.7
 Ibus Anthy, ibus-anthy, /usr/share/ibus-anthy/icons,
