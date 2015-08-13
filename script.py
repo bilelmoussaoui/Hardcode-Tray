@@ -284,7 +284,6 @@ def install():
         Installing the new supported icons
     """
     apps = get_apps_informations()
-    print(apps)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
