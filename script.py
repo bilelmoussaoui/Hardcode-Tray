@@ -2,8 +2,7 @@
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
-Credits : Hwang, C. W. (hikipro95@gmail.com)
-Version : 1.1
+Version : 1.2
 Licence : GPL
 '''
 
