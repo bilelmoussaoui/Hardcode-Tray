@@ -76,7 +76,7 @@ def get_extension(filename):
         returns the file extension
         @filename : String; file name
     """
-    return path.splitext(filename)[1]
+    return path.splitext(filename)[1].lower()
 
 def copy_file(src, dest, overwrite=False):
     """
