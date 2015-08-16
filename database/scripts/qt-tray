@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 
 import sys
-from os import symlink
+from os import symlink, chown, getenv, remove
 from cairosvg import svg2png
 
 origfile = sys.argv[1]
-symlfile = sys.argv[3] + sys.argv[2]
+symlfile = sys.argv[3] + "/" + sys.argv[2]
 
 if origfile.endswith(".svg"):
     with open(origfile, 'r') as content_file:
         svg = content_file.read()
-        fout = open(symlfile, 'wb')
-        svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
-        fout.close()
+    fout = open(symlfile, 'wb')
+    svg2png(bytestring=bytes(svg, 'UTF-8'), write_to=fout)
+    fout.close()
+    chown(symlfile, int(getenv('SUDO_UID')), int(getenv('SUDO_GID'))) 
 else:
-    symlink(origfile, symlfile)
+    try:
+        remove(symlfile)
+        symlink(origfile, symlfile)
+    except FileNotFoundError:
+        symlink(origfile, symlfile)
