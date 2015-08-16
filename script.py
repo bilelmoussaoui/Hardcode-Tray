@@ -76,10 +76,7 @@ def get_extension(filename):
         returns the file extension
         @filename : String; file name
     """
-    if len(filename.split(".")) > 1 :
-        return (filename.split(".")[len(filename.split(".")) - 1]).strip()
-    else:
-        None
+    return path.splitext(filename)[1]
 
 def copy_file(src, dest, overwrite=False):
     """
@@ -115,7 +112,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
     images_dir = path.split(path.abspath(__file__))[0] + "/chrome"
     dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
     extracted = dirname + "extracted/"
-    default_icons = [g"google-chrome-notification",
+    default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
@@ -131,10 +128,9 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
     chown(path.dirname(extracted), int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
     r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
-    for icon in listdir(extracted):
-        icon_name = icon
-        icon = extracted + icon
-        if path.isfile(icon):
+    for file_name in listdir(extracted):
+        icon = extracted + file_name
+        if path.isfile(icon) and get_extension(icon) == ".png":
             for default_icon in default_icons:
                 default_content = open(images_dir + "/" + default_icon + ".png", "rb").read()
                 lookup_content = open(icon ,"rb").read()
@@ -301,11 +297,11 @@ def install():
                 else:
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
-                extension_orig = path.splitext(symlink_icon)[1]
+                extension_orig = get_extension(symlink_icon)
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
                     filename = theme_icon.get_filename()
-                    extension_theme = path.splitext(filename)[1]
+                    extension_theme = get_extension(filename)
                      #catching the unrealistic case that theme is neither svg nor png
                     if extension_theme not in (".png", ".svg"):
                         exit("Theme icons need to be svg or png files other formats are not supported")
