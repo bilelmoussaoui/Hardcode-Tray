@@ -77,7 +77,7 @@ def get_extension(filename):
         returns the file extension
         @filename : String; file name
     """
-    return path.splitext(filename)[1].lower()
+    return path.splitext(filename)[1].strip(".").lower()
 
 def copy_file(src, dest, overwrite=False):
     """
@@ -131,7 +131,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
     output,err = r.communicate()
     for file_name in listdir(extracted):
         icon = extracted + file_name
-        if path.isfile(icon) and get_extension(icon) == ".png":
+        if path.isfile(icon) and get_extension(icon) == "png":
             for default_icon in default_icons:
                 default_content = open(images_dir + "/" + default_icon + ".png", "rb").read()
                 lookup_content = open(icon ,"rb").read()
@@ -304,7 +304,7 @@ def install():
                     filename = theme_icon.get_filename()
                     extension_theme = get_extension(filename)
                      #catching the unrealistic case that theme is neither svg nor png
-                    if extension_theme not in (".png", ".svg"):
+                    if extension_theme not in ("png", "svg"):
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
@@ -315,7 +315,7 @@ def install():
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
                             print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
-                        elif extension_theme == ".svg" and extension_orig == ".png":
+                        elif extension_theme == "svg" and extension_orig == "png":
                             try:#Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
                                     svg = content_file.read()
@@ -330,7 +330,7 @@ def install():
                             if not (filename in fixed_icons):
                                 print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
                                 fixed_icons.append(filename)
-                        elif extension_theme == ".png" and extension_orig == ".svg":
+                        elif extension_theme == "png" and extension_orig == "svg":
                             print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
                             continue
                         else:
