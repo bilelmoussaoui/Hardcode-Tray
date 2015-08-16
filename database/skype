@@ -1,7 +1,3 @@
-6cbeda8e2c9f56d3ac75ccdf8d282a69.png, skype-status-connecting-0, qt-tray
-0972e5fde53a4a87346ebb91c4c2b159.png, skype-status-connecting-1, qt-tray
-dad77418071bead905e2dbe605715dcd.png, skype-status-connecting-2, qt-tray
-f2fc4a539a7b9553f5b35241d1154e84.png, skype-status-connecting-3, qt-tray
 602c84fa0f4d61c64f770495a500279e.png, skype-status-away, qt-tray
 5928f8a678494eb017181ebb00695682.png, skype-status-away-notification, qt-tray
 0d0cac64aec0e0f871367a6c5b9a0a0a.png, skype-status-away-notification, qt-tray, 5928f8a678494eb017181ebb00695682.png
@@ -14,7 +10,7 @@ daa1b2b05d5c4ad0617edbae8b4652cd.png, skype-status-away-notification, qt-tray, 5
 d350bfcdb00a5802a8ee236ade74aeaa.png, skype-status-away-notification, qt-tray, 5928f8a678494eb017181ebb00695682.png
 5768209d6793270698137ed2fa06482a.png, skype-status-away-notification, qt-tray, 5928f8a678494eb017181ebb00695682.png
 37e170fc54e7355d9d298917e74f9ea9.png, skype-status-connected, qt-tray
-4905a21912d8d5803f345d06ab56e88b.png, skype-status-connected-notification, qt-tray 
+4905a21912d8d5803f345d06ab56e88b.png, skype-status-connected-notification, qt-tray
 0d96a65d843060dab4836712307a256b.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
 47f2365681392e0042137afaa4d3f2a0.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
 460a6dfd3fc7bbd4ca0043fdc15304a2.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
@@ -24,6 +20,10 @@ e0a92a2377195909d6437909d9851f53.png, skype-status-connected-notification, qt-tr
 c2ee5f08e8df31fd4dcef88f95ed4a16.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
 0fce05395e6040b3fd0838935b3aa115.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
 2ad68f9fa3b206fa4416d357cb824006.png, skype-status-connected-notification, qt-tray, 4905a21912d8d5803f345d06ab56e88b.png
+6cbeda8e2c9f56d3ac75ccdf8d282a69.png, skype-status-connecting-0, qt-tray
+0972e5fde53a4a87346ebb91c4c2b159.png, skype-status-connecting-1, qt-tray
+dad77418071bead905e2dbe605715dcd.png, skype-status-connecting-2, qt-tray
+f2fc4a539a7b9553f5b35241d1154e84.png, skype-status-connecting-3, qt-tray
 bd2e3972c2a97520bbabac7e275d7b9f.png, skype-status-disturb, qt-tray
 fd56304306a9b229dbdaf4cf7dc4cbc7.png, skype-status-disturb-notification, qt-tray
 cb8451bfa5891c2f5aba6bd779aa72e3.png, skype-status-disturb-notification, qt-tray, fd56304306a9b229dbdaf4cf7dc4cbc7.png
