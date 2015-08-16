@@ -57,8 +57,8 @@ def detect_de():
 
 def get_subdirs(directory):
     """
-        Return a list of subdirectories, used in replace_dropbox_dir
-        @directory : String, the path of the directory
+        Returns a list of subdirectories, used in replace_dropbox_dir
+        @directory : String; path of the directory
     """
     if path.isdir(directory):
         dirs = listdir(directory)
@@ -73,8 +73,8 @@ def get_subdirs(directory):
 
 def get_extension(filename):
     """
-        return the file extension
-        @filename : String, the file name
+        returns the file extension
+        @filename : String; file name
     """
     if len(filename.split(".")) > 1 :
         return (filename.split(".")[len(filename.split(".")) - 1]).strip()
@@ -84,9 +84,9 @@ def get_extension(filename):
 def copy_file(src, dest, overwrite=False):
     """
         Simple copy file function with the possibility to overwrite the file
-        @src : String, the source file
-        @dest : String, the destination folder
-        @overwrite : Boolean, True to overwrite the file False by default
+        @src : String; source file
+        @dest : String; destination folder
+        @overwrite : Boolean; True to overwrite the file False by default
     """
     if overwrite:
         if path.isfile(dest):
@@ -96,21 +96,21 @@ def copy_file(src, dest, overwrite=False):
         if not path.isfile(dest):
             copyfile(src, dest)
 
-def filter_icon(liste_icons, value):
+def filter_icon(list_icons, value):
     """
-        Return an integer :  the index of an icon in liste
-        @liste_icons : List, contains icons, each icon in a sublist
-        @value : String, the name of icon that you're looking for
+        Returns an integer:  the index of an icon in list
+        @list_icons: list; list of icons with sublist
+        @value: string; the name of icon that you're looking for
     """
-    for i in range(len(liste_icons)):
-        for j in range(len(liste_icons[i])):
-            if liste_icons[i][j] == value:
+    for i in range(len(list_icons)):
+        for j in range(len(list_icons[i])):
+            if list_icons[i][j] == value:
                 return i
 
 def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
     """
-        getting the real chrome indicator icons name in the pak file
-        @chrome_link : String, the chrome/chromium installation path
+        returns the correct chrome indicator icons name in the pak file
+        @chrome_link: string; the chrome/chromium installation path
     """
     images_dir = path.split(path.abspath(__file__))[0] + "/chrome"
     dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
@@ -144,8 +144,8 @@ def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak")
 
 def replace_dropbox_dir(directory):
     """
-        Correct the hardcoded dropbox directory
-        @directory : String, the default dropbox directory
+        Corrects the hardcoded dropbox directory
+        @directory: string; the default dropbox directory
     """
     dirs = directory.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
@@ -160,7 +160,7 @@ def replace_dropbox_dir(directory):
 
 def get_apps_informations():
     """
-        Read the database file and return a dictionnary with all the informations needed
+        Reads the database file and returns a dictionary with all informations
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
@@ -200,8 +200,8 @@ def get_apps_informations():
 
 def get_app_icons(app_name):
     """
-        get a list of icons in /database/applicationname of each application
-        @app_name : String, the application name
+        gets a list of icons in /database/applicationname of each application
+        @app_name: string; the application name
     """
     if path.isfile(db_folder + "/" + app_name):
         f = open(db_folder + "/" + app_name)
@@ -221,9 +221,9 @@ def get_app_icons(app_name):
 
 def backup(icon, revert=False):
     """
-        A backup fonction, used to make reverting to the original icons possible
-        @icon : String, the original icon name
-        @revert : Boolean, possibility to revert the icons later
+        Backup functions, enables reverting
+        @icon: string; the original icon name
+        @revert: boolean; True: revert, False: only backup
     """
     back_file = icon + ".bak"
     if path.isfile(icon):
@@ -234,7 +234,7 @@ def backup(icon, revert=False):
 
 def reinstall():
     """
-        Reverting to the original icons
+        Reverts to the original icons
     """
     sni_qt_reverted = False
     apps = get_apps_informations()
@@ -279,7 +279,7 @@ def reinstall():
 
 def install():
     """
-        Installing the new supported icons
+        Installs the new supported icons
     """
     apps = get_apps_informations()
     if len(apps) != 0:
