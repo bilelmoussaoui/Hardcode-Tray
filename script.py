@@ -29,8 +29,9 @@ db_file = "db.csv"
 db_folder = "database"
 script_folder = "scripts"
 userhome = path.expanduser("~" + getlogin())
+aboslute_path = path.split(path.abspath(__file__))[0]
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
-icons_folder = db_folder + "/images"
+images_folder = aboslute_path + "/" + db_folder + "/images"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
@@ -109,8 +110,8 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
         returns the correct chrome indicator icons name in the pak file
         @chrome_link: string; the chrome/chromium installation path
     """
-    images_dir = path.split(path.abspath(__file__))[0] + "/chrome"
-    dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
+    images_dir = images_folder "/chrome"
+    dirname = aboslute_path + "/" + db_folder + "/" + script_folder + "/"
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
