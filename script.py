@@ -1,4 +1,4 @@
-g#!/usr/bin/python3
+#!/usr/bin/python3
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
