@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+g#!/usr/bin/python3
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
@@ -107,7 +107,7 @@ def filter_icon(list_icons, value):
             if list_icons[i][j] == value:
                 return i
 
-def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
+def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
     """
         returns the correct chrome indicator icons name in the pak file
         @chrome_link: string; the chrome/chromium installation path
@@ -115,7 +115,7 @@ def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak")
     images_dir = path.split(path.abspath(__file__))[0] + "/chrome"
     dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
     extracted = dirname + "extracted/"
-    default_icons = ["google-chrome-notification",
+    default_icons = [g"google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
@@ -177,7 +177,7 @@ def get_apps_informations():
             if path.isdir(app[2] + "/"):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium"):
-                        real_icons = get_real_chrome_icons(app,icons[0][3])
+                        real_icons = get_correct_chrome_icons(app,icons[0][3])
                         if real_icons:
                             for new_icon in real_icons:
                                 for old_icon in icons:
