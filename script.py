@@ -108,7 +108,7 @@ def filter_icon(liste_icons, value):
             if liste_icons[i][j] == value:
                 return i
 
-def get_real_chrome_icons(apps_infos):
+def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
     """
         getting the real chrome indicator icons name in the pak file
         @chrome_link : String, the chrome/chromium installation path
@@ -121,15 +121,15 @@ def get_real_chrome_icons(apps_infos):
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    r = Popen(["cp", apps_infos[2] + "/chrome_100_percent.pak", dirname + "chrome_100_percent.pak"], stdout=PIPE, stderr=PIPE)
+    r = Popen(["cp", apps_infos[2] + "/" + chrome_pak_file, dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
     try:
         rmtree(extracted)
-        remove(dirname + "chrome_100_percent.pak")
+        remove(dirname + chrome_pak_file)
     except:
         pass
     makedirs(path.dirname(extracted), exist_ok=True)
-    r = Popen([dirname + "data_pack.py" , dirname + "chrome_100_percent.pak"], stdout=PIPE, stderr=PIPE)
+    r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
     for icon in listdir(extracted):
         icon_name = icon
@@ -177,7 +177,7 @@ def get_apps_informations():
             if path.isdir(app[2] + "/"):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium"):
-                        real_icons = get_real_chrome_icons(app)
+                        real_icons = get_real_chrome_icons(app,icons[0][3])
                         if real_icons:
                             for new_icon in real_icons:
                                 for old_icon in icons:
@@ -195,7 +195,6 @@ def get_apps_informations():
         else:
             continue
         i+=1
-    print(apps)
     db.close()
     return apps
 
