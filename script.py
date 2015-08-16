@@ -14,7 +14,6 @@ from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
 from collections import OrderedDict
-
 try:
     from cairosvg import svg2png
 except ImportError:
@@ -113,7 +112,7 @@ def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak")
         getting the real chrome indicator icons name in the pak file
         @chrome_link : String, the chrome/chromium installation path
     """
-    images_dir = icons_folder + "/chrome"
+    images_dir = path.split(path.abspath(__file__))[0] + "/chrome"
     dirname = path.split(path.abspath(__file__))[0] + "/" + db_folder + "/"+ script_folder + "/"
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
@@ -129,6 +128,7 @@ def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak")
     except:
         pass
     makedirs(path.dirname(extracted), exist_ok=True)
+    chown(path.dirname(extracted), int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
     r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
     for icon in listdir(extracted):
@@ -136,7 +136,7 @@ def get_real_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak")
         icon = extracted + icon
         if path.isfile(icon):
             for default_icon in default_icons:
-                default_content = open(path.split(path.abspath(__file__))[0] + "/" + images_dir + "/" + default_icon + ".png", "rb").read()
+                default_content = open(images_dir + "/" + default_icon + ".png", "rb").read()
                 lookup_content = open(icon ,"rb").read()
                 if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                     list_icons[default_icon] = icon_name
