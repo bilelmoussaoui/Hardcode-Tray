@@ -27,12 +27,15 @@ if not environ.get("DESKTOP_SESSION"):
 
 db_file = "db.csv"
 backup_extension = ".bak"
+userhome = path.expanduser("~" + getlogin())
+gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
 aboslute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = aboslute_path + "/" + db_folder + "/images/"
 theme = Gtk.IconTheme.get_default()
+theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
 default_icon_size = 22
 fixed_icons = []
@@ -382,9 +385,11 @@ def install():
 if detect_de() in ("pantheon", "xfce"):
     default_icon_size = 24
 
-print("Welcome to the tray icons hardcoder fixer! \n")
-print("1 - Install \n")
-print("2 - Reinstall \n")
+print("Welcome to the tray icons hardcoder fixer!")
+print("Your indicator icon size is : %s" % default_icon_size)
+print("Your current icon theme is : %s" % theme_name)
+print("1 - Install")
+print("2 - Reinstall")
 try:
     choice  = int(input("Please choose: "))
     if choice == 1:
