@@ -26,6 +26,7 @@ if not environ.get("DESKTOP_SESSION"):
     exit("Please run the script using 'sudo -E' to preserve environment variables")
 
 db_file = "db.csv"
+backup_extension = ".bak"
 db_folder = "database/"
 script_folder = "scripts/"
 userhome = path.expanduser("~" + getlogin())
@@ -184,7 +185,7 @@ def get_apps_informations():
                             dont_add = True
                 if icons and not dont_add:
                     apps[app[1]] = {"name": app[0], "dbfile" : app[1], "path": app[2], "icons": icons}
-                    if len(app) == 4 and not app[3] == "":
+                    if len(app) == 4 and app[3]:
                         apps[app[1]]["sniqtprefix"] = app[3]
                 else:
                     continue
@@ -222,7 +223,7 @@ def backup(icon, revert=False):
         @icon: string; the original icon name
         @revert: boolean; True: revert, False: only backup
     """
-    back_file = icon + ".bak"
+    back_file = icon + backup_extensio
     if path.isfile(icon):
         if not revert:
             copy_file(icon, back_file)
@@ -238,7 +239,7 @@ def reinstall():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
-            folder = apps[app]["path"]
+            app_path = apps[app]["path"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
                 script = False
@@ -259,7 +260,7 @@ def reinstall():
                     revert_icon = icon.strip()
                 if not script:
                     try:
-                        backup(folder + revert_icon, revert=True)
+                        backup(app_path + revert_icon, revert=True)
                     except:
                         continue
                     if not revert_app in reverted_apps:
@@ -267,11 +268,11 @@ def reinstall():
                         reverted_apps.append(revert_app)
                 elif script:
                     try:
-                        backup(folder + icon[3], revert=True)
+                        backup(app_path + icon[3], revert=True)
                     except:
                         continue
                     if not revert_app in reverted_apps:
-                        print("%s -- reverted" % (apps[app]["name"]))
+                        print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
 
 def install():
@@ -282,6 +283,8 @@ def install():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
+            app_path  = apps[app]["path"] 
+            app_name  = apps[app]["name"]
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -308,13 +311,13 @@ def install():
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
-                            output_icon = apps[app]["path"] + symlink_icon
+                            output_icon = app_path + symlink_icon
                         else:
-                            output_icon = apps[app]["path"] + repl_icon
+                            output_icon = app_path + repl_icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
-                            print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
+                            print("%s -- fixed using %s" % (app_name, path.basename(filename)))
                         elif extension_theme == "svg" and extension_orig == "png":
                             try:#Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
@@ -328,7 +331,7 @@ def install():
                                 continue
                             #to avoid identical messages
                             if not (filename in fixed_icons):
-                                print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
+                                print("%s -- fixed using %s" % (app_name, path.basename(filename)))
                                 fixed_icons.append(filename)
                         elif extension_theme == "png" and extension_orig == "svg":
                             print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
@@ -338,7 +341,6 @@ def install():
                             continue
                     #Qt applications
                     else:
-                        folder = apps[app]["path"]
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sniqtprefix",app)
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
@@ -359,22 +361,22 @@ def install():
                                     print("%s -- script file does not exists" % script_name)
                         else:
                             if path.isfile(script_name):
-                                backup(folder + icon[3])
-                                p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
+                                backup(app_path + icon[3])
+                                p = Popen([script_name, filename, symlink_icon, app_path], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                             else:
                                 print("%s -- script file does not exists" % script_name)
                         #to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
-                                print("%s -- fixed using %s" % (apps[app]["name"], path.basename(filename)))
+                                print("%s -- fixed using %s" % (app_name, path.basename(filename)))
                                 fixed_icons.append(filename)
                             else:
                                 if not err in script_errors:
                                     script_errors.append(err)
                                     err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
-                                    print("fixing %s failed with error:\n%s"%(apps[app]["name"], err))
+                                    print("fixing %s failed with error:\n%s"%(app_name, err))
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
