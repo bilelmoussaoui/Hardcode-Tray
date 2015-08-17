@@ -7,7 +7,7 @@ Licence : GPL
 '''
 
 from csv import reader
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, symlink, remove
 from subprocess import Popen, PIPE, call
 from sys import exit
@@ -29,7 +29,6 @@ db_file = "db.csv"
 backup_extension = ".bak"
 db_folder = "database/"
 script_folder = "scripts/"
-userhome = path.expanduser("~" + getlogin())
 aboslute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = aboslute_path + "/" + db_folder + "/images/"
@@ -189,7 +188,8 @@ def get_apps_informations():
                         apps[app[1]]["sniqtprefix"] = app[3]
                 else:
                     continue
-            continue
+            else:
+                continue
         else:
             continue
         i+=1
@@ -215,7 +215,6 @@ def get_app_icons(app_name):
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
-        return None
 
 def backup(icon, revert=False):
     """
