@@ -223,7 +223,7 @@ def backup(icon, revert=False):
         @icon: string; the original icon name
         @revert: boolean; True: revert, False: only backup
     """
-    back_file = icon + backup_extensio
+    back_file = icon + backup_extension
     if path.isfile(icon):
         if not revert:
             copy_file(icon, back_file)
@@ -296,8 +296,8 @@ def install():
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
                         repl_icon = symlink_icon = icon[0]
                     else:
-                        symlink_icon = icon[0]  #Hardcoded icon to be replaced
-                        repl_icon = icon[1]  #Theme Icon that will replace hardcoded icon
+                        symlink_icon = icon[0] #Hardcoded icon to be replaced
+                        repl_icon = icon[1] #Theme Icon that will replace hardcoded icon
                 else:
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
