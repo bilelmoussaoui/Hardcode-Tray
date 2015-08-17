@@ -287,6 +287,7 @@ def install():
             app_icons = apps[app]["icons"]
             app_path  = apps[app]["path"] 
             app_name  = apps[app]["name"]
+            i = 0
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -364,7 +365,13 @@ def install():
                         else:
                             if path.isfile(script_name):
                                 backup(app_path + icon[3])
-                                p = Popen([script_name, filename, symlink_icon, app_path], stdout=PIPE, stderr=PIPE)
+                                if i == 0:
+                                    do = "start"
+                                elif i == len(icons):
+                                    do = "end"
+                                else:
+                                    do = ""
+                                p = Popen([script_name, filename, symlink_icon, app_path, do], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                             else:
                                 print("%s -- script file does not exists" % script_name)
@@ -379,6 +386,7 @@ def install():
                                     err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
                                     print("fixing %s failed with error:\n%s"%(app_name, err))
+                i += 1
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
