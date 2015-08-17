@@ -26,12 +26,12 @@ if not environ.get("DESKTOP_SESSION"):
     exit("Please run the script using 'sudo -E' to preserve environment variables")
 
 db_file = "db.csv"
-db_folder = "database"
-script_folder = "scripts"
+db_folder = "database/"
+script_folder = "scripts/"
 userhome = path.expanduser("~" + getlogin())
-aboslute_path = path.split(path.abspath(__file__))[0]
+aboslute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
-images_folder = aboslute_path + "/" + db_folder + "/images"
+images_folder = aboslute_path + "/" + db_folder + "/images/"
 theme = Gtk.IconTheme.get_default()
 qt_script = "qt-tray"
 default_icon_size = 22
@@ -110,8 +110,8 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
         returns the correct chrome indicator icons name in the pak file
         @chrome_link: string; the chrome/chromium installation path
     """
-    images_dir = images_folder "/chrome"
-    dirname = aboslute_path + "/" + db_folder + "/" + script_folder + "/"
+    images_dir = images_folder + "chrome/"
+    dirname = aboslute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
@@ -133,7 +133,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
         icon = extracted + file_name
         if path.isfile(icon) and get_extension(icon) == "png":
             for default_icon in default_icons:
-                default_content = open(images_dir + "/" + default_icon + ".png", "rb").read()
+                default_content = open(images_dir+ default_icon + ".png", "rb").read()
                 lookup_content = open(icon ,"rb").read()
                 if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                     list_icons[default_icon] = icon_name
@@ -171,7 +171,7 @@ def get_apps_informations():
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[2]:
-            if path.isdir(app[2] + "/"):
+            if path.isdir(app[2]):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium"):
                         real_icons = get_correct_chrome_icons(app,icons[0][3])
@@ -200,8 +200,8 @@ def get_app_icons(app_name):
         gets a list of icons in /database/applicationname of each application
         @app_name: string; the application name
     """
-    if path.isfile(db_folder + "/" + app_name):
-        f = open(db_folder + "/" + app_name)
+    if path.isfile(db_folder + app_name):
+        f = open(db_folder + app_name)
         r = reader(f, skipinitialspace=True)
         icons = []
         for icon in r:
@@ -259,7 +259,7 @@ def reinstall():
                     revert_icon = icon.strip()
                 if not script:
                     try:
-                        backup(folder + "/" + revert_icon, revert=True)
+                        backup(folder + revert_icon, revert=True)
                     except:
                         continue
                     if not revert_app in reverted_apps:
@@ -267,7 +267,7 @@ def reinstall():
                         reverted_apps.append(revert_app)
                 elif script:
                     try:
-                        backup(folder + "/" + icon[3], revert=True)
+                        backup(folder + icon[3], revert=True)
                     except:
                         continue
                     if not revert_app in reverted_apps:
@@ -289,7 +289,7 @@ def install():
                     base_icon = path.splitext(icon[0])[0]
                     if len(icon) > 2:
                         script = True
-                        script_name = "./" + db_folder + "/" + script_folder + "/" + icon[2]
+                        script_name = "./" + db_folder + script_folder + icon[2]
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
                         repl_icon = symlink_icon = icon[0]
                     else:
@@ -308,9 +308,9 @@ def install():
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
                         if symlink_icon:
-                            output_icon = apps[app]["path"] + "/" + symlink_icon
+                            output_icon = apps[app]["path"] + symlink_icon
                         else:
-                            output_icon = apps[app]["path"] + "/" + repl_icon
+                            output_icon = apps[app]["path"] + repl_icon
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
@@ -341,16 +341,16 @@ def install():
                         folder = apps[app]["path"]
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sniqtprefix",app)
-                            app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix
+                            app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
                             if not path.exists(app_sni_qt_path):
                                 makedirs(app_sni_qt_path)
                                 chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
                             if len(icon) == 4:
                                 try:
-                                    remove(app_sni_qt_path + "/" + symlink_icon)
-                                    symlink(app_sni_qt_path + "/" + icon[3], app_sni_qt_path + "/" + symlink_icon)
+                                    remove(app_sni_qt_path + symlink_icon)
+                                    symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
                                 except FileNotFoundError:
-                                    symlink(app_sni_qt_path + "/" + icon[3], app_sni_qt_path + "/" + symlink_icon)
+                                    symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
                             else:
                                 if path.isfile(script_name):
                                     p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
@@ -359,7 +359,7 @@ def install():
                                     print("%s -- script file does not exists" % script_name)
                         else:
                             if path.isfile(script_name):
-                                backup(folder + "/" + icon[3])
+                                backup(folder + icon[3])
                                 p = Popen([script_name, filename, symlink_icon, folder], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                             else:
