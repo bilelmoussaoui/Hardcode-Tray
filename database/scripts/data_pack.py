@@ -120,12 +120,11 @@ def main():
                 filename = sys.argv[1]
             else:
                 fn = sys.argv[j]
-                f = open('./extracted/'+fn, "rb")
+                f = open(fn, "rb")
                 icon = f.read()
                 f.close()
-                iconData[int(fn)] = icon
+                iconData[int(fn.split('/')[-1])] = icon
 
-        # Create copy of original pak without notification icons
         dataPack = ReadDataPack(filename)
         for i in list(iconData.keys()):
             dataPack.resources[i] = iconData[i]

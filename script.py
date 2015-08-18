@@ -121,25 +121,21 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    r = Popen(["cp", apps_infos[2] + "/" + chrome_pak_file, dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
-    output,err = r.communicate()
-    try:
-        rmtree(extracted)
-        remove(dirname + chrome_pak_file)
-    except:
-        pass
+    copyfile(apps_infos[2] + "/" + chrome_pak_file, dirname + chrome_pak_file)
     makedirs(path.dirname(extracted), exist_ok=True)
-    chown(path.dirname(extracted), int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
     r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
     for file_name in listdir(extracted):
         icon = extracted + file_name
-        if path.isfile(icon) and get_extension(icon) == "png":
+        if path.isfile(icon):
             for default_icon in default_icons:
                 default_content = open(images_dir+ default_icon + ".png", "rb").read()
                 lookup_content = open(icon ,"rb").read()
                 if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
-                    list_icons[default_icon] = icon_name
+                    list_icons[default_icon] = icon
+    if not list_icons:
+        rmtree(extracted)
+        remove(dirname + chrome_pak_file)
     return list_icons
 
 def replace_dropbox_dir(directory):
@@ -158,25 +154,23 @@ def replace_dropbox_dir(directory):
     else:
         return None
 
-def get_apps_informations():
+def get_apps_informations(revert=False):
     """
         Reads the database file and returns a dictionary with all informations
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
+    next(r)
     apps = OrderedDict()
-    i = 0
     for app in r:
         dont_add = False
-        if i == 0:
-            pass
         app[2] = app[2].replace("{userhome}", userhome).strip()
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[2]:
             if path.isdir(app[2]):
                 icons = get_app_icons(app[1])
-                if app[1] in ("google-chrome", "chromium"):
+                if app[1] in ("google-chrome", "chromium") and not revert:
                         real_icons = get_correct_chrome_icons(app,icons[0][3])
                         if real_icons:
                             for new_icon in real_icons:
@@ -195,7 +189,6 @@ def get_apps_informations():
                 continue
         else:
             continue
-        i+=1
     db.close()
     return apps
 
@@ -237,7 +230,7 @@ def reinstall():
         Reverts to the original icons
     """
     sni_qt_reverted = False
-    apps = get_apps_informations()
+    apps = get_apps_informations(revert=True)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -287,7 +280,7 @@ def install():
             app_icons = apps[app]["icons"]
             app_path  = apps[app]["path"] 
             app_name  = apps[app]["name"]
-            i = 0
+            icon_ctr = 1
             for icon in app_icons:
                 script = False
                 if isinstance(icon, list):
@@ -365,13 +358,13 @@ def install():
                         else:
                             if path.isfile(script_name):
                                 backup(app_path + icon[3])
-                                if i == 0:
-                                    do = "start"
-                                elif i == len(icons):
-                                    do = "end"
+                                if icon_ctr == 1:
+                                    do = 0
+                                elif icon_ctr == len(app_icons):
+                                    do = -1
                                 else:
-                                    do = ""
-                                p = Popen([script_name, filename, symlink_icon, app_path, do], stdout=PIPE, stderr=PIPE)
+                                    do = 1
+                                p = Popen([script_name, filename, symlink_icon, app_path, str(do)], stdout=PIPE, stderr=PIPE)
                                 output, err = p.communicate()
                             else:
                                 print("%s -- script file does not exists" % script_name)
@@ -386,7 +379,7 @@ def install():
                                     err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
                                     print("fixing %s failed with error:\n%s"%(app_name, err))
-                i += 1
+                icon_ctr += 1
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
