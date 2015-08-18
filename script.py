@@ -160,12 +160,10 @@ def get_apps_informations(revert=False):
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
+    next(r)
     apps = OrderedDict()
-    i = 0
     for app in r:
         dont_add = False
-        if i == 0:
-            pass
         app[2] = app[2].replace("{userhome}", userhome).strip()
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
@@ -191,7 +189,6 @@ def get_apps_informations(revert=False):
                 continue
         else:
             continue
-        i += 1
     db.close()
     return apps
 
