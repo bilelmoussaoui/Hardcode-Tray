@@ -27,6 +27,8 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   4. Enjoy!
 
 ### Credits
+- Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
+- Chromuim icons, extracted from `chrome_100_percent.pak`released under EULA license 
 - Qt applications icons name by [elementaryPlus](https://github.com/mank319/elementaryPlus) team
 
 ### Supported applications
