@@ -3,6 +3,7 @@ Bitcoin, bitcoin, /usr/bin/bitcoin-qt/, bitcoin-qt
 Calendar Indicator, calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/,
 Catch Indicator, catch-indicator, /usr/share/catch-indicator/icons/,
 Chromium, chromium, /usr/lib/chromium-browser/,
+Clementine, clementine, /usr/bin/clementine,
 Cryptfolder Indicator, cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/,
 Dropbox, dropbox, {userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/,
 Flarget, flareget, /usr/bin/flareget/,

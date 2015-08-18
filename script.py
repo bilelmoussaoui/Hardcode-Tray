@@ -168,7 +168,7 @@ def get_apps_informations(revert=False):
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[2]:
-            if path.isdir(app[2]):
+            if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium") and not revert:
                         real_icons = get_correct_chrome_icons(app,icons[0][3])
