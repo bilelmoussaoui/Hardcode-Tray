@@ -125,7 +125,6 @@ def main():
                 f.close()
                 iconData[int(fn.split('/')[-1])] = icon
 
-        # Create copy of original pak without notification icons
         dataPack = ReadDataPack(filename)
         for i in list(iconData.keys()):
             dataPack.resources[i] = iconData[i]
