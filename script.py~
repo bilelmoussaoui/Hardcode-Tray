@@ -111,12 +111,13 @@ def filter_icon(list_icons, value):
 def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
     """
         returns the correct chrome indicator icons name in the pak file
-        @chrome_link: string; the chrome/chromium installation path
+        @apps_infos: list; the app informations in the database file
+        @chrome_pak_file: string; the pak file name 
     """
-    images_dir = images_folder + "chromium/"
+    images_dir = images_folder + "chrome/"
     dirname = aboslute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
-    default_icons = ["notification",
+    default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
@@ -206,13 +207,13 @@ def get_app_icons(app_name):
         r = reader(f, skipinitialspace=True)
         icons = []
         for icon in r:
-            if icon != "":
+            if icon:
                 if len(icon) != 1:
                     icons.append(icon)
                 else:
                     icons.extend(icon)
-        f.close()
         icons.sort()
+        f.close()
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
