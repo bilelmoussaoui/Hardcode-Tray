@@ -23,7 +23,7 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   sudo apt-get install sni-qt
 
   ```
-  4. Open the script.py using this command
+  4. Open the `script.py` using this command
   ```bash
   sudo -E python3 script.py
   ```
