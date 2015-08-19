@@ -3,7 +3,8 @@
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
 Version : 1.2
-Licence : GPL
+Licence : The script is released under GPL, 
+        and uses some icons and a modified script form Chromium project released under BSD license
 '''
 
 from csv import reader
