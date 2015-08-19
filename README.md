@@ -8,12 +8,12 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 ### How to use
   1. Download the [zip folder](https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip) or clone the repository
   ```bash
-    sudo apt-get install git && git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
+  git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
   ```
 
-  2. Install python3-cairosvg (used in case the original icons are .svg and the hardcoded icons are .png)
+  2. Install python3-cairosvg
   ```bash
-    sudo apt-get install python3-cairosvg
+  sudo apt-get install python3-cairosvg
   ```
 
   3. Install the patched version of ```sni-qt``` if you use any Qt applications
@@ -23,11 +23,10 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   sudo apt-get install sni-qt
 
   ```
-  4. Open the script.py using this command (root privileges needed because hardcoded icons are usually in `/opt` or `/usr`)
+  4. Open the script.py using this command
   ```bash
-    sudo -E python3 script.py
+  sudo -E python3 script.py
   ```
-  using ``` sudo -E ``` instead of ``` sudo ``` to preserve environment variables  
 
   5. Enjoy!
 
