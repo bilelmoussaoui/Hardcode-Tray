@@ -121,7 +121,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    copyfile(apps_infos[2] + "/" + chrome_pak_file, dirname + chrome_pak_file)
+    copyfile(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
     makedirs(path.dirname(extracted), exist_ok=True)
     r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
     output,err = r.communicate()
@@ -180,7 +180,11 @@ def get_apps_informations(revert=False):
                         else:
                             dont_add = True
                 if icons and not dont_add:
-                    apps[app[1]] = {"name": app[0], "dbfile" : app[1], "path": app[2], "icons": icons}
+                    apps[app[1]] = OrderedDict()
+                    apps[app[1]]["name"]   = app[0]
+                    apps[app[1]]["dbfile"] = app[1]
+                    apps[app[1]]["path"]   = app[2]
+                    apps[app[1]]["icons"]  = icons
                     if len(app) == 4 and app[3]:
                         apps[app[1]]["sniqtprefix"] = app[3]
                 else:
@@ -202,11 +206,12 @@ def get_app_icons(app_name):
         r = reader(f, skipinitialspace=True)
         icons = []
         for icon in r:
-            if icon != "":
+            if icon:
                 if len(icon) != 1:
                     icons.append(icon)
                 else:
                     icons.extend(icon)
+        icons.sort()
         f.close()
         return icons
     else:
