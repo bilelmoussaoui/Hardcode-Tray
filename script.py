@@ -111,7 +111,8 @@ def filter_icon(list_icons, value):
 def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
     """
         returns the correct chrome indicator icons name in the pak file
-        @chrome_link: string; the chrome/chromium installation path
+        @apps_infos: list; the app informations in the database file
+        @chrome_pak_file: string; the pak file name 
     """
     images_dir = images_folder + "chrome/"
     dirname = aboslute_path + db_folder + script_folder
