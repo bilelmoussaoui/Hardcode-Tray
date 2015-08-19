@@ -35,3 +35,11 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 - Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
 - Chromuim icons, extracted from `chrome_100_percent.pak` released under BSD-style license
 - Qt applications icons name by [elementaryPlus](https://github.com/mank319/elementaryPlus) team
+
+### Hardcode-Tray wiki!
+- [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
+- [How does the script works?](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-does-the-script-works%3F)
+- [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
+- [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
+
+You can fix [Viber](https://www.viber.com/) using [Viberwrapper-indicator](https://github.com/karas84/viberwrapper-indicator)
