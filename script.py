@@ -3,7 +3,7 @@
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
 Version : 1.2
-Licence : The script is released under GPL, 
+Licence : The script is released under GPL,
         and uses some icons and a modified script form Chromium project released under BSD license
 '''
 
@@ -122,21 +122,24 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
     list_icons = {}
-    copyfile(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
-    makedirs(path.dirname(extracted), exist_ok=True)
-    r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
-    output,err = r.communicate()
-    for file_name in listdir(extracted):
-        icon = extracted + file_name
-        if path.isfile(icon):
-            for default_icon in default_icons:
-                default_content = open(images_dir+ default_icon + ".png", "rb").read()
-                lookup_content = open(icon ,"rb").read()
-                if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
-                    list_icons[default_icon] = icon
-    if not list_icons:
-        rmtree(extracted)
-        remove(dirname + chrome_pak_file)
+    if path.isfile(apps_infos[2] + chrome_pak_file):
+        copyfile(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
+        makedirs(path.dirname(extracted), exist_ok=True)
+        r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
+        output,err = r.communicate()
+        for file_name in listdir(extracted):
+            icon = extracted + file_name
+            if path.isfile(icon):
+                for default_icon in default_icons:
+                    default_content = open(images_dir+ default_icon + ".png", "rb").read()
+                    lookup_content = open(icon ,"rb").read()
+                    if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
+                        list_icons[default_icon] = icon
+            else:
+                break
+    if not list_icons or len(list_icons) < len(default_icons):
+        if path.isdir(extracted): rmtree(extracted)
+        if path.isfile(dirname + chrome_pak_file): remove(dirname + chrome_pak_file)
     return list_icons
 
 def replace_dropbox_dir(directory):
@@ -284,7 +287,7 @@ def install():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
-            app_path  = apps[app]["path"] 
+            app_path  = apps[app]["path"]
             app_name  = apps[app]["name"]
             icon_ctr = 1
             for icon in app_icons:
