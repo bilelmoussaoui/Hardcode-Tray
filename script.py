@@ -117,7 +117,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
     images_dir = images_folder + "chromium/"
     dirname = aboslute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
-    default_icons = ["notification",
+    default_icons = ["google-chrome-notification",
             "google-chrome-notification-disabled",
             "google-chrome-no-notification",
             "google-chrome-no-notification-disabled"]
