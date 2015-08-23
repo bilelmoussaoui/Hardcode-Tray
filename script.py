@@ -131,7 +131,7 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
             icon = extracted + file_name
             if path.isfile(icon):
                 for default_icon in default_icons:
-                    default_content = open(images_dir+ default_icon + ".png", "rb").read()
+                    default_content = open(images_dir + default_icon + ".png", "rb").read()
                     lookup_content = open(icon ,"rb").read()
                     if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                         list_icons[default_icon] = icon
@@ -242,8 +242,8 @@ def reinstall():
     apps = get_apps_informations(revert=True)
     if len(apps) != 0:
         for app in apps:
-            app_icons = apps[app]["icons"]
-            app_path = apps[app]["path"]
+            app_icons  = apps[app]["icons"]
+            app_path   = apps[app]["path"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
                 script = False
