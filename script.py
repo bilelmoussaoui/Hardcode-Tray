@@ -346,6 +346,7 @@ def install():
                             continue
                     #Qt applications
                     else:
+                        err = None
                         if icon[2] == qt_script:
                             app_sni_qt_prefix = apps[app].get("sniqtprefix",app)
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
