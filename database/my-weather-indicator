@@ -1,7 +1,7 @@
-mwid-chance-of-rain-night.png, weather-showers-night
-mwid-chance-of-rain.png, weather-showers-day
-mwid-chance-of-snow-night.png, weather-snow
-mwid-chance-of-snow.png, weather-snow
+mwid-chance-of-rain-night.png, weather-showers-scattered-night
+mwid-chance-of-rain.png, weather-showers-scattered-day
+mwid-chance-of-snow-night.png, weather-snow-scattered
+mwid-chance-of-snow.png, weather-snow-scattered
 mwid-chance-of-thunderstorms-night.png, weather-storm
 mwid-chance-of-thunderstorms.png, weather-storm
 mwid-clear-night.png, weather-clear-night
@@ -12,7 +12,7 @@ mwid-fog-night.png, weather-fog
 mwid-fog.png, weather-fog
 mwid-freezing-drizzle.png, weather-freezing-rain
 mwid-hail.png, weather-hail
-mwid-icy.png, weather-icy
+mwid-icy.png, weather-freezing-rain
 mwid-light-rain.png, weather-showers
 mwid-light-snow.png, weather-snow
 mwid-mostly-cloudy-night.png, weather-clouds-night
