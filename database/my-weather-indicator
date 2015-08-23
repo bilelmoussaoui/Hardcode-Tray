@@ -2,8 +2,8 @@ mwid-chance-of-rain-night.png, weather-showers-night
 mwid-chance-of-rain.png, weather-showers-day
 mwid-chance-of-snow-night.png, weather-snow
 mwid-chance-of-snow.png, weather-snow
-mwid-chance-of-thunderstorms-night.png, weather-chance-of-thunderstorms-night
-mwid-chance-of-thunderstorms.png, weather-chance-of-thunderstorms
+mwid-chance-of-thunderstorms-night.png, weather-storm
+mwid-chance-of-thunderstorms.png, weather-storm
 mwid-clear-night.png, weather-clear-night
 mwid-clear.png, weather-clear
 mwid-cloudy.png, weather-overcast
@@ -32,8 +32,8 @@ mwil-chance-of-rain-night.png, weather-showers-night
 mwil-chance-of-rain.png, weather-showers-day
 mwil-chance-of-snow-night.png, weather-snow
 mwil-chance-of-snow.png, weather-snow
-mwil-chance-of-thunderstorms-night.png, weather-chance-of-thunderstorms-night
-mwil-chance-of-thunderstorms.png, weather-chance-of-thunderstorms
+mwil-chance-of-thunderstorms-night.png, weather-storm
+mwil-chance-of-thunderstorms.png, weather-storm
 mwil-clear-night.png, weather-clear-night
 mwil-clear.png, weather-clear
 mwil-cloudy.png, weather-overcast
