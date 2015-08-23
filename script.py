@@ -310,6 +310,7 @@ def install():
                 theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
                 if theme_icon:
                     filename = theme_icon.get_filename()
+                    filename_base = path.splitext(path.basename(filename))[0]
                     extension_theme = get_extension(filename)
                      #catching the unrealistic case that theme is neither svg nor png
                     if extension_theme not in ("png", "svg"):
@@ -322,7 +323,9 @@ def install():
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
-                            print("%s -- fixed using %s" % (app_name, path.basename(filename)))
+                            if not filename_base in fixed_icons:
+                                print("%s -- fixed using %s" % (app_name, filename_base))
+                                fixed_icons.append(filename_base)
                         elif extension_theme == "svg" and extension_orig == "png":
                             try:#Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
@@ -336,8 +339,8 @@ def install():
                                 continue
                             #to avoid identical messages
                             if not (filename in fixed_icons):
-                                print("%s -- fixed using %s" % (app_name, path.basename(filename)))
-                                fixed_icons.append(filename)
+                                print("%s -- fixed using %s" % (app_name, filename_base))
+                                fixed_icons.append(filename_base)
                         elif extension_theme == "png" and extension_orig == "svg":
                             print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
                             continue
@@ -381,8 +384,8 @@ def install():
                         #to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
-                                print("%s -- fixed using %s" % (app_name, path.basename(filename)))
-                                fixed_icons.append(filename)
+                                print("%s -- fixed using %s" % (app_name, filename_base))
+                                fixed_icons.append(filename_base)
                             else:
                                 if not err in script_errors:
                                     script_errors.append(err)
@@ -413,5 +416,5 @@ try:
         exit("Please try again")
 except ValueError:
     exit("Please choose a valid value!")
-
+    
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
