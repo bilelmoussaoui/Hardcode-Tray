@@ -18,6 +18,7 @@ Hangouts (Chromium extension) , hangouts, {userhome}/.config/chromium/Default/Ex
 HP Printer, hp-printing, /usr/bin/hp-systray/, python2.7
 Ibus Anthy, ibus-anthy, /usr/share/ibus-anthy/icons/,
 Ibus Mozc, ibus-mozc, /usr/share/ibus-mozc/,
+Indicator Weather, indicator-weather, /usr/share/indicator-weather/media/,
 Keepassx, keepassx, /usr/share/keepassx/icons/,
 Megasync, megasync, /usr/bin/megasync/,
 Mumble, mumble, /usr/bin/mumble/,
