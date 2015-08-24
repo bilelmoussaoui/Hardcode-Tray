@@ -43,6 +43,7 @@ fixed_icons = []
 reverted_apps = []
 script_errors = []
 
+
 def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size
@@ -60,6 +61,7 @@ def detect_de():
         except (OSError, RuntimeError):
             return "other"
 
+
 def get_subdirs(directory):
     """
         Returns a list of subdirectories, used in replace_dropbox_dir
@@ -76,12 +78,14 @@ def get_subdirs(directory):
     else:
         return None
 
+
 def get_extension(filename):
     """
         returns the file extension
         @filename : String; file name
     """
     return path.splitext(filename)[1].strip(".").lower()
+
 
 def copy_file(src, dest, overwrite=False):
     """
@@ -98,6 +102,7 @@ def copy_file(src, dest, overwrite=False):
         if not path.isfile(dest):
             copyfile(src, dest)
 
+
 def filter_icon(list_icons, value):
     """
         Returns an integer:  the index of an icon in list
@@ -109,7 +114,8 @@ def filter_icon(list_icons, value):
             if list_icons[i][j] == value:
                 return i
 
-def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pak"):
+
+def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak"):
     """
         returns the correct chrome indicator icons name in the pak file
         @chrome_link: string; the chrome/chromium installation path
@@ -118,29 +124,32 @@ def get_correct_chrome_icons(apps_infos,chrome_pak_file = "chrome_100_percent.pa
     dirname = aboslute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
-            "google-chrome-notification-disabled",
-            "google-chrome-no-notification",
-            "google-chrome-no-notification-disabled"]
+                     "google-chrome-notification-disabled",
+                     "google-chrome-no-notification",
+                     "google-chrome-no-notification-disabled"]
     list_icons = {}
     if path.isfile(apps_infos[2] + chrome_pak_file):
         copyfile(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
         makedirs(path.dirname(extracted), exist_ok=True)
-        r = Popen([dirname + "data_pack.py" , dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
-        output,err = r.communicate()
+        r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
+        output, err = r.communicate()
         for file_name in listdir(extracted):
             icon = extracted + file_name
             if path.isfile(icon):
                 for default_icon in default_icons:
                     default_content = open(images_dir + default_icon + ".png", "rb").read()
-                    lookup_content = open(icon ,"rb").read()
+                    lookup_content = open(icon, "rb").read()
                     if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
                         list_icons[default_icon] = icon
             else:
                 break
     if not list_icons or len(list_icons) < len(default_icons):
-        if path.isdir(extracted): rmtree(extracted)
-        if path.isfile(dirname + chrome_pak_file): remove(dirname + chrome_pak_file)
+        if path.isdir(extracted):
+            rmtree(extracted)
+        if path.isfile(dirname + chrome_pak_file):
+            remove(dirname + chrome_pak_file)
     return list_icons
+
 
 def replace_dropbox_dir(directory):
     """
@@ -157,6 +166,7 @@ def replace_dropbox_dir(directory):
             return None
     else:
         return None
+
 
 def get_apps_informations(revert=False):
     """
@@ -175,20 +185,20 @@ def get_apps_informations(revert=False):
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium") and not revert:
-                        real_icons = get_correct_chrome_icons(app,icons[0][3])
+                        real_icons = get_correct_chrome_icons(app, icons[0][3])
                         if real_icons:
                             for new_icon in real_icons:
                                 for old_icon in icons:
                                     if old_icon[1] == new_icon:
-                                        icons[filter_icon(icons,new_icon)][0] = real_icons[new_icon]
+                                        icons[filter_icon(icons, new_icon)][0] = real_icons[new_icon]
                         else:
                             dont_add = True
                 if icons and not dont_add:
                     apps[app[1]] = OrderedDict()
-                    apps[app[1]]["name"]   = app[0]
+                    apps[app[1]]["name"] = app[0]
                     apps[app[1]]["dbfile"] = app[1]
-                    apps[app[1]]["path"]   = app[2]
-                    apps[app[1]]["icons"]  = icons
+                    apps[app[1]]["path"] = app[2]
+                    apps[app[1]]["icons"] = icons
                     if len(app) == 4 and app[3]:
                         apps[app[1]]["sniqtprefix"] = app[3]
                 else:
@@ -199,6 +209,7 @@ def get_apps_informations(revert=False):
             continue
     db.close()
     return apps
+
 
 def get_app_icons(app_name):
     """
@@ -221,6 +232,7 @@ def get_app_icons(app_name):
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
 
+
 def backup(icon, revert=False):
     """
         Backup functions, enables reverting
@@ -234,6 +246,7 @@ def backup(icon, revert=False):
         elif revert:
             move(back_file, icon)
 
+
 def reinstall():
     """
         Reverts to the original icons
@@ -242,8 +255,8 @@ def reinstall():
     apps = get_apps_informations(revert=True)
     if len(apps) != 0:
         for app in apps:
-            app_icons  = apps[app]["icons"]
-            app_path   = apps[app]["path"]
+            app_icons = apps[app]["icons"]
+            app_path = apps[app]["path"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
                 script = False
@@ -252,14 +265,15 @@ def reinstall():
                     if len(icon) > 2:
                         script = True
                         if icon[2] == qt_script:
-                            if sni_qt_reverted: continue
+                            if sni_qt_reverted:
+                                continue
                             if path.exists(sni_qt_folder):
                                 rmtree(sni_qt_folder)
                                 print("Qt apps -- reverted")
                             sni_qt_reverted = True
                             continue
                     else:
-                        revert_icon = icon[0]  #Hardcoded icon to be reverted
+                        revert_icon = icon[0]  # Hardcoded icon to be reverted
                 else:
                     revert_icon = icon.strip()
                 if not script:
@@ -267,7 +281,7 @@ def reinstall():
                         backup(app_path + revert_icon, revert=True)
                     except:
                         continue
-                    if not revert_app in reverted_apps:
+                    if revert_app not in reverted_apps:
                         print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
                 elif script:
@@ -275,9 +289,10 @@ def reinstall():
                         backup(app_path + icon[3], revert=True)
                     except:
                         continue
-                    if not revert_app in reverted_apps:
+                    if revert_app not in reverted_apps:
                         print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
+
 
 def install():
     """
@@ -287,8 +302,8 @@ def install():
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
-            app_path  = apps[app]["path"]
-            app_name  = apps[app]["name"]
+            app_path = apps[app]["path"]
+            app_name = apps[app]["name"]
             icon_ctr = 1
             for icon in app_icons:
                 script = False
@@ -301,8 +316,8 @@ def install():
                     if theme.lookup_icon(base_icon, default_icon_size, 0):
                         repl_icon = symlink_icon = icon[0]
                     else:
-                        symlink_icon = icon[0] #Hardcoded icon to be replaced
-                        repl_icon = icon[1] #Theme Icon that will replace hardcoded icon
+                        symlink_icon = icon[0]  # Hardcoded icon to be replaced
+                        repl_icon = icon[1]  # Theme Icon that will replace hardcoded icon
                 else:
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
@@ -312,7 +327,7 @@ def install():
                     filename = theme_icon.get_filename()
                     filename_base = path.splitext(path.basename(filename))[0]
                     extension_theme = get_extension(filename)
-                     #catching the unrealistic case that theme is neither svg nor png
+                    # catching the unrealistic case that theme is neither svg nor png
                     if extension_theme not in ("png", "svg"):
                         exit("Theme icons need to be svg or png files other formats are not supported")
                     if not script:
@@ -323,11 +338,11 @@ def install():
                         backup(output_icon)
                         if extension_theme == extension_orig:
                             Popen(["ln", "-sf", filename, output_icon])
-                            if not filename_base in fixed_icons:
+                            if filename_base not in fixed_icons:
                                 print("%s -- fixed using %s" % (app_name, filename_base))
                                 fixed_icons.append(filename_base)
                         elif extension_theme == "svg" and extension_orig == "png":
-                            try:#Convert the svg file to a png one
+                            try:  # Convert the svg file to a png one
                                 with open(filename, "r") as content_file:
                                     svg = content_file.read()
                                 fout = open(output_icon, "wb")
@@ -337,7 +352,7 @@ def install():
                             except:
                                 print("The svg file `" + filename + "` is invalid.")
                                 continue
-                            #to avoid identical messages
+                            # to avoid identical messages
                             if not (filename in fixed_icons):
                                 print("%s -- fixed using %s" % (app_name, filename_base))
                                 fixed_icons.append(filename_base)
@@ -347,11 +362,11 @@ def install():
                         else:
                             print("Hardcoded file has to be svg or png. Other formats are not supported yet")
                             continue
-                    #Qt applications
+                    # Qt applications
                     else:
                         err = None
                         if icon[2] == qt_script:
-                            app_sni_qt_prefix = apps[app].get("sniqtprefix",app)
+                            app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
                             app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
                             if not path.exists(app_sni_qt_path):
                                 makedirs(app_sni_qt_path)
@@ -381,17 +396,17 @@ def install():
                                 output, err = p.communicate()
                             else:
                                 print("%s -- script file does not exists" % script_name)
-                        #to avoid identical messages
+                        # to avoid identical messages
                         if not (filename in fixed_icons):
                             if not err:
                                 print("%s -- fixed using %s" % (app_name, filename_base))
                                 fixed_icons.append(filename_base)
                             else:
-                                if not err in script_errors:
+                                if err not in script_errors:
                                     script_errors.append(err)
                                     err = err.decode("utf-8")
                                     err = "\n".join(["\t" + e for e in err.split("\n")])
-                                    print("fixing %s failed with error:\n%s"%(app_name, err))
+                                    print("fixing %s failed with error:\n%s" % (app_name, err))
                 icon_ctr += 1
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
@@ -405,7 +420,7 @@ print("Your current icon theme is : %s" % theme_name)
 print("1 - Install")
 print("2 - Reinstall")
 try:
-    choice  = int(input("Please choose: "))
+    choice = int(input("Please choose: "))
     if choice == 1:
         print("Installing now..\n")
         install()
@@ -416,5 +431,5 @@ try:
         exit("Please try again")
 except ValueError:
     exit("Please choose a valid value!")
-    
+
 print("\nDone , Thank you for using the Hardcode-Tray fixer!")
