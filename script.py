@@ -227,7 +227,6 @@ def get_app_icons(app_name):
                 else:
                     icons.extend(icon)
         f.close()
-        icons.sort()
         return icons
     else:
         print("The application " + app_name + " does not exist yet, please report this on GitHub")
