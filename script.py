@@ -130,7 +130,7 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
     list_icons = {}
     if path.isfile(apps_infos[2] + chrome_pak_file):
         try:
-            copyfile(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file, True)
+            copy_file(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file, True)
             makedirs(path.dirname(extracted), exist_ok=True)
             r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
             output, err = r.communicate()
@@ -145,7 +145,7 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
                 else:
                     break
         except FileNotFoundError:
-            continue
+            pass
     if not list_icons or len(list_icons) < len(default_icons):
         if path.isdir(extracted):
             rmtree(extracted)
