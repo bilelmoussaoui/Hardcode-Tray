@@ -372,6 +372,7 @@ def install():
                                 makedirs(app_sni_qt_path)
                                 chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
                             if len(icon) == 4:
+                                symlink_icon = icon[3]
                                 try:
                                     remove(app_sni_qt_path + symlink_icon)
                                     symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
