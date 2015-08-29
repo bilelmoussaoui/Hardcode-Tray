@@ -129,23 +129,20 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
                      "google-chrome-no-notification-disabled"]
     list_icons = {}
     if path.isfile(apps_infos[2] + chrome_pak_file):
-        try:
-            copy_file(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file, True)
-            makedirs(path.dirname(extracted), exist_ok=True)
-            r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
-            output, err = r.communicate()
-            for file_name in listdir(extracted):
-                icon = extracted + file_name
-                if path.isfile(icon):
-                    for default_icon in default_icons:
-                        default_content = open(images_dir + default_icon + ".png", "rb").read()
-                        lookup_content = open(icon, "rb").read()
-                        if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
-                            list_icons[default_icon] = icon
-                else:
-                    break
-        except FileNotFoundError:
-            pass
+        copy_file(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
+        makedirs(path.dirname(extracted), exist_ok=True)
+        r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
+        output, err = r.communicate()
+        for file_name in listdir(extracted):
+            icon = extracted + file_name
+            if path.isfile(icon):
+                for default_icon in default_icons:
+                    default_content = open(images_dir + default_icon + ".png", "rb").read()
+                    lookup_content = open(icon, "rb").read()
+                    if md5(default_content).hexdigest() == md5(lookup_content).hexdigest():
+                        list_icons[default_icon] = icon
+            else:
+                break
     if not list_icons or len(list_icons) < len(default_icons):
         if path.isdir(extracted):
             rmtree(extracted)

@@ -9,6 +9,7 @@ Cryptfolder Indicator, cryptfolder-indicator, /opt/extras.ubuntu.com/cryptfolder
 Dropbox, dropbox, {userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/,
 Flarget, flareget, /usr/bin/flareget/,
 Google Chrome, google-chrome, /opt/google/chrome/,
+Google Chrome (Unstable), google-chrome, /opt/google/chrome-unstable/ ,
 Google Music Manager, google-music-manager, /opt/google/musicmanager/google-musicmanager/, MusicManager
 Google Tasks Indicator, google-tasks-indicator, /usr/share/google-tasks-indicator/icons/,
 Grive Tools (Dark), grive-tools, /opt/thefanclub/grive-tools/icons/dark/,
