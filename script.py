@@ -186,13 +186,10 @@ def get_apps_informations(revert=False):
                 icons = get_app_icons(app[1])
                 if app[1] in ("google-chrome", "chromium") and not revert:
                         real_icons = get_correct_chrome_icons(app, icons[0][3])
-                        if real_icons:
-                            for new_icon in real_icons:
-                                for old_icon in icons:
-                                    if old_icon[1] == new_icon:
-                                        icons[filter_icon(icons, new_icon)][0] = real_icons[new_icon]
-                        else:
-                            dont_add = True
+                        for new_icon in real_icons:
+                            for old_icon in icons:
+                                if old_icon[1] == new_icon or old_icon[3] != "chrome_100_percent.pak":
+                                    icons[filter_icon(icons, new_icon)][0] = real_icons[new_icon]
                 if icons and not dont_add:
                     apps[app[1]] = OrderedDict()
                     apps[app[1]]["name"] = app[0]
@@ -298,6 +295,7 @@ def install():
         Installs the new supported icons
     """
     apps = get_apps_informations()
+    print(apps)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
