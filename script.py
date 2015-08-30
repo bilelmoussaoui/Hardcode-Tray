@@ -129,7 +129,7 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
                      "google-chrome-no-notification-disabled"]
     list_icons = {}
     if path.isfile(apps_infos[2] + chrome_pak_file):
-        copy_file(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
+        copyfilee(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file)
         makedirs(path.dirname(extracted), exist_ok=True)
         r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
         output, err = r.communicate()
@@ -358,7 +358,7 @@ def install():
                                     print("The svg file `" + filename + "` is invalid.")
                                     continue
                                 # to avoid identical messages
-                                if not (v in fixed_icons):
+                                if not (filename_base in fixed_icons):
                                     print("%s -- fixed using %s" % (app_name, filename_base))
                                     fixed_icons.append(filename_base)
                             elif extension_theme == "png" and extension_orig == "svg":
