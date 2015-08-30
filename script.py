@@ -423,15 +423,15 @@ if detect_de() in ("pantheon", "xfce"):
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
-print("1 - Install")
-print("2 - Reinstall")
+print("1 - Apply")
+print("2 - Revert")
 try:
     choice = int(input("Please choose: "))
     if choice == 1:
-        print("Installing now..\n")
+        print("Applying now..\n")
         install()
     elif choice == 2:
-        print("Reinstalling now..\n")
+        print("Reverting now..\n")
         reinstall()
     else:
         exit("Please try again")
