@@ -189,7 +189,7 @@ def get_apps_informations(revert=False):
                         for new_icon in real_icons:
                             for old_icon in icons:
                                 if old_icon[1] == new_icon:
-                                    icons[filter_icon(icons, new_icon)][0] = path.basename(real_icons[new_icon])
+                                    icons[filter_icon(icons, new_icon)][0] = real_icons[new_icon]
                 if icons and not dont_add:
                     apps[app[1]] = OrderedDict()
                     apps[app[1]]["name"] = app[0]
