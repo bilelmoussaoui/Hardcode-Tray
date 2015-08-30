@@ -358,7 +358,7 @@ def install():
                                     print("The svg file `" + filename + "` is invalid.")
                                     continue
                                 # to avoid identical messages
-                                if not (filename in fixed_icons):
+                                if not (v in fixed_icons):
                                     print("%s -- fixed using %s" % (app_name, filename_base))
                                     fixed_icons.append(filename_base)
                             elif extension_theme == "png" and extension_orig == "svg":
@@ -402,7 +402,7 @@ def install():
                                 else:
                                     print("%s -- script file does not exists" % script_name)
                             # to avoid identical messages
-                            if not (filename in fixed_icons):
+                            if not (filename_base in fixed_icons):
                                 if not err:
                                     print("%s -- fixed using %s" % (app_name, filename_base))
                                     fixed_icons.append(filename_base)
