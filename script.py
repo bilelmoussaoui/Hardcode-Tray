@@ -143,12 +143,16 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
                         list_icons[default_icon] = icon
             else:
                 break
-    if not list_icons or len(list_icons) < len(default_icons):
-        if path.isdir(extracted):
-            rmtree(extracted)
-        if path.isfile(dirname + chrome_pak_file):
-            remove(dirname + chrome_pak_file)
-    return list_icons
+        if not list_icons or len(list_icons) < len(default_icons):
+            if path.isdir(extracted):
+                rmtree(extracted)
+            if path.isfile(dirname + chrome_pak_file):
+                remove(dirname + chrome_pak_file)
+            return None
+        else:
+            return list_icons
+    else:
+        return None
 
 
 def replace_dropbox_dir(directory):
@@ -292,117 +296,124 @@ def install():
         for app in apps:
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
+            app_dbfile = apps[app]["dbfile"]
             app_name = apps[app]["name"]
-            if app[1] in ("google-chrome", "chromium") and not revert:
+            dont_install = False
+            if app_dbfile in ("google-chrome", "chromium"):
                 real_icons = get_correct_chrome_icons(app, app_icons[0][3])
-                for new_icon in real_icons:
-                    for old_icon in app_icons:
-                        if old_icon[1] == new_icon:
-                            apps[app]["icons"][filter_icon(icons, new_icon)][0] = real_icons[new_icon]
-            icon_ctr = 1
-            for icon in app_icons:
-                script = False
-                if isinstance(icon, list):
-                    icon = [item.strip() for item in icon]
-                    base_icon = path.splitext(icon[0])[0]
-                    if len(icon) > 2:
-                        script = True
-                        script_name = "./" + db_folder + script_folder + icon[2]
-                    if theme.lookup_icon(base_icon, default_icon_size, 0):
-                        repl_icon = symlink_icon = icon[0]
-                    else:
-                        symlink_icon = icon[0]  # Hardcoded icon to be replaced
-                        repl_icon = icon[1]  # Theme Icon that will replace hardcoded icon
+                if real_icons:
+                    for new_icon in real_icons:
+                        for old_icon in app_icons:
+                            if old_icon[1] == new_icon:
+                                apps[app]["icons"][filter_icon(icons, new_icon)][0] = real_icons[new_icon]
                 else:
-                    symlink_icon = repl_icon = icon.strip()
-                base_icon = path.splitext(repl_icon)[0]
-                extension_orig = get_extension(symlink_icon)
-                theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
-                if theme_icon:
-                    filename = theme_icon.get_filename()
-                    filename_base = path.splitext(path.basename(filename))[0]
-                    extension_theme = get_extension(filename)
-                    # catching the unrealistic case that theme is neither svg nor png
-                    if extension_theme not in ("png", "svg"):
-                        exit("Theme icons need to be svg or png files other formats are not supported")
-                    if not script:
-                        if symlink_icon:
-                            output_icon = app_path + symlink_icon
+                    dont_install = True
+            icon_ctr = 1
+            if not dont_install:
+                for icon in app_icons:
+                    script = False
+                    if isinstance(icon, list):
+                        icon = [item.strip() for item in icon]
+                        base_icon = path.splitext(icon[0])[0]
+                        if len(icon) > 2:
+                            script = True
+                            script_name = "./" + db_folder + script_folder + icon[2]
+                        if theme.lookup_icon(base_icon, default_icon_size, 0):
+                            repl_icon = symlink_icon = icon[0]
                         else:
-                            output_icon = app_path + repl_icon
-                        backup(output_icon)
-                        if extension_theme == extension_orig:
-                            Popen(["ln", "-sf", filename, output_icon])
-                            if filename_base not in fixed_icons:
-                                print("%s -- fixed using %s" % (app_name, filename_base))
-                                fixed_icons.append(filename_base)
-                        elif extension_theme == "svg" and extension_orig == "png":
-                            try:  # Convert the svg file to a png one
-                                with open(filename, "r") as content_file:
-                                    svg = content_file.read()
-                                fout = open(output_icon, "wb")
-                                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
-                                fout.close()
-                                chown(output_icon, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-                            except:
-                                print("The svg file `" + filename + "` is invalid.")
-                                continue
-                            # to avoid identical messages
-                            if not (filename in fixed_icons):
-                                print("%s -- fixed using %s" % (app_name, filename_base))
-                                fixed_icons.append(filename_base)
-                        elif extension_theme == "png" and extension_orig == "svg":
-                            print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
-                            continue
-                        else:
-                            print("Hardcoded file has to be svg or png. Other formats are not supported yet")
-                            continue
-                    # Qt applications
+                            symlink_icon = icon[0]  # Hardcoded icon to be replaced
+                            repl_icon = icon[1]  # Theme Icon that will replace hardcoded icon
                     else:
-                        err = None
-                        if icon[2] == qt_script:
-                            app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
-                            app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
-                            if not path.exists(app_sni_qt_path):
-                                makedirs(app_sni_qt_path)
-                                chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-                            if len(icon) == 4:
-                                try:
-                                    remove(app_sni_qt_path + symlink_icon)
-                                    symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
-                                except FileNotFoundError:
-                                    symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
+                        symlink_icon = repl_icon = icon.strip()
+                    base_icon = path.splitext(repl_icon)[0]
+                    extension_orig = get_extension(symlink_icon)
+                    theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
+                    if theme_icon:
+                        filename = theme_icon.get_filename()
+                        filename_base = path.splitext(path.basename(filename))[0]
+                        extension_theme = get_extension(filename)
+                        # catching the unrealistic case that theme is neither svg nor png
+                        if extension_theme not in ("png", "svg"):
+                            exit("Theme icons need to be svg or png files other formats are not supported")
+                        if not script:
+                            if symlink_icon:
+                                output_icon = app_path + symlink_icon
+                            else:
+                                output_icon = app_path + repl_icon
+                            backup(output_icon)
+                            if extension_theme == extension_orig:
+                                Popen(["ln", "-sf", filename, output_icon])
+                                if filename_base not in fixed_icons:
+                                    print("%s -- fixed using %s" % (app_name, filename_base))
+                                    fixed_icons.append(filename_base)
+                            elif extension_theme == "svg" and extension_orig == "png":
+                                try:  # Convert the svg file to a png one
+                                    with open(filename, "r") as content_file:
+                                        svg = content_file.read()
+                                    fout = open(output_icon, "wb")
+                                    svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
+                                    fout.close()
+                                    chown(output_icon, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+                                except:
+                                    print("The svg file `" + filename + "` is invalid.")
+                                    continue
+                                # to avoid identical messages
+                                if not (filename in fixed_icons):
+                                    print("%s -- fixed using %s" % (app_name, filename_base))
+                                    fixed_icons.append(filename_base)
+                            elif extension_theme == "png" and extension_orig == "svg":
+                                print("Theme icon is png and hardcoded icon is svg. There is nothing we can do about that :(")
+                                continue
+                            else:
+                                print("Hardcoded file has to be svg or png. Other formats are not supported yet")
+                                continue
+                        # Qt applications
+                        else:
+                            err = None
+                            if icon[2] == qt_script:
+                                app_sni_qt_prefix = apps[app].get("sniqtprefix", app)
+                                app_sni_qt_path = sni_qt_folder + app_sni_qt_prefix + "/"
+                                if not path.exists(app_sni_qt_path):
+                                    makedirs(app_sni_qt_path)
+                                    chown(app_sni_qt_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+                                if len(icon) == 4:
+                                    try:
+                                        remove(app_sni_qt_path + symlink_icon)
+                                        symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
+                                    except FileNotFoundError:
+                                        symlink(app_sni_qt_path + icon[3], app_sni_qt_path + symlink_icon)
+                                else:
+                                    if path.isfile(script_name):
+                                        p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                        output, err = p.communicate()
+                                    else:
+                                        print("%s -- script file does not exists" % script_name)
                             else:
                                 if path.isfile(script_name):
-                                    p = Popen([script_name, filename, symlink_icon, app_sni_qt_path], stdout=PIPE, stderr=PIPE)
+                                    backup(app_path + icon[3])
+                                    if icon_ctr == 1:
+                                        do = 0
+                                    elif icon_ctr == len(app_icons):
+                                        do = -1
+                                    else:
+                                        do = 1
+                                    p = Popen([script_name, filename, symlink_icon, app_path, str(do)], stdout=PIPE, stderr=PIPE)
                                     output, err = p.communicate()
                                 else:
                                     print("%s -- script file does not exists" % script_name)
-                        else:
-                            if path.isfile(script_name):
-                                backup(app_path + icon[3])
-                                if icon_ctr == 1:
-                                    do = 0
-                                elif icon_ctr == len(app_icons):
-                                    do = -1
+                            # to avoid identical messages
+                            if not (filename in fixed_icons):
+                                if not err:
+                                    print("%s -- fixed using %s" % (app_name, filename_base))
+                                    fixed_icons.append(filename_base)
                                 else:
-                                    do = 1
-                                p = Popen([script_name, filename, symlink_icon, app_path, str(do)], stdout=PIPE, stderr=PIPE)
-                                output, err = p.communicate()
-                            else:
-                                print("%s -- script file does not exists" % script_name)
-                        # to avoid identical messages
-                        if not (filename in fixed_icons):
-                            if not err:
-                                print("%s -- fixed using %s" % (app_name, filename_base))
-                                fixed_icons.append(filename_base)
-                            else:
-                                if err not in script_errors:
-                                    script_errors.append(err)
-                                    err = err.decode("utf-8")
-                                    err = "\n".join(["\t" + e for e in err.split("\n")])
-                                    print("fixing %s failed with error:\n%s" % (app_name, err))
-                icon_ctr += 1
+                                    if err not in script_errors:
+                                        script_errors.append(err)
+                                        err = err.decode("utf-8")
+                                        err = "\n".join(["\t" + e for e in err.split("\n")])
+                                        print("fixing %s failed with error:\n%s" % (app_name, err))
+                    icon_ctr += 1
+
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
