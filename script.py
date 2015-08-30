@@ -177,20 +177,13 @@ def get_apps_informations(revert=False):
     next(r)
     apps = OrderedDict()
     for app in r:
-        dont_add = False
         app[2] = app[2].replace("{userhome}", userhome).strip()
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[2]:
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
-                if app[1] in ("google-chrome", "chromium") and not revert:
-                        real_icons = get_correct_chrome_icons(app, icons[0][3])
-                        for new_icon in real_icons:
-                            for old_icon in icons:
-                                if old_icon[1] == new_icon:
-                                    icons[filter_icon(icons, new_icon)][0] = real_icons[new_icon]
-                if icons and not dont_add:
+                if icons:
                     apps[app[1]] = OrderedDict()
                     apps[app[1]]["name"] = app[0]
                     apps[app[1]]["dbfile"] = app[1]
@@ -300,6 +293,12 @@ def install():
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
             app_name = apps[app]["name"]
+            if app[1] in ("google-chrome", "chromium") and not revert:
+                real_icons = get_correct_chrome_icons(app, app_icons[0][3])
+                for new_icon in real_icons:
+                    for old_icon in app_icons:
+                        if old_icon[1] == new_icon:
+                            apps[app]["icons"][filter_icon(icons, new_icon)][0] = real_icons[new_icon]
             icon_ctr = 1
             for icon in app_icons:
                 script = False
