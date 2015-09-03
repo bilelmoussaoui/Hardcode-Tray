@@ -1,10 +1,16 @@
 #!/bin/bash
 cd ./database/scripts/
+mkdir -p extracted
+
 if [[ $1 == *.svg ]]; then
-    python3 svg2png.py $1 ./extracted/$(echo $2 | cut -f 1 -d '.')
+    python3 svg2png.py $1 $(echo $2 | cut -f 1 -d '.')
 else
-    cp $1 ./extracted/$(echo $2 | cut -f 1 -d '.')
+    cp $1 $(echo $2 | cut -f 1 -d '.')
 fi
 
 ./data_pack.py chrome_100_percent.pak $(echo $2 | cut -f 1 -d '.')
-cp chrome_100_percent.pak $3/chrome_100_percent.pak
+
+if [ "$4" -eq -1 ]; then
+    mv chrome_100_percent.pak $3/chrome_100_percent.pak
+    rm -rf ./extracted
+fi
