@@ -1,6 +1,5 @@
 # Hardcode-Tray
-Fixes Hardcoded tray icons in Linux, released under [GPL3 license](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/LICENSE).
-Chromium icons and `data_pack.py` are released under [BSD License](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/BSD%20LICENSE). 
+Fixes Hardcoded tray icons in Linux
 
 The script will automagically detect your default theme, the right icon size, the hardcoded applications, the right icons for each indicator and fix them. All that with the possibilty to revert to the original icons.
 
