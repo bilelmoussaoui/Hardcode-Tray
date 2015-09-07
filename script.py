@@ -2,7 +2,7 @@
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
-Version : 1.2
+Version : 1.3
 Licence : The script is released under GPL,
         and uses some icons and a modified script form Chromium project released under BSD license
 '''
@@ -128,8 +128,8 @@ def get_correct_chrome_icons(apps_infos, chrome_pak_file="chrome_100_percent.pak
                      "google-chrome-no-notification",
                      "google-chrome-no-notification-disabled"]
     list_icons = {}
-    if path.isfile(apps_infos[2] + chrome_pak_file):
-        copy_file(apps_infos[2] + chrome_pak_file, dirname + chrome_pak_file, True)
+    if path.isfile(apps_infos["path"] + chrome_pak_file):
+        copy_file(apps_infos["path"] + chrome_pak_file, dirname + chrome_pak_file, True)
         makedirs(path.dirname(extracted), exist_ok=True)
         r = Popen([dirname + "data_pack.py", dirname + chrome_pak_file], stdout=PIPE, stderr=PIPE)
         output, err = r.communicate()
@@ -300,7 +300,7 @@ def install():
             app_name = apps[app]["name"]
             dont_install = False
             if app_dbfile in ("google-chrome", "chromium"):
-                real_icons = get_correct_chrome_icons(app, app_icons[0][3])
+                real_icons = get_correct_chrome_icons(apps[app], app_icons[0][3])
                 if real_icons:
                     for new_icon in real_icons:
                         for old_icon in app_icons:
