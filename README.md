@@ -16,7 +16,7 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   sudo apt-get install python3-cairosvg
   ```
 
-  3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro(Fedora, Arch)
+  3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a non debian distro (like Fedora or Arch)
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
