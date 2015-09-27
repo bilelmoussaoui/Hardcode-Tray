@@ -10,7 +10,7 @@ Licence : The script is released under GPL,
 from csv import reader
 from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown, getenv, symlink, remove
-from subprocess import Popen, PIPE, call
+from subprocess import Popen, PIPE
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
@@ -184,6 +184,12 @@ def get_apps_informations(revert=False):
         app[2] = app[2].replace("{userhome}", userhome).strip()
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
+        if app[1] == "hexchat":
+            app_path = app[2].strip("/").split("/")
+            icons_dir = app_path[len(app_path) - 1]
+            del app_path[len(app_path) - 1]
+            if path.isdir(app_path):
+                makedirs("/".join(app_path) + "/" + icons_dir + "/", exist_ok=True)
         if app[2]:
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
@@ -305,7 +311,7 @@ def install():
                     for new_icon in real_icons:
                         for old_icon in app_icons:
                             if old_icon[1] == new_icon:
-                                apps[app]["icons"][filter_icon(icons, new_icon)][0] = real_icons[new_icon]
+                                apps[app]["icons"][filter_icon(apps_icons, new_icon)][0] = real_icons[new_icon]
                 else:
                     dont_install = True
             icon_ctr = 1
