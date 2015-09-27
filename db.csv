@@ -19,6 +19,7 @@ Hangouts (Chrome), hangouts, {userhome}/.config/google-chrome/Default/Extensions
 Hangouts (Chrome beta), hangouts, {userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence/,
 Hangouts (Chrome unstable), hangouts, {userhome}/.config/google-chrome-unstable/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence/,
 Hangouts (Chromium) , hangouts, {userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2015.513.1632.5_0/images_4/presence/,
+Hexchat, hexchat, {userhome}/.config/hexchat/icons/,
 HP Printer, hp-printing, /usr/bin/hp-systray/, python2.7
 Ibus Anthy, ibus-anthy, /usr/share/ibus-anthy/icons/,
 Ibus Mozc, ibus-mozc, /usr/share/ibus-mozc/,
