@@ -57,7 +57,7 @@ def detect_de():
     else:
         try:
             out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"])
-            if " = \"xfce4\"" in out:
+            if " = \"xfce4\"" in out.decode('utf-8'):
                 return "xfce"
             else:
                 return "other"
