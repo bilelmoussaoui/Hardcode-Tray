@@ -224,7 +224,6 @@ def get_apps_informations(revert=False):
             icons_dir = app_path[len(app_path) - 1]
             del app_path[len(app_path) - 1]
             app_path = "/".join(app_path) + "/"
-            print(app_path)
             if path.isdir(app_path):
                 create_dir(app_path + icons_dir + "/")
         if app[2]:
