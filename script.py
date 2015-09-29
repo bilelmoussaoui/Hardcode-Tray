@@ -215,6 +215,7 @@ def get_apps_informations(revert=False):
     r = reader(db, skipinitialspace=True)
     next(r)
     apps = OrderedDict()
+    ctr = 0
     for app in r:
         app[2] = app[2].replace("{userhome}", userhome).strip()
         if "{dropbox}" in app[2]:
@@ -230,13 +231,19 @@ def get_apps_informations(revert=False):
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
                 if icons:
-                    apps[app[1]] = OrderedDict()
-                    apps[app[1]]["name"] = app[0]
-                    apps[app[1]]["dbfile"] = app[1]
-                    apps[app[1]]["path"] = app[2]
-                    apps[app[1]]["icons"] = icons
+                    if app[1] in apps.keys():
+                        app_name = app[1]+str(ctr)
+                        ctr += 1
+                    else:
+                        app_name = app[1]
+                        ctr = 0
+                    apps[app_name] = OrderedDict()
+                    apps[app_name]["name"] = app[0]
+                    apps[app_name]["dbfile"] = app[1]
+                    apps[app_name]["path"] = app[2]
+                    apps[app_name]["icons"] = icons
                     if len(app) == 4 and app[3]:
-                        apps[app[1]]["sniqtprefix"] = app[3]
+                        apps[app_name]["sniqtprefix"] = app[3]
                 else:
                     continue
             else:
@@ -336,7 +343,6 @@ def install():
     """
     apps = get_apps_informations()
     if len(apps) != 0:
-
         for app in apps:
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
@@ -350,7 +356,7 @@ def install():
                     for new_icon in real_icons:
                         for old_icon in app_icons:
                             if old_icon[1] == new_icon:
-                                apps[app]["icons"][filter_icon(apps_icons, new_icon)][0] = real_icons[new_icon]
+                                apps[app]["icons"][filter_icon(app_icons, new_icon)][0] = real_icons[new_icon]
                 else:
                     dont_install = True
             icon_ctr = 1
