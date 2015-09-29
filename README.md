@@ -41,5 +41,3 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 - [How does the script works?](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-does-the-script-works%3F)
 - [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
 - [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
-
-You can fix [Viber](https://www.viber.com/) using [Viberwrapper-indicator](https://github.com/karas84/viberwrapper-indicator)
