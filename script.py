@@ -56,7 +56,7 @@ def detect_de():
         return "pantheon"
     else:
         try:
-            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"])
+            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"], verbose=False)
             if " = \"xfce4\"" in out.decode('utf-8'):
                 return "xfce"
             else:
@@ -92,14 +92,14 @@ def create_dir(folder):
     mchown(folder)
 
 
-def execute(command_list):
+def execute(command_list, verbose=True):
     """
         Run a command using Popen
         @command_list: List;
     """
     p = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, err = p.communicate()
-    if err and err not in script_errors:
+    if verbose and err and err not in script_errors:
         script_errors.append(err)
     return output
 
