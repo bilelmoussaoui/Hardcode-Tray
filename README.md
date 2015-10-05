@@ -16,7 +16,7 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   sudo apt-get install python3-cairocffi python3-cairosvg
   ```
 
-  3. Install the patched version of `sni-qt` if you use any Qt applications
+  3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a non debian distro (like Fedora or Arch)
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
@@ -41,5 +41,3 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 - [How does the script works?](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-does-the-script-works%3F)
 - [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
 - [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
-
-You can fix [Viber](https://www.viber.com/) using [Viberwrapper-indicator](https://github.com/karas84/viberwrapper-indicator)
