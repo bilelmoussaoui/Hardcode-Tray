@@ -19,10 +19,6 @@ try:
     from cairosvg import svg2png
 except ImportError:
     exit("You need to install python3-cairosvg to run this script.\nPlease install it and try again. Exiting.")
-try:
-    from cairocffi import cairo_version
-except ImportError:
-    exit("You need to install python3-cairocffi to run this script.\nPlease install it and try again. Exiting.")
 
 if geteuid() != 0:
     exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'. Exiting.")
