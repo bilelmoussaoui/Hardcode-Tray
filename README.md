@@ -11,9 +11,9 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
   ```
 
-  2. Install `python3-cairosvg`
+  2. Install `python3-cairocffi` & `python3-cairosvg`
   ```bash
-  sudo apt-get install python3-cairosvg
+  sudo apt-get install python3-cairocffi python3-cairosvg
   ```
 
   3. Install the patched version of `sni-qt` if you use any Qt applications
