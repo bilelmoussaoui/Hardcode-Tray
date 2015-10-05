@@ -35,6 +35,7 @@ Pushbullet Indicator, pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-in
 RadioTray, radiotray, /usr/share/radiotray/images/,
 ScreenCloud, screencloud, /usr/bin/screencloud/,
 Seafile, seafile, /usr/bin/seafile-applet/, seafile-applet
+Sflphone, sflphone, /usr/share/sflphone/,
 Skype, skype, /usr/share/skype/,
 Spotify, spotify, /opt/spotify/spotify-client/Data/,
 Telegram, telegram, {userhome}/.TelegramDesktop/tdata/ticons/,
