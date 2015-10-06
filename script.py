@@ -22,6 +22,15 @@ try:
 except ImportError:
     exit("You need to install python3-cairosvg to run this script.\
         \nPlease install it and try again. Exiting.")
+try:
+    """
+        This function isn't actually needed but we need to check if the
+        the cairocffi module exists because it's a dependency of svg2png
+    """
+    from cairocffi import cairo_version
+except ImportError:
+    exit("You need to install python3-cairocffi to run this script.\
+        \nPlease install it and try again. Exiting.")
 
 if geteuid() != 0:
     exit("You need to have root privileges to run this script.\
