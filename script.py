@@ -9,6 +9,8 @@ Licence : The script is released under GPL,
 '''
 
 from csv import reader
+from gi import require_version
+require_version('Gtk','3.0')
 from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
@@ -19,17 +21,9 @@ from hashlib import md5
 from collections import OrderedDict
 try:
     from cairosvg import svg2png
-except ImportError:
-    exit("You need to install python3-cairosvg to run this script.\
-        \nPlease install it and try again. Exiting.")
-try:
-    """
-        This function isn't actually needed but we need to check if the
-        the cairocffi module exists because it's a dependency of svg2png
-    """
     from cairocffi import cairo_version
 except ImportError:
-    exit("You need to install python3-cairocffi to run this script.\
+    exit("You need to install python3-cairosvg and python3-cairocffi to run this script.\
         \nPlease install it and try again. Exiting.")
 
 if geteuid() != 0:
