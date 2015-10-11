@@ -210,6 +210,19 @@ def replace_dropbox_dir(directory):
         return None
 
 
+def create_hexchat_dir(apps_infos):
+    """
+        Create hexchat icons directory located in $HOME/.config/hexchat/icons
+        @apps_infos: list; hexchat informations in the database file
+    """
+    app_path = apps_infos[2].strip("/").split("/")
+    icons_dir = app_path[len(app_path) - 1]
+    del app_path[len(app_path) - 1]
+    app_path = "/" + "/".join(app_path) + "/"
+    if path.isdir(app_path):
+        create_dir(app_path + icons_dir + "/")
+
+
 def get_apps_informations(revert=False):
     """
         Reads the database file and returns a dictionary with all informations
@@ -224,13 +237,7 @@ def get_apps_informations(revert=False):
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[1] == "hexchat":
-            app_path = app[2].strip("/").split("/")
-            icons_dir = app_path[len(app_path) - 1]
-            del app_path[len(app_path) - 1]
-            app_path = "/" + "/".join(app_path) + "/"
-            print(app_path)
-            if path.isdir(app_path):
-                create_dir(app_path + icons_dir + "/")
+            create_hexchat_dir(app)
         if app[2]:
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
