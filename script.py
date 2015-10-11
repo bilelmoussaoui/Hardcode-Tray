@@ -13,7 +13,7 @@ from gi import require_version
 require_version('Gtk','3.0')
 from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
-    getenv, symlink, remove
+    getenv, symlink, remove, fchown
 from subprocess import Popen, PIPE
 from sys import exit
 from shutil import rmtree, copyfile, move
@@ -46,6 +46,7 @@ theme = Gtk.IconTheme.get_default()
 theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
 default_icon_size = 22
+backup_ignore_list = ["hexchat"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
@@ -96,7 +97,8 @@ def mchown(directory):
         d += str(dir) + "/"
         if path.exists(d):
             chown(d, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-
+        elif path.isfile(d.rstrip("/")):
+            execute(['chmod', '0777' ,d.rstrip('/')])
 
 def create_dir(folder):
     """
@@ -324,6 +326,7 @@ def reinstall():
         for app in apps:
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
+            app_db = apps[app]["dbfile"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
                 is_script = False
@@ -344,10 +347,14 @@ def reinstall():
                 else:
                     revert_icon = icon.strip()
                 if not is_script:
-                    try:
-                        backup(app_path + revert_icon, revert=True)
-                    except:
-                        continue
+                    if app_db == "hexchat":
+                        if path.exists(app_path):
+                            rmtree(app_path)
+                    else:
+                        try:
+                            backup(app_path + revert_icon, revert=True)
+                        except:
+                            continue
                     if revert_app not in reverted_apps:
                         print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
@@ -417,7 +424,8 @@ def install():
                             output_icon = app_path + symlink_icon
                         else:
                             output_icon = app_path + repl_icon
-                        backup(output_icon)
+                        if not(app_dbfile in backup_ignore_list):
+                            backup(output_icon)
                         if ext_theme == ext_orig:
                             execute(["ln", "-sf", fname, output_icon])
                             if fbase not in fixed_icons:
