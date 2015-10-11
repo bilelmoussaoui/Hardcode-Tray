@@ -39,9 +39,9 @@ userhome = path.expanduser("~" + getlogin())
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
-aboslute_path = path.split(path.abspath(__file__))[0] + "/"
+absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
-images_folder = aboslute_path + db_folder + "images/"
+images_folder = absolute_path + db_folder + "images/"
 theme = Gtk.IconTheme.get_default()
 theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
@@ -85,11 +85,24 @@ def get_subdirs(directory):
         return None
 
 
-def mchown(path):
-    chown(path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+def mchown(directory):
+    """
+        Fix folder/path permissions
+        @directory: string; folder/file path
+    """
+    path_list = directory.split("/")
+    d = "/"
+    for dir in path_list:
+        d += str(dir) + "/"
+        if path.exists(d):
+            chown(d, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
 
 
 def create_dir(folder):
+    """
+        Create a directory and fix folder permissions
+        @folder: string; folder path
+    """
     if not path.isdir(folder):
         makedirs(folder, exist_ok=True)
     mchown(folder)
@@ -161,7 +174,7 @@ def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
         @chrome_link: string; the chrome/chromium installation path
     """
     images_dir = images_folder + "chromium/"
-    dirname = aboslute_path + db_folder + script_folder
+    dirname = absolute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
                      "google-chrome-notification-disabled",
@@ -225,7 +238,7 @@ def create_hexchat_dir(apps_infos):
 
 def get_apps_informations(revert=False):
     """
-        Reads the database file and returns a dictionary with all informations
+        Reads the database file and returns a dictionary with all information
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
@@ -243,7 +256,7 @@ def get_apps_informations(revert=False):
                 icons = get_app_icons(app[1])
                 if icons:
                     if app[1] in apps.keys():
-                        app_name = app[1]+str(ctr)
+                        app_name = app[1] + str(ctr)
                         ctr += 1
                     else:
                         app_name = app[1]
