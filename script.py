@@ -227,7 +227,8 @@ def get_apps_informations(revert=False):
             app_path = app[2].strip("/").split("/")
             icons_dir = app_path[len(app_path) - 1]
             del app_path[len(app_path) - 1]
-            app_path = "/".join(app_path) + "/"
+            app_path = "/" + "/".join(app_path) + "/"
+            print(app_path)
             if path.isdir(app_path):
                 create_dir(app_path + icons_dir + "/")
         if app[2]:
@@ -305,11 +306,11 @@ def reinstall():
             app_path = apps[app]["path"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
-                script = False
+                is_script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon]
                     if len(icon) > 2:
-                        script = True
+                        is_script = True
                         if icon[2] == qt_script:
                             if sni_qt_reverted:
                                 continue
@@ -322,7 +323,7 @@ def reinstall():
                         revert_icon = icon[0]  # Hardcoded icon to be reverted
                 else:
                     revert_icon = icon.strip()
-                if not script:
+                if not is_script:
                     try:
                         backup(app_path + revert_icon, revert=True)
                     except:
@@ -330,7 +331,7 @@ def reinstall():
                     if revert_app not in reverted_apps:
                         print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
-                elif script:
+                elif is_script:
                     try:
                         backup(app_path + icon[3], revert=True)
                     except:
@@ -365,20 +366,19 @@ def install():
             icon_ctr = 1
             while icon_ctr <= len(app_icons) and not dont_install:
                 icon = app_icons[icon_ctr - 1]
-                script = False
+                is_script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon]
                     base_icon = path.splitext(icon[0])[0]
+                    symlink_icon = path.splitext(icon[1])[0]
                     if len(icon) > 2:
-                        script = True
+                        is_script = True
                         sfile = "./" + db_folder + script_folder + icon[2]
-                    if theme.lookup_icon(base_icon, default_icon_size, 0):
-                        repl_icon = symlink_icon = icon[0]
-                    else:
-                        # Hardcoded icon to be replaced
-                        symlink_icon = icon[0]
-                        # Theme Icon that will replace hardcoded icon
+                    if theme.lookup_icon(symlink_icon, default_icon_size, 0):
                         repl_icon = icon[1]
+                        symlink_icon = icon[0]
+                    else:
+                        repl_icon = symlink_icon = icon[0]
                 else:
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
@@ -392,7 +392,7 @@ def install():
                     if ext_theme not in ("png", "svg"):
                         exit("Theme icons need to be svg or png files.\
                             \nOther formats are not supported yet")
-                    if not script:
+                    if not is_script:
                         if symlink_icon:
                             output_icon = app_path + symlink_icon
                         else:
