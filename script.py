@@ -14,7 +14,7 @@ require_version('Gtk','3.0')
 from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
@@ -35,7 +35,7 @@ if not environ.get("DESKTOP_SESSION"):
 
 db_file = "db.csv"
 backup_extension = ".bak"
-userhome = path.expanduser("~" + getlogin())
+userhome = check_output('sh -c "echo $HOME"',universal_newlines=True, shell=True).strip()
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
