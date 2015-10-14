@@ -9,9 +9,6 @@ Licence : The script is released under GPL,
 '''
 
 from csv import reader
-from gi import require_version
-require_version('Gtk','3.0')
-from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
 from subprocess import Popen, PIPE, check_output
@@ -23,11 +20,15 @@ try:
     from cairosvg import svg2png
     from cairocffi import cairo_version
 except ImportError:
-    exit("You need to install python3-cairosvg and python3-cairocffi to run this script.\
+    exit("You need to install python3-cairosvg and python3-cairocffi to run the script.\
         \nPlease install it and try again. Exiting.")
 
+from gi import require_version
+require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gio
+
 if geteuid() != 0:
-    exit("You need to have root privileges to run this script.\
+    exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
 if not environ.get("DESKTOP_SESSION"):
@@ -35,7 +36,8 @@ if not environ.get("DESKTOP_SESSION"):
 
 db_file = "db.csv"
 backup_extension = ".bak"
-userhome = check_output('sh -c "echo $HOME"',universal_newlines=True, shell=True).strip()
+userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
+                        shell=True).strip()
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
@@ -60,7 +62,8 @@ def detect_de():
         return "pantheon"
     else:
         try:
-            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"], verbose=False)
+            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
+                          verbose=False)
             if " = \"xfce4\"" in out.decode('utf-8'):
                 return "xfce"
             else:
@@ -98,7 +101,8 @@ def mchown(directory):
         if path.exists(d):
             chown(d, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
         elif path.isfile(d.rstrip("/")):
-            execute(['chmod', '0777' ,d.rstrip('/')])
+            execute(['chmod', '0777', d.rstrip('/')])
+
 
 def create_dir(folder):
     """
@@ -415,7 +419,7 @@ def install():
                     fname = theme_icon.get_filename()
                     fbase = path.splitext(path.basename(fname))[0]
                     ext_theme = get_extension(fname)
-                    # catching the unrealistic case that theme is neither svg nor png
+                    # catching the case that theme is neither svg nor png
                     if ext_theme not in ("png", "svg"):
                         exit("Theme icons need to be svg or png files.\
                             \nOther formats are not supported yet")
@@ -436,7 +440,8 @@ def install():
                                 with open(fname, "r") as content_file:
                                     svg = content_file.read()
                                 fout = open(output_icon, "wb")
-                                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
+                                svg2png(bytestring=bytes(svg, "UTF-8"),
+                                        write_to=fout)
                                 fout.close()
                                 mchown(output_icon)
                             except:
@@ -457,7 +462,8 @@ def install():
                     # Qt applications
                     else:
                         if icon[2] == qt_script:
-                            sni_qt_path = sni_qt_folder + apps[app].get("sniqtprefix", app) + "/"
+                            sni_qt_pre = apps[app].get("sniqtprefix", app)
+                            sni_qt_path = sni_qt_folder + sni_qt_pre + "/"
                             if not path.exists(sni_qt_path):
                                 create_dir(sni_qt_path)
                             if len(icon) == 4:
@@ -470,7 +476,8 @@ def install():
                                     symlink(original_icon, symlink_icon)
                             else:
                                 if path.isfile(sfile):
-                                    execute([sfile, fname, symlink_icon, sni_qt_path])
+                                    execute([sfile, fname, symlink_icon,
+                                            sni_qt_path])
                                 else:
                                     print("%s -- script file does not exists" % sfile)
                         else:
@@ -482,7 +489,8 @@ def install():
                                     do = -1
                                 else:
                                     do = 1
-                                execute([sfile, fname, symlink_icon, app_path, str(do)])
+                                execute([sfile, fname, symlink_icon,
+                                        app_path, str(do)])
                             else:
                                 print("%s -- script file does not exists" % sfile)
                         # to avoid identical messages
