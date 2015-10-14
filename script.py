@@ -9,8 +9,6 @@ Licence : The script is released under GPL,
 '''
 
 from csv import reader
-from gi import require_version
-from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
 from subprocess import Popen, PIPE, check_output
@@ -25,7 +23,9 @@ except ImportError:
     exit("You need to install python3-cairosvg and python3-cairocffi to run the script.\
         \nPlease install it and try again. Exiting.")
 
+from gi import require_version
 require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gio
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
