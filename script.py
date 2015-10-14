@@ -2,34 +2,28 @@
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
-Version : 2.0
+Version : 2.1
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
         released under BSD license
 '''
 
 from csv import reader
+from gi import require_version
+require_version('Gtk','3.0')
 from gi.repository import Gtk, Gio
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
 from collections import OrderedDict
 try:
     from cairosvg import svg2png
-except ImportError:
-    exit("You need to install python3-cairosvg to run this script.\
-        \nPlease install it and try again. Exiting.")
-try:
-    """
-        This function isn't actually needed but we need to check if the
-        the cairocffi module exists because it's a dependency of svg2png
-    """
     from cairocffi import cairo_version
 except ImportError:
-    exit("You need to install python3-cairocffi to run this script.\
+    exit("You need to install python3-cairosvg and python3-cairocffi to run this script.\
         \nPlease install it and try again. Exiting.")
 
 if geteuid() != 0:
@@ -41,17 +35,18 @@ if not environ.get("DESKTOP_SESSION"):
 
 db_file = "db.csv"
 backup_extension = ".bak"
-userhome = path.expanduser("~" + getlogin())
+userhome = check_output('sh -c "echo $HOME"',universal_newlines=True, shell=True).strip()
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
-aboslute_path = path.split(path.abspath(__file__))[0] + "/"
+absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
-images_folder = aboslute_path + db_folder + "images/"
+images_folder = absolute_path + db_folder + "images/"
 theme = Gtk.IconTheme.get_default()
 theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
 default_icon_size = 22
+backup_ignore_list = ["hexchat"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
@@ -91,11 +86,25 @@ def get_subdirs(directory):
         return None
 
 
-def mchown(path):
-    chown(path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-
+def mchown(directory):
+    """
+        Fix folder/path permissions
+        @directory: string; folder/file path
+    """
+    path_list = directory.split("/")
+    d = "/"
+    for dir in path_list:
+        d += str(dir) + "/"
+        if path.exists(d):
+            chown(d, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+        elif path.isfile(d.rstrip("/")):
+            execute(['chmod', '0777' ,d.rstrip('/')])
 
 def create_dir(folder):
+    """
+        Create a directory and fix folder permissions
+        @folder: string; folder path
+    """
     if not path.isdir(folder):
         makedirs(folder, exist_ok=True)
     mchown(folder)
@@ -167,7 +176,7 @@ def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
         @chrome_link: string; the chrome/chromium installation path
     """
     images_dir = images_folder + "chromium/"
-    dirname = aboslute_path + db_folder + script_folder
+    dirname = absolute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
     default_icons = ["google-chrome-notification",
                      "google-chrome-notification-disabled",
@@ -216,9 +225,22 @@ def replace_dropbox_dir(directory):
         return None
 
 
+def create_hexchat_dir(apps_infos):
+    """
+        Create hexchat icons directory located in $HOME/.config/hexchat/icons
+        @apps_infos: list; hexchat informations in the database file
+    """
+    app_path = apps_infos[2].strip("/").split("/")
+    icons_dir = app_path[len(app_path) - 1]
+    del app_path[len(app_path) - 1]
+    app_path = "/" + "/".join(app_path) + "/"
+    if not path.exists(app_path):
+        create_dir(app_path + icons_dir + "/")
+
+
 def get_apps_informations(revert=False):
     """
-        Reads the database file and returns a dictionary with all informations
+        Reads the database file and returns a dictionary with all information
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
@@ -230,18 +252,13 @@ def get_apps_informations(revert=False):
         if "{dropbox}" in app[2]:
             app[2] = replace_dropbox_dir(app[2])
         if app[1] == "hexchat":
-            app_path = app[2].strip("/").split("/")
-            icons_dir = app_path[len(app_path) - 1]
-            del app_path[len(app_path) - 1]
-            app_path = "/".join(app_path) + "/"
-            if path.isdir(app_path):
-                create_dir(app_path + icons_dir + "/")
+            create_hexchat_dir(app)
         if app[2]:
             if path.isdir(app[2]) or path.isfile(app[2]):
                 icons = get_app_icons(app[1])
                 if icons:
                     if app[1] in apps.keys():
-                        app_name = app[1]+str(ctr)
+                        app_name = app[1] + str(ctr)
                         ctr += 1
                     else:
                         app_name = app[1]
@@ -309,13 +326,14 @@ def reinstall():
         for app in apps:
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
+            app_db = apps[app]["dbfile"]
             revert_app = apps[app]["name"]
             for icon in app_icons:
-                script = False
+                is_script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon]
                     if len(icon) > 2:
-                        script = True
+                        is_script = True
                         if icon[2] == qt_script:
                             if sni_qt_reverted:
                                 continue
@@ -328,15 +346,19 @@ def reinstall():
                         revert_icon = icon[0]  # Hardcoded icon to be reverted
                 else:
                     revert_icon = icon.strip()
-                if not script:
-                    try:
-                        backup(app_path + revert_icon, revert=True)
-                    except:
-                        continue
+                if not is_script:
+                    if app_db == "hexchat":
+                        if path.exists(app_path):
+                            rmtree(app_path)
+                    else:
+                        try:
+                            backup(app_path + revert_icon, revert=True)
+                        except:
+                            continue
                     if revert_app not in reverted_apps:
                         print("%s -- reverted" % (revert_app))
                         reverted_apps.append(revert_app)
-                elif script:
+                elif is_script:
                     try:
                         backup(app_path + icon[3], revert=True)
                     except:
@@ -371,20 +393,19 @@ def install():
             icon_ctr = 1
             while icon_ctr <= len(app_icons) and not dont_install:
                 icon = app_icons[icon_ctr - 1]
-                script = False
+                is_script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon]
                     base_icon = path.splitext(icon[0])[0]
+                    symlink_icon = path.splitext(icon[1])[0]
                     if len(icon) > 2:
-                        script = True
+                        is_script = True
                         sfile = "./" + db_folder + script_folder + icon[2]
-                    if theme.lookup_icon(base_icon, default_icon_size, 0):
-                        repl_icon = symlink_icon = icon[0]
-                    else:
-                        # Hardcoded icon to be replaced
-                        symlink_icon = icon[0]
-                        # Theme Icon that will replace hardcoded icon
+                    if theme.lookup_icon(symlink_icon, default_icon_size, 0):
                         repl_icon = icon[1]
+                        symlink_icon = icon[0]
+                    else:
+                        repl_icon = symlink_icon = icon[0]
                 else:
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
@@ -398,12 +419,13 @@ def install():
                     if ext_theme not in ("png", "svg"):
                         exit("Theme icons need to be svg or png files.\
                             \nOther formats are not supported yet")
-                    if not script:
+                    if not is_script:
                         if symlink_icon:
                             output_icon = app_path + symlink_icon
                         else:
                             output_icon = app_path + repl_icon
-                        backup(output_icon)
+                        if not(app_dbfile in backup_ignore_list):
+                            backup(output_icon)
                         if ext_theme == ext_orig:
                             execute(["ln", "-sf", fname, output_icon])
                             if fbase not in fixed_icons:
