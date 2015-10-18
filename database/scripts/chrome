@@ -3,7 +3,7 @@ cd ./database/scripts/
 mkdir -p extracted
 
 if [[ $1 == *.svg ]]; then
-    python3 svg2png.py $1 $(echo $2 | cut -f 1 -d '.')
+    python3 svgtopng.py $1 $(echo $2 | cut -f 1 -d '.')
 else
     cp $1 $(echo $2 | cut -f 1 -d '.')
 fi
