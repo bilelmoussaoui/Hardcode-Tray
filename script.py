@@ -11,7 +11,7 @@ Licence : The script is released under GPL,
 from csv import reader
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
-from subprocess import Popen, PIPE, check_output
+from subprocess import Popen, PIPE, check_output, call
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
@@ -20,7 +20,12 @@ try:
     from cairosvg import svg2png
     use_inkscape = False
 except ImportError:
-    use_inkscape = True
+    ink_flag = call(['which', 'inkscape'])
+    if ink_flag == 0:
+        use_inkscape = True
+    else:
+        exit("You need either a working python-cairosvg installation or inkscape installed. Exiting.")
+        
 
 from gi import require_version
 require_version('Gtk', '3.0')
