@@ -21,13 +21,14 @@ def convert_svg2png(infile, outfile):
         @dest_path : String; the png file absolute path
     """
     if use_inkscape:
-        p = Popen(["inkscape", "-f" ,origfile, "-e " ,symlfile], stdout=PIPE, stderr=PIPE)
+        p = Popen(["inkscape", "-f" ,infile, "-e " ,outfile], stdout=PIPE, stderr=PIPE)
     else:
-        with open(origfile, "r") as content_file:
+        with open(infile, "r") as content_file:
             svg = content_file.read()
-        fout = open(symlfile, "wb")
+        fout = open(outfile, "wb")
         svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
         fout.close()
+
 
 
 if __name__ == "__main__":
