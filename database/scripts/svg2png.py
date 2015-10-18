@@ -5,7 +5,7 @@ import sys
 
 try:
     from cairosvg import svg2png
-    use_inkscape = True
+    use_inkscape = False
 except ImportError:
     use_inkscape = True
 
