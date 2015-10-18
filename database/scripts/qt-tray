@@ -5,7 +5,7 @@ from os import symlink, chown, getenv, remove
 from subprocess import Popen, PIPE
 from imp import load_source
 
-svgtopng = load_source('svgtopng', './svgtopng.py')
+svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
 
 origfile = sys.argv[1]
 symlfile = sys.argv[3] + sys.argv[2]

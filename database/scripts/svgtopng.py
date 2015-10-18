@@ -30,7 +30,6 @@ def convert_svg2png(infile, outfile):
         fout.close()
 
 
-
 if __name__ == "__main__":
     infile = sys.argv[1]
     outfile = sys.argv[2]
