@@ -9,7 +9,7 @@ if [ "$4" -eq 0 ]; then
 fi
 
 if [[ $1 == *.svg ]]; then
-    python3 svg2png.py $1 resources_old/_linux/$2
+    python3 svgtopng.py $1 resources_old/_linux/$2
 else
     cp $1 resources_old/_linux/$2
 fi

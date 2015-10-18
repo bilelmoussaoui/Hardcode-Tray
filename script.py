@@ -15,21 +15,14 @@ from subprocess import Popen, PIPE, check_output, call
 from sys import exit
 from shutil import rmtree, copyfile, move
 from hashlib import md5
+from imp import load_source
 from collections import OrderedDict
-try:
-    from cairosvg import svg2png
-    use_inkscape = False
-except ImportError:
-    ink_flag = call(['which', 'inkscape'])
-    if ink_flag == 0:
-        use_inkscape = True
-    else:
-        exit("You need either a working python-cairosvg installation or inkscape installed. Exiting.")
-        
 
 from gi import require_version
 require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
+
+svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
@@ -91,22 +84,6 @@ def get_subdirs(directory):
         return sub_dirs
     else:
         return None
-
-
-def svgtopng(file_path, dest_path):
-    """
-        Converts svg files to png using Cairosvg or Inkscape
-        @file_path : String; the svg file absolute path
-        @dest_path : String; the png file absolute path
-    """
-    if use_inkscape:
-        execute(["inkscape", "-f" ,file_path, "-e " ,dest_path])
-    else:
-        with open(file_path, "r") as content_file:
-            svg = content_file.read()
-        fout = open(dest_path, "wb")
-        svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
-        fout.close()
 
 
 def mchown(directory):
@@ -457,7 +434,7 @@ def install():
                                 fixed_icons.append(fbase)
                         elif ext_theme == "svg" and ext_orig == "png":
                             try:  # Convert the svg file to a png one
-                                svgtopng(fname, output_icon)
+                                svgtopng.convert_svg2png(fname, output_icon)
                                 mchown(output_icon)
                             except:
                                 print("The svg file `%s` is invalid." % fname)
