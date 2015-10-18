@@ -13,7 +13,7 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 
   2. Install  `python3-cairosvg`
   ```bash
-  sudo apt-get install python3-cairocffi python3-cairosvg
+  sudo apt-get install python3-cairosvg
   ```
   Or install `inkscape` 
   ```bash
