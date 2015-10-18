@@ -11,9 +11,13 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
   git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
   ```
 
-  2. Install `python3-cairocffi` & `python3-cairosvg`
+  2. Install  `python3-cairosvg`
   ```bash
-  sudo apt-get install python3-cairocffi python3-cairosvg
+  sudo apt-get install python3-cairosvg
+  ```
+  Or install `inkscape` 
+  ```bash
+  sudo apt-get install inkscape
   ```
 
   3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a non debian distro (like Fedora or Arch)
