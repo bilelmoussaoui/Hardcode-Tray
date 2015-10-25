@@ -2,7 +2,7 @@
 
 import sys
 from os import symlink, chown, getenv, remove
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, call
 
 try:
     from cairosvg import svg2png
