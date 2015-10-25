@@ -53,5 +53,6 @@ After
 ### Hardcode-Tray wiki!
 - [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
 - [How does the script works?](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-does-the-script-works%3F)
+- [How to build the patched version of Sni-Qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-sni-qt)
 - [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
 - [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
