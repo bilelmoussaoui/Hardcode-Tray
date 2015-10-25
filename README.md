@@ -7,9 +7,11 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 
 ### Screenshots
 Before 
+
 ![Before](screenshots/before.png)
 
 After
+
 ![After](screenshots/after.png)
 
 
