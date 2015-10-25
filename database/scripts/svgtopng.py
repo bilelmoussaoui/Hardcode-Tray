@@ -7,7 +7,7 @@ from subprocess import Popen, PIPE, call
 try:
     from cairosvg import svg2png
     use_inkscape = False
-except ImportError:
+except (ImportError, AttributeError):
     ink_flag = call(['which', 'inkscape'])
     if ink_flag == 0:
         use_inkscape = True
