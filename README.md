@@ -5,6 +5,14 @@ The script will automagically detect your default theme, the right icon size, th
 
 For a better experience use [Numix icon theme](https://github.com/numixproject/numix-icon-theme).
 
+### Screenshots
+Before 
+![Before](screenshots/before.png)
+
+After
+![After](screenshots/after.png)
+
+
 ### How to use
   1. Download the [zip folder](https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip) or clone the repository
   ```bash
