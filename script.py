@@ -189,14 +189,11 @@ def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
         create_dir(path.dirname(extracted))
         execute([dirname + "data_pack.py", dirname + pak_file])
         for file_name in listdir(extracted):
-            if get_extension(file_name) == "png":
-                icon = extracted + file_name
-                if path.isfile(icon):
-                    for default_icon in default_icons:
-                        default_icon_path = images_dir + default_icon + ".png"
-                        if compare_two_images(icon, default_icon_path):
-                            list_icons[default_icon] = icon
-                                
+            icon = extracted + file_name
+            for default_icon in default_icons:
+                default_icon_path = images_dir + default_icon + ".png"
+                if compare_two_images(icon, default_icon_path):
+                    list_icons[default_icon] = icon
         if not list_icons or len(list_icons) < len(default_icons):
             if path.isdir(extracted):
                 rmtree(extracted)
