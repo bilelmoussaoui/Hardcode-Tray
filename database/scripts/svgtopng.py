@@ -21,7 +21,8 @@ def convert_svg2png(infile, outfile):
         @dest_path : String; the png file absolute path
     """
     if use_inkscape:
-        p = Popen(["inkscape", "-f" ,infile, "-e " ,outfile], stdout=PIPE, stderr=PIPE)
+        p = Popen(["inkscape", "-f" ,infile, "-e" ,outfile], stdout=PIPE, stderr=PIPE)
+        output, err = p.communicate()
     else:
         with open(infile, "r") as content_file:
             svg = content_file.read()
