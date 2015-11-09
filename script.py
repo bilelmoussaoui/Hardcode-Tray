@@ -479,7 +479,7 @@ def install():
                                 else:
                                     do = 1
                                 execute([sfile, fname, symlink_icon,
-                                        app_path, str(do)])
+                                        app_path, str(do), icon[3])
                             else:
                                 print("%s -- script file does not exists" % sfile)
                         # to avoid identical messages
