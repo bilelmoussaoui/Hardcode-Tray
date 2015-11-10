@@ -44,4 +44,5 @@ WizNote, wiznote, /usr/bin/WizNote/, WizNote
 Xkbmod Indicator, xkbmod-indicator, /usr/share/indicator-xkbmod/icons/,
 yd-tools , yd-tools, /opt/yd-tools/icons/,
 Youtube Indicator, youtube-indicator, /opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons/,
+Yum Extender(DNF), yum-extender-dnf,  /usr/share/yumex-dnf/gfx/,
 Workrave, workrave, /usr/share/workrave/images/,
