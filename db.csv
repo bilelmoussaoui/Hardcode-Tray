@@ -28,6 +28,7 @@ OwnCloud, owncloud, /usr/share/owncloud/,
 Pomodoro Indicator, pomodoro-indicator, /opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/,
 Prime Indicator, primeindicator, /usr/lib/primeindicator/,
 Pushbullet Indicator, pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/,
+QElectroTech, qelectrotech, /usr/share/qelectrotech/, 
 RadioTray, radiotray, /usr/share/radiotray/images/,
 ScreenCloud, screencloud, /usr/bin/screencloud/,
 Seafile, seafile, /usr/bin/seafile-applet/, seafile-applet
