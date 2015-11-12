@@ -2,7 +2,7 @@
 '''
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer , Joshua Fogg
-Version : 2.1
+Version : 2.2
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
         released under BSD license
