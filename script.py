@@ -72,7 +72,8 @@ def detect_de():
 def get_subdirs(directory):
     """
         Returns a list of subdirectories, used in replace_dropbox_dir
-        @directory : String; path of the directory
+        Args:
+            directory (str): path of the directory
     """
     if path.isdir(directory):
         dirs = listdir(directory)
@@ -89,7 +90,8 @@ def get_subdirs(directory):
 def mchown(directory):
     """
         Fix folder/path permissions
-        @directory: string; folder/file path
+        Args:
+            directory (str): folder/file path
     """
     path_list = directory.split("/")
     d = "/"
@@ -104,7 +106,8 @@ def mchown(directory):
 def create_dir(folder):
     """
         Create a directory and fix folder permissions
-        @folder: string; folder path
+        Args :
+            folder (str): folder path
     """
     if not path.isdir(folder):
         makedirs(folder, exist_ok=True)
@@ -113,57 +116,67 @@ def create_dir(folder):
 
 def execute(command_list, verbose=True):
     """
-        Run a command using Popen
-        @command_list: List;
+        Run a command using "Popen"
+        Args :
+            command_list(list)
+            verbose(bool)
     """
     p = Popen(command_list, stdout=PIPE, stderr=PIPE)
-    output, err = p.communicate()
-    if verbose and err and err not in script_errors:
-        script_errors.append(err)
+    output, error = p.communicate()
+    if verbose and error and error not in script_errors:
+        script_errors.append(error)
     return output
 
 
 def compare_two_images(file1path, file2path):
     """
         Compare two images/files
-        @file1path : String; The path to the first file
-        @file2path : String; The path to the second file
+        Args:
+            file1path : String; The path to the first file
+            file2path : String; The path to the second file
+        Returns:
+            bool
     """
     if path.isfile(file1path) and path.isfile(file2path):
-        fcontent = open(file1path, "rb").read()
-        scontent = open(file2path, "rb").read()
-        return md5(fcontent).hexdigest() == md5(scontent).hexdigest()
+        first_content = open(file1path, "rb").read()
+        second_content = open(file2path, "rb").read()
+        return md5(first_content).hexdigest() == md5(second_content).hexdigest()
 
 
 def get_extension(filename):
     """
         returns the file extension
-        @filename : String; file name
+        Args:
+            filename(str) : file name
+        Returns
+            str : file extension
     """
     return path.splitext(filename)[1].strip(".").lower()
 
 
-def copy_file(src, dest, overwrite=False):
+def copy_file(src, destination, overwrite=False):
     """
         Simple copy file function with the possibility to overwrite the file
-        @src : String; source file
-        @dest : String; destination folder
-        @overwrite : Boolean; True to overwrite the file False by default
+        Args :
+            src(str) : source file
+            dest(str) : destination folder
+            overwrite(bool) : True to overwrite the file False by default
     """
     if overwrite:
-        if path.isfile(dest):
-            remove(dest)
-        copyfile(src, dest)
+        if path.isfile(destination):
+            remove(destination)
+        copyfile(src, destination)
     else:
-        if not path.isfile(dest):
-            copyfile(src, dest)
+        if not path.isfile(destination):
+            copyfile(src, destination)
 
 
 def filter_icon(list_icons, value):
     """
         Returns an integer:  the index of an icon in list
-        @list_icons: list; list of icons with sublist
-        @value: string; the name of icon that you're looking for
+        Args:
+            list_icons(list): list of icons with sublist
+            value(str): The name of icon that you're looking for
     """
     for i in range(len(list_icons)):
         for j in range(len(list_icons[i])):
@@ -173,8 +186,10 @@ def filter_icon(list_icons, value):
 
 def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
     """
-        returns the correct chrome indicator icons name in the pak file
-        @chrome_link: string; the chrome/chromium installation path
+        Returns the correct chrome indicator icons name in the pak file
+        Args:
+            apps_infos(list): Contains the information's in the database file
+            pak_file(str): The pak file name
     """
     images_dir = images_folder + "chromium/"
     dirname = absolute_path + db_folder + script_folder
@@ -209,7 +224,8 @@ def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
 def replace_dropbox_dir(directory):
     """
         Corrects the hardcoded dropbox directory
-        @directory: string; the default dropbox directory
+        Args:
+            directory(str): the default dropbox directory
     """
     dirs = directory.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
@@ -225,8 +241,9 @@ def replace_dropbox_dir(directory):
 
 def create_hexchat_dir(apps_infos):
     """
-        Create hexchat icons directory located in $HOME/.config/hexchat/icons
-        @apps_infos: list; hexchat informations in the database file
+        Create Hexchat icons directory located in $HOME/.config/hexchat/icons
+        Args:
+            apps_infos(list) : Hexchat informations in the database file
     """
     app_path = apps_infos[2].strip("/").split("/")
     icons_dir = app_path[len(app_path) - 1]
@@ -236,7 +253,7 @@ def create_hexchat_dir(apps_infos):
         create_dir(app_path + icons_dir + "/")
 
 
-def get_apps_informations(revert=False):
+def get_apps_informations():
     """
         Reads the database file and returns a dictionary with all information
     """
@@ -280,8 +297,9 @@ def get_apps_informations(revert=False):
 
 def get_app_icons(app_name):
     """
-        gets a list of icons in /database/applicationname of each application
-        @app_name: string; the application name
+        Gets a list of icons of each application
+        Args:
+            app_name(str): The application name
     """
     if path.isfile(db_folder + app_name):
         f = open(db_folder + app_name)
@@ -303,8 +321,9 @@ def get_app_icons(app_name):
 def backup(icon, revert=False):
     """
         Backup functions, enables reverting
-        @icon: string; the original icon name
-        @revert: boolean; True: revert, False: only backup
+        Args:
+            icon(str) : the original icon name
+            revert(bool) : True: revert, False: only backup
     """
     back_file = icon + backup_extension
     if path.isfile(icon):
