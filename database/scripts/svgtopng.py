@@ -8,7 +8,7 @@ try:
     from cairosvg import svg2png
     use_inkscape = False
 except (ImportError, AttributeError):
-    ink_flag = call(['which', 'inkscape'])
+    ink_flag = call(['which', 'inkscape'], stdout=PIPE, stderr=PIPE)
     if ink_flag == 0:
         use_inkscape = True
     else:
