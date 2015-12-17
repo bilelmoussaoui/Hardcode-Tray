@@ -249,7 +249,7 @@ def create_hexchat_dir(apps_infos):
     icons_dir = app_path[len(app_path) - 1]
     del app_path[len(app_path) - 1]
     app_path = "/" + "/".join(app_path) + "/"
-    if not path.exists(app_path):
+    if path.exists(app_path):
         create_dir(app_path + icons_dir + "/")
 
 
