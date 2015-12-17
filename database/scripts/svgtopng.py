@@ -34,7 +34,7 @@ def convert_svg2png(infile, outfile):
 
 def is_svg_enabled():
     global disable_svg2png
-    return disable_svg2png
+    return not disable_svg2png
 
 if __name__ == "__main__":
     infile = sys.argv[1]
