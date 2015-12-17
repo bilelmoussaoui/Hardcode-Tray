@@ -449,7 +449,7 @@ def install():
                                 print("%s -- fixed using %s" % (app_name, fbase))
                                 fixed_icons.append(fbase)
                         elif ext_theme == "svg" and ext_orig == "png":
-                            if not svgtopng.is_svg_enabled():
+                            if svgtopng.is_svg_enabled():
                                 try:  # Convert the svg file to a png one
                                     svgtopng.convert_svg2png(fname, output_icon)
                                     mchown(output_icon)
@@ -470,7 +470,7 @@ def install():
                             continue
                     # Qt applications
                     else:
-                        if not svgtopng.is_svg_enabled():
+                        if svgtopng.is_svg_enabled():
                             if icon[2] == qt_script:
                                 sni_qt_pre = apps[app].get("sniqtprefix", app)
                                 sni_qt_path = sni_qt_folder + sni_qt_pre + "/"
@@ -519,7 +519,7 @@ print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : " ,end ="")
-print("Disabled" if svgtopng.is_svg_enabled() else "Enabled")
+print("enabled" if svgtopng.is_svg_enabled() else "disabled")
 print("1 - Apply")
 print("2 - Revert")
 try:
