@@ -449,16 +449,17 @@ def install():
                                 print("%s -- fixed using %s" % (app_name, fbase))
                                 fixed_icons.append(fbase)
                         elif ext_theme == "svg" and ext_orig == "png":
-                            try:  # Convert the svg file to a png one
-                                svgtopng.convert_svg2png(fname, output_icon)
-                                mchown(output_icon)
-                            except:
-                                print("The svg file `%s` is invalid." % fname)
-                                continue
-                            # to avoid identical messages
-                            if not (fbase in fixed_icons):
-                                print("%s -- fixed using %s" % (app_name, fbase))
-                                fixed_icons.append(fbase)
+                            if not svgtopng.is_svg_enabled():
+                                try:  # Convert the svg file to a png one
+                                    svgtopng.convert_svg2png(fname, output_icon)
+                                    mchown(output_icon)
+                                except:
+                                    print("The svg file `%s` is invalid." % fname)
+                                    continue
+                                # to avoid identical messages
+                                if not (fbase in fixed_icons):
+                                    print("%s -- fixed using %s" % (app_name, fbase))
+                                    fixed_icons.append(fbase)
                         elif ext_theme == "png" and ext_orig == "svg":
                             print("Theme icon is png and hardcoded icon is svg.\
                                 \nThere is nothing we can do about that :(")
@@ -469,42 +470,43 @@ def install():
                             continue
                     # Qt applications
                     else:
-                        if icon[2] == qt_script:
-                            sni_qt_pre = apps[app].get("sniqtprefix", app)
-                            sni_qt_path = sni_qt_folder + sni_qt_pre + "/"
-                            if not path.exists(sni_qt_path):
-                                create_dir(sni_qt_path)
-                            if len(icon) == 4:
-                                symlink_icon = sni_qt_path + symlink_icon
-                                original_icon = sni_qt_path + icon[3]
-                                try:
-                                    remove(symlink_icon)
-                                    symlink(original_icon, symlink_icon)
-                                except FileNotFoundError:
-                                    symlink(original_icon, symlink_icon)
+                        if not svgtopng.is_svg_enabled():
+                            if icon[2] == qt_script:
+                                sni_qt_pre = apps[app].get("sniqtprefix", app)
+                                sni_qt_path = sni_qt_folder + sni_qt_pre + "/"
+                                if not path.exists(sni_qt_path):
+                                    create_dir(sni_qt_path)
+                                if len(icon) == 4:
+                                    symlink_icon = sni_qt_path + symlink_icon
+                                    original_icon = sni_qt_path + icon[3]
+                                    try:
+                                        remove(symlink_icon)
+                                        symlink(original_icon, symlink_icon)
+                                    except FileNotFoundError:
+                                        symlink(original_icon, symlink_icon)
+                                else:
+                                    if path.isfile(sfile):
+                                        execute([sfile, fname, symlink_icon,
+                                                sni_qt_path])
+                                    else:
+                                        print("%s -- script file does not exists" % sfile)
                             else:
                                 if path.isfile(sfile):
+                                    backup(app_path + icon[3])
+                                    if icon_ctr == 1:
+                                        do = 0
+                                    elif icon_ctr == len(app_icons):
+                                        do = -1
+                                    else:
+                                        do = 1
                                     execute([sfile, fname, symlink_icon,
-                                            sni_qt_path])
+                                            app_path, str(do), icon[3]])
                                 else:
                                     print("%s -- script file does not exists" % sfile)
-                        else:
-                            if path.isfile(sfile):
-                                backup(app_path + icon[3])
-                                if icon_ctr == 1:
-                                    do = 0
-                                elif icon_ctr == len(app_icons):
-                                    do = -1
-                                else:
-                                    do = 1
-                                execute([sfile, fname, symlink_icon,
-                                        app_path, str(do), icon[3]])
-                            else:
-                                print("%s -- script file does not exists" % sfile)
-                        # to avoid identical messages
-                        if not (fbase in fixed_icons):
-                            print("%s -- fixed using %s" % (app_name, fbase))
-                            fixed_icons.append(fbase)
+                            # to avoid identical messages
+                            if not (fbase in fixed_icons):
+                                print("%s -- fixed using %s" % (app_name, fbase))
+                                fixed_icons.append(fbase)
                 icon_ctr += 1
 
     else:
@@ -516,6 +518,8 @@ if detect_de() in ("pantheon", "xfce"):
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
+print("Svg to png functions are : " ,end ="")
+print("Disabled" if svgtopng.is_svg_enabled() else "Enabled")
 print("1 - Apply")
 print("2 - Revert")
 try:
