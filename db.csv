@@ -41,6 +41,7 @@ Teamviewer 11, teamviewer, /opt/teamviewer/, TVGuiDelegate
 Telegram, telegram, {userhome}/.TelegramDesktop/tdata/ticons/,
 Tomahawk, tomahawk, /usr/bin/tomahawk/,
 Touchpad Indicator, touchpad-indicator, /opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons/,
+Trimage, trimage, /usr/lib/python2.7/site-packages/trimage/pixmaps/,
 Twitch Indicator, twitch-indicator, /usr/lib/twitch-indicator/,
 Variety, variety, /opt/extras.ubuntu.com/variety/share/variety/media/,
 WizNote, wiznote, /usr/bin/WizNote/, WizNote
