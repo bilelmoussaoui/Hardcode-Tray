@@ -34,9 +34,10 @@ After
   ```bash
   sudo add-apt-repository ppa:cybre/sni-qt-eplus
   sudo apt-get update && sudo apt-get dist-upgrade
-  sudo apt-get install sni-qt
+  sudo apt-get install sni-qt sni-qt:i386
 
   ```
+  the `sni-qt:i386` is used for 32 bits applications as Skype.
   4. Open the `script.py` using this command
   ```bash
   sudo -E python3 script.py
