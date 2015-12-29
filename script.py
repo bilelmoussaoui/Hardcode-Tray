@@ -392,6 +392,8 @@ def install():
     apps = get_apps_informations()
     if len(apps) != 0:
         for app in apps:
+            if not "teamviewer" in app:
+                continue
             app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
             app_dbfile = apps[app]["dbfile"]

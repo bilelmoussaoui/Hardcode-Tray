@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sour="$3"
+dest="$4""$6"
+
+ln -sf $sour $dest
