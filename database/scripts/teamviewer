@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sour="$3"
-dest="$4""$6"
+sour="$2"
+dest="$3""$5"
 
-ln -sf $sour $dest
+ln -sf "$sour" "$dest"
