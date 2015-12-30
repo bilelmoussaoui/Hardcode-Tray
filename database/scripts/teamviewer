@@ -2,5 +2,6 @@
 
 sour="$2"
 dest="$3""$5"
-
-ln -sf "$sour" "$dest"
+if [ -e "$sour" ]; then
+    ln -sf "$sour" "$dest"
+fi
