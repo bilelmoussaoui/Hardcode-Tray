@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-'''
+"""
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
-Contributors : Andreas Angerer , Joshua Fogg
+Contributors : Andreas Angerer, Joshua Fogg
 Version : 2.3
+Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
         released under BSD license
-'''
+"""
 
 from csv import reader
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
@@ -19,10 +20,13 @@ from imp import load_source
 from collections import OrderedDict
 
 from gi import require_version
-require_version('Gtk', '3.0')
+require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gio
 
-svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
+try:
+    svgtopng = load_source("svgtopng", "./database/scripts/svgtopng.py")
+except FileNotFoundError:
+    exit("You need to clone the whole repository to use the script.")
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
@@ -61,7 +65,7 @@ def detect_de():
         try:
             out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
                           verbose=False)
-            if " = \"xfce4\"" in out.decode('utf-8'):
+            if " = \"xfce4\"" in out.decode("utf-8"):
                 return "xfce"
             else:
                 return "other"
@@ -89,18 +93,18 @@ def get_subdirs(directory):
 
 def mchown(directory):
     """
-        Fix folder/path permissions
+        Fix folder/file permissions
         Args:
             directory (str): folder/file path
     """
     path_list = directory.split("/")
-    d = "/"
-    for dir in path_list:
-        d += str(dir) + "/"
-        if path.exists(d):
-            chown(d, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
-        elif path.isfile(d.rstrip("/")):
-            execute(['chmod', '0777', d.rstrip('/')])
+    dir_path = "/"
+    for directory in path_list:
+        dir_path += str(directory) + "/"
+        if path.exists(dir_path):
+            chown(dir_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+        elif path.isfile(dir_path.rstrip("/")):
+            execute(["chmod", "0777", dir_path.rstrip("/")])
 
 
 def create_dir(folder):
@@ -111,7 +115,7 @@ def create_dir(folder):
     """
     if not path.isdir(folder):
         makedirs(folder, exist_ok=True)
-    mchown(folder)
+        mchown(folder)
 
 
 def execute(command_list, verbose=True):
@@ -518,7 +522,7 @@ if detect_de() in ("pantheon", "xfce"):
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
-print("Svg to png functions are : " ,end ="")
+print("Svg to png functions are : ", end ="")
 print("enabled" if svgtopng.is_svg_enabled() else "disabled")
 print("1 - Apply")
 print("2 - Revert")
