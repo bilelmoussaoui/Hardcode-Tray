@@ -537,7 +537,7 @@ if detect_de() in ("pantheon", "xfce"):
 fix_only = False
 if len(argv) > 1 and argv[1] == "--only":
     if len(argv) > 2:
-        fix_only = argv[2].strip().split(",")
+        fix_only = argv[2].lower().strip().split(",")
     else:
         fix_only = False
         
