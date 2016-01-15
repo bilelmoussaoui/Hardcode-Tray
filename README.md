@@ -40,10 +40,11 @@ After
   ```bash
   sudo -E python3 script.py
   ```
-  You can use `--only` argument to fix/revert only one application
+  You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
   ```bash
   sudo -E python3 script.py --only telegram,skype
   ```
+  In order to get the names needed to fix only specific programs, you can look at the third column of `db.csv`. There you can find the corresponding name for the program you want to fix.
 
   5. Enjoy!
 
