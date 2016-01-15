@@ -40,6 +40,10 @@ After
   ```bash
   sudo -E python3 script.py
   ```
+  You can use `--only` argument to fix/revert only one application
+  ```bash
+  sudo -E python3 script.py --only telegram,skype
+  ```
 
   5. Enjoy!
 
