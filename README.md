@@ -44,7 +44,7 @@ After
   ```bash
   sudo -E python3 script.py --only telegram,skype
   ```
-  In order to get the names needed to fix only specific programs, you can look at the third column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
+  In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
 
   5. Enjoy!
 
