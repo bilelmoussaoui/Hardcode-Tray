@@ -34,7 +34,7 @@ After
   sudo apt-get install sni-qt sni-qt:i386
 
   ```
-  the `sni-qt:i386` is used for 32 bits applications as Skype.
+  The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package, however it is shipping its own version. Therefore this script also overwrites the version shipped by teamviewer with the patched one.
   4. Open the `script.py` using this command
   ```bash
