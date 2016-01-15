@@ -13,7 +13,7 @@ from csv import reader
 from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
     getenv, symlink, remove
 from subprocess import Popen, PIPE, check_output, call
-from sys import exit
+from sys import exit, argv
 from shutil import rmtree, copyfile, move
 from hashlib import md5
 from imp import load_source
@@ -257,44 +257,59 @@ def create_hexchat_dir(apps_infos):
         create_dir(app_path + icons_dir + "/")
 
 
-def get_apps_informations():
+def get_supported_apps():
+    """
+        Gets a list of supported applications: files in /database
+    """
+    supported_apps = []
+    for file in listdir(absolute_path + db_folder):
+        if path.isfile(absolute_path + db_folder + file):
+            supported_apps.append(file)
+    return supported_app
+
+
+def get_apps_informations(fix_only):
     """
         Reads the database file and returns a dictionary with all information
+        Args:
+            @fix_only (list): contains a list of applications to be fixed/reverted
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
     next(r)
     apps = OrderedDict()
     ctr = 0
+    fix_only = fix_only if fix_only else get_supported_apps()
     for app in r:
-        app[2] = app[2].replace("{userhome}", userhome).strip()
-        if "{dropbox}" in app[2]:
-            app[2] = replace_dropbox_dir(app[2])
-        if app[1] == "hexchat":
-            create_hexchat_dir(app)
-        if app[2]:
-            if path.isdir(app[2]) or path.isfile(app[2]):
-                icons = get_app_icons(app[1])
-                if icons:
-                    if app[1] in apps.keys():
-                        app_name = app[1] + str(ctr)
-                        ctr += 1
+        if app[1] in fix_only:
+            app[2] = app[2].replace("{userhome}", userhome).strip()
+            if "{dropbox}" in app[2]:
+                app[2] = replace_dropbox_dir(app[2])
+            if app[1] == "hexchat":
+                create_hexchat_dir(app)
+            if app[2]:
+                if path.isdir(app[2]) or path.isfile(app[2]):
+                    icons = get_app_icons(app[1])
+                    if icons:
+                        if app[1] in apps.keys():
+                            app_name = app[1] + str(ctr)
+                            ctr += 1
+                        else:
+                            app_name = app[1]
+                            ctr = 0
+                        apps[app_name] = OrderedDict()
+                        apps[app_name]["name"] = app[0]
+                        apps[app_name]["dbfile"] = app[1]
+                        apps[app_name]["path"] = app[2]
+                        apps[app_name]["icons"] = icons
+                        if len(app) == 4 and app[3]:
+                            apps[app_name]["sniqtprefix"] = app[3]
                     else:
-                        app_name = app[1]
-                        ctr = 0
-                    apps[app_name] = OrderedDict()
-                    apps[app_name]["name"] = app[0]
-                    apps[app_name]["dbfile"] = app[1]
-                    apps[app_name]["path"] = app[2]
-                    apps[app_name]["icons"] = icons
-                    if len(app) == 4 and app[3]:
-                        apps[app_name]["sniqtprefix"] = app[3]
+                        continue
                 else:
                     continue
             else:
                 continue
-        else:
-            continue
     db.close()
     return apps
 
@@ -337,12 +352,12 @@ def backup(icon, revert=False):
             move(back_file, icon)
 
 
-def reinstall():
+def reinstall(fix_only):
     """
         Reverts to the original icons
     """
     sni_qt_reverted = False
-    apps = get_apps_informations(revert=True)
+    apps = get_apps_informations(fix_only)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -389,11 +404,11 @@ def reinstall():
                         reverted_apps.append(revert_app)
 
 
-def install():
+def install(fix_only):
     """
         Installs the new supported icons
     """
-    apps = get_apps_informations()
+    apps = get_apps_informations(fix_only)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -519,21 +534,27 @@ def install():
 if detect_de() in ("pantheon", "xfce"):
     default_icon_size = 24
 
+fix_only = False
+if len(argv) > 1 and argv[1] == "--only":
+    fix_only = argv[2].strip().split(",")
+
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : ", end ="")
-print("enabled" if svgtopng.is_svg_enabled() else "disabled")
+print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
+print("Applications will be fixed : ", end ="")
+print(",".join(fix_only) if fix_only else "All")
 print("1 - Apply")
 print("2 - Revert")
 try:
     choice = int(input("Please choose: "))
     if choice == 1:
         print("Applying now..\n")
-        install()
+        install(fix_only)
     elif choice == 2:
         print("Reverting now..\n")
-        reinstall()
+        reinstall(fix_only)
     else:
         exit("Please try again")
 except ValueError:
