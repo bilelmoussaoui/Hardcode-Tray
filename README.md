@@ -21,14 +21,11 @@ After
   git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
   ```
 
-  2. Install  `python3-cairosvg`
-  ```bash
-  sudo apt-get install python3-cairosvg
-  ```
-  Or install `inkscape` 
-  ```bash
-  sudo apt-get install inkscape
-  ```
+  2. Install  `python3-cairosvg` or `inkscape`
+    - Debian/Ubuntu : <br />
+      `sudo apt-get install python3-cairosvg inkscape`
+    - Fedora : <br />
+      `sudo dnf install python3-cairosvg  inkscape`
 
   3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a non debian distro (like Fedora or Arch)
   ```bash
