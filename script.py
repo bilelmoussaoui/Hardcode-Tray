@@ -536,8 +536,11 @@ if detect_de() in ("pantheon", "xfce"):
 
 fix_only = False
 if len(argv) > 1 and argv[1] == "--only":
-    fix_only = argv[2].strip().split(",")
-
+    if len(argv) > 2:
+        fix_only = argv[2].strip().split(",")
+    else:
+        fix_only = False
+        
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
