@@ -265,7 +265,7 @@ def get_supported_apps():
     for file in listdir(absolute_path + db_folder):
         if path.isfile(absolute_path + db_folder + file):
             supported_apps.append(file)
-    return supported_app
+    return supported_apps
 
 
 def get_apps_informations(fix_only):
