@@ -23,17 +23,28 @@ After
 
   2. Install  `python3-cairosvg` or `inkscape`
     - Debian/Ubuntu : <br />
-      `sudo apt-get install python3-cairosvg inkscape`
+      `sudo apt-get install python3-cairosvg`<br />
+      `sudo apt-get install inkscape`
     - Fedora : <br />
-      `sudo dnf install python3-cairosvg  inkscape`
+      `sudo dnf install python3-cairosvg`<br />
+      `sudo dnf install inkscape`
+    - Arch : <br />
+      `sudo pacman -S inkscape`<br />
+      `sudo pacman -S python-cairosvg`
 
-  3. Install the patched version of `sni-qt` if you use any Qt applications or [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a non debian distro (like Fedora or Arch)
-  ```bash
-  sudo add-apt-repository ppa:cybre/sni-qt-eplus
-  sudo apt-get update && sudo apt-get dist-upgrade
-  sudo apt-get install sni-qt sni-qt:i386
-
-  ```
+  3. Install the patched version of `sni-qt` 
+    - Debian/Ubuntu :<br />
+      <pre>
+      sudo add-apt-repository ppa:cybre/sni-qt-eplus
+      sudo apt-get update && sudo apt-get dist-upgrade
+      sudo apt-get install sni-qt sni-qt:i386
+      </pre>
+    - Arch : <br />
+      <pre>
+      yaourt sni-qt-eplus 
+      yaourt lib32-sni-qt-eplus-bzr
+      </pre>
+  You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package, however it is shipping its own version. Therefore this script also overwrites the version shipped by teamviewer with the patched one.
   4. Open the `script.py` using this command
