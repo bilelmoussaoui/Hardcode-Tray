@@ -39,6 +39,9 @@ db_file = "db.csv"
 backup_extension = ".bak"
 userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
+if userhome.lower() == "/root":
+    userhome = "/" + getenv("SUDO_USER")
+    
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
