@@ -8,9 +8,9 @@ else
     cp $1 $(echo $2 | cut -f 1 -d '.')
 fi
 
-./data_pack.py chrome_100_percent.pak $(echo $2 | cut -f 1 -d '.')
+./data_pack.py $5 $(echo $2 | cut -f 1 -d '.')
 
 if [ "$4" -eq -1 ]; then
-    mv chrome_100_percent.pak $3/chrome_100_percent.pak
+    mv $5 $3/$5
     rm -rf ./extracted
 fi
