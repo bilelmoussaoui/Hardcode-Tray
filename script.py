@@ -9,19 +9,19 @@ Licence : The script is released under GPL,
         released under BSD license
 """
 
+from collections import OrderedDict
 from csv import reader
-from os import environ, geteuid, getlogin, listdir, path, makedirs, chown,\
-    getenv, symlink, remove
-from subprocess import Popen, PIPE, check_output, call
-from sys import exit, argv
-from shutil import rmtree, copyfile, move
 from hashlib import md5
 from imp import load_source
-from collections import OrderedDict
+from os import (chown, environ, getenv, geteuid, listdir, makedirs,
+                path, remove, symlink)
+from shutil import copyfile, move, rmtree
+from subprocess import PIPE, Popen, call, check_output
+from sys import argv, exit
 
 from gi import require_version
 require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gio
+from gi.repository import Gio, Gtk
 
 try:
     svgtopng = load_source("svgtopng", "./database/scripts/svgtopng.py")
@@ -41,7 +41,7 @@ userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
 if userhome.lower() == "/root":
     userhome = "/" + getenv("SUDO_USER")
-    
+
 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
 db_folder = "database/"
 script_folder = "scripts/"
@@ -89,7 +89,7 @@ def get_subdirs(directory):
         for sub_dir in dirs:
             if path.isdir(directory + sub_dir):
                 sub_dirs.append(sub_dir)
-        return sub_dirs
+        return sub_dirs.sort()
     else:
         return None
 
@@ -144,7 +144,7 @@ def compare_two_images(file1path, file2path):
         Returns:
             bool
     """
-    if path.isfile(file1path) and path.isfile(file2path):
+    if path.exists(file1path) and path.exists(file2path):
         first_content = open(file1path, "rb").read()
         second_content = open(file2path, "rb").read()
         return md5(first_content).hexdigest() == md5(second_content).hexdigest()
@@ -178,52 +178,41 @@ def copy_file(src, destination, overwrite=False):
             copyfile(src, destination)
 
 
-def filter_icon(list_icons, value):
-    """
-        Returns an integer:  the index of an icon in list
-        Args:
-            list_icons(list): list of icons with sublist
-            value(str): The name of icon that you're looking for
-    """
-    for i in range(len(list_icons)):
-        for j in range(len(list_icons[i])):
-            if list_icons[i][j] == value:
-                return i
-
-
-def get_correct_chrome_icons(apps_infos, pak_file="chrome_100_percent.pak"):
+def get_correct_chrome_icons(apps_infos,
+                             pak_file="chrome_100_percent.pak",
+                             icons_dir = "chromium"):
     """
         Returns the correct chrome indicator icons name in the pak file
         Args:
             apps_infos(list): Contains the information's in the database file
             pak_file(str): The pak file name
+            icons_dir(str): Folder name that contains the default icons
     """
-    images_dir = images_folder + "chromium/"
+    images_dir = images_folder + icons_dir + "/"
     dirname = absolute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
-    default_icons = ["google-chrome-notification",
-                     "google-chrome-notification-disabled",
-                     "google-chrome-no-notification",
-                     "google-chrome-no-notification-disabled"]
-    list_icons = {}
+    app_icons = apps_infos["icons"]
+    j = 0
     if path.isfile(apps_infos["path"] + pak_file):
-        copy_file(apps_infos["path"] + pak_file, dirname + pak_file, True)
-        create_dir(path.dirname(extracted))
-        execute([dirname + "data_pack.py", dirname + pak_file])
-        for file_name in listdir(extracted):
-            icon = extracted + file_name
-            for default_icon in default_icons:
-                default_icon_path = images_dir + default_icon + ".png"
-                if compare_two_images(icon, default_icon_path):
-                    list_icons[default_icon] = icon
-        if not list_icons or len(list_icons) < len(default_icons):
-            if path.isdir(extracted):
-                rmtree(extracted)
-            if path.isfile(dirname + pak_file):
-                remove(dirname + pak_file)
-            return None
-        else:
-            return list_icons
+        for i in range(len(app_icons)):
+            icon_path = images_dir + app_icons[i-j][1] + ".png"
+            been_found = False
+            if app_icons[i-j][3] != pak_file or not path.isdir(extracted):
+                copy_file(apps_infos["path"] + pak_file, dirname + pak_file, True)
+                if path.isdir(extracted):
+                    rmtree(extracted)
+                create_dir(path.dirname(extracted))
+                execute([dirname + "data_pack.py", dirname + pak_file])
+            for default_icon in listdir(extracted):
+                default_path = extracted + default_icon
+                if compare_two_images(default_path, icon_path):
+                    app_icons[i-j][0] = default_icon
+                    been_found = True
+            if not been_found and bool(int(app_icons[i-j][4])):
+                del app_icons[i-j]
+                j += 1
+        print(app_icons)
+        return app_icons
     else:
         return None
 
@@ -237,7 +226,6 @@ def replace_dropbox_dir(directory):
     dirs = directory.split("{dropbox}")
     sub_dirs = get_subdirs(dirs[0])
     if sub_dirs:
-        sub_dirs.sort()
         if sub_dirs[0].split("-")[0] == "dropbox":
             return dirs[0] + sub_dirs[0] + dirs[1]
         else:
@@ -421,14 +409,8 @@ def install(fix_only):
             dont_install = False
             if app_dbfile in ("google-chrome", "chromium"):
                 pak_file = app_icons[0][3]
-                real_icons = get_correct_chrome_icons(apps[app], pak_file)
-                if real_icons:
-                    for new_icon in real_icons:
-                        for old_icon in app_icons:
-                            if old_icon[1] == new_icon:
-                                apps[app]["icons"][filter_icon(app_icons, new_icon)][0] = real_icons[new_icon]
-                else:
-                    dont_install = True
+                apps[app]["icons"] = get_correct_chrome_icons(apps[app], pak_file)
+                dont_install = not apps[app]["icons"]
             icon_ctr = 1
             while icon_ctr <= len(app_icons) and not dont_install:
                 icon = app_icons[icon_ctr - 1]
@@ -468,19 +450,23 @@ def install(fix_only):
                         if ext_theme == ext_orig:
                             execute(["ln", "-sf", fname, output_icon])
                             if fbase not in fixed_icons:
-                                print("%s -- fixed using %s" % (app_name, fbase))
+                                print("%s -- fixed using %s" %
+                                      (app_name, fbase))
                                 fixed_icons.append(fbase)
                         elif ext_theme == "svg" and ext_orig == "png":
                             if svgtopng.is_svg_enabled():
                                 try:  # Convert the svg file to a png one
-                                    svgtopng.convert_svg2png(fname, output_icon)
+                                    svgtopng.convert_svg2png(
+                                        fname, output_icon)
                                     mchown(output_icon)
                                 except:
-                                    print("The svg file `%s` is invalid." % fname)
+                                    print("The svg file `%s` is invalid." %
+                                          fname)
                                     continue
                                 # to avoid identical messages
                                 if not (fbase in fixed_icons):
-                                    print("%s -- fixed using %s" % (app_name, fbase))
+                                    print("%s -- fixed using %s" %
+                                          (app_name, fbase))
                                     fixed_icons.append(fbase)
                         elif ext_theme == "png" and ext_orig == "svg":
                             print("Theme icon is png and hardcoded icon is svg.\
@@ -509,9 +495,10 @@ def install(fix_only):
                                 else:
                                     if path.isfile(sfile):
                                         execute([sfile, fname, symlink_icon,
-                                                sni_qt_path])
+                                                 sni_qt_path])
                                     else:
-                                        print("%s -- script file does not exists" % sfile)
+                                        print(
+                                            "%s -- script file does not exists" % sfile)
                             else:
                                 if path.isfile(sfile):
                                     backup(app_path + icon[3])
@@ -522,12 +509,14 @@ def install(fix_only):
                                     else:
                                         do = 1
                                     execute([sfile, fname, symlink_icon,
-                                            app_path, str(do), icon[3]])
+                                             app_path, str(do), icon[3]])
                                 else:
-                                    print("%s -- script file does not exists" % sfile)
+                                    print(
+                                        "%s -- script file does not exists" % sfile)
                             # to avoid identical messages
                             if not (fbase in fixed_icons):
-                                print("%s -- fixed using %s" % (app_name, fbase))
+                                print("%s -- fixed using %s" %
+                                      (app_name, fbase))
                                 fixed_icons.append(fbase)
                 icon_ctr += 1
 
@@ -543,13 +532,13 @@ if len(argv) > 1 and argv[1] == "--only":
         fix_only = argv[2].lower().strip().split(",")
     else:
         fix_only = False
-        
+
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 print("Your current icon theme is : %s" % theme_name)
-print("Svg to png functions are : ", end ="")
+print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
-print("Applications will be fixed : ", end ="")
+print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")
 print("1 - Apply")
 print("2 - Revert")
