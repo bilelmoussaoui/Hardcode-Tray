@@ -211,6 +211,8 @@ def get_correct_chrome_icons(apps_infos,
             if not been_found and bool(int(app_icons[i-j][4])):
                 del app_icons[i-j]
                 j += 1
+        if path.exists(extracted):
+            rmtree(extracted)
         return app_icons
     else:
         return None
