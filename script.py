@@ -193,8 +193,8 @@ def get_correct_chrome_icons(apps_infos,
     extracted = dirname + "extracted/"
     app_icons = apps_infos["icons"]
     j = 0
-    if path.isfile(apps_infos["path"] + pak_file):
-        for i in range(len(app_icons)):
+    for i in range(len(app_icons)):
+        if path.isfile(apps_infos["path"] + pak_file):
             icon_path = images_dir + app_icons[i-j][1] + ".png"
             been_found = False
             if app_icons[i-j][3] != pak_file or not path.isdir(extracted):
@@ -211,12 +211,13 @@ def get_correct_chrome_icons(apps_infos,
             if not been_found and bool(int(app_icons[i-j][4])):
                 del app_icons[i-j]
                 j += 1
-        if path.exists(extracted):
-            rmtree(extracted)
-        return app_icons
-    else:
-        return None
-
+        k = i-j+1
+        if k < len(app_icons) and app_icons[k][3] != pak_file:
+            pak_file = app_icons[k][3]
+    if path.exists(extracted):
+        rmtree(extracted)
+    return (app_icons if len(app_icons) > 0 else None)
+    
 
 def replace_dropbox_dir(directory):
     """
