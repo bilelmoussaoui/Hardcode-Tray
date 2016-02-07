@@ -48,7 +48,7 @@ if source.lookup("org.gnome.desktop.interface", True):
     theme = Gtk.IconTheme.get_default()
     theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 else: 
-    gsetings = None
+    gsettings = None
 db_folder = "database/"
 script_folder = "scripts/"
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
