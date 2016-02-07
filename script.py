@@ -539,7 +539,7 @@ if len(argv) > 1 and argv[1] == "--only":
     else:
         fix_only = False
 if len(argv) > 1 and argv[1] == "--travis":
-    install = 1
+    choice = 1
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
@@ -552,7 +552,7 @@ print(",".join(fix_only) if fix_only else "All")
 print("1 - Apply")
 print("2 - Revert")
 try:
-    choice = int(input("Please choose: "))
+    choice = int(input("Please choose: ")) if not choice else choice
     if choice == 1:
         print("Applying now..\n")
         install(fix_only)
