@@ -18,4 +18,4 @@ before_script:
     - "sh -e /etc/init.d/xvfb start"
     - sleep 3 # give xvfb some time to start
 script:
-    - sudo -E python3 script.py
+    - python3 script.py --travis
