@@ -1,11 +1,11 @@
 language: python
 sudo: true
 python: 
-  - "3.2"
-  - "3.3"
-  - "3.4"
-  - "3.5"
+    - "3.2"
+    - "3.3"
+    - "3.4"
+    - "3.5"
 install:
-	- pip install cairosvg
+    - pip install cairosvg
 script:
-	- sudo -E python3 script.py
+    - sudo -E python3 script.py
