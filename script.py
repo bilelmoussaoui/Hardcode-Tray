@@ -42,15 +42,19 @@ userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
 if userhome.lower() == "/root":
     userhome = "/" + getenv("SUDO_USER")
 
-gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+source = Gio.SettingsSchemaSource.get_default()
+if source.lookup("org.gnome.desktop.interface", True):
+    gsettings = Gio.Settings.new("org.gnome.desktop.interface")    
+    theme_name = str(gsettings.get_value("icon-theme")).strip("'")
+else: 
+    gsettings = None
 db_folder = "database/"
 script_folder = "scripts/"
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = absolute_path + db_folder + "images/"
-theme = Gtk.IconTheme.get_default()
-theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
+theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 backup_ignore_list = ["hexchat"]
 fixed_icons = []
@@ -534,10 +538,13 @@ if len(argv) > 1 and argv[1] == "--only":
         fix_only = argv[2].lower().strip().split(",")
     else:
         fix_only = False
+if len(argv) > 1 and argv[1] == "--travis":
+    choice = 1
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
-print("Your current icon theme is : %s" % theme_name)
+if gsettings:
+    print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
 print("Applications will be fixed : ", end="")
@@ -545,7 +552,7 @@ print(",".join(fix_only) if fix_only else "All")
 print("1 - Apply")
 print("2 - Revert")
 try:
-    choice = int(input("Please choose: "))
+    choice = int(input("Please choose: ")) if not choice else choice
     if choice == 1:
         print("Applying now..\n")
         install(fix_only)
