@@ -1,4 +1,6 @@
 # Hardcode-Tray
+[![Build Status](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray.svg?branch=master)](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray)
+
 Fixes Hardcoded tray icons in Linux
 
 The script will automagically detect your default theme, the right icon size, the hardcoded applications, the right icons for each indicator and fix them. All that with the possibilty to revert to the original icons.
