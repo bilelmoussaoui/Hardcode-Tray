@@ -45,7 +45,6 @@ if userhome.lower() == "/root":
 source = Gio.SettingsSchemaSource.get_default()
 if source.lookup("org.gnome.desktop.interface", True):
     gsettings = Gio.Settings.new("org.gnome.desktop.interface")    
-    theme = Gtk.IconTheme.get_default()
     theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 else: 
     gsettings = None
@@ -55,6 +54,7 @@ absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = absolute_path + db_folder + "images/"
 qt_script = "qt-tray"
+theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 backup_ignore_list = ["hexchat"]
 fixed_icons = []
