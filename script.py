@@ -42,14 +42,18 @@ userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
 if userhome.lower() == "/root":
     userhome = "/" + getenv("SUDO_USER")
 
-gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+source = Gio.SettingsSchemaSource.get_default()
+if source.lookup("org.gnome.desktop.interface", True):
+    gsettings = Gio.Settings.new("org.gnome.desktop.interface")    
+    theme = Gtk.IconTheme.get_default()
+    theme_name = str(gsettings.get_value("icon-theme")).strip("'")
+else: 
+    gsetings = None
 db_folder = "database/"
 script_folder = "scripts/"
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = absolute_path + db_folder + "images/"
-theme = Gtk.IconTheme.get_default()
-theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 qt_script = "qt-tray"
 default_icon_size = 22
 backup_ignore_list = ["hexchat"]
@@ -537,7 +541,8 @@ if len(argv) > 1 and argv[1] == "--only":
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
-print("Your current icon theme is : %s" % theme_name)
+if gsettings:
+    print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
 print("Applications will be fixed : ", end="")
