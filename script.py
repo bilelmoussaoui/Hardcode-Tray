@@ -538,6 +538,8 @@ if len(argv) > 1 and argv[1] == "--only":
         fix_only = argv[2].lower().strip().split(",")
     else:
         fix_only = False
+if len(argv) > 1 and argv[1] == "--travis":
+    install = 1
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
