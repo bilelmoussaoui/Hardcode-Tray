@@ -7,9 +7,15 @@ python:
     - "3.5"
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install -qq python3-gi gir1.2-gtk-3.0 
+    - pip install --upgrade pip
+    - sudo apt-get update
+    - sudo apt-get install -qq python3-gi gir1.2-gtk-3.0 python3-dbus ibus gir1.2-ibus-1.0 python-cairo
+
 install:
     - pip install cairosvg
+before_script:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 # give xvfb some time to start
 script:
     - sudo -E python3 script.py
