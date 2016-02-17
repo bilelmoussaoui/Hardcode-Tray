@@ -538,6 +538,8 @@ if len(argv) > 1 and argv[1] == "--only":
         fix_only = argv[2].lower().strip().split(",")
     else:
         fix_only = False
+
+choice = None
 if len(argv) > 1 and argv[1] == "--travis":
     choice = 1
 
@@ -551,8 +553,10 @@ print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")
 print("1 - Apply")
 print("2 - Revert")
+
 try:
-    choice = int(input("Please choose: ")) if not choice else choice
+    if not choice:
+        choice = int(input("Please choose: "))
     if choice == 1:
         print("Applying now..\n")
         install(fix_only)
