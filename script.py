@@ -32,7 +32,7 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-if not environ.get("DESKTOP_SESSION"):
+if not (environ.get("DESKTOP_SESSION") and environ.get("XDG_CURRENT_DESKTOP")):
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
@@ -66,7 +66,7 @@ def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size
     """
-    if "pantheon" == environ.get("DESKTOP_SESSION").lower():
+    if "pantheon" in [environ.get("DESKTOP_SESSION").lower(), environ.get("XDG_CURRENT_DESKTOP").lower()]:
         return "pantheon"
     else:
         try:
