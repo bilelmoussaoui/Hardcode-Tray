@@ -32,6 +32,8 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
+if not environ.get("DESKTOP_SESSION"):
+    exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
 backup_extension = ".bak"
@@ -528,7 +530,8 @@ def install(fix_only):
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-default_icon_size = 22
+if detect_de() in ("pantheon", "xfce"):
+    default_icon_size = 24
 
 fix_only = False
 if len(argv) > 1 and argv[1] == "--only":
