@@ -32,8 +32,6 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-if not environ.get("DESKTOP_SESSION"):
-    exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
 backup_extension = ".bak"
@@ -93,7 +91,8 @@ def get_subdirs(directory):
         for sub_dir in dirs:
             if path.isdir(directory + sub_dir):
                 sub_dirs.append(sub_dir)
-        return sub_dirs.sort()
+        sub_dirs.sort()
+        return sub_dirs
     else:
         return None
 
@@ -529,8 +528,7 @@ def install(fix_only):
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-if detect_de() in ("pantheon", "xfce"):
-    default_icon_size = 24
+default_icon_size = 22
 
 fix_only = False
 if len(argv) > 1 and argv[1] == "--only":
