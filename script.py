@@ -49,9 +49,9 @@ if userhome.lower() == "/root":
 
 source = Gio.SettingsSchemaSource.get_default()
 if source.lookup("org.gnome.desktop.interface", True):
-    gsettings = Gio.Settings.new("org.gnome.desktop.interface")    
+    gsettings = Gio.Settings.new("org.gnome.desktop.interface")
     theme_name = str(gsettings.get_value("icon-theme")).strip("'")
-else: 
+else:
     gsettings = None
 db_folder = "database/"
 script_folder = "scripts/"
@@ -71,7 +71,8 @@ def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size
     """
-    if "pantheon" in [environ.get("DESKTOP_SESSION").lower(), environ.get("XDG_CURRENT_DESKTOP").lower()]:
+    if "pantheon" in [environ.get("DESKTOP_SESSION").lower(),
+                      environ.get("XDG_CURRENT_DESKTOP").lower()]:
         return "pantheon"
     else:
         try:
@@ -145,20 +146,6 @@ def execute(command_list, verbose=True):
     return output
 
 
-def compare_two_images(file1path, file2path):
-    """
-        Compare two images/files
-        Args:
-            file1path : String; The path to the first file
-            file2path : String; The path to the second file
-        Returns:
-            bool
-    """
-    if path.exists(file1path) and path.exists(file2path):
-        first_content = open(file1path, "rb").read()
-        second_content = open(file2path, "rb").read()
-        return md5(first_content).hexdigest() == md5(second_content).hexdigest()
-
 def get_extension(filename):
     """
         returns the file extension
@@ -188,7 +175,7 @@ def copy_file(src, destination, overwrite=False):
 
 
 def get_correct_chrome_icons(apps_infos,
-                             icons_dir = "chromium"):
+                             icons_dir="chromium"):
     """
         Returns the correct chrome indicator icons name in the pak file
         Args:
@@ -229,7 +216,7 @@ def get_correct_chrome_icons(apps_infos,
         if i not in to_remove:
             new_app_icons.append(app_icons[i])
     return (new_app_icons if len(new_app_icons) > 0 else None)
-    
+
 
 def replace_dropbox_dir(directory):
     """
@@ -277,7 +264,8 @@ def get_apps_informations(fix_only):
     """
         Reads the database file and returns a dictionary with all information
         Args:
-            @fix_only (list): contains a list of applications to be fixed/reverted
+            @fix_only (list): contains a list of applications
+                                to be fixed/reverted
     """
     db = open(db_file)
     r = reader(db, skipinitialspace=True)
@@ -510,8 +498,7 @@ def install(fix_only):
                                         execute([sfile, fname, symlink_icon,
                                                  sni_qt_path])
                                     else:
-                                        print(
-                                            "%s -- script file does not exists" % sfile)
+                                        print("%s -- script file does not exists" % sfile)
                             else:
                                 if path.isfile(sfile):
                                     backup(app_path + icon[3])
@@ -524,8 +511,8 @@ def install(fix_only):
                                     execute([sfile, fname, symlink_icon,
                                              app_path, str(do), icon[3]])
                                 else:
-                                    print(
-                                        "%s -- script file does not exists" % sfile)
+                                    print("%s -- script file does not exists"
+                                          % sfile)
                             # to avoid identical messages
                             if not (fbase in fixed_icons):
                                 print("%s -- fixed using %s" %
@@ -558,7 +545,7 @@ print("1 - Apply")
 print("2 - Revert")
 
 try:
-	choice = int(input("Please choose: "))
+    choice = int(input("Please choose: "))
     if choice == 1:
         print("Applying now..\n")
         install(fix_only)
