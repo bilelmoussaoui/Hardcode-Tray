@@ -222,7 +222,7 @@ def get_correct_chrome_icons(apps_infos,
                 app_icons[i][0] = resource_id
                 been_found = True
                 break
-        if not been_found:
+        if not been_found and app_icons[i][3] == 1:
             to_remove.append(i)
     new_app_icons = []
     for i, val in enumerate(app_icons):
