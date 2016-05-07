@@ -28,6 +28,11 @@ try:
 except FileNotFoundError:
     exit("You need to clone the whole repository to use the script.")
 
+try:
+    data_pack = load_source("data_pack", "./database/scripts/data_pack.py")
+except FileNotFoundError:
+    exit("You need to clone the whole repository to use the script.")
+
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
@@ -154,7 +159,6 @@ def compare_two_images(file1path, file2path):
         second_content = open(file2path, "rb").read()
         return md5(first_content).hexdigest() == md5(second_content).hexdigest()
 
-
 def get_extension(filename):
     """
         returns the file extension
@@ -184,44 +188,47 @@ def copy_file(src, destination, overwrite=False):
 
 
 def get_correct_chrome_icons(apps_infos,
-                             pak_file="chrome_100_percent.pak",
                              icons_dir = "chromium"):
     """
         Returns the correct chrome indicator icons name in the pak file
         Args:
             apps_infos(list): Contains the information's in the database file
-            pak_file(str): The pak file name
             icons_dir(str): Folder name that contains the default icons
     """
     images_dir = images_folder + icons_dir + "/"
     dirname = absolute_path + db_folder + script_folder
     extracted = dirname + "extracted/"
     app_icons = apps_infos["icons"]
-    j = 0
+    app_icons.sort(key=lambda x: x[3])
+    dicti = {}
     for i in range(len(app_icons)):
-        if path.isfile(apps_infos["path"] + pak_file):
-            icon_path = images_dir + app_icons[i-j][1] + ".png"
-            been_found = False
-            if app_icons[i-j][3] != pak_file or not path.isdir(extracted):
-                copy_file(apps_infos["path"] + pak_file, dirname + pak_file, True)
-                if path.isdir(extracted):
-                    rmtree(extracted)
-                create_dir(path.dirname(extracted))
-                execute([dirname + "data_pack.py", dirname + pak_file])
-            for default_icon in listdir(extracted):
-                default_path = extracted + default_icon
-                if compare_two_images(default_path, icon_path):
-                    app_icons[i-j][0] = default_icon
-                    been_found = True
-            if not been_found and bool(int(app_icons[i-j][4])):
-                del app_icons[i-j]
-                j += 1
-        k = i-j+1
-        if k < len(app_icons) and app_icons[k][3] != pak_file:
-            pak_file = app_icons[k][3]
-    if path.exists(extracted):
-        rmtree(extracted)
-    return (app_icons if len(app_icons) > 0 else None)
+        icon_path = images_dir + app_icons[i][1] + ".png"
+        dicti[app_icons[i][0]] = open(icon_path, 'rb').read()
+    pak_file = ''
+    to_remove = []
+    for i in range(len(app_icons)):
+        pak = app_icons[i][3]
+        if not (pak == pak_file):
+            pak_file = pak
+            if path.isfile(apps_infos["path"] + pak_file):
+                datapak = data_pack.ReadDataPack(apps_infos["path"] + pak_file)
+            else:
+                to_remove.append(i)
+                pak_file = ''
+                continue
+        been_found = False
+        for (resource_id, text) in datapak.resources.items():
+            if md5(text).hexdigest() == md5(dicti[app_icons[i][0]]).hexdigest():
+                app_icons[i][0] = resource_id
+                been_found = True
+                break
+        if not been_found:
+            to_remove.append(i)
+    new_app_icons = []
+    for i, val in enumerate(app_icons):
+        if i not in to_remove:
+            new_app_icons.append(app_icons[i])
+    return (new_app_icons if len(new_app_icons) > 0 else None)
     
 
 def replace_dropbox_dir(directory):
@@ -415,8 +422,7 @@ def install(fix_only):
             app_name = apps[app]["name"]
             dont_install = False
             if app_dbfile in ("google-chrome", "chromium"):
-                pak_file = app_icons[0][3]
-                apps[app]["icons"] = get_correct_chrome_icons(apps[app], pak_file)
+                apps[app]["icons"] = get_correct_chrome_icons(apps[app])
                 dont_install = not apps[app]["icons"]
             icon_ctr = 1
             while icon_ctr <= len(app_icons) and not dont_install:
