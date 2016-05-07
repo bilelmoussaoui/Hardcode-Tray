@@ -1,5 +1,4 @@
 # Hardcode-Tray
-[![Build Status](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray.svg?branch=master)](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray)
 
 Fixes Hardcoded tray icons in Linux
 
