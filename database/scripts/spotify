@@ -1,24 +1,14 @@
 #!/bin/bash
-cd ./database/scripts/
 
-if [ "$4" -eq 0 ]; then
-    rm -f resources_old.zip
-    rm -rf resources_old 
-    cp $3/resources.zip resources_old.zip
-    unzip resources_old.zip -d resources_old/
-fi
+cd ./database/scripts
+mkdir -p /_linux/
 
+f="/_linux/$2"
 if [[ $1 == *.svg ]]; then
-    python3 svgtopng.py $1 resources_old/_linux/$2
+    python3 svgtopng.py "$1" "$f"
 else
-    cp $1 resources_old/_linux/$2
+    cp $1 $f
 fi
 
-if [ "$4" -eq -1 ]; then
-    cd resources_old/
-    zip -r resources_patched.zip .
-    mv resources_patched.zip $3/resources.zip
-    cd ./..
-    rm -f resources_old.zip
-    rm -rf resources_old 
-fi
+zip -u "$3""$5" "$f"
+rm -rf "/_linux/"
