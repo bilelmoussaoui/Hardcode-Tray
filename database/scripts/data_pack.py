@@ -17,22 +17,25 @@ if __name__ == '__main__':
 
 
 PACK_FILE_VERSION = 4
-HEADER_LENGTH = 2 * 4 + 1  # Two uint32s. (file version, number of entries) and
-                           # one uint8 (encoding of text resources)
+# Two uint32s. (file version, number of entries) and
+# one uint8 (encoding of text resources)
+HEADER_LENGTH = 2 * 4 + 1
 BINARY, UTF8, UTF16 = list(range(3))
 RAW_TEXT = 1
 
 
-DataPackContents = collections.namedtuple('DataPackContents', 'resources encoding')
+DataPackContents = collections.namedtuple('DataPackContents',
+                                          'resources encoding')
+
 
 def ReadFile(filename, encoding):
     '''Reads and returns the entire contents of the given file.
-
     Args:
        filename: The path to the file.
-       encoding: A Python codec name or one of two special values: BINARY to read
-              the file in binary mode, or RAW_TEXT to read it with newline
-              conversion but without decoding to Unicode.
+       encoding: A Python codec name or one of two special values:
+            BINARY to read the file in binary mode,or
+            RAW_TEXT to read it with newline conversion
+            but without decoding to Unicode.
     '''
     mode = 'rb' if encoding == BINARY else 'rU'
     with open(filename, mode) as f:
@@ -41,15 +44,17 @@ def ReadFile(filename, encoding):
         data = data.decode(encoding)
     return data
 
+
 def ReadDataPack(input_file):
     """Reads a data pack file and returns a dictionary."""
     data = ReadFile(input_file, BINARY)
     original_data = data
 
     # Read the header.
-    version, num_entries, encoding = struct.unpack('<IIB', data[:HEADER_LENGTH])
+    version, num_entries, encoding = struct.unpack('<IIB',
+                                                   data[:HEADER_LENGTH])
     if version != PACK_FILE_VERSION:
-        print('Wrong file version in %s' %input_file)
+        print('Wrong file version in %s' % input_file)
         raise WrongFileVersion
 
     resources = {}
@@ -115,9 +120,9 @@ def main():
     elif len(sys.argv) > 2:
         iconData = {}
         for j, arg in enumerate(sys.argv):
-            if j==0:
+            if j == 0:
                 continue
-            elif j==1:
+            elif j == 1:
                 filename = sys.argv[1]
             else:
                 fn = sys.argv[j]
@@ -129,8 +134,8 @@ def main():
         dataPack = ReadDataPack(filename)
         for i in list(iconData.keys()):
             dataPack.resources[i] = iconData[i]
-        
+
         WriteDataPack(dataPack.resources, filename, BINARY)
-        
+
 if __name__ == '__main__':
     main()
