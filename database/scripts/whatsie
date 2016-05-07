@@ -6,10 +6,12 @@ import sys
 import svgtopng
 import os
 
-### iterative funtion to account for the new size of the png bytearray
+# iterative funtion to account for the new size of the png bytearray
+
+
 def change_dict_vals(d, sizediff, offset):
     if isinstance(d, dict):
-        d2 = {k:change_dict_vals(v, sizediff, offset) for k,v in d.items()}
+        d2 = {k: change_dict_vals(v, sizediff, offset) for k, v in d.items()}
         if d2.get('offset') and int(d2.get('offset')) > offset:
             d2['offset'] = str(int(d2['offset']) + sizediff)
         return d2
@@ -58,8 +60,7 @@ if file_extension == '.svg':
 else:
     with open(icon_for_repl, 'rb') as pngfile:
         pngbytes = pngfile.read()
-        
-        
+
 files['files']['images']['files'][icon_to_repl]['size'] = len(pngbytes)
 
 newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset+size:]])
@@ -70,9 +71,11 @@ newfiles = change_dict_vals(files, sizediff, offset0)
 newfilesb = json.dumps(newfiles).encode('utf-8')
 newheaderlen = len(newfilesb)
 
-bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+8), struct.pack('I', newheaderlen+4), struct.pack('I', newheaderlen), newfilesb, newbytearr[baseoffset:]])
+bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+8),
+                     struct.pack('I', newheaderlen+4),
+                     struct.pack('I', newheaderlen), newfilesb,
+                     newbytearr[baseoffset:]])
 
 asarfile = open(filename, 'wb')
 asarfile.write(bytearr2)
 asarfile.close()
-
