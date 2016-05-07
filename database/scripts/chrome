@@ -1,16 +1,27 @@
-#!/bin/bash
-cd ./database/scripts/
-mkdir -p extracted
+#!/usr/bin/python3
 
-if [[ $1 == *.svg ]]; then
-    python3 svgtopng.py $1 $(echo $2 | cut -f 1 -d '.')
-else
-    cp $1 $(echo $2 | cut -f 1 -d '.')
-fi
+import struct
+import json
+import sys
+import data_pack
+import os
 
-./data_pack.py $5 $(echo $2 | cut -f 1 -d '.')
+filename = sys.argv[3]+sys.argv[5]
+icon_to_repl = sys.argv[2]
+icon_for_repl = sys.argv[1]
 
-if [ "$4" -eq -1 ]; then
-    mv $5 $3/$5
-    rm -rf ./extracted
-fi
+filename_svg, file_extension = os.path.splitext(icon_for_repl)
+if file_extension == '.svg':
+    pngbytes = svgtopng.convert_svg2bin(icon_for_repl)
+else:
+    with open(icon_for_repl, 'rb') as pngfile:
+        pngbytes = pngfile.read()
+
+dataPack = ReadDataPack(filename)
+dataPack.resources[int(icon_to_repl)] = pngbytes
+
+WriteDataPack(dataPack.resources, filename, BINARY)
+
+
+
+
