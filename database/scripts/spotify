@@ -10,5 +10,5 @@ else
     cp $1 $f
 fi
 
-zip -u "$3""$5" "$f"
+zip -u "$3""$4" "$f"
 rm -rf "/_linux/"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sour="$2"
-dest="$3""$5"
+dest="$3""$4"
 if [ -e "$sour" ]; then
     ln -sf "$sour" "$dest"
 fi

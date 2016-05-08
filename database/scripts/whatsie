@@ -17,7 +17,7 @@ def change_dict_vals(d, sizediff, offset):
         return d2
     return d
 
-filename = sys.argv[3]+sys.argv[5]
+filename = sys.argv[3]+sys.argv[4]
 icon_to_repl = sys.argv[2]
 icon_for_repl = sys.argv[1]
 
