@@ -1,0 +1,82 @@
+#!/usr/bin/python3
+
+import struct
+import json
+import sys
+import svgtopng
+import os
+
+# iterative funtion to account for the new size of the png bytearray
+
+
+def change_dict_vals(d, sizediff, offset):
+    if isinstance(d, dict):
+        d2 = {k: change_dict_vals(v, sizediff, offset) for k, v in d.items()}
+        if d2.get('offset') and int(d2.get('offset')) > offset:
+            d2['offset'] = str(int(d2['offset']) + sizediff)
+        return d2
+    return d
+
+filename = sys.argv[3]+sys.argv[4]
+icon_to_repl = sys.argv[2]
+icon_for_repl = sys.argv[1]
+
+# uses google's pickle format, which prefixes each field
+# with its total length, the first field is a 32-bit unsigned
+# integer, thus 4 bytes, we know that, so we skip it
+
+asarfile = open(filename, 'rb')
+asarfile.seek(4)
+
+header_size = struct.unpack('I', asarfile.read(4))
+if len(header_size) <= 0:
+    raise IndexError()
+
+# substract 8 bytes from the header size, again because google's
+# pickle format uses some padding here
+# different to whatsie we have to replace 8 by 11 here because the padding is unfortunately a bit different here
+header_size = header_size[0] - 11
+
+# read the actual header, which is a json string, again skip 8
+# bytes because of pickle padding
+asarfile.seek(asarfile.tell() + 8)
+header = asarfile.read(header_size).decode('utf-8')
+
+files = json.loads(header)
+baseoffset = asarfile.tell()
+asarfile.close()
+
+fileinfo = files['files']['images']['files'][icon_to_repl]
+
+offset0 = int(fileinfo['offset'])
+offset = offset0+baseoffset
+size = int(fileinfo['size'])
+
+with open(filename, 'rb') as asarfile:
+    bytearr = asarfile.read()
+
+filename_svg, file_extension = os.path.splitext(icon_for_repl)
+if file_extension == '.svg':
+    pngbytes = svgtopng.convert_svg2bin(icon_for_repl)
+else:
+    with open(icon_for_repl, 'rb') as pngfile:
+        pngbytes = pngfile.read()
+
+files['files']['images']['files'][icon_to_repl]['size'] = len(pngbytes)
+
+newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset+size:]])
+
+sizediff = len(pngbytes)-size
+
+newfiles = change_dict_vals(files, sizediff, offset0)
+newfilesb = json.dumps(newfiles).encode('utf-8')
+newheaderlen = len(newfilesb)
+
+bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+8),
+                     struct.pack('I', newheaderlen+4),
+                     struct.pack('I', newheaderlen), newfilesb,
+                     newbytearr[baseoffset:]])
+
+asarfile = open(filename, 'wb')
+asarfile.write(bytearr2)
+asarfile.close()
