@@ -188,12 +188,15 @@ def get_correct_chrome_icons(apps_infos,
     app_icons = apps_infos["icons"]
     app_icons.sort(key=lambda x: x[3])
     dicti = {}
+    print (app_icons)
+    exit()
     for i in range(len(app_icons)):
         icon_path = images_dir + app_icons[i][1] + ".png"
         dicti[app_icons[i][0]] = open(icon_path, 'rb').read()
     pak_file = ''
     to_remove = []
     for i in range(len(app_icons)):
+        if app_icons[i][4] == 0: continue
         pak = app_icons[i][3]
         if not (pak == pak_file):
             pak_file = pak
@@ -209,7 +212,7 @@ def get_correct_chrome_icons(apps_infos,
                 app_icons[i][0] = resource_id
                 been_found = True
                 break
-        if not been_found and app_icons[i][3] == 1:
+        if not been_found:
             to_remove.append(i)
     new_app_icons = []
     for i, val in enumerate(app_icons):
