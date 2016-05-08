@@ -5,9 +5,15 @@ import json
 import sys
 import svgtopng
 import os
+from functools import reduce
 
 # iterative funtion to account for the new size of the png bytearray
 
+def getFromDict(dataDict, mapList):
+    return reduce(lambda d, k: d[k], mapList, dataDict)
+
+def setInDict(dataDict, mapList, value):
+    getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
 
 def change_dict_vals(d, sizediff, offset):
     if isinstance(d, dict):
@@ -42,11 +48,7 @@ asarfile.close()
 
 keys = icon_to_repl.split('/')
 
-for i, key in enumerate(keys):
-    if i == 0:
-        fileinfo = files[key]
-    else:
-        fileinfo = fileinfo[key]
+fileinfo = getFromDict(files, keys)
 
 offset0 = int(fileinfo['offset'])
 offset = offset0+baseoffset
@@ -62,7 +64,7 @@ else:
     with open(icon_for_repl, 'rb') as pngfile:
         pngbytes = pngfile.read()
 
-files['files']['images']['files'][icon_to_repl]['size'] = len(pngbytes)
+setInDict(files, keys+['size'], len(pngbytes))
 
 newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset+size:]])
 
