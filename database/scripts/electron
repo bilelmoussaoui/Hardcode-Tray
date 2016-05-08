@@ -28,24 +28,25 @@ icon_for_repl = sys.argv[1]
 asarfile = open(filename, 'rb')
 asarfile.seek(4)
 
-header_size = struct.unpack('I', asarfile.read(4))
-if len(header_size) <= 0:
-    raise IndexError()
+len1 = struct.unpack('I', asarfile.read(4))[0]
+len2 = struct.unpack('I', asarfile.read(4))[0]
+len3 = struct.unpack('I', asarfile.read(4))[0]
+header_size = len3
+zeros_padding = (len2-4-len3)
 
-# substract 8 bytes from the header size, again because google's
-# pickle format uses some padding here
-header_size = header_size[0] - 8
-
-# read the actual header, which is a json string, again skip 8
-# bytes because of pickle padding
-asarfile.seek(asarfile.tell() + 8)
 header = asarfile.read(header_size).decode('utf-8')
 
 files = json.loads(header)
-baseoffset = asarfile.tell()
+baseoffset = asarfile.tell()+zeros_padding
 asarfile.close()
 
-fileinfo = files['files']['images']['files'][icon_to_repl]
+keys = icon_to_repl.split('/')
+
+for i, key in enumerate(keys):
+    if i == 0:
+        fileinfo = files[key]
+    else:
+        fileinfo = fileinfo[key]
 
 offset0 = int(fileinfo['offset'])
 offset = offset0+baseoffset
@@ -73,7 +74,8 @@ newheaderlen = len(newfilesb)
 
 bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+8),
                      struct.pack('I', newheaderlen+4),
-                     struct.pack('I', newheaderlen), newfilesb,
+                     struct.pack('I', newheaderlen-zeros_padding), newfilesb, 
+                     b'\x00'*zeros_padding,
                      newbytearr[baseoffset:]])
 
 asarfile = open(filename, 'wb')
