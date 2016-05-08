@@ -183,8 +183,6 @@ def get_correct_chrome_icons(apps_infos,
             icons_dir(str): Folder name that contains the default icons
     """
     images_dir = images_folder + icons_dir + "/"
-    dirname = absolute_path + db_folder + script_folder
-    extracted = dirname + "extracted/"
     app_icons = apps_infos["icons"]
     app_icons.sort(key=lambda x: x[3])
     dicti = {}
@@ -503,14 +501,8 @@ def install(fix_only):
                             else:
                                 if path.isfile(sfile):
                                     backup(app_path + icon[3])
-                                    if icon_ctr == 1:
-                                        do = 0
-                                    elif icon_ctr == len(app_icons):
-                                        do = -1
-                                    else:
-                                        do = 1
                                     execute([sfile, fname, symlink_icon,
-                                             app_path, str(do), icon[3]])
+                                             app_path, icon[3]])
                                 else:
                                     print("%s -- script file does not exists"
                                           % sfile)
