@@ -40,6 +40,7 @@ Sflphone, sflphone, /usr/share/sflphone/,
 Skype, skype, /usr/share/skype/,
 Slack, slack, /usr/share/slack/resources/app.asar.unpacked/static/,
 Spotify, spotify, /opt/spotify/spotify-client/Data/,
+Stremio, stremio, /usr/share/stremio/resources/,
 Teamviewer 11, teamviewer, /opt/teamviewer/, TVGuiDelegate
 Telegram, telegram, {userhome}/.TelegramDesktop/tdata/ticons/,
 Tomahawk, tomahawk, /usr/bin/tomahawk/,
