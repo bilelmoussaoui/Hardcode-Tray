@@ -188,8 +188,6 @@ def get_correct_chrome_icons(apps_infos,
     app_icons = apps_infos["icons"]
     app_icons.sort(key=lambda x: x[3])
     dicti = {}
-    print (app_icons)
-    exit()
     for i in range(len(app_icons)):
         icon_path = images_dir + app_icons[i][1] + ".png"
         dicti[app_icons[i][0]] = open(icon_path, 'rb').read()
