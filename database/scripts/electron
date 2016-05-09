@@ -71,12 +71,12 @@ newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset+size:]])
 sizediff = len(pngbytes)-size
 
 newfiles = change_dict_vals(files, sizediff, offset0)
-newfilesb = json.dumps(newfiles).encode('utf-8')
-newheaderlen = len(newfilesb)
+newheader = json.dumps(newfiles).encode('utf-8')
+newheaderlen = len(newheader)
 
-bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+8),
-                     struct.pack('I', newheaderlen+4),
-                     struct.pack('I', newheaderlen-zeros_padding), newfilesb, 
+bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+(len1-len3)),
+                     struct.pack('I', newheaderlen+(len2-len3)),
+                     struct.pack('I', newheaderlen), newheader, 
                      b'\x00'*zeros_padding,
                      newbytearr[baseoffset:]])
 
