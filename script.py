@@ -425,7 +425,7 @@ def install(fix_only):
                 dont_install = not apps[app]["icons"]
             app_icons = apps[app]["icons"]
             icon_ctr = 1
-            while icon_ctr <= len(app_icons) and not dont_install:
+            while app_icons and icon_ctr <= len(app_icons) and not dont_install:
                 icon = app_icons[icon_ctr - 1]
                 is_script = False
                 if isinstance(icon, list):
