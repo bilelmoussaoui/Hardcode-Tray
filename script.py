@@ -37,7 +37,7 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-if not (environ.get("DESKTOP_SESSION") and environ.get("XDG_CURRENT_DESKTOP")):
+if not (environ.get("DESKTOP_SESSION") or environ.get("XDG_CURRENT_DESKTOP")) and not ("--force-icon-size" in argv):
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
@@ -193,7 +193,7 @@ def get_correct_chrome_icons(apps_infos,
             if k == 0:
                 icon_name = images_dir + app_icons[i][1] + ".png"
             else:
-                icon_name = images_dir + app_icons[i][1] + "%i.png"%(k)
+                icon_name = images_dir + app_icons[i][1] + "%i.png" % (k)
             if path.isfile(icon_name):
                 icons.append(open(icon_name, 'rb').read())
             else:
@@ -212,7 +212,8 @@ def get_correct_chrome_icons(apps_infos,
                 to_remove.append(i)
                 pak_file = ''
                 continue
-        if int(app_icons[i][4]) == 0: continue
+        if int(app_icons[i][4]) == 0:
+            continue
         been_found = False
         for (resource_id, text) in datapak.resources.items():
             for icon in dicti[app_icons[i][0]]:
@@ -220,7 +221,8 @@ def get_correct_chrome_icons(apps_infos,
                     app_icons[i][0] = resource_id
                     been_found = True
                     break
-            if been_found: break
+            if been_found:
+                break
         if not been_found:
             to_remove.append(i)
     new_app_icons = []
@@ -529,15 +531,21 @@ def install(fix_only):
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-if detect_de() in ("pantheon", "xfce"):
-    default_icon_size = 24
+if "--force-icon-size" in argv:
+    index = argv.index("--force-icon-size") + 1
+    if index:
+        default_icon_size = int(argv[index].strip())
+        if default_icon_size not in [16, 22, 24]:
+            exit("You canno't use huge tray icons. This might break your system")
+else:
+    if detect_de() in ("pantheon", "xfce"):
+        default_icon_size = 24
 
 fix_only = False
-if len(argv) > 1 and argv[1] == "--only":
-    if len(argv) > 2:
-        fix_only = argv[2].lower().strip().split(",")
-    else:
-        fix_only = False
+if "--only" in argv:
+    index = argv.index("--only") + 1
+    if index:
+        fix_only = argv[index].lower().strip().split(",")
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
