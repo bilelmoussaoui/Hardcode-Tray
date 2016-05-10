@@ -56,8 +56,15 @@ After
   ```bash
   sudo -E python3 script.py --only telegram,skype
   ```
+  
   In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
-
+  
+  You can also use `--force-icon-size 24/22/16` to force the script to use a different icon size or if the script does not detect your 
+  desktop environment.
+  ```bash
+  sudo python3 script.py --force-icon-size 24 --only dropbox
+  ```
+  
   5. Enjoy!
 
 
