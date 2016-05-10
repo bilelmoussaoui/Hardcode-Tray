@@ -203,7 +203,6 @@ def get_correct_chrome_icons(apps_infos,
     pak_file = ''
     to_remove = []
     for i in range(len(app_icons)):
-        if int(app_icons[i][4]) == 0: continue
         pak = app_icons[i][3]
         if not (pak == pak_file):
             pak_file = pak
@@ -213,6 +212,7 @@ def get_correct_chrome_icons(apps_infos,
                 to_remove.append(i)
                 pak_file = ''
                 continue
+        if int(app_icons[i][4]) == 0: continue
         been_found = False
         for (resource_id, text) in datapak.resources.items():
             for icon in dicti[app_icons[i][0]]:
