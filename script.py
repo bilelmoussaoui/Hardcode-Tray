@@ -416,7 +416,6 @@ def install(fix_only):
     apps = get_apps_informations(fix_only)
     if len(apps) != 0:
         for app in apps:
-            app_icons = apps[app]["icons"]
             app_path = apps[app]["path"]
             app_dbfile = apps[app]["dbfile"]
             app_name = apps[app]["name"]
@@ -424,6 +423,7 @@ def install(fix_only):
             if app_dbfile in ("google-chrome", "chromium"):
                 apps[app]["icons"] = get_correct_chrome_icons(apps[app])
                 dont_install = not apps[app]["icons"]
+            app_icons = apps[app]["icons"]
             icon_ctr = 1
             while icon_ctr <= len(app_icons) and not dont_install:
                 icon = app_icons[icon_ctr - 1]
