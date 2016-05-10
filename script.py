@@ -187,12 +187,23 @@ def get_correct_chrome_icons(apps_infos,
     app_icons.sort(key=lambda x: x[3])
     dicti = {}
     for i in range(len(app_icons)):
-        icon_path = images_dir + app_icons[i][1] + ".png"
-        dicti[app_icons[i][0]] = open(icon_path, 'rb').read()
+        k = 0
+        icons = []
+        while True:
+            if k == 0:
+                icon_name = images_dir + app_icons[i][1] + ".png"
+            else:
+                icon_name = images_dir + app_icons[i][1] + "%i.png"%(k)
+            if path.isfile(icon_name):
+                icons.append(open(icon_name, 'rb').read())
+            else:
+                break
+            k = k + 1
+        dicti[app_icons[i][0]] = icons
     pak_file = ''
     to_remove = []
     for i in range(len(app_icons)):
-        if app_icons[i][4] == 0: continue
+        if int(app_icons[i][4]) == 0: continue
         pak = app_icons[i][3]
         if not (pak == pak_file):
             pak_file = pak
@@ -204,10 +215,12 @@ def get_correct_chrome_icons(apps_infos,
                 continue
         been_found = False
         for (resource_id, text) in datapak.resources.items():
-            if md5(text).hexdigest() == md5(dicti[app_icons[i][0]]).hexdigest():
-                app_icons[i][0] = resource_id
-                been_found = True
-                break
+            for icon in dicti[app_icons[i][0]]:
+                if md5(text).hexdigest() == md5(icon).hexdigest():
+                    app_icons[i][0] = resource_id
+                    been_found = True
+                    break
+            if been_found: break
         if not been_found:
             to_remove.append(i)
     new_app_icons = []
