@@ -3,7 +3,6 @@
 import struct
 import json
 import sys
-import data_pack
 import os
 from imp import load_source
 
@@ -11,6 +10,7 @@ filename = sys.argv[3]+sys.argv[4]
 icon_to_repl = sys.argv[2]
 icon_for_repl = sys.argv[1]
 
+data_pack = load_source('data_pack', './database/scripts/svgtopng.py')
 svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
 
 filename_svg, file_extension = os.path.splitext(icon_for_repl)
@@ -24,3 +24,4 @@ dataPack = data_pack.ReadDataPack(filename)
 dataPack.resources[int(icon_to_repl)] = pngbytes
 
 data_pack.WriteDataPack(dataPack.resources, filename, 0)
+

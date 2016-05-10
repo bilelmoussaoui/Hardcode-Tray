@@ -106,36 +106,3 @@ def WriteDataPack(resources, output_file, encoding):
     with open(output_file, 'wb') as file:
         file.write(content)
 
-
-def main():
-    if len(sys.argv) == 2:
-        filename = sys.argv[1]
-        data = ReadDataPack(filename)
-        for (resource_id, text) in data.resources.items():
-            pathfile = os.path.split(filename)[0]
-            os.makedirs(os.path.dirname(pathfile+'/extracted/'), exist_ok=True)
-            f = open(pathfile+'/extracted/'+str(resource_id), "wb")
-            f.write(text)
-            f.close()
-    elif len(sys.argv) > 2:
-        iconData = {}
-        for j, arg in enumerate(sys.argv):
-            if j == 0:
-                continue
-            elif j == 1:
-                filename = sys.argv[1]
-            else:
-                fn = sys.argv[j]
-                f = open(fn, "rb")
-                icon = f.read()
-                f.close()
-                iconData[int(fn.split('/')[-1])] = icon
-
-        dataPack = ReadDataPack(filename)
-        for i in list(iconData.keys()):
-            dataPack.resources[i] = iconData[i]
-
-        WriteDataPack(dataPack.resources, filename, BINARY)
-
-if __name__ == '__main__':
-    main()

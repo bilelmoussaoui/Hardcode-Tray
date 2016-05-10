@@ -3,18 +3,22 @@
 import struct
 import json
 import sys
-import svgtopng
 import os
 from functools import reduce
+from imp import load_source
 
-# iterative funtion to account for the new size of the png bytearray
+svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
+
 
 def getFromDict(dataDict, mapList):
     return reduce(lambda d, k: d[k], mapList, dataDict)
 
+
 def setInDict(dataDict, mapList, value):
     getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
 
+
+# iterative funtion to account for the new size of the png bytearray
 def change_dict_vals(d, sizediff, offset):
     if isinstance(d, dict):
         d2 = {k: change_dict_vals(v, sizediff, offset) for k, v in d.items()}
@@ -23,6 +27,7 @@ def change_dict_vals(d, sizediff, offset):
         return d2
     return d
 
+
 filename = sys.argv[3]+sys.argv[4]
 icon_to_repl = sys.argv[2]
 icon_for_repl = sys.argv[1]
@@ -30,10 +35,10 @@ icon_for_repl = sys.argv[1]
 # uses google's pickle format, which prefixes each field
 # with its total length, the first field is a 32-bit unsigned
 # integer, thus 4 bytes, we know that, so we skip it
-
 asarfile = open(filename, 'rb')
 asarfile.seek(4)
 
+#header size is stored in byte 12:16
 len1 = struct.unpack('I', asarfile.read(4))[0]
 len2 = struct.unpack('I', asarfile.read(4))[0]
 len3 = struct.unpack('I', asarfile.read(4))[0]
@@ -76,10 +81,11 @@ newheaderlen = len(newheader)
 
 bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+(len1-len3)),
                      struct.pack('I', newheaderlen+(len2-len3)),
-                     struct.pack('I', newheaderlen), newheader, 
+                     struct.pack('I', newheaderlen), newheader,
                      b'\x00'*zeros_padding,
                      newbytearr[baseoffset:]])
 
 asarfile = open(filename, 'wb')
 asarfile.write(bytearr2)
 asarfile.close()
+
