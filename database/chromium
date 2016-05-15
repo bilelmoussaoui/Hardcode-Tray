@@ -2,4 +2,4 @@
 7359, google-chrome-no-notification-disabled, chrome, chrome_100_percent.pak, 1
 7360, google-chrome-notification, chrome, chrome_100_percent.pak, 1
 7361, google-chrome-notification-disabled, chrome, chrome_100_percent.pak, 1
-8002, google-chrome-no-notification, chrome, resources.pak, 0
+8002, google-chrome-tray, chrome, resources.pak, 0
