@@ -105,4 +105,3 @@ def WriteDataPack(resources, output_file, encoding):
     content = WriteDataPackToString(resources, encoding)
     with open(output_file, 'wb') as file:
         file.write(content)
-

@@ -38,7 +38,7 @@ icon_for_repl = sys.argv[1]
 asarfile = open(filename, 'rb')
 asarfile.seek(4)
 
-#header size is stored in byte 12:16
+# header size is stored in byte 12:16
 len1 = struct.unpack('I', asarfile.read(4))[0]
 len2 = struct.unpack('I', asarfile.read(4))[0]
 len3 = struct.unpack('I', asarfile.read(4))[0]
@@ -88,4 +88,3 @@ bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+(len1-len3)),
 asarfile = open(filename, 'wb')
 asarfile.write(bytearr2)
 asarfile.close()
-

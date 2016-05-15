@@ -15,6 +15,7 @@ except (ImportError, AttributeError):
     else:
         disable_svg2png = True
 
+
 def convert_svg2png(infile, outfile):
     """
         Converts svg files to png using Cairosvg or Inkscape
@@ -23,7 +24,8 @@ def convert_svg2png(infile, outfile):
     """
     if not disable_svg2png:
         if use_inkscape:
-            p = Popen(["inkscape", "-f" ,infile, "-e" ,outfile], stdout=PIPE, stderr=PIPE)
+            p = Popen(["inkscape", "-f", infile, "-e", outfile],
+                      stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
         else:
             with open(infile, "r") as content_file:
@@ -32,6 +34,7 @@ def convert_svg2png(infile, outfile):
             svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
             fout.close()
 
+
 def convert_svg2bin(infile):
     """
         Converts svg files to binary in memory using Cairosvg or inkscape
@@ -39,7 +42,8 @@ def convert_svg2bin(infile):
     """
     if not disable_svg2png:
         if use_inkscape:
-            p = Popen(["inkscape", "-f" ,infile, "-e /tmp/hardcode.png'"], stdout=PIPE, stderr=PIPE)
+            p = Popen(["inkscape", "-f", infile, "-e /tmp/hardcode.png'"],
+                      stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
             with open('/tmp/hardcode.png', 'rb') as temppng:
                 ret = temppng.read()
@@ -49,7 +53,7 @@ def convert_svg2bin(infile):
             with open(infile, "r") as content_file:
                 svg = content_file.read()
             return svg2png(bytestring=bytes(svg, "UTF-8"))
-            
+
 
 def is_svg_enabled():
     global disable_svg2png

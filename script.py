@@ -37,7 +37,8 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-if not (environ.get("DESKTOP_SESSION") or environ.get("XDG_CURRENT_DESKTOP")) and not ("--size" in argv):
+if not (environ.get("DESKTOP_SESSION") or
+        environ.get("XDG_CURRENT_DESKTOP")) and not ("--size" in argv):
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
@@ -76,6 +77,7 @@ else:
         theme_name = str(gsettings.get_value("icon-theme")).strip("'")
     else:
         gsettings = None
+
 
 def detect_de():
     """
@@ -522,15 +524,18 @@ def install(fix_only):
                                         execute([sfile, fname, symlink_icon,
                                                  sni_qt_path])
                                     else:
-                                        print("%s -- script file does not exists" % sfile)
+                                        script_errors.append("%s -- script "
+                                                             "file does not"
+                                                             "exists" % sfile)
                             else:
                                 if path.isfile(sfile):
                                     backup(app_path + icon[3])
                                     execute([sfile, fname, symlink_icon,
                                              app_path, icon[3]])
                                 else:
-                                    print("%s -- script file does not exists"
-                                          % sfile)
+                                    script_errors.append("%s -- script file"
+                                                         "does not exists" %
+                                                         sfile)
                             # to avoid identical messages
                             if not (fbase in fixed_icons):
                                 print("%s -- fixed using %s" %
@@ -546,7 +551,8 @@ if "--size" in argv:
     if index:
         default_icon_size = int(argv[index].strip())
         if default_icon_size not in [16, 22, 24]:
-            exit("You canno't use huge tray icons. This might break your system")
+            exit("You canno't use huge tray icons."
+                 " This might break your system")
 else:
     if detect_de() in ("pantheon", "xfce"):
         default_icon_size = 24
