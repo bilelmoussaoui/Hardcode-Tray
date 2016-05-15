@@ -37,7 +37,7 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-if not (environ.get("DESKTOP_SESSION") or environ.get("XDG_CURRENT_DESKTOP")) and not ("--force-icon-size" in argv):
+if not (environ.get("DESKTOP_SESSION") or environ.get("XDG_CURRENT_DESKTOP")) and not ("--size" in argv):
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 db_file = "db.csv"
@@ -47,12 +47,6 @@ userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
 if userhome.lower() == "/root":
     userhome = "/" + getenv("SUDO_USER")
 
-source = Gio.SettingsSchemaSource.get_default()
-if source.lookup("org.gnome.desktop.interface", True):
-    gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-    theme_name = str(gsettings.get_value("icon-theme")).strip("'")
-else:
-    gsettings = None
 db_folder = "database/"
 script_folder = "scripts/"
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
@@ -66,6 +60,22 @@ fixed_icons = []
 reverted_apps = []
 script_errors = []
 
+if "--theme" in argv:
+    index = argv.index("--theme") + 1
+    if index:
+        theme_name = str(argv[index].strip())
+        try:
+            theme = Gtk.IconTheme()
+            theme.set_custom_theme(theme_name)
+        except Exception:
+            exit("The choosen theme does not exists")
+else:
+    source = Gio.SettingsSchemaSource.get_default()
+    if source.lookup("org.gnome.desktop.interface", True):
+        gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+        theme_name = str(gsettings.get_value("icon-theme")).strip("'")
+    else:
+        gsettings = None
 
 def detect_de():
     """
@@ -531,8 +541,8 @@ def install(fix_only):
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-if "--force-icon-size" in argv:
-    index = argv.index("--force-icon-size") + 1
+if "--size" in argv:
+    index = argv.index("--size") + 1
     if index:
         default_icon_size = int(argv[index].strip())
         if default_icon_size not in [16, 22, 24]:
@@ -549,7 +559,7 @@ if "--only" in argv:
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
-if gsettings:
+if "--theme" in argv or gsettings:
     print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")

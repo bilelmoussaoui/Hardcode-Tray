@@ -7,7 +7,7 @@ The script will automagically detect your default theme, the right icon size, th
 For a better experience use [Numix icon theme](https://github.com/numixproject/numix-icon-theme).
 
 ### Screenshots
-Before 
+Before
 
 ![Before](screenshots/before.png)
 
@@ -33,7 +33,7 @@ After
       `sudo pacman -S python-cairosvg`<br />
       `sudo pacman -S inkscape`
 
-  3. Install the patched version of `sni-qt` 
+  3. Install the patched version of `sni-qt`
     - Debian/Ubuntu :<br />
       <pre>
       sudo add-apt-repository ppa:cybre/sni-qt-eplus
@@ -42,7 +42,7 @@ After
       </pre>
     - Arch : <br />
       <pre>
-      yaourt sni-qt-eplus 
+      yaourt sni-qt-eplus
       yaourt lib32-sni-qt-eplus-bzr
       </pre>
   You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
@@ -52,21 +52,25 @@ After
   ```bash
   sudo -E python3 script.py
   ```
-  You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
-  ```bash
-  sudo -E python3 script.py --only telegram,skype
-  ```
-  
-  In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
-  
-  You can also use `--force-icon-size 24/22/16` to force the script to use a different icon size or if the script does not detect your 
-  desktop environment.
-  ```bash
-  sudo python3 script.py --force-icon-size 24 --only dropbox
-  ```
-  
   5. Enjoy!
 
+### Options
+- `--only`
+You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
+```bash
+sudo -E python3 script.py --only telegram,skype
+```
+
+In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
+
+- `--size`
+You can also use `--size 24/22/16` to force the script to use a different icon size or if the script does not detect your
+desktop environment.
+```bash
+sudo python3 script.py --size 24 --only dropbox
+```
+
+- `--theme`
 
 ### Credits
 - Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
