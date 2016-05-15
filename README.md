@@ -56,6 +56,7 @@ After
 
 ### Options
 - `--only`
+
 You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
 ```bash
 sudo -E python3 script.py --only telegram,skype
@@ -64,6 +65,7 @@ sudo -E python3 script.py --only telegram,skype
 In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
 
 - `--size`
+
 You can also use `--size 24/22/16` to force the script to use a different icon size or if the script does not detect your
 desktop environment.
 ```bash
@@ -71,6 +73,11 @@ sudo python3 script.py --size 24 --only dropbox
 ```
 
 - `--theme`
+
+You can fix your hardcoded icons using an other theme than the default one.
+```bash
+sudo -E python3 script.py --theme Numix --only dropbox
+```
 
 ### Credits
 - Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
