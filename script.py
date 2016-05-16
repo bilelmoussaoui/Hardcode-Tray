@@ -51,11 +51,11 @@ backup_ignore_list = ["hexchat"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
-parser.add_argument("--size", "-s", help="use an other icon size instead "
+parser.add_argument("--size", "-s", help="use another icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
 parser.add_argument("--theme", "-t",
-                    help="use an other icon theme instead of the default one.",
+                    help="use another icon theme instead of the default one.",
                     type=str)
 parser.add_argument("--only", "-o",
                     help="fix only one application or more, linked by a ','.\n"
