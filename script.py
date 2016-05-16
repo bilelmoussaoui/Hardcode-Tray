@@ -17,8 +17,8 @@ from os import (chown, environ, getenv, geteuid, listdir, makedirs,
                 path, remove, symlink)
 from shutil import copyfile, move, rmtree
 from subprocess import PIPE, Popen, call, check_output
-from sys import argv, exit
-
+from sys import exit
+import argparse
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
@@ -33,23 +33,14 @@ try:
 except FileNotFoundError:
     exit("You need to clone the whole repository to use the script.")
 
-if geteuid() != 0:
-    exit("You need to have root privileges to run the script.\
-        \nPlease try again, this time using 'sudo'. Exiting.")
-
-if not (environ.get("DESKTOP_SESSION") or
-        environ.get("XDG_CURRENT_DESKTOP")) and not ("--size" in argv):
-    exit("You need to run the script using 'sudo -E'.\nPlease try again")
-
+db_folder = "database/"
+script_folder = "scripts/"
 db_file = "db.csv"
 backup_extension = ".bak"
 userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
-if userhome.lower() == "/root":
-    userhome = "/" + getenv("SUDO_USER")
-
-db_folder = "database/"
-script_folder = "scripts/"
+userhome = "/" + getenv("SUDO_USER") if userhome.lower() == "/root" else userhome
+parser = argparse.ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 images_folder = absolute_path + db_folder + "images/"
@@ -60,21 +51,39 @@ backup_ignore_list = ["hexchat"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
+parser.add_argument("--size", "-s", help="use an other icon size instead "
+                    "of the default one.",
+                    type=int, choices=[16, 22, 24])
+parser.add_argument("--theme", "-t",
+                    help="use an other icon theme instead of the default one.",
+                    type=str)
+parser.add_argument("--only", "-o",
+                    help="fix only one application or more, linked by a ','.\n"
+                    "example : --only dropbox,telegram",
+                    type=str)
+args = parser.parse_args()
 
-if "--theme" in argv:
-    index = argv.index("--theme") + 1
-    if index:
-        theme_name = str(argv[index].strip())
-        try:
-            theme = Gtk.IconTheme()
-            theme.set_custom_theme(theme_name)
-        except Exception:
-            exit("The choosen theme does not exists")
+if geteuid() != 0:
+    exit("You need to have root privileges to run the script.\
+        \nPlease try again, this time using 'sudo'. Exiting.")
+
+if not (environ.get("DESKTOP_SESSION") or
+        environ.get("XDG_CURRENT_DESKTOP")) and not args.size:
+    exit("You need to run the script using 'sudo -E'.\nPlease try again")
+
+if args.theme:
+    theme_name = args.theme
+    try:
+        theme = Gtk.IconTheme()
+        theme.set_custom_theme(theme_name)
+    except Exception:
+        exit("The choosen theme does not exists")
 else:
     source = Gio.SettingsSchemaSource.get_default()
     if source.lookup("org.gnome.desktop.interface", True):
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         theme_name = str(gsettings.get_value("icon-theme")).strip("'")
+        print(theme_name)
     else:
         gsettings = None
 
@@ -546,26 +555,22 @@ def install(fix_only):
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 
-if "--size" in argv:
-    index = argv.index("--size") + 1
-    if index:
-        default_icon_size = int(argv[index].strip())
-        if default_icon_size not in [16, 22, 24]:
-            exit("You canno't use huge tray icons."
-                 " This might break your system")
+if args.size:
+    default_icon_size = args.size
+    if default_icon_size not in [16, 22, 24]:
+        exit("You canno't use huge tray icons."
+             " This might break your system")
 else:
     if detect_de() in ("pantheon", "xfce"):
         default_icon_size = 24
 
 fix_only = False
-if "--only" in argv:
-    index = argv.index("--only") + 1
-    if index:
-        fix_only = argv[index].lower().strip().split(",")
+if args.only:
+    fix_only = args.only.lower().strip().split(",")
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
-if "--theme" in argv or gsettings:
+if args.theme or gsettings:
     print("Your current icon theme is : %s" % theme_name)
 print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
