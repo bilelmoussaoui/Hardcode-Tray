@@ -83,7 +83,6 @@ else:
     if source.lookup("org.gnome.desktop.interface", True):
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         theme_name = str(gsettings.get_value("icon-theme")).strip("'")
-        print(theme_name)
     else:
         gsettings = None
 
