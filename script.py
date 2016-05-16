@@ -561,7 +561,7 @@ else:
     if detect_de() in ("pantheon", "xfce"):
         default_icon_size = 24
 
-fix_only = args.only.lower().strip().split(",") if args.only else False
+fix_only = args.only.lower().strip().split(",") if args.only else None
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
