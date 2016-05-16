@@ -557,16 +557,11 @@ def install(fix_only):
 
 if args.size:
     default_icon_size = args.size
-    if default_icon_size not in [16, 22, 24]:
-        exit("You canno't use huge tray icons."
-             " This might break your system")
 else:
     if detect_de() in ("pantheon", "xfce"):
         default_icon_size = 24
 
-fix_only = False
-if args.only:
-    fix_only = args.only.lower().strip().split(",")
+fix_only = args.only.lower().strip().split(",") if args.only else False
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
