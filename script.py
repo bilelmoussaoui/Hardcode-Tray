@@ -39,7 +39,7 @@ db_file = "db.csv"
 backup_extension = ".bak"
 userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
-if userhome.lower() == "/root"
+if userhome.lower() == "/root":
     userhome = "/home/" + getenv("SUDO_USER")
 parser = argparse.ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
