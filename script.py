@@ -23,16 +23,6 @@ from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
-try:
-    svgtopng = load_source("svgtopng", "./database/scripts/svgtopng.py")
-except FileNotFoundError:
-    exit("You need to clone the whole repository to use the script.")
-
-try:
-    data_pack = load_source("data_pack", "./database/scripts/data_pack.py")
-except FileNotFoundError:
-    exit("You need to clone the whole repository to use the script.")
-
 db_folder = "database/"
 script_folder = "scripts/"
 db_file = "db.csv"
@@ -63,6 +53,16 @@ parser.add_argument("--only", "-o",
                     "example : --only dropbox,telegram",
                     type=str)
 args = parser.parse_args()
+
+try:
+    svgtopng = load_source("svgtopng", "%s/database/scripts/svgtopng.py" % absolute_path)
+except FileNotFoundError:
+    exit("You need to clone the whole repository to use the script.")
+
+try:
+    data_pack = load_source("data_pack", "%s/database/scripts/data_pack.py" % absolute_path)
+except FileNotFoundError:
+    exit("You need to clone the whole repository to use the script.")
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
