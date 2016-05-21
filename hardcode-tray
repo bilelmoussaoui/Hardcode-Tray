@@ -3,25 +3,8 @@
 version=2.4
 case $1 in
     -u|--update)
-        cd /tmp
-        echo "Downloading Hardcode-Tray ..."
-        wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip
-        unzip -oq master.zip
-        rm -f master.zip
-        cd ./Hardcode-Tray-master
-        rm -rf .git ./screenshots ./license
-        rm -f .gitignore README.md
-        cd ../
-        if [ -d "/opt/Hardcode-Tray" ];then
-            sudo rm -rf /opt/Hardcode-Tray
-        fi
-        sudo mv Hardcode-Tray-master/ /opt/Hardcode-Tray
-        echo "Creating symbolic link.."
-        if [ -L "/usr/bin/hardcode-tray" ];then
-            sudo rm -f /usr/bin/hardcode-tray
-        fi
-        sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
-        echo "The update has completed successfully."
+        cd /tmp 
+        wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh && bash install.sh --u
         exit 0 ;;
     -v|--version)
         echo $version
