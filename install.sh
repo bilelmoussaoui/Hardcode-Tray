@@ -16,4 +16,5 @@ if [ -L "/usr/bin/hardcode-tray" ];then
     sudo rm -f /usr/bin/hardcode-tray
 fi
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
-echo "Installation finished successful, you can run the script using 'hardcode-tray'"
+echo "Installation completed successfully."
+echo "You can run the script using 'hardcode-tray'"
