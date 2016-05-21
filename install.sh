@@ -16,5 +16,9 @@ if [ -L "/usr/bin/hardcode-tray" ];then
     sudo rm -f /usr/bin/hardcode-tray
 fi
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
-echo "Installation completed successfully."
+if [ "$1" == "--u" ]; then
+    echo "The update has completed successfully."
+else
+    echo "Installation completed successfully."
+fi
 echo "You can run the script using 'hardcode-tray'"
