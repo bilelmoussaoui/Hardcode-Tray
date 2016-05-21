@@ -9,5 +9,5 @@ case $1 in
         echo $version
         exit 0 ;;
     *)
-        sudo -E python3 script.py "$@"
+        sudo -E python3 /opt/Hardcode-Tray/script.py "$@"
 esac
