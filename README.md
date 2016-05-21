@@ -19,7 +19,7 @@ After
 ### How to use
   1. Install the script
   ```bash
-  wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
+  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
 
   2. Install  `python3-cairosvg` or `inkscape`
@@ -94,7 +94,7 @@ hardcode-tray --update
 ### Uninstallation
 To remove the script completely from your desktop you can use
 ```bash
-wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/uninstall.sh | bash
+cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/uninstall.sh | bash
 ```
 
 ### Credits
