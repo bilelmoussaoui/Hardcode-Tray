@@ -1,9 +1,19 @@
 cd /tmp
-wget https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip
-unzip master.zip
+echo "Downloading Hardcode-Tray ..."
+wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip
+unzip -oq master.zip
+rm -f master.zip
 cd ./Hardcode-Tray-master
 rm -rf .git ./screenshots ./license
 rm -f .gitignore README.md
 cd ../
+if [ -d "/opt/Hardcode-Tray" ];then
+    sudo rm -rf /opt/Hardcode-Tray
+fi
 sudo mv Hardcode-Tray-master/ /opt/Hardcode-Tray
+echo "Creating symbolic link.."
+if [ -L "/usr/bin/hardcode-tray" ];then
+    sudo rm -f /usr/bin/hardcode-tray
+fi
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
+echo "Installation finished successful, you can run the script using 'hardcode-tray'"
