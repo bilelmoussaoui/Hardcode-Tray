@@ -17,9 +17,9 @@ After
 
 
 ### How to use
-  1. Download the [zip folder](https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip) or clone the repository
+  1. Install the script
   ```bash
-  git clone https://github.com/bil-elmoussaoui/Hardcode-Tray.git
+  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
 
   2. Install  `python3-cairosvg` or `inkscape`
@@ -48,10 +48,8 @@ After
   You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package, however it is shipping its own version. Therefore this script also overwrites the version shipped by teamviewer with the patched one.
-  4. Open the `script.py` using this command
-  ```bash
-  sudo -E python3 script.py
-  ```
+  4. Open Hardcode-Tray using this command<br/>
+  <pre>hardcode-tray</pre>
   5. Enjoy!
 
 ### Options
@@ -59,7 +57,7 @@ After
 
 You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
 ```bash
-sudo -E python3 script.py --only telegram,skype
+hardcode-tray --only telegram,skype
 ```
 
 In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
@@ -69,14 +67,34 @@ In order to get the names needed to fix only specific programs, you can look at 
 You can also use `--size 24/22/16` to force the script to use a different icon size or if the script does not detect your
 desktop environment.
 ```bash
-sudo python3 script.py --size 24 --only dropbox
+hardcode-tray --size 24 --only dropbox
 ```
 
 - `--theme`
 
 You can fix your hardcoded icons using an other theme than the default one.
 ```bash
-sudo -E python3 script.py --theme Numix --only dropbox
+hardcode-tray --theme Numix --only dropbox
+```
+
+- `--version`
+
+You can print the version of Hardcode-Tray using
+```bash
+hardcode-tray --version
+```
+
+- `--update`
+
+You can also update to the latest version of the script
+```bash
+hardcode-tray --update
+```
+
+### Uninstallation
+To remove the script completely from your desktop you can use
+```bash
+cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/uninstall.sh | bash
 ```
 
 ### Credits

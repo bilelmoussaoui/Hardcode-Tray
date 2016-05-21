@@ -1,0 +1,13 @@
+#!/bin/bash
+version=2.4
+case $1 in
+    -u|--update)
+        cd /tmp 
+        wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh && bash install.sh --u
+        exit 0 ;;
+    -v|--version)
+        echo $version
+        exit 0 ;;
+    *)
+        sudo -E python3 script.py "$@"
+esac
