@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -d "/opt/Hardcode-Tray" ];then
     sudo rm -rf /opt/Hardcode-Tray
 fi
