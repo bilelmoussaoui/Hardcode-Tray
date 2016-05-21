@@ -4,7 +4,8 @@ version=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git 
 wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/$version.zip
 unzip -oq $version.zip
 rm -f $version.zip
-versionnb=$(version | sed "s/[^0-9. ]*//g")
+echo $version
+versionnb=$(echo "$version" | sed "s/[^0-9. ]*//")
 cd ./Hardcode-Tray-$versionnb
 rm -rf .git ./screenshots ./license
 rm -f .gitignore README.md install.sh uninstall.sh
