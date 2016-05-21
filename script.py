@@ -52,15 +52,21 @@ parser.add_argument("--only", "-o",
                     help="fix only one application or more, linked by a ','.\n"
                     "example : --only dropbox,telegram",
                     type=str)
+parser.add_argument("--update", "-u", action='store_true',
+                    help="Update Hardcode-Tray to the latest version.")
+parser.add_argument("--version", "-v", action='store_true',
+                    help="print the version number of Hardcode-Tray.")
 args = parser.parse_args()
 
 try:
-    svgtopng = load_source("svgtopng", "%s/database/scripts/svgtopng.py" % absolute_path)
+    svgtopng = load_source(
+        "svgtopng", "%s/database/scripts/svgtopng.py" % absolute_path)
 except FileNotFoundError:
     exit("You need to clone the whole repository to use the script.")
 
 try:
-    data_pack = load_source("data_pack", "%s/database/scripts/data_pack.py" % absolute_path)
+    data_pack = load_source(
+        "data_pack", "%s/database/scripts/data_pack.py" % absolute_path)
 except FileNotFoundError:
     exit("You need to clone the whole repository to use the script.")
 
