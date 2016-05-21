@@ -21,10 +21,7 @@ case $1 in
             sudo rm -f /usr/bin/hardcode-tray
         fi
         sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
-        echo "Installation finished successful, you can run the script using 'hardcode-tray'"
-    --uninstall)
-        sudo rm -rf /opt/Hardcode-Tray
-        sudo rm -f /usr/bin/hardcode-tray
+        echo "The update has completed successfully."
         exit 0 ;;
     -v|--version)
         echo $version
