@@ -1,0 +1,24 @@
+#!/bin/bash
+#sudo -E python3 script.py "$@"
+version=2.4
+case $1 in
+    -u|--update)
+        cd /tmp
+        wget https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/master.zip
+        unzip master.zip
+        cd ./Hardcode-Tray-master
+        rm -rf .git ./screenshots ./license
+        rm -f .gitignore README.md install.sh
+        cd ../
+        sudo mv Hardcode-Tray-master/ /opt/Hardcode-Tray
+        sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray;;
+    --uninstall)
+        sudo rm -rf /opt/Hardcode-Tray
+        sudo rm -f /usr/bin/hardcode-tray
+        exit 0 ;;
+    -v|--version)
+        echo $version
+        exit 0 ;;
+    *)
+        sudo -E python3 script.py "$@"
+esac
