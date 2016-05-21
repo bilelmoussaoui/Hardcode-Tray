@@ -1,5 +1,4 @@
 #!/bin/bash
-#sudo -E python3 script.py "$@"
 version=2.4
 case $1 in
     -u|--update)
