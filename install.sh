@@ -5,7 +5,7 @@ unzip -oq master.zip
 rm -f master.zip
 cd ./Hardcode-Tray-master
 rm -rf .git ./screenshots ./license
-rm -f .gitignore README.md
+rm -f .gitignore README.md install.sh uninstall.sh
 cd ../
 if [ -d "/opt/Hardcode-Tray" ];then
     sudo rm -rf /opt/Hardcode-Tray
