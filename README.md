@@ -1,3 +1,4 @@
+[![Status](https://img.shields.io/badge/status-stable-green.svg)]() [![Hardcode-Tray release](https://img.shields.io/badge/release-v3.0.2-blue.svg)]() [![Python version](https://img.shields.io/badge/python-3.4%2C%203.5-blue.svg)]() 
 # Hardcode-Tray
 
 Fixes Hardcoded tray icons in Linux
