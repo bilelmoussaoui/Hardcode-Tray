@@ -308,7 +308,7 @@ def get_apps_informations(fix_only):
             @fix_only (list): contains a list of applications
                                 to be fixed/reverted
     """
-    db = open(db_file)
+    db = open(absolute_path + db_file)
     r = reader(db, skipinitialspace=True)
     next(r)
     apps = OrderedDict()
