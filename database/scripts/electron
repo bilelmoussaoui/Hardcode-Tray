@@ -6,8 +6,8 @@ import sys
 import os
 from functools import reduce
 from imp import load_source
-
-svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
+absolute_path = os.path.split(os.path.abspath(__file__))[0] + "/"
+svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
 
 
 def getFromDict(dataDict, mapList):

@@ -354,8 +354,8 @@ def get_app_icons(app_name):
         Args:
             app_name(str): The application name
     """
-    if path.isfile(db_folder + app_name):
-        f = open(db_folder + app_name)
+    if path.isfile(absolute_path + db_folder + app_name):
+        f = open(absolute_path + db_folder + app_name)
         r = reader(f, skipinitialspace=True)
         icons = []
         for icon in r:
@@ -463,7 +463,7 @@ def install(fix_only):
                     symlink_icon = path.splitext(icon[1])[0]
                     if len(icon) > 2:
                         is_script = True
-                        sfile = "./" + db_folder + script_folder + icon[2]
+                        sfile = absolute_path + db_folder + script_folder + icon[2]
                     if theme.lookup_icon(symlink_icon, default_icon_size, 0):
                         repl_icon = icon[1]
                         symlink_icon = icon[0]

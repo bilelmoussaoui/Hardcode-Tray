@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
 import sys
-from os import symlink, chown, getenv, remove
+from os import symlink, chown, getenv, remove, path
 from subprocess import Popen, PIPE
 from imp import load_source
 
-svgtopng = load_source('svgtopng', './database/scripts/svgtopng.py')
+absolute_path = path.split(path.abspath(__file__))[0] + "/"
+svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
 
 origfile = sys.argv[1]
 symlfile = sys.argv[3] + sys.argv[2]
