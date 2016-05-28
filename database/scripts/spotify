@@ -1,6 +1,6 @@
 #!/bin/bash
-
-cd ./database/scripts
+path=$(dirname $(realpath  $(which hardcode-tray)))
+cd "$path"/database/scripts
 mkdir -p /_linux/
 
 f="/_linux/$2"
