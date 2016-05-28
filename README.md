@@ -54,6 +54,18 @@ After
   5. Enjoy!
 
 ### Options
+- `--apply` and `--revert`
+
+Hardcode-Tray shows by default a welcome message and ask the user to choose between applying the fix or reverting it. You can hide that using
+```bash
+hardcode-tray --apply
+```
+or 
+
+```bash
+hardcode-tray --revert
+```
+
 - `--only`
 
 You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
