@@ -42,16 +42,19 @@ backup_ignore_list = ["hexchat"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
-parser.add_argument("--size", "-s", help="use another icon size instead "
+parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
 parser.add_argument("--theme", "-t",
-                    help="use another icon theme instead of the default one.",
+                    help="use a different icon theme instead of the default one.",
                     type=str)
 parser.add_argument("--only", "-o",
                     help="fix only one application or more, linked by a ','.\n"
                     "example : --only dropbox,telegram",
                     type=str)
+parser.add_argument("--path", "-p",
+                    help="use a different icon path for a single icon.", 
+		    type=str)
 parser.add_argument("--update", "-u", action='store_true',
                     help="update Hardcode-Tray to the latest version.")
 parser.add_argument("--version", "-v", action='store_true',
@@ -305,7 +308,7 @@ def get_supported_apps():
     return supported_apps
 
 
-def get_apps_informations(fix_only):
+def get_apps_informations(fix_only, custom_path):
     """
         Reads the database file and returns a dictionary with all information
         Args:
@@ -320,13 +323,14 @@ def get_apps_informations(fix_only):
     fix_only = fix_only if fix_only else get_supported_apps()
     for app in r:
         if app[1] in fix_only:
-            app[2] = app[2].replace("{userhome}", userhome).strip()
-            if "{dropbox}" in app[2]:
-                app[2] = replace_dropbox_dir(app[2])
+            path_icon = custom_path if custom_path else app[2]
+            path_icon = path_icon.replace("{userhome}", userhome).strip()
+            if "{dropbox}" in path_icon:
+                path_icon = replace_dropbox_dir(path_icon)
             if app[1] == "hexchat":
                 create_hexchat_dir(app)
-            if app[2]:
-                if path.isdir(app[2]) or path.isfile(app[2]):
+            if path_icon:
+                if path.isdir(path_icon) or path.isfile(path_icon):
                     icons = get_app_icons(app[1])
                     if icons:
                         if app[1] in apps.keys():
@@ -338,7 +342,7 @@ def get_apps_informations(fix_only):
                         apps[app_name] = OrderedDict()
                         apps[app_name]["name"] = app[0]
                         apps[app_name]["dbfile"] = app[1]
-                        apps[app_name]["path"] = app[2]
+                        apps[app_name]["path"] = path_icon
                         apps[app_name]["icons"] = icons
                         if len(app) == 4 and app[3]:
                             apps[app_name]["sniqtprefix"] = app[3]
@@ -390,12 +394,12 @@ def backup(icon, revert=False):
             move(back_file, icon)
 
 
-def reinstall(fix_only):
+def reinstall(fix_only, custom_path):
     """
         Reverts to the original icons
     """
     sni_qt_reverted = False
-    apps = get_apps_informations(fix_only)
+    apps = get_apps_informations(fix_only, custom_path)
     if len(apps) != 0:
         for app in apps:
             app_icons = apps[app]["icons"]
@@ -442,11 +446,11 @@ def reinstall(fix_only):
                         reverted_apps.append(revert_app)
 
 
-def install(fix_only):
+def install(fix_only, custom_path):
     """
         Installs the new supported icons
     """
-    apps = get_apps_informations(fix_only)
+    apps = get_apps_informations(fix_only, custom_path)
     if len(apps) != 0:
         for app in apps:
             app_path = apps[app]["path"]
@@ -572,6 +576,12 @@ else:
         default_icon_size = 24
 choice = None
 fix_only = args.only.lower().strip().split(",") if args.only else None
+
+if args.path and fix_only and len(fix_only) == 1:
+    icon_path = args.path
+else:
+    icon_path = None    
+
 if args.apply:
     choice = 1
 if args.revert:
@@ -598,10 +608,10 @@ if not choice:
 
 if choice == 1:
     print("Applying now..\n")
-    install(fix_only)
+    install(fix_only, icon_path)
 elif choice == 2:
     print("Reverting now..\n")
-    reinstall(fix_only)
+    reinstall(fix_only, icon_path)
 
 if len(script_errors) != 0:
     for err in script_errors:
