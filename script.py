@@ -53,9 +53,13 @@ parser.add_argument("--only", "-o",
                     "example : --only dropbox,telegram",
                     type=str)
 parser.add_argument("--update", "-u", action='store_true',
-                    help="Update Hardcode-Tray to the latest version.")
+                    help="update Hardcode-Tray to the latest version.")
 parser.add_argument("--version", "-v", action='store_true',
                     help="print the version number of Hardcode-Tray.")
+parser.add_argument("--apply", "-a", action='store_true',
+                    help="fix hardcoded tray icons")
+parser.add_argument("--revert", "-r", action='store_true',
+                    help="revert fixed hardcoded tray icons")
 args = parser.parse_args()
 
 try:
@@ -566,8 +570,12 @@ if args.size:
 else:
     if detect_de() in ("pantheon", "xfce"):
         default_icon_size = 24
-
+choice = None
 fix_only = args.only.lower().strip().split(",") if args.only else None
+if args.apply:
+    choice = 1
+if args.revert:
+    choice = 2
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
@@ -577,21 +585,23 @@ print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
 print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")
-print("1 - Apply")
-print("2 - Revert")
 
-try:
-    choice = int(input("Please choose: "))
-    if choice == 1:
-        print("Applying now..\n")
-        install(fix_only)
-    elif choice == 2:
-        print("Reverting now..\n")
-        reinstall(fix_only)
-    else:
-        exit("Please try again")
-except ValueError:
-    exit("Please choose a valid value!")
+if not choice:
+    print("1 - Apply")
+    print("2 - Revert")
+    try:
+        choice = int(input("Please choose: "))
+        if choice not in [1,2]:
+            exit("Please try again")
+    except ValueError:
+        exit("Please choose a valid value!")
+
+if choice == 1:
+    print("Applying now..\n")
+    install(fix_only)
+elif choice == 2:
+    print("Reverting now..\n")
+    reinstall(fix_only)
 
 if len(script_errors) != 0:
     for err in script_errors:
