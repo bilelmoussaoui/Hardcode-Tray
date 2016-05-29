@@ -1,5 +1,10 @@
 #!/bin/bash
-path=$(dirname $(realpath  $(which hardcode-tray)))
+cmd_path=$(which hardcode-tray)
+if [ $? -ne 0 ]; then
+    path="."
+else
+    path=$(dirname $(realpath "$cmd_path"))
+fi
 cd "$path"/database/scripts
 mkdir -p /_linux/
 
