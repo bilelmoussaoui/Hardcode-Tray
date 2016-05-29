@@ -75,6 +75,10 @@ hardcode-tray --only telegram,skype
 
 In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
 
+- `--path`
+
+If you installed your app in a non standard location, you can override the path where the icons are stored using the `--path` argument. Only works in combination with the `--only` argument for a single application.
+
 - `--size`
 
 You can also use `--size 24/22/16` to force the script to use a different icon size or if the script does not detect your
