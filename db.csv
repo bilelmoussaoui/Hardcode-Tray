@@ -43,6 +43,7 @@ ScreenCloud, screencloud, /usr/bin/screencloud/,
 Seafile, seafile, /usr/bin/seafile-applet/, seafile-applet
 Sflphone, sflphone, /usr/share/sflphone/,
 Skype, skype, /usr/share/skype/,
+Skype, skypeforlinux, /usr/share/skypeforlinux/resources/,
 Slack, slack, /usr/share/slack/resources/app.asar.unpacked/static/,
 Spotify, spotify, /opt/spotify/spotify-client/Data/,
 Stremio, stremio, /usr/share/stremio/resources/,
