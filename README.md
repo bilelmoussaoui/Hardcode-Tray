@@ -1,4 +1,4 @@
-![Status](https://img.shields.io/badge/status-stable-green.svg) [![Hardcode-Tray release](https://img.shields.io/badge/release-v3.0.4-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases) ![Python version](https://img.shields.io/badge/python-3.4%2C%203.5-blue.svg)
+![Status](https://img.shields.io/badge/status-stable-green.svg) [![Hardcode-Tray release](https://img.shields.io/badge/release-v3.1-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases) ![Python version](https://img.shields.io/badge/python-3.4%2C%203.5-blue.svg)
 # Hardcode-Tray
 
 Fixes Hardcoded tray icons in Linux
@@ -60,7 +60,7 @@ Hardcode-Tray shows by default a welcome message and ask the user to choose betw
 ```bash
 hardcode-tray --apply
 ```
-or 
+or
 
 ```bash
 hardcode-tray --revert
