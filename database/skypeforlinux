@@ -1,0 +1,6 @@
+files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbTemplate@2x.png, skype-status-disturb, electron, app.asar
+files/apps/files/swx/files/tray/files/win/files/tray-awayTemplate@2x.png, skype-status-away, electron, app.asar
+files/apps/files/swx/files/tray/files/win/files/tray-offlineTemplate@2x.png, skype-status-offline, electron, app.asar
+files/apps/files/swx/files/tray/files/win/files/tray-onlineTemplate@2x.png, skype-status-connected, electron, app.asar
+files/apps/files/swx/files/tray/files/win/files/tray-skypeTemplate@2x.png, skype-indicator, electron, app.asar
+files/apps/files/swx/files/tray/files/win/files/tray-hiddenTemplate@2x.png, skype-status-hidden, electron, app.asar
