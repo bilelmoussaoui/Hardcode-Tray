@@ -1,6 +1,8 @@
 Application name, Database file, Application path, Sni Qt prefix
+Anatine, anatine, /usr/share/anatine/resources/app/media/,
 Bitcoin, bitcoin, /usr/bin/bitcoin-qt/, bitcoin-qt
 Calendar Indicator, calendar-indicator, /opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/,
+Caprine, caprine, /usr/share/caprine/resources/,
 Catch Indicator, catch-indicator, /usr/share/catch-indicator/icons/,
 Chromium, chromium, /usr/lib/chromium-browser/,
 Chromium, chromium, /usr/lib/chromium/,

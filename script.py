@@ -2,7 +2,7 @@
 """
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 2.3
+Version : 4.0 beta
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
@@ -53,7 +53,7 @@ parser.add_argument("--only", "-o",
                     "example : --only dropbox,telegram",
                     type=str)
 parser.add_argument("--path", "-p",
-                    help="use a different icon path for a single icon.", 
+                    help="use a different icon path for a single icon.",
 		    type=str)
 parser.add_argument("--update", "-u", action='store_true',
                     help="update Hardcode-Tray to the latest version.")
@@ -307,6 +307,17 @@ def get_supported_apps():
             supported_apps.append(file)
     return supported_apps
 
+def get_icon_size(icon):
+    """
+        Get the icon size, with hidpi support (depends on the icon name)
+        @Args: (list) icon
+    """
+    global default_icon_size
+    icon_size = default_icon_size
+    icon_name = icon[0].split("@")
+    if len(icon_name) > 1:
+        icon_size *= int(icon_name[1].split("x")[0])
+    return icon_size
 
 def get_apps_informations(fix_only, custom_path):
     """
@@ -464,6 +475,7 @@ def install(fix_only, custom_path):
             icon_ctr = 1
             while (not dont_install) and (icon_ctr <= len(app_icons)):
                 icon = app_icons[icon_ctr - 1]
+                icon_size = get_icon_size(icon)
                 is_script = False
                 if isinstance(icon, list):
                     icon = [item.strip() for item in icon]
@@ -472,7 +484,7 @@ def install(fix_only, custom_path):
                     if len(icon) > 2:
                         is_script = True
                         sfile = absolute_path + db_folder + script_folder + icon[2]
-                    if theme.lookup_icon(symlink_icon, default_icon_size, 0):
+                    if theme.lookup_icon(symlink_icon, icon_size, 0):
                         repl_icon = icon[1]
                         symlink_icon = icon[0]
                     else:
@@ -481,7 +493,7 @@ def install(fix_only, custom_path):
                     symlink_icon = repl_icon = icon.strip()
                 base_icon = path.splitext(repl_icon)[0]
                 ext_orig = get_extension(symlink_icon)
-                theme_icon = theme.lookup_icon(base_icon, default_icon_size, 0)
+                theme_icon = theme.lookup_icon(base_icon, icon_size, 0)
                 if theme_icon:
                     fname = theme_icon.get_filename()
                     fbase = path.splitext(path.basename(fname))[0]
@@ -580,7 +592,7 @@ fix_only = args.only.lower().strip().split(",") if args.only else None
 if args.path and fix_only and len(fix_only) == 1:
     icon_path = args.path
 else:
-    icon_path = None    
+    icon_path = None
 
 if args.apply:
     choice = 1
