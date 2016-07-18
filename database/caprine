@@ -1,6 +1,6 @@
 files/media/files/IconTray.png, messenger-indicator, electron, app.asar
 files/media/files/IconTray@2x.png, messenger-indicator, electron, app.asar
-files/media/files/IconTray@4x.png, skype-status-away, electron, app.asar
+files/media/files/IconTray@4x.png, messenger-indicator, electron, app.asar
 files/media/files/IconTrayUnread.png, messenger-notification, electron, app.asar
 files/media/files/IconTrayUnread@2x.png, messenger-notification, electron, app.asar
 files/media/files/IconTrayUnread@4x.png, messenger-notification, electron, app.asar
