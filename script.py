@@ -151,7 +151,7 @@ def mchown(directory):
     dir_path = "/"
     for directory in path_list:
         dir_path += str(directory) + "/"
-        if dir_path.replace("/", "") is not in chmod_ignore_list:
+        if dir_path.replace("/", "") not in chmod_ignore_list:
             if path.exists(dir_path):
                 chown(dir_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
             elif path.isfile(dir_path.rstrip("/")):
