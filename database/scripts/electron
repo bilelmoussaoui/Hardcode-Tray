@@ -53,8 +53,11 @@ asarfile.close()
 
 keys = icon_to_repl.split('/')
 
-fileinfo = getFromDict(files, keys)
-
+try:
+    fileinfo = getFromDict(files, keys)
+except KeyError:
+    sys.exit()
+    
 offset0 = int(fileinfo['offset'])
 offset = offset0+baseoffset
 size = int(fileinfo['size'])
