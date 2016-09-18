@@ -35,7 +35,10 @@ icon_for_repl = sys.argv[1]
 # uses google's pickle format, which prefixes each field
 # with its total length, the first field is a 32-bit unsigned
 # integer, thus 4 bytes, we know that, so we skip it
-asarfile = open(filename, 'rb')
+try:
+    asarfile = open(filename, 'rb')
+except FileNotFoundError:
+    sys.exit()
 asarfile.seek(4)
 
 # header size is stored in byte 12:16
