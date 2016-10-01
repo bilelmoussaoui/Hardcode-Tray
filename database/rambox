@@ -1,0 +1,6 @@
+files/resources/files/IconTray.png, rambox-indicator, electron, app.asar
+files/resources/files/IconTray@2x.png, rambox-indicator, electron, app.asar
+files/resources/files/IconTray@4x.png, rambox-indicator, electron, app.asar
+files/resources/files/IconTrayUnread.png, rambox-notification, electron, app.asar
+files/resources/files/IconTrayUnread@2x.png, rambox-notification, electron, app.asar
+files/resources/files/IconTrayUnread@4x.png,  rambox-notification, electron, app.asar
