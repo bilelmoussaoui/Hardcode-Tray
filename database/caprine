@@ -4,3 +4,9 @@ files/media/files/IconTray@4x.png, messenger-indicator, electron, app.asar
 files/media/files/IconTrayUnread.png, messenger-notification, electron, app.asar
 files/media/files/IconTrayUnread@2x.png, messenger-notification, electron, app.asar
 files/media/files/IconTrayUnread@4x.png, messenger-notification, electron, app.asar
+IconTray.png, messenger-indicator
+IconTray@2x.png, messenger-indicator
+IconTray@4x.png, messenger-indicator
+IconTrayUnread.png, messenger-notification
+IconTrayUnread@2x.png, messenger-notification
+IconTrayUnread@4x.png, messenger-notification
