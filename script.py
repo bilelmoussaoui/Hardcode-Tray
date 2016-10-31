@@ -2,7 +2,7 @@
 """
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 4.0 beta
+Version : 3.2
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
