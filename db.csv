@@ -46,6 +46,7 @@ Prime Indicator, primeindicator, /usr/lib/primeindicator/,
 Pushbullet Indicator, pushbullet-indicator, /opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/,
 QElectroTech, qelectrotech, /usr/share/qelectrotech/,
 RadioTray, radiotray, /usr/share/radiotray/images/,
+Rambox, rambox, /opt/rambox/resources/,
 ScreenCloud, screencloud, /usr/bin/screencloud/,
 Seafile, seafile, /usr/bin/seafile-applet/, seafile-applet
 Sflphone, sflphone, /usr/share/sflphone/,
