@@ -1,0 +1,3 @@
+files/assets/files/franz-win-dock-alert.png, franz-attention-panel, electron, app.asar
+files/assets/files/tray/files/linux/files/franz-taskbar.png, franz-panel, electron, app.asar
+files/assets/files/tray/files/linux/files/franz-taskbar-unread.png, franz-attention-panel, electron, app.asar
