@@ -20,7 +20,11 @@ cd ../ || exit
 if [ -d "/opt/Hardcode-Tray" ];then
     sudo rm -rf /opt/Hardcode-Tray
 fi
-sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
+if [ "$1" == "--ug" ]; then
+	sudo mv Hardcode-Tray/ /opt/Hardcode-Tray
+else
+	sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
+fi
 echo "Creating symbolic link.."
 if [ -L "/usr/bin/hardcode-tray" ];then
     sudo rm -f /usr/bin/hardcode-tray
