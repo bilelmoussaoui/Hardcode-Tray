@@ -16,6 +16,10 @@ After
 
 ![After](screenshots/after.png)
 
+### Themes
+Here's a list of themes that supports Hardcode-Tray 
+  - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
+  - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
 
 ### How to use
   1. Install the script
