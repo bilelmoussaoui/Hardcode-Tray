@@ -28,7 +28,7 @@ def convert_svg2png(infile, outfile, icon_size = None):
     """
     if not disable_svg2png:
         if use_inkscape:
-            if not icon_size:
+            if icon_size:
                 p = Popen(["inkscape", "-f", infile, "-e", outfile,
                         "-w" + str(icon_size), "-h" + str(icon_size)],
                           stdout=PIPE, stderr=PIPE)
@@ -37,13 +37,7 @@ def convert_svg2png(infile, outfile, icon_size = None):
                           stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
         else:
-            if not icon_size:
-                with open(infile, "r") as content_file:
-                    svg = content_file.read()
-                fout = open(outfile, "wb")
-                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
-                fout.close()
-            else:
+            if icon_size:
                 handle = Rsvg.Handle()
                 svg = handle.new_from_file(infile)
                 dim = svg.get_dimensions()
@@ -60,8 +54,14 @@ def convert_svg2png(infile, outfile, icon_size = None):
                 svg.close()
                 png_io.close()
                 img.finish()
-
-
+            else:
+                with open(infile, "r") as content_file:
+                    svg = content_file.read()
+                fout = open(outfile, "wb")
+                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
+                fout.close()
+            
+    
 def convert_svg2bin(infile):
     """
         Converts svg files to binary in memory using Cairosvg or inkscape
