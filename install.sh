@@ -1,14 +1,19 @@
 #!/bin/bash
 cd /tmp || exit
 echo "Downloading Hardcode-Tray ..."
-version=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
-IFS=' ' read -r -a versions <<< "$version"
-version=${versions[0]}
-wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/"$version".zip
-unzip -oq "$version".zip
-rm -f "$version".zip
-versionnb=$(echo "$version" | sed "s/[^0-9. ]*//")
-cd ./Hardcode-Tray-"$versionnb" || exit
+if [ "$1" == "--ug" ]; then
+	git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
+	cd ./Hardcode-Tray
+else
+	version=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
+	IFS=' ' read -r -a versions <<< "$version"
+	version=${versions[0]}
+	wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/"$version".zip
+	unzip -oq "$version".zip
+	rm -f "$version".zip
+	versionnb=$(echo "$version" | sed "s/[^0-9. ]*//")
+	cd ./Hardcode-Tray-"$versionnb" || exit
+fi
 rm -rf .git ./screenshots ./license
 rm -f .gitignore README.md install.sh uninstall.sh
 cd ../ || exit

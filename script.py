@@ -57,7 +57,9 @@ parser.add_argument("--path", "-p",
                     help="use a different icon path for a single icon.",
 		    type=str)
 parser.add_argument("--update", "-u", action='store_true',
-                    help="update Hardcode-Tray to the latest version.")
+                    help="update Hardcode-Tray to the latest stable version.")
+parser.add_argument("--update-git", "-ug", action='store_true',
+                    help="update Hardcode-Tray to the latest git commit.")
 parser.add_argument("--version", "-v", action='store_true',
                     help="print the version number of Hardcode-Tray.")
 parser.add_argument("--apply", "-a", action='store_true',
