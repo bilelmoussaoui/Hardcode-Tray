@@ -14,7 +14,7 @@ case $1 in
         exit 0 ;;
     -ug | --update-git)
         cd /tmp 
-        wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh && bash install.sh --ug
+        wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh && bash install.sh --g
         exit 0 ;;
     -v|--version)
         echo $version

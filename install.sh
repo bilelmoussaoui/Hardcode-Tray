@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /tmp || exit
 echo "Downloading Hardcode-Tray ..."
-if [ "$1" == "--ug" ]; then
+if [ "$1" == "--g" ]; then
     echo "Cloning the repository..."
     if [ -d "./Hardcode-Tray" ]; then
     	rm -rf /tmp/Hardcode-Tray
@@ -25,7 +25,7 @@ cd ../ || exit
 if [ -d "/opt/Hardcode-Tray" ]; then
     sudo rm -rf /opt/Hardcode-Tray
 fi
-if [ "$1" == "--ug" ]; then
+if [ "$1" == "--g" ]; then
     sudo mv Hardcode-Tray/ /opt/Hardcode-Tray
 else
     sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
@@ -37,7 +37,7 @@ fi
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
 if [ "$1" == "--u" ]; then
     echo "The update has completed successfully."
-elif [ "$1" == "--ug" ]; then
+elif [ "$1" == "--g" ]; then
     echo "Hardcode-Tray was updated to git version successfully."
 else
     echo "Installation completed successfully."
