@@ -30,7 +30,7 @@ def convert_svg2png(infile, outfile, icon_size = None):
         if use_inkscape:
             if icon_size:
                 p = Popen(["inkscape", "-z", "-f", infile, "-e", outfile,
-                        "-w" + str(icon_size), "-h" + str(icon_size)],
+                        "-w", str(icon_size), "-h", str(icon_size)],
                           stdout=PIPE, stderr=PIPE)
             else:
                 p = Popen(["inkscape", "-z", "-f", infile, "-e", outfile],
@@ -69,7 +69,7 @@ def convert_svg2bin(infile):
     """
     if not disable_svg2png:
         if use_inkscape:
-            p = Popen(["inkscape", "-z", "-f", infile, "-e /tmp/hardcode.png"],
+            p = Popen(["inkscape", "-z", "-f", infile, "-e", "/tmp/hardcode.png"],
                       stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
             with open('/tmp/hardcode.png', 'rb') as temppng:
