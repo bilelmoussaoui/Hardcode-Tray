@@ -5,10 +5,10 @@ from os import symlink, chown, getenv, remove
 from subprocess import Popen, PIPE, call
 from io import BytesIO
 from gi import require_version
-require_version('Rsvg', '2.0')
 use_inkscape = False
 disable_svg2png = False
 try:
+    require_version('Rsvg', '2.0')
     from cairosvg import svg2png
     from gi.repository import Rsvg
     import cairo
