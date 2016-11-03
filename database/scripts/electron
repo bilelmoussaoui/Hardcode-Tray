@@ -13,10 +13,8 @@ svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
 def getFromDict(dataDict, mapList):
     return reduce(lambda d, k: d[k], mapList, dataDict)
 
-
 def setInDict(dataDict, mapList, value):
     getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
-
 
 # iterative funtion to account for the new size of the png bytearray
 def change_dict_vals(d, sizediff, offset):
@@ -28,7 +26,7 @@ def change_dict_vals(d, sizediff, offset):
     return d
 
 
-filename = sys.argv[3]+sys.argv[4]
+filename = sys.argv[3] + sys.argv[4]
 icon_to_repl = sys.argv[2]
 icon_for_repl = sys.argv[1]
 
@@ -46,12 +44,12 @@ len1 = struct.unpack('I', asarfile.read(4))[0]
 len2 = struct.unpack('I', asarfile.read(4))[0]
 len3 = struct.unpack('I', asarfile.read(4))[0]
 header_size = len3
-zeros_padding = (len2-4-len3)
+zeros_padding = (len2 - 4 - len3)
 
 header = asarfile.read(header_size).decode('utf-8')
 
 files = json.loads(header)
-baseoffset = asarfile.tell()+zeros_padding
+baseoffset = asarfile.tell() + zeros_padding
 asarfile.close()
 
 keys = icon_to_repl.split('/')
@@ -60,9 +58,9 @@ try:
     fileinfo = getFromDict(files, keys)
 except KeyError:
     sys.exit()
-    
+
 offset0 = int(fileinfo['offset'])
-offset = offset0+baseoffset
+offset = offset0 + baseoffset
 size = int(fileinfo['size'])
 
 with open(filename, 'rb') as asarfile:
@@ -75,20 +73,20 @@ else:
     with open(icon_for_repl, 'rb') as pngfile:
         pngbytes = pngfile.read()
 
-setInDict(files, keys+['size'], len(pngbytes))
+setInDict(files, keys + ['size'], len(pngbytes))
 
-newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset+size:]])
+newbytearr = pngbytes.join([bytearr[:offset], bytearr[offset + size:]])
 
-sizediff = len(pngbytes)-size
+sizediff = len(pngbytes) - size
 
 newfiles = change_dict_vals(files, sizediff, offset0)
 newheader = json.dumps(newfiles).encode('utf-8')
 newheaderlen = len(newheader)
 
-bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen+(len1-len3)),
-                     struct.pack('I', newheaderlen+(len2-len3)),
+bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen + (len1 - len3)),
+                     struct.pack('I', newheaderlen + (len2 - len3)),
                      struct.pack('I', newheaderlen), newheader,
-                     b'\x00'*zeros_padding,
+                     b'\x00' * zeros_padding,
                      newbytearr[baseoffset:]])
 
 asarfile = open(filename, 'wb')

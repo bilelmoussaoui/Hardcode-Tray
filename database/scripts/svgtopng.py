@@ -20,7 +20,7 @@ except (ImportError, AttributeError):
         disable_svg2png = True
 
 
-def convert_svg2png(infile, outfile, icon_size = None):
+def convert_svg2png(infile, outfile, icon_size=None):
     """
         Converts svg files to png using Cairosvg or Inkscape
         @file_path : String; the svg file absolute path
@@ -30,7 +30,7 @@ def convert_svg2png(infile, outfile, icon_size = None):
         if use_inkscape:
             if icon_size:
                 p = Popen(["inkscape", "-z", "-f", infile, "-e", outfile,
-                        "-w", str(icon_size), "-h", str(icon_size)],
+                           "-w", str(icon_size), "-h", str(icon_size)],
                           stdout=PIPE, stderr=PIPE)
             else:
                 p = Popen(["inkscape", "-z", "-f", infile, "-e", outfile],
@@ -42,7 +42,8 @@ def convert_svg2png(infile, outfile, icon_size = None):
                 svg = handle.new_from_file(infile)
                 dim = svg.get_dimensions()
 
-                img = cairo.ImageSurface(cairo.FORMAT_ARGB32, icon_size, icon_size)
+                img = cairo.ImageSurface(
+                    cairo.FORMAT_ARGB32, icon_size, icon_size)
                 ctx = cairo.Context(img)
                 ctx.scale(icon_size / dim.width, icon_size / dim.height)
                 svg.render_cairo(ctx)
@@ -60,8 +61,8 @@ def convert_svg2png(infile, outfile, icon_size = None):
                 fout = open(outfile, "wb")
                 svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
                 fout.close()
-            
-    
+
+
 def convert_svg2bin(infile):
     """
         Converts svg files to binary in memory using Cairosvg or inkscape

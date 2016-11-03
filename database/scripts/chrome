@@ -6,7 +6,7 @@ import sys
 import os
 from imp import load_source
 
-filename = sys.argv[3]+sys.argv[4]
+filename = sys.argv[3] + sys.argv[4]
 icon_to_repl = sys.argv[2]
 icon_for_repl = sys.argv[1]
 absolute_path = os.path.split(os.path.abspath(__file__))[0] + "/"
