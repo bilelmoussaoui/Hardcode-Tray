@@ -613,10 +613,10 @@ if args.path and fix_only and len(fix_only) == 1:
     icon_path = args.path
 else:
     icon_path = None
-
-choice = 1 if args.apply else None
-choice = 2 if args.revert else None
-
+if args.apply:
+    choice = 1
+if args.revert:
+    choice = 2
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : %s" % default_icon_size)
 if args.theme or gsettings:
