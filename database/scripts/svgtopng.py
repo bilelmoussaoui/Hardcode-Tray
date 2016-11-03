@@ -69,7 +69,7 @@ def convert_svg2bin(infile):
     """
     if not disable_svg2png:
         if use_inkscape:
-            p = Popen(["inkscape", "-f", infile, "-e /tmp/hardcode.png'"],
+            p = Popen(["inkscape", "-f", infile, "-e /tmp/hardcode.png"],
                       stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
             with open('/tmp/hardcode.png', 'rb') as temppng:
