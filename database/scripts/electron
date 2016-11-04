@@ -11,8 +11,11 @@ svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
 
 
 def getFromDict(dataDict, mapList):
-    return reduce(lambda d, k: d[k], mapList, dataDict)
-
+    try:
+        return reduce(lambda d, k: d[k], mapList, dataDict)
+    except KeyError:
+        sys.exit()
+        
 def setInDict(dataDict, mapList, value):
     getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
 
