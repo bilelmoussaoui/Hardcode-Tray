@@ -12,7 +12,7 @@ try:
     from cairosvg import svg2png
     from gi.repository import Rsvg
     import cairo
-except (ImportError, AttributeError):
+except (ImportError, AttributeError, ValueError):
     ink_flag = call(['which', 'inkscape'], stdout=PIPE, stderr=PIPE)
     if ink_flag == 0:
         use_inkscape = True
@@ -91,3 +91,4 @@ if __name__ == "__main__":
     infile = sys.argv[1]
     outfile = sys.argv[2]
     convert_svg2png(infile, outfile)
+
