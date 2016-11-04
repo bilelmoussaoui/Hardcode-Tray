@@ -30,6 +30,8 @@ Here's a list of themes that supports Hardcode-Tray
   cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
 
+  If you're installing on Arch, this package is also available on AUR under the name of [hardcode-tray-fixer-git](https://aur.archlinux.org/packages/hardcode-tray-fixer-git/). You can install using `yaourt hardcode-tray-fixer-git`. This will pull all dependencies so you can ignore the rest of installation instructions.
+
   2. Install  `python3-cairosvg` or `inkscape`
     - Debian/Ubuntu : <br />
       `sudo apt-get install python3-cairosvg`<br />
@@ -50,7 +52,7 @@ Here's a list of themes that supports Hardcode-Tray
       </pre>
     - Arch : <br />
       <pre>
-      yaourt sni-qt-eplus
+      yaourt sni-qt-eplus-bzr
       yaourt lib32-sni-qt-eplus-bzr
       </pre>
   You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
