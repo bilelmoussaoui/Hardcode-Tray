@@ -1,1 +1,12 @@
-740a272c66baa9a105e48101377bd5a0.png, google-music-manager-panel, qt-tray
+{
+    "name": "Google Music Manager",
+    "path": "/opt/google/musicmanager/",
+    "is_qt": true,
+    "qt_folder": "MusicManager",
+    "icons": {
+        "indicator": {
+            "base": "740a272c66baa9a105e48101377bd5a0.png",
+            "theme": "google-music-manager-panel"
+        }
+    }
+}

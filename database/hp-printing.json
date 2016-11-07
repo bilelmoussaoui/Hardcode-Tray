@@ -1,1 +1,12 @@
-2f282c85ef0c788eb09624bc3decd0b5.png, hp-indicator, qt-tray
+{
+    "name": "HP Printer",
+    "path": "/usr/bin/hp-systray/",
+    "is_qt": true,
+    "qt_folder": "python2.7",
+    "icons": {
+        "indicator": {
+            "base": "2f282c85ef0c788eb09624bc3decd0b5.png",
+            "theme": "hp-indicator"
+        }
+    }
+}

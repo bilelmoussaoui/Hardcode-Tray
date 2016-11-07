@@ -1,2 +1,11 @@
-9dddfe1e1804b32b01a9c99a1e800d2d.png, tomahawk-indicator, qt-tray
-ab2668bcbd200f43239986abd17cb459.png, tomahawk-indicator, qt-tray
+{
+    "name": "Tomahawk",
+    "path": "/usr/bin/tomahawk/",
+    "is_qt": true,
+    "qt_folder": "tomahawk",
+    "icons": {
+        "base": "9dddfe1e1804b32b01a9c99a1e800d2d.png",
+        "theme": "tomahawk-indicator",
+        "symlinks": "ab2668bcbd200f43239986abd17cb459.png"
+    }
+}

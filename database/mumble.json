@@ -1,1 +1,12 @@
-3b6b0df38d89edf726735f02f23d0f65.png, mumble-indicator, qt-tray
+{
+    "name": "Mumble",
+    "path": "/usr/bin/mumble/",
+    "is_qt": true,
+    "qt_folder": "mumble",
+    "icons": {
+        "indicator": {
+            "base": "3b6b0df38d89edf726735f02f23d0f65.png",
+            "theme": "mumble-indicator"
+        }
+    }
+}
