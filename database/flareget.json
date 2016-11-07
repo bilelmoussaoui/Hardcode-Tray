@@ -1,0 +1,13 @@
+{
+    "name": "Flarget",
+    "path": "/usr/bin/flareget/",
+    "is_qt": true,
+    "qt_folder": "flareget",
+    "script": "qt-tray",
+    "icons": {
+        "panel": {
+            "base": "300c99bb493a7061e9852c73b89a09e4.png",
+            "theme": "flareget-panel"
+        }
+    }
+}

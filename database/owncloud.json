@@ -1,0 +1,39 @@
+{
+    "name": "OwnCloud",
+    "path": [
+        "/usr/share/owncloud/",
+        "/usr/share/owncloud-client/"
+    ],
+    "is_qt": true,
+    "qt_folder": "owncloud",
+    "script": "qt-tray",
+    "icons": {
+        "error": {
+            "base": "6a85c1b1eca5f176490afbea40b5a85b.png",
+            "theme": "state-error"
+        },
+        "information": {
+            "base": "e9b111ea19684326fa5140f7d14b215b.png",
+            "theme": "state-information",
+            "symlinks": "9aa8a4ac4a70ca6c739c4de13dfbfedb.png"
+        },
+        "sync": {
+            "base": "23064844cb89c0654026212a3faa910f.png",
+            "theme": "state-sync",
+            "symlinks": "955975a2df38cbb96611087290ee1b04.png"
+        },
+        "pause": {
+            "base": "4c8bee6fca0c59f47088f37c25880a24.png",
+            "theme": "state-pause"
+        },
+        "offline": {
+            "base": "9d626aa048ccbd28c9a5bf6bbaadee43.png",
+            "theme": "state-offline"
+        },
+        "ok": {
+            "base": "a4d0f4e492fad2e38e62dc68de83aaa0.png",
+            "theme": "state-ok",
+            "symlinks": "1fafe385a1c772643e5b313c5fd421cf"
+        }
+    }
+}

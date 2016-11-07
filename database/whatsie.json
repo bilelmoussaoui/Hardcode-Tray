@@ -1,0 +1,17 @@
+{
+    "name": "Whatsie",
+    "path": "/opt/whatsie/resources/",
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "base": "files/images/files/tray.png",
+            "theme": "whatsie-tray"
+        },
+        "notification": {
+            "base": "files/images/files/trayAlert.png",
+            "theme": "whatsie-tray-attention"
+        }
+    }
+}

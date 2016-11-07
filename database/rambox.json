@@ -1,0 +1,36 @@
+{
+    "name": "Rambox",
+    "path": [
+        "/opt/rambox/resources/",
+        "/opt/Rambox/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "is_qt": false,
+    "icons": {
+        "tray": {
+            "base": "files/resources/files/IconTray.png",
+            "theme": "rambox-indicator"
+        },
+        "tray@2x": {
+            "base": "files/resources/files/IconTray@2x.png",
+            "theme": "rambox-indicator"
+        },
+        "tray@4x": {
+            "base": "files/resources/files/IconTray@4x.png",
+            "theme": "rambox-indicator"
+        },
+        "trayUnread": {
+            "base": "files/resources/files/IconTrayUnread.png",
+            "theme": "rambox-notification"
+        },
+        "trayUnread@2x": {
+            "base": "files/resources/files/IconTrayUnread@2x.png",
+            "theme": "rambox-notification"
+        },
+        "trayUnread@4x": {
+            "base": "files/resources/files/IconTrayUnread@4x.png",
+            "theme": "rambox-notification"
+        }
+    }
+}

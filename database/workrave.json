@@ -1,0 +1,19 @@
+{
+    "name": "Workrave",
+    "path": "/usr/share/workrave/images/",
+    "is_qt": false,
+    "icons": {
+        "medium": {
+            "base": "workrave-icon-medium.png",
+            "theme": "workrave-indicator"
+        },
+        "quiet-medium": {
+            "base": "workrave-quiet-icon-medium.png",
+            "theme": "workrave-indicator-quiet"
+        },
+        "medium": {
+            "base": "workrave-suspended-icon-medium.png",
+            "theme": "workrave-indicator-suspended"
+        }
+    }
+}

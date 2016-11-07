@@ -1,0 +1,11 @@
+{
+    "name": "Disper Indicator",
+    "path": "/usr/share/pixmaps/disper-indicator/",
+    "is_qt": false,
+    "icons": {
+        "panel": {
+            "base": "disper.svg",
+            "theme": "disper-panel"
+        }
+    }
+}

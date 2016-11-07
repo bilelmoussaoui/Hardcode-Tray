@@ -1,0 +1,13 @@
+{
+    "name": "Bitcoin",
+    "path": "/usr/bin/bitcoin-qt/",
+    "is_qt": true,
+    "qt_folder": "bitcoin-qt",
+    "script": "qt-tray",
+    "icons": {
+        "indicator": {
+            "base": "a7645681bdc53a4f4e8080546ccbb93d.png",
+            "theme": "bitcoin-indicator"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Stremio",
+    "path": "/usr/share/stremio/resources/",
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "base": "files/images/files/stremio-small.png",
+            "theme": "stremio-tray"
+        }
+    }
+}

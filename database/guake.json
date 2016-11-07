@@ -1,0 +1,15 @@
+{
+    "name": "Guake",
+    "path": "/usr/share/pixmaps/guake/",
+    "is_qt": false,
+    "icons": {
+        "tray-png": {
+            "base": "guake-tray.png",
+            "theme": "guake-tray"
+        },
+        "tray-svg": {
+            "base": "guake-tray.svg",
+            "theme": "guake-tray"
+        }
+    }
+}

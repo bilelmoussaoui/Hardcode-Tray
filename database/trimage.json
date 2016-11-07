@@ -1,0 +1,11 @@
+{
+    "name": "Trimage",
+    "path": "/usr/lib/python2.7/site-packages/trimage/pixmaps/",
+    "is_qt": false,
+    "icons": {
+        "indicator": {
+            "base": "trimage-icon.png",
+            "theme": "trimage-indicator"
+        }
+    }
+}

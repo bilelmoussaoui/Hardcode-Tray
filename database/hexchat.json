@@ -1,0 +1,25 @@
+{
+  "name" : "Hexchat",
+  "path" : " {userhome}/.config/hexchat/icons/",
+  "force_create_folder" : true,
+  "backup_ignore" : true,
+  "is_qt" : false,
+  "icons": {
+    "fileoffer" : {
+      "base" : "tray_fileoffer.png",
+      "theme" : "hexchat-fileoffer"
+    },
+    "highlight": {
+      "base" : "tray_highlight.png",
+      "theme" : "hexchat-highlight"
+    },
+    "message" : {
+      "base" : "tray_message.png",
+      "theme" : "hexchat-message"
+    },
+    "indicator" : {
+      "base" : "hexchat.png",
+      "theme" : "hexchat-indicator"
+    }
+  }
+}

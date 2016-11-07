@@ -1,0 +1,13 @@
+{
+    "name": "QElectroTech",
+    "path": "/usr/share/qelectrotech/",
+    "is_qt": true,
+    "qt_folder": "qelectrotech",
+    "script": "qt-tray",
+    "icons": {
+        "panel": {
+            "base": "a95f785a927cc4c0e20ad945d18286e7.png",
+            "theme": "qelectrotech-indicator"
+        }
+    }
+}
