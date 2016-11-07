@@ -592,6 +592,15 @@ def install(fix_only, custom_path):
                                     script_errors.append("%s -- script "
                                                          "file does not"
                                                          "exists" % script_file)
+                        elif "telegram" in script_file:
+                            if path.isfile(script_file):
+                                execute([script_file, path.splitext(path.basename(fname))[0], base_icon,
+                                         app_path])
+                                fixed = True
+                            else:
+                                script_errors.append("%s -- script file"
+                                                     "does not exists" %
+                                                     script_file)
                         else:
                             binary = icon["binary"]
                             if path.isfile(script_file):

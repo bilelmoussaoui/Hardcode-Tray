@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $1 == "telegram-mute-panel" ]; then
+  for f in {2..2000}; do ln -sf "$3"icomute_22_1.png "$3$2$f".png; done
+else
+  for f in {2..2000}; do ln -sf "$3"ico_22_1.png "$3$2$f".png; done
+fi
