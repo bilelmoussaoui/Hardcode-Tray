@@ -1,5 +1,30 @@
-tray-error.png, yum-indicator-error
-tray-info.png, yum-indicator-info
-tray-no-updates.png, yum-indicator-no-updates
-tray-updates.png, yum-indicator-updates
-tray-working.png, yum-indicator-working
+{
+    "name": "Yum Extender",
+    "path": [
+        "/usr/share/pixmaps/yumex/",
+        "/usr/share/yumex-dnf/gfx/"
+    ],
+    "is_qt": false,
+    "icons": {
+        "error": {
+            "base": "tray-error.png",
+            "theme": "yum-indicator-error"
+        },
+        "info": {
+            "base": "tray-info.png",
+            "theme": "yum-indicator-info"
+        },
+        "no-updates": {
+            "base": "tray-no-updates.png",
+            "theme": "yum-indicator-no-updates"
+        },
+        "updates": {
+            "base": "tray-updates.png",
+            "theme": "yum-indicator-updates"
+        },
+        "working": {
+            "base": "tray-working.png",
+            "theme": "yum-indicator-working"
+        }
+    }
+}

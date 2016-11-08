@@ -1,1 +1,8 @@
-ibus-anthy.png
+{
+    "name": "Ibus Anthy",
+    "path": "/usr/share/ibus-anthy/icons/",
+    "is_qt": false,
+    "icons": [
+        "ibus-anthy.png"
+    ]
+}

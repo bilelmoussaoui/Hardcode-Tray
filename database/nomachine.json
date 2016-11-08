@@ -1,4 +1,23 @@
-NoMachine-desktop.png, nomachine-desktop
-NoMachine-icon.png, nomachine-indicator
-NoMachine-recording.png, nomachine-recording
-NoMachine-service.png, nomachine-service
+{
+    "name": "No Machine",
+    "path": "/usr/NX/share/icons/16x16/",
+    "is_qt": false,
+    "icons": {
+        "desktop": {
+            "base": "NoMachine-desktop.png",
+            "theme": "nomachine-desktop"
+        },
+        "indicator": {
+            "base": "NoMachine-icon.png",
+            "theme": "nomachine-indicator"
+        },
+        "recording": {
+            "base": "NoMachine-recording.png",
+            "theme": "nomachine-recording"
+        },
+        "service": {
+            "base": "NoMachine-service.png",
+            "theme": "nomachine-service"
+        }
+    }
+}

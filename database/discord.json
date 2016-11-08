@@ -1,2 +1,17 @@
-files/images/files/linux-tray.png, discord-tray, electron, app.asar
-files/images/files/linux-tray-unread.png, discord-tray-notification, electron, app.asar
+{
+    "name": "Discord",
+    "path": "/usr/share/discord-canary/resources/",
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "base": "files/images/files/linux-tray.png",
+            "theme": "discord-tray"
+        },
+        "tray-unread": {
+            "base": "files/images/files/linux-tray-unread.png",
+            "theme": "discord-tray-notification"
+        }
+    }
+}

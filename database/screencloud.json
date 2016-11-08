@@ -1,2 +1,16 @@
-ea96aeff94b195ceed14c6b3f96f47e1.png, screencloud-indicator
-cabd24e9e2f8f313bc910b101daf6800.png, screencloud-uploading
+{
+  "name" : "ScreenCloud",
+  "path" : "/usr/bin/screencloud/",
+  "is_qt" : true,
+  "qt_folder" : "screencloud",
+  "icons" : {
+    "indicator" : {
+      "base" : "ea96aeff94b195ceed14c6b3f96f47e1.png",
+      "theme" : "screencloud-indicator"
+    },
+    "uploading" : {
+      "base" : "cabd24e9e2f8f313bc910b101daf6800.png",
+      "theme" : "screencloud-uploading"
+    }
+  }
+}

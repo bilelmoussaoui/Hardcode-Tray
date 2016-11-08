@@ -1,2 +1,15 @@
-intel.png, prime-intel
-nividia.png, prime-nvidia
+{
+    "name": "Prime Indicator",
+    "path": "/usr/lib/primeindicator/",
+    "is_qt": false,
+    "icons": {
+        "intel": {
+            "base": "intel.png",
+            "theme": "prime-intel"
+        },
+        "nividia": {
+            "base": "nividia.png",
+            "theme": "prime-nvidia"
+        }
+    }
+}

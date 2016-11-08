@@ -1,4 +1,11 @@
-cryptfolder-closed-dark.svg
-cryptfolder-indicator-dark.svg
-cryptfolder-indicator-light.svg
-cryptfolder-open-light.svg
+{
+    "name": "Cryptfolder Indicator",
+    "path": "/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/",
+    "is_qt": false,
+    "icons": [
+        "cryptfolder-closed-dark.svg",
+        "cryptfolder-indicator-dark.svg",
+        "cryptfolder-indicator-light.svg",
+        "cryptfolder-open-light.svg"
+    ]
+}

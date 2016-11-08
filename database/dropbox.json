@@ -5,24 +5,12 @@
         "{userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/"
     ],
     "is_qt": false,
-    "icons": {
-        "blank": {
-            "base": "dropboxstatus-blank.png"
-        },
-        "busy": {
-            "base": "dropboxstatus-busy.png"
-        },
-        "busy2": {
-            "base": "dropboxstatus-busy2.png"
-        },
-        "idle": {
-            "base": "dropboxstatus-idle.png"
-        },
-        "logo": {
-            "base": "dropboxstatus-logo.png"
-        },
-        "x": {
-            "base": "dropboxstatus-x.png"
-        }
-    }
+    "icons": [
+        "dropboxstatus-blank.png",
+        "dropboxstatus-busy.png",
+        "dropboxstatus-busy2.png",
+        "dropboxstatus-idle.png",
+        "dropboxstatus-logo.png",
+        "dropboxstatus-x.png"
+    ]
 }

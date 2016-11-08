@@ -1,2 +1,15 @@
-keepassx.png, keepassx-indicator
-keepassx_locked.png, keepassx-locked
+{
+    "name": "Keepassx",
+    "path": "/usr/share/keepassx/icons/",
+    "is_qt": false,
+    "icons": {
+        "indicator": {
+            "base": "keepassx.png",
+            "theme": "keepassx-indicator"
+        },
+        "locked": {
+            "base": "keepassx_locked.png",
+            "theme": "keepassx-locked"
+        }
+    }
+}

@@ -1,3 +1,19 @@
-slack-taskbar-highlight.png, slack-indicator-highlight
-slack-taskbar-rest.png, slack-indicator
-slack-taskbar-unread.png, slack-indicator-unread
+{
+    "name": "Slack",
+    "path": "/usr/share/slack/resources/app.asar.unpacked/static/",
+    "is_qt": false,
+    "icons": {
+        "highlight": {
+            "base": "slack-taskbar-highlight.png",
+            "theme": "slack-indicator-highlight"
+        },
+        "indicator": {
+            "base": "slack-taskbar-rest.png",
+            "theme": "slack-indicator"
+        },
+        "unread": {
+            "base": "slack-taskbar-unread.png",
+            "theme": "slack-indicator-unread"
+        }
+    }
+}

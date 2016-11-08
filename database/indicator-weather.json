@@ -1,3 +1,19 @@
-icon.png, weather-clear
-icon_connection_error.png, weather-severe-alert
-icon_unknown_condition.png, weather-none-available
+{
+    "name": "Indicator Weather",
+    "path": "/usr/share/indicator-weather/media/",
+    "is_qt": false,
+    "icons": {
+        "clear": {
+            "base": "icon.png",
+            "theme": "weather-clear"
+        },
+        "server-alert": {
+            "base": "icon_connection_error.png",
+            "theme": "weather-server-alert"
+        },
+        "none-available": {
+            "base": "icon_unknown_condition.png",
+            "theme": "weather-none-available"
+        }
+    }
+}

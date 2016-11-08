@@ -1,10 +1,17 @@
-pushbullet-indicator-dark.svg
-pushbullet-indicator-light.svg
-pushbullet-indicator-sync0-dark.svg
-pushbullet-indicator-sync0-light.svg
-pushbullet-indicator-sync1-dark.svg
-pushbullet-indicator-sync1-light.svg
-pushbullet-indicator-sync2-dark.svg
-pushbullet-indicator-sync2-light.svg
-pushbullet-indicator-sync3-dark.svg
-pushbullet-indicator-sync3-light.svg
+{
+    "name": "Pushbullet Indicator",
+    "path": "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/",
+    "is_qt": false,
+    "icons": [
+        "pushbullet-indicator-dark.svg",
+        "pushbullet-indicator-light.svg",
+        "pushbullet-indicator-sync0-dark.svg",
+        "pushbullet-indicator-sync0-light.svg",
+        "pushbullet-indicator-sync1-dark.svg",
+        "pushbullet-indicator-sync1-light.svg",
+        "pushbullet-indicator-sync2-dark.svg",
+        "pushbullet-indicator-sync2-light.svg",
+        "pushbullet-indicator-sync3-dark.svg",
+        "pushbullet-indicator-sync3-light.svg"
+    ]
+}

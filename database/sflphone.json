@@ -1,3 +1,19 @@
-sflphone_small.svg, sflphone-indicator
-sflphone_notif.svg, sflphone-notification
-sflphone_offline.svg, sflphone-offline
+{
+    "name": "Sflphone",
+    "path": "/usr/share/sflphone/",
+    "is_qt": false,
+    "icons": {
+        "indicator": {
+            "base": "sflphone_small.svg",
+            "theme": "sflphone-indicator"
+        },
+        "notif": {
+            "base": "sflphone_notif.svg",
+            "theme": "sflphone-notification"
+        },
+        "offline": {
+            "base": "sflphone_offline.svg",
+            "theme": "sflphone-offline"
+        }
+    }
+}

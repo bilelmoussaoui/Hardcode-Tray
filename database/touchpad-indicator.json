@@ -1,9 +1,16 @@
-touchpad-indicator-dark-disabled.svg
-touchpad-indicator-dark-enabled.svg
-touchpad-indicator-dark.svg
-touchpad-indicator-light-disabled.svg
-touchpad-indicator-light-enabled.svg
-touchpad-indicator-light.svg
-touchpad-indicator-normal-disabled.svg
-touchpad-indicator-normal-enabled.svg
-touchpad-indicator-normal.svg
+{
+    "name": "Touchpad Indicator",
+    "path": "/opt/extras.ubuntu.com/touchpad-indicator/share/touchpad-indicator/icons/",
+    "is_qt": false,
+    "icons": [
+        "touchpad-indicator-dark-disabled.svg",
+        "touchpad-indicator-dark-enabled.svg",
+        "touchpad-indicator-dark.svg",
+        "touchpad-indicator-light-enabled.svg",
+        "touchpad-indicator-light-disabled.svg",
+        "touchpad-indicator-light.svg",
+        "touchpad-indicator-normal-disabled.svg",
+        "touchpad-indicator-normal-enabled.svg",
+        "touchpad-indicator-normal.svg"
+    ]
+}

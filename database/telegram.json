@@ -1,5 +1,24 @@
-icomute_22_0.png, telegram-panel
-icomute_22_1.png, telegram-mute-panel
-ico_22_1.png, telegram-attention-panel
-icomute_22_, telegram-mute-panel, telegram
-ico_22_, telegram-attention-panel, telegram
+{
+    "name": "Telegram",
+    "path": [
+        "{userhome}/.TelegramDesktop/tdata/ticons/",
+        "/home/{userhome}/.local/share/TelegramDesktop/tdata/ticons",
+    ],
+    "is_qt": false,
+    "icons": {
+        "panel": {
+            "base": "icomute_22_0.png",
+            "theme": "telegram-panel"
+        },
+        "mute-panel": {
+            "base": "icomute_22_1.png",
+            "theme": "telegram-mute-panel",
+            "symlinks": "icomute_22_{2-2000}.png"
+        },
+        "attention-panel": {
+            "base": "ico_22_1.png",
+            "theme": "telegram-attention-panel",
+            "symlinks": "ico_22_{2-2000}.png"
+        }
+    }
+}

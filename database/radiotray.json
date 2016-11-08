@@ -1,3 +1,10 @@
-radiotray_connecting.svg
-radiotray_off.svg
-radiotray_on.svg
+{
+    "name": "RadioTray",
+    "path": "/usr/share/radiotray/images/",
+    "is_qt": false,
+    "icons": [
+        "radiotray_connecting.svg",
+        "radiotray_off.svg",
+        "radiotray_on.svg"
+    ]
+}

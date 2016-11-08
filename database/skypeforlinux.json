@@ -1,15 +1,69 @@
-files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbTemplate@2x.png, skype-status-disturb, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbSmallTemplate@2x.png, skype-status-disturb, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbUnreadTemplate@2x.png, skype-status-disturb-notification, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-awayTemplate@2x.png, skype-status-away, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-awaySmallTemplate@2x.png, skype-status-away, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-awayUnreadTemplate@2x.png, skype-status-away-notification, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-offlineTemplate@2x.png, skype-status-offline, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-offlineSmallTemplate@2x.png, skype-status-offline, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-onlineTemplate@2x.png, skype-status-connected, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-onlineSmallTemplate@2x.png, skype-status-connected, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-onlineUnreadTemplate@2x.png, skype-status-connected-notification, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-skypeTemplate@2x.png, skype-indicator, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-hiddenTemplate@2x.png, skype-status-hidden, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-hiddenSmallTemplate@2x.png, skype-status-hidden, electron, app.asar
-files/apps/files/swx/files/tray/files/win/files/tray-hiddenUnreadTemplate@2x.png, skype-status-hidden-notification, electron, app.asar
+{
+  "name" : "Skype",
+  "path" :"/usr/share/skypeforlinux/resources/",
+  "is_qt" : false,
+  "script" : "electron",
+  "binary" : "app.asar",
+  "icons" : {
+    "disturb" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbTemplate@2x.png",
+      "theme" : "skype-status-disturb"
+    },
+    "distrub2" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbSmallTemplate@2x.png",
+      "theme" : "skype-status-disturb"
+    },
+    "disturb-notification" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-donotdisturbUnreadTemplate@2x.png",
+      "theme" : "skype-status-disturb-notification"
+    },
+    "away" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-awayTemplate@2x.png",
+      "theme" : "skype-status-away"
+    },
+    "away2" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-awaySmallTemplate@2x.png",
+      "theme" : "skype-status-away"
+    },
+    "away-notification" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-awayUnreadTemplate@2x.png",
+      "theme" : "skype-status-away-notification"
+    },
+    "offline" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-offlineTemplate@2x.png",
+      "theme" : "skype-status-offline"
+    },
+    "offline2" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-offlineSmallTemplate@2x.png",
+      "theme" : "skype-status-offline"
+    },
+    "connected" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-onlineTemplate@2x.png",
+      "theme" : "skype-status-connected"
+    },
+    "connected2" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-onlineSmallTemplate@2x.png",
+      "theme" : "skype-status-connected"
+    },
+    "connected-notification" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-onlineUnreadTemplate@2x.png",
+      "theme" : "skype-status-connected-notification"
+    },
+    "indicator" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-skypeTemplate@2x.png",
+      "theme" : "skype-indicator"
+    },
+    "hidden" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-hiddenTemplate@2x.png",
+      "theme" : "skype-status-hidden"
+    },
+    "hidden2" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-hiddenSmallTemplate@2x.png",
+      "theme" : "skype-status-hidden"
+    },
+    "hidden-notification" : {
+      "base" : "files/apps/files/swx/files/tray/files/win/files/tray-hiddenUnreadTemplate@2x.png",
+      "theme" : "skype-status-hidden-notification"
+    }
+  }
+}

@@ -1,11 +1,47 @@
-alpha_full.png, ibus-mozc-alpha_full
-alpha_half.png, ibus-mozc-alpha_half
-direct.png, ibus-mozc-direct
-directory.png, ibus-mozc-directory
-hiragana.png, ibus-mozc-hiragana
-katakana_full.png, ibus-mozc-katakana_full
-katakana_half.png, ibus-mozc-katakana_half
-product_icon.png,  ibus-mozc-product_icon
-properties.png, ibus-mozc-properties
-properties.png, ibus-mozc-properties
-tools.png, ibus-mozc-tool
+{
+    "name": "Ibus Mozc",
+    "path": "/usr/share/ibus-mozc/",
+    "is_qt": false,
+    "icons": {
+        "full": {
+            "base": "alpha_full.png",
+            "theme": "ibus-mozc-alpha_full"
+        },
+        "half": {
+            "base": "alpha_half.png",
+            "theme": "ibus-mozc-alpha_half"
+        },
+        "direct": {
+            "base": "direct.png",
+            "theme": "ibus-mozc-direct"
+        },
+        "directory": {
+            "base": "directory.png",
+            "theme": "ibus-mozc-directory"
+        },
+        "hiragana": {
+            "base": "hiragana.png",
+            "theme": "ibus-mozc-hiragana"
+        },
+        "katakana_full": {
+            "base": "katakana_full.png",
+            "theme": "ibus-mozc-katakana_full"
+        },
+        "katakana_half": {
+            "base": "katakana_half.png",
+            "theme": "ibus-mozc-katakana_half"
+        },
+        "product": {
+            "base": "product_icon.png",
+            "theme": "ibus-mozc-product_icon"
+        },
+        "properties": {
+            "base": "properties.png",
+            "theme": "ibus-mozc-properties"
+        },
+        "tools": {
+            "base": "tools.png",
+            "theme": "ibus-mozc-tool"
+        },
+    }
+}
