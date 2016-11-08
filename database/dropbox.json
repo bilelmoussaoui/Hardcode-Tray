@@ -2,7 +2,7 @@
     "name": "Dropbox",
     "path": [
         "/opt/dropbox/images/hicolor/16x16/status/",
-        "{userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/"
+        "{userhome}/.dropbox-dist/dropbox-lnx.{arch}-{dropbox_version}/images/hicolor/16x16/status/"
     ],
     "is_qt": false,
     "force_create_folder": false,

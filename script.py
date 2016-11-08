@@ -22,13 +22,13 @@ from time import sleep
 import argparse
 import json
 import re
+from platform import machine
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
 db_folder = "database/"
 script_folder = "scripts/"
-db_file = "db.csv"
 backup_extension = ".bak"
 userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
@@ -105,6 +105,7 @@ else:
     else:
         gsettings = None
 
+
 def detect_de():
     """
         Detects the desktop environment, used to choose the proper icons size
@@ -127,6 +128,7 @@ def detect_de():
         except (OSError, RuntimeError):
             return "other"
 
+
 def get_subdirs(directory):
     """
         Returns a list of subdirectories, used in replace_dropbox_dir
@@ -144,6 +146,7 @@ def get_subdirs(directory):
         return sub_dirs
     else:
         return None
+
 
 def mchown(directory):
     """
@@ -163,6 +166,7 @@ def mchown(directory):
             elif path.isfile(dir_path.rstrip("/")):
                 execute(["chmod", "0777", dir_path.rstrip("/")])
 
+
 def create_dir(folder):
     """
         Create a directory and fix folder permissions
@@ -172,6 +176,7 @@ def create_dir(folder):
     if not path.isdir(folder):
         makedirs(folder, exist_ok=True)
         mchown(folder)
+
 
 def execute(command_list, verbose=True):
     """
@@ -186,6 +191,7 @@ def execute(command_list, verbose=True):
         script_errors.append(error)
     return output
 
+
 def get_extension(filename):
     """
         returns the file extension
@@ -195,6 +201,7 @@ def get_extension(filename):
             str : file extension
     """
     return path.splitext(filename)[1].strip(".").lower()
+
 
 def copy_file(src, destination, overwrite=False):
     """
@@ -211,6 +218,7 @@ def copy_file(src, destination, overwrite=False):
     else:
         if not path.isfile(destination):
             copyfile(src, destination)
+
 
 def get_correct_chrome_icons(apps_infos, app_icons,
                              icons_dir="chromium"):
@@ -260,34 +268,21 @@ def get_correct_chrome_icons(apps_infos, app_icons,
             new_app_icons.append(app_icons[i])
     return new_app_icons
 
-def replace_dropbox_dir(directory):
+
+def get_dropbox_version(directory):
     """
         Corrects the hardcoded dropbox directory
         Args:
             directory(str): the default dropbox directory
     """
-    dirs = directory.split("{dropbox}")
-    sub_dirs = get_subdirs(dirs[0])
-    if sub_dirs:
-        if sub_dirs[0].split("-")[0] == "dropbox":
-            return dirs[0] + sub_dirs[0] + dirs[1]
-        else:
-            return None
-    else:
-        return None
+    version_file = directory.split("{dropbox_version}")[0].split("/")
+    del version_file[len(version_file) - 1]
+    version_file = "/".join(version_file) + "/VERSION"
+    if path.exists(version_file):
+        with open(version_file) as f:
+            return f.read()
+    return ""
 
-def create_hexchat_dir(apps_infos):
-    """
-        Create Hexchat icons directory located in $HOME/.config/hexchat/icons
-        Args:
-            apps_infos(list) : Hexchat informations in the database file
-    """
-    app_path = apps_infos[2].strip("/").split("/")
-    icons_dir = app_path[len(app_path) - 1]
-    del app_path[len(app_path) - 1]
-    app_path = "/" + "/".join(app_path) + "/"
-    if path.exists(app_path):
-        create_dir(app_path + icons_dir + "/")
 
 def get_supported_apps(fix_only=[], custom_path=""):
     """
@@ -313,6 +308,10 @@ def get_supported_apps(fix_only=[], custom_path=""):
                     k = i - j
                     data["path"][k] = data["path"][
                         k].replace("{userhome}", userhome)
+                    data["path"][k] = data["path"][
+                        k].replace("{arch}", machine())
+                    data["path"][k] = data["path"][
+                        k].replace("{dropbox_version}", get_dropbox_version(data["path"][k]))
                     if data["force_create_folder"]:
                         create_dir(data["path"][k])
                     if not path.exists(data["path"][k]):
@@ -329,11 +328,11 @@ def get_supported_apps(fix_only=[], custom_path=""):
                 if be_added:
                     if isinstance(data["icons"], list):
                         data["icons"] = get_iterated_icons(data["icons"])
-                    print(data["icons"])
                     data["icons"], dont_install = get_app_icons(data)
                     if not dont_install:
                         supported_apps.append(data)
     return supported_apps
+
 
 def get_icon_size(icon):
     """
@@ -347,6 +346,7 @@ def get_icon_size(icon):
         icon_size *= int(icon_name[1].split("x")[0])
     return icon_size
 
+
 def get_iterated_icons(icons):
     new_icons = []
     for icon in icons:
@@ -354,11 +354,12 @@ def get_iterated_icons(icons):
         if len(search) == 1:
             values = search[0].strip("{").strip("}").split("-")
             min, max = int(values[0]), int(values[1])
-            for i in range(min, max+1):
+            for i in range(min, max + 1):
                 new_icons.append(icon.replace(search[0], str(i)))
         else:
             new_icons.append(icon)
     return new_icons
+
 
 def get_app_icons(data):
     """
@@ -388,7 +389,8 @@ def get_app_icons(data):
             supported_icon["icon_size"] = get_icon_size(orig_icon)
             if not isinstance(icons, list):
                 if "symlinks" in icons[icon].keys():
-                    supported_icon["symlinks"] = get_iterated_icons(icons[icon]["symlinks"])
+                    supported_icon["symlinks"] = get_iterated_icons(
+                        icons[icon]["symlinks"])
             supported_icons.append(supported_icon)
             supported_icons_count += 1
 
@@ -397,6 +399,7 @@ def get_app_icons(data):
         #supported_icon = get_correct_chrome_icons(data)
     dont_install = not len(supported_icons) > 0
     return (supported_icons, dont_install)
+
 
 def progress(count, app_name):
     global supported_icons_count
@@ -414,6 +417,7 @@ def progress(count, app_name):
     if count != supported_icons_count:
         stdout.write("\033[K")
 
+
 def symlink_file(source, link_name):
     try:
         symlink(source, link_name)
@@ -422,6 +426,7 @@ def symlink_file(source, link_name):
         symlink(source, link_name)
     except FileNotFoundError:
         pass
+
 
 def backup(icon, revert=False):
     """
@@ -436,6 +441,7 @@ def backup(icon, revert=False):
             copy_file(icon, back_file)
         elif revert:
             move(back_file, icon)
+
 
 def reinstall(fix_only, custom_path):
     """
@@ -477,6 +483,7 @@ def reinstall(fix_only, custom_path):
                         if revert_app not in reverted_apps:
                             print("%s -- reverted" % (revert_app))
                             reverted_apps.append(revert_app)
+
 
 def install(fix_only, custom_path):
     """
