@@ -24,7 +24,7 @@ Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
 
-### INSTALL
+### Install
 
 #### Arch Linux (AUR):
 ```
@@ -44,13 +44,13 @@ sudo apt install --reinstall sni-qt hardcode-tray
   ```
   
   2. Install depends:
-   _git_
-   _wget_
-   _python3_
-   _python3-cairosvg_
-   _inkscape_
-   _[patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)_
-   _librsvg_
+   - `git`
+   - `wget`
+   - `python3`
+   - `python3-cairosvg`
+   - `inkscape`
+   -  [patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
+   - `librsvg`
 
   You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
