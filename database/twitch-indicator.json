@@ -6,7 +6,9 @@
         "indicator": {
             "base": "indicator_ubuntu.png",
             "theme": "twitch-indicator",
-            "symlinks": "indicator_elementary.png"
+            "symlinks": [
+                "indicator_elementary.png"
+            ]
         }
     }
 }

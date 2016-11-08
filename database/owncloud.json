@@ -15,12 +15,16 @@
         "information": {
             "base": "e9b111ea19684326fa5140f7d14b215b.png",
             "theme": "state-information",
-            "symlinks": "9aa8a4ac4a70ca6c739c4de13dfbfedb.png"
+            "symlinks": [
+                "9aa8a4ac4a70ca6c739c4de13dfbfedb.png"
+            ]
         },
         "sync": {
             "base": "23064844cb89c0654026212a3faa910f.png",
             "theme": "state-sync",
-            "symlinks": "955975a2df38cbb96611087290ee1b04.png"
+            "symlinks": [
+                "955975a2df38cbb96611087290ee1b04.png"
+            ]
         },
         "pause": {
             "base": "4c8bee6fca0c59f47088f37c25880a24.png",
@@ -33,7 +37,9 @@
         "ok": {
             "base": "a4d0f4e492fad2e38e62dc68de83aaa0.png",
             "theme": "state-ok",
-            "symlinks": "1fafe385a1c772643e5b313c5fd421cf"
+            "symlinks": [
+                "1fafe385a1c772643e5b313c5fd421cf"
+            ]
         }
     }
 }
