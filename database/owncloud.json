@@ -6,7 +6,6 @@
     ],
     "is_qt": true,
     "qt_folder": "owncloud",
-    "script": "qt-tray",
     "icons": {
         "error": {
             "base": "6a85c1b1eca5f176490afbea40b5a85b.png",

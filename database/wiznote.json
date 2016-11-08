@@ -3,7 +3,6 @@
     "path": "/usr/bin/WizNote/",
     "is_qt": true,
     "qt_folder": "WizNote",
-    "script": "qt-tray",
     "icons": {
         "indicator": {
             "base": "7d0d85ecd83a67c0ed9abb74975ca50e.png",
