@@ -26,31 +26,31 @@ Here's a list of themes that supports Hardcode-Tray:
 
 ### INSTALL
 
-# Arch Linux (AUR):
+#### Arch Linux (AUR):
 ```
 yaourt -S hardcode-tray-fixer-git
 ```
 
-# Ubuntu 14.04 / 16.04 / 16.10 (PPA)
+#### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
 ```
 sudo add-apt-repository ppa:varlesh-l/hardcode-tray
 sudo apt update
 sudo apt install --reinstall sni-qt hardcode-tray
 ```
-# Manual install
-  1. Download and install the script
+#### Manual install
+  1. Download and install the script:
   ```bash
   cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
   
-  2. Install depends
-  - git
-  - wget
-  - python3
-  - python3-cairosvg
-  - inkscape
-  - [patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
-  - librsvg
+  2. Install depends:
+   _git_
+   _wget_
+   _python3_
+   _python3-cairosvg_
+   _inkscape_
+   _[patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)_
+   _librsvg_
 
   You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
