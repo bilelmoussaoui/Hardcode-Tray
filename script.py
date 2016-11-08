@@ -128,26 +128,6 @@ def detect_de():
         except (OSError, RuntimeError):
             return "other"
 
-
-def get_subdirs(directory):
-    """
-        Returns a list of subdirectories, used in replace_dropbox_dir
-        Args:
-            directory (str): path of the directory
-    """
-    if path.isdir(directory):
-        dirs = listdir(directory)
-        dirs.sort()
-        sub_dirs = []
-        for sub_dir in dirs:
-            if path.isdir(directory + sub_dir):
-                sub_dirs.append(sub_dir)
-        sub_dirs.sort()
-        return sub_dirs
-    else:
-        return None
-
-
 def mchown(directory):
     """
         Fix folder/file permissions
@@ -496,6 +476,12 @@ def install(fix_only, custom_path):
             app_path = app["path"]
             app_name = app["name"]
             app_icons = app["icons"]
+            if "symlinks" in app.keys():
+                for syml in app["symlinks"]:
+                    for d in app_path:
+                        root = app["symlinks"][syml]["root"]
+                        dest = d + app["symlinks"][syml]["dest"]
+                        symlink_file(root, dest)
             for icon in app_icons:
                 fixed = False
                 base_icon = icon["original"]
