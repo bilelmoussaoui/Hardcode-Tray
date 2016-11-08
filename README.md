@@ -52,7 +52,7 @@ sudo apt install --reinstall sni-qt hardcode-tray
    -  [patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
    - `librsvg`
 
-  You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
+  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package, however it is shipping its own version. Therefore this script also overwrites the version shipped by teamviewer with the patched one.
   4. Open Hardcode-Tray using this command<br/>
