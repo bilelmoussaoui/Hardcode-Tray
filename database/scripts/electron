@@ -52,7 +52,7 @@ zeros_padding = (len2 - 4 - len3)
 header = asarfile.read(header_size).decode('utf-8')
 
 files = json.loads(header)
-baseoffset = asarfile.tell() + zeros_padding
+originaloffset = asarfile.tell() + zeros_padding
 asarfile.close()
 
 keys = icon_to_repl.split('/')
@@ -63,7 +63,7 @@ except KeyError:
     sys.exit()
 
 offset0 = int(fileinfo['offset'])
-offset = offset0 + baseoffset
+offset = offset0 + originaloffset
 size = int(fileinfo['size'])
 
 with open(filename, 'rb') as asarfile:
@@ -90,7 +90,7 @@ bytearr2 = b''.join([bytearr[:4], struct.pack('I', newheaderlen + (len1 - len3))
                      struct.pack('I', newheaderlen + (len2 - len3)),
                      struct.pack('I', newheaderlen), newheader,
                      b'\x00' * zeros_padding,
-                     newbytearr[baseoffset:]])
+                     newbytearr[originaloffset:]])
 
 asarfile = open(filename, 'wb')
 asarfile.write(bytearr2)

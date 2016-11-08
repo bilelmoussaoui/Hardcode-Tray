@@ -1,47 +1,52 @@
 {
     "name": "Ibus Mozc",
-    "path": "/usr/share/ibus-mozc/",
+    "path": [
+        "/usr/share/ibus-mozc/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
     "icons": {
         "full": {
-            "base": "alpha_full.png",
+            "original": "alpha_full.png",
             "theme": "ibus-mozc-alpha_full"
         },
         "half": {
-            "base": "alpha_half.png",
+            "original": "alpha_half.png",
             "theme": "ibus-mozc-alpha_half"
         },
         "direct": {
-            "base": "direct.png",
+            "original": "direct.png",
             "theme": "ibus-mozc-direct"
         },
         "directory": {
-            "base": "directory.png",
+            "original": "directory.png",
             "theme": "ibus-mozc-directory"
         },
         "hiragana": {
-            "base": "hiragana.png",
+            "original": "hiragana.png",
             "theme": "ibus-mozc-hiragana"
         },
         "katakana_full": {
-            "base": "katakana_full.png",
+            "original": "katakana_full.png",
             "theme": "ibus-mozc-katakana_full"
         },
         "katakana_half": {
-            "base": "katakana_half.png",
+            "original": "katakana_half.png",
             "theme": "ibus-mozc-katakana_half"
         },
         "product": {
-            "base": "product_icon.png",
+            "original": "product_icon.png",
             "theme": "ibus-mozc-product_icon"
         },
         "properties": {
-            "base": "properties.png",
+            "original": "properties.png",
             "theme": "ibus-mozc-properties"
         },
         "tools": {
-            "base": "tools.png",
+            "original": "tools.png",
             "theme": "ibus-mozc-tool"
-        },
+        }
     }
 }

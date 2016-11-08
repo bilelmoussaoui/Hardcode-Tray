@@ -1,14 +1,19 @@
 {
     "name": "Prime Indicator",
-    "path": "/usr/lib/primeindicator/",
+    "path": [
+        "/usr/lib/primeindicator/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": false,
     "icons": {
         "intel": {
-            "base": "intel.png",
+            "original": "intel.png",
             "theme": "prime-intel"
         },
         "nividia": {
-            "base": "nividia.png",
+            "original": "nividia.png",
             "theme": "prime-nvidia"
         }
     }

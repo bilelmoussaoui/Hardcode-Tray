@@ -1,22 +1,27 @@
 {
     "name": "No Machine",
-    "path": "/usr/NX/share/icons/16x16/",
+    "path": [
+        "/usr/NX/share/icons/16x16/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": false,
     "icons": {
         "desktop": {
-            "base": "NoMachine-desktop.png",
+            "original": "NoMachine-desktop.png",
             "theme": "nomachine-desktop"
         },
         "indicator": {
-            "base": "NoMachine-icon.png",
+            "original": "NoMachine-icon.png",
             "theme": "nomachine-indicator"
         },
         "recording": {
-            "base": "NoMachine-recording.png",
+            "original": "NoMachine-recording.png",
             "theme": "nomachine-recording"
         },
         "service": {
-            "base": "NoMachine-service.png",
+            "original": "NoMachine-service.png",
             "theme": "nomachine-service"
         }
     }

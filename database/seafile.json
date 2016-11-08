@@ -1,35 +1,40 @@
 {
     "name": "Seafile",
-    "path": "/usr/bin/seafile-applet/",
+    "path": [
+        "/usr/bin/seafile-applet/"
+    ],
     "is_qt": true,
     "qt_folder": "seafile-applet",
+    "force_create_folder": false,
+    "backup_ignore": true,
+    "is_script": false,
     "icons": {
         "paused": {
-            "base": "4c16979858a9017e6468e7fc4a561a6d.png",
+            "original": "4c16979858a9017e6468e7fc4a561a6d.png",
             "theme": "seafile-status-paused"
         },
         "syncing-2": {
-            "base": "9b4a2ba8368f3919bfacf83f20983bc6.png",
+            "original": "9b4a2ba8368f3919bfacf83f20983bc6.png",
             "theme": "seafile-status-syncing-1"
         },
         "syncing-2": {
-            "base": "172dc743183f1f56888fc7cdc438c14d.png",
+            "original": "172dc743183f1f56888fc7cdc438c14d.png",
             "theme": "seafile-status-syncing-2"
         },
         "error": {
-            "base": "8b3c60683a1b1dddb7a1aa9cd627c5dd.png",
+            "original": "8b3c60683a1b1dddb7a1aa9cd627c5dd.png",
             "theme": "seafile-status-error"
         },
         "notification": {
-            "base": "30ca9727b24ea1be40bde896ac51a0c0.png",
+            "original": "30ca9727b24ea1be40bde896ac51a0c0.png",
             "theme": "seafile-status-notification"
         },
         "offline": {
-            "base": "99a735316904d33f9b6438055b7dbd4e.png",
+            "original": "99a735316904d33f9b6438055b7dbd4e.png",
             "theme": "seafile-status-offline"
         },
         "ok": {
-            "base": "d3a522e228bfe7067ec4df9e3f43d527.png",
+            "original": "d3a522e228bfe7067ec4df9e3f43d527.png",
             "theme": "seafile-status-ok"
         }
     }

@@ -1,7 +1,12 @@
 {
     "name": "Catch Indicator",
-    "path": "/usr/share/catch-indicator/icons/",
+    "path": [
+        "/usr/share/catch-indicator/icons/"
+    ],
     "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
     "icons": [
         "catch-indicator-light-starred.svg",
         "catch-indicator-light-normal.svg",

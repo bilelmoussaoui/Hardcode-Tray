@@ -1,18 +1,23 @@
 {
     "name": "Sflphone",
-    "path": "/usr/share/sflphone/",
+    "path": [
+        "/usr/share/sflphone/"
+    ],
+    "force_create_folder": false,
     "is_qt": false,
+    "is_script": false,
+    "backup_ignore": false,
     "icons": {
         "indicator": {
-            "base": "sflphone_small.svg",
+            "original": "sflphone_small.svg",
             "theme": "sflphone-indicator"
         },
         "notif": {
-            "base": "sflphone_notif.svg",
+            "original": "sflphone_notif.svg",
             "theme": "sflphone-notification"
         },
         "offline": {
-            "base": "sflphone_offline.svg",
+            "original": "sflphone_offline.svg",
             "theme": "sflphone-offline"
         }
     }

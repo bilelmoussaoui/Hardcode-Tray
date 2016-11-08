@@ -5,7 +5,7 @@ if [ $? -ne 0 ]; then
 else
     path=$(dirname $(realpath "$cmd_path"))
 fi
-cd "$path"/database/scripts
+cd "$path"/dataoriginal/scripts
 mkdir -p /_linux/
 
 f="/_linux/$2"

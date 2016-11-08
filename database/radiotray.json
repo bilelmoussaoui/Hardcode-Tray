@@ -1,7 +1,12 @@
 {
     "name": "RadioTray",
-    "path": "/usr/share/radiotray/images/",
+    "path": [
+        "/usr/share/radiotray/images/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": false,
     "icons": [
         "radiotray_connecting.svg",
         "radiotray_off.svg",

@@ -1,26 +1,31 @@
 {
     "name": "Mint Update Manager",
-    "path": "/usr/lib/linuxmint/mintUpdate/icons/",
+    "path": [
+        "/usr/lib/linuxmint/mintUpdate/icons/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
     "icons": {
         "apply": {
-            "base": "base-apply.svg",
+            "original": "original-apply.svg",
             "theme": "mintupdate-indicator-apply"
         },
         "error": {
-            "base": "base-error2.svg,",
+            "original": "original-error2.svg,",
             "theme": "mintupdate-indicator-error"
         },
         "working": {
-            "base": "base-exec.svg",
+            "original": "original-exec.svg",
             "theme": "mintupdate-indicator-working"
         },
         "info": {
-            "base": "base-info.svg",
+            "original": "original-info.svg",
             "theme": "mintupdate-indicator-info"
         },
         "indicator": {
-            "base": "base.svg",
+            "original": "original.svg",
             "theme": "mintupdate-indicator"
         }
     }

@@ -1,48 +1,53 @@
 {
     "name": "Spotify",
-    "path": "/opt/spotify/spotify-client/Data/",
+    "path": [
+        "/opt/spotify/spotify-client/Data/"
+    ],
     "binary": "resources.zip",
     "script": "spotify",
+    "is_script": true,
+    "backup_ignore": false,
     "is_qt": false,
+    "force_create_folder": false,
     "icons": {
         "spotify_icon": {
-            "base": "spotify_icon.ico",
+            "original": "spotify_icon.ico",
             "theme": "spotify-indicator"
         },
         "spotify_icon16": {
-            "base": "spotify-linux-16.png",
+            "original": "spotify-linux-16.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon22": {
-            "base": "spotify-linux-22.png",
+            "original": "spotify-linux-22.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon24": {
-            "base": "spotify-linux-24.png",
+            "original": "spotify-linux-24.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon32": {
-            "base": "spotify-linux-32.png",
+            "original": "spotify-linux-32.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon48": {
-            "base": "spotify-linux-48.png",
+            "original": "spotify-linux-48.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon64": {
-            "base": "spotify-linux-64.png",
+            "original": "spotify-linux-64.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon128": {
-            "base": "spotify-linux-128.png",
+            "original": "spotify-linux-128.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon256": {
-            "base": "spotify-linux-256.png",
+            "original": "spotify-linux-256.png",
             "theme": "spotify-indicator"
         },
         "spotify_icon512": {
-            "base": "spotify-linux-512.png",
+            "original": "spotify-linux-512.png",
             "theme": "spotify-indicator"
         }
     }

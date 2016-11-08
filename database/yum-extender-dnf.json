@@ -5,25 +5,28 @@
         "/usr/share/yumex-dnf/gfx/"
     ],
     "is_qt": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "force_create_folder": false,
     "icons": {
         "error": {
-            "base": "tray-error.png",
+            "original": "tray-error.png",
             "theme": "yum-indicator-error"
         },
         "info": {
-            "base": "tray-info.png",
+            "original": "tray-info.png",
             "theme": "yum-indicator-info"
         },
         "no-updates": {
-            "base": "tray-no-updates.png",
+            "original": "tray-no-updates.png",
             "theme": "yum-indicator-no-updates"
         },
         "updates": {
-            "base": "tray-updates.png",
+            "original": "tray-updates.png",
             "theme": "yum-indicator-updates"
         },
         "working": {
-            "base": "tray-working.png",
+            "original": "tray-working.png",
             "theme": "yum-indicator-working"
         }
     }

@@ -1,20 +1,25 @@
 {
     "name": "Franz",
-    "path": "/opt/franz/resources/",
+    "path": [
+        "/opt/franz/resources/"
+    ],
     "is_qt": false,
     "script": "electron",
     "binary": "app.asar",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": true,
     "icons": {
         "taskbar": {
-            "base": "files/assets/files/tray/files/linux/files/franz-taskbar.png",
+            "original": "files/assets/files/tray/files/linux/files/franz-taskbar.png",
             "theme": "franz-panel"
         },
         "taskbar-dock": {
-            "base": "files/assets/files/franz-win-dock-alert.png",
+            "original": "files/assets/files/franz-win-dock-alert.png",
             "theme": "franz-attention-panel"
         },
         "taskbar-unread": {
-            "base": "files/assets/files/tray/files/linux/files/franz-taskbar-unread.png",
+            "original": "files/assets/files/tray/files/linux/files/franz-taskbar-unread.png",
             "theme": "franz-attention-panel"
         }
     }

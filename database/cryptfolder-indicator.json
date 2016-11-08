@@ -1,7 +1,12 @@
 {
     "name": "Cryptfolder Indicator",
-    "path": "/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/",
+    "path": [
+        "/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": false,
     "icons": [
         "cryptfolder-closed-dark.svg",
         "cryptfolder-indicator-dark.svg",

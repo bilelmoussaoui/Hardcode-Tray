@@ -1,11 +1,16 @@
 {
     "name": "WizNote",
-    "path": "/usr/bin/WizNote/",
+    "path": [
+        "/usr/bin/WizNote/"
+    ],
     "is_qt": true,
     "qt_folder": "WizNote",
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": true,
     "icons": {
         "indicator": {
-            "base": "7d0d85ecd83a67c0ed9abb74975ca50e.png",
+            "original": "7d0d85ecd83a67c0ed9abb74975ca50e.png",
             "theme": "wiznote-indicator"
         }
     }

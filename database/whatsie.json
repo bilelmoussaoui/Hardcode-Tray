@@ -1,16 +1,21 @@
 {
     "name": "Whatsie",
-    "path": "/opt/whatsie/resources/",
+    "path": [
+        "/opt/whatsie/resources/"
+    ],
     "is_qt": false,
+    "is_script": true,
     "binary": "app.asar",
+    "force_create_folder": false,
+    "backup_ignore": false,
     "script": "electron",
     "icons": {
         "tray": {
-            "base": "files/images/files/tray.png",
+            "original": "files/images/files/tray.png",
             "theme": "whatsie-tray"
         },
         "notification": {
-            "base": "files/images/files/trayAlert.png",
+            "original": "files/images/files/trayAlert.png",
             "theme": "whatsie-tray-attention"
         }
     }

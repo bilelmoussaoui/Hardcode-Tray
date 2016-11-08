@@ -5,34 +5,37 @@
         "/usr/lib/chromium/"
     ],
     "script": "chrome",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": true,
     "is_qt": false,
     "icons": {
         "no-notification": {
-            "base": "7358",
+            "original": "7358",
             "theme": "google-chrome-no-notification",
             "binary": "chrome_100_percent.pak",
             "to_find": true
         },
         "no-notification-disabled": {
-            "base": "7359",
+            "original": "7359",
             "theme": "google-chrome-no-notification-disabled",
             "binary": "chrome_100_percent.pak",
             "to_find": true
         },
         "notification-disabled": {
-            "base": "7360",
+            "original": "7360",
             "theme": "google-chrome-notification-disabled",
             "binary": "chrome_100_percent.pak",
             "to_find": true
         },
         "notification": {
-            "base": "7361",
+            "original": "7361",
             "theme": "google-chrome-notification",
             "binary": "chrome_100_percent.pak",
             "to_find": true
         },
         "tray": {
-            "base": "8002",
+            "original": "8002",
             "theme": "google-chrome-tray",
             "binary": "resources.pak",
             "to_find": false

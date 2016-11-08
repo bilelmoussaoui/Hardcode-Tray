@@ -1,14 +1,19 @@
 {
     "name": "Guake",
-    "path": "/usr/share/pixmaps/guake/",
+    "path": [
+        "/usr/share/pixmaps/guake/"
+    ],
     "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
     "icons": {
         "tray-png": {
-            "base": "guake-tray.png",
+            "original": "guake-tray.png",
             "theme": "guake-tray"
         },
         "tray-svg": {
-            "base": "guake-tray.svg",
+            "original": "guake-tray.svg",
             "theme": "guake-tray"
         }
     }

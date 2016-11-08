@@ -1,18 +1,23 @@
 {
     "name": "Workrave",
-    "path": "/usr/share/workrave/images/",
+    "path": [
+        "/usr/share/workrave/images/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
     "icons": {
         "medium": {
-            "base": "workrave-icon-medium.png",
+            "original": "workrave-icon-medium.png",
             "theme": "workrave-indicator"
         },
         "quiet-medium": {
-            "base": "workrave-quiet-icon-medium.png",
+            "original": "workrave-quiet-icon-medium.png",
             "theme": "workrave-indicator-quiet"
         },
         "medium": {
-            "base": "workrave-suspended-icon-medium.png",
+            "original": "workrave-suspended-icon-medium.png",
             "theme": "workrave-indicator-suspended"
         }
     }

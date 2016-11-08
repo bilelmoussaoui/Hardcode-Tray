@@ -1,20 +1,25 @@
 {
     "name": "Nylas N1",
-    "path": "/usr/share/nylas/resources/",
+    "path": [
+        "/usr/share/nylas/resources/"
+    ],
     "is_qt": false,
     "script": "electron",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": true,
     "binary": "app.asar",
     "icons": {
         "empty": {
-            "base": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Zero@2x.png",
+            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Zero@2x.png",
             "theme": "nylas-tray-empty"
         },
         "full": {
-            "base": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full@2x.png",
+            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full@2x.png",
             "theme": "nylas-tray-full"
         },
         "newitems": {
-            "base": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full-NewItems@2x.png",
+            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full-NewItems@2x.png",
             "theme": "nylas-tray-full-newitems"
         }
     }

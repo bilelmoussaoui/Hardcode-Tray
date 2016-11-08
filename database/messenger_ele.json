@@ -1,32 +1,37 @@
 {
     "name": "Messenger",
-    "path": "/opt/messengerfordesktop/resources/",
+    "path": [
+        "/opt/messengerfordesktop/resources/"
+    ],
     "is_qt": false,
     "binary": "app.asar",
     "script": "electron",
+    "force_create_folder": false,
+    "is_script": true,
+    "backup_ignore": false,
     "icons": {
         "tray": {
-            "base": "files/images/files/tray.png",
+            "original": "files/images/files/tray.png",
             "theme": "messenger-indicator"
         },
         "tray@2x": {
-            "base": "files/images/files/tray@2x.png",
+            "original": "files/images/files/tray@2x.png",
             "theme": "messenger-indicator"
         },
         "tray@3x": {
-            "base": "files/images/files/tray@3x.png",
+            "original": "files/images/files/tray@3x.png",
             "theme": "messenger-indicator"
         },
         "trayAlert": {
-            "base": "files/images/files/trayAlert.png",
+            "original": "files/images/files/trayAlert.png",
             "theme": "messenger-notification"
         },
         "trayAlert@2x": {
-            "base": "files/images/files/trayAlert@2x.png",
+            "original": "files/images/files/trayAlert@2x.png",
             "theme": "messenger-notification"
         },
         "trayAlert@3x": {
-            "base": "files/images/files/trayAlert@3x.png",
+            "original": "files/images/files/trayAlert@3x.png",
             "theme": "messenger-notification"
         }
     }

@@ -1,13 +1,14 @@
 {
     "name": "yd-tools",
-    "path": "/opt/yd-tools/icons/",
+    "path": [
+        "/opt/yd-tools/icons/"
+    ],
     "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
     "icons": [
-        "yd-busy1.png",
-        "yd-busy2.png",
-        "yd-busy3.png",
-        "yd-busy4.png",
-        "yd-busy5.png",
+        "yd-busy{1-5}.png",
         "yd-ind-error.png",
         "yd-ind-idle.png",
         "yd-ind-pause.png"
