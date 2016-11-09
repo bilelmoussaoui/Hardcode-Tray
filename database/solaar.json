@@ -10,39 +10,39 @@
     "exec_path_script": false,
     "icons": {
         "indicator": {
-            "base": "solaar-init.svg",
+            "original": "solaar-init.svg",
             "theme": "solaar-indicator"
         },
         "attention": {
-            "base": "solaar-attention.svg",
+            "original": "solaar-attention.svg",
             "theme": "solaar-attention"
         },
         "000": {
-            "base": "light_000.png",
+            "original": "light_000.png",
             "theme": "battery-000"
         },
         "020": {
-            "base": "light_020.png",
+            "original": "light_020.png",
             "theme": "battery-020"
         },
         "040": {
-            "base": "light_040.png",
+            "original": "light_040.png",
             "theme": "battery-040"
         },
         "060": {
-            "base": "light_060.png",
+            "original": "light_060.png",
             "theme": "battery-060"
         },
         "080": {
-            "base": "light_080.png",
+            "original": "light_080.png",
             "theme": "battery-080"
         },
         "100": {
-            "base": "light_100.png",
+            "original": "light_100.png",
             "theme": "battery-100"
         },
         "unknown": {
-            "base": "light_unknown.png",
+            "original": "light_unknown.png",
             "theme": "battery-missing"
         }
 
