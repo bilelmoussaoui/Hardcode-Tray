@@ -235,7 +235,7 @@ def get_supported_apps(fix_only=[], custom_path=""):
                     data["path"].append(custom_path)
                 if data["is_qt"]:
                     data["qt_folder"] = sni_qt_folder + data["qt_folder"] + "/"
-                    if not path.exists(data["qt_folder"]):
+                    if not path.exists(data["qt_folder"]) and be_added:
                         create_dir(data["qt_folder"])
                 if be_added:
                     if isinstance(data["icons"], list):
