@@ -203,7 +203,7 @@ def get_supported_apps(fix_only=[], custom_path=""):
     """
         Gets a list of supported applications: files in /database
     """
-    database_files = listdir(db_folder)
+    database_files = listdir(absolute_path + db_folder)
     if len(fix_only) != 0:
         database_files = []
         for file in fix_only:
