@@ -37,7 +37,6 @@ if userhome.lower() == "/root":
 parser = argparse.ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
-images_folder = absolute_path + db_folder + "images/"
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 supported_icons_count = 0
@@ -199,56 +198,6 @@ def copy_file(src, destination, overwrite=False):
         if not path.isfile(destination):
             copyfile(src, destination)
 
-
-def get_correct_chrome_icons(apps_infos, app_icons,
-                             icons_dir="chromium"):
-    """
-        Returns the correct chrome indicator icons name in the pak file
-        Args:
-            apps_infos(list): Contains the information's in the database file
-            icons_dir(str): Folder name that contains the default icons
-    """
-    images_dir = images_folder + icons_dir + "/"
-    pak_file = ''
-    default_icons = listdir(images_dir)
-    icons = {}
-    to_remove = []
-    for icon in default_icons:
-        path_file = images_dir + icon
-        if path.isfile(path_file):
-            icons[path.splitext(icon)[0]] = open(path_file, 'rb').read()
-    for i in range(len(app_icons)):
-        pak = app_icons[i]["binary"]
-        if not (pak == pak_file):
-            pak_file = pak
-            if path.isfile(apps_infos[2] + pak_file):
-                datapak = data_pack.ReadDataPack(apps_infos[2] + pak_file)
-            else:
-                to_remove.append(i)
-                pak_file = ''
-                continue
-        if not app_icons[i]["to_check"]:
-            continue
-        for (resource_id, text) in datapak.resources.items():
-            been_found = False
-            for icon in icons:
-                if icon == app_icons[i]["base_icon"]:
-                    icon_txt = icons[app_icons[i]["base_icon"]]
-                    if md5(text).hexdigest() == md5(icon_txt).hexdigest():
-                        app_icons[i]["base_icon"] = resource_id
-                        been_found = True
-                        break
-            if been_found:
-                break
-        if not been_found:
-            to_remove.append(i)
-    new_app_icons = []
-    for i, val in enumerate(app_icons):
-        if i not in to_remove:
-            new_app_icons.append(app_icons[i])
-    return new_app_icons
-
-
 def get_dropbox_version(directory):
     """
         Corrects the hardcoded dropbox directory
@@ -279,24 +228,22 @@ def get_supported_apps(fix_only=[], custom_path=""):
     for file in database_files:
         file = "./%s%s" % (db_folder, file)
         be_added = True
-        j = 0
         if path.isfile(file):
             with open(file) as data_file:
                 data = json.load(data_file)
                 paths = []
                 for i, data_path in enumerate(data["path"]):
-                    k = i - j
-                    data["path"][k] = data["path"][
-                        k].replace("{userhome}", userhome)
-                    data["path"][k] = data["path"][
-                        k].replace("{arch}", machine())
-                    data["path"][k] = data["path"][
-                        k].replace("{dropbox_version}", get_dropbox_version(data["path"][k]))
+                    data["path"][i] = data["path"][
+                        i].replace("{userhome}", userhome)
+                    data["path"][i] = data["path"][
+                        i].replace("{arch}", machine())
+                    data["path"][i] = data["path"][
+                        i].replace("{dropbox_version}", get_dropbox_version(data["path"][i]))
                     if data["force_create_folder"]:
-                        create_dir(data["path"][k])
-                    if not path.exists(data["path"][k]):
-                        del data["path"][k]
-                        j += 1
+                        create_dir(data["path"][i])
+                    if path.isdir(data["path"][i]) or path.isfile(data["path"][i]):
+                        paths.append(data["path"][i])
+                data["path"] = paths
                 if len(data["path"]) == 0:
                     be_added = False
                 if custom_path and len(database_files) == 1:
@@ -367,16 +314,15 @@ def get_app_icons(data):
                 supported_icon["theme"])
             supported_icon["orig_ext"] = ext_orig
             supported_icon["icon_size"] = get_icon_size(orig_icon)
+
             if not isinstance(icons, list):
                 if "symlinks" in icons[icon].keys():
                     supported_icon["symlinks"] = get_iterated_icons(
                         icons[icon]["symlinks"])
+
             supported_icons.append(supported_icon)
             supported_icons_count += 1
 
-    if "script" in data.keys() and data["script"] == "chrome":
-        print("hello it's chrome")
-        #supported_icon = get_correct_chrome_icons(data)
     dont_install = not len(supported_icons) > 0
     return (supported_icons, dont_install)
 
@@ -498,15 +444,15 @@ def install(fix_only, custom_path):
                             for symlink_icon in icon["symlinks"]:
                                 symlink_icon = app["qt_folder"] + symlink_icon
                                 symlink_file(output_icon, symlink_icon)
-
                         fixed = True
                 elif app["is_script"]:
                     binary = app["binary"]
                     for app_p in app_path:
-                        backup(app_p + binary)
-                        script_file = absolute_path + db_folder + \
-                            script_folder + app["script"]
-                        execute([script_file, fname, base_icon, app_p, binary])
+                        if path.exists(app_p + binary):
+                            backup(app_p + binary)
+                            script_file = absolute_path + db_folder + \
+                                script_folder + app["script"]
+                            execute([script_file, fname, base_icon, app_p, binary])
                     fixed = True
                 else:
                     for app_p in app_path:
@@ -528,7 +474,7 @@ def install(fix_only, custom_path):
                                     mchown(output_icon)
                                     fixed = True
                                 except Exception as e:
-                                    script_errors.append(e)
+                                    print(e)
                         if "symlinks" in icon.keys():
                             for symlink_icon in icon["symlinks"]:
                                 symlink_icon = app_p + symlink_icon

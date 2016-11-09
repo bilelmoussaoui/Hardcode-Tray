@@ -9,36 +9,11 @@
     "backup_ignore": false,
     "is_script": true,
     "is_qt": false,
+    "binary": "resources.pak",
     "icons": {
-        "no-notification": {
-            "original": "7358",
-            "theme": "google-chrome-no-notification",
-            "binary": "chrome_100_percent.pak",
-            "to_find": true
-        },
-        "no-notification-disabled": {
-            "original": "7359",
-            "theme": "google-chrome-no-notification-disabled",
-            "binary": "chrome_100_percent.pak",
-            "to_find": true
-        },
-        "notification-disabled": {
-            "original": "7360",
-            "theme": "google-chrome-notification-disabled",
-            "binary": "chrome_100_percent.pak",
-            "to_find": true
-        },
-        "notification": {
-            "original": "7361",
-            "theme": "google-chrome-notification",
-            "binary": "chrome_100_percent.pak",
-            "to_find": true
-        },
         "tray": {
             "original": "8002",
-            "theme": "google-chrome-tray",
-            "binary": "resources.pak",
-            "to_find": false
+            "theme": "google-chrome-tray"
         }
     }
 }
