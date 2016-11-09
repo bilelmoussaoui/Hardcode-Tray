@@ -20,42 +20,39 @@ After
 ![After](screenshots/after.png)
 
 ### Themes
-Here's a list of themes that supports Hardcode-Tray 
+Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
 
-### How to use
-  1. Install the script
+### Install
+
+#### Arch Linux (AUR):
+```
+yaourt -S hardcode-tray-fixer-git
+```
+
+#### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
+```
+sudo add-apt-repository ppa:varlesh-l/hardcode-tray
+sudo apt update
+sudo apt install --reinstall sni-qt hardcode-tray
+```
+#### Manual install
+  1. Download and install the script:
   ```bash
   cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
+  
+  2. Install depends:
+   - `git`
+   - `wget`
+   - `python3`
+   - `python3-cairosvg`
+   - `inkscape`
+   -  [patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
+   - `librsvg`
 
-  If you're installing on Arch, this package is also available on AUR under the name of [hardcode-tray-fixer-git](https://aur.archlinux.org/packages/hardcode-tray-fixer-git/). You can install using `yaourt hardcode-tray-fixer-git`. This will pull all dependencies so you can ignore the rest of installation instructions.
-
-  2. Install  `python3-cairosvg` or `inkscape`
-    - Debian/Ubuntu : <br />
-      `sudo apt-get install python3-cairosvg`<br />
-      `sudo apt-get install inkscape`
-    - Fedora : <br />
-      `sudo dnf install python3-cairosvg`<br />
-      `sudo dnf install inkscape`
-    - Arch : <br />
-      `sudo pacman -S python-cairosvg`<br />
-      `sudo pacman -S inkscape`
-
-  3. Install the patched version of `sni-qt`
-    - Debian/Ubuntu :<br />
-      <pre>
-      sudo add-apt-repository ppa:cybre/sni-qt-eplus
-      sudo apt-get update && sudo apt-get dist-upgrade
-      sudo apt-get install sni-qt sni-qt:i386
-      </pre>
-    - Arch : <br />
-      <pre>
-      yaourt sni-qt-eplus-bzr
-      yaourt lib32-sni-qt-eplus-bzr
-      </pre>
-  You can  [build it](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
+  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package, however it is shipping its own version. Therefore this script also overwrites the version shipped by teamviewer with the patched one.
   4. Open Hardcode-Tray using this command<br/>
@@ -118,6 +115,13 @@ hardcode-tray --version
 You can also update to the latest version of the script
 ```bash
 hardcode-tray --update
+```
+
+- `--update-git`
+
+You can also update to the git version of the script
+```bash
+hardcode-tray --update-git
 ```
 
 ### Uninstallation
