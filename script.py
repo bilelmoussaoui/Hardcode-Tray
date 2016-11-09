@@ -127,6 +127,7 @@ def detect_de():
         except (OSError, RuntimeError):
             return "other"
 
+
 def mchown(directory):
     """
         Fix folder/file permissions
@@ -197,6 +198,7 @@ def copy_file(src, destination, overwrite=False):
     else:
         if not path.isfile(destination):
             copyfile(src, destination)
+
 
 def get_dropbox_version(directory):
     """
@@ -366,49 +368,48 @@ def backup(icon, revert=False):
         if not revert:
             copy_file(icon, back_file)
         elif revert:
-            move(back_file, icon)
+            if path.isfile(back_file):
+                move(back_file, icon)
 
 
 def reinstall(fix_only, custom_path):
     """
         Reverts to the original icons
     """
-    apps = get_apps_informations(fix_only, custom_path)
+    apps = get_supported_apps(fix_only, custom_path)
     if len(apps) != 0:
         for app in apps:
-            app_icons = apps[app]["icons"]
-            app_path = apps[app]["path"]
-            app_db = apps[app]["dbfile"]
-            revert_app = apps[app]["name"]
+            app_path = app["path"]
+            app_name = app["name"]
+            app_icons = app["icons"]
+            if "symlinks" in app.keys():
+                for syml in app["symlinks"]:
+                    for d in app_path:
+                        dest = d + app["symlinks"][syml]["dest"]
+                        backup(dest, revert=True)
             for icon in app_icons:
-                if "is_qt" in icon.keys() and icon["is_qt"]:
-                    sni_qt_pre = apps[app].get("sniqtprefix", app)
-                    sni_qt_path = sni_qt_folder + sni_qt_pre + "/"
+                if app["is_qt"]:
+                    sni_qt_path = sni_qt_folder + app["qt_folder"] + "/"
                     if path.exists(sni_qt_path):
                         rmtree(sni_qt_path)
                         print("%s -- reverted" % apps[app]["name"])
-                revert_icon = icon["base_icon"]
-                if not "script_file" in icon.keys():
-                    if app_db == "hexchat":
-                        if path.exists(app_path):
-                            rmtree(app_path)
-                    else:
-                        try:
-                            backup(app_path + revert_icon, revert=True)
-                        except:
-                            continue
-                    if revert_app not in reverted_apps:
-                        print("%s -- reverted" % (revert_app))
-                        reverted_apps.append(revert_app)
+                elif app["is_script"]:
+                    binary = app["binary"]
+                    for app_p in app_path:
+                        if path.isfile(app_p + binary):
+                            backup(app_p + binary, revert=True)
                 else:
-                    if not icon["is_qt"]:
-                        try:
-                            backup(app_path + icon["binary"], revert=True)
-                        except:
-                            continue
-                        if revert_app not in reverted_apps:
-                            print("%s -- reverted" % (revert_app))
-                            reverted_apps.append(revert_app)
+                    if not app["backup_ignore"]:
+                        for app_p in app_path:
+                            if path.isdir(app_p):
+                                backup(app_p + icon["original"], revert=True)
+                                if "symlinks" in icon.keys():
+                                    for symlink_icon in icon["symlinks"]:
+                                        symlink_icon = app_p + symlink_icon
+                                        remove(symlink_icon)
+            if app_name not in reverted_apps:
+                print("%s -- reverted" % (app_name))
+                reverted_apps.append(app_name)
 
 
 def install(fix_only, custom_path):
@@ -427,6 +428,7 @@ def install(fix_only, custom_path):
                     for d in app_path:
                         root = app["symlinks"][syml]["root"]
                         dest = d + app["symlinks"][syml]["dest"]
+                        backup(dest)
                         symlink_file(root, dest)
             for icon in app_icons:
                 fixed = False
@@ -452,7 +454,8 @@ def install(fix_only, custom_path):
                             backup(app_p + binary)
                             script_file = absolute_path + db_folder + \
                                 script_folder + app["script"]
-                            execute([script_file, fname, base_icon, app_p, binary])
+                            execute(
+                                [script_file, fname, base_icon, app_p, binary])
                     fixed = True
                 else:
                     for app_p in app_path:
