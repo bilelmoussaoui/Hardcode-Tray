@@ -8,6 +8,42 @@
     "backup_ignore": false,
     "force_create_folder": false,
     "icons": {
+        "indicator": {
+            "base": "solaar-init.svg",
+            "theme": "solaar-indicator"
+        },
+        "attention": {
+            "base": "solaar-attention.svg",
+            "theme": "solaar-attention"
+        },
+        "000": {
+            "base": "light_000.png",
+            "theme": "battery-000"
+        },
+        "020": {
+            "base": "light_020.png",
+            "theme": "battery-020"
+        },
+        "040": {
+            "base": "light_040.png",
+            "theme": "battery-040"
+        },
+        "060": {
+            "base": "light_060.png",
+            "theme": "battery-060"
+        },
+        "080": {
+            "base": "light_080.png",
+            "theme": "battery-080"
+        },
+        "100": {
+            "base": "light_100.png",
+            "theme": "battery-100"
+        },
+        "unknown": {
+            "base": "light_unknown.png",
+            "theme": "battery-missing"
+        }
 
     }
 }
