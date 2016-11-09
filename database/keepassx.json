@@ -1,0 +1,20 @@
+{
+    "name": "Keepassx",
+    "path": [
+        "/usr/share/keepassx/icons/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "keepassx.png",
+            "theme": "keepassx-indicator"
+        },
+        "locked": {
+            "original": "keepassx_locked.png",
+            "theme": "keepassx-locked"
+        }
+    }
+}

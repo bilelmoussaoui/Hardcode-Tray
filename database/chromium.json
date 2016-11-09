@@ -1,0 +1,19 @@
+{
+    "name": "Chromium",
+    "path": [
+        "/usr/lib/chromium-browser/",
+        "/usr/lib/chromium/"
+    ],
+    "script": "chrome",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": true,
+    "is_qt": false,
+    "binary": "resources.pak",
+    "icons": {
+        "tray": {
+            "original": "8002",
+            "theme": "google-chrome-tray"
+        }
+    }
+}

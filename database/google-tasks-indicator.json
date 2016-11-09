@@ -1,0 +1,16 @@
+{
+    "name": "Google Tasks Indicator",
+    "path": [
+        "/usr/share/google-tasks-indicator/icons/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "icons": [
+        "google-tasks-indicator-dark-normal.svg",
+        "google-tasks-indicator-dark-starred.svg",
+        "google-tasks-indicator-light-normal.svg",
+        "google-tasks-indicator-light-starred.svg"
+    ]
+}

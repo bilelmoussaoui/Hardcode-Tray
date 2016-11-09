@@ -1,0 +1,46 @@
+{
+    "name": "Teamviewer",
+    "path": [
+        "/opt/teamviewer/"
+    ],
+    "is_qt": true,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": true,
+    "qt_folder": "TVGuiDelegate",
+    "icons": {
+        "indicator": {
+            "original": "0b040b0d9ec00ce0d8189ece93cd2b7f.png",
+            "theme": "teamviewer-indicator"
+        },
+        "error": {
+            "original": "54b99333baa6a26fda3eb8ce6d664bd5.png",
+            "theme": "teamviewer-indicator-error",
+            "symlinks": [
+                "efbb734158e93591c95134fbc4e9d667.png"
+            ]
+        },
+        "connected": {
+            "original": "4327113cab136a09fac832e66878159a.png",
+            "theme": "teamviewer-indicator-connected"
+        },
+        "away": {
+            "original": "c28d37df9872311f7c6b295b70b8a39d.png",
+            "theme": "teamviewer-indicator-away"
+        },
+        "offline": {
+            "original": "86e4f5bf63a6fa1725afd2e08e0ce105.png",
+            "theme": "teamviewer-indicator-offline"
+        },
+        "busy": {
+            "original": "4cd9545d0021db224685d863ac738f91.png",
+            "theme": "teamviewer-indicator-busy"
+        }
+    },
+    "symlinks": {
+        "sni-qt": {
+            "root": "/usr/lib/i386-linux-gnu/qt4/plugins/systemtrayicon/libsni-qt.so",
+            "dest": "tv_bin/RTlib/plugins/systemtrayicon/libsni-qt.so"
+        }
+    }
+}

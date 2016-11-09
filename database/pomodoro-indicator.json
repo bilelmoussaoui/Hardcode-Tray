@@ -1,0 +1,20 @@
+{
+    "name": "Pomodoro Indicator",
+    "path": [
+        "/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": false,
+    "icons": [
+        "pomodoro-indicator-all.svg",
+        "pomodoro-indicator-dark-{00-36}.svg",
+        "pomodoro-indicator-light-{00-36}.svg",
+        "pomodoro-indicator-light.svg",
+        "pomodoro-start-dark.svg",
+        "pomodoro-start-light.svg",
+        "pomodoro-stop-dark.svg",
+        "pomodoro-stop-light.svg"
+    ]
+}

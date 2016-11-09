@@ -1,0 +1,16 @@
+{
+    "name": "Xkbmod Indicator",
+    "path": [
+        "/usr/share/indicator-xkbmod/icons/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "icon.png",
+            "theme": "xkbmod-indicator"
+        }
+    }
+}

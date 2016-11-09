@@ -1,0 +1,25 @@
+{
+    "name": "Museeq",
+    "path": [
+        "/usr/bin/museeq/"
+    ],
+    "is_qt": true,
+    "qt_folder": "museeq",
+    "backup_ignore": true,
+    "is_script": false,
+    "force_create_folder": false,
+    "icons": {
+        "panel": {
+            "original": "bdf9b53b9cd16f3c032bf1eca0892643.png",
+            "theme": "museeq-panel",
+            "symlinks": [
+                "2f0bfbefd5f436ee06255de74ae04b74.png",
+                "0008df6b8abb9fb96af23f526732e605.png"
+            ]
+        }
+    },
+    "offline": {
+        "original": "21dff8ad54c6c56ada4c3e69610fcaf4.png",
+        "theme": "museeq-offline"
+    }
+}

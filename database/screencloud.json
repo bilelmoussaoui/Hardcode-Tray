@@ -1,0 +1,21 @@
+{
+    "name": "ScreenCloud",
+    "path": [
+        "/usr/bin/screencloud/"
+    ],
+    "is_qt": true,
+    "qt_folder": "screencloud",
+    "force_create_folder": false,
+    "backup_ignore": true,
+    "is_script": false,
+    "icons": {
+        "indicator": {
+            "original": "ea96aeff94b195ceed14c6b3f96f47e1.png",
+            "theme": "screencloud-indicator"
+        },
+        "uploading": {
+            "original": "cabd24e9e2f8f313bc910b101daf6800.png",
+            "theme": "screencloud-uploading"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Mumble",
+    "path": [
+        "/usr/bin/mumble/"
+    ],
+    "is_qt": true,
+    "force_create_folder": false,
+    "qt_folder": "mumble",
+    "backup_ignore": true,
+    "is_script": false,
+    "icons": {
+        "indicator": {
+            "original": "3b6b0df38d89edf726735f02f23d0f65.png",
+            "theme": "mumble-indicator"
+        }
+    }
+}

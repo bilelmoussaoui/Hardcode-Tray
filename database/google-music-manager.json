@@ -1,0 +1,17 @@
+{
+    "name": "Google Music Manager",
+    "path": [
+        "/opt/google/musicmanager/"
+    ],
+    "is_qt": true,
+    "is_script": false,
+    "qt_folder": "MusicManager",
+    "force_create_folder": false,
+    "backup_ignore": true,
+    "icons": {
+        "indicator": {
+            "original": "740a272c66baa9a105e48101377bd5a0.png",
+            "theme": "google-music-manager-panel"
+        }
+    }
+}

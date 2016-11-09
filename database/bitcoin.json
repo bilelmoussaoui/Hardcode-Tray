@@ -1,0 +1,17 @@
+{
+    "name": "Bitcoin",
+    "path": [
+        "/usr/bin/bitcoin-qt/"
+    ],
+    "is_qt": true,
+    "is_script": false,
+    "qt_folder": "bitcoin-qt",
+    "force_create_folder": false,
+    "backup_ignore": true,
+    "icons": {
+        "indicator": {
+            "original": "a7645681bdc53a4f4e8080546ccbb93d.png",
+            "theme": "bitcoin-indicator"
+        }
+    }
+}

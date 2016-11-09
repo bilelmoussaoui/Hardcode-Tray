@@ -1,0 +1,16 @@
+{
+    "name": "Variety",
+    "path": [
+        "/opt/extras.ubuntu.com/variety/share/variety/media/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": [
+        "variety-indicator.png",
+        "variety-indicator-dark.png",
+        "variety-indicator.svg",
+        "variety-indicator-dark.svg"
+    ]
+}

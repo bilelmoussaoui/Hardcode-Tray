@@ -1,0 +1,22 @@
+{
+    "name": "Discord",
+    "path": [
+        "/usr/share/discord-canary/resources/"
+    ],
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "is_script": true,
+    "icons": {
+        "tray": {
+            "original": "files/images/files/linux-tray.png",
+            "theme": "discord-tray"
+        },
+        "tray-unread": {
+            "original": "files/images/files/linux-tray-unread.png",
+            "theme": "discord-tray-notification"
+        }
+    }
+}

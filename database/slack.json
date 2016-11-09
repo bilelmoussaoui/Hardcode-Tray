@@ -1,0 +1,24 @@
+{
+    "name": "Slack",
+    "path": [
+        "/usr/share/slack/resources/app.asar.unpacked/static/"
+    ],
+    "is_script": false,
+    "backup_ignore": false,
+    "is_qt": false,
+    "force_create_folder": false,
+    "icons": {
+        "highlight": {
+            "original": "slack-taskbar-highlight.png",
+            "theme": "slack-indicator-highlight"
+        },
+        "indicator": {
+            "original": "slack-taskbar-rest.png",
+            "theme": "slack-indicator"
+        },
+        "unread": {
+            "original": "slack-taskbar-unread.png",
+            "theme": "slack-indicator-unread"
+        }
+    }
+}

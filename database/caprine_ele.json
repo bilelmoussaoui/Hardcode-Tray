@@ -1,0 +1,38 @@
+{
+    "name": "Caprine",
+    "path": [
+        "/usr/share/caprine/resources/"
+    ],
+    "is_qt": false,
+    "is_script": true,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "files/media/files/IconTray.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@2x": {
+            "original": "files/media/files/IconTray@2x.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@4x": {
+            "original": "files/media/files/IconTray@4x.png",
+            "theme": "messenger-indicator"
+        },
+        "trayUnread": {
+            "original": "files/media/files/IconTrayUnread.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread@2x": {
+            "original": "files/media/files/IconTrayUnread@2x.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread@4x": {
+            "original": "files/media/files/IconTrayUnread@4x.png",
+            "theme": "messenger-notification"
+        }
+    }
+}
