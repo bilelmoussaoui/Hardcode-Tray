@@ -7,6 +7,7 @@
     "is_script": false,
     "qt_folder": "clementine",
     "force_create_folder": false,
+    "exec_path_script": false,
     "backup_ignore": true,
     "icons": {
         "indicator": {

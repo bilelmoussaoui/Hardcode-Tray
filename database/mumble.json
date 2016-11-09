@@ -5,6 +5,7 @@
     ],
     "is_qt": true,
     "force_create_folder": false,
+    "exec_path_script": false,
     "qt_folder": "mumble",
     "backup_ignore": true,
     "is_script": false,

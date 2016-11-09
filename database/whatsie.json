@@ -7,6 +7,7 @@
     "is_script": true,
     "binary": "app.asar",
     "force_create_folder": false,
+    "exec_path_script": false,
     "backup_ignore": false,
     "script": "electron",
     "icons": {

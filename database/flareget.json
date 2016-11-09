@@ -6,6 +6,7 @@
     "is_qt": true,
     "qt_folder": "flareget",
     "force_create_folder": false,
+    "exec_path_script": false,
     "backup_ignore": true,
     "is_script": false,
     "icons": {

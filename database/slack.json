@@ -7,6 +7,7 @@
     "backup_ignore": false,
     "is_qt": false,
     "force_create_folder": false,
+    "exec_path_script": false,
     "icons": {
         "highlight": {
             "original": "slack-taskbar-highlight.png",

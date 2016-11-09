@@ -22,7 +22,6 @@ from time import sleep
 import argparse
 import json
 import re
-from platform import machine
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
@@ -200,21 +199,6 @@ def copy_file(src, destination, overwrite=False):
             copyfile(src, destination)
 
 
-def get_dropbox_version(directory):
-    """
-        Corrects the hardcoded dropbox directory
-        Args:
-            directory(str): the default dropbox directory
-    """
-    version_file = directory.split("{dropbox_version}")[0].split("/")
-    del version_file[len(version_file) - 1]
-    version_file = "/".join(version_file) + "/VERSION"
-    if path.exists(version_file):
-        with open(version_file) as f:
-            return f.read()
-    return ""
-
-
 def get_supported_apps(fix_only=[], custom_path=""):
     """
         Gets a list of supported applications: files in /database
@@ -237,10 +221,9 @@ def get_supported_apps(fix_only=[], custom_path=""):
                 for i, data_path in enumerate(data["path"]):
                     data["path"][i] = data["path"][
                         i].replace("{userhome}", userhome)
-                    data["path"][i] = data["path"][
-                        i].replace("{arch}", machine())
-                    data["path"][i] = data["path"][
-                        i].replace("{dropbox_version}", get_dropbox_version(data["path"][i]))
+                    if data["exec_path_script"]:
+                        sfile = absolute_path + db_folder + script_folder + data["exec_path_script"]
+                        data["path"][i] = execute([sfile, data["path"][i]], verbose=True).decode("utf-8").strip()
                     if data["force_create_folder"]:
                         create_dir(data["path"][i])
                     if path.isdir(data["path"][i]) or path.isfile(data["path"][i]):

@@ -9,6 +9,7 @@
     "binary": "app.asar",
     "script": "electron",
     "force_create_folder": false,
+    "exec_path_script": false,
     "icons": {
         "tray": {
             "original": "files/images/files/stremio-small.png",

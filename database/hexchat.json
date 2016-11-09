@@ -4,6 +4,7 @@
         "{userhome}/.config/hexchat/icons/"
     ],
     "force_create_folder": true,
+    "exec_path_script": false,
     "backup_ignore": true,
     "is_qt": false,
     "is_script": false,
