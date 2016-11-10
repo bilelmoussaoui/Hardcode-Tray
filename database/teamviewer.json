@@ -12,30 +12,46 @@
     "icons": {
         "indicator": {
             "original": "0b040b0d9ec00ce0d8189ece93cd2b7f.png",
-            "theme": "teamviewer-indicator"
+            "theme": "teamviewer-indicator",
+            "symlinks": [
+                "2e1a63598adb1734de0590e3c70ea98d.png"
+            ]
         },
         "error": {
             "original": "54b99333baa6a26fda3eb8ce6d664bd5.png",
             "theme": "teamviewer-indicator-error",
             "symlinks": [
-                "efbb734158e93591c95134fbc4e9d667.png"
+                "efbb734158e93591c95134fbc4e9d667.png",
+                "1ee7ede4f6037d6c4ebcdb4cf9fb8d44.png"
             ]
         },
         "connected": {
             "original": "4327113cab136a09fac832e66878159a.png",
-            "theme": "teamviewer-indicator-connected"
+            "theme": "teamviewer-indicator-connected",
+            "symlinks": [
+                "cbdf5ff3eb7755ddd146a5b81f94b925.png"
+            ]
         },
         "away": {
             "original": "c28d37df9872311f7c6b295b70b8a39d.png",
-            "theme": "teamviewer-indicator-away"
+            "theme": "teamviewer-indicator-away",
+            "symlinks": [
+                "650a76ace6dc9ab50d83961afbf5482f.png"
+            ]
         },
         "offline": {
             "original": "86e4f5bf63a6fa1725afd2e08e0ce105.png",
-            "theme": "teamviewer-indicator-offline"
+            "theme": "teamviewer-indicator-offline",
+            "symlinks": [
+                "f8a91d87682c4c956f3d45416ef72737.png"
+            ]
         },
         "busy": {
             "original": "4cd9545d0021db224685d863ac738f91.png",
-            "theme": "teamviewer-indicator-busy"
+            "theme": "teamviewer-indicator-busy",
+            "symlinks": [
+                "02d13a3a478e96b7e4fa7f7241221170.png"
+            ]
         }
     },
     "symlinks": {
