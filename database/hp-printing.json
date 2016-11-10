@@ -1,0 +1,18 @@
+{
+    "name": "HP Printer",
+    "path": [
+        "/usr/bin/hp-systray/"
+    ],
+    "is_qt": true,
+    "qt_folder": "python2.7",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": true,
+    "is_script": false,
+    "icons": {
+        "indicator": {
+            "original": "2f282c85ef0c788eb09624bc3decd0b5.png",
+            "theme": "hp-indicator"
+        }
+    }
+}

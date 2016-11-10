@@ -1,0 +1,17 @@
+{
+    "name": "Calendar Indicator",
+    "path": [
+        "/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": [
+        "{1-31}-dark-normal.svg",
+        "{1-31}-dark-starred.svg",
+        "{1-31}-light-normal.svg",
+        "{1-31}-light-starred.svg"
+    ]
+}

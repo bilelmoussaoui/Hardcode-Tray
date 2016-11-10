@@ -1,0 +1,34 @@
+{
+    "name": "Yum Extender",
+    "path": [
+        "/usr/share/pixmaps/yumex/",
+        "/usr/share/yumex-dnf/gfx/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "icons": {
+        "error": {
+            "original": "tray-error.png",
+            "theme": "yum-indicator-error"
+        },
+        "info": {
+            "original": "tray-info.png",
+            "theme": "yum-indicator-info"
+        },
+        "no-updates": {
+            "original": "tray-no-updates.png",
+            "theme": "yum-indicator-no-updates"
+        },
+        "updates": {
+            "original": "tray-updates.png",
+            "theme": "yum-indicator-updates"
+        },
+        "working": {
+            "original": "tray-working.png",
+            "theme": "yum-indicator-working"
+        }
+    }
+}

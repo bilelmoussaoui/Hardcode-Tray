@@ -1,0 +1,20 @@
+{
+    "name": "Twitch Indicator",
+    "path": [
+        "/usr/lib/twitch-indicator/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "indicator_ubuntu.png",
+            "theme": "twitch-indicator",
+            "symlinks": [
+                "indicator_elementary.png"
+            ]
+        }
+    }
+}

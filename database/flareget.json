@@ -1,0 +1,18 @@
+{
+    "name": "Flarget",
+    "path": [
+        "/usr/bin/flareget/"
+    ],
+    "is_qt": true,
+    "qt_folder": "flareget",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": true,
+    "is_script": false,
+    "icons": {
+        "panel": {
+            "original": "300c99bb493a7061e9852c73b89a09e4.png",
+            "theme": "flareget-panel"
+        }
+    }
+}

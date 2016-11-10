@@ -1,0 +1,39 @@
+{
+    "name": "Messenger",
+    "path": [
+        "/opt/messengerfordesktop/resources/"
+    ],
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": true,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "files/images/files/tray.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@2x": {
+            "original": "files/images/files/tray@2x.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@3x": {
+            "original": "files/images/files/tray@3x.png",
+            "theme": "messenger-indicator"
+        },
+        "trayAlert": {
+            "original": "files/images/files/trayAlert.png",
+            "theme": "messenger-notification"
+        },
+        "trayAlert@2x": {
+            "original": "files/images/files/trayAlert@2x.png",
+            "theme": "messenger-notification"
+        },
+        "trayAlert@3x": {
+            "original": "files/images/files/trayAlert@3x.png",
+            "theme": "messenger-notification"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "Franz",
+    "path": [
+        "/opt/franz/resources/app.asar.unpacked/assets/",
+        "/opt/franz/resources/app.asar.unpacked/assets/tray/linux/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "taskbar": {
+            "original": "franz-taskbar.png",
+            "theme": "franz-panel"
+        },
+        "taskbar-unread": {
+            "original": "franz-taskbar-unread.png",
+            "theme": "franz-attention-panel"
+        },
+        "taskbar-dock": {
+            "original": "franz-win-dock-alert.png",
+            "theme": "franz-attention-panel"
+        }
+    }
+}

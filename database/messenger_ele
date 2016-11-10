@@ -1,6 +1,0 @@
-files/images/files/tray.png, messenger-indicator, electron, app.asar
-files/images/files/tray@2x.png, messenger-indicator, electron, app.asar
-files/images/files/tray@3x.png, messenger-indicator, electron, app.asar
-files/images/files/trayAlert.png, messenger-notification, electron, app.asar
-files/images/files/trayAlert@2x.png, messenger-notification, electron, app.asar
-files/images/files/trayAlert@3x.png, messenger-notification, electron, app.asar

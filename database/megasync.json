@@ -1,0 +1,30 @@
+{
+    "name": "Megasync",
+    "path": [
+        "/usr/bin/megasync"
+    ],
+    "is_qt": true,
+    "qt_folder": "megasync",
+    "backup_ignore": true,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "icons": {
+        "paused": {
+            "original": "24b61f93b67c69a1a18b19241134f91d.png",
+            "theme": "megasync-status-paused"
+        },
+        "syncing": {
+            "original": "812e388b8682ab46d064b6e782dc04ec.png",
+            "theme": "megasync-status-syncing"
+        },
+        "disconnected": {
+            "original": "5e6bbab03e062640f0a3c6c540f119a7.png",
+            "theme": "megasync-status-disconnected"
+        },
+        "ok": {
+            "original": "edb2de513ea9f0779804343d19513ffa.png",
+            "theme": "megasync-status-ok"
+        }
+    }
+}

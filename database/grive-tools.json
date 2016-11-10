@@ -1,0 +1,17 @@
+{
+    "name": "Grive Tools",
+    "path": [
+        "/opt/thefanclub/grive-tools/icons/dark/",
+        "/opt/thefanclub/grive-tools/icons/light/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "is_script": false,
+    "icons": [
+        "grive-app-ind.svg",
+        "grive-app-ind-con-{1-3}.svg",
+        "grive-app-ind-sleep.svg"
+    ]
+}

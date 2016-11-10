@@ -1,0 +1,55 @@
+{
+    "name": "Spotify",
+    "path": [
+        "/opt/spotify/spotify-client/Data/"
+    ],
+    "binary": "resources.zip",
+    "script": "spotify",
+    "is_script": true,
+    "backup_ignore": false,
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "icons": {
+        "spotify_icon": {
+            "original": "spotify_icon.ico",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon16": {
+            "original": "spotify-linux-16.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon22": {
+            "original": "spotify-linux-22.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon24": {
+            "original": "spotify-linux-24.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon32": {
+            "original": "spotify-linux-32.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon48": {
+            "original": "spotify-linux-48.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon64": {
+            "original": "spotify-linux-64.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon128": {
+            "original": "spotify-linux-128.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon256": {
+            "original": "spotify-linux-256.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon512": {
+            "original": "spotify-linux-512.png",
+            "theme": "spotify-indicator"
+        }
+    }
+}

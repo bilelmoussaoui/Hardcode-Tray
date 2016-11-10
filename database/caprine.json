@@ -1,0 +1,37 @@
+{
+    "name": "Caprine",
+    "path": [
+        "/usr/lib/caprine/static/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "IconTray.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@2x": {
+            "original": "IconTray@2x.png",
+            "theme": "messenger-indicator"
+        },
+        "tray@4x": {
+            "original": "IconTray@4x.png",
+            "theme": "messenger-indicator"
+        },
+        "trayUnread": {
+            "original": "IconTrayUnread.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread@2x": {
+            "original": "IconTrayUnread@2x.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread@4x": {
+            "original": "IconTrayUnread@4x.png",
+            "theme": "messenger-notification"
+        }
+    }
+}

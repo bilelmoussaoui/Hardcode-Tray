@@ -1,0 +1,21 @@
+{
+    "name": "Google Chrome",
+    "path": [
+        "/opt/google/chrome/",
+        "/opt/google/chrome-unstable/",
+        "/opt/google/chrome-beta/"
+    ],
+    "script": "chrome",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "is_script": true,
+    "is_qt": false,
+    "binary": "resources.pak",
+    "icons": {
+        "tray": {
+            "original": "8002",
+            "theme": "google-chrome-tray"
+        }
+    }
+}

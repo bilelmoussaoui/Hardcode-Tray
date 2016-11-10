@@ -1,8 +1,0 @@
-0b040b0d9ec00ce0d8189ece93cd2b7f.png, teamviewer-indicator, qt-tray
-54b99333baa6a26fda3eb8ce6d664bd5.png, teamviewer-indicator-error, qt-tray
-efbb734158e93591c95134fbc4e9d667.png, teamviewer-indicator-error, qt-tray, 54b99333baa6a26fda3eb8ce6d664bd5.png
-4327113cab136a09fac832e66878159a.png, teamviewer-indicator-connected, qt-tray
-c28d37df9872311f7c6b295b70b8a39d.png, teamviewer-indicator-away, qt-tray
-86e4f5bf63a6fa1725afd2e08e0ce105.png, teamviewer-indicator-offline, qt-tray
-4cd9545d0021db224685d863ac738f91.png, teamviewer-indicator-busy, qt-tray
-/usr/lib/i386-linux-gnu/qt4/plugins/systemtrayicon/libsni-qt.so, teamviewer-indicator, teamviewer, tv_bin/RTlib/plugins/systemtrayicon/libsni-qt.so

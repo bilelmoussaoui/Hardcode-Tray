@@ -1,0 +1,17 @@
+{
+    "name": "overGrive",
+    "path": [
+        "/opt/thefanclub/overgrive/icons/dark/",
+        "/opt/thefanclub/overgrive/icons/light/"
+    ],
+    "is_qt": false,
+    "backup_ignore": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "icons": [
+        "overgrive-app-ind.svg",
+        "overgrive-app-ind-con-{1-3}.svg",
+        "overgrive-app-ind-sleep.svg"
+    ]
+}

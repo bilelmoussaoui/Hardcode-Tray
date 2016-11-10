@@ -1,0 +1,14 @@
+{
+    "name": "Ibus Anthy",
+    "path": [
+        "/usr/share/ibus-anthy/icons/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": [
+        "ibus-anthy.png"
+    ]
+}

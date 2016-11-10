@@ -1,0 +1,23 @@
+{
+    "name": "Wire",
+    "path": [
+        "/opt/Wire/resources/"
+    ],
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": true,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "files/images/files/tray.png",
+            "theme": "wire-tray"
+        },
+        "notification": {
+            "original": "files/images/files/tray.badge.png",
+            "theme": "wire-tray-attention"
+        }
+    }
+}
