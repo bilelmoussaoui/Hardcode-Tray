@@ -51,7 +51,7 @@ sudo apt install --reinstall sni-qt hardcode-tray
    - `python3`
    - `python3-cairosvg`
    - `inkscape`
-   - `[patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)`
+   - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
    - `librsvg`
 
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
