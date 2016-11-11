@@ -45,13 +45,13 @@ sudo apt install --reinstall sni-qt hardcode-tray
   cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
   
-  2. Install depends:
+  2. Install dependencies:
    - `git`
    - `wget`
    - `python3`
    - `python3-cairosvg`
    - `inkscape`
-   -  [patched sni-qt](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
+   - `[patched sni-qt]`(https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
    - `librsvg`
 
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using an other distro (like Fedora).<br />
@@ -81,7 +81,7 @@ You can use `--only` argument to fix/revert only one application, don't use the 
 hardcode-tray --only telegram,skype
 ```
 
-In order to get the names needed to fix only specific programs, you can look at the second column of [`db.csv`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/db.csv). There you can find the corresponding name for the program you want to fix.
+In order to get the names needed to fix only specific programs, you can look at the `app_name` key in the json files for the program. There you can find the corresponding name for the program you want to fix.
 
 - `--path`
 
