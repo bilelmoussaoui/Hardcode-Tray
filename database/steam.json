@@ -1,0 +1,17 @@
+{
+    "name": "Steam",
+    "path": [
+        "/usr/share/pixmaps/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "steam_tray_mono.png",
+            "theme": "steam_tray_mono"
+        }
+    }
+}
