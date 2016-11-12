@@ -2,7 +2,7 @@
     "name": "Wire",
     "path": [
         "/opt/Wire/resources/",
-        "/usr/lib/wire/resources"/
+        "/usr/lib/wire/resources/"
     ],
     "is_qt": false,
     "binary": "app.asar",
