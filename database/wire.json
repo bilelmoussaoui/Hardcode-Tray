@@ -13,11 +13,11 @@
     "backup_ignore": false,
     "icons": {
         "tray": {
-            "original": "files/images/files/tray.png",
+            "original": "files/img/files/tray.png",
             "theme": "wire-tray"
         },
         "notification": {
-            "original": "files/images/files/tray.badge.png",
+            "original": "files/img/files/tray.badge.png",
             "theme": "wire-tray-attention"
         }
     }
