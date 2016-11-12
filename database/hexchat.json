@@ -3,8 +3,8 @@
     "path": [
         "{userhome}/.config/hexchat/icons/"
     ],
-    "force_create_folder": true,
-    "exec_path_script": false,
+    "force_create_folder": false,
+    "exec_path_script": "hexchat",
     "backup_ignore": true,
     "is_qt": false,
     "is_script": false,
