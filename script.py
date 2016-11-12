@@ -224,8 +224,7 @@ def get_supported_apps(fix_only=[], custom_path=""):
                     if data["exec_path_script"]:
                         sfile = absolute_path + db_folder + script_folder + data["exec_path_script"]
                         data["path"][i] = execute([sfile, data["path"][i]], verbose=True).decode("utf-8").strip()
-                    if data["force_create_folder"]:
-                        create_dir(data["path"][i])
+                    
                     if path.isdir(data["path"][i]) or path.isfile(data["path"][i]):
                         paths.append(data["path"][i])
                 data["path"] = paths
@@ -233,15 +232,17 @@ def get_supported_apps(fix_only=[], custom_path=""):
                     be_added = False
                 if custom_path and len(database_files) == 1:
                     data["path"].append(custom_path)
-                if data["is_qt"]:
-                    data["qt_folder"] = sni_qt_folder + data["qt_folder"] + "/"
-                    if not path.exists(data["qt_folder"]) and be_added:
-                        create_dir(data["qt_folder"])
                 if be_added:
                     if isinstance(data["icons"], list):
                         data["icons"] = get_iterated_icons(data["icons"])
                     data["icons"], dont_install = get_app_icons(data)
                     if not dont_install:
+                        if data["force_create_folder"]:
+                            create_dir(data["path"][i])
+                        if data["is_qt"]:
+                            data["qt_folder"] = sni_qt_folder + data["qt_folder"] + "/"
+                            if not path.exists(data["qt_folder"]) and be_added:
+                                create_dir(data["qt_folder"])
                         supported_apps.append(data)
     return supported_apps
 
