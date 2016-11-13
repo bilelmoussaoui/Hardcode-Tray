@@ -49,6 +49,7 @@ sudo apt install --reinstall sni-qt hardcode-tray
    - `git`
    - `wget`
    - `python3`
+   - `python3-gi`
    - `python3-cairosvg`
    - `inkscape`
    - `librsvg`
