@@ -6,7 +6,7 @@
     ],
     "icons_path": [
         "{userhome}/.TelegramDesktop/tdata/ticons/",
-        "{userhome}/.local/share/TelegramDesktop/tdata/ticons"
+        "{userhome}/.local/share/TelegramDesktop/tdata/ticons/"
     ],
     "is_qt": false,
     "is_script": false,
