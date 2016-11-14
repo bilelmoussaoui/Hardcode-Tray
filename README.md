@@ -41,7 +41,7 @@ yaourt -S hardcode-tray-git
 ```
 sudo add-apt-repository ppa:varlesh-l/hardcode-tray
 sudo apt update
-sudo apt install --reinstall sni-qt hardcode-tray
+sudo apt install sni-qt hardcode-tray
 ```
 #### Manual install
   1. Download and install the script:
