@@ -29,10 +29,14 @@ Here's a list of themes that supports Hardcode-Tray:
 ### Install
 
 #### Arch Linux (AUR):
+Stable version: 
+```bash
+yaourt -S hardcode-tray
 ```
-yaourt -S hardcode-tray-fixer-git
+Developpement version:
+```bash
+yaourt -S hardcode-tray-git
 ```
-
 #### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
 ```
 sudo add-apt-repository ppa:varlesh-l/hardcode-tray
