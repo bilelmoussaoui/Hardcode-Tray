@@ -1,6 +1,9 @@
 {
     "name": "Caprine",
-    "path": [
+    "app_path": [
+        "/usr/lib/caprine/"
+    ],
+    "icons_path": [
         "/usr/lib/caprine/static/"
     ],
     "is_qt": false,

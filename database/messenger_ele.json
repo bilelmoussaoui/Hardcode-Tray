@@ -1,6 +1,9 @@
 {
     "name": "Messenger",
-    "path": [
+    "app_path": [
+        "/opt/messengerfordesktop/"
+    ],
+    "icons_path": [
         "/opt/messengerfordesktop/resources/"
     ],
     "is_qt": false,

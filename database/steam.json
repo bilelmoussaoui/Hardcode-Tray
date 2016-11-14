@@ -1,6 +1,9 @@
 {
     "name": "Steam",
-    "path": [
+    "app_path": [
+        "{userhome}/.steam/"
+    ],
+    "icons_path": [
         "/usr/share/pixmaps/"
     ],
     "is_qt": false,

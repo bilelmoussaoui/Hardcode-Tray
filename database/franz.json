@@ -1,6 +1,9 @@
 {
     "name": "Franz",
-    "path": [
+    "app_path": [
+        "/opt/franz/"
+    ],
+    "icons_path": [
         "/opt/franz/resources/app.asar.unpacked/assets/",
         "/opt/franz/resources/app.asar.unpacked/assets/tray/linux/"
     ],

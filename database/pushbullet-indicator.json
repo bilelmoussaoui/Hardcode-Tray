@@ -1,6 +1,9 @@
 {
     "name": "Pushbullet Indicator",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/pushbullet-indicator/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/"
     ],
     "is_qt": false,

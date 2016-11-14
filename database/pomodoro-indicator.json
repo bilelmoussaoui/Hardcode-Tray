@@ -1,6 +1,9 @@
 {
     "name": "Pomodoro Indicator",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/pomodoro-indicator/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/"
     ],
     "is_qt": false,

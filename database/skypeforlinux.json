@@ -1,6 +1,9 @@
 {
     "name": "Skype",
-    "path": [
+    "app_path": [
+        "/usr/share/skypeforlinux/"
+    ],
+    "icons_path": [
         "/usr/share/skypeforlinux/resources/"
     ],
     "is_qt": false,

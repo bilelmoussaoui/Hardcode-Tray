@@ -1,6 +1,9 @@
 {
     "name": "Discord",
-    "path": [
+    "app_path": [
+        "/usr/share/discord-canary/"
+    ],
+    "icons_path": [
         "/usr/share/discord-canary/resources/"
     ],
     "is_qt": false,

@@ -1,6 +1,10 @@
 {
     "name": "Yum Extender",
-    "path": [
+    "app_path": [
+        "/usr/share/pixmaps/yumex/",
+        "/usr/share/yumex-dnf/gfx/"
+    ],
+    "icons_path": [
         "/usr/share/pixmaps/yumex/",
         "/usr/share/yumex-dnf/gfx/"
     ],

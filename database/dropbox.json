@@ -1,6 +1,9 @@
 {
     "name": "Dropbox",
-    "path": [
+    "app_path": [
+        "{userhome}/.dropbox-dist/"
+    ],
+    "icons_path": [
         "/opt/dropbox/images/hicolor/16x16/status/",
         "{userhome}/.dropbox-dist/dropbox-lnx.{arch}-{dropbox_version}/images/hicolor/16x16/status/"
     ],

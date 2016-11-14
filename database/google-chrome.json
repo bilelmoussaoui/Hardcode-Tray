@@ -1,6 +1,11 @@
 {
     "name": "Google Chrome",
-    "path": [
+    "app_path": [
+        "/opt/google/chrome/",
+        "/opt/google/chrome-unstable/",
+        "/opt/google/chrome-beta/"
+    ],
+    "icons_path": [
         "/opt/google/chrome/",
         "/opt/google/chrome-unstable/",
         "/opt/google/chrome-beta/"

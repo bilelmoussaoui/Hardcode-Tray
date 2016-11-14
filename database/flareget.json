@@ -1,10 +1,12 @@
 {
     "name": "Flarget",
-    "path": [
+    "app_path": [
         "/usr/bin/flareget/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/flareget/"
+    ],
     "is_qt": true,
-    "qt_folder": "flareget",
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": true,

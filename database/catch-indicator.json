@@ -1,6 +1,9 @@
 {
     "name": "Catch Indicator",
-    "path": [
+    "app_path": [
+        "/usr/share/catch-indicator/"
+    ],
+    "icons_path": [
         "/usr/share/catch-indicator/icons/"
     ],
     "is_qt": false,

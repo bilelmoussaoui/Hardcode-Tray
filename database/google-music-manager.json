@@ -1,11 +1,13 @@
 {
     "name": "Google Music Manager",
-    "path": [
+    "app_path": [
         "/opt/google/musicmanager/"
+    ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/MusicManager/"
     ],
     "is_qt": true,
     "is_script": false,
-    "qt_folder": "MusicManager",
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": true,

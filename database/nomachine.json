@@ -1,6 +1,9 @@
 {
     "name": "No Machine",
-    "path": [
+    "app_path": [
+        "/usr/NX/"
+    ],
+    "icons_path": [
         "/usr/NX/share/icons/16x16/"
     ],
     "is_qt": false,

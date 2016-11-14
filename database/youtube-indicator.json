@@ -1,6 +1,9 @@
 {
     "name": "Youtube Indicator",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/youtube-indicator/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons/"
     ],
     "is_qt": false,

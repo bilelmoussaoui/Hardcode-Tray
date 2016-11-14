@@ -1,6 +1,9 @@
 {
     "name": "Guake",
-    "path": [
+    "app_path": [
+        "/usr/bin/guake"
+    ],
+    "icons_path": [
         "/usr/share/pixmaps/guake/"
     ],
     "is_qt": false,

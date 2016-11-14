@@ -35,7 +35,6 @@ if userhome.lower() == "/root":
     userhome = "/home/" + getenv("SUDO_USER")
 parser = argparse.ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
-sni_qt_folder = userhome + "/.local/share/sni-qt/icons/"
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 supported_icons_count = 0
@@ -199,6 +198,18 @@ def copy_file(src, destination, overwrite=False):
             copyfile(src, destination)
 
 
+def check_paths(paths_list, exec_path_script):
+    paths = []
+    for i, icon_path in enumerate(paths_list):
+        paths_list[i] = paths_list[i].replace("{userhome}", userhome)
+        if exec_path_script:
+            sfile = absolute_path + db_folder + \
+                script_folder + exec_path_script
+            paths_list[i] = execute([sfile, paths_list[i]], verbose=True).decode("utf-8").strip()
+        if path.isdir(paths_list[i]) or path.isfile(paths_list[i]):
+            paths.append(paths_list[i])
+    return paths
+
 def get_supported_apps(fix_only=[], custom_path=""):
     """
         Gets a list of supported applications: files in /database
@@ -217,32 +228,20 @@ def get_supported_apps(fix_only=[], custom_path=""):
         if path.isfile(file):
             with open(file) as data_file:
                 data = json.load(data_file)
-                paths = []
-                for i, data_path in enumerate(data["path"]):
-                    data["path"][i] = data["path"][
-                        i].replace("{userhome}", userhome)
-                    if data["exec_path_script"]:
-                        sfile = absolute_path + db_folder + script_folder + data["exec_path_script"]
-                        data["path"][i] = execute([sfile, data["path"][i]], verbose=True).decode("utf-8").strip()
-                    
-                    if path.isdir(data["path"][i]) or path.isfile(data["path"][i]):
-                        paths.append(data["path"][i])
-                data["path"] = paths
-                if len(data["path"]) == 0:
+                data["icons_path"] = check_paths(data["icons_path"], data["exec_path_script"])
+                data["app_path"] = check_paths(data["app_path"], data["exec_path_script"])
+                if len(data["app_path"]) == 0:
                     be_added = False
-                if custom_path and len(database_files) == 1:
-                    data["path"].append(custom_path)
+                if custom_path and len(database_files) == 1 and path.exists(custom_path):
+                    data["app_path"].append(custom_path)
                 if be_added:
                     if isinstance(data["icons"], list):
                         data["icons"] = get_iterated_icons(data["icons"])
                     data["icons"], dont_install = get_app_icons(data)
                     if not dont_install:
                         if data["force_create_folder"]:
-                            create_dir(data["path"][i])
-                        if data["is_qt"]:
-                            data["qt_folder"] = sni_qt_folder + data["qt_folder"] + "/"
-                            if not path.exists(data["qt_folder"]) and be_added:
-                                create_dir(data["qt_folder"])
+                            for icon_path in data["icons_path"]:
+                                create_dir(icon_path)
                         supported_apps.append(data)
     return supported_apps
 
@@ -363,7 +362,7 @@ def reinstall(fix_only, custom_path):
     apps = get_supported_apps(fix_only, custom_path)
     if len(apps) != 0:
         for app in apps:
-            app_path = app["path"]
+            app_path = app["app_path"]
             app_name = app["name"]
             app_icons = app["icons"]
             if "symlinks" in app.keys():
@@ -372,24 +371,23 @@ def reinstall(fix_only, custom_path):
                         dest = d + app["symlinks"][syml]["dest"]
                         backup(dest, revert=True)
             for icon in app_icons:
-                if app["is_qt"]:
-                    sni_qt_path = sni_qt_folder + app["qt_folder"] + "/"
-                    if path.exists(sni_qt_path):
-                        rmtree(sni_qt_path)
-                        print("%s -- reverted" % apps[app]["name"])
-                elif app["is_script"]:
-                    binary = app["binary"]
-                    for app_p in app_path:
-                        if path.isfile(app_p + binary):
-                            backup(app_p + binary, revert=True)
-                else:
-                    if not app["backup_ignore"]:
-                        for app_p in app_path:
-                            if path.isdir(app_p):
-                                backup(app_p + icon["original"], revert=True)
+                icons_path = app["icons_path"]
+                for icon_path in icons_path:
+                    if app["is_qt"]:
+                            if path.isdir(icon_path):
+                                rmtree(icon_path)
+                                print("%s -- reverted" % apps[app]["name"])
+                    elif app["is_script"]:
+                        binary = app["binary"]
+                        if path.isfile(icon_path + binary):
+                            backup(icon_path + binary, revert=True)
+                    else:
+                        if not app["backup_ignore"]:
+                                backup(icon_path +
+                                       icon["original"], revert=True)
                                 if "symlinks" in icon.keys():
                                     for symlink_icon in icon["symlinks"]:
-                                        symlink_icon = app_p + symlink_icon
+                                        symlink_icon = icon_path + symlink_icon
                                         remove(symlink_icon)
             if app_name not in reverted_apps:
                 print("%s -- reverted" % (app_name))
@@ -404,9 +402,10 @@ def install(fix_only, custom_path):
     if len(apps) != 0:
         counter = 0
         for app in apps:
-            app_path = app["path"]
+            app_path = app["app_path"]
             app_name = app["name"]
             app_icons = app["icons"]
+            icons_path = app["icons_path"]
             if "symlinks" in app.keys():
                 for syml in app["symlinks"]:
                     for d in app_path:
@@ -421,29 +420,28 @@ def install(fix_only, custom_path):
                 fname = icon["theme"]
                 fbase = path.splitext(path.basename(fname))[0]
                 ext_theme = icon["theme_ext"]
-                if app["is_qt"]:
-                    output_icon = app["qt_folder"] + base_icon
-                    if svgtopng.is_svg_enabled():
-                        svgtopng.convert_svg2png(fname, output_icon)
-                        mchown(output_icon)
-                        if "symlinks" in icon.keys():
-                            for symlink_icon in icon["symlinks"]:
-                                symlink_icon = app["qt_folder"] + symlink_icon
-                                symlink_file(output_icon, symlink_icon)
+                for icon_path in icons_path:
+                    if app["is_qt"]:
+                        if svgtopng.is_svg_enabled():
+                            output_icon = icon_path + base_icon
+                            svgtopng.convert_svg2png(fname, output_icon)
+                            mchown(output_icon)
+                            if "symlinks" in icon.keys():
+                                for symlink_icon in icon["symlinks"]:
+                                    symlink_icon = icon_path + symlink_icon
+                                    symlink_file(output_icon, symlink_icon)
                         fixed = True
-                elif app["is_script"]:
-                    binary = app["binary"]
-                    for app_p in app_path:
-                        if path.exists(app_p + binary):
-                            backup(app_p + binary)
+                    elif app["is_script"]:
+                        binary = app["binary"]
+                        if path.exists(icon_path + binary):
+                            backup(icon_path + binary)
                             script_file = absolute_path + db_folder + \
                                 script_folder + app["script"]
                             execute(
-                                [script_file, fname, base_icon, app_p, binary])
-                    fixed = True
-                else:
-                    for app_p in app_path:
-                        output_icon = app_p + base_icon
+                                [script_file, fname, base_icon, icon_path, binary])
+                        fixed = True
+                    else:
+                        output_icon = icon_path + base_icon
                         if not app["backup_ignore"]:
                             backup(output_icon)
                         if ext_theme == ext_orig:
@@ -462,15 +460,15 @@ def install(fix_only, custom_path):
                                     fixed = True
                                 except Exception as e:
                                     print(e)
-                        if "symlinks" in icon.keys():
-                            for symlink_icon in icon["symlinks"]:
-                                symlink_icon = app_p + symlink_icon
-                                symlink_file(output_icon, symlink_icon)
-                    if fixed:
-                        counter += 1
-                        if not (fbase in fixed_icons) or counter == supported_icons_count:
-                            progress(counter, app_name)
-                            fixed_icons.append(fbase)
+                                if "symlinks" in icon.keys():
+                                    for symlink_icon in icon["symlinks"]:
+                                        symlink_icon = icon_path + symlink_icon
+                                        symlink_file(output_icon, symlink_icon)
+                if fixed:
+                    counter += 1
+                    if not (fbase in fixed_icons) or counter == supported_icons_count:
+                        progress(counter, app_name)
+                        fixed_icons.append(fbase)
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 if args.size:

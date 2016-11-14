@@ -1,6 +1,9 @@
 {
     "name": "Trimage",
-    "path": [
+    "app_path": [
+        "/usr/lib/python2.7/site-packages/trimage/"
+    ],
+    "icons_path": [
         "/usr/lib/python2.7/site-packages/trimage/pixmaps/"
     ],
     "is_qt": false,

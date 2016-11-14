@@ -1,6 +1,10 @@
 {
     "name": "Rambox",
-    "path": [
+    "app_path": [
+        "/opt/rambox/",
+        "/opt/Rambox/"
+    ],
+    "icons_path": [
         "/opt/rambox/resources/",
         "/opt/Rambox/resources/"
     ],

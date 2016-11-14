@@ -1,6 +1,9 @@
 {
     "name": "Spotify",
-    "path": [
+    "app_path": [
+        "/opt/spotify/"
+    ],
+    "icons_path": [
         "/opt/spotify/spotify-client/Data/"
     ],
     "binary": "resources.zip",

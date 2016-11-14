@@ -1,6 +1,9 @@
 {
     "name": "Mint Update Manager",
-    "path": [
+    "app_path": [
+        "/usr/lib/linuxmint/mintUpdate/"
+    ],
+    "icons_path": [
         "/usr/lib/linuxmint/mintUpdate/icons/"
     ],
     "is_qt": false,

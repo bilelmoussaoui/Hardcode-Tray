@@ -1,6 +1,9 @@
 {
     "name": "My Weather Indicator",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/my-weather-indicator/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons/"
     ],
     "is_qt": false,

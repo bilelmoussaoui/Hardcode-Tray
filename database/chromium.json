@@ -1,6 +1,10 @@
 {
     "name": "Chromium",
-    "path": [
+    "app_path": [
+        "/usr/lib/chromium-browser/",
+        "/usr/lib/chromium/"
+    ],
+    "icons_path": [
         "/usr/lib/chromium-browser/",
         "/usr/lib/chromium/"
     ],

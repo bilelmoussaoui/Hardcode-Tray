@@ -1,6 +1,9 @@
 {
     "name": "Anatine",
-    "path": [
+    "app_path": [
+        "/usr/share/anatine/"
+    ],
+    "icons_path": [
         "/usr/share/anatine/resources/app/media/"
     ],
     "is_qt": false,

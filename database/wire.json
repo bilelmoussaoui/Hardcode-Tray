@@ -1,6 +1,10 @@
 {
     "name": "Wire",
-    "path": [
+    "app_path": [
+        "/opt/Wire/",
+        "/usr/lib/wire/"
+    ],
+    "icons_path": [
         "/opt/Wire/resources/",
         "/usr/lib/wire/resources/"
     ],

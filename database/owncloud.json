@@ -1,11 +1,13 @@
 {
     "name": "OwnCloud",
-    "path": [
+    "app_path": [
         "/usr/share/owncloud/",
         "/usr/share/owncloud-client/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/owncloud/"
+    ],
     "is_qt": true,
-    "qt_folder": "owncloud",
     "is_script": false,
     "backup_ignore": true,
     "force_create_folder": false,

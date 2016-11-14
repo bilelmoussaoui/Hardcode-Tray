@@ -1,14 +1,16 @@
 {
     "name": "Teamviewer",
-    "path": [
+    "app_path": [
         "/opt/teamviewer/"
+    ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/TVGuiDelegate/"
     ],
     "is_qt": true,
     "force_create_folder": false,
     "exec_path_script": false,
     "is_script": false,
     "backup_ignore": true,
-    "qt_folder": "TVGuiDelegate",
     "icons": {
         "indicator": {
             "original": "0b040b0d9ec00ce0d8189ece93cd2b7f.png",

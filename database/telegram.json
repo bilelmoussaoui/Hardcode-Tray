@@ -1,8 +1,12 @@
 {
     "name": "Telegram",
-    "path": [
+    "app_path": [
+      "{userhome}/.TelegramDesktop/Telegram",
+      "{userhome}/.local/share/TelegramDesktop/Telegram"
+    ],
+    "icons_path": [
         "{userhome}/.TelegramDesktop/tdata/ticons/",
-        "/home/{userhome}/.local/share/TelegramDesktop/tdata/ticons"
+        "{userhome}/.local/share/TelegramDesktop/tdata/ticons"
     ],
     "is_qt": false,
     "is_script": false,

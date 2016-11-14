@@ -1,6 +1,9 @@
 {
     "name": "yd-tools",
-    "path": [
+    "app_path": [
+        "/opt/yd-tools/"
+    ],
+    "icons_path": [
         "/opt/yd-tools/icons/"
     ],
     "is_qt": false,

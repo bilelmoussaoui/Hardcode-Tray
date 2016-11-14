@@ -1,6 +1,9 @@
 {
     "name": "Workrave",
-    "path": [
+    "app_path": [
+        "/usr/share/workrave/"
+    ],
+    "icons_path": [
         "/usr/share/workrave/images/"
     ],
     "is_qt": false,

@@ -1,10 +1,12 @@
 {
     "name": "Museeq",
-    "path": [
+    "app_path": [
         "/usr/bin/museeq/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/museeq/"
+    ],
     "is_qt": true,
-    "qt_folder": "museeq",
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": false,

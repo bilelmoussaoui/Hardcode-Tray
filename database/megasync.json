@@ -1,10 +1,12 @@
 {
     "name": "Megasync",
-    "path": [
+    "app_path": [
         "/usr/bin/megasync"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/megasync/"
+    ],
     "is_qt": true,
-    "qt_folder": "megasync",
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": false,

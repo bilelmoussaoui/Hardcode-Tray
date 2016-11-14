@@ -1,6 +1,9 @@
 {
     "name": "Slack",
-    "path": [
+    "app_path": [
+        "/usr/share/slack/"
+    ],
+    "icons_path": [
         "/usr/share/slack/resources/app.asar.unpacked/static/"
     ],
     "is_script": false,

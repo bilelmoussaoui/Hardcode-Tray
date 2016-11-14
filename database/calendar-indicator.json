@@ -1,6 +1,9 @@
 {
     "name": "Calendar Indicator",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/calendar-indicator/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/"
     ],
     "is_qt": false,

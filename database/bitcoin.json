@@ -1,12 +1,14 @@
 {
     "name": "Bitcoin",
-    "path": [
-        "/usr/bin/bitcoin-qt/"
+    "app_path": [
+        "/usr/bin/bitcoin-qt"
+    ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/bitcoin-qt/"
     ],
     "is_qt": true,
     "is_script": false,
-    "qt_folder": "bitcoin-qt",
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "backup_ignore": true,
     "icons": {

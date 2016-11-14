@@ -1,10 +1,12 @@
 {
     "name": "Skype",
-    "path": [
+    "app_path": [
         "/usr/share/skype/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/skype/"
+    ],
     "is_qt": true,
-    "qt_folder": "skype",
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": false,

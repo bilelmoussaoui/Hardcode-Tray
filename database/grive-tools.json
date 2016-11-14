@@ -1,6 +1,9 @@
 {
     "name": "Grive Tools",
-    "path": [
+    "app_path": [
+        "/opt/thefanclub/grive-tools/"
+    ],
+    "icons_path": [
         "/opt/thefanclub/grive-tools/icons/dark/",
         "/opt/thefanclub/grive-tools/icons/light/"
     ],

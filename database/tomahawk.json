@@ -1,10 +1,12 @@
 {
     "name": "Tomahawk",
-    "path": [
+    "app_path": [
         "/usr/bin/tomahawk/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/tomahawk/"
+    ],
     "is_qt": true,
-    "qt_folder": "tomahawk",
     "force_create_folder": false,
     "exec_path_script": false,
     "is_script": false,

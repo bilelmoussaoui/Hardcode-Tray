@@ -1,6 +1,9 @@
 {
     "name": "Whatsie",
-    "path": [
+    "app_path": [
+        "/opt/whatsie/"
+    ],
+    "icons_path": [
         "/opt/whatsie/resources/"
     ],
     "is_qt": false,

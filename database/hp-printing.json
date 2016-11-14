@@ -1,10 +1,12 @@
 {
     "name": "HP Printer",
-    "path": [
+    "app_path": [
         "/usr/bin/hp-systray/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/python2.7/"
+    ],
     "is_qt": true,
-    "qt_folder": "python2.7",
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": true,

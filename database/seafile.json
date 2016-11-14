@@ -1,10 +1,12 @@
 {
     "name": "Seafile",
-    "path": [
+    "app_path": [
         "/usr/bin/seafile-applet/"
     ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/seafile-applet/"
+    ],
     "is_qt": true,
-    "qt_folder": "seafile-applet",
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": true,

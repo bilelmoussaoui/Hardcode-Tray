@@ -1,6 +1,9 @@
 {
     "name": "Variety",
-    "path": [
+    "app_path": [
+        "/opt/extras.ubuntu.com/variety/"
+    ],
+    "icons_path": [
         "/opt/extras.ubuntu.com/variety/share/variety/media/"
     ],
     "is_qt": false,
