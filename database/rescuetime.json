@@ -1,0 +1,24 @@
+{
+    "name": "RescueTime",
+    "app_path": [
+        "/usr/bin/rescuetime"
+    ],
+    "icons_path": [
+        "{userhome}/.local/share/sni-qt/icons/rescuetime/"
+    ],
+    "is_qt": true,
+    "is_script": false,
+    "force_create_folder": true,
+    "exec_path_script": false,
+    "backup_ignore": true,
+    "icons": {
+        "indicator": {
+            "original": "bacd0fb67bbcaae6a0d60228308c0090.png",
+            "theme": "rescuetime-indicator"
+        },
+        "offline": {
+            "original": "d9103d7d3388b42d6838b5c9f08900ee.png",
+            "theme": "rescuetime-offline"
+        }
+    }
+}
