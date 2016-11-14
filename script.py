@@ -197,19 +197,6 @@ def copy_file(src, destination, overwrite=False):
         if not path.isfile(destination):
             copyfile(src, destination)
 
-
-def check_paths(paths_list, exec_path_script):
-    paths = []
-    for i, icon_path in enumerate(paths_list):
-        paths_list[i] = paths_list[i].replace("{userhome}", userhome)
-        if exec_path_script:
-            sfile = absolute_path + db_folder + \
-                script_folder + exec_path_script
-            paths_list[i] = execute([sfile, paths_list[i]], verbose=True).decode("utf-8").strip()
-        if path.isdir(paths_list[i]) or path.isfile(paths_list[i]):
-            paths.append(paths_list[i])
-    return paths
-
 def get_supported_apps(fix_only=[], custom_path=""):
     """
         Gets a list of supported applications: files in /database
@@ -228,8 +215,28 @@ def get_supported_apps(fix_only=[], custom_path=""):
         if path.isfile(file):
             with open(file) as data_file:
                 data = json.load(data_file)
-                data["icons_path"] = check_paths(data["icons_path"], data["exec_path_script"])
-                data["app_path"] = check_paths(data["app_path"], data["exec_path_script"])
+                paths = []
+                for i, app_path in enumerate(data["app_path"]):
+                    data["app_path"][i] = data["app_path"][i].replace("{userhome}", userhome)
+                    if data["exec_path_script"]:
+                        sfile = absolute_path + db_folder + \
+                            script_folder + data["exec_path_script"]
+                        data["app_path"][i] = execute([sfile, data["app_path"][i]], verbose=True).decode("utf-8").strip()
+                    if path.isdir(data["app_path"][i]) or path.isfile(data["app_path"][i]):
+                        paths.append(data["app_path"][i])
+                data["app_path"] = paths
+                paths = []
+                for i, icon_path in enumerate(data["icons_path"]):
+                    data["icons_path"][i] = data["icons_path"][i].replace("{userhome}", userhome)
+                    if data["exec_path_script"]:
+                        sfile = absolute_path + db_folder + \
+                            script_folder + data["exec_path_script"]
+                        data["icons_path"][i] = execute([sfile, data["icons_path"][i]], verbose=True).decode("utf-8").strip()
+                    if data["force_create_folder"]:
+                            create_dir(data["icons_path"][i])
+                    if path.isdir(data["icons_path"][i]):
+                        paths.append(data["icons_path"][i])
+                data["icons_path"] = paths
                 if len(data["app_path"]) == 0:
                     be_added = False
                 if custom_path and len(database_files) == 1 and path.exists(custom_path):
@@ -239,9 +246,6 @@ def get_supported_apps(fix_only=[], custom_path=""):
                         data["icons"] = get_iterated_icons(data["icons"])
                     data["icons"], dont_install = get_app_icons(data)
                     if not dont_install:
-                        if data["force_create_folder"]:
-                            for icon_path in data["icons_path"]:
-                                create_dir(icon_path)
                         supported_apps.append(data)
     return supported_apps
 
