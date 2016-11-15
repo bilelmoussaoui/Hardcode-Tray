@@ -2,16 +2,13 @@
 """
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.5
+Version : 3.5.1
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL,
         uses some icons and a modified script form Chromium project
         released under BSD license
 """
 
-from collections import OrderedDict
-from csv import reader
-from hashlib import md5
 from imp import load_source
 from os import (chown, environ, getenv, geteuid, listdir, makedirs,
                 path, remove, symlink)
@@ -25,6 +22,9 @@ import re
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
+
+#Force X11 instead of Wayland, Wayland throws some error messages for now!
+environ['GDK_BACKEND'] = 'x11'
 
 db_folder = "database/"
 script_folder = "scripts/"
@@ -42,6 +42,7 @@ chmod_ignore_list = ["", "home"]
 fixed_icons = []
 reverted_apps = []
 script_errors = []
+
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -197,9 +198,48 @@ def copy_file(src, destination, overwrite=False):
         if not path.isfile(destination):
             copyfile(src, destination)
 
+def replace_vars_path(path, exec_path_script):
+    """
+        Replace some variables like {userhome} in application/icons path
+        Args:
+            path(str) : the application/icons path
+            exec_path_script(bool/str): False or the name of the script to be executed.
+                            Used in some cases like Dropbox
+    """
+    path = path.replace("{userhome}", userhome)
+    if exec_path_script:
+        sfile = absolute_path + db_folder + script_folder + exec_path_script
+        path = execute([sfile, path], verbose=True).decode("utf-8").strip()
+    return path
+
+
+def check_paths(data):
+    """
+        Check if the app_path exists to detect if the application is installed
+        Also check if the icons path exists, and force creating needed folders.
+        See the json key "force_create_folder"
+    """
+    new_app_path = []
+    for app_path in data["app_path"]:
+        app_path = replace_vars_path(app_path, data["exec_path_script"])
+        if path.isdir(app_path) or path.isfile(app_path):
+            new_app_path.append(app_path)
+    data["app_path"] = new_app_path
+    if not len(data["app_path"]) == 0:
+        new_icons_path = []
+        for icon_path in data["icons_path"]:
+            icon_path = replace_vars_path(icon_path, data["exec_path_script"])
+            if data["force_create_folder"]:
+                create_dir(icon_path)
+            if path.isdir(icon_path):
+                new_icons_path.append(icon_path)
+        data["icons_path"] = new_icons_path
+    return data
+
+
 def get_supported_apps(fix_only=[], custom_path=""):
     """
-        Gets a list of supported applications: files in /database
+        Gets a list of dict, a dict for each supported application
     """
     database_files = listdir(absolute_path + db_folder)
     if len(fix_only) != 0:
@@ -215,30 +255,8 @@ def get_supported_apps(fix_only=[], custom_path=""):
         if path.isfile(file):
             with open(file) as data_file:
                 data = json.load(data_file)
-                paths = []
-                for i, app_path in enumerate(data["app_path"]):
-                    data["app_path"][i] = data["app_path"][i].replace("{userhome}", userhome)
-                    if data["exec_path_script"]:
-                        sfile = absolute_path + db_folder + \
-                            script_folder + data["exec_path_script"]
-                        data["app_path"][i] = execute([sfile, data["app_path"][i]], verbose=True).decode("utf-8").strip()
-                    if path.isdir(data["app_path"][i]) or path.isfile(data["app_path"][i]):
-                        paths.append(data["app_path"][i])
-                data["app_path"] = paths
-                paths = []
-                for i, icon_path in enumerate(data["icons_path"]):
-                    data["icons_path"][i] = data["icons_path"][i].replace("{userhome}", userhome)
-                    if data["exec_path_script"]:
-                        sfile = absolute_path + db_folder + \
-                            script_folder + data["exec_path_script"]
-                        data["icons_path"][i] = execute([sfile, data["icons_path"][i]], verbose=True).decode("utf-8").strip()
-                    if data["force_create_folder"]:
-                            create_dir(data["icons_path"][i])
-                    if path.isdir(data["icons_path"][i]):
-                        paths.append(data["icons_path"][i])
-                data["icons_path"] = paths
-                if len(data["app_path"]) == 0:
-                    be_added = False
+                data = check_paths(data)
+                be_added = len(data["app_path"]) > 0
                 if custom_path and len(database_files) == 1 and path.exists(custom_path):
                     data["app_path"].append(custom_path)
                 if be_added:
@@ -264,6 +282,10 @@ def get_icon_size(icon):
 
 
 def get_iterated_icons(icons):
+    """
+        Used to avoid multiple icons names, like for telegram
+        See telegram.json
+    """
     new_icons = []
     for icon in icons:
         search = re.findall("{\d+\-\d+}", icon)
@@ -317,6 +339,9 @@ def get_app_icons(data):
 
 
 def progress(count, app_name):
+    """
+        Used to draw a progress bar
+    """
     global supported_icons_count
     bar_len = 40
     space = 20
@@ -334,6 +359,9 @@ def progress(count, app_name):
 
 
 def symlink_file(source, link_name):
+    """
+        Symlink a file, remove the dest file if already exists
+    """
     try:
         symlink(source, link_name)
     except FileExistsError:
@@ -378,21 +406,21 @@ def reinstall(fix_only, custom_path):
                 icons_path = app["icons_path"]
                 for icon_path in icons_path:
                     if app["is_qt"]:
-                            if path.isdir(icon_path):
-                                rmtree(icon_path)
-                                print("%s -- reverted" % apps[app]["name"])
+                        if path.isdir(icon_path):
+                            rmtree(icon_path)
+                            print("%s -- reverted" % apps[app]["name"])
                     elif app["is_script"]:
                         binary = app["binary"]
                         if path.isfile(icon_path + binary):
                             backup(icon_path + binary, revert=True)
                     else:
                         if not app["backup_ignore"]:
-                                backup(icon_path +
-                                       icon["original"], revert=True)
-                                if "symlinks" in icon.keys():
-                                    for symlink_icon in icon["symlinks"]:
-                                        symlink_icon = icon_path + symlink_icon
-                                        remove(symlink_icon)
+                            backup(icon_path +
+                                   icon["original"], revert=True)
+                            if "symlinks" in icon.keys():
+                                for symlink_icon in icon["symlinks"]:
+                                    symlink_icon = icon_path + symlink_icon
+                                    remove(symlink_icon)
             if app_name not in reverted_apps:
                 print("%s -- reverted" % (app_name))
                 reverted_apps.append(app_name)

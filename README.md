@@ -1,6 +1,6 @@
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link) 
-![Status](https://img.shields.io/badge/status-stable-green.svg) [![Hardcode-Tray 
-release](https://img.shields.io/badge/release-v3.5-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases) 
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+![Status](https://img.shields.io/badge/status-stable-green.svg) [![Hardcode-Tray
+release](https://img.shields.io/badge/release-v3.5.1-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases) 
 ![Python version](https://img.shields.io/badge/python-3.4%2C%203.5-blue.svg)
 # Hardcode-Tray
 
@@ -13,23 +13,23 @@ For a better experience use [Numix icon theme](https://github.com/numixproject/n
 ### Themes
 Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
-  
+
     Before
-    
+
     ![Before](screenshots/before.png)
-    
+
     After
-    
+
     ![After](screenshots/after.png)
-  
+
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
-  
+
   ![Preview](https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk/master/hardcode-tray-preview.png)
 
 ### Install
 
 #### Arch Linux (AUR):
-Stable version: 
+Stable version:
 ```bash
 yaourt -S hardcode-tray
 ```
@@ -48,7 +48,7 @@ sudo apt install sni-qt hardcode-tray
   ```bash
   cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
   ```
-  
+
   2. Install dependencies:
    - `git`
    - `wget`
