@@ -1,32 +1,53 @@
 {
-    "name": "No Machine",
-    "app_path": [
-        "/usr/NX/"
-    ],
-    "icons_path": [
-        "/usr/NX/share/icons/16x16/"
-    ],
-    "is_qt": false,
-    "force_create_folder": false,
-    "exec_path_script": false,
-    "backup_ignore": false,
-    "is_script": false,
-    "icons": {
-        "desktop": {
-            "original": "NoMachine-desktop.png",
-            "theme": "nomachine-desktop"
-        },
-        "indicator": {
-            "original": "NoMachine-icon.png",
-            "theme": "nomachine-indicator"
-        },
-        "recording": {
-            "original": "NoMachine-recording.png",
-            "theme": "nomachine-recording"
-        },
-        "service": {
-            "original": "NoMachine-service.png",
-            "theme": "nomachine-service"
-        }
-    }
+	"name": "No Machine",
+	"app_path": [
+		"/usr/NX/"
+	],
+	"icons_path": [
+		"/usr/NX/share/images/"
+	],
+	"is_qt": false,
+	"force_create_folder": false,
+	"exec_path_script": false,
+	"backup_ignore": false,
+	"is_script": false,
+	"icons": {
+		"indicator": {
+			"original": "tray-archlinux.png",
+			"theme": "nomachine-indicator",
+			"symlinks": [
+				"tray-archilinux.png",
+				"tray-centos.png",
+				"tray-debian.png",
+				"tray-fedora.png",
+				"tray-freebsd.png",
+				"tray-linux.png",
+				"tray-mageia.png",
+				"tray-mint.png",
+				"tray-pclinux.png",
+				"tray-slackwave.png",
+				"tray-suse.png",
+				"tray-ubuntu.png",
+				"tray-ubuntu-dark.png",
+				"tray-ubuntu-light.png"
+			]
+		},
+		"disabled": {
+			"original": "tray-archlinux-faded.png",
+			"theme": "nomachine-disabled",
+			"symlinks": [
+				"tray-centos-faded.png",
+				"tray-debian-faded.png",
+				"tray-fedora-faded.png",
+				"tray-freebsd-faded.png",
+				"tray-linux-faded.png",
+				"tray-mageia-faded.png",
+				"tray-mint-faded.png",
+				"tray-pclinux-faded.png",
+				"tray-slackwave-faded.png",
+				"tray-suse-faded.png",
+				"tray-ubuntu-faded.png"
+			]
+		}
+	}
 }
