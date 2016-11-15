@@ -12,11 +12,13 @@
     "is_script": false,
     "backup_ignore": false,
     "icons": [
+        "youtube-indicator-downloading-dark.svg",
         "youtube-indicator-dark-disabled.svg",
-        "youtube-indicator-dark-sync{0-5}.svg",
+        "youtube-indicator-dark-sync{0-9}.svg",
         "youtube-indicator-dark.svg",
+        "youtube-indicator-downloading-light.svg",
         "youtube-indicator-light-disabled.svg",
-        "youtube-indicator-light-sync{0-5}.svg",
+        "youtube-indicator-light-sync{0-9}.svg",
         "youtube-indicator-light.svg"
     ]
 }
