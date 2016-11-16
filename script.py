@@ -135,16 +135,17 @@ def mchown(directory):
     """
     global chmod_ignore_list
     path_list = directory.split("/")
-    dir_path = "/"
-    for directory in path_list:
-        dir_path += str(directory) + "/"
-        if dir_path.replace("/", "") not in chmod_ignore_list:
-            if path.exists(dir_path):
-                chown(dir_path, int(getenv("SUDO_UID")),
-                      int(getenv("SUDO_GID")))
-            elif path.isfile(dir_path.rstrip("/")):
-                execute(["chmod", "0777", dir_path.rstrip("/")])
-
+    dir_path = ""
+    # Check if the file/folder is in the home directory
+    if userhome in directory:
+        for directory in path_list:
+            dir_path += str(directory) + "/"
+            # Be sure to not change / permissions
+            if dir_path.replace("/", "") not in chmod_ignore_list:
+                if path.isdir(dir_path):
+                    chown(dir_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+                elif path.isfile(dir_path.rstrip("/")):
+                    execute(["chmod", "0777", dir_path.rstrip("/")])
 
 def create_dir(folder):
     """
