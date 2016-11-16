@@ -9,21 +9,22 @@ Licence : The script is released under GPL,
         released under BSD license
 """
 
-from imp import load_source
-from os import (chown, environ, getenv, geteuid, listdir, makedirs,
-                path, remove, symlink)
-from shutil import copyfile, move, rmtree
-from subprocess import PIPE, Popen, call, check_output
-from sys import exit, stdout
-from time import sleep
 import argparse
 import json
 import re
+from imp import load_source
+from os import (chown, environ, getenv, geteuid, listdir, makedirs, path,
+                remove, symlink)
+from shutil import copyfile, move, rmtree
+from subprocess import PIPE, Popen, check_output
+from sys import exit, stdout
+
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
-#Force X11 instead of Wayland, Wayland throws some error messages for now!
+
+# Force X11 instead of Wayland, Wayland throws some error messages for now!
 environ['GDK_BACKEND'] = 'x11'
 
 db_folder = "database/"
@@ -143,9 +144,11 @@ def mchown(directory):
             # Be sure to not change / permissions
             if dir_path.replace("/", "") not in chmod_ignore_list:
                 if path.isdir(dir_path):
-                    chown(dir_path, int(getenv("SUDO_UID")), int(getenv("SUDO_GID")))
+                    chown(dir_path, int(getenv("SUDO_UID")),
+                          int(getenv("SUDO_GID")))
                 elif path.isfile(dir_path.rstrip("/")):
                     execute(["chmod", "0777", dir_path.rstrip("/")])
+
 
 def create_dir(folder):
     """
@@ -198,6 +201,7 @@ def copy_file(src, destination, overwrite=False):
     else:
         if not path.isfile(destination):
             copyfile(src, destination)
+
 
 def replace_vars_path(path, exec_path_script):
     """

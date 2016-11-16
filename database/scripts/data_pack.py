@@ -55,7 +55,7 @@ def ReadDataPack(input_file):
                                                    data[:HEADER_LENGTH])
     if version != PACK_FILE_VERSION:
         print('Wrong file version in %s' % input_file)
-        raise WrongFileVersion
+        raise Exception
 
     resources = {}
     if num_entries == 0:

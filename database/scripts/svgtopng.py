@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-from os import symlink, chown, getenv, remove
+from os import remove
 from subprocess import Popen, PIPE, call
 from io import BytesIO
 from gi import require_version
@@ -70,7 +70,8 @@ def convert_svg2bin(infile):
     """
     if not disable_svg2png:
         if use_inkscape:
-            p = Popen(["inkscape", "-z", "-f", infile, "-e", "/tmp/hardcode.png"],
+            p = Popen(["inkscape", "-z", "-f", infile, "-e",
+                       "/tmp/hardcode.png"],
                       stdout=PIPE, stderr=PIPE)
             output, err = p.communicate()
             with open('/tmp/hardcode.png', 'rb') as temppng:
@@ -91,4 +92,3 @@ if __name__ == "__main__":
     infile = sys.argv[1]
     outfile = sys.argv[2]
     convert_svg2png(infile, outfile)
-
