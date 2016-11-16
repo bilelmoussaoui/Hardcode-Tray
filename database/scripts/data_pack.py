@@ -54,7 +54,7 @@ def ReadDataPack(input_file):
     version, num_entries, encoding = struct.unpack('<IIB',
                                                    data[:HEADER_LENGTH])
     if version != PACK_FILE_VERSION:
-        print('Wrong file version in %s' % input_file)
+        print('Wrong file version in {0!s}'.format(input_file))
         raise Exception
 
     resources = {}
