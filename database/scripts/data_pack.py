@@ -24,8 +24,8 @@ BINARY, UTF8, UTF16 = list(range(3))
 RAW_TEXT = 1
 
 
-DataPackContents = collections.namedtuple('DataPackContents',
-                                          'resources encoding')
+data_pack_contents = collections.namedtuple('DataPackContents',
+                                            'resources encoding')
 
 
 def ReadFile(filename, encoding):
@@ -59,7 +59,7 @@ def ReadDataPack(input_file):
 
     resources = {}
     if num_entries == 0:
-        return DataPackContents(resources, encoding)
+        return data_pack_contents(resources, encoding)
 
     # Read the index and data.
     data = data[HEADER_LENGTH:]
@@ -70,7 +70,7 @@ def ReadDataPack(input_file):
         next_id, next_offset = struct.unpack('<HI', data[:kIndexEntrySize])
         resources[id] = original_data[offset:next_offset]
 
-    return DataPackContents(resources, encoding)
+    return data_pack_contents(resources, encoding)
 
 
 def WriteDataPackToString(resources, encoding):

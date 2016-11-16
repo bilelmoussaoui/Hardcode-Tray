@@ -85,7 +85,6 @@ def convert_svg2bin(infile):
 
 
 def is_svg_enabled():
-    global disable_svg2png
     return not disable_svg2png
 
 if __name__ == "__main__":
