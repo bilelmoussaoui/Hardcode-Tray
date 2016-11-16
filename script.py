@@ -48,7 +48,8 @@ parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
 parser.add_argument("--theme", "-t",
-                    help="use a different icon theme instead of the default one.",
+                    help="use a different icon theme instead "
+                    "of the default one.",
                     type=str)
 parser.add_argument("--only", "-o",
                     help="fix only one application or more, linked by a ','.\n"
@@ -208,8 +209,8 @@ def replace_vars_path(path, exec_path_script):
         Replace some variables like {userhome} in application/icons path
         Args:
             path(str) : the application/icons path
-            exec_path_script(bool/str): False or the name of the script to be executed.
-                            Used in some cases like Dropbox
+            exec_path_script(bool/str): False or the name of the script
+                            to be executed. Used in some cases like Dropbox
     """
     path = path.replace("{userhome}", userhome)
     if exec_path_script:
@@ -262,8 +263,9 @@ def get_supported_apps(fix_only=[], custom_path=""):
                 data = json.load(data_file)
                 data = check_paths(data)
                 be_added = len(data["app_path"]) > 0
-                if custom_path and len(database_files) == 1 and path.exists(custom_path):
-                    data["app_path"].append(custom_path)
+                if custom_path:
+                    if len(database_files) == 1 and path.exists(custom_path):
+                        data["app_path"].append(custom_path)
                 if be_added:
                     if isinstance(data["icons"], list):
                         data["icons"] = get_iterated_icons(data["icons"])
@@ -437,7 +439,7 @@ def install(fix_only, custom_path):
     """
     apps = get_supported_apps(fix_only, custom_path)
     if len(apps) != 0:
-        counter = 0
+        cnt = 0
         for app in apps:
             app_path = app["app_path"]
             app_name = app["name"]
@@ -474,8 +476,9 @@ def install(fix_only, custom_path):
                             backup(icon_path + binary)
                             script_file = absolute_path + db_folder + \
                                 script_folder + app["script"]
-                            execute(
-                                [script_file, fname, base_icon, icon_path, binary])
+                            cmd = [script_file, fname, base_icon,
+                                   icon_path, binary]
+                            execute(cmd)
                         fixed = True
                     else:
                         output_icon = icon_path + base_icon
@@ -489,7 +492,8 @@ def install(fix_only, custom_path):
                                 try:  # Convert the svg file to a png one
                                     if icon["icon_size"] != default_icon_size:
                                         svgtopng.convert_svg2png(
-                                            fname, output_icon, icon["icon_size"])
+                                            fname, output_icon,
+                                            icon["icon_size"])
                                     else:
                                         svgtopng.convert_svg2png(
                                             fname, output_icon)
@@ -502,9 +506,9 @@ def install(fix_only, custom_path):
                                         symlink_icon = icon_path + symlink_icon
                                         symlink_file(output_icon, symlink_icon)
                 if fixed:
-                    counter += 1
-                    if not (fbase in fixed_icons) or counter == supported_icons_count:
-                        progress(counter, app_name)
+                    cnt += 1
+                    if not fbase in fixed_icons or cnt == supported_icons_count:
+                        progress(cnt, app_name)
                         fixed_icons.append(fbase)
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
