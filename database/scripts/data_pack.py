@@ -63,11 +63,11 @@ def ReadDataPack(input_file):
 
     # Read the index and data.
     data = data[HEADER_LENGTH:]
-    kIndexEntrySize = 2 + 4  # Each entry is a uint16 and a uint32.
+    index_entry = 2 + 4  # Each entry is a uint16 and a uint32.
     for _ in range(num_entries):
-        id, offset = struct.unpack('<HI', data[:kIndexEntrySize])
-        data = data[kIndexEntrySize:]
-        next_id, next_offset = struct.unpack('<HI', data[:kIndexEntrySize])
+        id, offset = struct.unpack('<HI', data[:index_entry])
+        data = data[index_entry:]
+        next_id, next_offset = struct.unpack('<HI', data[:index_entry])
         resources[id] = original_data[offset:next_offset]
 
     return data_pack_contents(resources, encoding)
