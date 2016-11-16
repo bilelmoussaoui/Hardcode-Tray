@@ -14,10 +14,8 @@ try:
     import cairo
 except (ImportError, AttributeError, ValueError):
     ink_flag = call(['which', 'inkscape'], stdout=PIPE, stderr=PIPE)
-    if ink_flag == 0:
-        use_inkscape = True
-    else:
-        disable_svg2png = True
+    use_inkscape = bool(ink_flag == 0)
+    disable_svg2png = not use_inkscape
 
 
 def convert_svg2png(infile, outfile, icon_size=None):
@@ -35,7 +33,7 @@ def convert_svg2png(infile, outfile, icon_size=None):
             else:
                 p = Popen(["inkscape", "-z", "-f", infile, "-e", outfile],
                           stdout=PIPE, stderr=PIPE)
-            output, err = p.communicate()
+            p.communicate()
         else:
             if icon_size:
                 handle = Rsvg.Handle()
@@ -73,7 +71,7 @@ def convert_svg2bin(infile):
             p = Popen(["inkscape", "-z", "-f", infile, "-e",
                        "/tmp/hardcode.png"],
                       stdout=PIPE, stderr=PIPE)
-            output, err = p.communicate()
+            p.communicate()
             with open('/tmp/hardcode.png', 'rb') as temppng:
                 ret = temppng.read()
             remove('/tmp/hardcode.png')

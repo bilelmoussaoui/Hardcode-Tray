@@ -17,7 +17,7 @@ from os import (chown, environ, getenv, geteuid, listdir, makedirs, path,
                 remove, symlink)
 from shutil import copyfile, move, rmtree
 from subprocess import PIPE, Popen, check_output
-from sys import exit, stdout
+from sys import stdout
 
 from gi import require_version
 require_version("Gtk", "3.0")
@@ -135,7 +135,6 @@ def mchown(directory):
         Args:
             directory (str): folder/file path
     """
-    global chmod_ignore_list
     path_list = directory.split("/")
     dir_path = ""
     # Check if the file/folder is in the home directory
@@ -243,7 +242,7 @@ def check_paths(data):
     return data
 
 
-def get_supported_apps(fix_only=[], custom_path=""):
+def get_supported_apps(fix_only, custom_path=""):
     """
         Gets a list of dict, a dict for each supported application
     """
@@ -280,7 +279,6 @@ def get_icon_size(icon):
         Get the icon size, with hidpi support (depends on the icon name)
         @Args: (list) icon
     """
-    global default_icon_size
     icon_size = default_icon_size
     icon_name = icon.split("@")
     if len(icon_name) > 1:
@@ -298,8 +296,8 @@ def get_iterated_icons(icons):
         search = re.findall("{\d+\-\d+}", icon)
         if len(search) == 1:
             values = search[0].strip("{").strip("}").split("-")
-            min, max = int(values[0]), int(values[1])
-            for i in range(min, max + 1):
+            minimum, maximum = int(values[0]), int(values[1])
+            for i in range(minimum, maximum + 1):
                 new_icons.append(icon.replace(search[0], str(i)))
         else:
             new_icons.append(icon)
@@ -349,7 +347,6 @@ def progress(count, app_name):
     """
         Used to draw a progress bar
     """
-    global supported_icons_cnt
     bar_len = 40
     space = 20
     filled_len = int(round(bar_len * count / float(supported_icons_cnt)))

@@ -65,10 +65,10 @@ def ReadDataPack(input_file):
     data = data[HEADER_LENGTH:]
     index_entry = 2 + 4  # Each entry is a uint16 and a uint32.
     for _ in range(num_entries):
-        id, offset = struct.unpack('<HI', data[:index_entry])
+        _id, offset = struct.unpack('<HI', data[:index_entry])
         data = data[index_entry:]
-        next_id, next_offset = struct.unpack('<HI', data[:index_entry])
-        resources[id] = original_data[offset:next_offset]
+        next_offset = struct.unpack('<HI', data[:index_entry])[1]
+        resources[_id] = original_data[offset:next_offset]
 
     return data_pack_contents(resources, encoding)
 
@@ -88,15 +88,15 @@ def WriteDataPackToString(resources, encoding):
 
     # Write index.
     data_offset = HEADER_LENGTH + index_length
-    for id in ids:
-        ret.append(struct.pack('<HI', id, data_offset))
-        data_offset += len(resources[id])
+    for _id in ids:
+        ret.append(struct.pack('<HI', _id, data_offset))
+        data_offset += len(resources[_id])
 
     ret.append(struct.pack('<HI', 0, data_offset))
 
     # Write data.
-    for id in ids:
-        ret.append(resources[id])
+    for _id in ids:
+        ret.append(resources[_id])
     return b''.join(ret)
 
 
