@@ -1,3 +1,4 @@
+[![Code Issues](https://www.quantifiedcode.com/api/v1/project/6ebdcd35681d424285ddf9e00e74b6e2/badge.svg)](https://www.quantifiedcode.com/app/project/6ebdcd35681d424285ddf9e00e74b6e2)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 ![Status](https://img.shields.io/badge/status-stable-green.svg) [![Hardcode-Tray
 release](https://img.shields.io/badge/release-v3.5.1-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases) 
