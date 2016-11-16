@@ -462,10 +462,6 @@ def install(fix_only, custom_path):
                             output_icon = icon_path + base_icon
                             svgtopng.convert_svg2png(fname, output_icon)
                             mchown(output_icon)
-                            if "symlinks" in icon.keys():
-                                for symlink_icon in icon["symlinks"]:
-                                    symlink_icon = icon_path + symlink_icon
-                                    symlink_file(output_icon, symlink_icon)
                         fixed = True
                     elif app["is_script"]:
                         binary = app["binary"]
@@ -498,10 +494,10 @@ def install(fix_only, custom_path):
                                     fixed = True
                                 except Exception as e:
                                     print(e)
-                                if "symlinks" in icon.keys():
-                                    for symlink_icon in icon["symlinks"]:
-                                        symlink_icon = icon_path + symlink_icon
-                                        symlink_file(output_icon, symlink_icon)
+                    if "symlinks" in icon.keys():
+                        for symlink_icon in icon["symlinks"]:
+                            symlink_icon = icon_path + symlink_icon
+                            symlink_file(output_icon, symlink_icon)
                 if fixed:
                     cnt += 1
                     if fbase not in fixed_icons or cnt == supported_icons_cnt:
