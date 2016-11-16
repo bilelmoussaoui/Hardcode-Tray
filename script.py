@@ -38,7 +38,7 @@ parser = argparse.ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
-supported_icons_count = 0
+supported_icons_cnt = 0
 chmod_ignore_list = ["", "home"]
 fixed_icons = []
 reverted_apps = []
@@ -312,7 +312,7 @@ def get_app_icons(data):
         Args:
             app_name(str): The application name
     """
-    global supported_icons_count
+    global supported_icons_cnt
     icons = data["icons"]
     supported_icons = []
     for icon in icons:
@@ -339,7 +339,7 @@ def get_app_icons(data):
                         icons[icon]["symlinks"])
 
             supported_icons.append(supported_icon)
-            supported_icons_count += 1
+            supported_icons_cnt += 1
 
     dont_install = not len(supported_icons) > 0
     return (supported_icons, dont_install)
@@ -349,19 +349,19 @@ def progress(count, app_name):
     """
         Used to draw a progress bar
     """
-    global supported_icons_count
+    global supported_icons_cnt
     bar_len = 40
     space = 20
-    filled_len = int(round(bar_len * count / float(supported_icons_count)))
+    filled_len = int(round(bar_len * count / float(supported_icons_cnt)))
 
-    percents = round(100.0 * count / float(supported_icons_count), 1)
+    percents = round(100.0 * count / float(supported_icons_cnt), 1)
     bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
     stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
     stdout.write('[%s] %i/%i %s%s\r' %
-                 (bar, count, supported_icons_count, percents, '%'))
+                 (bar, count, supported_icons_cnt, percents, '%'))
     stdout.flush()
-    if count != supported_icons_count:
+    if count != supported_icons_cnt:
         stdout.write("\033[K")
 
 
@@ -507,7 +507,7 @@ def install(fix_only, custom_path):
                                         symlink_file(output_icon, symlink_icon)
                 if fixed:
                     cnt += 1
-                    if not fbase in fixed_icons or cnt == supported_icons_count:
+                    if fbase not in fixed_icons or cnt == supported_icons_cnt:
                         progress(cnt, app_name)
                         fixed_icons.append(fbase)
     else:
