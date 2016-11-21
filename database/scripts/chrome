@@ -23,5 +23,7 @@ else:
 
 dataPack = data_pack.ReadDataPack(filename)
 dataPack.resources[int(icon_to_repl)] = pngbytes
-
-data_pack.WriteDataPack(dataPack.resources, filename, 0)
+try:
+    data_pack.WriteDataPack(dataPack.resources, filename, 0)
+except TypeError:
+    exit()
