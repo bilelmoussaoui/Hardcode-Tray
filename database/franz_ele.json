@@ -20,12 +20,20 @@
             "original": "files/assets/files/tray/files/linux/files/franz-taskbar.png",
             "theme": "franz-panel"
         },
+        "taskbar@2x": {
+            "original": "files/assets/files/tray/files/linux/files/franz-taskbar@2x.png",
+            "theme": "franz-panel"
+        },
         "taskbar-dock": {
             "original": "files/assets/files/franz-win-dock-alert.png",
             "theme": "franz-attention-panel"
         },
         "taskbar-unread": {
             "original": "files/assets/files/tray/files/linux/files/franz-taskbar-unread.png",
+            "theme": "franz-attention-panel"
+        },
+        "taskbar-unread@2x": {
+            "original": "files/assets/files/tray/files/linux/files/franz-taskbar-unread@2x.png",
             "theme": "franz-attention-panel"
         }
     }
