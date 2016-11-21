@@ -1,10 +1,12 @@
 {
     "name": "Franz",
     "app_path": [
-        "/opt/franz/"
+        "/opt/franz/",
+        "/opt/franz-bin/"
     ],
     "icons_path": [
-        "/opt/franz/"
+        "/opt/franz/resources/",
+        "/opt/franz-bin/resources/"
     ],
     "is_qt": false,
     "script": "electron",
