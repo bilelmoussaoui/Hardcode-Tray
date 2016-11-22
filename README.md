@@ -15,8 +15,8 @@ Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
 
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
-
-  ![Preview](screenshots/papirus.png)
+  
+ <div align="center"><img src="screenshots/papirus.png" alt="Preview" /></div>
 
 ### Install
 
