@@ -16,7 +16,7 @@ else
     wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/"$version".zip
     unzip -oq "$version".zip
     rm -f "$version".zip
-    versionnb=$(echo "$version" | sed "s/[^0-9. ]*//")
+    versionnb=${version//[a-zA-Z]/}
     cd ./Hardcode-Tray-"$versionnb" || exit
 fi
 rm -rf .git ./screenshots ./license
