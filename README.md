@@ -10,23 +10,13 @@ Fixes Hardcoded tray icons in Linux
 
 The script will automagically detect your default theme, the right icon size, the hardcoded applications, the right icons for each indicator and fix them. All that with the possibilty to revert to the original icons.
 
-For a better experience use [Numix icon theme](https://github.com/numixproject/numix-icon-theme).
-
 ### Themes
 Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
 
-    Before
-
-    ![Before](screenshots/before.png)
-
-    After
-
-    ![After](screenshots/after.png)
-
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
 
-  ![Preview](https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk/master/hardcode-tray-preview.png)
+  ![Preview](screenshots/papirus.png)
 
 ### Install
 
