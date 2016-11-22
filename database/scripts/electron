@@ -14,7 +14,7 @@ def getFromDict(dataDict, mapList):
     try:
         return reduce(lambda d, k: d[k], mapList, dataDict)
     except KeyError:
-        sys.exit()
+        exit()
         
 def setInDict(dataDict, mapList, value):
     getFromDict(dataDict, mapList[:-1])[mapList[-1]] = value
@@ -39,7 +39,7 @@ icon_for_repl = sys.argv[1]
 try:
     asarfile = open(filename, 'rb')
 except FileNotFoundError:
-    sys.exit()
+    exit()
 asarfile.seek(4)
 
 # header size is stored in byte 12:16
@@ -60,9 +60,11 @@ keys = icon_to_repl.split('/')
 try:
     fileinfo = getFromDict(files, keys)
 except KeyError:
-    sys.exit()
-
-offset0 = int(fileinfo['offset'])
+    exit()
+try:
+    offset0 = int(fileinfo['offset'])
+except KeyError:
+    exit()
 offset = offset0 + originaloffset
 size = int(fileinfo['size'])
 

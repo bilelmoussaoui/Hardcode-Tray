@@ -539,6 +539,8 @@ if not choice:
             exit("Please try again")
     except ValueError:
         exit("Please choose a valid value!")
+    except KeyboardInterrupt:
+        exit("")
 
 if choice == 1:
     print("Applying now..\n")

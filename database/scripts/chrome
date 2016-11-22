@@ -15,15 +15,13 @@ svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
 
 
 filename_svg, file_extension = os.path.splitext(icon_for_repl)
-if file_extension == '.svg':
-    pngbytes = svgtopng.convert_svg2bin(icon_for_repl)
-else:
-    with open(icon_for_repl, 'rb') as pngfile:
-        pngbytes = pngfile.read()
+if svgtopng.is_svg_enabled():
+	if file_extension == '.svg':
+	    pngbytes = svgtopng.convert_svg2bin(icon_for_repl)
+	else:
+	    with open(icon_for_repl, 'rb') as pngfile:
+	        pngbytes = pngfile.read()
 
-dataPack = data_pack.ReadDataPack(filename)
-dataPack.resources[int(icon_to_repl)] = pngbytes
-try:
-    data_pack.WriteDataPack(dataPack.resources, filename, 0)
-except TypeError:
-    exit()
+	dataPack = data_pack.ReadDataPack(filename)
+	dataPack.resources[int(icon_to_repl)] = pngbytes
+	data_pack.WriteDataPack(dataPack.resources, filename, 0)
