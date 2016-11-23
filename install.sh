@@ -31,7 +31,8 @@ else
     sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
 fi
 echo "Creating symbolic link.."
-if [ -L "/usr/bin/hardcode-tray" ]; then
+if [ -L "/usr/bin/hardcode-tray" ] || [ -f "/usr/bin/hardcode-tray" ]; 
+then
     sudo rm -f /usr/bin/hardcode-tray
 fi
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
