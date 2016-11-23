@@ -30,7 +30,7 @@ Developpement version:
 yaourt -S hardcode-tray-git
 ```
 #### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
-```
+```bash
 sudo add-apt-repository ppa:varlesh-l/hardcode-tray
 sudo apt update
 sudo apt install sni-qt hardcode-tray
@@ -89,7 +89,7 @@ hardcode-tray --only telegram --path /home/user/telegram/
 
 - `--size`
 
-You can also use `--size 24/22/16` to force the script to use a different icon size or if the script does not detect your
+You can also use `--size {24,22,16}` to force the script to use a different icon size or if the script does not detect your
 desktop environment.
 ```bash
 hardcode-tray --size 24 --only dropbox
