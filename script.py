@@ -412,7 +412,7 @@ def reinstall(fix_only, custom_path):
                     if app["is_qt"]:
                         if path.isdir(icon_path):
                             rmtree(icon_path)
-                            print("%s -- reverted" % apps[app]["name"])
+                            print("%s -- reverted" % app_name)
                     elif app["is_script"]:
                         binary = app["binary"]
                         if path.isfile(icon_path + binary):
