@@ -554,4 +554,4 @@ if len(script_errors) != 0:
         err = err.decode("utf-8")
         err = "\n".join(["\t" + e for e in err.split("\n")])
         print("fixing failed with error:\n%s" % err)
-print("\nDone , Thank you for using the Hardcode-Tray fixer!")
+print("\nDone, Thank you for using the Hardcode-Tray fixer!")
