@@ -383,12 +383,12 @@ def backup(icon, revert=False):
             revert(bool) : True: revert, False: only backup
     """
     back_file = icon + backup_extension
-    if path.isfile(icon):
-        if not revert:
+    if not revert:
+        if path.isfile(icon):
             copy_file(icon, back_file)
-        elif revert:
-            if path.isfile(back_file):
-                move(back_file, icon)
+    if revert:
+        if path.isfile(back_file):
+            move(back_file, icon)
 
 
 def reinstall(fix_only, custom_path):
@@ -416,8 +416,7 @@ def reinstall(fix_only, custom_path):
                             rmtree(icon_path)
                     elif app["is_script"]:
                         binary = app["binary"]
-                        if path.isfile(icon_path + binary):
-                            backup(icon_path + binary, revert=True)
+                        backup(icon_path + binary, revert=True)
                     else:
                         if not app["backup_ignore"]:
                             backup(icon_path +
@@ -452,7 +451,13 @@ def install(fix_only, custom_path):
                         dest = d + app["symlinks"][syml]["dest"]
                         backup(dest)
                         symlink_file(root, dest)
-            for icon in app_icons:
+            for step_count, icon in enumerate(app_icons):
+                if step_count == 0:
+                    step = 0
+                elif step_count == len(app_icons) -1:
+                    step = -1
+                else:
+                    step = 1
                 fixed = False
                 base_icon = icon["original"]
                 ext_orig = icon["orig_ext"]
@@ -472,7 +477,7 @@ def install(fix_only, custom_path):
                             script_file = absolute_path + db_folder + \
                                 script_folder + app["script"]
                             cmd = [script_file, fname, base_icon,
-                                   icon_path, binary]
+                                   icon_path, binary, str(step)]
                             execute(cmd)
                         fixed = True
                     else:
