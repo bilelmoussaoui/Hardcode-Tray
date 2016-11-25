@@ -9,12 +9,12 @@ Licence : The script is released under GPL,
         released under BSD license
 """
 
-import argparse
-import json
-import re
+from argparse import ArgumentParser
 from imp import load_source
+from json import load
 from os import (chown, environ, getenv, geteuid, listdir, makedirs, path,
                 remove, symlink)
+from re import findall
 from shutil import copyfile, move, rmtree
 from subprocess import PIPE, Popen, check_output
 from sys import stdout
@@ -34,13 +34,13 @@ userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
                         shell=True).strip()
 if userhome.lower() == "/root":
     userhome = "/home/" + getenv("SUDO_USER")
-parser = argparse.ArgumentParser(prog="Hardcode-Tray")
+parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 theme = Gtk.IconTheme.get_default()
 default_icon_size = 22
 supported_icons_cnt = 0
 chmod_ignore_list = ["", "home"]
-fixed_icons = []
+fixed_apps = []
 reverted_apps = []
 script_errors = []
 
@@ -259,7 +259,7 @@ def get_supported_apps(fix_only, custom_path=""):
         be_added = True
         if path.isfile(file):
             with open(file) as data_file:
-                data = json.load(data_file)
+                data = load(data_file)
                 data = check_paths(data)
                 be_added = len(data["app_path"]) > 0
                 if custom_path:
@@ -293,7 +293,7 @@ def get_iterated_icons(icons):
     """
     new_icons = []
     for icon in icons:
-        search = re.findall("{\d+\-\d+}", icon)
+        search = findall("{\d+\-\d+}", icon)
         if len(search) == 1:
             values = search[0].strip("{").strip("}").split("-")
             minimum, maximum = int(values[0]), int(values[1])
@@ -343,23 +343,22 @@ def get_app_icons(data):
     return (supported_icons, dont_install)
 
 
-def progress(count, app_name):
+def progress(count, count_max, app_name):
     """
         Used to draw a progress bar
     """
     bar_len = 40
-    space = 20
-    filled_len = int(round(bar_len * count / float(supported_icons_cnt)))
+    space = 25
+    filled_len = int(round(bar_len * count / float(count_max)))
 
-    percents = round(100.0 * count / float(supported_icons_cnt), 1)
+    percents = round(100.0 * count / float(count_max), 1)
     bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
     stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
     stdout.write('[%s] %i/%i %s%s\r' %
-                 (bar, count, supported_icons_cnt, percents, '%'))
+                 (bar, count, count_max, percents, '%'))
+    print("")
     stdout.flush()
-    if count != supported_icons_cnt:
-        stdout.write("\033[K")
 
 
 def symlink_file(source, link_name):
@@ -396,6 +395,8 @@ def reinstall(fix_only, custom_path):
         Reverts to the original icons
     """
     apps = get_supported_apps(fix_only, custom_path)
+    cnt = 0
+    reverted_cnt = sum(len(app["icons"]) for app in apps)
     if len(apps) != 0:
         for app in apps:
             app_path = app["app_path"]
@@ -412,7 +413,6 @@ def reinstall(fix_only, custom_path):
                     if app["is_qt"]:
                         if path.isdir(icon_path):
                             rmtree(icon_path)
-                            print("%s -- reverted" % app_name)
                     elif app["is_script"]:
                         binary = app["binary"]
                         if path.isfile(icon_path + binary):
@@ -424,9 +424,11 @@ def reinstall(fix_only, custom_path):
                             if "symlinks" in icon.keys():
                                 for symlink_icon in icon["symlinks"]:
                                     symlink_icon = icon_path + symlink_icon
-                                    remove(symlink_icon)
+                                    if path.exists(symlink_icon):
+                                        remove(symlink_icon)
+                cnt += 1
             if app_name not in reverted_apps:
-                print("%s -- reverted" % (app_name))
+                progress(cnt, reverted_cnt, app_name)
                 reverted_apps.append(app_name)
 
 
@@ -454,7 +456,6 @@ def install(fix_only, custom_path):
                 base_icon = icon["original"]
                 ext_orig = icon["orig_ext"]
                 fname = icon["theme"]
-                fbase = path.splitext(path.basename(fname))[0]
                 ext_theme = icon["theme_ext"]
                 for icon_path in icons_path:
                     if app["is_qt"]:
@@ -498,11 +499,11 @@ def install(fix_only, custom_path):
                         for symlink_icon in icon["symlinks"]:
                             symlink_icon = icon_path + symlink_icon
                             symlink_file(output_icon, symlink_icon)
-                if fixed:
-                    cnt += 1
-                    if fbase not in fixed_icons or cnt == supported_icons_cnt:
-                        progress(cnt, app_name)
-                        fixed_icons.append(fbase)
+                cnt += 1
+            if app_name not in fixed_apps:
+                fixed_apps.append(app_name)
+                progress(cnt, supported_icons_cnt, app_name)
+
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 if args.size:
