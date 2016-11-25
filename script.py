@@ -458,7 +458,6 @@ def install(fix_only, custom_path):
                     step = -1
                 else:
                     step = 1
-                fixed = False
                 base_icon = icon["original"]
                 ext_orig = icon["orig_ext"]
                 fname = icon["theme"]
@@ -469,7 +468,6 @@ def install(fix_only, custom_path):
                             output_icon = icon_path + base_icon
                             svgtopng.convert_svg2png(fname, output_icon)
                             mchown(output_icon)
-                        fixed = True
                     elif app["is_script"]:
                         binary = app["binary"]
                         if path.exists(icon_path + binary):
@@ -479,14 +477,12 @@ def install(fix_only, custom_path):
                             cmd = [script_file, fname, base_icon,
                                    icon_path, binary, str(step)]
                             execute(cmd)
-                        fixed = True
                     else:
                         output_icon = icon_path + base_icon
                         if not app["backup_ignore"]:
                             backup(output_icon)
                         if ext_theme == ext_orig:
                             symlink_file(fname, output_icon)
-                            fixed = True
                         elif ext_theme == "svg" and ext_orig == "png":
                             if svgtopng.is_svg_enabled():
                                 try:  # Convert the svg file to a png one
@@ -498,7 +494,6 @@ def install(fix_only, custom_path):
                                         svgtopng.convert_svg2png(
                                             fname, output_icon)
                                     mchown(output_icon)
-                                    fixed = True
                                 except Exception as e:
                                     print(e)
                     if "symlinks" in icon.keys():
