@@ -4,9 +4,8 @@ Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
 Version : 3.5.2.1
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
-Licence : The script is released under GPL,
-        uses some icons and a modified script form Chromium project
-        released under BSD license
+Licence : The script is released under GPL, uses a modified script
+        form Chromium project released under BSD license
 """
 
 from argparse import ArgumentParser
@@ -24,14 +23,14 @@ require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
 
-# Force X11 instead of Wayland, Wayland throws some error messages for now!
+# Force X11 instead of Wayland
 environ['GDK_BACKEND'] = 'x11'
 
 db_folder = "database/"
 script_folder = "scripts/"
 backup_extension = ".bak"
-userhome = check_output('sh -c "echo $HOME"', universal_newlines=True,
-                        shell=True).strip()
+userhome = check_output('sh -c "echo $HOME"', shell=True,
+                        universal_newlines=True).strip()
 if userhome.lower() == "/root":
     userhome = "/home/" + getenv("SUDO_USER")
 parser = ArgumentParser(prog="Hardcode-Tray")
@@ -282,7 +281,9 @@ def get_icon_size(icon):
     icon_size = default_icon_size
     icon_name = icon.split("@")
     if len(icon_name) > 1:
-        icon_size *= int(icon_name[1].split("x")[0])
+        multiple = int(icon_name[1].split("x")[0])
+        if multiple and multiple != 0:
+            icon_size *= multiple
     return icon_size
 
 

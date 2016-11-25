@@ -8,12 +8,12 @@
 files.
 """
 
-import collections
-import os
-import struct
-import sys
+from collections import namedtuple
+from os import path as os_path
+from struct import unpack, pack
+from sys import path as sys_path
 if __name__ == '__main__':
-    sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+    sys_path.append(os_path.join(os_path.dirname(__file__), '../..'))
 
 
 PACK_FILE_VERSION = 4
@@ -24,8 +24,8 @@ BINARY, UTF8, UTF16 = list(range(3))
 RAW_TEXT = 1
 
 
-data_pack_contents = collections.namedtuple('DataPackContents',
-                                            'resources encoding')
+data_pack_contents = namedtuple('DataPackContents',
+                                'resources encoding')
 
 
 def ReadFile(filename, encoding):
@@ -51,8 +51,8 @@ def ReadDataPack(input_file):
     original_data = data
 
     # Read the header.
-    version, num_entries, encoding = struct.unpack('<IIB',
-                                                   data[:HEADER_LENGTH])
+    version, num_entries, encoding = unpack('<IIB',
+                                            data[:HEADER_LENGTH])
     if version != PACK_FILE_VERSION:
         print('Wrong file version in {0!s}'.format(input_file))
         raise Exception
@@ -65,9 +65,9 @@ def ReadDataPack(input_file):
     data = data[HEADER_LENGTH:]
     index_entry = 2 + 4  # Each entry is a uint16 and a uint32.
     for _ in range(num_entries):
-        _id, offset = struct.unpack('<HI', data[:index_entry])
+        _id, offset = unpack('<HI', data[:index_entry])
         data = data[index_entry:]
-        next_offset = struct.unpack('<HI', data[:index_entry])[1]
+        next_offset = unpack('<HI', data[:index_entry])[1]
         resources[_id] = original_data[offset:next_offset]
 
     return data_pack_contents(resources, encoding)
@@ -79,7 +79,7 @@ def WriteDataPackToString(resources, encoding):
     ret = []
 
     # Write file header.
-    ret.append(struct.pack('<IIB', PACK_FILE_VERSION, len(ids), encoding))
+    ret.append(pack('<IIB', PACK_FILE_VERSION, len(ids), encoding))
     HEADER_LENGTH = 2 * 4 + 1            # Two uint32s and one uint8.
 
     # Each entry is a uint16 + a uint32s. We have one extra entry for the last
@@ -89,10 +89,10 @@ def WriteDataPackToString(resources, encoding):
     # Write index.
     data_offset = HEADER_LENGTH + index_length
     for _id in ids:
-        ret.append(struct.pack('<HI', _id, data_offset))
+        ret.append(pack('<HI', _id, data_offset))
         data_offset += len(resources[_id])
 
-    ret.append(struct.pack('<HI', 0, data_offset))
+    ret.append(pack('<HI', 0, data_offset))
 
     # Write data.
     for _id in ids:

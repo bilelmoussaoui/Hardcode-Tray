@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from os import path
 from platform import machine
-import sys
+from sys import argv
 
 def get_dropbox_version(directory):
     """
@@ -17,7 +17,7 @@ def get_dropbox_version(directory):
             return f.read()
     return ""
 
-dropbox_path = sys.argv[1]
+dropbox_path = argv[1]
 dropbox_path = dropbox_path.replace("{arch}", machine())
 dropbox_path = dropbox_path .replace(
     "{dropbox_version}", get_dropbox_version(dropbox_path))

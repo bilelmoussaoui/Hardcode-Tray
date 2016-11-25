@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys
+from sys import argv
 from os import remove
 from subprocess import Popen, PIPE, call
 from io import BytesIO
@@ -86,6 +86,6 @@ def is_svg_enabled():
     return not disable_svg2png
 
 if __name__ == "__main__":
-    infile = sys.argv[1]
-    outfile = sys.argv[2]
+    infile = argv[1]
+    outfile = argv[2]
     convert_svg2png(infile, outfile)
