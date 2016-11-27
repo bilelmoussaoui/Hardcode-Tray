@@ -2,7 +2,8 @@
     "name": "Telegram",
     "app_path": [
       "{userhome}/.TelegramDesktop/Telegram",
-      "{userhome}/.local/share/TelegramDesktop/Telegram"
+      "{userhome}/.local/share/TelegramDesktop/Telegram",
+      "/usr/bin/telegram-desktop"
     ],
     "icons_path": [
         "{userhome}/.TelegramDesktop/tdata/ticons/",
