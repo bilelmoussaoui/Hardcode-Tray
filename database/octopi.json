@@ -16,15 +16,15 @@
             "original": "octopi.png",
             "theme": "octopi-indicator"
         },
-          "red": {
+        "red": {
             "original": "octopi_red.png",
             "theme": "octopi-error"
         },
-          "green": {
+        "green": {
             "original": "octopi_green.png",
             "theme": "octopi-ok"
         },
-          "yellow": {
+        "yellow": {
             "original": "octopi_yellow.png",
             "theme": "octopi-info"
         }
