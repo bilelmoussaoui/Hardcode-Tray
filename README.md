@@ -14,7 +14,9 @@ The script will automagically detect your default theme, the right icon size, th
 Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
 
-  - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme-gtk)
+ <div align="center"><img src="screenshots/numix.png" alt="Preview" /></div>
+
+  - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
   
  <div align="center"><img src="screenshots/papirus.png" alt="Preview" /></div>
 
