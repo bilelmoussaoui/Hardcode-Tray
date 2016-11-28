@@ -1,0 +1,32 @@
+{
+    "name": "Octopi",
+    "app_path": [
+        "/usr/bin/octopi"
+    ],
+    "icons_path": [
+        "/usr/share/icons/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "octopi.png",
+            "theme": "octopi-indicator"
+        },
+          "red": {
+            "original": "octopi_red.png",
+            "theme": "octopi-error"
+        },
+          "green": {
+            "original": "octopi_green.png",
+            "theme": "octopi-ok"
+        },
+          "yellow": {
+            "original": "octopi_yellow.png",
+            "theme": "octopi-info"
+        }
+    }
+}
