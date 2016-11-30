@@ -10,7 +10,7 @@
     "is_qt": true,
     "is_script": false,
     "backup_ignore": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "icons": {
         "error": {
