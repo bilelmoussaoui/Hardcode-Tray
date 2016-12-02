@@ -494,12 +494,12 @@ def install(fix_only, custom_path):
                                         svgtopng.convert_svg2png(
                                             fname, output_icon)
                                     mchown(output_icon)
+                                    if "symlinks" in icon.keys():
+                                        for symlink_icon in icon["symlinks"]:
+                                            symlink_icon = icon_path + symlink_icon
+                                            symlink_file(output_icon, symlink_icon)
                                 except Exception as e:
                                     print(e)
-                    if "symlinks" in icon.keys():
-                        for symlink_icon in icon["symlinks"]:
-                            symlink_icon = icon_path + symlink_icon
-                            symlink_file(output_icon, symlink_icon)
                 cnt += 1
             if app_name not in fixed_apps:
                 fixed_apps.append(app_name)
