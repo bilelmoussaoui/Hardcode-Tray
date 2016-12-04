@@ -1,10 +1,12 @@
 {
     "name": "Slack",
     "app_path": [
-        "/usr/share/slack/"
+        "/usr/share/slack/",
+        "/usr/lib/slack/"
     ],
     "icons_path": [
-        "/usr/share/slack/resources/app.asar.unpacked/static/"
+        "/usr/share/slack/resources/app.asar.unpacked/static/",
+        "/usr/lib/slack/resources/app.asar.unpacked/src/static/"
     ],
     "is_script": false,
     "backup_ignore": false,
