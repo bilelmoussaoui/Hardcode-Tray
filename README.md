@@ -33,9 +33,9 @@ yaourt -S hardcode-tray-git
 ```
 #### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
 ```bash
-sudo add-apt-repository ppa:varlesh-l/hardcode-tray
+sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
 sudo apt update
-sudo apt install sni-qt hardcode-tray
+sudo apt install sni-qt sni-qt:i386 hardcode-tray
 ```
 #### Manual install
   1. Download and install the script:
