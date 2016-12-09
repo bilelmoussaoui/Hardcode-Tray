@@ -31,7 +31,7 @@ Developpement version:
 ```bash
 yaourt -S hardcode-tray-git
 ```
-#### Ubuntu 14.04 / 16.04 / 16.10 (PPA)
+#### Ubuntu 14.04 / 16.04 / 16.10 / 17.04 (PPA):
 ```bash
 sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
 sudo apt update
