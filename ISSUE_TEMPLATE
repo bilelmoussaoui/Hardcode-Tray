@@ -1,3 +1,13 @@
+### Specifications
+- Hardcode-Tray version : `` ** use `hardcode-tray --version`
+- Distribution : ``
+- Gtk version : ``
+- Inkscape version : `` if installed
+- Cairo version : `` if installed
+
 ### Expected behavior and actual behavior
+
 ### Steps to reproduce the problem
-### Specificationsds
+1. 
+2. 
+3.
