@@ -12,7 +12,7 @@
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": false,
-    "script": "electron",
+    "script": "electron.py",
     "icons": {
         "tray": {
             "original": "files/images/files/tray.png",

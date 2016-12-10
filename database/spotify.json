@@ -7,7 +7,7 @@
         "/opt/spotify/spotify-client/Data/"
     ],
     "binary": "resources.zip",
-    "script": "spotify",
+    "script": "spotify.py",
     "is_script": true,
     "backup_ignore": false,
     "is_qt": false,

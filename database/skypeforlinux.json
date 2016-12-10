@@ -7,7 +7,7 @@
         "/usr/share/skypeforlinux/resources/"
     ],
     "is_qt": false,
-    "script": "electron",
+    "script": "electron.py",
     "binary": "app.asar",
     "is_script": true,
     "backup_ignore": false,

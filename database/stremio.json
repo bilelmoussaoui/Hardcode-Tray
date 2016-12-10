@@ -10,7 +10,7 @@
     "is_script": true,
     "backup_ignore": false,
     "binary": "app.asar",
-    "script": "electron",
+    "script": "electron.py",
     "force_create_folder": false,
     "exec_path_script": false,
     "icons": {
