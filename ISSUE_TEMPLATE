@@ -1,9 +1,10 @@
 ### Specifications
-- Hardcode-Tray version : `` ** use `hardcode-tray --version` **
+- Hardcode-Tray version : ``
 - Distribution : ``
 - Gtk version : ``
 - Inkscape version : `` if installed
 - Cairo version : `` if installed
+- Sni-qt version: `` if installed
 - Application name :  ``
 - Application version : ``
 
