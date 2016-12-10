@@ -18,7 +18,7 @@ except (ImportError, AttributeError, ValueError):
     disable_svg2png = not use_inkscape
 
 def set_default_conversion_tool(tool):
-    global use_inkscap
+    global use_inkscape
     use_inkscape = tool.lower() == "inkscape"
     
 def convert_svg2png(infile, outfile, icon_size=None):
