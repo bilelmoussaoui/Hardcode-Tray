@@ -67,11 +67,15 @@ parser.add_argument("--apply", "-a", action='store_true',
                     help="fix hardcoded tray icons")
 parser.add_argument("--revert", "-r", action='store_true',
                     help="revert fixed hardcoded tray icons")
+parser.add_argument("--force-inkscape", "-fs", action='store_true',
+                    help="Use inkscape by default instead of Cairo")
 args = parser.parse_args()
 
 try:
     svgtopng = load_source(
         "svgtopng", "%s/database/scripts/svgtopng.py" % absolute_path)
+    if args.force_inkscape:
+        svgtopng.set_default_conversion_tool("inkscape")
 except FileNotFoundError:
     exit("You need to clone the whole repository to use the script.")
 

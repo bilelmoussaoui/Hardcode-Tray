@@ -17,7 +17,7 @@ Here's a list of themes that supports Hardcode-Tray:
  <div align="center"><img src="screenshots/numix.png" alt="Preview" /></div>
 
   - [Papirus icon theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
-  
+
  <div align="center"><img src="screenshots/papirus.png" alt="Preview" /></div>
 
 ### Install
@@ -102,6 +102,13 @@ hardcode-tray --size 24 --only dropbox
 You can fix your hardcoded icons using an other theme than the default one.
 ```bash
 hardcode-tray --theme Numix --only dropbox
+```
+
+- `--force-inkscape`
+
+Hardcode-Tray by default detects if the user have either Inkscape or Cairo installed and use on of them to convert SVG icons to PNG. Cairo does not detect CSS styling on SVG icons (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
+```bash
+hardcode-tray --force-inkscape
 ```
 
 - `--version`
