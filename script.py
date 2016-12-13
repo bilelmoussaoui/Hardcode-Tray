@@ -11,7 +11,7 @@ Licence : The script is released under GPL, uses a modified script
 from argparse import ArgumentParser
 from imp import load_source
 from json import load
-from os import (chown, environ, getenv, geteuid, listdir, makedirs, path,
+from os import (chown, fchown, environ, getenv, geteuid, listdir, makedirs, path,
                 remove, symlink)
 from re import findall
 from shutil import copyfile, move, rmtree
@@ -29,6 +29,7 @@ environ['GDK_BACKEND'] = 'x11'
 db_folder = "database/"
 script_folder = "scripts/"
 backup_extension = ".bak"
+username = getenv("SUDO_USER")
 userhome = check_output('sh -c "echo $HOME"', shell=True,
                         universal_newlines=True).strip()
 if userhome.lower() == "/root":
@@ -42,7 +43,8 @@ chmod_ignore_list = ["", "home"]
 fixed_apps = []
 reverted_apps = []
 script_errors = []
-
+USER_ID = int(getenv("SUDO_UID"))
+GROUP_ID = int(getenv("SUDO_GID"))
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -147,11 +149,9 @@ def mchown(directory):
             # Be sure to not change / permissions
             if dir_path.replace("/", "") not in chmod_ignore_list:
                 if path.isdir(dir_path):
-                    chown(dir_path, int(getenv("SUDO_UID")),
-                          int(getenv("SUDO_GID")))
-                elif path.isfile(dir_path.rstrip("/")):
-                    execute(["chmod", "0777", dir_path.rstrip("/")])
-
+                    chown(dir_path, USER_ID, GROUP_ID)
+                else:
+                    chown(dir_path.rstrip("/"), USER_ID, GROUP_ID)
 
 def create_dir(folder):
     """
