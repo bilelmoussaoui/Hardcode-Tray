@@ -11,7 +11,7 @@ Licence : The script is released under GPL, uses a modified script
 from argparse import ArgumentParser
 from imp import load_source
 from json import load
-from os import (chown, fchown, environ, getenv, geteuid, listdir, makedirs, path,
+from os import (chown, environ, getenv, geteuid, listdir, makedirs, path,
                 remove, symlink)
 from re import findall
 from shutil import copyfile, move, rmtree
@@ -151,7 +151,7 @@ def mchown(directory):
                 if path.isdir(dir_path):
                     chown(dir_path, USER_ID, GROUP_ID)
                 else:
-                    chown(dir_path.rstrip("/"), USER_ID, GROUP_ID)
+                    execute(["chmod", "0777", dir_path.rstrip("/")])
 
 def create_dir(folder):
     """
