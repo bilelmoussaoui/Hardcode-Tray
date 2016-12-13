@@ -29,7 +29,6 @@
             "symlinks": [
                 "mwid-clear.png",
                 "mwid-mostly-sunny.png",
-                "mwil-clear.png",
                 "mwil-mostly-sunny.png"
             ]
         },
@@ -76,7 +75,6 @@
             "theme": "weather-snow-scattered",
             "symlinks": [
                 "mwid-chance-of-snow-night.png",
-                "mwid-chance-of-snow.png",
                 "mwid-flurries.png",
                 "mwil-chance-of-snow-night.png",
                 "mwil-flurries.png"
