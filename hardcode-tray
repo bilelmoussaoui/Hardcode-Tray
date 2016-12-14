@@ -1,11 +1,11 @@
 #!/bin/bash
-version=v3.5.2.2
-if [[ $EUID -ne 0 ]]; then        
+version=v3.5.2.3
+if [[ $EUID -ne 0 ]]; then
+    upversion=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
+    IFS=' ' read -r -a versions <<< "$upversion"
+    upversion=${versions[0]}
     case $1 in
         -u|--update)
-            upversion=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
-            IFS=' ' read -r -a versions <<< "$upversion"
-            upversion=${versions[0]}
             if [ ! "$version" == "$upversion" ]; then
                 cd /tmp
                 wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh && bash install.sh --u
@@ -22,6 +22,10 @@ if [[ $EUID -ne 0 ]]; then
             exit 0 ;;
         *)
             cd /opt/Hardcode-Tray/
+            if [ ! "$version" == "$upversion" ]; then
+              echo "A new version is released"
+              echo "Automatic update from $version to v$upversion..."
+            fi
             sudo -E python3 script.py "$@"
     esac
 else
