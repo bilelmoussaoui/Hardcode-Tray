@@ -25,6 +25,7 @@ if [[ $EUID -ne 0 ]]; then
             if [ ! "$version" == "$upversion" ]; then
               echo "A new version is released"
               echo "Automatic update from $version to v$upversion..."
+              hardcode-tray --update
             fi
             sudo -E python3 script.py "$@"
     esac
