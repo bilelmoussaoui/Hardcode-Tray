@@ -4,7 +4,7 @@
         "/opt/Harmony/harmony"
     ],
     "icons_path": [
-        "/opt/Harmony/resources/app/icons"
+        "/opt/Harmony/resources/app/icons/"
     ],
     "is_qt": false,
     "is_script": false,
