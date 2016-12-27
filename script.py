@@ -480,6 +480,8 @@ def install(fix_only, custom_path):
                                 script_folder + app["script"]
                             cmd = [script_file, fname, base_icon,
                                    icon_path, binary, str(step)]
+                            if args.force_inkscape:
+                                cmd.append("--force-inkscape")
                             execute(cmd)
                     else:
                         output_icon = icon_path + base_icon
