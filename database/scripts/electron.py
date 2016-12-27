@@ -8,7 +8,8 @@ from functools import reduce
 from imp import load_source
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 svgtopng = load_source('svgtopng', absolute_path + 'svgtopng.py')
-
+if len(argv) > 6 and argv[6] == "--force-inkscape":
+    svgtopng.set_default_conversion_tool("inkscape")
 
 def getFromDict(dataDict, mapList):
     try:
