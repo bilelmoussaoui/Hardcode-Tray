@@ -15,5 +15,6 @@
         "tray": {
             "original": "icon.png",
             "theme": "harmony-tray"
+        }
     }
 }
