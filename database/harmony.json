@@ -1,0 +1,19 @@
+{
+    "name": "Harmony",
+    "app_path": [
+        "/opt/Harmony/harmony"
+    ],
+    "icons_path": [
+        "/opt/Harmony/resources/app/icons"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "icon.png",
+            "theme": "harmony-tray"
+    }
+}
