@@ -25,7 +25,7 @@
         "pause-light": {
             "original": "files/build/files/assets/files/img/files/playing/files/main_tray_white_s.png",
             "theme": "gpmdp-tray-pause-light"
-        }
+        },
         "normal-dark": {
             "original": "files/build/files/assets/files/img/files/main_tray_black_s.png",
             "theme": "gpmdp-tray-dark"
