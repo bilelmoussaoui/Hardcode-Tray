@@ -1,0 +1,30 @@
+{
+    "name": "Google Play Music Desktop Player",
+    "app_path": [
+        "/usr/share/google-play-music-desktop-player/"
+    ],
+    "icons_path": [
+        "/usr/share/google-play-music-desktop-player/resources/"
+    ],
+    "is_qt": false,
+    "script": "electron.py",
+    "binary": "app.asar",
+    "is_script": true,
+    "backup_ignore": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "icons": {
+        "normal": {
+            "original": "files/build/files/assets/files/img/files/main_tray_white_s.png",
+            "theme": "gpmdp-tray"
+        },
+        "play": {
+            "original": "files/build/files/assets/files/img/files/paused/files/main_tray_white_s.png",
+            "theme": "gpmdp-tray-play"
+        },
+        "pause": {
+            "original": "files/build/files/assets/files/img/files/playing/files/main_tray_white_s.png",
+            "theme": "gpmdp-tray-pause"
+        }
+    }
+}
