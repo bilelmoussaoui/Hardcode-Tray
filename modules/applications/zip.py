@@ -34,7 +34,7 @@ class ZipApplication(Application):
     def __init__(self, application_data, svgtopng):
         Application.__init__(self, application_data, svgtopng)
         self.binary = self.app.data["binary"]
-        self.tmp_path = "/tmp/_%s/" % self.get_name()
+        self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
         self.tmp_data = self.tmp_path + self.app.data["zip_path"]
 
     def reinstall(self):
