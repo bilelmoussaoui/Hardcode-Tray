@@ -22,9 +22,10 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 import json
-from modules.utils import create_dir, get_iterated_icons
+from modules.utils import create_dir, get_iterated_icons, execute
 from modules.const import USERHOME, ARCH
 from modules.icon import Icon
+absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
 
 class DataManager:
@@ -129,6 +130,10 @@ class DataManager:
 
     def replace_vars_path(self, _path):
         """Replace common variables informations."""
+        if self.data["exec_path_script"]:
+            _path = execute([absolute_path + "paths/" +
+                             self.data["exec_path_script"], _path],
+                            verbose=True).decode("utf-8").strip()
         _path = _path.replace("{userhome}", USERHOME)
         _path = _path.replace("{arch}", ARCH)
         return _path
