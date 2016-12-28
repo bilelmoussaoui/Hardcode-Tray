@@ -54,7 +54,7 @@ class PakApplication(Application):
         icon_to_repl = icon["original"]
         icon_for_repl = icon["theme"]
         icon_extension = icon["orig_ext"]
-        if self.svgtopng.get_is_svg_enabled():
+        if self.svgtopng.is_svg_enabled:
             if icon_extension == '.svg':
                 pngbytes = self.svgtopng.to_bin(icon_for_repl)
             else:

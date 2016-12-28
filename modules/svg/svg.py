@@ -24,7 +24,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 
 class SVG:
     """SVG Interface used by other class's."""
-    is_svg_enabled = True
+    _is_svg_enabled = True
+
     def __init__(self):
         """Init function."""
         pass
@@ -41,10 +42,12 @@ class SVG:
         """Check if the tool is installed."""
         pass
 
-    def get_is_svg_enabled(self):
+    @property
+    def is_svg_enabled(self):
         """Return if the svg to png conversion tools are activated."""
-        return self.is_svg_enabled
+        return self._is_svg_enabled
 
-    def set_is_svg_enabled(self, is_svg_enabled):
+    @is_svg_enabled.setter
+    def is_svg_enabled(self, is_svg_enabled):
         """Disable using svg to png conversion tools."""
-        self.is_svg_enabled = is_svg_enabled
+        self._is_svg_enabled = is_svg_enabled

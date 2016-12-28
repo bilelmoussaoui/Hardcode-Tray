@@ -124,7 +124,7 @@ class Application:
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
-            if self.svgtopng.get_is_svg_enabled():
+            if self.svgtopng.is_svg_enabled:
                 if icon_size != self.app.default_icon_size:
                     self.svgtopng.to_png(theme_icon, output_icon,
                                          icon_size)

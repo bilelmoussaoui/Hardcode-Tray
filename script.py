@@ -228,7 +228,7 @@ if args.conversion_tool:
         svgtopng = CairoSVG()
     else:
         svgtopng = SVG()
-        svgtopng.set_is_svg_enabled(False)
+        svgtopng.is_svg_enabled = False
 else:
     try:
         svgtopng = Inkscape()
@@ -265,8 +265,8 @@ elif args.dark_theme and args.light_theme:
     print("Your current dark icon theme is : %s" % dark_theme_name)
     print("Your current light icon theme is : %s" % light_theme_name)
 print("Svg to png functions are : ", end="")
-print("Enabled" if svgtopng.get_is_svg_enabled() else "Disabled")
-if svgtopng.get_is_svg_enabled():
+print("Enabled" if svgtopng.is_svg_enabled else "Disabled")
+if svgtopng.is_svg_enabled:
     print("Conversion tool : " + conversion_tool)
 print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")

@@ -81,7 +81,7 @@ class ElectronApplication(Application):
                 bytearr = asarfile.read()
 
             if icon_extension == '.svg':
-                if self.svgtopng.get_is_svg_enabled():
+                if self.svgtopng.is_svg_enabled:
                     pngbytes = self.svgtopng.to_bin(icon_for_repl)
                 else:
                     pngbytes = None
