@@ -8,7 +8,7 @@
         "/usr/lib/chromium-browser/",
         "/usr/lib/chromium/"
     ],
-    "script": "chrome.py",
+    "script": "pak",
     "force_create_folder": false,
     "exec_path_script": false,
     "backup_ignore": false,

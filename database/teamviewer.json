@@ -7,7 +7,7 @@
         "{userhome}/.local/share/sni-qt/icons/TVGuiDelegate/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "is_script": false,
     "backup_ignore": true,

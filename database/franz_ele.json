@@ -9,7 +9,7 @@
         "/opt/franz-bin/resources/"
     ],
     "is_qt": false,
-    "script": "electron.py",
+    "script": "electron",
     "binary": "app.asar",
     "force_create_folder": false,
     "exec_path_script": false,
