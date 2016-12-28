@@ -13,7 +13,7 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -81,7 +81,7 @@ class ElectronApplication(Application):
                 bytearr = asarfile.read()
 
             if icon_extension == '.svg':
-                if self.svgtopng.is_svg_enabled():
+                if self.svgtopng.get_is_svg_enabled():
                     pngbytes = self.svgtopng.to_bin(icon_for_repl)
                 else:
                     pngbytes = None

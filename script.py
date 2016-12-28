@@ -13,7 +13,7 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -31,7 +31,7 @@ from modules.applications.qt import QtApplication
 from modules.applications.pak import PakApplication
 from modules.applications.zip import ZipApplication
 from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
-from modules.svg.cairo import Cairo, CairoNotInstalled
+from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
 from modules.svg.svg import SVG
 from sys import stdout
 from gi import require_version
@@ -115,11 +115,11 @@ def get_supported_apps(fix_only, custom_path=""):
                 database_files.append("%s.json" % _file)
     database_files.sort()
     supported_apps = []
+    is_only = len(database_files) == 0
     for _file in database_files:
         _file = "./%s%s" % (DB_FOLDER, _file)
-        # TODO : fix is_only attribute
         application_data = DataManager(_file, theme, default_icon_size,
-                                       custom_path)
+                                       custom_path, is_only)
         if application_data.is_installed():
             application_type = application_data.get_type()
             if application_type == "electron":
@@ -225,7 +225,7 @@ if args.conversion_tool:
     if conversion_tool == "Inkscape":
         svgtopng = Inkscape()
     elif conversion_tool == "Cairo":
-        svgtopng = Cairo()
+        svgtopng = CairoSVG()
     else:
         svgtopng = SVG()
         svgtopng.set_is_svg_enabled(False)
@@ -234,7 +234,7 @@ else:
         svgtopng = Inkscape()
         conversion_tool = "Inkscape"
     except InkscapeNotInstalled:
-        svgtopng = Cairo()
+        svgtopng = CairoSVG()
         conversion_tool = "Cairo"
     except CairoNotInstalled:
         conversion_tool = "Not Found!"
@@ -265,8 +265,8 @@ elif args.dark_theme and args.light_theme:
     print("Your current dark icon theme is : %s" % dark_theme_name)
     print("Your current light icon theme is : %s" % light_theme_name)
 print("Svg to png functions are : ", end="")
-print("Enabled" if svgtopng.is_svg_enabled() else "Disabled")
-if svgtopng.is_svg_enabled():
+print("Enabled" if svgtopng.get_is_svg_enabled() else "Disabled")
+if svgtopng.get_is_svg_enabled():
     print("Conversion tool : " + conversion_tool)
 print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")

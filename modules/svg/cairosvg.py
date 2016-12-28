@@ -13,17 +13,18 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, remove
-from modules.svg.svg import SVG
 from io import BytesIO
+from os import path, remove
 from gi import require_version
+from modules.svg.svg import SVG
+
 try:
     require_version('Rsvg', '2.0')
     from cairosvg import svg2png
@@ -34,7 +35,7 @@ except (ImportError, AttributeError, ValueError):
     CAIRO_IS_INSTALLED = False
 
 
-class Cairo(SVG):
+class CairoSVG(SVG):
     """Cairo implemntation of SVG Interface."""
 
     def __init__(self):
@@ -43,7 +44,7 @@ class Cairo(SVG):
         if path.exists(self.outfile):
             remove(self.outfile)
         if not self.is_installed():
-            raise CairoNotInstalled
+            raise CairoSVGNotInstalled
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
@@ -89,8 +90,9 @@ class Cairo(SVG):
         return CAIRO_IS_INSTALLED
 
 
-class CairoNotInstalled(Exception):
+class CairoSVGNotInstalled(Exception):
     """Exception raised when Cairo is not installed."""
 
     def __init__(self):
-        super(CairoNotInstalled, self).__init__()
+        """Init Exception."""
+        super(CairoSVGNotInstalled, self).__init__()

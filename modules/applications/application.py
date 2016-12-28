@@ -13,7 +13,7 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -124,18 +124,14 @@ class Application:
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
-            if self.svgtopng.is_svg_enabled():
-                try:  # Convert the svg file to a png one
-                    if icon_size != self.app.default_icon_size:
-                        self.svgtopng.to_png(theme_icon, output_icon,
-                                             icon_size)
-                    else:
-                        self.svgtopng.to_png(theme_icon, output_icon)
-                    mchown(output_icon)
-                    if "symlinks" in icon.keys():
-                        for symlink_icon in icon["symlinks"]:
-                            symlink_icon = icon_path + symlink_icon
-                            symlink_file(output_icon, symlink_icon)
-                # TODO: remove to general exception catch
-                except Exception as e:
-                    print(e)
+            if self.svgtopng.get_is_svg_enabled():
+                if icon_size != self.app.default_icon_size:
+                    self.svgtopng.to_png(theme_icon, output_icon,
+                                         icon_size)
+                else:
+                    self.svgtopng.to_png(theme_icon, output_icon)
+                mchown(output_icon)
+                if "symlinks" in icon.keys():
+                    for symlink_icon in icon["symlinks"]:
+                        symlink_icon = icon_path + symlink_icon
+                        symlink_file(output_icon, symlink_icon)

@@ -13,7 +13,7 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -29,15 +29,22 @@ absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
 
 class DataManager:
+    """
+    DataManager is used to read the json database file.
 
-    def __init__(self, database_file, theme,
-                 default_icon_size, custom_path=""):
+    It used to create a dictionnary with all the informations about the
+    application
+    """
+
+    def __init__(self, database_file, theme, default_icon_size,
+                 custom_path="", is_only=False):
+        """Init function."""
         self.default_icon_size = default_icon_size
         self.json_file = database_file
         self.custom_path = custom_path
+        self.is_only = is_only
         self.theme = theme
         self.dont_install = True
-        self.data = {}
         self.supported_icons_cnt = 0
         self.read()
 
@@ -54,23 +61,13 @@ class DataManager:
         """Return the application icons."""
         return self.data["icons"]
 
-    def get_theme(self, is_dark):
-        """Get the theme to be used dark or light."""
-        if isinstance(self.theme, list):
-            if is_dark:
-                theme = self.theme[1]
-            else:
-                theme = self.theme[0]
-        else:
-            theme = self.theme
-        return theme
-
     def is_installed(self):
         """Check whether the application is installed or not."""
         return not self.dont_install
 
     def read(self):
         """Read json file in order to apply the script later."""
+        self.data = {}
         if path.isfile(self.json_file):
             with open(self.json_file) as data_file:
                 self.data = json.load(data_file)

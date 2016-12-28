@@ -13,7 +13,7 @@ Hardcode-Tray is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-TwoFactorAuth is distributed in the hope that it will be useful,
+Hardcode-Tray is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -167,8 +167,10 @@ def get_iterated_icons(icons):
             new_icons.append(icon)
     return new_icons
 
+
 # Functions used in the electron script
 def get_from_dict(data_dict, map_list):
+    """Get a value from a dictionnary following a map list."""
     try:
         return reduce(lambda d, k: d[k], map_list, data_dict)
     except KeyError:
@@ -176,6 +178,7 @@ def get_from_dict(data_dict, map_list):
 
 
 def set_in_dict(data_dict, map_list, value):
+    """Set a value in a dictionnary following a map list."""
     get_from_dict(data_dict, map_list[:-1])[map_list[-1]] = value
 
 
