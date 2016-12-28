@@ -61,10 +61,7 @@ class ElectronApplication(Application):
         icon_to_repl = icon["original"]
         icon_for_repl = icon["theme"]
         icon_extension = icon["theme_ext"]
-        try:
-            asarfile = open(filename, 'rb')
-        except FileNotFoundError:
-            exit()
+        asarfile = open(filename, 'rb')
         asarfile.seek(4)
 
         # header size is stored in byte 12:16
@@ -82,45 +79,43 @@ class ElectronApplication(Application):
 
         keys = icon_to_repl.split('/')
 
-        try:
-            fileinfo = get_from_dict(files, keys)
+        fileinfo = get_from_dict(files, keys)
+        if fileinfo:
             offset0 = int(fileinfo['offset'])
-        except KeyError:
-            exit()
-        offset = offset0 + originaloffset
-        size = int(fileinfo['size'])
+            offset = offset0 + originaloffset
+            size = int(fileinfo['size'])
 
-        with open(filename, 'rb') as asarfile:
-            bytearr = asarfile.read()
+            with open(filename, 'rb') as asarfile:
+                bytearr = asarfile.read()
 
-        if icon_extension == '.svg':
-            if self.svgtopng.is_svg_enabled():
-                pngbytes = self.svgtopng.to_bin(icon_for_repl)
+            if icon_extension == '.svg':
+                if self.svgtopng.is_svg_enabled():
+                    pngbytes = self.svgtopng.to_bin(icon_for_repl)
+                else:
+                    pngbytes = None
             else:
-                pngbytes = None
-        else:
-            with open(icon_for_repl, 'rb') as pngfile:
-                pngbytes = pngfile.read()
+                with open(icon_for_repl, 'rb') as pngfile:
+                    pngbytes = pngfile.read()
 
-        if pngbytes:
-            set_in_dict(files, keys + ['size'], len(pngbytes))
+            if pngbytes:
+                set_in_dict(files, keys + ['size'], len(pngbytes))
 
-            newbytearr = pngbytes.join(
-                [bytearr[:offset], bytearr[offset + size:]])
+                newbytearr = pngbytes.join(
+                    [bytearr[:offset], bytearr[offset + size:]])
 
-            sizediff = len(pngbytes) - size
+                sizediff = len(pngbytes) - size
 
-            newfiles = change_dict_vals(files, sizediff, offset0)
-            newheader = dumps(newfiles).encode('utf-8')
-            newheaderlen = len(newheader)
+                newfiles = change_dict_vals(files, sizediff, offset0)
+                newheader = dumps(newfiles).encode('utf-8')
+                newheaderlen = len(newheader)
 
-            bytearr2 = b''.join([bytearr[:4],
-                                 pack('I', newheaderlen + (len1 - len3)),
-                                 pack('I', newheaderlen + (len2 - len3)),
-                                 pack('I', newheaderlen), newheader,
-                                 b'\x00' * zeros_padding,
-                                 newbytearr[originaloffset:]])
+                bytearr2 = b''.join([bytearr[:4],
+                                     pack('I', newheaderlen + (len1 - len3)),
+                                     pack('I', newheaderlen + (len2 - len3)),
+                                     pack('I', newheaderlen), newheader,
+                                     b'\x00' * zeros_padding,
+                                     newbytearr[originaloffset:]])
 
-            asarfile = open(filename, 'wb')
-            asarfile.write(bytearr2)
-            asarfile.close()
+                asarfile = open(filename, 'wb')
+                asarfile.write(bytearr2)
+                asarfile.close()

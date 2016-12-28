@@ -172,7 +172,7 @@ def get_from_dict(data_dict, map_list):
     try:
         return reduce(lambda d, k: d[k], map_list, data_dict)
     except KeyError:
-        exit()
+        return None
 
 
 def set_in_dict(data_dict, map_list, value):

@@ -176,8 +176,6 @@ def install(fix_only, custom_path):
         cnt = 0
         installed_cnt = sum(app.app.supported_icons_cnt for app in apps)
         for app in apps:
-            print(app.get_name())
-        for app in apps:
             app_name = app.get_name()
             app.install()
             cnt += app.app.supported_icons_cnt

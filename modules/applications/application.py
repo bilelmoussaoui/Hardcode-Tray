@@ -109,19 +109,20 @@ class Application:
         """Install icon to the current directory."""
         base_icon = icon["original"]
         ext_orig = icon["orig_ext"]
-        fname = icon["theme"]
+        theme_icon = icon["theme"]
         ext_theme = icon["theme_ext"]
         icon_size = icon["icon_size"]
         output_icon = icon_path + base_icon
         if ext_theme == ext_orig:
-            symlink_file(fname, output_icon)
+            symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
             if self.svgtopng.is_svg_enabled():
                 try:  # Convert the svg file to a png one
                     if icon_size != self.app.default_icon_size:
-                        self.svgtopng.to_png(fname, output_icon, icon_size)
+                        self.svgtopng.to_png(theme_icon, output_icon,
+                                             icon_size)
                     else:
-                        self.svgtopng.to_png(fname, output_icon)
+                        self.svgtopng.to_png(theme_icon, output_icon)
                     mchown(output_icon)
                     if "symlinks" in icon.keys():
                         for symlink_icon in icon["symlinks"]:
