@@ -9,7 +9,7 @@
         "/opt/Rambox/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron.py",
+    "script": "electron",
     "is_qt": false,
     "force_create_folder": false,
     "exec_path_script": false,

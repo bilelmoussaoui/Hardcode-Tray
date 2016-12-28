@@ -19,10 +19,10 @@
                 "2f0bfbefd5f436ee06255de74ae04b74.png",
                 "0008df6b8abb9fb96af23f526732e605.png"
             ]
+        },
+        "offline": {
+            "original": "21dff8ad54c6c56ada4c3e69610fcaf4.png",
+            "theme": "museeq-offline"
         }
-    },
-    "offline": {
-        "original": "21dff8ad54c6c56ada4c3e69610fcaf4.png",
-        "theme": "museeq-offline"
     }
 }

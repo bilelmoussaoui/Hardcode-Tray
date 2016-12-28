@@ -12,9 +12,9 @@
     "exec_path_script": false,
     "backup_ignore": false,
     "icons": [
-        "catch-indicator-light-starred.svg",
-        "catch-indicator-light-normal.svg",
         "catch-indicator-dark-starred.svg",
-        "catch-indicator-dark-normal.svg"
+        "catch-indicator-dark-normal.svg",
+        "catch-indicator-light-starred.svg",
+        "catch-indicator-light-normal.svg"
     ]
 }

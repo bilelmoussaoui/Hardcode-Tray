@@ -19,7 +19,7 @@ else
     versionnb=${version//[a-zA-Z]/}
     cd ./Hardcode-Tray-"$versionnb" || exit
 fi
-rm -rf .git ./screenshots ./license
+rm -rf .git ./screenshots 
 rm -f .gitignore README.md install.sh uninstall.sh
 cd ../ || exit
 if [ -d "/opt/Hardcode-Tray" ]; then

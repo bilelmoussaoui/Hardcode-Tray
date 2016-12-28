@@ -6,8 +6,9 @@
     "icons_path": [
         "/opt/spotify/spotify-client/Data/"
     ],
+    "zip_path": "_linux/",
     "binary": "resources.zip",
-    "script": "spotify.py",
+    "script": "zip",
     "is_script": true,
     "backup_ignore": false,
     "is_qt": false,
