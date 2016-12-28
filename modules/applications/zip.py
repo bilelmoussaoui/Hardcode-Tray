@@ -37,14 +37,6 @@ class ZipApplication(Application):
         self.tmp_path = "/tmp/_%s/" % self.get_name()
         self.tmp_data = self.tmp_path + self.app.data["zip_path"]
 
-    def backup_binary(self, icon_path):
-        """Backup binary file before modification."""
-        backup(icon_path + self.app.data["binary"])
-
-    def revert_binary(self, icon_path):
-        """Restore the backed up binary file."""
-        revert(icon_path + self.app.data["binary"])
-
     def reinstall(self):
         """Reinstall the old icons."""
         for icon_path in self.get_icons_path():

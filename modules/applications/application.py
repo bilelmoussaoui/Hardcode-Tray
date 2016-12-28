@@ -65,6 +65,14 @@ class Application:
         """Return a boolean value if either the application have symlinks."""
         return "symlinks" in self.app.data.keys()
 
+    def backup_binary(self, icon_path):
+        """Backup binary file before modification."""
+        backup(icon_path + self.app.data["binary"])
+
+    def revert_binary(self, icon_path):
+        """Restore the backed up binary file."""
+        revert(icon_path + self.app.data["binary"])
+
     def install_symlinks(self):
         """Create symlinks for some applications files."""
         if self.has_symlinks():

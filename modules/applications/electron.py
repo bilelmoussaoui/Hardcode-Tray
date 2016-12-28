@@ -34,14 +34,6 @@ class ElectronApplication(Application):
         """Use the parent class, Application, modify only the (re)install."""
         Application.__init__(self, application_data, svgtopng)
 
-    def backup_binary(self, icon_path):
-        """Backup binary file before modification."""
-        backup(icon_path + self.app.data["binary"])
-
-    def revert_binary(self, icon_path):
-        """Restore the backed up binary file."""
-        revert(icon_path + self.app.data["binary"])
-
     def reinstall(self):
         """Reinstall the old icons."""
         for icon_path in self.get_icons_path():
