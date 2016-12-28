@@ -23,8 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from struct import unpack, pack
 from json import loads, dumps
 from modules.applications.application import Application
-from modules.utils import (get_from_dict, change_dict_vals, set_in_dict,
-                           backup, revert)
+from modules.utils import get_from_dict, change_dict_vals, set_in_dict
 
 
 class ElectronApplication(Application):

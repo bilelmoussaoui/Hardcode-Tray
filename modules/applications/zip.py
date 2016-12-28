@@ -23,7 +23,6 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove, makedirs
 from zipfile import ZipFile
 from modules.applications.application import Application
-from modules.utils import backup, revert, copy_file
 from shutil import make_archive, rmtree
 from subprocess import PIPE, Popen
 
@@ -32,6 +31,7 @@ class ZipApplication(Application):
     """Pak Application class, based on data_pak file."""
 
     def __init__(self, application_data, svgtopng):
+        """Init method."""
         Application.__init__(self, application_data, svgtopng)
         self.binary = self.app.data["binary"]
         self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
