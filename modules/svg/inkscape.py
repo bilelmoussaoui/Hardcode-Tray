@@ -43,7 +43,7 @@ class Inkscape(SVG):
         """Convert svg to png."""
         tmp_file = ""
         if len(self.colors) != 0:
-            tmp_file = "/tmp/%s" % path.basename(input_file)
+            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
             copy_file(input_file, tmp_file)
             input_file = tmp_file
             replace_colors(input_file, self.colors)
