@@ -84,6 +84,7 @@ parser.add_argument("--conversion-tool", "-ct",
                     type=str, choices=conversion_tools)
 args = parser.parse_args()
 
+
 def detect_de():
     """Detect the desktop environment, used to choose the proper icons size."""
     try:
@@ -143,11 +144,11 @@ def progress(count, count_max, app_name):
     filled_len = int(round(bar_len * count / float(count_max)))
 
     percents = round(100.0 * count / float(count_max), 1)
-    bar = '#' * filled_len + '.' * (bar_len - filled_len)
+    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
     stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
     stdout.write('[%s] %i/%i %s%s\r' %
-                 (bar, count, count_max, percents, '%'))
+                 (progress_bar, count, count_max, percents, '%'))
     print("")
     stdout.flush()
 
@@ -211,7 +212,7 @@ elif args.light_theme and args.dark_theme:
     theme = {
         "dark": dark_theme,
         "light": light_theme
-     }
+    }
 else:
     source = Gio.SettingsSchemaSource.get_default()
     if source.lookup("org.gnome.desktop.interface", True):
@@ -236,7 +237,7 @@ else:
     except InkscapeNotInstalled:
         svgtopng = CairoSVG()
         conversion_tool = "Cairo"
-    except CairoNotInstalled:
+    except CairoSVGNotInstalled:
         conversion_tool = "Not Found!"
 
 if args.size:
