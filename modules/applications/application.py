@@ -67,11 +67,11 @@ class Application:
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
-        backup(icon_path)
+        backup(icon_path + self.app.data["binary"])
 
     def revert_binary(self, icon_path):
         """Restore the backed up binary file."""
-        revert(icon_path)
+        revert(icon_path + self.app.data["binary"])
 
     def install_symlinks(self):
         """Create symlinks for some applications files."""
@@ -103,7 +103,7 @@ class Application:
                     "output_icon": output_icon,
                     "data": icon,
                     "path": icon_path
-                }
+                    }
                 )
         return icons
 

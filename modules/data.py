@@ -122,10 +122,12 @@ class DataManager:
             for icon_path in self.data["icons_path"]:
                 if self.data["force_create_folder"]:
                     create_dir(icon_path)
-                if "binary" in self.data.keys():
-                    icon_path += self.data["binary"]
-                if path.isdir(icon_path) or path.isfile(icon_path):
-                    new_icons_path.append(icon_path)
+                if path.isdir(icon_path):
+                    if "binary" in self.data.keys():
+                        if path.isfile(icon_path + self.data["binary"]):
+                            new_icons_path.append(icon_path)
+                    else:
+                        new_icons_path.append(icon_path)
             self.data["icons_path"] = new_icons_path
 
     def replace_vars_path(self, _path):
