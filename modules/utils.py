@@ -181,3 +181,29 @@ def change_dict_vals(d, sizediff, offset):
             d2['offset'] = str(int(d2['offset']) + sizediff)
         return d2
     return d
+
+
+def change_colors_list(list_colours):
+    """Transform a list of colours to a list of a sub-lists."""
+    colours = []
+    for color in list_colours:
+        color = color.strip().split(" ")
+        to_replace = color[0]
+        for_replace = color[1]
+        colours.append([to_replace, for_replace])
+    return colours
+
+
+def replace_colors(file_name, colors):
+    """Replace the colors in a file name."""
+    if path.isfile(file_name):
+        with open(file_name, 'r') as file:
+            filedata = file.read()
+
+        for color in colors:
+            to_replace = color[0]
+            for_replace = color[1]
+            filedata = filedata.replace(to_replace, for_replace)
+
+        with open(file_name, 'w') as file:
+            file.write(filedata)

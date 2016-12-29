@@ -24,7 +24,7 @@ from io import BytesIO
 from os import path, remove
 from gi import require_version
 from modules.svg.svg import SVG
-
+from modules.utils import copy_file, replace_colors
 try:
     require_version('Rsvg', '2.0')
     from cairosvg import svg2png
@@ -38,8 +38,9 @@ except (ImportError, AttributeError, ValueError):
 class CairoSVG(SVG):
     """Cairo implemntation of SVG Interface."""
 
-    def __init__(self):
-        """Init method."""
+    def __init__(self, colors):
+        """Init function."""
+        self.colors = colors
         self.outfile = "/tmp/hardcode.png"
         if path.exists(self.outfile):
             remove(self.outfile)
@@ -49,6 +50,12 @@ class CairoSVG(SVG):
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         width, height = self.get_size(width, height)
+        tmp_file = ""
+        if len(self.colors) != 0:
+            tmp_file = "/tmp/%s" % path.basename(input_file)
+            copy_file(input_file, tmp_file)
+            input_file = tmp_file
+            replace_colors(input_file, self.colors)
         if width and height:
             handle = Rsvg.Handle()
             svg = handle.new_from_file(input_file)
@@ -73,6 +80,8 @@ class CairoSVG(SVG):
             fout = open(output_file, "wb")
             svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
             fout.close()
+        if tmp_file and path.isfile(tmp_file):
+            remove(tmp_file)
 
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""

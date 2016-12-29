@@ -24,11 +24,12 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 
 class SVG:
     """SVG Interface used by other class's."""
+
     _is_svg_enabled = True
 
-    def __init__(self):
+    def __init__(self, colors):
         """Init function."""
-        pass
+        self.colors = colors
 
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""

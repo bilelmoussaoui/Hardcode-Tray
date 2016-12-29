@@ -23,13 +23,15 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from subprocess import PIPE, Popen, call
 from modules.svg.svg import SVG
+from modules.utils import copy_file, replace_colors
 
 
 class Inkscape(SVG):
     """Inkscape implemntation of SVG Interface."""
 
-    def __init__(self):
-        """Init method."""
+    def __init__(self, colors):
+        """Init function."""
+        self.colors = colors
         self.cmd = "inkscape"
         self.outfile = "/tmp/hardcode.png"
         if path.exists(self.outfile):
@@ -39,12 +41,21 @@ class Inkscape(SVG):
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
+        tmp_file = ""
+        if len(self.colors) != 0:
+            tmp_file = "/tmp/%s" % path.basename(input_file)
+            copy_file(input_file, tmp_file)
+            input_file = tmp_file
+            replace_colors(input_file, self.colors)
         cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
         width, height = self.get_size(width, height)
+
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
         p_cmd = Popen(cmd, stdout=PIPE, stderr=PIPE)
         p_cmd.communicate()
+        if tmp_file and path.isfile(tmp_file):
+            remove(tmp_file)
 
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""

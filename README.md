@@ -121,6 +121,12 @@ For now, we only support Inkscape and Cairo(CairoSVG)
 
 Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
 
+- `--change-color`
+
+Your favorite theme does not provide icons for all those hardcoded icons? Just use an other theme and change the colors using Hardcode-Tray.
+```bash
+hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
+```
 
 - `--version`
 

@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, environ, geteuid, listdir
 from argparse import ArgumentParser
 from modules.data import DataManager
-from modules.utils import execute
+from modules.utils import execute, change_colors_list
 from modules.const import DB_FOLDER, SCRIPT_ERRORS, REVERTED_APPS, FIXED_APPS
 from modules.applications.application import Application
 from modules.applications.electron import ElectronApplication
@@ -38,6 +38,7 @@ from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
+colours = []
 gsettings = None
 parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
@@ -82,6 +83,9 @@ parser.add_argument("--revert", "-r", action='store_true',
 parser.add_argument("--conversion-tool", "-ct",
                     help="Which of conversion tool to use",
                     type=str, choices=conversion_tools)
+parser.add_argument('--change-color', "-cc", type=str, nargs='+',
+                    help="Replace a color with an other one, "
+                    "works only with SVG.")
 args = parser.parse_args()
 
 
@@ -219,21 +223,24 @@ else:
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         theme_name = str(gsettings.get_value("icon-theme")).strip("'")
 
+if args.change_color:
+    colours = change_colors_list(args.change_color)
+
 if args.conversion_tool:
     conversion_tool = args.conversion_tool
     if conversion_tool == "Inkscape":
-        svgtopng = Inkscape()
+        svgtopng = Inkscape(colours)
     elif conversion_tool == "Cairo":
-        svgtopng = CairoSVG()
+        svgtopng = CairoSVG(colours)
     else:
         svgtopng = SVG()
         svgtopng.is_svg_enabled = False
 else:
     try:
-        svgtopng = Inkscape()
+        svgtopng = Inkscape(colours)
         conversion_tool = "Inkscape"
     except InkscapeNotInstalled:
-        svgtopng = CairoSVG()
+        svgtopng = CairoSVG(colours)
         conversion_tool = "Cairo"
     except CairoSVGNotInstalled:
         conversion_tool = "Not Found!"
