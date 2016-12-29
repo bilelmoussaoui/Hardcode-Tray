@@ -38,7 +38,7 @@ from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
 
-
+gsettings = None
 parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 theme = Gtk.IconTheme.get_default()
@@ -218,8 +218,6 @@ else:
     if source.lookup("org.gnome.desktop.interface", True):
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         theme_name = str(gsettings.get_value("icon-theme")).strip("'")
-    else:
-        gsettings = None
 
 if args.conversion_tool:
     conversion_tool = args.conversion_tool

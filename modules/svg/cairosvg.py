@@ -48,10 +48,7 @@ class CairoSVG(SVG):
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
-        if width and not height:
-            width = height
-        elif height and not width:
-            height = width
+        width, height = self.get_size(width, height)
         if width and height:
             handle = Rsvg.Handle()
             svg = handle.new_from_file(input_file)

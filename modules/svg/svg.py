@@ -42,6 +42,14 @@ class SVG:
         """Check if the tool is installed."""
         pass
 
+    def get_size(self, width, height):
+        """Return the size of the icon."""
+        if width and not height:
+            width = height
+        elif height and not width:
+            height = width
+        return width, height
+
     @property
     def is_svg_enabled(self):
         """Return if the svg to png conversion tools are activated."""

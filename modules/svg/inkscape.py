@@ -40,10 +40,7 @@ class Inkscape(SVG):
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
-        if width and not height:
-            width = height
-        elif height and not width:
-            height = width
+        width, height = self.get_size(width, height)
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
         p_cmd = Popen(cmd, stdout=PIPE, stderr=PIPE)
