@@ -20,11 +20,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import chown, getenv, makedirs, path, remove, symlink
+from os import chown, makedirs, path, remove, symlink
 from re import findall
 from shutil import copyfile, move
 from functools import reduce
-from subprocess import PIPE, Popen, check_output
+from subprocess import PIPE, Popen
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, SCRIPT_ERRORS)
 
@@ -142,15 +142,6 @@ def revert(file_name):
     back_file = file_name + BACKUP_EXTENSION
     if path.isfile(back_file):
         move(back_file, file_name)
-
-
-def get_userhome():
-    """Return home path."""
-    userhome = check_output('sh -c "echo $HOME"', shell=True,
-                            universal_newlines=True).strip()
-    if userhome.lower() == "/root":
-        userhome = "/home/" + getenv("SUDO_USER")
-    return userhome
 
 
 def get_iterated_icons(icons):

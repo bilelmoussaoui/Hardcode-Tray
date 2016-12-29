@@ -22,12 +22,16 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import getenv
 from platform import machine
+from subprocess import check_output
 
 DB_FOLDER = "database/"
 SCRIPT_FOLDER = "scripts/"
 BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
-USERHOME = "/home/bilal"
+USERHOME = check_output('sh -c "echo $HOME"', shell=True,
+                        universal_newlines=True).strip()
+if USERHOME.lower() == "/root":
+    USERHOME = "/home/" + getenv("SUDO_USER")
 CHMOD_IGNORE_LIST = ["", "home"]
 USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))
