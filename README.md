@@ -105,6 +105,7 @@ hardcode-tray --theme Numix --only dropbox
 ```
 
 - `--light-theme` and `--dark-theme`
+
 Some applications provide dark and light tray icons with the possibility to modify them using their UI. In order to use a dark theme for dark icons and a light one for light icons, you can use those two arguments. It only works if you use both of them at the same time.
 ```bash
 hardcode-tray --dark-theme Numix-light --light-theme Numix
@@ -113,7 +114,9 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 - `--conversion-tool`
 
 Hardcode-Tray by default detects if the user has either Inkscape or Cairo installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
+
 For now, we only support Inkscape and Cairo(CairoSVG)
+
 Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
 ```bash
 hardcode-tray --conversion-tool {Inkscape,Cairo}
