@@ -67,11 +67,11 @@ class Application:
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
-        backup(icon_path + self.app.data["binary"])
+        backup(icon_path)
 
     def revert_binary(self, icon_path):
         """Restore the backed up binary file."""
-        revert(icon_path + self.app.data["binary"])
+        revert(icon_path)
 
     def install_symlinks(self):
         """Create symlinks for some applications files."""
@@ -92,26 +92,35 @@ class Application:
                 for d in self.get_app_paths():
                     revert(d + symlinks[syml]["dest"])
 
-    def install(self):
-        """Install the application icons."""
-        self.install_symlinks()
+    def get_output_icons(self):
+        """Return a list of output icons."""
+        icons = []
         for icon in self.get_icons():
             base_icon = icon["original"]
             for icon_path in self.get_icons_path():
                 output_icon = icon_path + base_icon
-                if not self.app.data["backup_ignore"]:
-                    backup(output_icon)
-                self.install_icon(icon, icon_path)
+                icons.append({
+                    "output_icon": output_icon,
+                    "data": icon,
+                    "path": icon_path
+                }
+                )
+        return icons
+
+    def install(self):
+        """Install the application icons."""
+        self.install_symlinks()
+        for icon in self.get_output_icons():
+            if not self.app.data["backup_ignore"]:
+                backup(icon["output_icon"])
+            self.install_icon(icon["data"], icon["path"])
 
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
         self.remove_symlinks()
-        for icon in self.get_icons():
-            base_icon = icon["original"]
-            for icon_path in self.get_icons_path():
-                output_icon = icon_path + base_icon
-                if not self.app.data["backup_ignore"]:
-                    revert(output_icon)
+        for icon in self.get_output_icons():
+            if not self.app.data["backup_ignore"]:
+                revert(icon["output_icon"])
 
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
@@ -123,15 +132,14 @@ class Application:
         output_icon = icon_path + base_icon
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
-        elif ext_theme == "svg" and ext_orig == "png":
-            if self.svgtopng.is_svg_enabled:
-                if icon_size != self.app.default_icon_size:
-                    self.svgtopng.to_png(theme_icon, output_icon,
-                                         icon_size)
-                else:
-                    self.svgtopng.to_png(theme_icon, output_icon)
-                mchown(output_icon)
-                if "symlinks" in icon.keys():
-                    for symlink_icon in icon["symlinks"]:
-                        symlink_icon = icon_path + symlink_icon
-                        symlink_file(output_icon, symlink_icon)
+        elif (ext_theme == "svg" and ext_orig == "png"
+              and self.svgtopng.is_svg_enabled):
+            if icon_size != self.app.default_icon_size:
+                self.svgtopng.to_png(theme_icon, output_icon, icon_size)
+            else:
+                self.svgtopng.to_png(theme_icon, output_icon)
+            mchown(output_icon)
+            if "symlinks" in icon.keys():
+                for symlink_icon in icon["symlinks"]:
+                    symlink_icon = icon_path + symlink_icon
+                    symlink_file(output_icon, symlink_icon)

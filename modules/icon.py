@@ -74,10 +74,10 @@ class Icon:
             self.icon["icon_size"] = self.get_icon_size()
             self.is_exists = True
 
-            if not isinstance(self.icon_data, str):
-                if "symlinks" in self.icon_data.keys():
-                    self.icon["symlinks"] = get_iterated_icons(
-                        self.icon_data["symlinks"])
+            if (not isinstance(self.icon_data, str) and
+                    "symlinks" in self.icon_data.keys()):
+                self.icon["symlinks"] = get_iterated_icons(
+                    self.icon_data["symlinks"])
 
     def get_is_exists(self):
         """Return if the icon exists on the current theme."""

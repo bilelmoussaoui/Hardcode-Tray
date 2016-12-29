@@ -71,11 +71,12 @@ class DataManager:
         if path.isfile(self.json_file):
             with open(self.json_file) as data_file:
                 self.data = json.load(data_file)
+            if (self.custom_path and self.is_only
+                    and path.exists(self.custom_path)):
+                self.data["app_path"].append(self.custom_path)
             self.check_paths()
-            be_added = len(self.data["app_path"]) > 0
-            if self.custom_path:
-                if self.is_only and path.exists(self.custom_path):
-                    self.data["app_path"].append(self.custom_path)
+            be_added = (len(self.data["icons_path"]) > 0
+                        and len(self.data["app_path"]) > 0)
             if be_added:
                 self.dont_install = False
                 if isinstance(self.data["icons"], list):
@@ -121,7 +122,9 @@ class DataManager:
             for icon_path in self.data["icons_path"]:
                 if self.data["force_create_folder"]:
                     create_dir(icon_path)
-                if path.isdir(icon_path):
+                if "binary" in self.data.keys():
+                    icon_path += self.data["binary"]
+                if path.isdir(icon_path) or path.isfile(icon_path):
                     new_icons_path.append(icon_path)
             self.data["icons_path"] = new_icons_path
 
