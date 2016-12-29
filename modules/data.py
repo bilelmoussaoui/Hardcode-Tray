@@ -123,9 +123,9 @@ class DataManager:
                 if self.data["force_create_folder"]:
                     create_dir(icon_path)
                 if path.isdir(icon_path):
-                    if "binary" in self.data.keys():
-                        if path.isfile(icon_path + self.data["binary"]):
-                            new_icons_path.append(icon_path)
+                    if ("binary" in self.data.keys()
+                            and path.isfile(icon_path + self.data["binary"])):
+                        new_icons_path.append(icon_path)
                     else:
                         new_icons_path.append(icon_path)
             self.data["icons_path"] = new_icons_path
