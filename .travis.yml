@@ -1,0 +1,11 @@
+language: python
+sudo: required
+python:
+  - 3.3
+install:
+  - sudo apt-get install python3-gi python3-cairosvg inkscape
+  - pip install coveralls
+script:
+  coverage run script.py --apply 
+after_success:
+  coveralls
