@@ -79,14 +79,13 @@ class ElectronApplication(Application):
             with open(filename, 'rb') as asarfile:
                 bytearr = asarfile.read()
 
-            if icon_extension == '.svg':
-                if self.svgtopng.is_svg_enabled:
-                    pngbytes = self.svgtopng.to_bin(icon_for_repl)
-                else:
-                    pngbytes = None
-            else:
+            if icon_extension == 'svg' and self.svgtopng.is_svg_enabled:
+                pngbytes = self.svgtopng.to_bin(icon_for_repl)
+            elif icon_extension == "png":
                 with open(icon_for_repl, 'rb') as pngfile:
                     pngbytes = pngfile.read()
+            else:
+                pngbytes = None
 
             if pngbytes:
                 set_in_dict(files, keys + ['size'], len(pngbytes))

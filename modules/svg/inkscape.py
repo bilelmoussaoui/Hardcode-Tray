@@ -41,6 +41,7 @@ class Inkscape(SVG):
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
+        width, height = self.get_size(width, height)
         tmp_file = ""
         if len(self.colors) != 0:
             tmp_file = "/tmp/%s" % path.basename(input_file)
@@ -59,7 +60,7 @@ class Inkscape(SVG):
 
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""
-        self.convert_to_png(input_file, self.outfile, width, height)
+        self.to_png(input_file, self.outfile, width, height)
         with open(self.outfile, 'rb') as temppng:
             binary = temppng.read()
         remove(self.outfile)

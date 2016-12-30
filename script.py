@@ -244,6 +244,8 @@ else:
         conversion_tool = "Cairo"
     except CairoSVGNotInstalled:
         conversion_tool = "Not Found!"
+        svgtopng = SVG()
+        svgtopng.is_svg_enabled = False
 
 if args.size:
     default_icon_size = args.size

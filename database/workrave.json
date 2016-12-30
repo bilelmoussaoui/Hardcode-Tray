@@ -12,15 +12,15 @@
     "is_script": false,
     "backup_ignore": false,
     "icons": {
-        "medium": {
+        "indicator": {
             "original": "workrave-icon-medium.png",
             "theme": "workrave-indicator"
         },
-        "quiet-medium": {
+        "quiet": {
             "original": "workrave-quiet-icon-medium.png",
             "theme": "workrave-indicator-quiet"
         },
-        "medium": {
+        "suspended": {
             "original": "workrave-suspended-icon-medium.png",
             "theme": "workrave-indicator-suspended"
         }
