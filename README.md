@@ -49,8 +49,8 @@ sudo apt install sni-qt sni-qt:i386 hardcode-tray
    - `wget`
    - `python3`
    - `python3-gi`
-   - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
-   2.1. Choose your favorite conversion tool
+   - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus) <br>
+   2.1. Pick your favorite conversion tool
      1. - `python3-cairosvg`
      2. - `librsvg`
      3. - `inkscape`
