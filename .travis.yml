@@ -6,6 +6,6 @@ install:
   - sudo apt-get install python3-gi inkscape
   - pip install coveralls
 script:
-  coverage run script.py --apply 
+  sudo -E coverage run script.py --apply 
 after_success:
   coveralls
