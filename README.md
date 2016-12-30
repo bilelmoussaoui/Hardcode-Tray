@@ -1,6 +1,6 @@
 [![Code Issues](https://www.quantifiedcode.com/api/v1/project/6ebdcd35681d424285ddf9e00e74b6e2/badge.svg)](https://www.quantifiedcode.com/app/project/6ebdcd35681d424285ddf9e00e74b6e2)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
+[![Coverage Status](https://coveralls.io/repos/github/bil-elmoussaoui/Hardcode-Tray/badge.svg?branch=master)](https://coveralls.io/github/bil-elmoussaoui/Hardcode-Tray?branch=master)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
 release](https://img.shields.io/badge/release-v3.6.2-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
