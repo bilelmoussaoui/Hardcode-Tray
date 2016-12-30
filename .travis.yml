@@ -8,8 +8,8 @@ before_install:
   - curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python3
 install:
   - sudo apt-get -y install python3-gi inkscape
-  - pip install coveralls
-  - sudo pip-3.3 install coverage
+  - sudo pip3 install coveralls
+  - sudo pip3 install coverage
 script:
   sudo -E coverage run script.py --apply 
 after_success:
