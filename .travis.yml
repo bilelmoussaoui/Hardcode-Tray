@@ -2,6 +2,8 @@ language: python
 sudo: required
 python:
   - 3.3
+before_install:
+  - sudo apt-get update
 install:
   - sudo apt-get -y install python3-gi inkscape python3-pip
   - pip install coveralls
