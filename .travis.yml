@@ -1,5 +1,6 @@
 language: python
 sudo: required
+dist: trusty
 python:
   - 3.3
 before_install:
