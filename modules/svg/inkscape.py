@@ -44,7 +44,7 @@ class Inkscape(SVG):
         width, height = self.get_size(width, height)
         tmp_file = ""
         if len(self.colors) != 0:
-            tmp_file = "/tmp/%s" % path.basename(input_file)
+            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
             copy_file(input_file, tmp_file)
             input_file = tmp_file
             replace_colors(input_file, self.colors)
