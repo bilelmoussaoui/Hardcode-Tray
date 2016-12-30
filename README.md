@@ -49,10 +49,11 @@ sudo apt install sni-qt sni-qt:i386 hardcode-tray
    - `wget`
    - `python3`
    - `python3-gi`
-   - `python3-cairosvg`
-   - `inkscape`
-   - `librsvg`
    - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus)
+   2.1. Choose your favorite conversion tool
+     1. - `python3-cairosvg`
+     2. - `librsvg`
+     3. - `inkscape`
 
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using another distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
@@ -113,9 +114,9 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 
 - `--conversion-tool`
 
-Hardcode-Tray by default detects if the user has either Inkscape or Cairo installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
+Hardcode-Tray by default detects if the user has either Inkscape, RSVGConvert or Cairo installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
 ```bash
-hardcode-tray --conversion-tool {Inkscape,Cairo}
+hardcode-tray --conversion-tool {Inkscape,Cairo, RSVGConvert}
 ```
 For now, we only support Inkscape and Cairo(CairoSVG)
 

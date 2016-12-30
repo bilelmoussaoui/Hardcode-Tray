@@ -32,6 +32,7 @@ from modules.applications.pak import PakApplication
 from modules.applications.zip import ZipApplication
 from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
 from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
+from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
 from modules.svg.svg import SVG
 from sys import stdout
 from gi import require_version
@@ -44,7 +45,7 @@ parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 theme = Gtk.IconTheme.get_default()
 supported_icons_cnt = 0
-conversion_tools = ["Inkscape", "Cairo"]
+conversion_tools = ["Inkscape", "Cairo", "RSVGConvert"]
 
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
@@ -232,6 +233,8 @@ if args.conversion_tool:
         svgtopng = Inkscape(colours)
     elif conversion_tool == "Cairo":
         svgtopng = CairoSVG(colours)
+    elif conversion_tool == "RSVGConvert":
+        svgtopng = RSVGConvert(colours)
     else:
         svgtopng = SVG()
         svgtopng.is_svg_enabled = False
@@ -240,6 +243,9 @@ else:
         svgtopng = Inkscape(colours)
         conversion_tool = "Inkscape"
     except InkscapeNotInstalled:
+        svgtopng = RSVGConvert(colours)
+        conversion_tool = "RSVGConvert"
+    except RSVGConvertNotInstalled:
         svgtopng = CairoSVG(colours)
         conversion_tool = "Cairo"
     except CairoSVGNotInstalled:
