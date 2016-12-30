@@ -3,7 +3,7 @@ sudo: required
 python:
   - 3.3
 install:
-  - sudo apt-get -y install python3-gi inkscape
+  - sudo apt-get -y install python3-gi inkscape python3-pip
   - pip install coveralls
   - sudo pip3 install coverage
 script:
