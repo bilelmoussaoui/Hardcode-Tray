@@ -6,7 +6,7 @@ python:
 before_install:
   - sudo apt-get update
 install:
-  - sudo apt-get -y install python3-gi inkscape python3-pip
+  - sudo apt-get -y install python3-gi inkscape python3-pip gir1.2-gtk-3.0 gtk+3.0
   - sudo pip3 install coveralls
   - sudo pip3 install coverage
 script:
