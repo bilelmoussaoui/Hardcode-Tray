@@ -71,7 +71,7 @@ class ElectronApplication(Application):
         keys = icon_to_repl.split('/')
 
         fileinfo = get_from_dict(files, keys)
-        if fileinfo:
+        if isinstance(fileinfo, dict) and "offset" in fileinfo.keys():
             offset0 = int(fileinfo['offset'])
             offset = offset0 + originaloffset
             size = int(fileinfo['size'])
