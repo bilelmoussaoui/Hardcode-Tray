@@ -26,7 +26,6 @@ from modules.utils import backup, revert, symlink_file, mchown
 class Application:
     """Application class."""
 
-    STEP = 0
     supported_icons_cnt = 0
 
     def __init__(self, application_data, svgtopng):
@@ -39,7 +38,6 @@ class Application:
         """
         self.svgtopng = svgtopng
         self.app = application_data
-        self.supported_icons_cnt = len(self.get_icons())
 
     def get_name(self):
         """Return the application name."""

@@ -121,7 +121,7 @@ def get_supported_apps(fix_only, custom_path=""):
                 database_files.append("%s.json" % _file)
     database_files.sort()
     supported_apps = []
-    is_only = len(database_files) == 0
+    is_only = len(database_files) == 1
     for _file in database_files:
         _file = "./%s%s" % (DB_FOLDER, _file)
         application_data = DataManager(_file, theme, default_icon_size,
@@ -166,8 +166,8 @@ def reinstall(fix_only, custom_path):
         reverted_cnt = sum(app.app.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.reinstall()
             cnt += app.supported_icons_cnt
+            app.reinstall()
             if app_name not in REVERTED_APPS:
                 progress(cnt, reverted_cnt, app_name)
                 REVERTED_APPS.append(app_name)

@@ -98,4 +98,7 @@ class Icon:
         icon_size = path.splitext(self.icon["original"])[0].split("-")[-1]
         if icon_size.isdigit():
             icon_size = int(icon_size)
+        icon_size = path.splitext(self.icon["original"])[0].split("_")[-1]
+        if icon_size.isdigit():
+            icon_size = int(icon_size)
         return icon_size

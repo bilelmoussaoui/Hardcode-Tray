@@ -52,14 +52,16 @@ class PakApplication(Application):
         filename = icon_path + self.app.data["binary"]
         icon_to_repl = icon["original"]
         icon_for_repl = icon["theme"]
-        icon_extension = icon["orig_ext"]
-        if self.svgtopng.is_svg_enabled:
-            if icon_extension == '.svg':
-                pngbytes = self.svgtopng.to_bin(icon_for_repl)
-            else:
-                with open(icon_for_repl, 'rb') as pngfile:
-                    pngbytes = pngfile.read()
-
+        icon_extension = icon["theme_ext"]
+        if self.svgtopng.is_svg_enabled and icon_extension == 'svg':
+            pngbytes = self.svgtopng.to_bin(icon_for_repl)
+        elif icon_extension == "png":
+            with open(icon_for_repl, 'rb') as pngfile:
+                pngbytes = pngfile.read()
+            pngfile.close()
+        else:
+            pngbytes = None
+        if pngbytes:
             _data_pack = data_pack.read_data_pack(filename)
             _data_pack.resources[int(icon_to_repl)] = pngbytes
             data_pack.write_data_pack(_data_pack.resources, filename, 0)

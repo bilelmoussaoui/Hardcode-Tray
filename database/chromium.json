@@ -17,7 +17,7 @@
     "binary": "resources.pak",
     "icons": {
         "tray": {
-            "original": "8002",
+            "original": "8003",
             "theme": "google-chrome-tray"
         }
     }

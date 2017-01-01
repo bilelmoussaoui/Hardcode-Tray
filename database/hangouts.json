@@ -1,0 +1,56 @@
+{
+    "name": "Hangouts",
+    "app_path": [
+        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/"
+    ],
+    "icons_path": [
+        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator@2x": {
+          "original": "icon_default_22.png",
+          "theme": "hangouts-available"
+        },
+        "indicator@3x": {
+          "original": "icon_default_24.png",
+          "theme": "hangouts-available"
+        },
+        "unavailable@2x": {
+          "original": "icon_unavailable_22.png",
+          "theme": "hangouts-offline"
+        },
+        "unavailable@3x": {
+          "original": "icon_unavailable_24.png",
+          "theme": "hangouts-offline"
+        },
+        "loading@2x": {
+          "original": "icon_loading_22.png",
+          "theme": "hangouts-working"
+        },
+        "loading@3x": {
+          "original": "icon_loading_24.png",
+          "theme": "hangouts-working"
+        },
+        "notification@2x": {
+          "original": "icon_1_22.png",
+          "theme": "hangouts-notification",
+          "symlinks":[
+            "icon_{2-9}_22.png",
+            "icon_9plus_22.png"
+          ]
+        },
+        "notification@3x": {
+          "original": "icon_1_24.png",
+          "theme": "hangouts-notification",
+          "symlinks":[
+            "icon_{2-9}_24.png",
+            "icon_9plus_24.png"
+          ]
+        }
+    }
+}
