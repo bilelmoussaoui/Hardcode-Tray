@@ -145,7 +145,7 @@ def get_supported_apps(fix_only, custom_path=""):
 def progress(count, count_max, app_name):
     """Used to draw a progress bar."""
     bar_len = 40
-    space = 25
+    space = 20
     filled_len = int(round(bar_len * count / float(count_max)))
 
     percents = round(100.0 * count / float(count_max), 1)
@@ -163,11 +163,11 @@ def reinstall(fix_only, custom_path):
     apps = get_supported_apps(fix_only, custom_path)
     if len(apps) != 0:
         cnt = 0
-        reverted_cnt = sum(app.app.supported_icons_cnt for app in apps)
+        reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            cnt += app.supported_icons_cnt
             app.reinstall()
+            cnt += app.data.supported_icons_cnt
             if app_name not in REVERTED_APPS:
                 progress(cnt, reverted_cnt, app_name)
                 REVERTED_APPS.append(app_name)
@@ -180,11 +180,11 @@ def install(fix_only, custom_path):
     apps = get_supported_apps(fix_only, custom_path)
     if len(apps) != 0:
         cnt = 0
-        installed_cnt = sum(app.app.supported_icons_cnt for app in apps)
+        installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
             app.install()
-            cnt += app.app.supported_icons_cnt
+            cnt += app.data.supported_icons_cnt
             if app_name not in FIXED_APPS:
                 progress(cnt, installed_cnt, app_name)
                 FIXED_APPS.append(app_name)

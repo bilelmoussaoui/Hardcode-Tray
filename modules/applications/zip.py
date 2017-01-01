@@ -33,9 +33,9 @@ class ZipApplication(Application):
     def __init__(self, application_data, svgtopng):
         """Init method."""
         Application.__init__(self, application_data, svgtopng)
-        self.binary = self.app.data["binary"]
+        self.binary = self.get_binary()
         self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
-        self.tmp_data = self.tmp_path + self.app.data["zip_path"]
+        self.tmp_data = self.tmp_path + self.get_zip_path()
 
     def reinstall(self):
         """Reinstall the old icons."""
@@ -54,7 +54,7 @@ class ZipApplication(Application):
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        zip_file = icon_path + self.app.data["binary"]
+        zip_file = icon_path + self.get_binary()
         if path.isfile(zip_file):
             remove(zip_file)
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)

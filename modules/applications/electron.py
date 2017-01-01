@@ -48,7 +48,7 @@ class ElectronApplication(Application):
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
-        filename = icon_path + self.app.data["binary"]
+        filename = icon_path + self.get_binary()
         icon_to_repl = icon["original"]
         icon_for_repl = icon["theme"]
         icon_extension = icon["theme_ext"]
