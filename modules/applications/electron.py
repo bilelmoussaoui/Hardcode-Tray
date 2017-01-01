@@ -49,7 +49,7 @@ class ElectronApplication(Application):
     def install_icon(self, icon, icon_path):
         """Install the icon."""
         filename = icon_path + self.get_binary()
-        icon_to_repl = "files/%s" % "/files/".join(icon["original"].split("/"))
+        icon_to_repl = "files/{0!s}".format("/files/".join(icon["original"].split("/")))
         icon_for_repl = icon["theme"]
         icon_extension = icon["theme_ext"]
         asarfile = open(filename, 'rb')
