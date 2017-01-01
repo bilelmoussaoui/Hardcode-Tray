@@ -17,11 +17,11 @@
     "backup_ignore": false,
     "icons": {
         "tray": {
-            "original": "files/img/files/tray.png",
+            "original": "img/tray.png",
             "theme": "wire-tray"
         },
         "notification": {
-            "original": "files/img/files/tray.badge.png",
+            "original": "img/tray.badge.png",
             "theme": "wire-tray-attention"
         }
     }

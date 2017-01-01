@@ -15,7 +15,7 @@
     "exec_path_script": false,
     "icons": {
         "tray": {
-            "original": "files/images/files/stremio-small.png",
+            "original": "images/stremio-small.png",
             "theme": "stremio-tray"
         }
     }

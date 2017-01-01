@@ -15,27 +15,27 @@
     "exec_path_script": false,
     "icons": {
         "normal-light": {
-            "original": "files/build/files/assets/files/img/files/main_tray_white_s.png",
+            "original": "build/assets/img/main_tray_white_s.png",
             "theme": "gpmdp-tray-light"
         },
         "play-light": {
-            "original": "files/build/files/assets/files/img/files/playing/files/main_tray_white_s.png",
+            "original": "build/assets/img/playing/main_tray_white_s.png",
             "theme": "gpmdp-tray-play-light"
         },
         "pause-light": {
-            "original": "files/build/files/assets/files/img/files/paused/files/main_tray_white_s.png",
+            "original": "build/assets/img/paused/main_tray_white_s.png",
             "theme": "gpmdp-tray-pause-light"
         },
         "normal-dark": {
-            "original": "files/build/files/assets/files/img/files/main_tray_black_s.png",
+            "original": "build/assets/img/main_tray_black_s.png",
             "theme": "gpmdp-tray-dark"
         },
         "play-dark": {
-            "original": "files/build/files/assets/files/img/files/playing/files/main_tray_black_s.png",
+            "original": "build/assets/img/playing/main_tray_black_s.png",
             "theme": "gpmdp-tray-play-dark"
         },
         "pause-dark": {
-            "original": "files/build/files/assets/files/img/files/paused/files/main_tray_black_s.png",
+            "original": "build/assets/img/paused/main_tray_black_s.png",
             "theme": "gpmdp-tray-pause-dark"
         }
     }

@@ -17,11 +17,11 @@
     "is_script": true,
     "icons": {
         "tray": {
-            "original": "files/images/files/linux-tray.png",
+            "original": "images/linux-tray.png",
             "theme": "discord-tray"
         },
         "tray-unread": {
-            "original": "files/images/files/linux-tray-unread.png",
+            "original": "images/linux-tray-unread.png",
             "theme": "discord-tray-notification"
         }
     }

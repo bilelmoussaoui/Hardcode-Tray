@@ -15,11 +15,11 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "files/images/files/tray.png",
+            "original": "images/tray.png",
             "theme": "whatsie-tray"
         },
         "notification": {
-            "original": "files/images/files/trayAlert.png",
+            "original": "images/trayAlert.png",
             "theme": "whatsie-tray-attention"
         }
     }

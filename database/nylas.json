@@ -15,15 +15,15 @@
     "binary": "app.asar",
     "icons": {
         "empty": {
-            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Zero@2x.png",
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
             "theme": "nylas-tray-empty"
         },
         "full": {
-            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full@2x.png",
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
             "theme": "nylas-tray-full"
         },
         "newitems": {
-            "original": "files/internal_packages/files/system-tray/files/assets/files/linux/files/MenuItem-Inbox-Full-NewItems@2x.png",
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
             "theme": "nylas-tray-full-newitems"
         }
     }
