@@ -21,10 +21,8 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from io import BytesIO
-from os import path, remove
 from gi import require_version
 from modules.svg.svg import SVG
-from modules.utils import copy_file, replace_colors
 try:
     require_version('Rsvg', '2.0')
     from cairosvg import svg2png
@@ -40,10 +38,7 @@ class CairoSVG(SVG):
 
     def __init__(self, colors):
         """Init function."""
-        self.colors = colors
-        self.outfile = "/tmp/hardcode.png"
-        if path.exists(self.outfile):
-            remove(self.outfile)
+        super(CairoSVG, self).__init__(colors)
         if not self.is_installed():
             raise CairoSVGNotInstalled
 

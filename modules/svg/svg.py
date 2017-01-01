@@ -32,10 +32,16 @@ class SVG:
     def __init__(self, colors):
         """Init function."""
         self.colors = colors
+        self.outfile = "/tmp/hardcode.png"
+        if path.exists(self.outfile):
+            remove(self.outfile)
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
-        width, height = self.get_size(width, height)
+        if width and not height:
+            width = height
+        elif height and not width:
+            height = width
         tmp_file = ""
         if len(self.colors) != 0:
             tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
@@ -58,14 +64,6 @@ class SVG:
     def is_installed(self):
         """Check if the tool is installed."""
         pass
-
-    def get_size(self, width, height):
-        """Return the size of the icon."""
-        if width and not height:
-            width = height
-        elif height and not width:
-            height = width
-        return width, height
 
     @property
     def is_svg_enabled(self):

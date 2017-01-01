@@ -20,10 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, remove
 from subprocess import PIPE, Popen, call
 from modules.svg.svg import SVG
-from modules.utils import copy_file, replace_colors
 
 
 class RSVGConvert(SVG):
@@ -31,11 +29,8 @@ class RSVGConvert(SVG):
 
     def __init__(self, colors):
         """Init function."""
-        self.colors = colors
+        super(RSVGConvert, self).__init__(colors)
         self.cmd = "rsvg-convert"
-        self.outfile = "/tmp/hardcode.png"
-        if path.exists(self.outfile):
-            remove(self.outfile)
         if not self.is_installed():
             raise RSVGConvertNotInstalled
 
@@ -48,7 +43,6 @@ class RSVGConvert(SVG):
         cmd.append(input_file)
         p_cmd = Popen(cmd, stdout=PIPE, stderr=PIPE)
         p_cmd.communicate()
-
 
     def is_installed(self):
         """Check if the tool is installed."""
