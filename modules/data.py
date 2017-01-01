@@ -126,7 +126,7 @@ class DataManager:
                     if ("binary" in self.data.keys()
                             and path.isfile(icon_path + self.data["binary"])):
                         new_icons_path.append(icon_path)
-                    else:
+                    elif "binary" not in self.data.keys():
                         new_icons_path.append(icon_path)
             self.data["icons_path"] = new_icons_path
 
