@@ -20,6 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from os import remove, path
+from modules.utils import copy_file, replace_colors
 
 
 class SVG:
@@ -31,13 +33,27 @@ class SVG:
         """Init function."""
         self.colors = colors
 
-    def convert_to_png(self, input_file, output_file, width=None, height=None):
+    def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
-        pass
+        width, height = self.get_size(width, height)
+        tmp_file = ""
+        if len(self.colors) != 0:
+            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
+            copy_file(input_file, tmp_file)
+            input_file = tmp_file
+            replace_colors(input_file, self.colors)
+        self.convert_to_png(input_file, output_file, width, height)
+        if tmp_file and path.isfile(tmp_file):
+            remove(tmp_file)
 
-    def convert_to_bin(self, input_file, width=None, height=None):
+    def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""
-        pass
+        self.to_png(input_file, self.outfile, width, height)
+        with open(self.outfile, 'rb') as temppng:
+            binary = temppng.read()
+        temppng.close()
+        remove(self.outfile)
+        return binary
 
     def is_installed(self):
         """Check if the tool is installed."""

@@ -39,32 +39,13 @@ class Inkscape(SVG):
         if not self.is_installed():
             raise InkscapeNotInstalled
 
-    def to_png(self, input_file, output_file, width=None, height=None):
+    def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
-        width, height = self.get_size(width, height)
-        tmp_file = ""
-        if len(self.colors) != 0:
-            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
-            copy_file(input_file, tmp_file)
-            input_file = tmp_file
-            replace_colors(input_file, self.colors)
         cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
-        width, height = self.get_size(width, height)
-
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
         p_cmd = Popen(cmd, stdout=PIPE, stderr=PIPE)
         p_cmd.communicate()
-        if tmp_file and path.isfile(tmp_file):
-            remove(tmp_file)
-
-    def to_bin(self, input_file, width=None, height=None):
-        """Convert svg to binary."""
-        self.to_png(input_file, self.outfile, width, height)
-        with open(self.outfile, 'rb') as temppng:
-            binary = temppng.read()
-        remove(self.outfile)
-        return binary
 
     def is_installed(self):
         """Check if the tool is installed."""

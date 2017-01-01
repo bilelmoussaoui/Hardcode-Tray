@@ -35,8 +35,9 @@ def get_dropbox_version(directory):
     del version_file[-1]
     version_file = "/".join(version_file) + "/VERSION"
     if path.exists(version_file):
-        with open(version_file) as f:
-            return f.read()
+        with open(version_file) as _file:
+            return _file.read()
+        _file.close()
     return ""
 
 

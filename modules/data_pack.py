@@ -40,7 +40,7 @@ def read_file(filename, encoding):
     mode = 'rb' if encoding == BINARY else 'rU'
     with open(filename, mode) as file_object:
         data = file_object.read()
-        file_object.close()
+    file_object.close()
     if encoding not in (BINARY, RAW_TEXT):
         data = data.decode(encoding)
     return data
@@ -103,5 +103,6 @@ def write_data_pack_to_string(resources, encoding):
 def write_data_pack(resources, output_file, encoding):
     """Write a map of id=>data into output_file as a data pack."""
     content = write_data_pack_to_string(resources, encoding)
-    with open(output_file, 'wb') as file:
-        file.write(content)
+    with open(output_file, 'wb') as _file:
+        _file.write(content)
+    _file.close()

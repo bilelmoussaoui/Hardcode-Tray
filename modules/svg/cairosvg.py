@@ -47,15 +47,8 @@ class CairoSVG(SVG):
         if not self.is_installed():
             raise CairoSVGNotInstalled
 
-    def to_png(self, input_file, output_file, width=None, height=None):
+    def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
-        width, height = self.get_size(width, height)
-        tmp_file = ""
-        if len(self.colors) != 0:
-            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
-            copy_file(input_file, tmp_file)
-            input_file = tmp_file
-            replace_colors(input_file, self.colors)
         if width and height:
             handle = Rsvg.Handle()
             svg = handle.new_from_file(input_file)
@@ -71,25 +64,17 @@ class CairoSVG(SVG):
             img.write_to_png(png_io)
             with open(output_file, 'wb') as fout:
                 fout.write(png_io.getvalue())
+            fout.close()
             svg.close()
             png_io.close()
             img.finish()
         else:
             with open(input_file, "r") as content_file:
                 svg = content_file.read()
+            content_file.close()
             fout = open(output_file, "wb")
             svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
             fout.close()
-        if tmp_file and path.isfile(tmp_file):
-            remove(tmp_file)
-
-    def to_bin(self, input_file, width=None, height=None):
-        """Convert svg to binary."""
-        self.to_png(input_file, self.outfile, width, height)
-        with open(self.outfile, 'rb') as temppng:
-            binary = temppng.read()
-        remove(self.outfile)
-        return binary
 
     def is_installed(self):
         """Check if Cairo is installed or not."""

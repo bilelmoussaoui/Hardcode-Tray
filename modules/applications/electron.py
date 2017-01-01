@@ -63,7 +63,6 @@ class ElectronApplication(Application):
         zeros_padding = (len2 - 4 - len3)
 
         header = asarfile.read(header_size).decode('utf-8')
-
         files = loads(header)
         originaloffset = asarfile.tell() + zeros_padding
         asarfile.close()
@@ -78,12 +77,14 @@ class ElectronApplication(Application):
 
             with open(filename, 'rb') as asarfile:
                 bytearr = asarfile.read()
+            asarfile.close()
 
             if icon_extension == 'svg' and self.svgtopng.is_svg_enabled:
                 pngbytes = self.svgtopng.to_bin(icon_for_repl)
             elif icon_extension == "png":
                 with open(icon_for_repl, 'rb') as pngfile:
                     pngbytes = pngfile.read()
+                pngfile.close()
             else:
                 pngbytes = None
 

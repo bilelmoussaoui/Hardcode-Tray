@@ -197,13 +197,14 @@ def change_colors_list(list_colours):
 def replace_colors(file_name, colors):
     """Replace the colors in a file name."""
     if path.isfile(file_name):
-        with open(file_name, 'r') as file:
-            filedata = file.read()
-
+        with open(file_name, 'r') as _file:
+            filedata = _file.read()
+        _file.close()
         for color in colors:
             to_replace = color[0]
             for_replace = color[1]
             filedata = filedata.replace(to_replace, for_replace)
 
-        with open(file_name, 'w') as file:
-            file.write(filedata)
+        with open(file_name, 'w') as _file:
+            _file.write(filedata)
+        _file.close()

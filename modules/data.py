@@ -71,6 +71,7 @@ class DataManager:
         if path.isfile(self.json_file):
             with open(self.json_file) as data_file:
                 self.data = json.load(data_file)
+            data_file.close()
             if (self.custom_path and self.is_only
                     and path.exists(self.custom_path)):
                 self.data["app_path"].append(self.custom_path)
