@@ -1,7 +1,7 @@
 {
     "name": "Seafile",
     "app_path": [
-        "/usr/bin/seafile-applet/"
+        "/usr/bin/seafile-applet"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/seafile-applet/"

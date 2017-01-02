@@ -1,7 +1,7 @@
 {
     "name": "Tomahawk",
     "app_path": [
-        "/usr/bin/tomahawk/"
+        "/usr/bin/tomahawk"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/tomahawk/"

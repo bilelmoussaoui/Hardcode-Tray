@@ -1,7 +1,7 @@
 {
     "name": "Museeq",
     "app_path": [
-        "/usr/bin/museeq/"
+        "/usr/bin/museeq"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/museeq/"

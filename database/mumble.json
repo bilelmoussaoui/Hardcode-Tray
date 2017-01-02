@@ -1,7 +1,7 @@
 {
     "name": "Mumble",
     "app_path": [
-        "/usr/bin/mumble/"
+        "/usr/bin/mumble"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/mumble/"

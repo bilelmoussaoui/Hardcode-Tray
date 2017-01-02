@@ -1,7 +1,7 @@
 {
     "name": "HP Printer",
     "app_path": [
-        "/usr/bin/hp-systray/"
+        "/usr/bin/hp-systray"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/python2.7/"

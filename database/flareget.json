@@ -1,7 +1,7 @@
 {
     "name": "Flarget",
     "app_path": [
-        "/usr/bin/flareget/"
+        "/usr/bin/flareget"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/flareget/"

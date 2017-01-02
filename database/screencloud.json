@@ -1,7 +1,7 @@
 {
     "name": "ScreenCloud",
     "app_path": [
-        "/usr/bin/screencloud/"
+        "/usr/bin/screencloud"
     ],
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/screencloud/"
