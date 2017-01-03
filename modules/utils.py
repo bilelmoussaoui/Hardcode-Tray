@@ -172,13 +172,13 @@ def get_iterated_icons(icons):
 def get_list_of_themes():
     """Return a list of installed icon themes."""
     paths = ["/usr/share/icons/",
-             "%s/.local/share/icons/" % USERHOME]
+             "{0!s}/.local/share/icons/".format(USERHOME)]
     themes = []
     for icon_path in paths:
         sub_dirs = listdir(icon_path)
         for theme in sub_dirs:
             theme_path = path.join(icon_path, theme) + "/"
-            theme_index = "%sindex.theme" % theme_path
+            theme_index = "{0!s}index.theme".format(theme_path)
             if (path.exists(theme_path) and path.exists(theme_index)
                     and theme not in themes):
                 themes.append(theme)
@@ -191,7 +191,7 @@ def create_icon_theme(theme_name, themes_list):
         theme = Gtk.IconTheme()
         theme.set_custom_theme(theme_name)
     else:
-        exit("The theme %s is not installed on your system." % theme_name)
+        exit("The theme {0!s} is not installed on your system.".format(theme_name))
     return theme
 
 
