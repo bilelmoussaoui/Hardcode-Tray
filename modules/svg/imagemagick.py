@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import execute, is_installed
+from modules.utils import execute
 from modules.svg.svg import SVG
 
 

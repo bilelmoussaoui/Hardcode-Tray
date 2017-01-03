@@ -21,7 +21,6 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.utils import execute
-from subprocess import call, PIPE
 from modules.svg.svg import SVG
 
 

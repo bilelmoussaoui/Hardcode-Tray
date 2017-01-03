@@ -119,6 +119,7 @@ def execute(command_list, verbose=True):
 
 
 def is_installed(binary):
+    """Check if a binary file exists/installed."""
     ink_flag = call(['which', binary], stdout=PIPE, stderr=PIPE)
     return bool(ink_flag == 0)
 
