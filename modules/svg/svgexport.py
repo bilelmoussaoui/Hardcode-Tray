@@ -38,7 +38,7 @@ class SVGExport(SVG):
         """Convert svg to png."""
         cmd = [self.cmd, input_file, output_file]
         if width and height:
-            cmd.extend(["%s:%s" % (str(width), str(height))])
+            cmd.extend(["{0!s}:{1!s}".format(str(width), str(height))])
         cmd.extend([input_file, output_file])
         execute(cmd)
 
