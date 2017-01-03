@@ -51,9 +51,11 @@ sudo apt install sni-qt sni-qt:i386 hardcode-tray
    - `python3-gi`
    - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus) <br>
    - 2.1. Pick your favorite conversion tool
-       1. - `python3-cairosvg`
-       2. - `librsvg`
-       3. - `inkscape`
+       1. `python3-cairosvg`
+       2. `librsvg`
+       3. `inkscape`
+       4. `imagemagick`
+       5. `svgexport`
 
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using another distro (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
