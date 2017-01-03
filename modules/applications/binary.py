@@ -20,13 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
-from imp import load_source
 from modules.applications.application import Application
 from modules.utils import backup, revert
-
-absolute_path = path.split(path.abspath(__file__))[0] + "/../"
-data_pack = load_source('data_pack', absolute_path + 'data_pack.py')
 
 
 class BinaryApplication(Application):

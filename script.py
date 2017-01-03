@@ -23,7 +23,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, environ, geteuid, listdir
 from argparse import ArgumentParser
 from modules.data import DataManager
-from modules.utils import execute, change_colors_list
+from modules.utils import (execute, change_colors_list,
+                           get_list_of_themes, create_icon_theme)
 from modules.const import (DB_FOLDER, SCRIPT_ERRORS,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
 from modules.applications.application import Application
@@ -41,11 +42,11 @@ from sys import stdout
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
-
 colours = []
 gsettings = None
 parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
+THEMES_LIST = get_list_of_themes()
 theme = Gtk.IconTheme.get_default()
 supported_icons_cnt = 0
 
@@ -53,10 +54,10 @@ supported_icons_cnt = 0
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
-parser.add_argument("--theme", "-t",
+parser.add_argument("--theme",
                     help="use a different icon theme instead "
                     "of the default one.",
-                    type=str)
+                    type=str, choices=THEMES_LIST)
 parser.add_argument("--light-theme", "-lt",
                     help="use a specified theme for the light icons."
                     " Can't be used with --theme."
@@ -169,8 +170,7 @@ def reinstall(fix_only, custom_path):
         reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.is_install = False
-            app.start()
+            app.revert()
             cnt += app.data.supported_icons_cnt
             if app_name not in REVERTED_APPS:
                 progress(cnt, reverted_cnt, app_name)
@@ -187,8 +187,7 @@ def install(fix_only, custom_path):
         installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.is_install = True
-            app.start()
+            app.apply()
             cnt += app.data.supported_icons_cnt
             if app_name not in FIXED_APPS:
                 progress(cnt, installed_cnt, app_name)
@@ -207,18 +206,12 @@ if not (environ.get("DESKTOP_SESSION") or
 
 if args.theme:
     theme_name = args.theme
-    try:
-        theme = Gtk.IconTheme()
-        theme.set_custom_theme(theme_name)
-    except Exception:
-        exit("The choosen theme does not exists")
+    theme = create_icon_theme(theme_name, THEMES_LIST)
 elif args.light_theme and args.dark_theme:
     light_theme_name = args.light_theme
     dark_theme_name = args.dark_theme
-    dark_theme = Gtk.IconTheme()
-    dark_theme.set_custom_theme(dark_theme_name)
-    light_theme = Gtk.IconTheme()
-    light_theme.set_custom_theme(light_theme_name)
+    dark_theme = create_icon_theme(dark_theme_name, THEMES_LIST)
+    light_theme = create_icon_theme(light_theme_name, THEMES_LIST)
     theme = {
         "dark": dark_theme,
         "light": light_theme
@@ -238,14 +231,15 @@ i = 0
 while i < len(CONVERSION_TOOLS) and not svgtool_found:
     tool = CONVERSION_TOOLS[i]
     try:
-        if (conversion_tool and conversion_tool == tool) or not conversion_tool:
+        if ((conversion_tool and conversion_tool == tool)
+                or not conversion_tool):
             svgtool_found = True
         if svgtool_found:
             svgtopng = eval(tool)(colours)
             conversion_tool = tool
     except eval("%sNotInstalled" % tool):
         svgtool_found = False
-    i+=1
+    i += 1
 if not svgtool_found:
     conversion_tool = "Not Found!"
     svgtopng = SVG(colours)

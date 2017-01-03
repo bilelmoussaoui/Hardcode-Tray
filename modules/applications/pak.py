@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path
 from imp import load_source
 from modules.applications.binary import BinaryApplication
-
+from modules.utils import get_pngbytes
 absolute_path = path.split(path.abspath(__file__))[0] + "/../"
 data_pack = load_source('data_pack', absolute_path + 'data_pack.py')
 
@@ -39,16 +39,7 @@ class PakApplication(BinaryApplication):
         """Install the icon."""
         filename = icon_path + self.get_binary()
         icon_to_repl = icon["original"]
-        icon_for_repl = icon["theme"]
-        icon_extension = icon["theme_ext"]
-        if self.svgtopng.is_svg_enabled and icon_extension == 'svg':
-            pngbytes = self.svgtopng.to_bin(icon_for_repl)
-        elif icon_extension == "png":
-            with open(icon_for_repl, 'rb') as pngfile:
-                pngbytes = pngfile.read()
-            pngfile.close()
-        else:
-            pngbytes = None
+        pngbytes = get_pngbytes(self.svgtopng, icon)
         if pngbytes:
             _data_pack = data_pack.read_data_pack(filename)
             _data_pack.resources[int(icon_to_repl)] = pngbytes

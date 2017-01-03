@@ -29,6 +29,7 @@ class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""
 
     def __init__(self, application_data, svgtopng):
+        """Init method."""
         Application.__init__(self, application_data, svgtopng)
 
     def reinstall(self):

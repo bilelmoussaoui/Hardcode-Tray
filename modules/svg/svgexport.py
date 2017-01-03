@@ -42,6 +42,7 @@ class SVGExport(SVG):
         cmd.extend([input_file, output_file])
         execute(cmd)
 
+
 class SVGExportNotInstalled(Exception):
     """Exception raised when Inkscape is not installed."""
 

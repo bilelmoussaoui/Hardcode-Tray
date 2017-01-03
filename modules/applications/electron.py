@@ -23,7 +23,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from struct import unpack, pack
 from json import loads, dumps
 from modules.applications.binary import BinaryApplication
-from modules.utils import get_from_dict, change_dict_vals, set_in_dict
+from modules.utils import (get_from_dict, change_dict_vals,
+                           set_in_dict, get_pngbytes)
 
 
 class ElectronApplication(BinaryApplication):
@@ -36,9 +37,8 @@ class ElectronApplication(BinaryApplication):
     def install_icon(self, icon, icon_path):
         """Install the icon."""
         filename = icon_path + self.get_binary()
-        icon_to_repl = "files/{0!s}".format("/files/".join(icon["original"].split("/")))
-        icon_for_repl = icon["theme"]
-        icon_extension = icon["theme_ext"]
+        icon_to_repl = "files/{0!s}".format(
+            "/files/".join(icon["original"].split("/")))
         asarfile = open(filename, 'rb')
         asarfile.seek(4)
 
@@ -66,14 +66,7 @@ class ElectronApplication(BinaryApplication):
                 bytearr = asarfile.read()
             asarfile.close()
 
-            if icon_extension == 'svg' and self.svgtopng.is_svg_enabled:
-                pngbytes = self.svgtopng.to_bin(icon_for_repl)
-            elif icon_extension == "png":
-                with open(icon_for_repl, 'rb') as pngfile:
-                    pngbytes = pngfile.read()
-                pngfile.close()
-            else:
-                pngbytes = None
+            pngbytes = get_pngbytes(self.svgtopng, icon)
 
             if pngbytes:
                 set_in_dict(files, keys + ['size'], len(pngbytes))

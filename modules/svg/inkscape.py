@@ -41,6 +41,7 @@ class Inkscape(SVG):
             cmd.extend(["-w", str(width), "-h", str(height)])
         execute(cmd)
 
+
 class InkscapeNotInstalled(Exception):
     """Exception raised when Inkscape is not installed."""
 

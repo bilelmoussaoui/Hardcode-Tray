@@ -20,13 +20,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import chown, makedirs, path, remove, symlink
+from gi import require_version
+from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall
 from shutil import copyfile, move
 from functools import reduce
 from subprocess import PIPE, Popen, call
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, SCRIPT_ERRORS)
+
+require_version("Gtk", "3.0")
+from gi.repository import Gtk
 
 
 def symlink_file(source, link_name):
@@ -123,6 +127,7 @@ def is_installed(binary):
     ink_flag = call(['which', binary], stdout=PIPE, stderr=PIPE)
     return bool(ink_flag == 0)
 
+
 def backup(file_name):
     """
     Backup functions, enables reverting.
@@ -162,6 +167,47 @@ def get_iterated_icons(icons):
         else:
             new_icons.append(icon)
     return new_icons
+
+
+def get_list_of_themes():
+    """Return a list of installed icon themes."""
+    paths = ["/usr/share/icons/",
+             "%s/.local/share/icons/" % USERHOME]
+    themes = []
+    for icon_path in paths:
+        sub_dirs = listdir(icon_path)
+        for theme in sub_dirs:
+            theme_path = path.join(icon_path, theme) + "/"
+            theme_index = "%sindex.theme" % theme_path
+            if (path.exists(theme_path) and path.exists(theme_index)
+                    and theme not in themes):
+                themes.append(theme)
+    return themes
+
+
+def create_icon_theme(theme_name, themes_list):
+    """Return Gtk.IconTheme if it's a valid icon theme."""
+    if theme_name in themes_list:
+        theme = Gtk.IconTheme()
+        theme.set_custom_theme(theme_name)
+    else:
+        exit("The theme %s is not installed on your system." % theme_name)
+    return theme
+
+
+def get_pngbytes(svgtopng, icon):
+    """Return the pngbytes of a svg/png icon."""
+    icon_for_repl = icon["theme"]
+    icon_extension = icon["theme_ext"]
+    if svgtopng.is_svg_enabled and icon_extension == 'svg':
+        pngbytes = svgtopng.to_bin(icon_for_repl)
+    elif icon_extension == "png":
+        with open(icon_for_repl, 'rb') as pngfile:
+            pngbytes = pngfile.read()
+        pngfile.close()
+    else:
+        pngbytes = None
+    return pngbytes
 
 
 # Functions used in the electron script

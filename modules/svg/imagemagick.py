@@ -38,9 +38,11 @@ class ImageMagick(SVG):
         """Convert svg to png."""
         cmd = [self.cmd, "-background", "none"]
         if width and height:
-            cmd.extend(["-size", "{0!s}x{1!s}".format(str(width), str(height))])
+            cmd.extend(
+                ["-size", "{0!s}x{1!s}".format(str(width), str(height))])
         cmd.extend([input_file, output_file])
         execute(cmd)
+
 
 class ImageMagickNotInstalled(Exception):
     """Exception raised when Inkscape is not installed."""

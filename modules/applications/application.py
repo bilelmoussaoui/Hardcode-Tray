@@ -101,10 +101,18 @@ class Application(Thread):
 
     def run(self):
         """Executed when thread is executed."""
-        if self.is_install:
-            self.install()
-        else:
-            self.reinstall()
+        self.install()
+        self.reinstall()
+
+    def apply(self):
+        """Apply the fix of hardcoded icons."""
+        self.is_install = True
+        self.start()
+
+    def revert(self):
+        """Revert the fix of hardcoded icons."""
+        self.is_install = False
+        self.start()
 
     def install(self):
         """Install the application icons."""
