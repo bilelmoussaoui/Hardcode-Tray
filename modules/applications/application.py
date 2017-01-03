@@ -21,9 +21,10 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.utils import backup, revert, symlink_file, mchown
+from threading import Thread
 
 
-class Application:
+class Application(Thread):
     """Application class."""
 
     def __init__(self, application_data, svgtopng):
@@ -34,6 +35,9 @@ class Application:
         @custom_path(str): used when the application is compiled
                     and installed in an other customn path
         """
+        Thread.__init__(self)
+        self.daemon = True
+        self.is_install = True
         self.svgtopng = svgtopng
         self.data = application_data
 
@@ -94,6 +98,13 @@ class Application:
                 }
                 )
         return icons
+
+    def run(self):
+        """Executed when thread is executed."""
+        if self.is_install:
+            self.install()
+        else:
+            self.reinstall()
 
     def install(self):
         """Install the application icons."""

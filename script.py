@@ -169,7 +169,8 @@ def reinstall(fix_only, custom_path):
         reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.reinstall()
+            app.is_install = False
+            app.start()
             cnt += app.data.supported_icons_cnt
             if app_name not in REVERTED_APPS:
                 progress(cnt, reverted_cnt, app_name)
@@ -186,7 +187,8 @@ def install(fix_only, custom_path):
         installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.install()
+            app.is_install = True
+            app.start()
             cnt += app.data.supported_icons_cnt
             if app_name not in FIXED_APPS:
                 progress(cnt, installed_cnt, app_name)

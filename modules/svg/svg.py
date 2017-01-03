@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-
+from tempfile import NamedTemporaryFile
 from os import remove, path
 from modules.utils import copy_file, replace_colors, is_installed
 
@@ -33,9 +33,7 @@ class SVG:
     def __init__(self, colors):
         """Init function."""
         self.colors = colors
-        self.outfile = "/tmp/hardcode.png"
-        if path.exists(self.outfile):
-            remove(self.outfile)
+        self.outfile = NamedTemporaryFile().name
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
@@ -59,7 +57,6 @@ class SVG:
         with open(self.outfile, 'rb') as temppng:
             binary = temppng.read()
         temppng.close()
-        remove(self.outfile)
         return binary
 
     def is_installed(self):
