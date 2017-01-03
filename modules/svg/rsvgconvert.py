@@ -37,7 +37,6 @@ class RSVGConvert(SVG):
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, "-f", "png", "-o", output_file]
-        width, height = self.get_size(width, height)
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
         cmd.append(input_file)
