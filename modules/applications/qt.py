@@ -30,7 +30,7 @@ class QtApplication(Application):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        Application.__init__(self, application_data, svgtopng)
+        super(QtApplication, self).__init__(application_data, svgtopng)
 
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""

@@ -33,7 +33,7 @@ class PakApplication(BinaryApplication):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+        super(PakApplication, self).__init__(application_data, svgtopng)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""

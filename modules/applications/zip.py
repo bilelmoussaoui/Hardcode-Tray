@@ -32,7 +32,7 @@ class ZipApplication(BinaryApplication):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+        super(ZipApplication, self).__init__(application_data, svgtopng)
         self.binary = self.get_binary()
         self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
         self.tmp_data = self.tmp_path + self.get_zip_path()
