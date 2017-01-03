@@ -20,19 +20,32 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
-from shutil import rmtree
-from modules.applications.application import Application
+from modules.utils import execute
+from subprocess import call, PIPE
+from modules.svg.svg import SVG
 
 
-class QtApplication(Application):
-    """Qt application, works only with the patched version of sni-qt."""
+class SVGExport(SVG):
+    """Inkscape implemntation of SVG Interface."""
 
-    def __init__(self, application_data, svgtopng):
-        Application.__init__(self, application_data, svgtopng)
+    def __init__(self, colors):
+        """Init function."""
+        super(SVGExport, self).__init__(colors)
+        self.cmd = "svgexport"
+        if not self.is_installed():
+            raise SVGExportNotInstalled
 
-    def reinstall(self):
-        """Overwrite the reinstall function, and remove the whole dir."""
-        for icon_path in self.get_icons_path():
-            if path.isdir(icon_path):
-                rmtree(icon_path)
+    def convert_to_png(self, input_file, output_file, width=None, height=None):
+        """Convert svg to png."""
+        cmd = [self.cmd, input_file, output_file]
+        if width and height:
+            cmd.extend(["%s:%s" % (str(width), str(height))])
+        cmd.extend([input_file, output_file])
+        execute(cmd)
+
+class SVGExportNotInstalled(Exception):
+    """Exception raised when Inkscape is not installed."""
+
+    def __init__(self):
+        """Init Exception."""
+        super(SVGExportNotInstalled, self).__init__()

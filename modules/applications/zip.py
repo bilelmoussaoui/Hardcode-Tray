@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -22,33 +22,31 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove, makedirs
 from zipfile import ZipFile
-from modules.applications.application import Application
+from modules.applications.binary import BinaryApplication
 from shutil import make_archive, rmtree
-from subprocess import PIPE, Popen
+from modules.utils import execute
 
 
-class ZipApplication(Application):
+class ZipApplication(BinaryApplication):
     """Pak Application class, based on data_pak file."""
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        Application.__init__(self, application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data, svgtopng)
         self.binary = self.get_binary()
         self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
         self.tmp_data = self.tmp_path + self.get_zip_path()
 
-    def reinstall(self):
-        """Reinstall the old icons."""
-        for icon_path in self.get_icons_path():
-            self.revert_binary(icon_path)
+    def get_zip_path(self):
+        """Return the path of the icons in the zip file."""
+        return self.data.data["zip_path"]
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
         makedirs(self.tmp_path, exist_ok=True)
-        cmd = Popen(["chmod", "0777", self.tmp_path], stdout=PIPE, stderr=PIPE)
-        cmd.communicate()
+        execute(["chmod", "0777", self.tmp_path])
         with ZipFile(icon_path + self.binary) as zf:
             zf.extractall(self.tmp_path)
 

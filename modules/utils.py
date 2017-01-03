@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -24,7 +24,7 @@ from os import chown, makedirs, path, remove, symlink
 from re import findall
 from shutil import copyfile, move
 from functools import reduce
-from subprocess import PIPE, Popen
+from subprocess import PIPE, Popen, call
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, SCRIPT_ERRORS)
 
@@ -117,6 +117,10 @@ def execute(command_list, verbose=True):
         SCRIPT_ERRORS.append(error)
     return output
 
+
+def is_installed(binary):
+    ink_flag = call(['which', binary], stdout=PIPE, stderr=PIPE)
+    return bool(ink_flag == 0)
 
 def backup(file_name):
     """

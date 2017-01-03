@@ -20,19 +20,31 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
-from shutil import rmtree
-from modules.applications.application import Application
+from modules.utils import execute, is_installed
+from modules.svg.svg import SVG
 
 
-class QtApplication(Application):
-    """Qt application, works only with the patched version of sni-qt."""
+class ImageMagick(SVG):
+    """Inkscape implemntation of SVG Interface."""
 
-    def __init__(self, application_data, svgtopng):
-        Application.__init__(self, application_data, svgtopng)
+    def __init__(self, colors):
+        """Init function."""
+        super(ImageMagick, self).__init__(colors)
+        self.cmd = "convert"
+        if not self.is_installed():
+            raise ImageMagickNotInstalled
 
-    def reinstall(self):
-        """Overwrite the reinstall function, and remove the whole dir."""
-        for icon_path in self.get_icons_path():
-            if path.isdir(icon_path):
-                rmtree(icon_path)
+    def convert_to_png(self, input_file, output_file, width=None, height=None):
+        """Convert svg to png."""
+        cmd = [self.cmd, "-background", "none"]
+        if width and height:
+            cmd.extend(["-size", "%sx%s" % (str(width), str(height))])
+        cmd.extend([input_file, output_file])
+        execute(cmd)
+
+class ImageMagickNotInstalled(Exception):
+    """Exception raised when Inkscape is not installed."""
+
+    def __init__(self):
+        """Init Exception."""
+        super(ImageMagickNotInstalled, self).__init__()

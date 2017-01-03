@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -22,30 +22,18 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from imp import load_source
-from modules.applications.application import Application
+from modules.applications.binary import BinaryApplication
 
 absolute_path = path.split(path.abspath(__file__))[0] + "/../"
 data_pack = load_source('data_pack', absolute_path + 'data_pack.py')
 
 
-class PakApplication(Application):
+class PakApplication(BinaryApplication):
     """Pak Application class, based on data_pak file."""
 
     def __init__(self, application_data, svgtopng):
-        Application.__init__(self, application_data, svgtopng)
-
-    def reinstall(self):
-        """Reinstall the old icons."""
-        for icon_path in self.get_icons_path():
-            self.revert_binary(icon_path)
-
-    def install(self):
-        """Install the application icons."""
-        self.install_symlinks()
-        for icon_path in self.get_icons_path():
-            self.backup_binary(icon_path)
-            for icon in self.get_icons():
-                self.install_icon(icon, icon_path)
+        """Init method."""
+        BinaryApplication.__init__(self, application_data, svgtopng)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""

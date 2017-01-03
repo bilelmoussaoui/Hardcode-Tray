@@ -21,18 +21,42 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from shutil import rmtree
+from imp import load_source
 from modules.applications.application import Application
+from modules.utils import backup, revert
+
+absolute_path = path.split(path.abspath(__file__))[0] + "/../"
+data_pack = load_source('data_pack', absolute_path + 'data_pack.py')
 
 
-class QtApplication(Application):
-    """Qt application, works only with the patched version of sni-qt."""
+class BinaryApplication(Application):
+    """Pak Application class, based on data_pak file."""
 
     def __init__(self, application_data, svgtopng):
+        """Init method."""
         Application.__init__(self, application_data, svgtopng)
 
+    def backup_binary(self, icon_path):
+        """Backup binary file before modification."""
+        backup(icon_path + self.get_binary())
+
+    def revert_binary(self, icon_path):
+        """Restore the backed up binary file."""
+        revert(icon_path + self.get_binary())
+
+    def get_binary(self):
+        """Return the binary file if exists."""
+        return self.data.data["binary"]
+
     def reinstall(self):
-        """Overwrite the reinstall function, and remove the whole dir."""
+        """Reinstall the old icons."""
         for icon_path in self.get_icons_path():
-            if path.isdir(icon_path):
-                rmtree(icon_path)
+            self.revert_binary(icon_path)
+
+    def install(self):
+        """Install the application icons."""
+        self.install_symlinks()
+        for icon_path in self.get_icons_path():
+            self.backup_binary(icon_path)
+            for icon in self.get_icons():
+                self.install_icon(icon, icon_path)

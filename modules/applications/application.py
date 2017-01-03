@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -60,22 +60,6 @@ class Application:
     def has_symlinks(self):
         """Return a boolean value if either the application have symlinks."""
         return "symlinks" in self.data.data.keys()
-
-    def get_zip_path(self):
-        """Return the path of the icons in the zip file."""
-        return self.data.data["zip_path"]
-
-    def get_binary(self):
-        """Return the binary file if exists."""
-        return self.data.data["binary"]
-
-    def backup_binary(self, icon_path):
-        """Backup binary file before modification."""
-        backup(icon_path + self.get_binary())
-
-    def revert_binary(self, icon_path):
-        """Restore the backed up binary file."""
-        revert(icon_path + self.get_binary())
 
     def install_symlinks(self):
         """Create symlinks for some applications files."""

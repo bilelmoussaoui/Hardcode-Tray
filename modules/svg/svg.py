@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -20,8 +20,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+
 from os import remove, path
-from modules.utils import copy_file, replace_colors
+from modules.utils import copy_file, replace_colors, is_installed
 
 
 class SVG:
@@ -63,7 +64,7 @@ class SVG:
 
     def is_installed(self):
         """Check if the tool is installed."""
-        pass
+        return is_installed(self.cmd)
 
     @property
     def is_svg_enabled(self):

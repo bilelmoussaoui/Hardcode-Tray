@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.2
+Version : 3.6.3
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -24,7 +24,8 @@ from os import path, environ, geteuid, listdir
 from argparse import ArgumentParser
 from modules.data import DataManager
 from modules.utils import execute, change_colors_list
-from modules.const import DB_FOLDER, SCRIPT_ERRORS, REVERTED_APPS, FIXED_APPS
+from modules.const import (DB_FOLDER, SCRIPT_ERRORS,
+                           REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
 from modules.applications.application import Application
 from modules.applications.electron import ElectronApplication
 from modules.applications.qt import QtApplication
@@ -33,6 +34,8 @@ from modules.applications.zip import ZipApplication
 from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
 from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
 from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
+from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
+from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
 from modules.svg.svg import SVG
 from sys import stdout
 from gi import require_version
@@ -45,7 +48,7 @@ parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 theme = Gtk.IconTheme.get_default()
 supported_icons_cnt = 0
-conversion_tools = ["Inkscape", "Cairo", "RSVGConvert"]
+
 
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
@@ -83,7 +86,7 @@ parser.add_argument("--revert", "-r", action='store_true',
                     help="revert fixed hardcoded tray icons")
 parser.add_argument("--conversion-tool", "-ct",
                     help="Which of conversion tool to use",
-                    type=str, choices=conversion_tools)
+                    type=str, choices=CONVERSION_TOOLS)
 parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
@@ -227,31 +230,24 @@ else:
 if args.change_color:
     colours = change_colors_list(args.change_color)
 
-if args.conversion_tool:
-    conversion_tool = args.conversion_tool
-    if conversion_tool == "Inkscape":
-        svgtopng = Inkscape(colours)
-    elif conversion_tool == "Cairo":
-        svgtopng = CairoSVG(colours)
-    elif conversion_tool == "RSVGConvert":
-        svgtopng = RSVGConvert(colours)
-    else:
-        svgtopng = SVG()
-        svgtopng.is_svg_enabled = False
-else:
+conversion_tool = args.conversion_tool if args.conversion_tool else None
+svgtool_found = False
+i = 0
+while i < len(CONVERSION_TOOLS) and not svgtool_found:
+    tool = CONVERSION_TOOLS[i]
     try:
-        svgtopng = Inkscape(colours)
-        conversion_tool = "Inkscape"
-    except InkscapeNotInstalled:
-        svgtopng = RSVGConvert(colours)
-        conversion_tool = "RSVGConvert"
-    except RSVGConvertNotInstalled:
-        svgtopng = CairoSVG(colours)
-        conversion_tool = "Cairo"
-    except CairoSVGNotInstalled:
-        conversion_tool = "Not Found!"
-        svgtopng = SVG()
-        svgtopng.is_svg_enabled = False
+        if (conversion_tool and conversion_tool == tool) or not conversion_tool:
+            svgtool_found = True
+        if svgtool_found:
+            svgtopng = eval(tool)(colours)
+            conversion_tool = tool
+    except eval("%sNotInstalled" % tool):
+        svgtool_found = False
+    i+=1
+if not svgtool_found:
+    conversion_tool = "Not Found!"
+    svgtopng = SVG(colours)
+    svgtopng.is_svg_enabled = False
 
 if args.size:
     default_icon_size = args.size
@@ -280,8 +276,7 @@ elif args.dark_theme and args.light_theme:
     print("Your current light icon theme is : %s" % light_theme_name)
 print("Svg to png functions are : ", end="")
 print("Enabled" if svgtopng.is_svg_enabled else "Disabled")
-if svgtopng.is_svg_enabled:
-    print("Conversion tool : " + conversion_tool)
+print("Conversion tool : " + conversion_tool)
 print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")
 
