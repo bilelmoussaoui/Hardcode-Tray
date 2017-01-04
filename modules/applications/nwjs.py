@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from modules.applications.binary import BinaryApplication
 from os import path, makedirs, remove
 from shutil import make_archive, rmtree, move
-from modules.utils import execute
+from modules.utils import execute, copy_file
 
 
 class NWJSApplication(BinaryApplication):
@@ -51,11 +51,12 @@ class NWJSApplication(BinaryApplication):
         binary_file = icon_path + self.get_binary()
         if path.exists(binary_file):
             remove(binary_file)
+        copy_file(self.tmp_path + "package.json", icon_path + "package.json")
         make_archive(binary_file, 'zip', self.tmp_path)
         move(binary_file + ".zip", binary_file + ".nw")
-        execute(["cat", "`which nw`", binary_file + ".nw", ">", binary_file])
+        execute(["/usr/bin/nw", binary_file + ".nw > " + binary_file])
         execute(["chmod", "+x", binary_file])
-        rmtree(self.tmp_path)
+        # rmtree(self.tmp_path)
 
     def install(self):
         """Install the application icons."""
