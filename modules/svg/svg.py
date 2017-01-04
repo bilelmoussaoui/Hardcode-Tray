@@ -33,7 +33,6 @@ class SVG:
     def __init__(self, colors):
         """Init function."""
         self.colors = colors
-        self.outfile = NamedTemporaryFile().name
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
@@ -53,10 +52,12 @@ class SVG:
 
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""
-        self.to_png(input_file, self.outfile, width, height)
-        with open(self.outfile, 'rb') as temppng:
+        outfile = NamedTemporaryFile().name
+        self.to_png(input_file, outfile, width, height)
+        with open(outfile, 'rb') as temppng:
             binary = temppng.read()
         temppng.close()
+        remove(outfile)
         return binary
 
     def is_installed(self):

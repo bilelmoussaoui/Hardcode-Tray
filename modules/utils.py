@@ -137,7 +137,7 @@ def backup(file_name):
         revert(bool) : True: revert, False: only backup
     """
     back_file = file_name + BACKUP_EXTENSION
-    if path.isfile(file_name):
+    if path.exists(file_name):
         copy_file(file_name, back_file)
 
 

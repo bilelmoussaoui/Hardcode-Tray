@@ -32,12 +32,15 @@ from modules.applications.electron import ElectronApplication
 from modules.applications.qt import QtApplication
 from modules.applications.pak import PakApplication
 from modules.applications.zip import ZipApplication
+from modules.applications.nwjs import NWJSApplication
 from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
 from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
 from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
 from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
 from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
 from modules.svg.svg import SVG
+from concurrent.futures import ThreadPoolExecutor
+
 from sys import stdout
 from gi import require_version
 require_version("Gtk", "3.0")
@@ -138,6 +141,8 @@ def get_supported_apps(fix_only, custom_path=""):
                 application = PakApplication(application_data, svgtopng)
             elif application_type == "qt":
                 application = QtApplication(application_data, svgtopng)
+            elif application_type == "nwjs":
+                application = NWJSApplication(application_data, svgtopng)
             elif application_type == "zip":
                 application = ZipApplication(application_data, svgtopng)
             else:
@@ -170,7 +175,7 @@ def reinstall(fix_only, custom_path):
         reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.revert()
+            app.reinstall()
             cnt += app.data.supported_icons_cnt
             if app_name not in REVERTED_APPS:
                 progress(cnt, reverted_cnt, app_name)
@@ -187,7 +192,7 @@ def install(fix_only, custom_path):
         installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
         for app in apps:
             app_name = app.get_name()
-            app.apply()
+            app.install()
             cnt += app.data.supported_icons_cnt
             if app_name not in FIXED_APPS:
                 progress(cnt, installed_cnt, app_name)
