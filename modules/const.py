@@ -25,7 +25,7 @@ from platform import machine
 from subprocess import check_output
 
 DB_FOLDER = "database/"
-CONVERSION_TOOLS = ["Inkscape", "Cairo",
+CONVERSION_TOOLS = ["Inkscape", "CairoSVG",
                     "RSVGConvert", "ImageMagick", "SVGExport"]
 BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
