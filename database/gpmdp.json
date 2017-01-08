@@ -16,27 +16,27 @@
     "icons": {
         "normal-light": {
             "original": "build/assets/img/main_tray_white_s.png",
-            "theme": "gpmdp-tray-light"
+            "theme": "gpmdp-tray"
         },
         "play-light": {
             "original": "build/assets/img/playing/main_tray_white_s.png",
-            "theme": "gpmdp-tray-play-light"
+            "theme": "gpmdp-tray-play"
         },
         "pause-light": {
             "original": "build/assets/img/paused/main_tray_white_s.png",
-            "theme": "gpmdp-tray-pause-light"
+            "theme": "gpmdp-tray-pause"
         },
         "normal-dark": {
             "original": "build/assets/img/main_tray_black_s.png",
-            "theme": "gpmdp-tray-dark"
+            "theme": "gpmdp-tray"
         },
         "play-dark": {
             "original": "build/assets/img/playing/main_tray_black_s.png",
-            "theme": "gpmdp-tray-play-dark"
+            "theme": "gpmdp-tray-play"
         },
         "pause-dark": {
             "original": "build/assets/img/paused/main_tray_black_s.png",
-            "theme": "gpmdp-tray-pause-dark"
+            "theme": "gpmdp-tray-pause"
         }
     }
 }
