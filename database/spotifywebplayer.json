@@ -1,5 +1,5 @@
 {
-    "name": "Spotify Web Player for Linux",
+    "name": "Spotify Web Player",
     "app_path": [
         "/usr/bin/spotifywebplayer"
     ],
