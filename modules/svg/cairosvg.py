@@ -42,7 +42,8 @@ class CairoSVG(SVG):
         if not self.is_installed():
             raise CairoSVGNotInstalled
 
-    def convert_to_png(self, input_file, output_file, width=None, height=None):
+    @staticmethod
+    def convert_to_png(input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         if width and height:
             handle = Rsvg.Handle()
@@ -71,7 +72,8 @@ class CairoSVG(SVG):
             svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
             fout.close()
 
-    def is_installed(self):
+    @staticmethod
+    def is_installed():
         """Check if Cairo is installed or not."""
         return CAIRO_IS_INSTALLED
 

@@ -33,7 +33,8 @@ class QtApplication(Application):
         """Init method."""
         super(QtApplication, self).__init__(application_data, svgtopng)
 
-    def install_icon(self, icon, icon_path):
+    @staticmethod
+    def install_icon(icon, icon_path):
         """Install icon to the current directory."""
         base_icon = icon["original"]
         theme_icon = icon["theme"]

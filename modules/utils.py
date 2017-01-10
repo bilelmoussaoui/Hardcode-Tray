@@ -131,6 +131,7 @@ def is_installed(binary):
 
 
 def create_backup_dir(application_name):
+    """Create a backup directory for an application (application_name)."""
     current_time_folder = strftime(BACKUP_FILE_FORMAT)
     back_dir = path.join(BACKUP_FOLDER, application_name, current_time_folder, "")
     exists = True
@@ -164,10 +165,12 @@ def backup(back_dir, file_name):
         rmtree(back_dir)
 
 def get_backup_folders(application_name):
+    """Get a list of backup folders of a sepecific application."""
     return listdir(path.join(BACKUP_FOLDER, application_name))
 
 
 def show_select_backup(application_name):
+    """Show a select option for the backup of each application."""
     backup_folders = get_backup_folders(application_name)
     max_i = len(backup_folders)
     if max_i != 0:
