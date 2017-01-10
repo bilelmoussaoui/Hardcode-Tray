@@ -123,7 +123,7 @@ class DataManager:
             new_icons_path = []
             for icon_path in self.data["icons_path"]:
                 if self.data["force_create_folder"] and not path.exists(icon_path):
-                    logging.debug("Creating application folder for %s" % self.data["name"])
+                    logging.debug("Creating application folder for {0}".format(self.data["name"]))
                     create_dir(icon_path)
                 if path.isdir(icon_path):
                     if ("binary" in self.data.keys()
@@ -144,5 +144,5 @@ class DataManager:
         _path = _path.replace("{size}", str(self.default_icon_size))
         _path = _path.replace("{arch}", ARCH)
         if _path != old_path:
-            logging.debug("new application %s path : %s " % (self.data["name"], _path))
+            logging.debug("new application {0} path : {1}".format(self.data["name"], _path))
         return _path

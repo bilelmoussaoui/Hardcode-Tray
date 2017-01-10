@@ -158,7 +158,7 @@ def backup(back_dir, file_name):
 
     back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        logging.debug("Backup current file %s to %s" % (file_name, back_file))
+        logging.debug("Backup current file {0} to {1}".format(file_name, back_file))
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -177,7 +177,7 @@ def show_select_backup(application_name):
         backup_folders.sort()
         i = 1
         for backup_folder in backup_folders:
-            print("%s ) %s/%s "% (str(i),application_name, backup_folder))
+            print("{0} ) {1}/{2} ".format(str(i),application_name, backup_folder))
             i += 1
         print("(Q)uit to not revert to any version")
         have_chosen = False
@@ -197,9 +197,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug("The user stopped the reversion for %s " % application_name)
+            logging.debug("The user stopped the reversion for {0}".format(application_name))
         else:
-            logging.debug("No backup folder found for the application %s " % application_name)
+            logging.debug("No backup folder found for the application {0}".format(application_name))
     return None
 
 def revert(application_name, selected_backup, file_name):

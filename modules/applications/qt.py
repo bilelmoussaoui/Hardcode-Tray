@@ -39,12 +39,12 @@ class QtApplication(Application):
         base_icon = icon["original"]
         theme_icon = icon["theme"]
         ext_theme = icon["theme_ext"]
-        output_icon = '%s.%s' % (icon_path + base_icon, ext_theme)
+        output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
         symlink_file(theme_icon, output_icon)
         if "symlinks" in icon.keys():
             for symlink_icon in icon["symlinks"]:
-                symlink_file(output_icon, '%s.%s' %
-                             (icon_path + symlink_icon, ext_theme))
+                symlink_icon = '{0}.{1}'.format(icon_path + symlink_icon, ext_theme)
+                symlink_file(output_icon, symlink_icon)
 
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""
