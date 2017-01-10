@@ -25,7 +25,7 @@ from argparse import ArgumentParser
 from modules.data import DataManager
 from modules.utils import (execute, change_colors_list,
                            get_list_of_themes, create_icon_theme)
-from modules.const import (DB_FOLDER,
+from modules.const import (DB_FOLDER, USERHOME,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
 from modules.applications.application import Application
 from modules.applications.electron import ElectronApplication
@@ -242,6 +242,7 @@ if args.debug:
 logging.basicConfig(level=level,
                         format='[%(levelname)s] - %(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
+
 conversion_tool = args.conversion_tool if args.conversion_tool else None
 svgtool_found = False
 i = 0

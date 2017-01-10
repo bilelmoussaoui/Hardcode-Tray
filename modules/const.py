@@ -23,7 +23,6 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import getenv
 from platform import machine
 from subprocess import check_output
-
 DB_FOLDER = "database/"
 CONVERSION_TOOLS = ["Inkscape", "CairoSVG",
                     "RSVGConvert", "ImageMagick", "SVGExport"]

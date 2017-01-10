@@ -22,6 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from sys import argv
+import logging
 
 
 def get_dropbox_version(directory):
@@ -36,12 +37,13 @@ def get_dropbox_version(directory):
     version_file = "/".join(version_file) + "/VERSION"
     if path.exists(version_file):
         with open(version_file) as _file:
-            return _file.read()
+            version = _file.read()
         _file.close()
+        return version
+    logging.debug("Dropbox version file not found")
     return ""
 
-
 dropbox_path = argv[1]
-dropbox_path = dropbox_path .replace(
+dropbox_path = dropbox_path.replace(
     "{dropbox_version}", get_dropbox_version(dropbox_path))
 print(dropbox_path)
