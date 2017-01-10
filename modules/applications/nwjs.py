@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.applications.binary import BinaryApplication
-from os import path, makedirs, remove
+from os import path, remove
 from shutil import make_archive, rmtree, move
 from modules.utils import execute, copy_file
 

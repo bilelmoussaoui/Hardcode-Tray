@@ -28,7 +28,7 @@ from functools import reduce
 from subprocess import PIPE, Popen, call
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
-from time import strftime, gmtime
+from time import strftime
 import logging
 require_version("Gtk", "3.0")
 from gi.repository import Gtk

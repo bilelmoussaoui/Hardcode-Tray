@@ -25,7 +25,7 @@ from argparse import ArgumentParser
 from modules.data import DataManager
 from modules.utils import (execute, change_colors_list,
                            get_list_of_themes, create_icon_theme)
-from modules.const import (DB_FOLDER, USERHOME,
+from modules.const import (DB_FOLDER,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
 from modules.applications.application import Application
 from modules.applications.electron import ElectronApplication
@@ -39,7 +39,6 @@ from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
 from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
 from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
 from modules.svg.svg import SVG
-from concurrent.futures import ThreadPoolExecutor
 import logging
 
 
