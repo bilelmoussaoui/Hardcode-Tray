@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.applications.application import Application
-from modules.utils import backup, revert
+from modules.utils import backup, revert, create_backup_dir, show_select_backup
 
 
 class BinaryApplication(Application):
@@ -31,13 +31,13 @@ class BinaryApplication(Application):
         """Init method."""
         super(BinaryApplication, self).__init__(application_data, svgtopng)
 
-    def backup_binary(self, icon_path):
+    def backup_binary(self, back_dir, icon_path):
         """Backup binary file before modification."""
-        backup(icon_path + self.get_binary())
+        backup(back_dir, icon_path + self.get_binary())
 
-    def revert_binary(self, icon_path):
+    def revert_binary(self, selected_backup, icon_path):
         """Restore the backed up binary file."""
-        revert(icon_path + self.get_binary())
+        revert(self.get_name(), selected_backup, icon_path + self.get_binary())
 
     def get_binary(self):
         """Return the binary file if exists."""
@@ -45,13 +45,19 @@ class BinaryApplication(Application):
 
     def reinstall(self):
         """Reinstall the old icons."""
-        for icon_path in self.get_icons_path():
-            self.revert_binary(icon_path)
+        selected_backup = show_select_backup(self.get_name())
+        if selected_backup:
+            self.remove_symlinks(selected_backup)
+            for icon_path in self.get_icons_path():
+                self.revert_binary(selected_backup, icon_path)
+        else:
+            self.is_done = False
 
     def install(self):
         """Install the application icons."""
-        self.install_symlinks()
+        back_dir = create_backup_dir(self.get_name())
+        self.install_symlinks(back_dir)
         for icon_path in self.get_icons_path():
-            self.backup_binary(icon_path)
+            self.backup_binary(back_dir, icon_path)
             for icon in self.get_icons():
                 self.install_icon(icon, icon_path)

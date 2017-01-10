@@ -20,10 +20,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import getenv
+from os import getenv, path
 from platform import machine
 from subprocess import check_output
-DB_FOLDER = "database/"
+
+DB_FOLDER = path.join("database", "")
 CONVERSION_TOOLS = ["Inkscape", "CairoSVG",
                     "RSVGConvert", "ImageMagick", "SVGExport"]
 BACKUP_EXTENSION = ".bak"
@@ -31,7 +32,9 @@ USERNAME = getenv("SUDO_USER")
 USERHOME = check_output('sh -c "echo $HOME"', shell=True,
                         universal_newlines=True).strip()
 if USERHOME.lower() == "/root":
-    USERHOME = "/home/" + getenv("SUDO_USER")
+    USERHOME = path.join("", home, getenv("SUDO_USER"))
+BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
+BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 CHMOD_IGNORE_LIST = ["", "home"]
 USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))

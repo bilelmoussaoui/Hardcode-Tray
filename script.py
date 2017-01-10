@@ -157,7 +157,7 @@ def get_supported_apps(fix_only, custom_path=""):
     return supported_apps
 
 
-def progress(count, count_max, app_name):
+def progress(count, count_max, app_name=""):
     """Used to draw a progress bar."""
     bar_len = 40
     space = 20
@@ -179,13 +179,18 @@ def reinstall(fix_only, custom_path):
     if len(apps) != 0:
         cnt = 0
         reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
-        for app in apps:
+        for i, app in enumerate(apps):
             app_name = app.get_name()
             app.reinstall()
-            cnt += app.data.supported_icons_cnt
-            if app_name not in REVERTED_APPS:
-                progress(cnt, reverted_cnt, app_name)
-                REVERTED_APPS.append(app_name)
+            if app.is_done:
+                cnt += app.data.supported_icons_cnt
+                if app_name not in REVERTED_APPS:
+                    progress(cnt, reverted_cnt, app_name)
+                    REVERTED_APPS.append(app_name)
+            else:
+                reverted_cnt -= app.data.supported_icons_cnt
+                if i == len(apps) - 1:
+                    progress(cnt, reverted_cnt)
     else:
         exit("No apps to revert!")
 
@@ -196,13 +201,18 @@ def install(fix_only, custom_path):
     if len(apps) != 0:
         cnt = 0
         installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
-        for app in apps:
+        for i, app in enumerate(apps):
             app_name = app.get_name()
             app.install()
-            cnt += app.data.supported_icons_cnt
-            if app_name not in FIXED_APPS:
-                progress(cnt, installed_cnt, app_name)
-                FIXED_APPS.append(app_name)
+            if app.is_done:
+                cnt += app.data.supported_icons_cnt
+                if app_name not in FIXED_APPS:
+                    progress(cnt, installed_cnt, app_name)
+                    FIXED_APPS.append(app_name)
+            else:
+                installed_cnt -= app.data.supported_icons_cnt
+                if i == len(apps) - 1:
+                    progress(cnt, installed_cnt)
     else:
         exit("No apps to fix! Please report on GitHub if this is not the case")
 

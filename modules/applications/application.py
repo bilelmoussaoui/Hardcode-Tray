@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import backup, revert, symlink_file, mchown
+from modules.utils import backup, revert, symlink_file, mchown, show_select_backup, create_backup_dir
 
 
 class Application:
@@ -34,7 +34,7 @@ class Application:
         @custom_path(str): used when the application is compiled
                     and installed in an other customn path
         """
-        self.is_install = True
+        self.is_done = True
         self.svgtopng = svgtopng
         self.data = application_data
 
@@ -62,7 +62,7 @@ class Application:
         """Return a boolean value if either the application have symlinks."""
         return "symlinks" in self.data.data.keys()
 
-    def install_symlinks(self):
+    def install_symlinks(self, back_dir):
         """Create symlinks for some applications files."""
         if self.has_symlinks():
             symlinks = self.get_symlinks()
@@ -70,16 +70,16 @@ class Application:
                 for d in self.get_app_paths():
                     root = symlinks[syml]["root"]
                     dest = d + symlinks[syml]["dest"]
-                    backup(dest)
+                    backup(back_dir, dest)
                     symlink_file(root, dest)
 
-    def remove_symlinks(self):
+    def remove_symlinks(self, selected_backup):
         """Remove symlinks created by the application."""
         if self.has_symlinks():
             symlinks = self.get_symlinks()
             for syml in symlinks:
                 for d in self.get_app_paths():
-                    revert(d + symlinks[syml]["dest"])
+                    revert(self.get_name(), selected_backup, d + symlinks[syml]["dest"])
 
     def get_output_icons(self):
         """Return a list of output icons."""
@@ -97,18 +97,23 @@ class Application:
 
     def install(self):
         """Install the application icons."""
-        self.install_symlinks()
+        back_dir = create_backup_dir(self.get_name())
+        self.install_symlinks(back_dir)
         for icon in self.get_output_icons():
             if not self.data.data["backup_ignore"]:
-                backup(icon["output_icon"])
+                backup(back_dir, icon["output_icon"])
             self.install_icon(icon["data"], icon["path"])
 
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
-        self.remove_symlinks()
-        for icon in self.get_output_icons():
-            if not self.data.data["backup_ignore"]:
-                revert(icon["output_icon"])
+        selected_backup = show_select_backup(self.get_name())
+        if selected_backup:
+            self.remove_symlinks(selected_backup)
+            for icon in self.get_output_icons():
+                if not self.data.data["backup_ignore"]:
+                    revert(self.get_name(), selected_backup, icon["output_icon"])
+        else:
+            self.is_done = False
 
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""

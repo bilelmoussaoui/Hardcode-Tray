@@ -23,11 +23,12 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from gi import require_version
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall
-from shutil import copyfile, move
+from shutil import copyfile, move, rmtree
 from functools import reduce
 from subprocess import PIPE, Popen, call
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
-                           BACKUP_EXTENSION)
+                           BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
+from time import strftime, gmtime
 import logging
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -129,7 +130,23 @@ def is_installed(binary):
     return bool(ink_flag == 0)
 
 
-def backup(file_name):
+def create_backup_dir(application_name):
+    current_time_folder = strftime(BACKUP_FILE_FORMAT)
+    back_dir = path.join(BACKUP_FOLDER, application_name, current_time_folder, "")
+    exists = True
+    new_back_dir = back_dir
+    i = 1
+    while exists:
+        if path.exists(new_back_dir):
+            new_back_dir = back_dir + "_" + str(i)
+        if not path.exists(new_back_dir):
+            create_dir(new_back_dir)
+            exists = False
+        i+=1
+    return new_back_dir
+
+
+def backup(back_dir, file_name):
     """
     Backup functions, enables reverting.
 
@@ -137,12 +154,52 @@ def backup(file_name):
         icon(str) : the original icon name
         revert(bool) : True: revert, False: only backup
     """
-    back_file = file_name + BACKUP_EXTENSION
+
+    back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
+        logging.debug("Backup current file %s to %s" % (file_name, back_file))
         copy_file(file_name, back_file)
+        mchown(back_file)
+    if len(listdir(back_dir)) == 0:
+        rmtree(back_dir)
+
+def get_backup_folders(application_name):
+    return listdir(path.join(BACKUP_FOLDER, application_name))
 
 
-def revert(file_name):
+def show_select_backup(application_name):
+    backup_folders = get_backup_folders(application_name)
+    max_i = len(backup_folders)
+    if max_i != 0:
+        backup_folders.sort()
+        i = 1
+        for backup_folder in backup_folders:
+            print("%s ) %s/%s "% (str(i),application_name, backup_folder))
+            i += 1
+        print("(Q)uit to not revert to any version")
+        have_chosen = False
+        stopped = False
+        while not have_chosen and not stopped:
+            try:
+                selected_backup = input("Select a restore date : ").strip().lower()
+                if selected_backup in ["q", "quit", "exit"]:
+                    stopped = True
+                selected_backup = int(selected_backup)
+                if  1 <= selected_backup <= max_i:
+                    have_chosen = True
+                    backup_folder = backup_folders[selected_backup-1]
+                    return backup_folder
+            except ValueError:
+                pass
+            except KeyboardInterrupt:
+                exit()
+        if stopped:
+            logging.debug("The user stopped the reversion for %s " % application_name)
+        else:
+            logging.debug("No backup folder found for the application %s " % application_name)
+    return None
+
+def revert(application_name, selected_backup, file_name):
     """
     Backup functions, enables reverting.
 
@@ -150,9 +207,11 @@ def revert(file_name):
         icon(str) : the original icon name
         revert(bool) : True: revert, False: only backup
     """
-    back_file = file_name + BACKUP_EXTENSION
-    if path.isfile(back_file):
-        move(back_file, file_name)
+    back_dir = path.join(BACKUP_FOLDER, application_name, selected_backup, "")
+    if not path.exists(back_dir):
+        back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
+        if path.isfile(back_file):
+            move(back_file, file_name)
 
 
 def get_iterated_icons(icons):
