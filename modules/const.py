@@ -39,4 +39,3 @@ GROUP_ID = int(getenv("SUDO_GID"))
 ARCH = machine()
 FIXED_APPS = []
 REVERTED_APPS = []
-SCRIPT_ERRORS = []

@@ -27,8 +27,8 @@ from shutil import copyfile, move
 from functools import reduce
 from subprocess import PIPE, Popen, call
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
-                           BACKUP_EXTENSION, SCRIPT_ERRORS)
-
+                           BACKUP_EXTENSION)
+import logging
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
@@ -118,8 +118,8 @@ def execute(command_list, verbose=True):
     """
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
-    if verbose and error and error not in SCRIPT_ERRORS:
-        SCRIPT_ERRORS.append(error)
+    if verbose and error:
+        logging.error(error)
     return output
 
 

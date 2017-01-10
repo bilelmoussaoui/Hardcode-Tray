@@ -25,6 +25,7 @@ import json
 from modules.utils import create_dir, get_iterated_icons, execute
 from modules.const import USERHOME, ARCH
 from modules.icon import Icon
+import logging
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
 
@@ -121,7 +122,8 @@ class DataManager:
         if not len(self.data["app_path"]) == 0:
             new_icons_path = []
             for icon_path in self.data["icons_path"]:
-                if self.data["force_create_folder"]:
+                if self.data["force_create_folder"] and not path.exists(icon_path):
+                    logging.debug("Creating application folder for %s" % self.data["name"])
                     create_dir(icon_path)
                 if path.isdir(icon_path):
                     if ("binary" in self.data.keys()
@@ -133,6 +135,7 @@ class DataManager:
 
     def replace_vars_path(self, _path):
         """Replace common variables informations."""
+        old_path = _path
         if self.data["exec_path_script"]:
             _path = execute([absolute_path + "paths/" +
                              self.data["exec_path_script"], _path],
@@ -140,4 +143,6 @@ class DataManager:
         _path = _path.replace("{userhome}", USERHOME)
         _path = _path.replace("{size}", str(self.default_icon_size))
         _path = _path.replace("{arch}", ARCH)
+        if _path != old_path:
+            logging.debug("new application %s path : %s " % (self.data["name"], _path))
         return _path

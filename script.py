@@ -25,7 +25,7 @@ from argparse import ArgumentParser
 from modules.data import DataManager
 from modules.utils import (execute, change_colors_list,
                            get_list_of_themes, create_icon_theme)
-from modules.const import (DB_FOLDER, SCRIPT_ERRORS,
+from modules.const import (DB_FOLDER,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
 from modules.applications.application import Application
 from modules.applications.electron import ElectronApplication
@@ -40,6 +40,8 @@ from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
 from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
 from modules.svg.svg import SVG
 from concurrent.futures import ThreadPoolExecutor
+import logging
+
 
 from sys import stdout
 from gi import require_version
@@ -53,7 +55,8 @@ THEMES_LIST = get_list_of_themes()
 theme = Gtk.IconTheme.get_default()
 supported_icons_cnt = 0
 
-
+parser.add_argument("--debug", "-d", action='store_true',
+                    help="Run the script with debug mode.")
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -105,17 +108,20 @@ def detect_de():
     except AttributeError:
         desktop_env = []
     if "pantheon" in desktop_env:
+        logging.debug("Desktop environment detected : Panatheon")
         return "pantheon"
     else:
         try:
             out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
                           verbose=False)
             if " = \"xfce4\"" in out.decode("utf-8"):
+                logging.debug("Desktop environment detected: XFCE")
                 return "xfce"
             else:
                 return "other"
         except (OSError, RuntimeError):
             return "other"
+    logging.debug("Desktop environment not detected")
 
 
 def get_supported_apps(fix_only, custom_path=""):
@@ -230,6 +236,12 @@ else:
 if args.change_color:
     colours = change_colors_list(args.change_color)
 
+level = logging.ERROR
+if args.debug:
+    level = logging.DEBUG
+logging.basicConfig(level=level,
+                        format='[%(levelname)s] - %(asctime)s - %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S')
 conversion_tool = args.conversion_tool if args.conversion_tool else None
 svgtool_found = False
 i = 0
@@ -300,9 +312,4 @@ elif choice == 2:
     print("Reverting now..\n")
     reinstall(fix_only, icon_path)
 
-if len(SCRIPT_ERRORS) != 0:
-    for err in SCRIPT_ERRORS:
-        err = err.decode("utf-8")
-        err = "\n".join(["\t" + e for e in err.split("\n")])
-        print("fixing failed with error:\n%s" % err)
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")
