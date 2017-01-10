@@ -20,30 +20,48 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
+from os import path, listdir
 from sys import argv
 import logging
 
-
-def get_dropbox_version(directory):
+def get_subdirs(directory):
     """
-    Correct the hardcoded dropbox directory.
-
-    Args:
-        directory(str): the default dropbox directory
+        Returns a list of subdirectories, used in replace_dropbox_dir
+        Args:
+            directory (str): path of the directory
     """
-    version_file = directory.split("{dropbox_version}")[0].split("/")
-    del version_file[-1]
-    version_file = "/".join(version_file) + "/VERSION"
-    if path.exists(version_file):
-        with open(version_file) as _file:
-            version = _file.read()
-        _file.close()
-        return version
-    logging.debug("Dropbox version file not found")
-    return ""
+    if path.isdir(directory):
+        dirs = listdir(directory)
+        dirs.sort()
+        sub_dirs = []
+        for sub_dir in dirs:
+            if path.isdir(directory + sub_dir):
+                sub_dirs.append(sub_dir)
+        sub_dirs.sort()
+        return sub_dirs
+    else:
+        return None
+
+def replace_dropbox_dir(directory):
+    """
+        Corrects the hardcoded dropbox directory
+        Args:
+            directory(str): the default dropbox directory
+    """
+    dirs = directory.split("{dropbox}")
+    sub_dirs = get_subdirs(dirs[0])
+    if sub_dirs:
+        if sub_dirs[0].split("-")[0] == "dropbox":
+            return sub_dirs[0]
+        else:
+            logging.debug("Dropbox folder not found")
+            return ""
+    else:
+        logging.debug("Dropbox folder not found")
+        return ""
 
 dropbox_path = argv[1]
+
 dropbox_path = dropbox_path.replace(
-    "{dropbox_version}", get_dropbox_version(dropbox_path))
+    "{dropbox}", replace_dropbox_dir(dropbox_path))
 print(dropbox_path)
