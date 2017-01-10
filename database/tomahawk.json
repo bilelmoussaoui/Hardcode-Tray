@@ -4,18 +4,18 @@
         "/usr/bin/tomahawk"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/tomahawk/"
+        "{userhome}/.local/share/sni-qt/icons/tomahawk/{size}/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "is_script": false,
     "backup_ignore": true,
     "icons": {
-        "original": "9dddfe1e1804b32b01a9c99a1e800d2d.png",
+        "original": "9dddfe1e1804b32b01a9c99a1e800d2d",
         "theme": "tomahawk-indicator",
         "symlinks": [
-            "ab2668bcbd200f43239986abd17cb459.png"
+            "ab2668bcbd200f43239986abd17cb459"
         ]
     }
 }

@@ -4,16 +4,16 @@
         "/usr/bin/flareget"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/flareget/"
+        "{userhome}/.local/share/sni-qt/icons/flareget/{size}/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "backup_ignore": true,
     "is_script": false,
     "icons": {
         "panel": {
-            "original": "300c99bb493a7061e9852c73b89a09e4.png",
+            "original": "300c99bb493a7061e9852c73b89a09e4",
             "theme": "flareget-panel"
         }
     }

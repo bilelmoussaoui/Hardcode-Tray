@@ -4,16 +4,16 @@
         "/usr/share/qelectrotech/"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/qelectrotech/"
+        "{userhome}/.local/share/sni-qt/icons/qelectrotech/{size}/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "backup_ignore": true,
     "is_script": false,
     "icons": {
         "panel": {
-            "original": "a95f785a927cc4c0e20ad945d18286e7.png",
+            "original": "a95f785a927cc4c0e20ad945d18286e7",
             "theme": "qelectrotech-indicator"
         }
     }

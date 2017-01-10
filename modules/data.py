@@ -138,5 +138,6 @@ class DataManager:
                              self.data["exec_path_script"], _path],
                             verbose=True).decode("utf-8").strip()
         _path = _path.replace("{userhome}", USERHOME)
+        _path = _path.replace("{size}", str(self.default_icon_size))
         _path = _path.replace("{arch}", ARCH)
         return _path

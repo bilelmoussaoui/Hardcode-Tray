@@ -42,6 +42,7 @@ def symlink_file(source, link_name):
         symlink(source, link_name)
     except FileNotFoundError:
         pass
+    mchown(link_name)
 
 
 def copy_file(src, destination, overwrite=False):

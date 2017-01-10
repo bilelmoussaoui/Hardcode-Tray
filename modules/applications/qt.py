@@ -23,6 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path
 from shutil import rmtree
 from modules.applications.application import Application
+from modules.utils import symlink_file
 
 
 class QtApplication(Application):
@@ -31,6 +32,18 @@ class QtApplication(Application):
     def __init__(self, application_data, svgtopng):
         """Init method."""
         super(QtApplication, self).__init__(application_data, svgtopng)
+
+    def install_icon(self, icon, icon_path):
+        """Install icon to the current directory."""
+        base_icon = icon["original"]
+        theme_icon = icon["theme"]
+        ext_theme = icon["theme_ext"]
+        output_icon = '%s.%s' % (icon_path + base_icon, ext_theme)
+        symlink_file(theme_icon, output_icon)
+        if "symlinks" in icon.keys():
+            for symlink_icon in icon["symlinks"]:
+                symlink_file(output_icon, '%s.%s' %
+                             (icon_path + symlink_icon, ext_theme))
 
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""

@@ -4,7 +4,7 @@
         "/usr/bin/rescuetime"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/rescuetime/"
+        "{userhome}/.local/share/sni-qt/icons/rescuetime/{size}/"
     ],
     "is_qt": true,
     "is_script": false,
@@ -13,11 +13,11 @@
     "backup_ignore": true,
     "icons": {
         "indicator": {
-            "original": "bacd0fb67bbcaae6a0d60228308c0090.png",
+            "original": "bacd0fb67bbcaae6a0d60228308c0090",
             "theme": "rescuetime-indicator"
         },
         "offline": {
-            "original": "d9103d7d3388b42d6838b5c9f08900ee.png",
+            "original": "d9103d7d3388b42d6838b5c9f08900ee",
             "theme": "rescuetime-offline"
         }
     }

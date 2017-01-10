@@ -4,20 +4,20 @@
         "/usr/bin/screencloud"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/screencloud/"
+        "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "backup_ignore": true,
     "is_script": false,
     "icons": {
         "indicator": {
-            "original": "ea96aeff94b195ceed14c6b3f96f47e1.png",
+            "original": "ea96aeff94b195ceed14c6b3f96f47e1",
             "theme": "screencloud-indicator"
         },
         "uploading": {
-            "original": "cabd24e9e2f8f313bc910b101daf6800.png",
+            "original": "cabd24e9e2f8f313bc910b101daf6800",
             "theme": "screencloud-uploading"
         }
     }

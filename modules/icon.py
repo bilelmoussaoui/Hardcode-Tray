@@ -87,6 +87,10 @@ class Icon:
         """Get the icon dictionnary that contains all informations."""
         return self.icon
 
+    def has_symlinks(self):
+        """Return if the icon has symlinks or not."""
+        return "symlinks" in self.icon.keys()
+
     def get_icon_size(self):
         """Get the icon size, with hidpi support (depends on the icon name)."""
         icon_size = self.default_icon_size

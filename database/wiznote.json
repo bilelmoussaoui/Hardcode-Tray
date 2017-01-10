@@ -4,16 +4,16 @@
         "/usr/bin/WizNote/"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/WizNote/"
+        "{userhome}/.local/share/sni-qt/icons/WizNote/{size}/"
     ],
     "is_qt": true,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "is_script": false,
     "backup_ignore": true,
     "icons": {
         "indicator": {
-            "original": "7d0d85ecd83a67c0ed9abb74975ca50e.png",
+            "original": "7d0d85ecd83a67c0ed9abb74975ca50e",
             "theme": "wiznote-indicator"
         }
     }

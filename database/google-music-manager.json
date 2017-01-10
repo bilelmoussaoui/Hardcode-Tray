@@ -4,16 +4,16 @@
         "/opt/google/musicmanager/"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/MusicManager/"
+        "{userhome}/.local/share/sni-qt/icons/MusicManager/{size}/"
     ],
     "is_qt": true,
     "is_script": false,
-    "force_create_folder": false,
+    "force_create_folder": true,
     "exec_path_script": false,
     "backup_ignore": true,
     "icons": {
         "indicator": {
-            "original": "740a272c66baa9a105e48101377bd5a0.png",
+            "original": "740a272c66baa9a105e48101377bd5a0",
             "theme": "google-music-manager-panel"
         }
     }

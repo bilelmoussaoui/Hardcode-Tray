@@ -4,7 +4,7 @@
         "/usr/bin/clementine"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/clementine/"
+        "{userhome}/.local/share/sni-qt/icons/clementine/{size}/"
     ],
     "is_qt": true,
     "is_script": false,
@@ -13,74 +13,74 @@
     "backup_ignore": true,
     "icons": {
         "indicator": {
-            "original": "e1c70cd6785ac768670030ea5df41c35.png",
+            "original": "e1c70cd6785ac768670030ea5df41c35",
             "theme": "clementine-panel"
         },
         "100": {
-            "original": "10a04e23b84e9983c45c711ba0ed64cc.png",
+            "original": "10a04e23b84e9983c45c711ba0ed64cc",
             "theme": "clementine-100-playing",
             "symlinks": [
-                "2d4aaad14ea972aab69fb008299762a7.png"
+                "2d4aaad14ea972aab69fb008299762a7"
             ]
         },
         "90": {
-            "original": "2c73462acd0f550bd40b4eb69c92c9ff.png",
+            "original": "2c73462acd0f550bd40b4eb69c92c9ff",
             "theme": "clementine-90-playing"
         },
         "80": {
-            "original": "94fd15a06fb5343f3aed1c0790df117f.png",
+            "original": "94fd15a06fb5343f3aed1c0790df117f",
             "theme": "clementine-80-playing",
             "symlinks": [
-                "bc2bf417e092cfd9485f9e263aebc609.png"
+                "bc2bf417e092cfd9485f9e263aebc609"
             ]
         },
         "70": {
-            "original": "209c8d6f9b60d2e2ebc5a0fe387ca48f.png",
+            "original": "209c8d6f9b60d2e2ebc5a0fe387ca48f",
             "theme": "clementine-70-playing",
             "symlinks": [
-                "4f79d0cf1ce058a79572708bba62db34.png"
+                "4f79d0cf1ce058a79572708bba62db34"
             ]
         },
         "60": {
-            "original": "9e25e457f43d36b9717b028be10cd64e.png",
+            "original": "9e25e457f43d36b9717b028be10cd64e",
             "theme": "clementine-60-playing"
         },
         "50": {
-            "original": "fd857104813caf9b67ee95dbb8385ec0.png",
+            "original": "fd857104813caf9b67ee95dbb8385ec0",
             "theme": "clementine-50-playing",
             "symlinks": [
-                "a6c84d822084f3b540ca1915aaf76fc6.png"
+                "a6c84d822084f3b540ca1915aaf76fc6"
             ]
         },
         "40": {
-            "original": "77f87b3f44ff898e46833b2d8e08a32e.png",
+            "original": "77f87b3f44ff898e46833b2d8e08a32e",
             "theme": "clementine-40-playing",
             "symlinks": [
-                "56d57e1c8dae66b0a9e02dfde8364c0a.png"
+                "56d57e1c8dae66b0a9e02dfde8364c0a"
             ]
         },
         "30": {
-            "original": "702d17b9e830ed7f3a9a3d44ed6f062c.png",
+            "original": "702d17b9e830ed7f3a9a3d44ed6f062c",
             "theme": "clementine-30-playing"
         },
         "25": {
-            "original": "59cc4572186ec4d80d6117ddb6ca05fe.png",
+            "original": "59cc4572186ec4d80d6117ddb6ca05fe",
             "theme": "clementine-25-playing"
         },
         "20": {
-            "original": "42cef68137f7db86c78f511db7a39d65.png",
+            "original": "42cef68137f7db86c78f511db7a39d65",
             "theme": "clementine-20-playing"
         },
         "15": {
-            "original": "cc3bc778663612e29d742386c227e89d.png",
+            "original": "cc3bc778663612e29d742386c227e89d",
             "theme": "clementine-15-playing"
         },
         "10": {
-            "original": "d918cc6f4ba4bbec172cb6932dca6083.png",
+            "original": "d918cc6f4ba4bbec172cb6932dca6083",
             "theme": "clementine-10-playing"
         },
         "05": {
-            "original": "60be45c633978239990190b7148de8fc.png",
+            "original": "60be45c633978239990190b7148de8fc",
             "theme": "clementine-05-playing"
         }
     }
