@@ -39,7 +39,8 @@ class Inkscape(SVG):
         cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
-        execute(cmd)
+        # Fix for inkscape 0.92
+        execute(cmd, False)
 
 
 class InkscapeNotInstalled(Exception):
