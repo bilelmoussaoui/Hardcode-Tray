@@ -1,0 +1,26 @@
+{
+    "name": "Vivaldi",
+    "app_path": [
+        "/opt/vivaldi/",
+        "/opt/vivaldi-beta/",
+        "/opt/vivaldi-snapshot/"
+    ],
+    "icons_path": [
+        "/opt/vivaldi/",
+        "/opt/vivaldi-beta/",
+        "/opt/vivaldi-snapshot/"
+    ],
+    "script": "pak",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "is_script": true,
+    "is_qt": false,
+    "binary": "resources.pak",
+    "icons": {
+        "tray": {
+            "original": "8003",
+            "theme": "vivaldi-tray"
+        }
+    }
+}
