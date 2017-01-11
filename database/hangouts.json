@@ -1,10 +1,18 @@
 {
     "name": "Hangouts",
     "app_path": [
-        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/"
+        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
+        "{userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
+        "{userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
+        "{userhome}/.config/google-chrome-unstable/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
+        "{userhome}/.config/vivaldi/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/"
     ],
     "icons_path": [
-        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/"
+        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/",
+        "{userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/",
+        "{userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/",
+        "{userhome}/.config/google-chrome-unstable/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/",
+        "{userhome}/.config/vivaldi/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2016.1219.943.1_0/images_5/"
     ],
     "is_qt": false,
     "is_script": false,
