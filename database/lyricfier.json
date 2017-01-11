@@ -13,11 +13,7 @@
     "backup_ignore": false,
     "icons": {
         "tray": {
-            "original": "tray-icon-mac.png",
-            "theme": "lyricfier-tray"
-        },
-        "tray@2x": {
-            "original": "tray-icon-mac@2x.png",
+            "original": "icon.png",
             "theme": "lyricfier-tray"
         }
     }
