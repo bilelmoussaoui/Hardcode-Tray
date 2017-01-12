@@ -1,0 +1,24 @@
+{
+    "name": "Record Desktop",
+    "app_path": [
+        "/usr/bin/record-desktop"
+    ],
+    "icons_path": [
+        "/usr/share/recored-desktop/resources/app/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "icon.png",
+            "theme": "record-desktop-indicator"
+        },
+        "recording": {
+            "original": "icon-recording.png",
+            "theme": "record-desktop-indicator-recording"
+        }
+    }
+}
