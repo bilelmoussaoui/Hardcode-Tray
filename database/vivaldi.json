@@ -19,7 +19,7 @@
     "binary": "resources.pak",
     "icons": {
         "tray": {
-            "original": "8003",
+            "original": "8038",
             "theme": "vivaldi-tray"
         }
     }

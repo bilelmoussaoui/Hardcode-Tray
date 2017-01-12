@@ -50,6 +50,12 @@ class Application:
         """Return the application installation paths."""
         return self.data.data["app_path"]
 
+    def get_back_dir(self):
+        return self.back_dir
+
+    def get_selected_back_dir(self):
+        return self.selected_backup
+
     def get_icons_path(self):
         """Return the application installation paths."""
         return self.data.data["icons_path"]
@@ -62,7 +68,7 @@ class Application:
         """Return a boolean value if either the application have symlinks."""
         return "symlinks" in self.data.data.keys()
 
-    def install_symlinks(self, back_dir):
+    def install_symlinks(self):
         """Create symlinks for some applications files."""
         if self.has_symlinks():
             symlinks = self.get_symlinks()
@@ -70,16 +76,16 @@ class Application:
                 for d in self.get_app_paths():
                     root = symlinks[syml]["root"]
                     dest = d + symlinks[syml]["dest"]
-                    backup(back_dir, dest)
+                    backup(self.get_back_dir(), dest)
                     symlink_file(root, dest)
 
-    def remove_symlinks(self, selected_backup):
+    def remove_symlinks(self):
         """Remove symlinks created by the application."""
         if self.has_symlinks():
             symlinks = self.get_symlinks()
             for syml in symlinks:
                 for d in self.get_app_paths():
-                    revert(self.get_name(), selected_backup, d + symlinks[syml]["dest"])
+                    revert(self.get_name(), self.get_selected_back_dir(), d + symlinks[syml]["dest"])
 
     def get_output_icons(self):
         """Return a list of output icons."""
@@ -97,21 +103,21 @@ class Application:
 
     def install(self):
         """Install the application icons."""
-        back_dir = create_backup_dir(self.get_name())
-        self.install_symlinks(back_dir)
+        self.back_dir = create_backup_dir(self.get_name())
+        self.install_symlinks()
         for icon in self.get_output_icons():
             if not self.data.data["backup_ignore"]:
-                backup(back_dir, icon["output_icon"])
+                backup(self.get_back_dir(), icon["output_icon"])
             self.install_icon(icon["data"], icon["path"])
 
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
-        selected_backup = show_select_backup(self.get_name())
+        self.selected_backup = show_select_backup(self.get_name())
         if selected_backup:
-            self.remove_symlinks(selected_backup)
+            self.remove_symlinks()
             for icon in self.get_output_icons():
                 if not self.data.data["backup_ignore"]:
-                    revert(self.get_name(), selected_backup, icon["output_icon"])
+                    revert(self.get_name(), self.get_selected_back_dir(), icon["output_icon"])
         else:
             self.is_done = False
 

@@ -24,7 +24,7 @@ from os import path, remove, makedirs
 from zipfile import ZipFile
 from modules.applications.binary import BinaryApplication
 from shutil import make_archive, rmtree
-from modules.utils import execute
+from modules.utils import execute, create_backup_dir
 
 
 class ZipApplication(BinaryApplication):
@@ -60,6 +60,7 @@ class ZipApplication(BinaryApplication):
 
     def install(self):
         """Install the application icons."""
+        self.back_dir = create_backup_dir(self.get_name())
         self.install_symlinks()
         for icon_path in self.get_icons_path():
             self.backup_binary(icon_path)

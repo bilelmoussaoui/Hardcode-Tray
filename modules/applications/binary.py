@@ -31,13 +31,13 @@ class BinaryApplication(Application):
         """Init method."""
         super(BinaryApplication, self).__init__(application_data, svgtopng)
 
-    def backup_binary(self, back_dir, icon_path):
+    def backup_binary(self, icon_path):
         """Backup binary file before modification."""
-        backup(back_dir, icon_path + self.get_binary())
+        backup(self.get_back_dir(), icon_path + self.get_binary())
 
-    def revert_binary(self, selected_backup, icon_path):
+    def revert_binary(self, icon_path):
         """Restore the backed up binary file."""
-        revert(self.get_name(), selected_backup, icon_path + self.get_binary())
+        revert(self.get_name(), self.get_selected_back_dir(), icon_path + self.get_binary())
 
     def get_binary(self):
         """Return the binary file if exists."""
@@ -45,19 +45,19 @@ class BinaryApplication(Application):
 
     def reinstall(self):
         """Reinstall the old icons."""
-        selected_backup = show_select_backup(self.get_name())
+        self.selected_backup = show_select_backup(self.get_name())
         if selected_backup:
-            self.remove_symlinks(selected_backup)
+            self.remove_symlinks()
             for icon_path in self.get_icons_path():
-                self.revert_binary(selected_backup, icon_path)
+                self.revert_binary(icon_path)
         else:
             self.is_done = False
 
     def install(self):
         """Install the application icons."""
-        back_dir = create_backup_dir(self.get_name())
-        self.install_symlinks(back_dir)
+        self.back_dir = create_backup_dir(self.get_name())
+        self.install_symlinks()
         for icon_path in self.get_icons_path():
-            self.backup_binary(back_dir, icon_path)
+            self.backup_binary(icon_path)
             for icon in self.get_icons():
                 self.install_icon(icon, icon_path)
