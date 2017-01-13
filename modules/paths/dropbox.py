@@ -20,9 +20,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, listdir
-from sys import argv
 import logging
+
+from os import listdir, path
+from sys import argv
 
 
 def replace_dropbox_dir(directory):
@@ -33,23 +34,25 @@ def replace_dropbox_dir(directory):
         directory(str): the default dropbox directory
     """
     dirs = directory.split("{dropbox}")
+    dropbox_folder = ""
     if path.isdir(dirs[0]):
         directories = listdir(dirs[0])
-        directories.sort()
         for _dir in directories:
-            if path.isdir(_dir):
-                splited_name = _dir.split("-").lower()
-                if len(splited_name) > 1 and splited_name[0] == "dropbox":
-                    return _dir
-        logging.debug("Dropbox folder not found")
-        return ""
+            if path.isdir(path.join(path.join(dirs[0]), _dir, "")):
+                subdir = _dir.split("-")
+                if len(subdir) > 1 and subdir[0].lower() == "dropbox":
+                    dropbox_folder = _dir
+                    break
+        if dropbox_folder:
+            return directory.replace("{dropbox}", dropbox_folder)
+        else:
+            logging.debug("Dropbox folder not found")
+            return directory
     else:
         logging.debug("Dropbox folder not found")
-        return ""
+        return directory
 
 
 dropbox_path = argv[1]
-
-dropbox_path = dropbox_path.replace(
-    "{dropbox}", replace_dropbox_dir(dropbox_path))
+dropbox_path = replace_dropbox_dir(dropbox_path)
 print(dropbox_path)

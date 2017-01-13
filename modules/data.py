@@ -20,12 +20,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
 import json
-from modules.utils import create_dir, get_iterated_icons, execute
-from modules.const import USERHOME, ARCH
-from modules.icon import Icon
 import logging
+
+from modules.const import ARCH, USERHOME
+from modules.icon import Icon
+from modules.utils import create_dir, execute, get_iterated_icons
+from os import path
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
 
@@ -75,7 +76,7 @@ class DataManager:
             data_file.close()
             if (self.custom_path and self.is_only
                     and path.exists(self.custom_path)):
-                self.data["app_path"].append(self.custom_path)
+                self.data["icons_path"].append(self.custom_path)
             self.check_paths()
             be_added = (len(self.data["icons_path"]) > 0
                         and len(self.data["app_path"]) > 0)
