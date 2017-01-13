@@ -24,24 +24,6 @@ from os import path, listdir
 from sys import argv
 import logging
 
-def get_subdirs(directory):
-    """
-        Returns a list of subdirectories, used in replace_dropbox_dir
-        Args:
-            directory (str): path of the directory
-    """
-    if path.isdir(directory):
-        dirs = listdir(directory)
-        dirs.sort()
-        sub_dirs = []
-        for sub_dir in dirs:
-            if path.isdir(directory + sub_dir):
-                sub_dirs.append(sub_dir)
-        sub_dirs.sort()
-        return sub_dirs
-    else:
-        return None
-
 def replace_dropbox_dir(directory):
     """
         Corrects the hardcoded dropbox directory
@@ -49,19 +31,24 @@ def replace_dropbox_dir(directory):
             directory(str): the default dropbox directory
     """
     dirs = directory.split("{dropbox}")
-    sub_dirs = get_subdirs(dirs[0])
-    if sub_dirs:
-        if sub_dirs[0].split("-")[0] == "dropbox":
-            return sub_dirs[0]
+    dropbox_folder = "" 
+    if path.isdir(dirs[0]):
+        directories = listdir(dirs[0])
+        for _dir in directories:
+            if path.isdir(path.join(path.join(dirs[0]), _dir, "")):
+                subdir = _dir.split("-")
+                if len(subdir) > 1 and subdir[0].lower() == "dropbox":
+                    dropbox_folder = _dir
+                    break
+        if dropbox_folder:
+            return directory.replace("{dropbox}", dropbox_folder)
         else:
             logging.debug("Dropbox folder not found")
-            return ""
+            return directory
     else:
         logging.debug("Dropbox folder not found")
-        return ""
+        return directory
 
 dropbox_path = argv[1]
-
-dropbox_path = dropbox_path.replace(
-    "{dropbox}", replace_dropbox_dir(dropbox_path))
+dropbox_path = replace_dropbox_dir(dropbox_path)
 print(dropbox_path)
