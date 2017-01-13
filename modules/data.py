@@ -75,7 +75,7 @@ class DataManager:
             data_file.close()
             if (self.custom_path and self.is_only
                     and path.exists(self.custom_path)):
-                self.data["app_path"].append(self.custom_path)
+                self.data["icons_path"].append(self.custom_path)
             self.check_paths()
             be_added = (len(self.data["icons_path"]) > 0
                         and len(self.data["app_path"]) > 0)
