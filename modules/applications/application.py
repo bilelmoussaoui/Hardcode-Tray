@@ -20,7 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import backup, revert, symlink_file, mchown, show_select_backup, create_backup_dir
+from modules.utils import (backup, revert, symlink_file, mchown,
+                           show_select_backup, create_backup_dir)
 
 
 class Application:
@@ -51,9 +52,11 @@ class Application:
         return self.data.data["app_path"]
 
     def get_back_dir(self):
+        """Return the backup directory of the current application."""
         return self.back_dir
 
     def get_selected_back_dir(self):
+        """Return the selected backup directory during the revert process."""
         return self.selected_backup
 
     def get_icons_path(self):
@@ -85,7 +88,8 @@ class Application:
             symlinks = self.get_symlinks()
             for syml in symlinks:
                 for d in self.get_app_paths():
-                    revert(self.get_name(), self.get_selected_back_dir(), d + symlinks[syml]["dest"])
+                    revert(self.get_name(), self.get_selected_back_dir(),
+                           d + symlinks[syml]["dest"])
 
     def get_output_icons(self):
         """Return a list of output icons."""
@@ -113,11 +117,12 @@ class Application:
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
         self.selected_backup = show_select_backup(self.get_name())
-        if selected_backup:
+        if self.selected_backup:
             self.remove_symlinks()
             for icon in self.get_output_icons():
                 if not self.data.data["backup_ignore"]:
-                    revert(self.get_name(), self.get_selected_back_dir(), icon["output_icon"])
+                    revert(self.get_name(), self.get_selected_back_dir(),
+                           icon["output_icon"])
         else:
             self.is_done = False
 

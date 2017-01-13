@@ -43,7 +43,8 @@ class QtApplication(Application):
         symlink_file(theme_icon, output_icon)
         if "symlinks" in icon.keys():
             for symlink_icon in icon["symlinks"]:
-                symlink_icon = '{0}.{1}'.format(icon_path + symlink_icon, ext_theme)
+                symlink_icon = '{0}.{1}'.format(
+                    icon_path + symlink_icon, ext_theme)
                 symlink_file(output_icon, symlink_icon)
 
     def reinstall(self):

@@ -133,7 +133,8 @@ def is_installed(binary):
 def create_backup_dir(application_name):
     """Create a backup directory for an application (application_name)."""
     current_time_folder = strftime(BACKUP_FILE_FORMAT)
-    back_dir = path.join(BACKUP_FOLDER, application_name, current_time_folder, "")
+    back_dir = path.join(BACKUP_FOLDER, application_name,
+                         current_time_folder, "")
     exists = True
     new_back_dir = back_dir
     i = 1
@@ -143,26 +144,22 @@ def create_backup_dir(application_name):
         if not path.exists(new_back_dir):
             create_dir(new_back_dir)
             exists = False
-        i+=1
+        i += 1
     return new_back_dir
 
 
 def backup(back_dir, file_name):
-    """
-    Backup functions, enables reverting.
-
-    Args:
-        icon(str) : the original icon name
-        revert(bool) : True: revert, False: only backup
-    """
-
-    back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
+    """Backup functions."""
+    back_file = path.join(back_dir, path.basename(
+        file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        logging.debug("Backup current file {0} to {1}".format(file_name, back_file))
+        logging.debug("Backup current file {0} to {1}".format(
+            file_name, back_file))
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
         rmtree(back_dir)
+
 
 def get_backup_folders(application_name):
     """Get a list of backup folders of a sepecific application."""
@@ -177,30 +174,35 @@ def show_select_backup(application_name):
         backup_folders.sort()
         i = 1
         for backup_folder in backup_folders:
-            print("{0} ) {1}/{2} ".format(str(i),application_name, backup_folder))
+            print("{0} ) {1}/{2} ".format(str(i),
+                                          application_name, backup_folder))
             i += 1
         print("(Q)uit to not revert to any version")
         have_chosen = False
         stopped = False
         while not have_chosen and not stopped:
             try:
-                selected_backup = input("Select a restore date : ").strip().lower()
+                selected_backup = input(
+                    "Select a restore date : ").strip().lower()
                 if selected_backup in ["q", "quit", "exit"]:
                     stopped = True
                 selected_backup = int(selected_backup)
-                if  1 <= selected_backup <= max_i:
+                if 1 <= selected_backup <= max_i:
                     have_chosen = True
-                    backup_folder = backup_folders[selected_backup-1]
+                    backup_folder = backup_folders[selected_backup - 1]
                     return backup_folder
             except ValueError:
                 pass
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug("The user stopped the reversion for {0}".format(application_name))
+            logging.debug("The user stopped the reversion for "
+                          "{0}".format(application_name))
         else:
-            logging.debug("No backup folder found for the application {0}".format(application_name))
+            logging.debug("No backup folder found for the application "
+                          "{0}".format(application_name))
     return None
+
 
 def revert(application_name, selected_backup, file_name):
     """
@@ -212,7 +214,8 @@ def revert(application_name, selected_backup, file_name):
     """
     back_dir = path.join(BACKUP_FOLDER, application_name, selected_backup, "")
     if not path.exists(back_dir):
-        back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
+        back_file = path.join(back_dir, path.basename(
+            file_name) + BACKUP_EXTENSION)
         if path.isfile(back_file):
             move(back_file, file_name)
 
@@ -254,7 +257,8 @@ def create_icon_theme(theme_name, themes_list):
         theme = Gtk.IconTheme()
         theme.set_custom_theme(theme_name)
     else:
-        exit("The theme {0!s} is not installed on your system.".format(theme_name))
+        exit("The theme {0!s} is not installed on your system.".format(
+            theme_name))
     return theme
 
 

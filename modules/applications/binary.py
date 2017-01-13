@@ -37,7 +37,8 @@ class BinaryApplication(Application):
 
     def revert_binary(self, icon_path):
         """Restore the backed up binary file."""
-        revert(self.get_name(), self.get_selected_back_dir(), icon_path + self.get_binary())
+        revert(self.get_name(), self.get_selected_back_dir(),
+               icon_path + self.get_binary())
 
     def get_binary(self):
         """Return the binary file if exists."""
@@ -46,7 +47,7 @@ class BinaryApplication(Application):
     def reinstall(self):
         """Reinstall the old icons."""
         self.selected_backup = show_select_backup(self.get_name())
-        if selected_backup:
+        if self.selected_backup:
             self.remove_symlinks()
             for icon_path in self.get_icons_path():
                 self.revert_binary(icon_path)

@@ -249,8 +249,8 @@ level = logging.ERROR
 if args.debug:
     level = logging.DEBUG
 logging.basicConfig(level=level,
-                        format='[%(levelname)s] - %(asctime)s - %(message)s',
-                        datefmt='%Y-%m-%d %H:%M:%S')
+                    format='[%(levelname)s] - %(asctime)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 conversion_tool = args.conversion_tool if args.conversion_tool else None
 svgtool_found = False

@@ -24,41 +24,29 @@ from os import path, listdir
 from sys import argv
 import logging
 
-def get_subdirs(directory):
-    """
-        Returns a list of subdirectories, used in replace_dropbox_dir
-        Args:
-            directory (str): path of the directory
-    """
-    if path.isdir(directory):
-        dirs = listdir(directory)
-        dirs.sort()
-        sub_dirs = []
-        for sub_dir in dirs:
-            if path.isdir(directory + sub_dir):
-                sub_dirs.append(sub_dir)
-        sub_dirs.sort()
-        return sub_dirs
-    else:
-        return None
 
 def replace_dropbox_dir(directory):
     """
-        Corrects the hardcoded dropbox directory
-        Args:
-            directory(str): the default dropbox directory
+    Correct the hardcoded dropbox directory.
+
+    Args:
+        directory(str): the default dropbox directory
     """
     dirs = directory.split("{dropbox}")
-    sub_dirs = get_subdirs(dirs[0])
-    if sub_dirs:
-        if sub_dirs[0].split("-")[0] == "dropbox":
-            return sub_dirs[0]
-        else:
-            logging.debug("Dropbox folder not found")
-            return ""
+    if path.isdir(dirs[0]):
+        directories = listdir(dirs[0])
+        directories.sort()
+        for _dir in directories:
+            if path.isdir(_dir):
+                splited_name = _dir.split("-").lower()
+                if len(splited_name) > 1 and splited_name[0] == "dropbox":
+                    return _dir
+        logging.debug("Dropbox folder not found")
+        return ""
     else:
         logging.debug("Dropbox folder not found")
         return ""
+
 
 dropbox_path = argv[1]
 
