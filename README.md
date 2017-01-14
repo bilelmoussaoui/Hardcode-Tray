@@ -26,11 +26,12 @@ Here's a list of themes that supports Hardcode-Tray:
 #### Arch Linux (AUR):
 Stable version:
 ```bash
-yaourt -S hardcode-tray
+yaourt -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
 ```
+<small>The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.</small>
 Developpement version:
 ```bash
-yaourt -S hardcode-tray-git
+yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 #### Ubuntu 14.04 / 16.04 / 16.10 / 17.04 (PPA):
 ```bash
@@ -49,7 +50,7 @@ sudo apt install sni-qt sni-qt:i386 hardcode-tray
    - `wget`
    - `python3`
    - `python3-gi`
-   - [`patched sni-qt`](https://launchpad.net/~cybre/+archive/ubuntu/sni-qt-eplus) <br>
+   - [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
    - 2.1. Pick your favorite conversion tool
        1. `python3-cairosvg`
        2. `librsvg`
