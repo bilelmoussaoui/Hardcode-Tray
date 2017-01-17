@@ -241,13 +241,16 @@ def get_list_of_themes():
              "{0!s}/.local/share/icons/".format(USERHOME)]
     themes = []
     for icon_path in paths:
-        sub_dirs = listdir(icon_path)
-        for theme in sub_dirs:
-            theme_path = path.join(icon_path, theme) + "/"
-            theme_index = "{0!s}index.theme".format(theme_path)
-            if (path.exists(theme_path) and path.exists(theme_index)
-                    and theme not in themes):
-                themes.append(theme)
+        try:
+            sub_dirs = listdir(icon_path)
+            for theme in sub_dirs:
+                theme_path = path.join(icon_path, theme) + "/"
+                theme_index = "{0!s}index.theme".format(theme_path)
+                if (path.exists(theme_path) and path.exists(theme_index)
+                        and theme not in themes):
+                    themes.append(theme)
+        except FileNotFoundError:
+            pass
     return themes
 
 
