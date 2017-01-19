@@ -117,11 +117,11 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 
 - `--conversion-tool`
 
-Hardcode-Tray by default detects if the user has either Inkscape, RSVGConvert or Cairo installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
+Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
 ```bash
-hardcode-tray --conversion-tool {Inkscape,Cairo, RSVGConvert}
+hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
 ```
-For now, we only support Inkscape and Cairo(CairoSVG)
+For now, we support : CairoSVG (python3-cairosvg), Inkscape, rsvgconvert (librsvg), Imagemagick and svgexport(npm library)
 
 Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
 
