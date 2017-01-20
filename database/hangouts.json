@@ -10,18 +10,18 @@
         "{userhome}/.config/vivaldi-snapshot/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/"
     ],
     "icons_path": [
-        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/",
-        "{userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_00/images_5/",
-        "{userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/",
-        "{userhome}/.config/google-chrome-unstable/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/",
-        "{userhome}/.config/vivaldi/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/",
-        "{userhome}/.config/vivaldi-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/",
-        "{userhome}/.config/vivaldi-snapshot/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/2017.110.418.2_0/images_5/"
+        "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/google-chrome-unstable/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/vivaldi/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/vivaldi-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/",
+        "{userhome}/.config/vivaldi-snapshot/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts_version}/images_5/"
     ],
     "is_qt": false,
     "is_script": false,
     "force_create_folder": false,
-    "exec_path_script": false,
+    "exec_path_script": "hangouts.py",
     "backup_ignore": false,
     "icons": {
         "indicator@2x": {

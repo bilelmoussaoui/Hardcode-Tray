@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi import require_version
 from os import chown, makedirs, path, remove, symlink, listdir
-from re import findall
+from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from functools import reduce
 from subprocess import PIPE, Popen, call
@@ -304,13 +304,23 @@ def change_dict_vals(d, sizediff, offset):
     return d
 
 
+def replace_to_6hex(color):
+    """Validate and replace 3hex colors to 6hex ones."""
+    if match(r"^#(?:[0-9a-fA-F]{3}){1,2}$", color):
+        if len(color) == 4:
+            color = "#{0}{0}{1}{1}{2}{2}".format(color[1], color[2], color[3])
+        return color
+    else:
+        exit("Invalid color {0}".format(color))
+
+
 def change_colors_list(list_colours):
     """Transform a list of colours to a list of a sub-lists."""
     colours = []
     for color in list_colours:
         color = color.strip().split(" ")
-        to_replace = color[0]
-        for_replace = color[1]
+        to_replace = replace_to_6hex(color[0])
+        for_replace = replace_to_6hex(color[1])
         colours.append([to_replace, for_replace])
     return colours
 
@@ -319,13 +329,13 @@ def replace_colors(file_name, colors):
     """Replace the colors in a file name."""
     if path.isfile(file_name):
         with open(file_name, 'r') as _file:
-            filedata = _file.read()
+            file_data = _file.read()
         _file.close()
         for color in colors:
             to_replace = color[0]
             for_replace = color[1]
-            filedata = filedata.replace(to_replace, for_replace)
+            file_data = sub(to_replace, for_replace, file_data)
 
         with open(file_name, 'w') as _file:
-            _file.write(filedata)
+            _file.write(file_data)
         _file.close()

@@ -1,0 +1,34 @@
+{
+    "name": "PB for Desktop",
+    "app_path": [
+        "/opt/PB for Desktop/"
+    ],
+    "icons_path": [
+        "/opt/PB for Desktop/resources/"
+    ],
+    "is_qt": false,
+    "is_script": true,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "icons/linux/icon-tray-default.png",
+            "theme": "pushbullet-indicator"
+        },
+        "disabled": {
+            "original": "media/icon-tray-disabled.png",
+            "theme": "pushbullet-indicator-disabled"
+        },
+        "paused": {
+            "original": "media/icon-tray-paused.png",
+            "theme": "pushbullet-indicator-paused"
+        },
+        "transparent": {
+            "original": "media/icon-tray-transparent.png",
+            "theme": "pushbullet-indicator-transparent"
+        }
+    }
+}

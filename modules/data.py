@@ -139,13 +139,13 @@ class DataManager:
     def replace_vars_path(self, _path):
         """Replace common variables informations."""
         old_path = _path
+        _path = _path.replace("{userhome}", USERHOME)
+        _path = _path.replace("{size}", str(self.default_icon_size))
+        _path = _path.replace("{arch}", ARCH)
         if self.data["exec_path_script"]:
             _path = execute([absolute_path + "paths/" +
                              self.data["exec_path_script"], _path],
                             verbose=True).decode("utf-8").strip()
-        _path = _path.replace("{userhome}", USERHOME)
-        _path = _path.replace("{size}", str(self.default_icon_size))
-        _path = _path.replace("{arch}", ARCH)
         if _path != old_path:
             logging.debug("new application {0} path : {1}".format(
                 self.data["name"], _path))
