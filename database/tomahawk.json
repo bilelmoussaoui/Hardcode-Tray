@@ -12,10 +12,12 @@
     "is_script": false,
     "backup_ignore": true,
     "icons": {
-        "original": "9dddfe1e1804b32b01a9c99a1e800d2d",
-        "theme": "tomahawk-indicator",
-        "symlinks": [
-            "ab2668bcbd200f43239986abd17cb459"
-        ]
+        "indicator": {
+            "original": "9dddfe1e1804b32b01a9c99a1e800d2d",
+            "theme": "tomahawk-indicator",
+            "symlinks": [
+                "ab2668bcbd200f43239986abd17cb459"
+            ]
+        }
     }
 }
