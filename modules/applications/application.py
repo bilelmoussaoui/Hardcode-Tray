@@ -76,9 +76,9 @@ class Application:
         if self.has_symlinks():
             symlinks = self.get_symlinks()
             for syml in symlinks:
-                for d in self.get_app_paths():
+                for directory in self.get_app_paths():
                     root = symlinks[syml]["root"]
-                    dest = d + symlinks[syml]["dest"]
+                    dest = directory + symlinks[syml]["dest"]
                     backup(self.get_back_dir(), dest)
                     symlink_file(root, dest)
 
@@ -87,9 +87,9 @@ class Application:
         if self.has_symlinks():
             symlinks = self.get_symlinks()
             for syml in symlinks:
-                for d in self.get_app_paths():
+                for directory in self.get_app_paths():
                     revert(self.get_name(), self.get_selected_back_dir(),
-                           d + symlinks[syml]["dest"])
+                           directory + symlinks[syml]["dest"])
 
     def get_output_icons(self):
         """Return a list of output icons."""

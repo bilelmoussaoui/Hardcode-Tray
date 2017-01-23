@@ -20,9 +20,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-
-import logging
-
 from os import listdir, path
 from sys import argv
 
@@ -45,10 +42,8 @@ def replace_hangouts_version_dir(directory):
         if hangouts_folder:
             return directory.replace("{hangouts_version}", hangouts_folder)
         else:
-            logging.debug("Hangouts folder not found")
             return directory
     else:
-        logging.debug("Hangouts folder not found")
         return directory
 
 

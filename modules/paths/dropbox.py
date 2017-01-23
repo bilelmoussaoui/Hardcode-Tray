@@ -20,8 +20,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-import logging
-
 from os import listdir, path
 from sys import argv
 
@@ -46,10 +44,8 @@ def replace_dropbox_dir(directory):
         if dropbox_folder:
             return directory.replace("{dropbox}", dropbox_folder)
         else:
-            logging.debug("Dropbox folder not found")
             return directory
     else:
-        logging.debug("Dropbox folder not found")
         return directory
 
 

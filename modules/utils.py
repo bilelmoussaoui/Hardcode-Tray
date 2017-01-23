@@ -30,6 +30,7 @@ from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from time import strftime
 import logging
+import inspect
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
@@ -120,7 +121,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        logging.error(error)
+        log(error, logging.ERROR)
     return output
 
 
@@ -153,8 +154,7 @@ def backup(back_dir, file_name):
     back_file = path.join(back_dir, path.basename(
         file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        logging.debug("Backup current file {0} to {1}".format(
-            file_name, back_file))
+        log("Backup current file {0} to {1}".format(file_name, back_file))
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -196,11 +196,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug("The user stopped the reversion for "
-                          "{0}".format(application_name))
+            log("The user stopped the reversion for {0}".format(application_name))
         else:
-            logging.debug("No backup folder found for the application "
-                          "{0}".format(application_name))
+            log("No backup folder found for the application {0}".format(application_name))
     return None
 
 
@@ -339,3 +337,12 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
+
+
+def log(message, error_type=logging.DEBUG):
+    func = inspect.currentframe().f_back.f_code
+    error = "%s: %s in %s:%i" % (message, func.co_name, func.co_filename, func.co_firstlineno)
+    if error_type == logging.ERROR:
+        logging.error(error)
+    else:
+        logging.debug(error)

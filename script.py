@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, environ, geteuid, listdir
 from argparse import ArgumentParser
 from modules.data import DataManager
-from modules.utils import (execute, change_colors_list,
+from modules.utils import (execute, change_colors_list, log,
                            get_list_of_themes, create_icon_theme)
 from modules.const import (DB_FOLDER,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
@@ -107,20 +107,20 @@ def detect_de():
     except AttributeError:
         desktop_env = []
     if "pantheon" in desktop_env:
-        logging.debug("Desktop environment detected : Panatheon")
+        log("Desktop environment detected : Panatheon")
         return "pantheon"
     else:
         try:
             out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
                           verbose=False)
             if " = \"xfce4\"" in out.decode("utf-8"):
-                logging.debug("Desktop environment detected: XFCE")
+                log("Desktop environment detected: XFCE")
                 return "xfce"
             else:
                 return "other"
         except (OSError, RuntimeError):
             return "other"
-    logging.debug("Desktop environment not detected")
+    log("Desktop environment not detected")
 
 
 def get_supported_apps(fix_only, custom_path=""):

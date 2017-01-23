@@ -21,11 +21,9 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
-import logging
-
 from modules.const import ARCH, USERHOME
 from modules.icon import Icon
-from modules.utils import create_dir, execute, get_iterated_icons
+from modules.utils import create_dir, execute, get_iterated_icons, log
 from os import path
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
@@ -125,8 +123,7 @@ class DataManager:
             for icon_path in self.data["icons_path"]:
                 if (self.data["force_create_folder"] and
                         not path.exists(icon_path)):
-                    logging.debug("Creating application folder for "
-                                  "{0}".format(self.data["name"]))
+                    log("Creating application folder for {0}".format(self.data["name"]))
                     create_dir(icon_path)
                 if path.isdir(icon_path):
                     if ("binary" in self.data.keys()
@@ -147,6 +144,5 @@ class DataManager:
                              self.data["exec_path_script"], _path],
                             verbose=True).decode("utf-8").strip()
         if _path != old_path:
-            logging.debug("new application {0} path : {1}".format(
-                self.data["name"], _path))
+            log("new application {0} path : {1}".format(self.data["name"], _path))
         return _path
