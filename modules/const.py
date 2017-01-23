@@ -32,7 +32,8 @@ USERNAME = getenv("SUDO_USER")
 USERHOME = check_output('sh -c "echo $HOME"', shell=True,
                         universal_newlines=True).strip()
 if USERHOME.lower() == "/root":
-    USERHOME = path.join("", "home", getenv("SUDO_USER"))
+    USERHOME = path.join("home", getenv("SUDO_USER"))
+USERHOME = path.join("", USERHOME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 CHMOD_IGNORE_LIST = ["", "home"]
