@@ -121,7 +121,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        log(error, logging.ERROR)
+        log(error.decode("utf-8"), logging.ERROR)
     return output
 
 
