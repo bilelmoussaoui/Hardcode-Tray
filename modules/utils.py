@@ -39,12 +39,12 @@ def symlink_file(source, link_name):
     """Symlink a file, remove the dest file if already exists."""
     try:
         symlink(source, link_name)
+        mchown(link_name)
     except FileExistsError:
         remove(link_name)
-        symlink(source, link_name)
+        symlink_file(source, link_name)
     except FileNotFoundError:
-        pass
-    mchown(link_name)
+        log("File name {0} was not found".format(source), logging.ERROR)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -121,7 +121,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        log(error.decode("utf-8"), logging.ERROR)
+        log(error, logging.ERROR)
     return output
 
 
