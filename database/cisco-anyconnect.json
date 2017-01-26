@@ -1,0 +1,64 @@
+{
+    "name": "Cisco AnyConnect",
+    "app_path": [
+        "/opt/cisco/anyconnect/bin/vpnui"
+    ],
+    "icons_path": [
+        "/opt/cisco/anyconnect/pixmaps/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "connected": {
+            "original": "systray_connected.png",
+            "theme": "systray-connected"
+        },
+        "notconnected": {
+            "original": "systray_notconnected.png",
+            "theme": "systray_notconnected"
+        },
+        "disconnecting": {
+            "original": "systray_disconnecting.png",
+            "theme": "systray_disconnecting"
+        },
+        "reconnecting": {
+            "original": "systray_reconnecting.png",
+            "theme": "systray_reconnecting"
+        },
+        "quarantined": {
+            "original": "systray_quarantined.png",
+            "theme": "systray_quarantined"
+        },
+        "about": {
+            "original": "cvc-about.png",
+            "theme": "cvc-about"
+        },
+        "configure": {
+            "original": "cvc-configure.png",
+            "theme": "cvc-configure"
+        },
+        "connect": {
+            "original": "cvc-connect.png",
+            "theme": "cvc-connect"
+        },
+        "disconnect": {
+            "original": "cvc-disconnect.png",
+            "theme": "cvc-disconnect"
+        },
+        "info": {
+            "original": "cvc-info.png",
+            "theme": "cvc-info"
+        },
+        "main": {
+            "original": "vpnui48.png",
+            "theme": "vpnui"
+        },
+        "downloader": {
+            "original": "downloader-arrow.png",
+            "theme": "downloader-arrow"
+        }
+    }
+}
