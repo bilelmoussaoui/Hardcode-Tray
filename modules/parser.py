@@ -23,26 +23,42 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 import json
 from modules.const import ARCH, USERHOME
 from modules.icon import Icon
+from modules.applications.application import Application
+from modules.applications.binary import BinaryApplication
+from modules.applications.electron import ElectronApplication
+from modules.applications.qt import QtApplication
+from modules.applications.pak import PakApplication
+from modules.applications.zip import ZipApplication
+from modules.applications.nwjs import NWJSApplication
 from modules.utils import create_dir, execute, get_iterated_icons, log
 from os import path
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 
 
-class DataManager:
+class Parser:
     """
     DataManager is used to read the json database file.
 
     It used to create a dictionnary with all the informations about the
     application
     """
+    _APPLICATION_TYPE = {
+        "electron" : ElectronApplication,
+        "zip" : ZipApplication,
+        "pak" : PakApplication,
+        "nwjs" : NWJSApplication,
+        "qt" : QtApplication,
+        "binary" : BinaryApplication,
+        "normal" : Application
+    }
 
-    def __init__(self, database_file, theme, default_icon_size,
-                 custom_path="", is_only=False):
+    def __init__(self, database_file, theme, svgtopng, default_icon_size,
+                 custom_path=""):
         """Init function."""
         self.default_icon_size = default_icon_size
         self.json_file = database_file
+        self.svgtopng = svgtopng
         self.custom_path = custom_path
-        self.is_only = is_only
         self.theme = theme
         self.dont_install = True
         self.supported_icons_cnt = 0
@@ -56,6 +72,10 @@ class DataManager:
             return "qt"
         else:
             return "normal"
+
+    def get_application(self):
+        """Return the application object."""
+        return self._APPLICATION_TYPE[self.get_type()](self, self.svgtopng)
 
     def get_icons(self):
         """Return the application icons."""
@@ -72,7 +92,7 @@ class DataManager:
             with open(self.json_file) as data_file:
                 self.data = json.load(data_file)
             data_file.close()
-            if (self.custom_path and self.is_only
+            if (self.custom_path
                     and path.exists(self.custom_path)):
                 self.data["icons_path"].append(self.custom_path)
             self.check_paths()

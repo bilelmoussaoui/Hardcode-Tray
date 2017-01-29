@@ -24,8 +24,9 @@ from os import path
 from imp import load_source
 from modules.applications.binary import BinaryApplication
 from modules.utils import get_pngbytes
-absolute_path = path.split(path.abspath(__file__))[0] + "/../"
-data_pack = load_source('data_pack', absolute_path + 'data_pack.py')
+
+absolute_path = path.split(path.abspath(__file__))[0]
+data_pack = load_source('data_pack', absolute_path + '/pak/data_pack.py')
 
 
 class PakApplication(BinaryApplication):

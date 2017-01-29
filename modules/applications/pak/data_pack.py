@@ -9,12 +9,7 @@ found in the LICENSE directory.
 """
 
 from collections import namedtuple
-from os import path as os_path
 from struct import unpack, pack
-from sys import path as sys_path
-if __name__ == '__main__':
-    sys_path.append(os_path.join(os_path.dirname(__file__), '../..'))
-
 
 PACK_FILE_VERSION = 4
 # Two uint32s. (file version, number of entries) and

@@ -20,19 +20,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, environ, geteuid, listdir
+from os import path, environ, geteuid
+from glob import glob
 from argparse import ArgumentParser
-from modules.data import DataManager
-from modules.utils import (execute, change_colors_list, log,
+from modules.parser import Parser
+from modules.utils import (execute, change_colors_list, log, get_scaling_factor,
                            get_list_of_themes, create_icon_theme)
 from modules.const import (DB_FOLDER,
                            REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
-from modules.applications.application import Application
-from modules.applications.electron import ElectronApplication
-from modules.applications.qt import QtApplication
-from modules.applications.pak import PakApplication
-from modules.applications.zip import ZipApplication
-from modules.applications.nwjs import NWJSApplication
 from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
 from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
 from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
@@ -52,7 +47,7 @@ parser = ArgumentParser(prog="Hardcode-Tray")
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
 THEMES_LIST = get_list_of_themes()
 theme = Gtk.IconTheme.get_default()
-supported_icons_cnt = 0
+SCALING_FACTOR = get_scaling_factor()
 
 parser.add_argument("--debug", "-d", action='store_true',
                     help="Run the script with debug mode.")
@@ -125,34 +120,22 @@ def detect_de():
 
 def get_supported_apps(fix_only, custom_path=""):
     """Get a list of dict, a dict for each supported application."""
-    database_files = listdir(absolute_path + DB_FOLDER)
     if len(fix_only) != 0:
         database_files = []
-        for _file in fix_only:
-            if path.exists("%s%s.json" % (DB_FOLDER, _file)):
-                database_files.append("%s.json" % _file)
+        for db_file in fix_only:
+            db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
+            if path.exists(db_file):
+                database_files.append(db_file)
+    else:
+        database_files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
+    if len(fix_only) > 1 and custom_path:
+        exit("You can't use --path with more than application at once.")
     database_files.sort()
     supported_apps = []
-    is_only = len(database_files) == 1
-    for _file in database_files:
-        _file = "./%s%s" % (DB_FOLDER, _file)
-        application_data = DataManager(_file, theme, default_icon_size,
-                                       custom_path, is_only)
+    for db_file in database_files:
+        application_data = Parser(db_file, theme, svgtopng, default_icon_size, custom_path)
         if application_data.is_installed():
-            application_type = application_data.get_type()
-            if application_type == "electron":
-                application = ElectronApplication(application_data, svgtopng)
-            elif application_type == "pak":
-                application = PakApplication(application_data, svgtopng)
-            elif application_type == "qt":
-                application = QtApplication(application_data, svgtopng)
-            elif application_type == "nwjs":
-                application = NWJSApplication(application_data, svgtopng)
-            elif application_type == "zip":
-                application = ZipApplication(application_data, svgtopng)
-            else:
-                application = Application(application_data, svgtopng)
-            supported_apps.append(application)
+            supported_apps.append(application_data.get_application())
     return supported_apps
 
 
@@ -240,7 +223,7 @@ else:
     source = Gio.SettingsSchemaSource.get_default()
     if source.lookup("org.gnome.desktop.interface", True):
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-        theme_name = str(gsettings.get_value("icon-theme")).strip("'")
+        theme_name = gsettings.get_string("icon-theme")
 
 if args.change_color:
     colours = change_colors_list(args.change_color)
@@ -279,6 +262,9 @@ else:
         default_icon_size = 24
     else:
         default_icon_size = 22
+if SCALING_FACTOR != 0:
+    default_icon_size *= SCALING_FACTOR
+    default_icon_size = round(default_icon_size, 0)
 choice = None
 fix_only = args.only.lower().strip().split(",") if args.only else []
 

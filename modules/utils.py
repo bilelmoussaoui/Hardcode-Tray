@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi import require_version
+from configparser import ConfigParser
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
@@ -32,7 +33,7 @@ from time import strftime
 import logging
 import inspect
 require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 
 def symlink_file(source, link_name):
@@ -75,6 +76,28 @@ def get_extension(filename):
         str : file extension
     """
     return path.splitext(filename)[1].strip(".").lower()
+
+
+def get_scaling_factor():
+    """Return the widgets scaling factor."""
+    scaling_factor = -1
+    try:
+        gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+        scaling_factor = gsettings.get_uint('scaling-factor')
+    except Exception as e:
+        scaling_factor = -1
+        logging.debug("Gnome not detected.")
+    if scaling_factor < 0:
+        try:
+            plasma_scaling_config = path.join(USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
+            config = ConfigParser()
+            config.read(plasma_scaling_config)
+            scaling_factor = int(config['Containments']['iconsize'])
+        except (FileNotFoundError, KeyError):
+            logging.debug("KDE not detected.")
+    if scaling_factor <= 0:
+        scaling_factor = 1
+    return scaling_factor
 
 
 def mchown(directory):
