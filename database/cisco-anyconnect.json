@@ -14,51 +14,23 @@
     "icons": {
         "connected": {
             "original": "systray_connected.png",
-            "theme": "systray-connected"
+            "theme": "cisco-tray-connected"
         },
         "notconnected": {
             "original": "systray_notconnected.png",
-            "theme": "systray_notconnected"
+            "theme": "cisco-tray-notconnected"
         },
         "disconnecting": {
             "original": "systray_disconnecting.png",
-            "theme": "systray_disconnecting"
+            "theme": "cisco-tray-disconnecting"
         },
         "reconnecting": {
             "original": "systray_reconnecting.png",
-            "theme": "systray_reconnecting"
+            "theme": "cisco-tray-reconnecting"
         },
         "quarantined": {
             "original": "systray_quarantined.png",
-            "theme": "systray_quarantined"
-        },
-        "about": {
-            "original": "cvc-about.png",
-            "theme": "cvc-about"
-        },
-        "configure": {
-            "original": "cvc-configure.png",
-            "theme": "cvc-configure"
-        },
-        "connect": {
-            "original": "cvc-connect.png",
-            "theme": "cvc-connect"
-        },
-        "disconnect": {
-            "original": "cvc-disconnect.png",
-            "theme": "cvc-disconnect"
-        },
-        "info": {
-            "original": "cvc-info.png",
-            "theme": "cvc-info"
-        },
-        "main": {
-            "original": "vpnui48.png",
-            "theme": "vpnui"
-        },
-        "downloader": {
-            "original": "downloader-arrow.png",
-            "theme": "downloader-arrow"
+            "theme": "cisco-tray-quarantined"
         }
     }
 }
