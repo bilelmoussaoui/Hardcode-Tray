@@ -364,7 +364,7 @@ def replace_colors(file_name, colors):
 
 def log(message, error_type=logging.DEBUG):
     func = inspect.currentframe().f_back.f_code
-    error = "%s: %s in %s:%i" % (message, func.co_name, func.co_filename, func.co_firstlineno)
+    error = "{0!s}: {1!s} in {2!s}:{3:d}".format(message, func.co_name, func.co_filename, func.co_firstlineno)
     if error_type == logging.ERROR:
         logging.error(error)
     else:
