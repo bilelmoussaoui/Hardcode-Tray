@@ -39,6 +39,12 @@ sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
 sudo apt update
 sudo apt install sni-qt sni-qt:i386 hardcode-tray
 ```
+
+### OpenSUSE (Leap 42.2 / Tumbleweed)
+OpenSUSE package only contains the patched version of sni-qt. In order to get Hardcode-Tray, please follow the manual installation method.
+
+The one click-installer can be found by following this [link](https://software.opensuse.org/package/sni-qt-patched)
+
 #### Manual install
   1. Download and install the script:
   ```bash
