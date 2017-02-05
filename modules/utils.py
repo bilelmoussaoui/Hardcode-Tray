@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi import require_version
-from configparser import ConfigParser
+from configparser import ConfigParser, DuplicateSectionError
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
@@ -95,7 +95,7 @@ def get_scaling_factor():
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
             log("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
-        except (FileNotFoundError, KeyError):
+        except (FileNotFoundError, KeyError, DuplicateSectionError):
             log("KDE not detected.")
     if scaling_factor < 0:
         scaling_factor = 1
