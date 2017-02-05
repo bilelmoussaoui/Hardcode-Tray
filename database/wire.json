@@ -19,7 +19,7 @@
             "theme": "wire-tray"
         },
         "notification": {
-            "original": "notification.png",
+            "original": "tray.badge.png",
             "theme": "wire-tray-attention"
         }
     }
