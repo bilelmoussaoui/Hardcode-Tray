@@ -24,20 +24,19 @@ from os import path, environ, geteuid
 from glob import glob
 from argparse import ArgumentParser
 from modules.parser import Parser
-from modules.utils import (execute, change_colors_list, log, get_scaling_factor,
-                           get_list_of_themes, create_icon_theme)
-from modules.const import (DB_FOLDER,
-                           REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
-from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
-from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
-from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
-from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
-from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
-from modules.svg.svg import SVG
+from modules.utils import (execute, change_colors_list, get_scaling_factor,
+                           get_list_of_themes, create_icon_theme, detect_de,
+                           progress)
+from modules.const import DB_FOLDER
+from modules.svg.inkscape import Inkscape
+from modules.svg.cairosvg import CairoSVG
+from modules.svg.rsvgconvert import RSVGConvert
+from modules.svg.imagemagick import ImageMagick
+from modules.svg.svgexport import SVGExport
+from modules.svg.svg import SVG, SVGNotInstalled
 import logging
 
 
-from sys import stdout
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
@@ -48,6 +47,14 @@ absolute_path = path.split(path.abspath(__file__))[0] + "/"
 THEMES_LIST = get_list_of_themes()
 theme = Gtk.IconTheme.get_default()
 SCALING_FACTOR = get_scaling_factor()
+
+CONVERSION_TOOLS = {"Inkscape" : Inkscape, 
+                    "CairoSVG" : CairoSVG,
+                    "RSVGConvert" : RSVGConvert, 
+                    "ImageMagick" : ImageMagick, 
+                    "SVGExport" : SVGExport
+                    }
+
 
 parser.add_argument("--debug", "-d", action='store_true',
                     help="Run the script with debug mode.")
@@ -87,35 +94,11 @@ parser.add_argument("--revert", "-r", action='store_true',
                     help="revert fixed hardcoded tray icons")
 parser.add_argument("--conversion-tool", "-ct",
                     help="Which of conversion tool to use",
-                    type=str, choices=CONVERSION_TOOLS)
+                    type=str, choices=CONVERSION_TOOLS.keys())
 parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
 args = parser.parse_args()
-
-
-def detect_de():
-    """Detect the desktop environment, used to choose the proper icons size."""
-    try:
-        desktop_env = [environ.get("DESKTOP_SESSION").lower(
-        ), environ.get("XDG_CURRENT_DESKTOP").lower()]
-    except AttributeError:
-        desktop_env = []
-    if "pantheon" in desktop_env:
-        log("Desktop environment detected : Panatheon")
-        return "pantheon"
-    else:
-        try:
-            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
-                          verbose=False)
-            if " = \"xfce4\"" in out.decode("utf-8"):
-                log("Desktop environment detected: XFCE")
-                return "xfce"
-            else:
-                return "other"
-        except (OSError, RuntimeError):
-            return "other"
-    log("Desktop environment not detected")
 
 
 def get_supported_apps(fix_only, custom_path=""):
@@ -139,64 +122,33 @@ def get_supported_apps(fix_only, custom_path=""):
     return supported_apps
 
 
-def progress(count, count_max, app_name=""):
-    """Used to draw a progress bar."""
-    bar_len = 40
-    space = 20
-    filled_len = int(round(bar_len * count / float(count_max)))
 
-    percents = round(100.0 * count / float(count_max), 1)
-    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
-
-    stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
-    stdout.write('[%s] %i/%i %s%s\r' %
-                 (progress_bar, count, count_max, percents, '%'))
-    print("")
-    stdout.flush()
-
-
-def reinstall(fix_only, custom_path):
-    """Revert to the original icons."""
+def apply(fix_only, custom_path, is_install):
     apps = get_supported_apps(fix_only, custom_path)
+    done = []
     if len(apps) != 0:
         cnt = 0
-        reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
+        counter_total = sum(app.data.supported_icons_cnt for app in apps)
         for i, app in enumerate(apps):
             app_name = app.get_name()
-            app.reinstall()
+            if is_install:
+                app.install()
+            else:
+                app.reinstall()
             if app.is_done:
                 cnt += app.data.supported_icons_cnt
-                if app_name not in REVERTED_APPS:
-                    progress(cnt, reverted_cnt, app_name)
-                    REVERTED_APPS.append(app_name)
+                if app_name not in done:
+                    progress(cnt, counter_total, app_name)
+                    done.append(app_name)
             else:
-                reverted_cnt -= app.data.supported_icons_cnt
+                counter_total -= app.data.supported_icons_cnt
                 if i == len(apps) - 1:
-                    progress(cnt, reverted_cnt)
+                    progress(cnt, counter_total)
     else:
-        exit("No apps to revert!")
-
-
-def install(fix_only, custom_path):
-    """Install the new supported icons."""
-    apps = get_supported_apps(fix_only, custom_path)
-    if len(apps) != 0:
-        cnt = 0
-        installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
-        for i, app in enumerate(apps):
-            app_name = app.get_name()
-            app.install()
-            if app.is_done:
-                cnt += app.data.supported_icons_cnt
-                if app_name not in FIXED_APPS:
-                    progress(cnt, installed_cnt, app_name)
-                    FIXED_APPS.append(app_name)
-            else:
-                installed_cnt -= app.data.supported_icons_cnt
-                if i == len(apps) - 1:
-                    progress(cnt, installed_cnt)
-    else:
-        exit("No apps to fix! Please report on GitHub if this is not the case")
+        if is_install:
+            exit("No apps to fix! Please report on GitHub if this is not the case")
+        else:
+            exit("No apps to revert!")
 
 
 if geteuid() != 0:
@@ -235,25 +187,24 @@ logging.basicConfig(level=level,
                     format='[%(levelname)s] - %(asctime)s - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-conversion_tool = args.conversion_tool if args.conversion_tool else None
-svgtool_found = False
-i = 0
-while i < len(CONVERSION_TOOLS) and not svgtool_found:
-    tool = CONVERSION_TOOLS[i]
+if args.conversion_tool:
     try:
-        if ((conversion_tool and conversion_tool == tool)
-                or not conversion_tool):
+        svgtopng = CONVERSION_TOOLS[args.conversion_tool](colours)
+    except SVGNotInstalled:
+        exit("The selected conversion tool is not installed.")
+else:
+    svgtool_found = False
+    for conversion_tool in CONVERSION_TOOLS:
+        try:
+            svgtopng = CONVERSION_TOOLS[conversion_tool](colours)
             svgtool_found = True
-        if svgtool_found:
-            svgtopng = eval(tool)(colours)
-            conversion_tool = tool
-    except eval("%sNotInstalled" % tool):
-        svgtool_found = False
-    i += 1
-if not svgtool_found:
-    conversion_tool = "Not Found!"
-    svgtopng = SVG(colours)
-    svgtopng.is_svg_enabled = False
+            break
+        except SVGNotInstalled:
+            svgtool_found = False
+            pass
+    if not svgtool_found:
+        exit("None of the supported conversion tools are installed")
+
 
 if args.size:
     default_icon_size = args.size
@@ -283,29 +234,31 @@ if args.theme or gsettings:
 elif args.dark_theme and args.light_theme:
     print("Your current dark icon theme is : %s" % dark_theme_name)
     print("Your current light icon theme is : %s" % light_theme_name)
-print("Svg to png functions are : ", end="")
-print("Enabled" if svgtopng.is_svg_enabled else "Disabled")
-print("Conversion tool : " + conversion_tool)
+print("Conversion tool : {0}".format(svgtopng))
 print("Applications will be fixed : ", end="")
 print(",".join(fix_only) if fix_only else "All")
 
 if not choice:
     print("1 - Apply")
     print("2 - Revert")
-    try:
-        choice = int(input("Please choose: "))
-        if choice not in [1, 2]:
-            exit("Please try again")
-    except ValueError:
-        exit("Please choose a valid value!")
-    except KeyboardInterrupt:
-        exit("")
+    has_chosen = False
+    while not has_chosen:
+        try:
+            choice = int(input("Please choose: "))
+            if choice not in [1, 2]:
+                print("Please try again")
+            else:
+                has_chosen = True
+        except ValueError:
+            print("Please choose a valid value!")
+        except KeyboardInterrupt:
+            exit("")
 
 if choice == 1:
     print("Applying now..\n")
-    install(fix_only, icon_path)
+    apply(fix_only, icon_path, True)
 elif choice == 2:
     print("Reverting now..\n")
-    reinstall(fix_only, icon_path)
+    apply(fix_only, icon_path, False)
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")

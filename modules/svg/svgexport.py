@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.utils import execute
-from modules.svg.svg import SVG
+from modules.svg.svg import SVG, SVGNotInstalled
 
 
 class SVGExport(SVG):
@@ -32,7 +32,7 @@ class SVGExport(SVG):
         super(SVGExport, self).__init__(colors)
         self.cmd = "svgexport"
         if not self.is_installed():
-            raise SVGExportNotInstalled
+            raise SVGNotInstalled
 
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
@@ -43,9 +43,3 @@ class SVGExport(SVG):
         execute(cmd)
 
 
-class SVGExportNotInstalled(Exception):
-    """Exception raised when Inkscape is not installed."""
-
-    def __init__(self):
-        """Init Exception."""
-        super(SVGExportNotInstalled, self).__init__()

@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from io import BytesIO
 from gi import require_version
-from modules.svg.svg import SVG
+from modules.svg.svg import SVG, SVGNotInstalled
 try:
     require_version('Rsvg', '2.0')
     from cairosvg import svg2png
@@ -40,7 +40,7 @@ class CairoSVG(SVG):
         """Init function."""
         super(CairoSVG, self).__init__(colors)
         if not self.is_installed():
-            raise CairoSVGNotInstalled
+            raise SVGNotInstalled
 
     @staticmethod
     def convert_to_png(input_file, output_file, width=None, height=None):
@@ -76,11 +76,3 @@ class CairoSVG(SVG):
     def is_installed():
         """Check if Cairo is installed or not."""
         return CAIRO_IS_INSTALLED
-
-
-class CairoSVGNotInstalled(Exception):
-    """Exception raised when Cairo is not installed."""
-
-    def __init__(self):
-        """Init Exception."""
-        super(CairoSVGNotInstalled, self).__init__()

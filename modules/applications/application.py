@@ -104,7 +104,7 @@ class Application:
                     "path": icon_path
                 })
         return icons
-
+    
     def install(self):
         """Install the application icons."""
         self.back_dir = create_backup_dir(self.get_name())
@@ -136,8 +136,7 @@ class Application:
         output_icon = icon_path + base_icon
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
-        elif (ext_theme == "svg" and ext_orig == "png"
-              and self.svgtopng.is_svg_enabled):
+        elif ext_theme == "svg" and ext_orig == "png":
             if icon_size != self.data.default_icon_size:
                 self.svgtopng.to_png(theme_icon, output_icon, icon_size)
             else:

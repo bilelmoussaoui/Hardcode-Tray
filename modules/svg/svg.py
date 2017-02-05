@@ -28,8 +28,6 @@ from modules.utils import copy_file, replace_colors, is_installed
 class SVG:
     """SVG Interface used by other class's."""
 
-    _is_svg_enabled = True
-
     def __init__(self, colors):
         """Init function."""
         self.colors = colors
@@ -64,12 +62,14 @@ class SVG:
         """Check if the tool is installed."""
         return is_installed(self.cmd)
 
-    @property
-    def is_svg_enabled(self):
-        """Return if the svg to png conversion tools are activated."""
-        return self._is_svg_enabled
+    def __repr__(self):
+        return self.__class__.__name__
 
-    @is_svg_enabled.setter
-    def is_svg_enabled(self, is_svg_enabled):
-        """Disable using svg to png conversion tools."""
-        self._is_svg_enabled = is_svg_enabled
+
+
+class SVGNotInstalled(Exception):
+    """Exception raised when Inkscape is not installed."""
+
+    def __init__(self):
+        """Init Exception."""
+        super(SVGNotInstalled, self).__init__()

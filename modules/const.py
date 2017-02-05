@@ -25,8 +25,6 @@ from platform import machine
 from subprocess import check_output
 
 DB_FOLDER = path.join("database", "")
-CONVERSION_TOOLS = ["Inkscape", "CairoSVG",
-                    "RSVGConvert", "ImageMagick", "SVGExport"]
 BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
 USERHOME = check_output('sh -c "echo $HOME"', shell=True,
@@ -40,5 +38,3 @@ CHMOD_IGNORE_LIST = ["", "home"]
 USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))
 ARCH = machine()
-FIXED_APPS = []
-REVERTED_APPS = []

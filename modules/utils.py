@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi import require_version
 from configparser import ConfigParser, DuplicateSectionError
-from os import chown, makedirs, path, remove, symlink, listdir
+from os import chown, makedirs, path, remove, symlink, listdir, environ
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from functools import reduce
@@ -31,9 +31,50 @@ from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                            BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from time import strftime
 import logging
-import inspect
+from sys import stdout
 require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gio
+
+
+
+def detect_de():
+    """Detect the desktop environment, used to choose the proper icons size."""
+    try:
+        desktop_env = [environ.get("DESKTOP_SESSION").lower(
+        ), environ.get("XDG_CURRENT_DESKTOP").lower()]
+    except AttributeError:
+        desktop_env = []
+    if "pantheon" in desktop_env:
+        logging.debug("Desktop environment detected : Panatheon")
+        return "pantheon"
+    else:
+        try:
+            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
+                          verbose=False)
+            if " = \"xfce4\"" in out.decode("utf-8"):
+                logging.debug("Desktop environment detected: XFCE")
+                return "xfce"
+            else:
+                return "other"
+        except (OSError, RuntimeError):
+            return "other"
+
+
+def progress(count, count_max, app_name=""):
+    """Used to draw a progress bar."""
+    bar_len = 40
+    space = 20
+    filled_len = int(round(bar_len * count / float(count_max)))
+
+    percents = round(100.0 * count / float(count_max), 1)
+    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
+
+    stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
+    stdout.write('[%s] %i/%i %s%s\r' %
+                 (progress_bar, count, count_max, percents, '%'))
+    print("")
+    stdout.flush()
+    
 
 
 def symlink_file(source, link_name):
@@ -45,7 +86,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        log("File name {0} was not found".format(source), logging.ERROR)
+        logging.debug("File name {0} was not found".format(source), logging.ERROR)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -84,19 +125,19 @@ def get_scaling_factor():
     try:
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        log("Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
+        logging.debug("Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
     except Exception as e:
         scaling_factor = -1
-        log("Gnome not detected.")
+        logging.debug("Gnome not detected.")
     if scaling_factor in [1, -1]:
         try:
             plasma_scaling_config = path.join(USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
             config = ConfigParser()
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
-            log("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
+            logging.debug("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
         except (FileNotFoundError, KeyError, DuplicateSectionError):
-            log("KDE not detected.")
+            logging.debug("KDE not detected.")
     if scaling_factor < 0:
         scaling_factor = 1
     return scaling_factor
@@ -146,7 +187,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        log(error, logging.ERROR)
+        logging.error(error)
     return output
 
 
@@ -156,22 +197,25 @@ def is_installed(binary):
     return bool(ink_flag == 0)
 
 
-def create_backup_dir(application_name):
-    """Create a backup directory for an application (application_name)."""
-    current_time_folder = strftime(BACKUP_FILE_FORMAT)
-    back_dir = path.join(BACKUP_FOLDER, application_name,
-                         current_time_folder, "")
-    exists = True
-    new_back_dir = back_dir
-    i = 1
-    while exists:
-        if path.exists(new_back_dir):
-            new_back_dir = back_dir + "_" + str(i)
-        if not path.exists(new_back_dir):
-            create_dir(new_back_dir)
-            exists = False
-        i += 1
-    return new_back_dir
+def create_backup_dir(app_object):
+    application_name = app_object.get_name()
+    def wrapper(application_name):
+        """Create a backup directory for an application (application_name)."""
+        current_time_folder = strftime(BACKUP_FILE_FORMAT)
+        back_dir = path.join(BACKUP_FOLDER, application_name,
+                             current_time_folder, "")
+        exists = True
+        new_back_dir = back_dir
+        i = 1
+        while exists:
+            if path.exists(new_back_dir):
+                new_back_dir = back_dir + "_" + str(i)
+            if not path.exists(new_back_dir):
+                create_dir(new_back_dir)
+                exists = False
+            i += 1
+        return new_back_dir
+    return wrapper
 
 
 def backup(back_dir, file_name):
@@ -179,7 +223,7 @@ def backup(back_dir, file_name):
     back_file = path.join(back_dir, path.basename(
         file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        log("Backup current file {0} to {1}".format(file_name, back_file))
+        logging.debug("Backup current file {0} to {1}".format(file_name, back_file))
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -221,9 +265,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            log("The user stopped the reversion for {0}".format(application_name))
+            logging.debug("The user stopped the reversion for {0}".format(application_name))
         else:
-            log("No backup folder found for the application {0}".format(application_name))
+            logging.debug("No backup folder found for the application {0}".format(application_name))
     return None
 
 
@@ -292,7 +336,7 @@ def get_pngbytes(svgtopng, icon):
     """Return the pngbytes of a svg/png icon."""
     icon_for_repl = icon["theme"]
     icon_extension = icon["theme_ext"]
-    if svgtopng.is_svg_enabled and icon_extension == 'svg':
+    if icon_extension == 'svg':
         pngbytes = svgtopng.to_bin(icon_for_repl)
     elif icon_extension == "png":
         with open(icon_for_repl, 'rb') as pngfile:
@@ -362,12 +406,3 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
-
-
-def log(message, error_type=logging.DEBUG):
-    func = inspect.currentframe().f_back.f_code
-    error = "{0!s}: {1!s} in {2!s}:{3:d}".format(message, func.co_name, func.co_filename, func.co_firstlineno)
-    if error_type == logging.ERROR:
-        logging.error(error)
-    else:
-        logging.debug(error)
