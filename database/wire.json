@@ -1,0 +1,26 @@
+{
+    "name": "Wire",
+    "app_path": [
+        "/opt/Wire/",
+        "/usr/lib/wire/"
+    ],
+    "icons_path": [
+        "/opt/Wire/resources/app/img/",
+        "/usr/lib/wire/resources/app/img/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "tray.png",
+            "theme": "wire-tray"
+        },
+        "notification": {
+            "original": "notification.png",
+            "theme": "wire-tray-attention"
+        }
+    }
+}
