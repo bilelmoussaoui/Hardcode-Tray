@@ -83,19 +83,21 @@ def get_scaling_factor():
     scaling_factor = -1
     try:
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-        scaling_factor = gsettings.get_uint('scaling-factor')
+        scaling_factor = gsettings.get_uint('scaling-factor') + 1
+        log("Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
     except Exception as e:
         scaling_factor = -1
-        logging.debug("Gnome not detected.")
-    if scaling_factor < 0:
+        log("Gnome not detected.")
+    if scaling_factor in [1, -1]:
         try:
             plasma_scaling_config = path.join(USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
             config = ConfigParser()
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
+            log("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
         except (FileNotFoundError, KeyError):
-            logging.debug("KDE not detected.")
-    if scaling_factor <= 0:
+            log("KDE not detected.")
+    if scaling_factor < 0:
         scaling_factor = 1
     return scaling_factor
 
