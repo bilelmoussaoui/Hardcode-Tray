@@ -27,6 +27,7 @@ from functools import reduce
 from subprocess import PIPE, Popen, call
 from time import strftime
 import logging
+import re
 from sys import stdout
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, LOG_FILE_FORMAT, BACKUP_EXTENSION,
                            BACKUP_FOLDER, BACKUP_FILE_FORMAT)
@@ -121,9 +122,13 @@ def get_scaling_factor(desktop_env):
             lines = obj.readlines()
             obj.close()
             scaling_factor = 1
+            was_found = False
             for line in lines:
                 line = line.strip().split("=")
-                if len(line) > 1:
+                if len(line) == 1:
+                    was_found = re.match(r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
+                    print(was_found)
+                if len(line) > 1 and was_found:
                     key = line[0].strip()
                     if key.lower() == "iconsize":
                         scaling_factor = int(line[1].strip())
@@ -376,3 +381,4 @@ def replace_colors(file_name, colors):
 
 setup_logging()
 logging = logging.getLogger('hardcode-tray')
+
