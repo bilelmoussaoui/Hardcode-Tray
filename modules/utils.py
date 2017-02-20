@@ -255,8 +255,7 @@ def show_select_backup(application_name):
         if stopped:
             logging.debug("The user stopped the reversion for %s", application_name)
         else:
-            logging.debug(
-                "No backup folder found for the application %s", application_name))
+            logging.debug("No backup folder found for the application %s", application_name)
     return None
 
 
