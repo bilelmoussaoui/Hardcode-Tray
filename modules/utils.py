@@ -127,7 +127,6 @@ def get_scaling_factor(desktop_env):
                 line = line.strip().split("=")
                 if len(line) == 1:
                     was_found = re.match(r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
-                    print(was_found)
                 if len(line) > 1 and was_found:
                     key = line[0].strip()
                     if key.lower() == "iconsize":
