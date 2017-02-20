@@ -20,18 +20,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.applications.binary import BinaryApplication
 from os import path, remove
 from shutil import make_archive, rmtree, move
+from modules.applications.binary import BinaryApplication
 from modules.utils import execute, copy_file
 
 
 class NWJSApplication(BinaryApplication):
-    """Pak Application class, based on data_pak file."""
+    """NWJS Application class."""
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        super(NWJSApplication, self).__init__(application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data, svgtopng)
         self.tmp_path = "/tmp/{0!s}/".format(self.get_name())
         self.tmp_data = self.tmp_path + self.get_nwjs_path()
 

@@ -20,20 +20,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import getenv, path
-from platform import machine
-from modules.tools import get_userhome, detect_de
+from jsonspec.validators import load, exceptions
+import json
 
 
-DB_FOLDER = path.join("database", "")
-BACKUP_EXTENSION = ".bak"
-USERNAME = getenv("SUDO_USER")
-USERHOME = get_userhome(USERNAME)
-BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
-BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
-LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
-CHMOD_IGNORE_LIST = ["", "home"]
-USER_ID = int(getenv("SUDO_UID"))
-GROUP_ID = int(getenv("SUDO_GID"))
-ARCH = machine()
-DESKTOP_ENV = detect_de()
+with open('schema.json', 'r') as schema_obj:
+    schema = schema_obj.read()
+schema_obj.close()
+
+validator = load(json.loads(schema))
+
+with open('../data.json', 'r') as data_obj:
+    data = data_obj.read()
+data_obj.close()
+
+try:
+    validator.validate(json.loads(data))
+except exceptions.ValidationError:
+    exit("The json file is not following the correct schema.")

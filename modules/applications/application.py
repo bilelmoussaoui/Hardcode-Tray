@@ -38,6 +38,8 @@ class Application:
         self.is_done = True
         self.svgtopng = svgtopng
         self.data = application_data
+        self.selected_backup = None
+        self.back_dir = None
 
     def get_name(self):
         """Return the application name."""
@@ -104,7 +106,7 @@ class Application:
                     "path": icon_path
                 })
         return icons
-    
+
     def install(self):
         """Install the application icons."""
         self.back_dir = create_backup_dir(self.get_name())

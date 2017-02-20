@@ -27,7 +27,7 @@ try:
     require_version('Rsvg', '2.0')
     from cairosvg import svg2png
     from gi.repository import Rsvg
-    import cairo
+    from cairo import ImageSurface, FORMAT_ARGB32, Context
     CAIRO_IS_INSTALLED = True
 except (ImportError, AttributeError, ValueError):
     CAIRO_IS_INSTALLED = False
@@ -50,9 +50,9 @@ class CairoSVG(SVG):
             svg = handle.new_from_file(input_file)
             dim = svg.get_dimensions()
 
-            img = cairo.ImageSurface(
-                cairo.FORMAT_ARGB32, width, height)
-            ctx = cairo.Context(img)
+            img = ImageSurface(
+                FORMAT_ARGB32, width, height)
+            ctx = Context(img)
             ctx.scale(width / dim.width, height / dim.height)
             svg.render_cairo(ctx)
 

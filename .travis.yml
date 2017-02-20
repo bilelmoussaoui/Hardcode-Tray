@@ -1,0 +1,14 @@
+dist: trusty
+sudo: required
+language: python
+python:
+  - "3.6"
+install:
+  - "sudo apt-get -y update"
+  - "sudo apt-get -y install inkscape python3-pip"
+  - "pip3 install json-spec cairosvg pylint"
+script: 
+  - "find -name \"*.py\" | xargs pylint --disable=C0103 $1"
+  - "cd ./tests/"
+  - "python3 validate-json.py"
+  - "python3 order.py"

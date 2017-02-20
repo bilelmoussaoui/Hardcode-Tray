@@ -21,8 +21,12 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
-from modules.const import ARCH, USERHOME
+import logging
+from os import path
+
+from modules.const import ARCH, USERHOME, DESKTOP_ENV
 from modules.icon import Icon
+from modules.theme import Theme
 from modules.applications.application import Application
 from modules.applications.binary import BinaryApplication
 from modules.applications.electron import ElectronApplication
@@ -30,10 +34,28 @@ from modules.applications.qt import QtApplication
 from modules.applications.pak import PakApplication
 from modules.applications.zip import ZipApplication
 from modules.applications.nwjs import NWJSApplication
-from modules.utils import create_dir, execute, get_iterated_icons
-import logging
-from os import path
+from modules.svg.inkscape import Inkscape
+from modules.svg.svgcairo import CairoSVG
+from modules.svg.rsvgconvert import RSVGConvert
+from modules.svg.imagemagick import ImageMagick
+from modules.svg.svgexport import SVGExport
+from modules.svg.svg import SVGNotInstalled
+from modules.utils import (
+    create_dir, execute, get_scaling_factor, get_iterated_icons, replace_to_6hex)
+
+from gi import require_version
+require_version("Gtk", "3.0")
+from gi.repository import Gio, Gtk
+
+
+logging = logging.getLogger('hardcode-tray')
 absolute_path = path.split(path.abspath(__file__))[0] + "/"
+CONVERSION_TOOLS = {"Inkscape": Inkscape,
+                    "CairoSVG": CairoSVG,
+                    "RSVGConvert": RSVGConvert,
+                    "ImageMagick": ImageMagick,
+                    "SVGExport": SVGExport
+                    }
 
 
 class Parser:
@@ -44,23 +66,22 @@ class Parser:
     application
     """
     _APPLICATION_TYPE = {
-        "electron" : ElectronApplication,
-        "zip" : ZipApplication,
-        "pak" : PakApplication,
-        "nwjs" : NWJSApplication,
-        "qt" : QtApplication,
-        "binary" : BinaryApplication,
-        "normal" : Application
+        "electron": ElectronApplication,
+        "zip": ZipApplication,
+        "pak": PakApplication,
+        "nwjs": NWJSApplication,
+        "qt": QtApplication,
+        "binary": BinaryApplication,
+        "normal": Application
     }
 
-    def __init__(self, database_file, theme, svgtopng, default_icon_size,
-                 custom_path=""):
+    def __init__(self, database_file, args):
         """Init function."""
-        self.default_icon_size = default_icon_size
+        self.default_icon_size = args.icon_size
         self.json_file = database_file
-        self.svgtopng = svgtopng
-        self.custom_path = custom_path
-        self.theme = theme
+        self.svgtopng = args.svgtopng
+        self.custom_path = args.path
+        self.theme = args.theme
         self.dont_install = True
         self.supported_icons_cnt = 0
         self.read()
@@ -144,7 +165,8 @@ class Parser:
             for icon_path in self.data["icons_path"]:
                 if (self.data["force_create_folder"] and
                         not path.exists(icon_path)):
-                    logging.debug("Creating application folder for {0}".format(self.data["name"]))
+                    logging.debug(
+                        "Creating application folder for {0}".format(self.data["name"]))
                     create_dir(icon_path)
                 if path.isdir(icon_path):
                     if ("binary" in self.data.keys()
@@ -161,9 +183,121 @@ class Parser:
         _path = _path.replace("{size}", str(self.default_icon_size))
         _path = _path.replace("{arch}", ARCH)
         if self.data["exec_path_script"]:
-            _path = execute([absolute_path + "paths/" +
-                             self.data["exec_path_script"], _path],
-                            verbose=True).decode("utf-8").strip()
+            script_path = path.join(
+                absolute_path, "paths", self.data["exec_path_script"])
+            _path = old_path
+            if path.exists(script_path):
+                _path = execute([script_path, _path],
+                                verbose=True).decode("utf-8").strip()
+            else:
+                logging.error(
+                    "Script file `{0}` not found".format(script_path))
         if _path != old_path:
-            logging.debug("new application {0} path : {1}".format(self.data["name"], _path))
+            logging.debug("new application {0} path : {1}".format(
+                self.data["name"], _path))
         return _path
+
+
+class ArgsParser:
+
+    def __init__(self, args):
+        self._args = args
+        self._parse_theme()
+        self._parse_colors()
+        self._parse_conversion_tool()
+        self._parse_icon_size()
+        self._parse_scaling_factor()
+        self._parse_fix_only()
+        self._parse_path()
+        self._parse_choice()
+
+    @property
+    def args(self):
+        return self._args
+
+    def _parse_theme(self):
+        if self.args.theme:
+            self.theme = Theme(self.args.theme)
+        elif self.args.light_theme and self.args.dark_theme:
+            self.theme = {
+                "dark": Theme(self.args.dark_theme),
+                "light": Theme(self.args.light_theme)
+            }
+        else:
+            source = Gio.SettingsSchemaSource.get_default()
+            if source.lookup("org.gnome.desktop.interface", True):
+                gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+                theme_name = gsettings.get_string("icon-theme")
+                self.theme = Theme(theme_name)
+
+    def _parse_colors(self):
+        self.colours = []
+        if self.args.change_color:
+            list_colours = self.args.change_color
+            colours = []
+            for color in list_colours:
+                color = color.strip().split(" ")
+                to_replace = replace_to_6hex(color[0])
+                for_replace = replace_to_6hex(color[1])
+                colours.append([to_replace, for_replace])
+            self.colours = colours
+
+    def _parse_conversion_tool(self):
+        if self.args.conversion_tool:
+            try:
+                self.svgtopng = CONVERSION_TOOLS[
+                    self.args.conversion_tool](self.colours)
+            except SVGNotInstalled:
+                exit("The selected conversion tool is not installed.")
+        else:
+            svgtool_found = False
+            for conversion_tool in CONVERSION_TOOLS:
+                try:
+                    self.svgtopng = CONVERSION_TOOLS[
+                        conversion_tool](self.colours)
+                    svgtool_found = True
+                    break
+                except SVGNotInstalled:
+                    svgtool_found = False
+                    pass
+        if not svgtool_found:
+            raise SVGNotInstalled
+
+    def _parse_icon_size(self):
+        if self.args.size:
+            self.icon_size = self.args.size
+        else:
+            if DESKTOP_ENV in ("pantheon", "xfce"):
+                self.icon_size = 24
+            else:
+                self.icon_size = 22
+
+    def _parse_scaling_factor(self):
+        self.scaling_factor = get_scaling_factor(DESKTOP_ENV)
+        if self.scaling_factor > 1:
+            self.icon_size = round(self.icon_size * self.scaling_factor, 0)
+            logging.debug(
+                "Icon size was changed to : {0}".format(self.icon_size))
+
+    def _parse_fix_only(self):
+        self.only = []
+        if self.args.only:
+            self.only = self.args.only.lower().strip().split(",")
+
+    def _parse_path(self):
+        self.path = None
+        if self.args.path and len(self.only) != 0:
+            proposed_path = self.args.path
+            if path.exists(proposed_path) and path.isdir(proposed_path):
+                self.path = self.args.path
+            else:
+                raise FileNotFoundError("Please select a valid --path")
+
+    def _parse_choice(self):
+        self.choice = None
+        if self.args.apply and self.args.revert:
+            raise ValueError
+        if self.args.apply:
+            self.choice = 1
+        elif self.args.revert:
+            self.choice = 2

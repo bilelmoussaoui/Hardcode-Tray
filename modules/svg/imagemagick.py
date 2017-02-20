@@ -42,4 +42,3 @@ class ImageMagick(SVG):
                 ["-size", "{0!s}x{1!s}".format(str(width), str(height))])
         cmd.extend([input_file, output_file])
         execute(cmd)
-

@@ -41,5 +41,3 @@ class SVGExport(SVG):
             cmd.extend(["{0!s}:{1!s}".format(str(width), str(height))])
         cmd.extend([input_file, output_file])
         execute(cmd)
-
-

@@ -20,44 +20,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from gi import require_version
 from configparser import ConfigParser, DuplicateSectionError
-from os import chown, makedirs, path, remove, symlink, listdir, environ
+from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from functools import reduce
 from subprocess import PIPE, Popen, call
-from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
-                           BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from time import strftime
 import logging
 from sys import stdout
-require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gio
+from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, LOG_FILE_FORMAT, BACKUP_EXTENSION,
+                           BACKUP_FOLDER, BACKUP_FILE_FORMAT)
+from gi.repository import Gio
 
 
-
-def detect_de():
-    """Detect the desktop environment, used to choose the proper icons size."""
-    try:
-        desktop_env = [environ.get("DESKTOP_SESSION").lower(
-        ), environ.get("XDG_CURRENT_DESKTOP").lower()]
-    except AttributeError:
-        desktop_env = []
-    if "pantheon" in desktop_env:
-        logging.debug("Desktop environment detected : Panatheon")
-        return "pantheon"
-    else:
-        try:
-            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
-                          verbose=False)
-            if " = \"xfce4\"" in out.decode("utf-8"):
-                logging.debug("Desktop environment detected: XFCE")
-                return "xfce"
-            else:
-                return "other"
-        except (OSError, RuntimeError):
-            return "other"
+def setup_logging():
+    logger = logging.getLogger('hardcode-tray')
+    tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(strftime(LOG_FILE_FORMAT))
+    if not path.exists(path.dirname(tmp_file)):
+        makedirs(path.dirname(tmp_file))
+    if not path.exists(tmp_file):
+        f = open(tmp_file, 'w')
+        f.write('')
+        f.close()
+    handler = logging.FileHandler(tmp_file)
+    formater = logging.Formatter('[%(levelname)s] - %(asctime)s - %(message)s')
+    handler.setFormatter(formater)
+    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
 
 
 def progress(count, count_max, app_name=""):
@@ -74,7 +64,6 @@ def progress(count, count_max, app_name=""):
                  (progress_bar, count, count_max, percents, '%'))
     print("")
     stdout.flush()
-    
 
 
 def symlink_file(source, link_name):
@@ -86,7 +75,8 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        logging.debug("File name {0} was not found".format(source), logging.ERROR)
+        logging.debug("File name {0} was not found".format(
+            source), logging.ERROR)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -119,27 +109,25 @@ def get_extension(filename):
     return path.splitext(filename)[1].strip(".").lower()
 
 
-def get_scaling_factor():
+def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
-    scaling_factor = -1
-    try:
+    scaling_factor = 1
+    if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        logging.debug("Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
-    except Exception as e:
-        scaling_factor = -1
-        logging.debug("Gnome not detected.")
-    if scaling_factor in [1, -1]:
+        logging.debug(
+            "Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
+    elif desktop_env == "kde":
         try:
-            plasma_scaling_config = path.join(USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
+            plasma_scaling_config = path.join(
+                USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
             config = ConfigParser()
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
-            logging.debug("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
+            logging.debug(
+                "Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
         except (FileNotFoundError, KeyError, DuplicateSectionError):
             logging.debug("KDE not detected.")
-    if scaling_factor < 0:
-        scaling_factor = 1
     return scaling_factor
 
 
@@ -197,25 +185,22 @@ def is_installed(binary):
     return bool(ink_flag == 0)
 
 
-def create_backup_dir(app_object):
-    application_name = app_object.get_name()
-    def wrapper(application_name):
-        """Create a backup directory for an application (application_name)."""
-        current_time_folder = strftime(BACKUP_FILE_FORMAT)
-        back_dir = path.join(BACKUP_FOLDER, application_name,
-                             current_time_folder, "")
-        exists = True
-        new_back_dir = back_dir
-        i = 1
-        while exists:
-            if path.exists(new_back_dir):
-                new_back_dir = back_dir + "_" + str(i)
-            if not path.exists(new_back_dir):
-                create_dir(new_back_dir)
-                exists = False
-            i += 1
-        return new_back_dir
-    return wrapper
+def create_backup_dir(application_name):
+    """Create a backup directory for an application (application_name)."""
+    current_time_folder = strftime(BACKUP_FILE_FORMAT)
+    back_dir = path.join(BACKUP_FOLDER, application_name,
+                         current_time_folder, "")
+    exists = True
+    new_back_dir = back_dir
+    i = 1
+    while exists:
+        if path.exists(new_back_dir):
+            new_back_dir = back_dir + "_" + str(i)
+        if not path.exists(new_back_dir):
+            create_dir(new_back_dir)
+            exists = False
+        i += 1
+    return new_back_dir
 
 
 def backup(back_dir, file_name):
@@ -223,7 +208,8 @@ def backup(back_dir, file_name):
     back_file = path.join(back_dir, path.basename(
         file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        logging.debug("Backup current file {0} to {1}".format(file_name, back_file))
+        logging.debug("Backup current file {0} to {1}".format(
+            file_name, back_file))
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -243,8 +229,8 @@ def show_select_backup(application_name):
         backup_folders.sort()
         i = 1
         for backup_folder in backup_folders:
-            print("{0} ) {1}/{2} ".format(str(i),
-                                          application_name, backup_folder))
+            print("{0}) {1}/{2} ".format(str(i), application_name,
+                                         backup_folder))
             i += 1
         print("(Q)uit to not revert to any version")
         have_chosen = False
@@ -265,9 +251,11 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug("The user stopped the reversion for {0}".format(application_name))
+            logging.debug(
+                "The user stopped the reversion for {0}".format(application_name))
         else:
-            logging.debug("No backup folder found for the application {0}".format(application_name))
+            logging.debug(
+                "No backup folder found for the application {0}".format(application_name))
     return None
 
 
@@ -321,17 +309,6 @@ def get_list_of_themes():
     return themes
 
 
-def create_icon_theme(theme_name, themes_list):
-    """Return Gtk.IconTheme if it's a valid icon theme."""
-    if theme_name in themes_list:
-        theme = Gtk.IconTheme()
-        theme.set_custom_theme(theme_name)
-    else:
-        exit("The theme {0!s} is not installed on your system.".format(
-            theme_name))
-    return theme
-
-
 def get_pngbytes(svgtopng, icon):
     """Return the pngbytes of a svg/png icon."""
     icon_for_repl = icon["theme"]
@@ -381,17 +358,6 @@ def replace_to_6hex(color):
         exit("Invalid color {0}".format(color))
 
 
-def change_colors_list(list_colours):
-    """Transform a list of colours to a list of a sub-lists."""
-    colours = []
-    for color in list_colours:
-        color = color.strip().split(" ")
-        to_replace = replace_to_6hex(color[0])
-        for_replace = replace_to_6hex(color[1])
-        colours.append([to_replace, for_replace])
-    return colours
-
-
 def replace_colors(file_name, colors):
     """Replace the colors in a file name."""
     if path.isfile(file_name):
@@ -406,3 +372,7 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
+
+
+setup_logging()
+logging = logging.getLogger('hardcode-tray')

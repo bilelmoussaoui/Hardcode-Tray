@@ -32,7 +32,7 @@ class ElectronApplication(BinaryApplication):
 
     def __init__(self, application_data, svgtopng):
         """Use the parent class, Application, modify only the (re)install."""
-        super(ElectronApplication, self).__init__(application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data, svgtopng)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""

@@ -41,13 +41,9 @@ def replace_hangouts_version_dir(directory):
                 break
         if hangouts_folder:
             return directory.replace("{hangouts_version}", hangouts_folder)
-        else:
-            return directory
-    else:
-        return directory
+    return directory
 
 
 hangouts_path = argv[1]
 hangouts_path = replace_hangouts_version_dir(hangouts_path)
 print(hangouts_path)
-

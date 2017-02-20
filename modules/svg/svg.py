@@ -72,4 +72,4 @@ class SVGNotInstalled(Exception):
 
     def __init__(self):
         """Init Exception."""
-        super(SVGNotInstalled, self).__init__()
+        Exception.__init__(self)
