@@ -75,8 +75,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        logging.debug("File name {0} was not found".format(
-            source), logging.ERROR)
+        logging.debug("File name %s was not found", source)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -115,17 +114,14 @@ def get_scaling_factor(desktop_env):
     if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        logging.debug(
-            "Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
+        logging.debug("Scaling factor of Gnome interface is set to %s", scaling_factor)
     elif desktop_env == "kde":
         try:
-            plasma_scaling_config = path.join(
-                USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
+            plasma_scaling_config = path.join(USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
             config = ConfigParser()
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
-            logging.debug(
-                "Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
+            logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
         except (FileNotFoundError, KeyError, DuplicateSectionError):
             logging.debug("KDE not detected.")
     return scaling_factor
@@ -208,8 +204,7 @@ def backup(back_dir, file_name):
     back_file = path.join(back_dir, path.basename(
         file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        logging.debug("Backup current file {0} to {1}".format(
-            file_name, back_file))
+        logging.debug("Backup current file %s to %s", file_name, back_file)
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -251,11 +246,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug(
-                "The user stopped the reversion for {0}".format(application_name))
+            logging.debug("The user stopped the reversion for %s", application_name)
         else:
-            logging.debug(
-                "No backup folder found for the application {0}".format(application_name))
+            logging.debug("No backup folder found for the application %s", application_name)
     return None
 
 

@@ -26,11 +26,7 @@ from argparse import ArgumentParser
 from modules.parser import Parser, ArgsParser, CONVERSION_TOOLS
 from modules.utils import (progress, get_list_of_themes)
 from modules.const import DB_FOLDER, DESKTOP_ENV
-from gi import require_version
-require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
-theme = Gtk.IconTheme.get_default()
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
@@ -83,7 +79,7 @@ args = parser.parse_args()
 args = ArgsParser(args)
 
 
-if not (DESKTOP_ENV or DESKTOP_ENV == "other") and not args.icon_size:
+if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not args.icon_size:
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 def get_supported_apps(fix_only, custom_path=""):

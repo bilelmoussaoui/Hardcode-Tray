@@ -21,13 +21,13 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from io import BytesIO
-from gi import require_version
 from modules.svg.svg import SVG, SVGNotInstalled
 try:
-    require_version('Rsvg', '2.0')
     from cairosvg import svg2png
-    from gi.repository import Rsvg
     from cairo import ImageSurface, FORMAT_ARGB32, Context
+    from gi import require_version
+    require_version('Rsvg', '2.0')
+    from gi.repository import Rsvg
     CAIRO_IS_INSTALLED = True
 except (ImportError, AttributeError, ValueError):
     CAIRO_IS_INSTALLED = False

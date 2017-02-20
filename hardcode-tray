@@ -23,7 +23,7 @@ if [[ $EUID -ne 0 ]]; then
             exit 0 ;;
         *)
             cd /opt/Hardcode-Tray/
-            sudo -E python3 hardcode-tray.py "$@"
+            sudo -E python3 script.py "$@"
     esac
 else
     echo "Script shouldn't be run as root"

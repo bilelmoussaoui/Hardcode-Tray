@@ -38,31 +38,21 @@ def get_userhome(username):
 
 def detect_de():
     """Detect the desktop environment, used to choose the proper icons size."""
-    de = None
     try:
         desktop_env = [environ.get("DESKTOP_SESSION").lower(
         ), environ.get("XDG_CURRENT_DESKTOP").lower()]
     except AttributeError:
         desktop_env = []
-    if "pantheon" in desktop_env:
-        logging.debug("Desktop environment detected : Panatheon")
-        de = "pantheon"
-    elif "kde" in desktop_env:
-        logging.debug("Desktop environment detected : KDE")
-        de = "kde"
-    elif "gnome" in desktop_env:
-        logging.debug("Desktop environment detected : Gnome")
-        de = "gnome"
-    else:
-        try:
-            out = Popen(["ls", "-la", "xprop -root _DT_SAVE_MODE"]
-                        ).communicate()[0]
-            if "xfce" in out:
-                logging.debug("Desktop environment detected: XFCE")
-                de = "xfce"
-        except (OSError, RuntimeError):
-            pass
-    if de:
-        return de
-    else:
-        return "other"
+    known_desktop = ["pantheon", "gnome", "kde"]
+    for desktop in known_desktop:
+        if desktop in desktop_env:
+            logging.debug("Desktop environnement detected : %s", desktop.title())
+            return desktop
+    try:
+        out = Popen(["ls", "-la", "xprop -root _DT_SAVE_MODE"]).communicate()[0]
+        if "xfce" in out:
+            logging.debug("Desktop environment detected: XFCE")
+            return "xfce"
+    except (OSError, RuntimeError):
+        pass
+    return "other"

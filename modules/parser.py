@@ -42,10 +42,7 @@ from modules.svg.svgexport import SVGExport
 from modules.svg.svg import SVGNotInstalled
 from modules.utils import (
     create_dir, execute, get_scaling_factor, get_iterated_icons, replace_to_6hex)
-
-from gi import require_version
-require_version("Gtk", "3.0")
-from gi.repository import Gio, Gtk
+from gi.repository import Gio
 
 
 logging = logging.getLogger('hardcode-tray')
@@ -55,7 +52,7 @@ CONVERSION_TOOLS = {"Inkscape": Inkscape,
                     "RSVGConvert": RSVGConvert,
                     "ImageMagick": ImageMagick,
                     "SVGExport": SVGExport
-                    }
+                   }
 
 
 class Parser:
@@ -92,8 +89,7 @@ class Parser:
             return self.data["script"]
         elif self.data["is_qt"]:
             return "qt"
-        else:
-            return "normal"
+        return "normal"
 
     def get_application(self):
         """Return the application object."""
@@ -166,7 +162,7 @@ class Parser:
                 if (self.data["force_create_folder"] and
                         not path.exists(icon_path)):
                     logging.debug(
-                        "Creating application folder for {0}".format(self.data["name"]))
+                        "Creating application folder for %s", self.data["name"])
                     create_dir(icon_path)
                 if path.isdir(icon_path):
                     if ("binary" in self.data.keys()
@@ -190,11 +186,9 @@ class Parser:
                 _path = execute([script_path, _path],
                                 verbose=True).decode("utf-8").strip()
             else:
-                logging.error(
-                    "Script file `{0}` not found".format(script_path))
+                logging.error("Script file `%s` not found", script_path)
         if _path != old_path:
-            logging.debug("new application {0} path : {1}".format(
-                self.data["name"], _path))
+            logging.debug("new application %s path : %s", self.data["name"], _path)
         return _path
 
 
@@ -202,6 +196,9 @@ class ArgsParser:
 
     def __init__(self, args):
         self._args = args
+        self.parse()
+
+    def parse(self):
         self._parse_theme()
         self._parse_colors()
         self._parse_conversion_tool()
@@ -259,7 +256,7 @@ class ArgsParser:
                     break
                 except SVGNotInstalled:
                     svgtool_found = False
-                    pass
+
         if not svgtool_found:
             raise SVGNotInstalled
 
@@ -276,8 +273,7 @@ class ArgsParser:
         self.scaling_factor = get_scaling_factor(DESKTOP_ENV)
         if self.scaling_factor > 1:
             self.icon_size = round(self.icon_size * self.scaling_factor, 0)
-            logging.debug(
-                "Icon size was changed to : {0}".format(self.icon_size))
+            logging.debug("Icon size was changed to : %s", self.icon_size)
 
     def _parse_fix_only(self):
         self.only = []

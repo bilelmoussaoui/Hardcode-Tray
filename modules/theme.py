@@ -26,6 +26,7 @@ from gi.repository import Gtk
 
 
 class Theme(Gtk.IconTheme):
+    """Easy way to create new themes based on the theme name."""
 
     def __init__(self, theme_name):
         self._name = theme_name
