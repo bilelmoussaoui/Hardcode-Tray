@@ -122,8 +122,8 @@ def get_scaling_factor(desktop_env):
             config.read(plasma_scaling_config)
             scaling_factor = int(config['Containments']['iconsize'])
             logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
-        except (FileNotFoundError, KeyError, DuplicateSectionError):
-            logging.debug("KDE not detected.")
+        except (FileNotFoundError, KeyError, DuplicateSectionError) as kde_error:
+            logging.debug("KDE not detected, error : %s" % kde_error.decode("utf-8"))
     return scaling_factor
 
 
