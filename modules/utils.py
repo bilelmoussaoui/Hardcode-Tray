@@ -20,7 +20,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from configparser import ConfigParser, DuplicateSectionError
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
@@ -118,12 +117,20 @@ def get_scaling_factor(desktop_env):
     elif desktop_env == "kde":
         try:
             plasma_scaling_config = path.join(USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
-            config = ConfigParser()
-            config.read(plasma_scaling_config)
-            scaling_factor = int(config['Containments']['iconsize'])
+            obj = open(plasma_scaling_config, 'r')
+            lines = obj.readlines()
+            obj.close()
+            scaling_factor = 1
+            for line in lines:
+                line = line.strip().split("=")
+                if len(line) > 1:
+                    key = line[0].strip()
+                    if key.lower() == "iconsize":
+                        scaling_factor = int(line[1].strip())
+                        break
             logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
-        except (FileNotFoundError, KeyError, DuplicateSectionError) as kde_error:
-            logging.debug("KDE not detected, error : %s" % kde_error.decode("utf-8"))
+        except (FileNotFoundError, KeyError) as kde_error:
+            logging.debug("KDE scaling factor not detected, error : %s" % kde_error)
     return scaling_factor
 
 
@@ -248,7 +255,8 @@ def show_select_backup(application_name):
         if stopped:
             logging.debug("The user stopped the reversion for %s", application_name)
         else:
-            logging.debug("No backup folder found for the application %s", application_name)
+            logging.debug(
+                "No backup folder found for the application %s", application_name))
     return None
 
 
