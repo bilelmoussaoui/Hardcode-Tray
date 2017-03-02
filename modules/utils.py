@@ -59,9 +59,8 @@ def progress(count, count_max, app_name=""):
     percents = round(100.0 * count / float(count_max), 1)
     progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
-    stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
-    stdout.write('[%s] %i/%i %s%s\r' %
-                 (progress_bar, count, count_max, percents, '%'))
+    stdout.write("\r{0!s}{1!s}".format(app_name, " " * (abs(len(app_name) - space))))
+    stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar, count, count_max, percents, '%'))
     print("")
     stdout.flush()
 
@@ -134,7 +133,7 @@ def get_scaling_factor(desktop_env):
                         break
             logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
         except (FileNotFoundError, KeyError) as kde_error:
-            logging.debug("KDE scaling factor not detected, error : %s" % kde_error)
+            logging.debug("KDE scaling factor not detected, error : {0!s}".format(kde_error))
     return scaling_factor
 
 
