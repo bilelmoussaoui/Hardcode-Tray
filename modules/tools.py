@@ -53,6 +53,6 @@ def detect_de():
         if out and "xfce" in out:
             logging.debug("Desktop environment detected: XFCE")
             return "xfce"
-    except (OSError, RuntimeError):
+    except (OSError, RuntimeError, TypeError):
         pass
     return "other"
