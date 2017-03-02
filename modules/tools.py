@@ -43,14 +43,14 @@ def detect_de():
         ), environ.get("XDG_CURRENT_DESKTOP").lower()]
     except AttributeError:
         desktop_env = []
-    known_desktop = ["pantheon", "gnome", "kde"]
+    known_desktop = ["pantheon", "gnome", "kde", "unity"]
     for desktop in known_desktop:
         if desktop in desktop_env:
             logging.debug("Desktop environnement detected : %s", desktop.title())
             return desktop
     try:
         out = Popen(["ls", "-la", "xprop -root _DT_SAVE_MODE"]).communicate()[0]
-        if "xfce" in out:
+        if out and "xfce" in out:
             logging.debug("Desktop environment detected: XFCE")
             return "xfce"
     except (OSError, RuntimeError):
