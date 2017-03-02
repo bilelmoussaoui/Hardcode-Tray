@@ -31,7 +31,7 @@ class QtApplication(Application):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        super(QtApplication, self).__init__(application_data, svgtopng)
+        Application.__init__(self, application_data, svgtopng)
 
     @staticmethod
     def install_icon(icon, icon_path):

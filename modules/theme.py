@@ -20,20 +20,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import getenv, path
-from platform import machine
-from modules.tools import get_userhome, detect_de
+from gi import require_version
+require_version("Gtk", "3.0")
+from gi.repository import Gtk
 
 
-DB_FOLDER = path.join("database", "")
-BACKUP_EXTENSION = ".bak"
-USERNAME = getenv("SUDO_USER")
-USERHOME = get_userhome(USERNAME)
-BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
-BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
-LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
-CHMOD_IGNORE_LIST = ["", "home"]
-USER_ID = int(getenv("SUDO_UID"))
-GROUP_ID = int(getenv("SUDO_GID"))
-ARCH = machine()
-DESKTOP_ENV = detect_de()
+class Theme(Gtk.IconTheme):
+    """Easy way to create new themes based on the theme name."""
+
+    def __init__(self, theme_name):
+        self._name = theme_name
+        Gtk.IconTheme.__init__(self)
+        self.set_custom_theme(self.name)
+
+    @property
+    def name(self):
+        return self._name
+
+    def __getattr__(self, item):
+        if isinstance(self.name, dict):
+            return self.name[item]
+
+    def __repr__(self, *args):
+        return self.name

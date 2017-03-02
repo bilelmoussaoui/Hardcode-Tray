@@ -26,7 +26,8 @@ from modules.applications.binary import BinaryApplication
 from modules.utils import get_pngbytes
 
 absolute_path = path.split(path.abspath(__file__))[0]
-data_pack = load_source('data_pack', absolute_path + '/pak/data_pack.py')
+data_pack_path = path.join(absolute_path, "pak", "data_pack.py")
+data_pack = load_source('data_pack', data_pack_path)
 
 
 class PakApplication(BinaryApplication):
@@ -34,7 +35,7 @@ class PakApplication(BinaryApplication):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        super(PakApplication, self).__init__(application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data, svgtopng)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""

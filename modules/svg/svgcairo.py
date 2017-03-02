@@ -21,13 +21,13 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from io import BytesIO
-from gi import require_version
-from modules.svg.svg import SVG
+from modules.svg.svg import SVG, SVGNotInstalled
 try:
-    require_version('Rsvg', '2.0')
     from cairosvg import svg2png
+    from cairo import ImageSurface, FORMAT_ARGB32, Context
+    from gi import require_version
+    require_version('Rsvg', '2.0')
     from gi.repository import Rsvg
-    import cairo
     CAIRO_IS_INSTALLED = True
 except (ImportError, AttributeError, ValueError):
     CAIRO_IS_INSTALLED = False
@@ -40,7 +40,7 @@ class CairoSVG(SVG):
         """Init function."""
         super(CairoSVG, self).__init__(colors)
         if not self.is_installed():
-            raise CairoSVGNotInstalled
+            raise SVGNotInstalled
 
     @staticmethod
     def convert_to_png(input_file, output_file, width=None, height=None):
@@ -50,9 +50,9 @@ class CairoSVG(SVG):
             svg = handle.new_from_file(input_file)
             dim = svg.get_dimensions()
 
-            img = cairo.ImageSurface(
-                cairo.FORMAT_ARGB32, width, height)
-            ctx = cairo.Context(img)
+            img = ImageSurface(
+                FORMAT_ARGB32, width, height)
+            ctx = Context(img)
             ctx.scale(width / dim.width, height / dim.height)
             svg.render_cairo(ctx)
 
@@ -76,11 +76,3 @@ class CairoSVG(SVG):
     def is_installed():
         """Check if Cairo is installed or not."""
         return CAIRO_IS_INSTALLED
-
-
-class CairoSVGNotInstalled(Exception):
-    """Exception raised when Cairo is not installed."""
-
-    def __init__(self):
-        """Init Exception."""
-        super(CairoSVGNotInstalled, self).__init__()

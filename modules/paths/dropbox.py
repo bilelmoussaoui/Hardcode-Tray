@@ -43,10 +43,7 @@ def replace_dropbox_dir(directory):
                     break
         if dropbox_folder:
             return directory.replace("{dropbox}", dropbox_folder)
-        else:
-            return directory
-    else:
-        return directory
+    return directory
 
 
 dropbox_path = argv[1]

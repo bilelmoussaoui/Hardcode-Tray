@@ -20,20 +20,50 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from gi import require_version
-from configparser import ConfigParser, DuplicateSectionError
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from functools import reduce
 from subprocess import PIPE, Popen, call
-from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
-                           BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from time import strftime
 import logging
-import inspect
-require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gio
+import re
+from sys import stdout
+from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, LOG_FILE_FORMAT, BACKUP_EXTENSION,
+                           BACKUP_FOLDER, BACKUP_FILE_FORMAT)
+from gi.repository import Gio
+
+
+def setup_logging():
+    logger = logging.getLogger('hardcode-tray')
+    tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(strftime(LOG_FILE_FORMAT))
+    if not path.exists(path.dirname(tmp_file)):
+        makedirs(path.dirname(tmp_file))
+    if not path.exists(tmp_file):
+        f = open(tmp_file, 'w')
+        f.write('')
+        f.close()
+    handler = logging.FileHandler(tmp_file)
+    formater = logging.Formatter('[%(levelname)s] - %(asctime)s - %(message)s')
+    handler.setFormatter(formater)
+    logger.addHandler(handler)
+    logger.setLevel(logging.DEBUG)
+
+
+def progress(count, count_max, app_name=""):
+    """Used to draw a progress bar."""
+    bar_len = 40
+    space = 20
+    filled_len = int(round(bar_len * count / float(count_max)))
+
+    percents = round(100.0 * count / float(count_max), 1)
+    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
+
+    stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
+    stdout.write('[%s] %i/%i %s%s\r' %
+                 (progress_bar, count, count_max, percents, '%'))
+    print("")
+    stdout.flush()
 
 
 def symlink_file(source, link_name):
@@ -45,7 +75,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        log("File name {0} was not found".format(source), logging.ERROR)
+        logging.debug("File name %s was not found", source)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -78,27 +108,33 @@ def get_extension(filename):
     return path.splitext(filename)[1].strip(".").lower()
 
 
-def get_scaling_factor():
+def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
-    scaling_factor = -1
-    try:
+    scaling_factor = 1
+    if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        log("Scaling factor of Gnome interface is set to {0}".format(scaling_factor))
-    except Exception as e:
-        scaling_factor = -1
-        log("Gnome not detected.")
-    if scaling_factor in [1, -1]:
+        logging.debug("Scaling factor of Gnome interface is set to %s", scaling_factor)
+    elif desktop_env == "kde":
         try:
-            plasma_scaling_config = path.join(USERHOME, ".config/plasma-org.kde.plasma.desktop-appletsrc")
-            config = ConfigParser()
-            config.read(plasma_scaling_config)
-            scaling_factor = int(config['Containments']['iconsize'])
-            log("Scaling factor was detected in the KDE configuration with the value {0}".format(scaling_factor))
-        except (FileNotFoundError, KeyError, DuplicateSectionError):
-            log("KDE not detected.")
-    if scaling_factor < 0:
-        scaling_factor = 1
+            plasma_scaling_config = path.join(USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
+            obj = open(plasma_scaling_config, 'r')
+            lines = obj.readlines()
+            obj.close()
+            scaling_factor = 1
+            was_found = False
+            for line in lines:
+                line = line.strip().split("=")
+                if len(line) == 1:
+                    was_found = re.match(r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
+                if len(line) > 1 and was_found:
+                    key = line[0].strip()
+                    if key.lower() == "iconsize":
+                        scaling_factor = int(line[1].strip())
+                        break
+            logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
+        except (FileNotFoundError, KeyError) as kde_error:
+            logging.debug("KDE scaling factor not detected, error : %s" % kde_error)
     return scaling_factor
 
 
@@ -146,7 +182,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        log(error, logging.ERROR)
+        logging.error(error)
     return output
 
 
@@ -179,7 +215,7 @@ def backup(back_dir, file_name):
     back_file = path.join(back_dir, path.basename(
         file_name) + BACKUP_EXTENSION)
     if path.exists(file_name):
-        log("Backup current file {0} to {1}".format(file_name, back_file))
+        logging.debug("Backup current file %s to %s", file_name, back_file)
         copy_file(file_name, back_file)
         mchown(back_file)
     if len(listdir(back_dir)) == 0:
@@ -199,8 +235,8 @@ def show_select_backup(application_name):
         backup_folders.sort()
         i = 1
         for backup_folder in backup_folders:
-            print("{0} ) {1}/{2} ".format(str(i),
-                                          application_name, backup_folder))
+            print("{0}) {1}/{2} ".format(str(i), application_name,
+                                         backup_folder))
             i += 1
         print("(Q)uit to not revert to any version")
         have_chosen = False
@@ -221,9 +257,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            log("The user stopped the reversion for {0}".format(application_name))
+            logging.debug("The user stopped the reversion for %s", application_name)
         else:
-            log("No backup folder found for the application {0}".format(application_name))
+            logging.debug("No backup folder found for the application %s", application_name)
     return None
 
 
@@ -277,22 +313,11 @@ def get_list_of_themes():
     return themes
 
 
-def create_icon_theme(theme_name, themes_list):
-    """Return Gtk.IconTheme if it's a valid icon theme."""
-    if theme_name in themes_list:
-        theme = Gtk.IconTheme()
-        theme.set_custom_theme(theme_name)
-    else:
-        exit("The theme {0!s} is not installed on your system.".format(
-            theme_name))
-    return theme
-
-
 def get_pngbytes(svgtopng, icon):
     """Return the pngbytes of a svg/png icon."""
     icon_for_repl = icon["theme"]
     icon_extension = icon["theme_ext"]
-    if svgtopng.is_svg_enabled and icon_extension == 'svg':
+    if icon_extension == 'svg':
         pngbytes = svgtopng.to_bin(icon_for_repl)
     elif icon_extension == "png":
         with open(icon_for_repl, 'rb') as pngfile:
@@ -337,17 +362,6 @@ def replace_to_6hex(color):
         exit("Invalid color {0}".format(color))
 
 
-def change_colors_list(list_colours):
-    """Transform a list of colours to a list of a sub-lists."""
-    colours = []
-    for color in list_colours:
-        color = color.strip().split(" ")
-        to_replace = replace_to_6hex(color[0])
-        for_replace = replace_to_6hex(color[1])
-        colours.append([to_replace, for_replace])
-    return colours
-
-
 def replace_colors(file_name, colors):
     """Replace the colors in a file name."""
     if path.isfile(file_name):
@@ -364,10 +378,6 @@ def replace_colors(file_name, colors):
         _file.close()
 
 
-def log(message, error_type=logging.DEBUG):
-    func = inspect.currentframe().f_back.f_code
-    error = "{0!s}: {1!s} in {2!s}:{3:d}".format(message, func.co_name, func.co_filename, func.co_firstlineno)
-    if error_type == logging.ERROR:
-        logging.error(error)
-    else:
-        logging.debug(error)
+setup_logging()
+logging = logging.getLogger('hardcode-tray')
+

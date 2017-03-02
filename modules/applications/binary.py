@@ -29,7 +29,7 @@ class BinaryApplication(Application):
 
     def __init__(self, application_data, svgtopng):
         """Init method."""
-        super(BinaryApplication, self).__init__(application_data, svgtopng)
+        Application.__init__(self, application_data, svgtopng)
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""

@@ -20,37 +20,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, environ, geteuid
+from os import path, geteuid
 from glob import glob
 from argparse import ArgumentParser
-from modules.parser import Parser
-from modules.utils import (execute, change_colors_list, log, get_scaling_factor,
-                           get_list_of_themes, create_icon_theme)
-from modules.const import (DB_FOLDER,
-                           REVERTED_APPS, FIXED_APPS, CONVERSION_TOOLS)
-from modules.svg.inkscape import Inkscape, InkscapeNotInstalled
-from modules.svg.cairosvg import CairoSVG, CairoSVGNotInstalled
-from modules.svg.rsvgconvert import RSVGConvert, RSVGConvertNotInstalled
-from modules.svg.imagemagick import ImageMagick, ImageMagickNotInstalled
-from modules.svg.svgexport import SVGExport, SVGExportNotInstalled
-from modules.svg.svg import SVG
-import logging
+from modules.parser import Parser, ArgsParser, CONVERSION_TOOLS
+from modules.utils import (progress, get_list_of_themes)
+from modules.const import DB_FOLDER, DESKTOP_ENV
 
 
-from sys import stdout
-from gi import require_version
-require_version("Gtk", "3.0")
-from gi.repository import Gio, Gtk
-colours = []
-gsettings = None
-parser = ArgumentParser(prog="Hardcode-Tray")
-absolute_path = path.split(path.abspath(__file__))[0] + "/"
+if geteuid() != 0:
+    exit("You need to have root privileges to run the script.\
+        \nPlease try again, this time using 'sudo'. Exiting.")
+
+parser = ArgumentParser(prog="hardcode-tray")
 THEMES_LIST = get_list_of_themes()
-theme = Gtk.IconTheme.get_default()
-SCALING_FACTOR = get_scaling_factor()
 
-parser.add_argument("--debug", "-d", action='store_true',
-                    help="Run the script with debug mode.")
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -87,36 +71,16 @@ parser.add_argument("--revert", "-r", action='store_true',
                     help="revert fixed hardcoded tray icons")
 parser.add_argument("--conversion-tool", "-ct",
                     help="Which of conversion tool to use",
-                    type=str, choices=CONVERSION_TOOLS)
+                    type=str, choices=CONVERSION_TOOLS.keys())
 parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
 args = parser.parse_args()
+args = ArgsParser(args)
 
 
-def detect_de():
-    """Detect the desktop environment, used to choose the proper icons size."""
-    try:
-        desktop_env = [environ.get("DESKTOP_SESSION").lower(
-        ), environ.get("XDG_CURRENT_DESKTOP").lower()]
-    except AttributeError:
-        desktop_env = []
-    if "pantheon" in desktop_env:
-        log("Desktop environment detected : Panatheon")
-        return "pantheon"
-    else:
-        try:
-            out = execute(["ls", "-la", "xprop -root _DT_SAVE_MODE"],
-                          verbose=False)
-            if " = \"xfce4\"" in out.decode("utf-8"):
-                log("Desktop environment detected: XFCE")
-                return "xfce"
-            else:
-                return "other"
-        except (OSError, RuntimeError):
-            return "other"
-    log("Desktop environment not detected")
-
+if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not args.icon_size:
+    exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 def get_supported_apps(fix_only, custom_path=""):
     """Get a list of dict, a dict for each supported application."""
@@ -133,179 +97,73 @@ def get_supported_apps(fix_only, custom_path=""):
     database_files.sort()
     supported_apps = []
     for db_file in database_files:
-        application_data = Parser(db_file, theme, svgtopng, default_icon_size, custom_path)
+        application_data = Parser(db_file, args)
         if application_data.is_installed():
             supported_apps.append(application_data.get_application())
     return supported_apps
 
 
-def progress(count, count_max, app_name=""):
-    """Used to draw a progress bar."""
-    bar_len = 40
-    space = 20
-    filled_len = int(round(bar_len * count / float(count_max)))
-
-    percents = round(100.0 * count / float(count_max), 1)
-    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
-
-    stdout.write("\r%s%s" % (app_name, " " * (abs(len(app_name) - space))))
-    stdout.write('[%s] %i/%i %s%s\r' %
-                 (progress_bar, count, count_max, percents, '%'))
-    print("")
-    stdout.flush()
-
-
-def reinstall(fix_only, custom_path):
-    """Revert to the original icons."""
-    apps = get_supported_apps(fix_only, custom_path)
+def apply(is_install):
+    apps = get_supported_apps(args.only, args.path)
+    done = []
     if len(apps) != 0:
         cnt = 0
-        reverted_cnt = sum(app.data.supported_icons_cnt for app in apps)
+        counter_total = sum(app.data.supported_icons_cnt for app in apps)
         for i, app in enumerate(apps):
             app_name = app.get_name()
-            app.reinstall()
+            if is_install:
+                app.install()
+            else:
+                app.reinstall()
             if app.is_done:
                 cnt += app.data.supported_icons_cnt
-                if app_name not in REVERTED_APPS:
-                    progress(cnt, reverted_cnt, app_name)
-                    REVERTED_APPS.append(app_name)
+                if app_name not in done:
+                    progress(cnt, counter_total, app_name)
+                    done.append(app_name)
             else:
-                reverted_cnt -= app.data.supported_icons_cnt
+                counter_total -= app.data.supported_icons_cnt
                 if i == len(apps) - 1:
-                    progress(cnt, reverted_cnt)
+                    progress(cnt, counter_total)
     else:
-        exit("No apps to revert!")
+        if is_install:
+            exit("No apps to fix! Please report on GitHub if this is not the case")
+        else:
+            exit("No apps to revert!")
 
-
-def install(fix_only, custom_path):
-    """Install the new supported icons."""
-    apps = get_supported_apps(fix_only, custom_path)
-    if len(apps) != 0:
-        cnt = 0
-        installed_cnt = sum(app.data.supported_icons_cnt for app in apps)
-        for i, app in enumerate(apps):
-            app_name = app.get_name()
-            app.install()
-            if app.is_done:
-                cnt += app.data.supported_icons_cnt
-                if app_name not in FIXED_APPS:
-                    progress(cnt, installed_cnt, app_name)
-                    FIXED_APPS.append(app_name)
-            else:
-                installed_cnt -= app.data.supported_icons_cnt
-                if i == len(apps) - 1:
-                    progress(cnt, installed_cnt)
-    else:
-        exit("No apps to fix! Please report on GitHub if this is not the case")
-
-
-if geteuid() != 0:
-    exit("You need to have root privileges to run the script.\
-        \nPlease try again, this time using 'sudo'. Exiting.")
-
-if not (environ.get("DESKTOP_SESSION") or
-        environ.get("XDG_CURRENT_DESKTOP")) and not args.size:
-    exit("You need to run the script using 'sudo -E'.\nPlease try again")
-
-if args.theme:
-    theme_name = args.theme
-    theme = create_icon_theme(theme_name, THEMES_LIST)
-elif args.light_theme and args.dark_theme:
-    light_theme_name = args.light_theme
-    dark_theme_name = args.dark_theme
-    dark_theme = create_icon_theme(dark_theme_name, THEMES_LIST)
-    light_theme = create_icon_theme(light_theme_name, THEMES_LIST)
-    theme = {
-        "dark": dark_theme,
-        "light": light_theme
-    }
-else:
-    source = Gio.SettingsSchemaSource.get_default()
-    if source.lookup("org.gnome.desktop.interface", True):
-        gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-        theme_name = gsettings.get_string("icon-theme")
-
-if args.change_color:
-    colours = change_colors_list(args.change_color)
-
-level = logging.ERROR
-if args.debug:
-    level = logging.DEBUG
-logging.basicConfig(level=level,
-                    format='[%(levelname)s] - %(asctime)s - %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
-
-conversion_tool = args.conversion_tool if args.conversion_tool else None
-svgtool_found = False
-i = 0
-while i < len(CONVERSION_TOOLS) and not svgtool_found:
-    tool = CONVERSION_TOOLS[i]
-    try:
-        if ((conversion_tool and conversion_tool == tool)
-                or not conversion_tool):
-            svgtool_found = True
-        if svgtool_found:
-            svgtopng = eval(tool)(colours)
-            conversion_tool = tool
-    except eval("%sNotInstalled" % tool):
-        svgtool_found = False
-    i += 1
-if not svgtool_found:
-    conversion_tool = "Not Found!"
-    svgtopng = SVG(colours)
-    svgtopng.is_svg_enabled = False
-
-if args.size:
-    default_icon_size = args.size
-else:
-    if detect_de() in ("pantheon", "xfce"):
-        default_icon_size = 24
-    else:
-        default_icon_size = 22
-if SCALING_FACTOR != 0:
-    default_icon_size *= SCALING_FACTOR
-    default_icon_size = round(default_icon_size, 0)
-choice = None
-fix_only = args.only.lower().strip().split(",") if args.only else []
-
-if args.path and fix_only and len(fix_only) == 1:
-    icon_path = args.path
-else:
-    icon_path = None
-if args.apply:
-    choice = 1
-if args.revert:
-    choice = 2
 print("Welcome to the tray icons hardcoder fixer!")
-print("Your indicator icon size is : %s" % default_icon_size)
-if args.theme or gsettings:
-    print("Your current icon theme is : %s" % theme_name)
-elif args.dark_theme and args.light_theme:
-    print("Your current dark icon theme is : %s" % dark_theme_name)
-    print("Your current light icon theme is : %s" % light_theme_name)
-print("Svg to png functions are : ", end="")
-print("Enabled" if svgtopng.is_svg_enabled else "Disabled")
-print("Conversion tool : " + conversion_tool)
+print("Your indicator icon size is : {0}".format(args.icon_size))
+print("The detected desktop environement : {0}".format(DESKTOP_ENV.title()))
+if not isinstance(args.theme, dict):
+    print("Your current icon theme is : {0}".format(args.theme))
+else:
+    print("Your current dark icon theme is : {0}".format(args.theme["dark"]))
+    print("Your current light icon theme is : {0}".format(args.theme["light"]))
+print("Conversion tool : {0}".format(args.svgtopng))
 print("Applications will be fixed : ", end="")
-print(",".join(fix_only) if fix_only else "All")
+print(",".join(map(lambda x: x.title(), args.only)) if args.only else "All")
 
+choice = args.choice
 if not choice:
     print("1 - Apply")
     print("2 - Revert")
-    try:
-        choice = int(input("Please choose: "))
-        if choice not in [1, 2]:
-            exit("Please try again")
-    except ValueError:
-        exit("Please choose a valid value!")
-    except KeyboardInterrupt:
-        exit("")
+    has_chosen = False
+    while not has_chosen:
+        try:
+            choice = int(input("Please choose: "))
+            if choice not in [1, 2]:
+                print("Please try again")
+            else:
+                has_chosen = True
+        except ValueError:
+            print("Please choose a valid value!")
+        except KeyboardInterrupt:
+            exit("")
 
 if choice == 1:
     print("Applying now..\n")
-    install(fix_only, icon_path)
+    apply(True)
 elif choice == 2:
     print("Reverting now..\n")
-    reinstall(fix_only, icon_path)
+    apply(False)
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")
