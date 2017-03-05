@@ -257,8 +257,8 @@ class ArgsParser:
                 except SVGNotInstalled:
                     svgtool_found = False
 
-             if not svgtool_found:
-                 raise SVGNotInstalled
+            if not svgtool_found:
+                raise SVGNotInstalled
 
     def _parse_icon_size(self):
         if self.args.size:
