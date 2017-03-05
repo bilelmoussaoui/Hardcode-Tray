@@ -49,6 +49,8 @@ def setup_logging():
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
 
+setup_logging()
+logging = logging.getLogger('hardcode-tray')
 
 def progress(count, count_max, app_name=""):
     """Used to draw a progress bar."""
@@ -375,8 +377,4 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
-
-
-setup_logging()
-logging = logging.getLogger('hardcode-tray')
 

@@ -25,44 +25,44 @@
     "backup_ignore": false,
     "icons": {
         "indicator@2x": {
-          "original": "icon_default_22.png",
-          "theme": "hangouts-available"
+            "original": "icon_default_22.png",
+            "theme": "hangouts-available"
         },
         "indicator@3x": {
-          "original": "icon_default_24.png",
-          "theme": "hangouts-available"
+            "original": "icon_default_24.png",
+            "theme": "hangouts-available"
         },
         "unavailable@2x": {
-          "original": "icon_unavailable_22.png",
-          "theme": "hangouts-offline"
+            "original": "icon_unavailable_22.png",
+            "theme": "hangouts-offline"
         },
         "unavailable@3x": {
-          "original": "icon_unavailable_24.png",
-          "theme": "hangouts-offline"
+            "original": "icon_unavailable_24.png",
+            "theme": "hangouts-offline"
         },
         "loading@2x": {
-          "original": "icon_loading_22.png",
-          "theme": "hangouts-working"
+            "original": "icon_loading_22.png",
+            "theme": "hangouts-working"
         },
         "loading@3x": {
-          "original": "icon_loading_24.png",
-          "theme": "hangouts-working"
+            "original": "icon_loading_24.png",
+            "theme": "hangouts-working"
         },
         "notification@2x": {
-          "original": "icon_1_22.png",
-          "theme": "hangouts-notification",
-          "symlinks":[
-            "icon_{2-9}_22.png",
-            "icon_9plus_22.png"
-          ]
+            "original": "icon_1_22.png",
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon_{2-9}_22.png",
+                "icon_9plus_22.png"
+            ]
         },
         "notification@3x": {
-          "original": "icon_1_24.png",
-          "theme": "hangouts-notification",
-          "symlinks":[
-            "icon_{2-9}_24.png",
-            "icon_9plus_24.png"
-          ]
+            "original": "icon_1_24.png",
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon_{2-9}_24.png",
+                "icon_9plus_24.png"
+            ]
         }
     }
 }

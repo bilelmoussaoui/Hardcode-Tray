@@ -181,7 +181,6 @@ class Parser:
         if self.data["exec_path_script"]:
             script_path = path.join(
                 absolute_path, "paths", self.data["exec_path_script"])
-            _path = old_path
             if path.exists(script_path):
                 _path = execute([script_path, _path],
                                 verbose=True).decode("utf-8").strip()
