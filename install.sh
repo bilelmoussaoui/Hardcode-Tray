@@ -1,5 +1,8 @@
 #!/bin/bash
 cd /tmp || exit
+if [ -d "/tmp/Hardcode-Tray/" ]; then
+    sudo rm -rf /tmp/Hardcode-Tray
+fi
 echo "Downloading Hardcode-Tray ..."
 if [ "$1" == "--g" ]; then
     echo "Cloning the repository..."
