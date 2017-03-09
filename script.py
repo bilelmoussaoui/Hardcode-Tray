@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.5
+Version : 3.6.6
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -104,6 +104,12 @@ def get_supported_apps(fix_only, custom_path=""):
 
 
 def apply(is_install):
+    """Fix Hardcoded Tray icons.
+    Args:
+        is_install(bool):
+            True: To apply the modifications
+            False: To revert it.
+    """
     apps = get_supported_apps(args.only, args.path)
     done = []
     if len(apps) != 0:

@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.5
+Version : 3.6.6
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -35,6 +35,7 @@ from gi.repository import Gio
 
 
 def setup_logging():
+    """Setup logging handlern write to a file under /tmp."""
     logger = logging.getLogger('hardcode-tray')
     tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(strftime(LOG_FILE_FORMAT))
     if not path.exists(path.dirname(tmp_file)):

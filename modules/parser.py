@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.5
+Version : 3.6.6
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -192,12 +192,14 @@ class Parser:
 
 
 class ArgsParser:
+    """CLI arguments parser."""
 
     def __init__(self, args):
         self._args = args
-        self.parse()
+        self._parse()
 
-    def parse(self):
+    def _parse(self):
+        """Parse arguments in seperate functions."""
         self._parse_theme()
         self._parse_colors()
         self._parse_conversion_tool()
@@ -209,6 +211,7 @@ class ArgsParser:
 
     @property
     def args(self):
+        """Property : args."""
         return self._args
 
     def _parse_theme(self):
