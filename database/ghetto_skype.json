@@ -1,0 +1,26 @@
+{
+    "name": "Ghetto Skype",
+    "app_path": [
+        "/opt/Ghetto Skype/"
+    ],
+    "icons_path": [
+        "/opt/Ghetto Skype/resources/"
+    ],
+    "is_qt": false,
+    "is_script": true,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "tray": {
+            "original": "assets/skype24.png",
+            "theme": "skype-indicator"
+        },
+        "tray-notification": {
+            "original": "assets/skype24-1.png",
+            "theme": "skype-status-connected-notification"
+        }
+    }
+}
