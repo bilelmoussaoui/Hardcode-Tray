@@ -1,0 +1,24 @@
+{
+    "name": "Prime Indicator Plus",
+    "app_path": [
+        "/usr/lib/prime-indicator/"
+    ],
+    "icons_path": [
+        "/usr/lib/prime-indicator/icons/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "is_script": false,
+    "icons": {
+        "intel": {
+            "original": "prime-indicator-intel.svg",
+            "theme": "prime-intel"
+        },
+        "nividia": {
+            "original": "prime-indicator-nvidia.svg",
+            "theme": "prime-nvidia"
+        }
+    }
+}
