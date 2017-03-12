@@ -29,6 +29,18 @@
         "transparent": {
             "original": "media/icon-tray-transparent.png",
             "theme": "pushbullet-indicator-transparent"
+        },
+        "disabled-linux": {
+            "original": "icons/linux/icon-tray-disabled.png",
+            "theme": "pushbullet-indicator-disabled"
+        },
+        "paused-linux": {
+            "original": "icons/linux/icon-tray-paused.png",
+            "theme": "pushbullet-indicator-paused"
+        },
+        "transparent-linux": {
+            "original": "icons/linux/icon-tray-transparent.png",
+            "theme": "pushbullet-indicator-transparent"
         }
     }
 }
