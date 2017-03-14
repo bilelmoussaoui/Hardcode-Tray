@@ -1,10 +1,12 @@
 {
     "name": "Google Play Music Desktop Player",
     "app_path": [
-        "/usr/share/google-play-music-desktop-player/"
+        "/usr/share/google-play-music-desktop-player/",
+        "/usr/share/gpmdp/"
     ],
     "icons_path": [
-        "/usr/share/google-play-music-desktop-player/resources/"
+        "/usr/share/google-play-music-desktop-player/resources/",
+        "/usr/share/gpmdp/resources/"
     ],
     "is_qt": false,
     "script": "electron",
