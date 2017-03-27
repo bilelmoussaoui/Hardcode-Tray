@@ -3,6 +3,7 @@
     "app_path": [
       "{userhome}/.TelegramDesktop/Telegram",
       "{userhome}/.local/share/TelegramDesktop/Telegram",
+      "{userhome}/.local/share/TelegramDesktop/log.txt",
       "/usr/bin/telegram-desktop",
       "/opt/telegram/Telegram"
     ],
