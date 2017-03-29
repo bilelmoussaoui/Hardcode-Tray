@@ -14,7 +14,7 @@
     "icons": {
         "indicator": {
             "original": "keepass2-locked.png",
-            "theme": "keepassx-indicator"
+            "theme": "keepassx-locked"
         }
     }
 }
