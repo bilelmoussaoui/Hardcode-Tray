@@ -1,0 +1,20 @@
+{
+    "name": "KeePass",
+    "app_path": [
+        "/usr/share/keepass/"
+    ],
+    "icons_path": [
+        "/usr/share/icons/hicolor/256x256/apps/"
+    ],
+    "is_qt": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "is_script": false,
+    "backup_ignore": false,
+    "icons": {
+        "indicator": {
+            "original": "keepass2-locked.png",
+            "theme": "keepassx-locked"
+        }
+    }
+}
