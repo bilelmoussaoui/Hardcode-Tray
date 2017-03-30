@@ -30,6 +30,7 @@ BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
 USERHOME = get_userhome(USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
+CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
 BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 CHMOD_IGNORE_LIST = ["", "home"]
