@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.6
+Version : 3.7
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -194,8 +194,9 @@ class Parser:
 class ArgsParser:
     """CLI arguments parser."""
 
-    def __init__(self, args):
+    def __init__(self, args, config):
         self._args = args
+        self._config = config
         self._parse()
 
     def _parse(self):
@@ -210,6 +211,11 @@ class ArgsParser:
         self._parse_choice()
 
     @property
+    def config(self):
+        """Property: config."""
+        return self._config
+
+    @property
     def args(self):
         """Property : args."""
         return self._args
@@ -222,7 +228,17 @@ class ArgsParser:
                 "dark": Theme(self.args.dark_theme),
                 "light": Theme(self.args.light_theme)
             }
-        else:
+        elif self.config.get("icons", None):
+            theme = self.config["icons"].get("theme", {})
+            if isinstance(theme, str):
+                self.theme = Theme(theme)
+            else:
+                if theme.get("light", None) and theme.get("dark", None):
+                    self.theme = {
+                        "dark": Theme(theme["dark"]),
+                        "light": Theme(theme["light"])
+                    }
+        if not self.theme:
             source = Gio.SettingsSchemaSource.get_default()
             if source.lookup("org.gnome.desktop.interface", True):
                 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
@@ -242,10 +258,14 @@ class ArgsParser:
             self.colours = colours
 
     def _parse_conversion_tool(self):
+        conversion_tool = None
         if self.args.conversion_tool:
+            conversion_tool = self.args.conversion_tool
+        elif self.config.get("conversion-tool", None):
+            conversion_tool = self.config.get("conversion-tool")
+        if conversion_tool:
             try:
-                self.svgtopng = CONVERSION_TOOLS[
-                    self.args.conversion_tool](self.colours)
+                self.svgtopng = CONVERSION_TOOLS[conversion_tool](self.colours)
             except SVGNotInstalled:
                 exit("The selected conversion tool is not installed.")
         else:
@@ -267,9 +287,17 @@ class ArgsParser:
             self.icon_size = self.args.size
         else:
             if DESKTOP_ENV in ("pantheon", "xfce"):
-                self.icon_size = 24
+                icon_size = 24
             else:
-                self.icon_size = 22
+                icon_size = 22
+            if self.config.get("icons", None):
+                self.icon_size = self.config["icons"].get("size", icon_size)
+                if self.icon_size not in [16, 22, 24]:
+                    self.icon_size = icon_size
+                    logging.debug("Icon size in the config file is wrong. "
+                                  "Falling back to the detected one...")
+            else:
+                self.icon_size = icon_size
 
     def _parse_scaling_factor(self):
         self.scaling_factor = get_scaling_factor(DESKTOP_ENV)
@@ -280,7 +308,10 @@ class ArgsParser:
     def _parse_fix_only(self):
         self.only = []
         if self.args.only:
-            self.only = self.args.only.lower().strip().split(",")
+            only = self.args.only.lower().strip().split(",")
+            for bfile in self.config.get("blacklist"):
+                only.remove(bfile)
+            self.only = only
 
     def _parse_path(self):
         self.path = None

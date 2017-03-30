@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.6
+Version : 3.7
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -32,7 +32,7 @@ from sys import stdout
 from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, LOG_FILE_FORMAT, BACKUP_EXTENSION,
                            BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from gi.repository import Gio
-
+from json import load
 
 def setup_logging():
     """Setup logging handlern write to a file under /tmp."""
@@ -66,6 +66,16 @@ def progress(count, count_max, app_name=""):
     stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar, count, count_max, percents, '%'))
     print("")
     stdout.flush()
+
+
+def parse_json(file_name):
+    """Parse json file and return the object."""
+    if path.isfile(file_name):
+        with open(file_name, 'r') as data:
+            json = load(data)
+        data.close()
+        return json
+    return {}
 
 
 def symlink_file(source, link_name):

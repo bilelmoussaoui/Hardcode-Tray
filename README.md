@@ -3,7 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
-release](https://img.shields.io/badge/release-v3.6.6-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
+release](https://img.shields.io/badge/release-v3.7-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
 
 # Hardcode-Tray
 
@@ -158,6 +158,16 @@ You can also update to the git version of the script
 ```bash
 hardcode-tray --update-git
 ```
+
+### Config file
+Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
+- `blacklist`: a list of applications that you don't want to be fixed.
+- `conversion-tool`: the default tool to be used everytime you use the script.
+- `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
+
+An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/config.json).
+Passing `--theme` `--conversion-tool` `--size` will overwrite the default settings.
+
 
 ### Uninstallation
 To remove the script completely from your desktop you can use

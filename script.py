@@ -4,7 +4,7 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.6.6
+Version : 3.7
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -24,8 +24,8 @@ from os import path, geteuid
 from glob import glob
 from argparse import ArgumentParser
 from modules.parser import Parser, ArgsParser, CONVERSION_TOOLS
-from modules.utils import (progress, get_list_of_themes)
-from modules.const import DB_FOLDER, DESKTOP_ENV
+from modules.utils import parse_json, progress, get_list_of_themes
+from modules.const import DB_FOLDER, DESKTOP_ENV, CONFIG_FILE
 
 
 if geteuid() != 0:
@@ -34,6 +34,8 @@ if geteuid() != 0:
 
 parser = ArgumentParser(prog="hardcode-tray")
 THEMES_LIST = get_list_of_themes()
+config = parse_json(CONFIG_FILE)
+BLACKLIST = config.get("blacklist", [])
 
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
@@ -76,22 +78,25 @@ parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
 args = parser.parse_args()
-args = ArgsParser(args)
-
+args = ArgsParser(args, config)
 
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not args.icon_size:
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
 def get_supported_apps(fix_only, custom_path=""):
     """Get a list of dict, a dict for each supported application."""
+    database_files = []
     if len(fix_only) != 0:
-        database_files = []
         for db_file in fix_only:
-            db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
-            if path.exists(db_file):
-                database_files.append(db_file)
+            if db_file not in BLACKLIST:
+                db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
+                if path.exists(db_file):
+                    database_files.append(db_file)
     else:
-        database_files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
+        files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
+        for file in files:
+            if path.splitext(path.basename(file))[0] not in BLACKLIST:
+                database_files.append(file)
     if len(fix_only) > 1 and custom_path:
         exit("You can't use --path with more than application at once.")
     database_files.sort()
