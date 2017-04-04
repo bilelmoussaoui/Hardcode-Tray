@@ -197,6 +197,7 @@ class ArgsParser:
     def __init__(self, args, config):
         self._args = args
         self._config = config
+        self.theme = None
         self._parse()
 
     def _parse(self):
