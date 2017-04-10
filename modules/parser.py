@@ -310,7 +310,7 @@ class ArgsParser:
         self.only = []
         if self.args.only:
             only = self.args.only.lower().strip().split(",")
-            for bfile in self.config.get("blacklist"):
+            for bfile in self.config.get("blacklist", []):
                 only.remove(bfile)
             self.only = only
 
