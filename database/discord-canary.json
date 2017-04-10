@@ -1,5 +1,5 @@
 {
-    "name": "Discord",
+    "name": "Discord Canary",
     "app_path": [
         "/usr/share/discord-canary/",
         "/opt/discord-canary/"
