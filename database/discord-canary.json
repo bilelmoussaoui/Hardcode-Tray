@@ -1,12 +1,12 @@
 {
-    "name": "Discord",
+    "name": "Discord Canary",
     "app_path": [
-        "/usr/share/discord/",
-        "/opt/discord/"
+        "/usr/share/discord-canary/",
+        "/opt/discord-canary/"
     ],
     "icons_path": [
-        "/usr/share/discord/resources/",
-        "/opt/discord/resources/"
+        "/usr/share/discord-canary/resources/",
+        "/opt/discord-canary/resources/"
     ],
     "is_qt": false,
     "binary": "app.asar",
