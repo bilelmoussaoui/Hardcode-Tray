@@ -1,0 +1,28 @@
+{
+    "name": "Discord",
+    "app_path": [
+        "/usr/share/discord/",
+        "/opt/discord/"
+    ],
+    "icons_path": [
+        "/usr/share/discord/resources/",
+        "/opt/discord/resources/"
+    ],
+    "is_qt": false,
+    "binary": "app.asar",
+    "script": "electron",
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": false,
+    "is_script": true,
+    "icons": {
+        "tray": {
+            "original": "images/linux-tray.png",
+            "theme": "discord-tray"
+        },
+        "tray-unread": {
+            "original": "images/linux-tray-unread.png",
+            "theme": "discord-tray-notification"
+        }
+    }
+}
