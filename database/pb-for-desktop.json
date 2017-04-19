@@ -18,6 +18,10 @@
             "original": "icons/linux/icon-tray-default.png",
             "theme": "pushbullet-indicator"
         },
+        "tray": {
+            "original": "icons/linux/icon-tray-opaque.png",
+            "theme": "pushbullet-indicator"
+        },
         "disabled": {
             "original": "media/icon-tray-disabled.png",
             "theme": "pushbullet-indicator-disabled"
@@ -36,6 +40,10 @@
         },
         "paused-linux": {
             "original": "icons/linux/icon-tray-paused.png",
+            "theme": "pushbullet-indicator-paused"
+        },
+        "pause-linux": {
+            "original": "icons/linux/icon-tray-transparent-pause.png",
             "theme": "pushbullet-indicator-paused"
         },
         "transparent-linux": {
