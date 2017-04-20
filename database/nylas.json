@@ -1,10 +1,10 @@
 {
-    "name": "Nylas N1",
+    "name": "Nylas Mail",
     "app_path": [
-        "/usr/share/nylas/"
+        "/usr/share/nylas-mail/"
     ],
     "icons_path": [
-        "/usr/share/nylas/resources/"
+        "/usr/share/nylas-mail/resources/"
     ],
     "is_qt": false,
     "script": "electron",
