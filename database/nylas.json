@@ -1,9 +1,11 @@
 {
-    "name": "Nylas N1",
+    "name": "Nylas N1(Mail)",
     "app_path": [
+        "/usr/share/nylas-mail/",
         "/usr/share/nylas/"
     ],
     "icons_path": [
+        "/usr/share/nylas-mail/resources/",
         "/usr/share/nylas/resources/"
     ],
     "is_qt": false,
