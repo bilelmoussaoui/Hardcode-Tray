@@ -25,14 +25,14 @@
         },
         "taskbar-unread": {
             "original": "franz-taskbar-unread.png",
-            "theme": "franz-attention-panel"
+            "theme": "franz-attention-panel",
+            "symlinks": [
+                "franz-win-dock-alert.png",
+                "franz-win-dock-alert-{1-10}.png"
+            ]
         },
         "taskbar-unread@2x": {
             "original": "franz-taskbar-unread@2x.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-dock": {
-            "original": "franz-win-dock-alert.png",
             "theme": "franz-attention-panel"
         }
     }
