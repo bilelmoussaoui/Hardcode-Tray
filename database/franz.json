@@ -34,6 +34,21 @@
         "taskbar-dock": {
             "original": "franz-win-dock-alert.png",
             "theme": "franz-attention-panel"
+        },
+        "taskbar-unread": {
+            "original": "franz-win-dock-alert-1.png",
+            "theme": "franz-attention-panel",
+            "symlinks": [
+                "franz-win-dock-alert-2.png",
+                "franz-win-dock-alert-3.png",
+                "franz-win-dock-alert-4.png",
+                "franz-win-dock-alert-5.png",
+                "franz-win-dock-alert-6.png",
+                "franz-win-dock-alert-7.png",
+                "franz-win-dock-alert-8.png",
+                "franz-win-dock-alert-9.png",
+                "franz-win-dock-alert-10.png"
+            ]
         }
     }
 }
