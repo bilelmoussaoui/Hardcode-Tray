@@ -229,12 +229,12 @@ class ArgsParser:
                 "dark": Theme(self.args.dark_theme),
                 "light": Theme(self.args.light_theme)
             }
-        elif self.config.get("icons", None):
+        elif self.config.get("icons"):
             theme = self.config["icons"].get("theme", {})
             if isinstance(theme, str):
                 self.theme = Theme(theme)
             else:
-                if theme.get("light", None) and theme.get("dark", None):
+                if theme.get("light") and theme.get("dark"):
                     self.theme = {
                         "dark": Theme(theme["dark"]),
                         "light": Theme(theme["light"])
@@ -262,7 +262,7 @@ class ArgsParser:
         conversion_tool = None
         if self.args.conversion_tool:
             conversion_tool = self.args.conversion_tool
-        elif self.config.get("conversion-tool", None):
+        elif self.config.get("conversion-tool"):
             conversion_tool = self.config.get("conversion-tool")
         if conversion_tool:
             try:
@@ -291,7 +291,7 @@ class ArgsParser:
                 icon_size = 24
             else:
                 icon_size = 22
-            if self.config.get("icons", None):
+            if self.config.get("icons"):
                 self.icon_size = self.config["icons"].get("size", icon_size)
                 if self.icon_size not in [16, 22, 24]:
                     self.icon_size = icon_size

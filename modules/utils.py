@@ -230,9 +230,11 @@ def backup(back_dir, file_name):
         logging.debug("Backup current file %s to %s", file_name, back_file)
         copy_file(file_name, back_file)
         mchown(back_file)
-    if len(listdir(back_dir)) == 0:
-        rmtree(back_dir)
-
+    try:
+      if len(listdir(back_dir)) == 0:
+          rmtree(back_dir)
+    except FileNotFoundError:
+        pass
 
 def get_backup_folders(application_name):
     """Get a list of backup folders of a sepecific application."""

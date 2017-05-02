@@ -24,16 +24,18 @@ from os import path
 from shutil import rmtree
 from modules.applications.application import Application
 from modules.utils import symlink_file
+from modules.decorators import symlinks_installer, revert_wrapper
 
 
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""
-
+    BACKUP_IGNORE = True
     def __init__(self, application_data, svgtopng):
         """Init method."""
         Application.__init__(self, application_data, svgtopng)
 
     @staticmethod
+    @symlinks_installer
     def install_icon(icon, icon_path):
         """Install icon to the current directory."""
         base_icon = icon["original"]
@@ -41,14 +43,10 @@ class QtApplication(Application):
         ext_theme = icon["theme_ext"]
         output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
         symlink_file(theme_icon, output_icon)
-        if "symlinks" in icon.keys():
-            for symlink_icon in icon["symlinks"]:
-                symlink_icon = '{0}.{1}'.format(
-                    icon_path + symlink_icon, ext_theme)
-                symlink_file(output_icon, symlink_icon)
 
+    @revert_wrapper
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""
-        for icon_path in self.get_icons_path():
+        for icon_path in self.icons_path:
             if path.isdir(icon_path):
                 rmtree(icon_path)

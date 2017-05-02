@@ -20,12 +20,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import (backup, revert, symlink_file, mchown,
-                           show_select_backup, create_backup_dir)
+from modules.utils import backup, revert, symlink_file, mchown
+from modules.decorators import symlinks_installer, revert_wrapper, install_wrapper
 
 
 class Application:
     """Application class."""
+    BACKUP_IGNORE = False
 
     def __init__(self, application_data, svgtopng):
         """
@@ -38,34 +39,41 @@ class Application:
         self.is_done = True
         self.svgtopng = svgtopng
         self.data = application_data
-        self.selected_backup = None
-        self.back_dir = None
+        self._selected_backup = None
+        self._back_dir = None
 
-    def get_name(self):
+    @property
+    def name(self):
         """Return the application name."""
         return self.data.data["name"]
 
-    def get_icons(self):
+    @property
+    def icons(self):
         """Return the application icons."""
         return self.data.data["icons"]
 
-    def get_app_paths(self):
+    @property
+    def app_path(self):
         """Return the application installation paths."""
         return self.data.data["app_path"]
 
-    def get_back_dir(self):
+    @property
+    def backup_dir(self):
         """Return the backup directory of the current application."""
-        return self.back_dir
+        return self._back_dir
 
-    def get_selected_back_dir(self):
+    @property
+    def selected_backup(self):
         """Return the selected backup directory during the revert process."""
-        return self.selected_backup
+        return self._selected_backup
 
-    def get_icons_path(self):
+    @property
+    def icons_path(self):
         """Return the application installation paths."""
         return self.data.data["icons_path"]
 
-    def get_symlinks(self):
+    @property
+    def symlinks(self):
         """Return application symlinks."""
         return self.data.data["symlinks"]
 
@@ -76,29 +84,29 @@ class Application:
     def install_symlinks(self):
         """Create symlinks for some applications files."""
         if self.has_symlinks():
-            symlinks = self.get_symlinks()
+            symlinks = self.symlinks
             for syml in symlinks:
-                for directory in self.get_app_paths():
+                for directory in self.app_path:
                     root = symlinks[syml]["root"]
                     dest = directory + symlinks[syml]["dest"]
-                    backup(self.get_back_dir(), dest)
+                    backup(self.backup_dir, dest)
                     symlink_file(root, dest)
 
     def remove_symlinks(self):
         """Remove symlinks created by the application."""
         if self.has_symlinks():
-            symlinks = self.get_symlinks()
+            symlinks = self.symlinks
             for syml in symlinks:
-                for directory in self.get_app_paths():
-                    revert(self.get_name(), self.get_selected_back_dir(),
+                for directory in self.app_path:
+                    revert(self.name, self.selected_backup,
                            directory + symlinks[syml]["dest"])
 
     def get_output_icons(self):
         """Return a list of output icons."""
         icons = []
-        for icon in self.get_icons():
+        for icon in self.icons:
             base_icon = icon["original"]
-            for icon_path in self.get_icons_path():
+            for icon_path in self.icons_path:
                 output_icon = icon_path + base_icon
                 icons.append({
                     "output_icon": output_icon,
@@ -107,27 +115,24 @@ class Application:
                 })
         return icons
 
+    @install_wrapper
     def install(self):
         """Install the application icons."""
-        self.back_dir = create_backup_dir(self.get_name())
-        self.install_symlinks()
         for icon in self.get_output_icons():
             if not self.data.data["backup_ignore"]:
-                backup(self.get_back_dir(), icon["output_icon"])
+                backup(self.back_dir, icon["output_icon"])
             self.install_icon(icon["data"], icon["path"])
 
+    @revert_wrapper
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
-        self.selected_backup = show_select_backup(self.get_name())
-        if self.selected_backup:
-            self.remove_symlinks()
-            for icon in self.get_output_icons():
-                if not self.data.data["backup_ignore"]:
-                    revert(self.get_name(), self.get_selected_back_dir(),
-                           icon["output_icon"])
-        else:
-            self.is_done = False
+        for icon in self.get_output_icons():
+            if not self.data.data["backup_ignore"]:
+                revert(self.name,
+                       self.selected_backup,
+                       icon["output_icon"])
 
+    @symlinks_installer
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
         base_icon = icon["original"]
@@ -144,7 +149,3 @@ class Application:
             else:
                 self.svgtopng.to_png(theme_icon, output_icon)
             mchown(output_icon)
-            if "symlinks" in icon.keys():
-                for symlink_icon in icon["symlinks"]:
-                    symlink_icon = icon_path + symlink_icon
-                    symlink_file(output_icon, symlink_icon)

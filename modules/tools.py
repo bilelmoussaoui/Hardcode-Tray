@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from subprocess import check_output, Popen
+from subprocess import check_output
 from os import path, environ
 import logging
 logging = logging.getLogger('hardcode-tray')

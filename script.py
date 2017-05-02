@@ -121,7 +121,7 @@ def apply(is_install):
         cnt = 0
         counter_total = sum(app.data.supported_icons_cnt for app in apps)
         for i, app in enumerate(apps):
-            app_name = app.get_name()
+            app_name = app.name
             if is_install:
                 app.install()
             else:

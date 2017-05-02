@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from modules.applications.application import Application
 from modules.utils import backup, revert, create_backup_dir, show_select_backup
-
+from modules.decorators import revert_wrapper, install_wrapper
 
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
@@ -33,32 +33,28 @@ class BinaryApplication(Application):
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
-        backup(self.get_back_dir(), icon_path + self.get_binary())
+        backup(self.backup_dir, icon_path + self.binary)
 
     def revert_binary(self, icon_path):
         """Restore the backed up binary file."""
-        revert(self.get_name(), self.get_selected_back_dir(),
-               icon_path + self.get_binary())
+        revert(self.name, self.selected_backup,
+               icon_path + self.binary)
 
-    def get_binary(self):
+    @property
+    def binary(self):
         """Return the binary file if exists."""
         return self.data.data["binary"]
 
+    @revert_wrapper
     def reinstall(self):
         """Reinstall the old icons."""
-        self.selected_backup = show_select_backup(self.get_name())
-        if self.selected_backup:
-            self.remove_symlinks()
-            for icon_path in self.get_icons_path():
-                self.revert_binary(icon_path)
-        else:
-            self.is_done = False
+        for icon_path in self.icons_path:
+            self.revert_binary(icon_path)
 
+    @install_wrapper
     def install(self):
         """Install the application icons."""
-        self.back_dir = create_backup_dir(self.get_name())
-        self.install_symlinks()
-        for icon_path in self.get_icons_path():
+        for icon_path in self.icons_path:
             self.backup_binary(icon_path)
-            for icon in self.get_icons():
+            for icon in self.icons:
                 self.install_icon(icon, icon_path)

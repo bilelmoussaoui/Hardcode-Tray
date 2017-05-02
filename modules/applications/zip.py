@@ -24,7 +24,8 @@ from os import path, remove, makedirs
 from zipfile import ZipFile
 from shutil import make_archive, rmtree
 from modules.applications.binary import BinaryApplication
-from modules.utils import execute, create_backup_dir
+from modules.utils import execute
+from modules.decorators import install_wrapper
 
 
 class ZipApplication(BinaryApplication):
@@ -33,11 +34,12 @@ class ZipApplication(BinaryApplication):
     def __init__(self, application_data, svgtopng):
         """Init method."""
         BinaryApplication.__init__(self, application_data, svgtopng)
-        self.binary = self.get_binary()
-        self.tmp_path = "/tmp/_{0!s}/".format(self.get_name())
-        self.tmp_data = self.tmp_path + self.get_zip_path()
+        self.binary = self.binary
+        self.tmp_path = "/tmp/_{0!s}/".format(self.name)
+        self.tmp_data = self.tmp_path + self.zip_path
 
-    def get_zip_path(self):
+    @property
+    def zip_path(self):
         """Return the path of the icons in the zip file."""
         return self.data.data["zip_path"]
 
@@ -52,19 +54,18 @@ class ZipApplication(BinaryApplication):
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        zip_file = icon_path + self.get_binary()
+        zip_file = icon_path + self.binary
         if path.isfile(zip_file):
             remove(zip_file)
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)
         rmtree(self.tmp_path)
 
+    @install_wrapper
     def install(self):
         """Install the application icons."""
-        self.back_dir = create_backup_dir(self.get_name())
-        self.install_symlinks()
-        for icon_path in self.get_icons_path():
+        for icon_path in self.icons_path:
             self.backup_binary(icon_path)
             self.extract(icon_path)
-            for icon in self.get_icons():
+            for icon in self.icons:
                 self.install_icon(icon, self.tmp_data)
             self.pack(icon_path)

@@ -24,6 +24,7 @@ from os import path, remove
 from shutil import make_archive, rmtree, move
 from modules.applications.binary import BinaryApplication
 from modules.utils import execute, copy_file
+from modules.decorators import install_wrapper
 
 
 class NWJSApplication(BinaryApplication):
@@ -32,10 +33,11 @@ class NWJSApplication(BinaryApplication):
     def __init__(self, application_data, svgtopng):
         """Init method."""
         BinaryApplication.__init__(self, application_data, svgtopng)
-        self.tmp_path = "/tmp/{0!s}/".format(self.get_name())
-        self.tmp_data = self.tmp_path + self.get_nwjs_path()
+        self.tmp_path = "/tmp/{0!s}/".format(self.name)
+        self.tmp_data = self.tmp_path + self.nwjs_path
 
-    def get_nwjs_path(self):
+    @property
+    def nwjs_path(self):
         """Return the path of the icons in the zip file."""
         return self.data.data["nwjs_path"]
 
@@ -43,12 +45,12 @@ class NWJSApplication(BinaryApplication):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
-        execute(["unzip", icon_path + self.get_binary(), "-d", self.tmp_path])
+        execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
         execute(["chmod", "0777", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        binary_file = icon_path + self.get_binary()
+        binary_file = icon_path + self.binary
         if path.exists(binary_file):
             remove(binary_file)
         copy_file(self.tmp_path + "package.json", icon_path + "package.json")
@@ -58,12 +60,12 @@ class NWJSApplication(BinaryApplication):
         execute(["chmod", "+x", binary_file])
         # rmtree(self.tmp_path)
 
+    @install_wrapper
     def install(self):
         """Install the application icons."""
-        self.install_symlinks()
-        for icon_path in self.get_icons_path():
+        for icon_path in self.icons_path:
             self.backup_binary(icon_path)
             self.extract(icon_path)
-            for icon in self.get_icons():
+            for icon in self.icons:
                 self.install_icon(icon, self.tmp_data)
             self.pack(icon_path)
