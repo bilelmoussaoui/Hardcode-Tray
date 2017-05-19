@@ -1,12 +1,12 @@
 {
     "name": "Wire",
     "app_path": [
-        "/opt/Wire/",
-        "/usr/lib/wire/"
+        "/opt/wire-desktop/",
+        "/usr/lib/wire-desktop/"
     ],
     "icons_path": [
-        "/opt/Wire/resources/app/img/",
-        "/usr/lib/wire/resources/app/img/"
+        "/opt/wire-desktop/resources/app/img/",
+        "/usr/lib/wire-desktop/resources/app/img/"
     ],
     "is_qt": false,
     "force_create_folder": false,

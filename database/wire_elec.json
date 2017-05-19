@@ -1,12 +1,12 @@
 {
     "name": "Wire",
     "app_path": [
-        "/opt/Wire/",
-        "/usr/lib/wire/"
+        "/opt/wire-desktop/",
+        "/usr/lib/wire-desktop/"
     ],
     "icons_path": [
-        "/opt/Wire/resources/",
-        "/usr/lib/wire/resources/"
+        "/opt/wire-desktop/resources/",
+        "/usr/lib/wire-desktop/resources/"
     ],
     "is_qt": false,
     "binary": "app.asar",
