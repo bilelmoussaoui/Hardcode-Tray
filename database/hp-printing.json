@@ -4,7 +4,8 @@
         "/usr/bin/hp-systray"
     ],
     "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/python2.7/{size}/"
+        "{userhome}/.local/share/sni-qt/icons/python2.7/{size}/",
+        "{userhome}/.local/share/sni-qt/icons/python3.5/{size}/"
     ],
     "is_qt": true,
     "force_create_folder": true,
