@@ -22,10 +22,10 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import getenv, path
 from platform import machine
-from modules.tools import get_userhome, detect_de
+from .tools import get_userhome, detect_de
 
 
-DB_FOLDER = path.join("database", "")
+DB_FOLDER = path.join("data", "database", "")
 BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
 USERHOME = get_userhome(USERNAME)

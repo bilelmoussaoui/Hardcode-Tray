@@ -20,15 +20,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import backup, revert, symlink_file, mchown
-from modules.decorators import symlinks_installer, revert_wrapper, install_wrapper
+from shutil import rmtree
+from src.utils import backup, revert, symlink_file, mchown
+from src.decorators import symlinks_installer, revert_wrapper, install_wrapper
 
 
 class Application:
     """Application class."""
     BACKUP_IGNORE = False
 
-    def __init__(self, application_data, svgtopng):
+    def __init__(self, application_data):
         """
         Init method.
 
@@ -37,7 +38,6 @@ class Application:
                     and installed in an other customn path
         """
         self.is_done = True
-        self.svgtopng = svgtopng
         self.data = application_data
         self._selected_backup = None
         self._back_dir = None
@@ -62,10 +62,21 @@ class Application:
         """Return the backup directory of the current application."""
         return self._back_dir
 
+    @backup_dir.setter
+    def backup_dir(self, backup_dir):
+        self._back_dir = backup_dir
+
     @property
     def selected_backup(self):
         """Return the selected backup directory during the revert process."""
         return self._selected_backup
+
+    @selected_backup.setter
+    def selected_backup(self, selected_backup):
+        if path.exists(selected_backup):
+            self._selected_backup = selected_backup
+        else:
+            raise FileNotFoundError
 
     @property
     def icons_path(self):
@@ -101,6 +112,14 @@ class Application:
                     revert(self.name, self.selected_backup,
                            directory + symlinks[syml]["dest"])
 
+    def clear_cache(self):
+        """Clear Backup cache."""
+        backup_folder = path.join(BACKUP_FOLDER, self.name, "")
+        if path.exists(backup_folder):
+            rmtree(backup_folder)
+            return True
+        return False
+
     def get_output_icons(self):
         """Return a list of output icons."""
         icons = []
@@ -120,7 +139,7 @@ class Application:
         """Install the application icons."""
         for icon in self.get_output_icons():
             if not self.data.data["backup_ignore"]:
-                backup(self.back_dir, icon["output_icon"])
+                backup(self.backup_dir, icon["output_icon"])
             self.install_icon(icon["data"], icon["path"])
 
     @revert_wrapper

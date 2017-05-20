@@ -20,25 +20,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.utils import execute
-from modules.svg.svg import SVG, SVGNotInstalled
+from os import path
+from imp import load_source
+from .binary import BinaryApplication
+from src.utils import get_pngbytes
+
+absolute_path = path.split(path.abspath(__file__))[0]
+data_pack_path = path.join(absolute_path, "pak", "data_pack.py")
+data_pack = load_source('data_pack', data_pack_path)
 
 
-class ImageMagick(SVG):
-    """Inkscape implemntation of SVG Interface."""
+class PakApplication(BinaryApplication):
+    """Pak Application class, based on data_pak file."""
 
-    def __init__(self, colors):
-        """Init function."""
-        super(ImageMagick, self).__init__(colors)
-        self.cmd = "convert"
-        if not self.is_installed():
-            raise SVGNotInstalled
+    def __init__(self, application_data):
+        """Init method."""
+        BinaryApplication.__init__(self, application_data)
 
-    def convert_to_png(self, input_file, output_file, width=None, height=None):
-        """Convert svg to png."""
-        cmd = [self.cmd, "-background", "none"]
-        if width and height:
-            cmd.extend(
-                ["-size", "{0!s}x{1!s}".format(str(width), str(height))])
-        cmd.extend([input_file, output_file])
-        execute(cmd)
+    def install_icon(self, icon, icon_path):
+        """Install the icon."""
+        filename = icon_path + self.binary
+        icon_to_repl = int(icon["original"])
+        pngbytes = get_pngbytes(self.svgtopng, icon)
+        if pngbytes:
+            _data_pack = data_pack.read_data_pack(filename)
+            _data_pack.resources[icon_to_repl] = pngbytes
+            data_pack.write_data_pack(_data_pack.resources, filename, 0)

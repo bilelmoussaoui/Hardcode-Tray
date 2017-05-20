@@ -22,17 +22,17 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
 from shutil import make_archive, rmtree, move
-from modules.applications.binary import BinaryApplication
-from modules.utils import execute, copy_file
-from modules.decorators import install_wrapper
+from .binary import BinaryApplication
+from src.utils import execute, copy_file
+from src.decorators import install_wrapper
 
 
 class NWJSApplication(BinaryApplication):
     """NWJS Application class."""
 
-    def __init__(self, application_data, svgtopng):
+    def __init__(self, application_data):
         """Init method."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data)
         self.tmp_path = "/tmp/{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.nwjs_path
 

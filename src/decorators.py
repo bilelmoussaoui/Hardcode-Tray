@@ -1,4 +1,4 @@
-from modules.utils import symlink_file, show_select_backup, create_backup_dir
+from .utils import symlink_file, show_select_backup, create_backup_dir
 
 
 def symlinks_installer(func):
@@ -20,7 +20,7 @@ def symlinks_installer(func):
 
 def install_wrapper(func):
     def wrapper(app):
-        app.back_dir = create_backup_dir(app.name)
+        app.backup_dir = create_backup_dir(app.name)
         app.install_symlinks()
         func(app)
     return wrapper

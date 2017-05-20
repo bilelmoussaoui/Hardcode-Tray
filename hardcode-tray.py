@@ -23,10 +23,10 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, geteuid
 from glob import glob
 from argparse import ArgumentParser
-from modules.parser import Parser, ArgsParser, CONVERSION_TOOLS
-from modules.utils import parse_json, progress, get_list_of_themes
-from modules.const import DB_FOLDER, DESKTOP_ENV, CONFIG_FILE
-
+from src.utils import progress, get_list_of_themes
+from src.const import DB_FOLDER, DESKTOP_ENV
+from src.enum import Action, CONVERSION_TOOLS
+from src.app import App
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
@@ -34,8 +34,6 @@ if geteuid() != 0:
 
 parser = ArgumentParser(prog="hardcode-tray")
 THEMES_LIST = get_list_of_themes()
-config = parse_json(CONFIG_FILE)
-BLACKLIST = config.get("blacklist", [])
 
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
@@ -77,91 +75,37 @@ parser.add_argument("--conversion-tool", "-ct",
 parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
+parser.add_argument("--clear-cache", action="store_true",
+                    help="Clear backup files")
 args = parser.parse_args()
-args = ArgsParser(args, config)
+hardcode_tray = App.get_default(args)
 
-if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not args.icon_size:
+if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
-def get_supported_apps(fix_only, custom_path=""):
-    """Get a list of dict, a dict for each supported application."""
-    database_files = []
-    if len(fix_only) != 0:
-        for db_file in fix_only:
-            if db_file not in BLACKLIST:
-                db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
-                if path.exists(db_file):
-                    database_files.append(db_file)
-    else:
-        files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
-        for file in files:
-            if path.splitext(path.basename(file))[0] not in BLACKLIST:
-                database_files.append(file)
-    if len(fix_only) > 1 and custom_path:
-        exit("You can't use --path with more than application at once.")
-    database_files.sort()
-    supported_apps = []
-    for db_file in database_files:
-        application_data = Parser(db_file, args)
-        if application_data.is_installed():
-            supported_apps.append(application_data.get_application())
-    return supported_apps
-
-
-def apply(is_install):
-    """Fix Hardcoded Tray icons.
-    Args:
-        is_install(bool):
-            True: To apply the modifications
-            False: To revert it.
-    """
-    apps = get_supported_apps(args.only, args.path)
-    done = []
-    if len(apps) != 0:
-        cnt = 0
-        counter_total = sum(app.data.supported_icons_cnt for app in apps)
-        for i, app in enumerate(apps):
-            app_name = app.name
-            if is_install:
-                app.install()
-            else:
-                app.reinstall()
-            if app.is_done:
-                cnt += app.data.supported_icons_cnt
-                if app_name not in done:
-                    progress(cnt, counter_total, app_name)
-                    done.append(app_name)
-            else:
-                counter_total -= app.data.supported_icons_cnt
-                if i == len(apps) - 1:
-                    progress(cnt, counter_total)
-    else:
-        if is_install:
-            exit("No apps to fix! Please report on GitHub if this is not the case")
-        else:
-            exit("No apps to revert!")
-
 print("Welcome to the tray icons hardcoder fixer!")
-print("Your indicator icon size is : {0}".format(args.icon_size))
+print("Your indicator icon size is : {0}".format(App.icon_size()))
 print("The detected desktop environement : {0}".format(DESKTOP_ENV.title()))
-if not isinstance(args.theme, dict):
-    print("Your current icon theme is : {0}".format(args.theme))
+if not isinstance(App.theme(), dict):
+    print("Your current icon theme is : {0}".format(App.theme()))
 else:
-    print("Your current dark icon theme is : {0}".format(args.theme["dark"]))
-    print("Your current light icon theme is : {0}".format(args.theme["light"]))
-print("Conversion tool : {0}".format(args.svgtopng))
+    print("Your current dark icon theme is : {0}".format(App.theme()["dark"]))
+    print("Your current light icon theme is : {0}".format(App.theme()["light"]))
+print("Conversion tool : {0}".format(App.svgtopng()))
 print("Applications will be fixed : ", end="")
-print(",".join(map(lambda x: x.title(), args.only)) if args.only else "All")
+print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
 
-choice = args.choice
-if not choice:
+# Clear backup cache
+action = App.action()
+if not action:
     print("1 - Apply")
     print("2 - Revert")
+    print("3 - Clear Backup Cache")
     has_chosen = False
     while not has_chosen:
         try:
-            choice = int(input("Please choose: "))
-            if choice not in [1, 2]:
+            action = int(input("Please choose: "))
+            if action not in [1, 2, 3]:
                 print("Please try again")
             else:
                 has_chosen = True
@@ -170,11 +114,13 @@ if not choice:
         except KeyboardInterrupt:
             exit("")
 
-if choice == 1:
+if action == Action.APPLY:
     print("Applying now..\n")
-    apply(True)
-elif choice == 2:
+elif action == Action.REVERT:
     print("Reverting now..\n")
-    apply(False)
+elif action == Action.CLEAR_CACHE:
+    print("Clearing cache...\n")
+
+hardcode_tray.execute(action)
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")

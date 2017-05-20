@@ -23,17 +23,17 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove, makedirs
 from zipfile import ZipFile
 from shutil import make_archive, rmtree
-from modules.applications.binary import BinaryApplication
-from modules.utils import execute
-from modules.decorators import install_wrapper
+from .binary import BinaryApplication
+from src.utils import execute
+from src.decorators import install_wrapper
 
 
 class ZipApplication(BinaryApplication):
     """Zip Application class."""
 
-    def __init__(self, application_data, svgtopng):
+    def __init__(self, application_data):
         """Init method."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data)
         self.binary = self.binary
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.zip_path

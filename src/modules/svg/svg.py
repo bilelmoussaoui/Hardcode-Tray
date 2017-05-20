@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from tempfile import NamedTemporaryFile
 from os import remove, path
-from modules.utils import copy_file, replace_colors, is_installed
+from src.utils import copy_file, replace_colors, is_installed
 
 
 class SVG:

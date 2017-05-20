@@ -57,7 +57,7 @@ The one click-installer can be found by following this [link](https://software.o
    - `python3`
    - `python3-gi`
    - [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
-   - 2.1. Pick your favorite conversion tool
+   - 2.1. Pick up your favorite conversion tool
        1. `python3-cairosvg`
        2. `librsvg`
        3. `inkscape`

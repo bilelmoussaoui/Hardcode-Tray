@@ -29,29 +29,9 @@ from time import strftime
 import logging
 import re
 from sys import stdout
-from modules.const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, LOG_FILE_FORMAT, BACKUP_EXTENSION,
+from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, BACKUP_EXTENSION,
                            BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 from gi.repository import Gio
-from json import load
-
-def setup_logging():
-    """Setup logging handlern write to a file under /tmp."""
-    logger = logging.getLogger('hardcode-tray')
-    tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(strftime(LOG_FILE_FORMAT))
-    if not path.exists(path.dirname(tmp_file)):
-        makedirs(path.dirname(tmp_file))
-    if not path.exists(tmp_file):
-        f = open(tmp_file, 'w')
-        f.write('')
-        f.close()
-    handler = logging.FileHandler(tmp_file)
-    formater = logging.Formatter('[%(levelname)s] - %(asctime)s - %(message)s')
-    handler.setFormatter(formater)
-    logger.addHandler(handler)
-    logger.setLevel(logging.DEBUG)
-
-setup_logging()
-logging = logging.getLogger('hardcode-tray')
 
 def progress(count, count_max, app_name=""):
     """Used to draw a progress bar."""
@@ -66,16 +46,6 @@ def progress(count, count_max, app_name=""):
     stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar, count, count_max, percents, '%'))
     print("")
     stdout.flush()
-
-
-def parse_json(file_name):
-    """Parse json file and return the object."""
-    if path.isfile(file_name):
-        with open(file_name, 'r') as data:
-            json = load(data)
-        data.close()
-        return json
-    return {}
 
 
 def symlink_file(source, link_name):
@@ -224,17 +194,19 @@ def create_backup_dir(application_name):
 
 def backup(back_dir, file_name):
     """Backup functions."""
-    back_file = path.join(back_dir, path.basename(
-        file_name) + BACKUP_EXTENSION)
-    if path.exists(file_name):
-        logging.debug("Backup current file %s to %s", file_name, back_file)
-        copy_file(file_name, back_file)
-        mchown(back_file)
-    try:
-      if len(listdir(back_dir)) == 0:
-          rmtree(back_dir)
-    except FileNotFoundError:
-        pass
+    from modules.app import App
+    if App.config.get("backup-ignore", False):
+        back_file = path.join(back_dir, path.basename(
+            file_name) + BACKUP_EXTENSION)
+        if path.exists(file_name):
+            logging.debug("Backup current file %s to %s", file_name, back_file)
+            copy_file(file_name, back_file)
+            mchown(back_file)
+        try:
+          if len(listdir(back_dir)) == 0:
+              rmtree(back_dir)
+        except FileNotFoundError:
+            pass
 
 def get_backup_folders(application_name):
     """Get a list of backup folders of a sepecific application."""

@@ -20,29 +20,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
-from imp import load_source
-from modules.applications.binary import BinaryApplication
-from modules.utils import get_pngbytes
-
-absolute_path = path.split(path.abspath(__file__))[0]
-data_pack_path = path.join(absolute_path, "pak", "data_pack.py")
-data_pack = load_source('data_pack', data_pack_path)
+from src.utils import execute
+from .svg import SVG, SVGNotInstalled
 
 
-class PakApplication(BinaryApplication):
-    """Pak Application class, based on data_pak file."""
+class SVGExport(SVG):
+    """Inkscape implemntation of SVG Interface."""
 
-    def __init__(self, application_data, svgtopng):
-        """Init method."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+    def __init__(self, colors):
+        """Init function."""
+        super(SVGExport, self).__init__(colors)
+        self.cmd = "svgexport"
+        if not self.is_installed():
+            raise SVGNotInstalled
 
-    def install_icon(self, icon, icon_path):
-        """Install the icon."""
-        filename = icon_path + self.binary
-        icon_to_repl = icon["original"]
-        pngbytes = get_pngbytes(self.svgtopng, icon)
-        if pngbytes:
-            _data_pack = data_pack.read_data_pack(filename)
-            _data_pack.resources[int(icon_to_repl)] = pngbytes
-            data_pack.write_data_pack(_data_pack.resources, filename, 0)
+    def convert_to_png(self, input_file, output_file, width=None, height=None):
+        """Convert svg to png."""
+        cmd = [self.cmd, input_file, output_file]
+        if width and height:
+            cmd.extend(["{0!s}:{1!s}".format(str(width), str(height))])
+        cmd.extend([input_file, output_file])
+        execute(cmd)

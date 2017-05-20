@@ -22,17 +22,17 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from struct import unpack, pack
 from json import loads, dumps
-from modules.applications.binary import BinaryApplication
-from modules.utils import (get_from_dict, change_dict_vals,
+from .binary import BinaryApplication
+from src.utils import (get_from_dict, change_dict_vals,
                            set_in_dict, get_pngbytes)
 
 
 class ElectronApplication(BinaryApplication):
     """Electron applicaton object."""
 
-    def __init__(self, application_data, svgtopng):
+    def __init__(self, application_data):
         """Use the parent class, Application, modify only the (re)install."""
-        BinaryApplication.__init__(self, application_data, svgtopng)
+        BinaryApplication.__init__(self, application_data)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""

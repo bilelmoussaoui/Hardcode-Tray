@@ -20,16 +20,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from modules.applications.application import Application
-from modules.utils import backup, revert, create_backup_dir, show_select_backup
-from modules.decorators import revert_wrapper, install_wrapper
+from .application import Application
+from src.utils import backup, revert, create_backup_dir, show_select_backup
+from src.decorators import revert_wrapper, install_wrapper
 
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
 
-    def __init__(self, application_data, svgtopng):
+    def __init__(self, application_data):
         """Init method."""
-        Application.__init__(self, application_data, svgtopng)
+        Application.__init__(self, application_data)
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
