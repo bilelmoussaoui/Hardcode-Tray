@@ -88,7 +88,8 @@ if not isinstance(App.theme(), dict):
     print("Your current icon theme is : {0}".format(App.theme()))
 else:
     print("Your current dark icon theme is : {0}".format(App.theme()["dark"]))
-    print("Your current light icon theme is : {0}".format(App.theme()["light"]))
+    print("Your current light icon theme is : {0}".format(
+        App.theme()["light"]))
 print("Conversion tool : {0}".format(App.svg()))
 print("Applications will be fixed : ", end="")
 print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
@@ -118,7 +119,6 @@ elif action == Action.REVERT:
     print("Reverting now..\n")
 elif action == Action.CLEAR_CACHE:
     print("Clearing cache...\n")
-
-hardcode_tray.execute(action)
+App.execute(action)
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")

@@ -25,11 +25,10 @@ from src.const import ARCH, USERHOME, PATH_SCRIPTS_FOLDER
 from src.utils import create_dir, execute
 from .log import Logger
 
-
 class Path:
     DB_VARIABLES = {
         "{userhome}" : USERHOME,
-        "{size}" : 22, # Fix me
+        "{size}" : 22,
         "{arch}" : ARCH
     }
     def __init__(self, absolute_path, exec_path_script=None, force_create=False):
@@ -55,6 +54,11 @@ class Path:
         return self._found
 
     def _validate(self):
+        """
+            Check wether a folder path exists or not.
+        """
+        from src.app import App
+        Path.DB_VARIABLES["{size}"] = App.icon_size()
         for key, value in Path.DB_VARIABLES.items():
             self.path = self.path.replace(key, str(value))
         if self._path_script:

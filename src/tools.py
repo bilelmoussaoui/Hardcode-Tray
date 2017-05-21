@@ -24,6 +24,7 @@ from subprocess import check_output
 from os import path, environ
 from .modules.log import Logger
 
+
 def get_userhome(username):
     """Get real user home path."""
     userhome = check_output('sh -c "echo $HOME"', shell=True,
@@ -44,6 +45,7 @@ def detect_de():
     known_desktop = ["pantheon", "gnome", "kde", "unity", "mate", "xfce"]
     for desktop in known_desktop:
         if desktop in desktop_env:
-            Logger.debug("Desktop environnement detected : {0}".format(desktop.title()))
+            Logger.debug(
+                "Desktop environnement detected : {0}".format(desktop.title()))
             return desktop
     return "other"

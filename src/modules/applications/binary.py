@@ -24,6 +24,7 @@ from .application import Application
 from src.utils import backup, revert
 from src.decorators import revert_wrapper, install_wrapper
 
+
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
 

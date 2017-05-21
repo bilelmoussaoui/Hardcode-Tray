@@ -20,6 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+
+
 class Action:
     APPLY = 1
     REVERT = 2
@@ -42,6 +44,7 @@ class ConversionTools:
                 if isinstance(value, str) and choice != "__module__":
                     choices[value] = choice
         return choices
+
 
 class ApplicationType:
     ELECTRON = "ElectronApplication"

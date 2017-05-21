@@ -55,7 +55,9 @@ class Parser:
         return globals()[application](self)
 
     def _read(self):
-        # Read database file
+        """
+            Read the json file and parse it.
+        """
         with open(self._db_file, 'r') as f:
             data = json.load(f)
             do_later = ["app_path", "icons_path", "icons"]

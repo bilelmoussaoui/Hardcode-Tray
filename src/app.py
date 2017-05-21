@@ -30,6 +30,7 @@ from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
 from .enum import Action, ConversionTools
 from .utils import progress
 
+
 class App:
     _args = None  # Arguments Parser
     _config = None  # Config file (json)
@@ -42,15 +43,15 @@ class App:
     _colors = []  # Colors
     _svgtopng = None
 
-    _app = None # App Object
+    _app = None  # App Object
 
     def __init__(self, args):
         App._args = args
 
     @staticmethod
-    def get_default(args = None):
+    def get_default(args=None):
         if App._app == None:
-              App._app = App(args)
+            App._app = App(args)
         return App._app
 
     @staticmethod
@@ -77,7 +78,8 @@ class App:
                 supported_apps.append(application_data.get_application())
         return supported_apps
 
-    def execute(self, action):
+    @staticmethod
+    def execute(action):
         """Fix Hardcoded Tray icons.
             Args:
                 action(Action):
@@ -127,7 +129,6 @@ class App:
                 App._config = {}
         return App._config
 
-
     @staticmethod
     def svg():
         if App._svgtopng == None:
@@ -144,7 +145,8 @@ class App:
                 svgtool_found = False
                 for conversion_tool in ConversionTools.choices():
                     try:
-                        App._svgtopng = globals()[conversion_tool](App.colors())
+                        App._svgtopng = globals()[conversion_tool](
+                            App.colors())
                         svgtool_found = True
                         break
                     except SVGNotInstalled:

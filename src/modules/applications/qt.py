@@ -30,6 +30,7 @@ from src.decorators import symlinks_installer, revert_wrapper
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""
     BACKUP_IGNORE = True
+
     def __init__(self, parser):
         """Init method."""
         Application.__init__(self, parser)

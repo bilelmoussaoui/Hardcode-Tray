@@ -34,6 +34,7 @@ from .modules.log import Logger
 from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                     BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 
+
 def progress(count, count_max, app_name=""):
     """Used to draw a progress bar."""
     bar_len = 40
@@ -43,8 +44,10 @@ def progress(count, count_max, app_name=""):
     percents = round(100.0 * count / float(count_max), 1)
     progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
-    stdout.write("\r{0!s}{1!s}".format(app_name, " " * (abs(len(app_name) - space))))
-    stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar, count, count_max, percents, '%'))
+    stdout.write("\r{0!s}{1!s}".format(
+        app_name, " " * (abs(len(app_name) - space))))
+    stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar,
+                                                           count, count_max, percents, '%'))
     print("")
     stdout.flush()
 
@@ -97,10 +100,12 @@ def get_scaling_factor(desktop_env):
     if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        Logger.debug("Scaling factor of Gnome interface is set to %s", scaling_factor)
+        Logger.debug(
+            "Scaling factor of Gnome interface is set to %s", scaling_factor)
     elif desktop_env == "kde":
         try:
-            plasma_scaling_config = path.join(USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
+            plasma_scaling_config = path.join(
+                USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
             obj = open(plasma_scaling_config, 'r')
             lines = obj.readlines()
             obj.close()
@@ -109,15 +114,18 @@ def get_scaling_factor(desktop_env):
             for line in lines:
                 line = line.strip().split("=")
                 if len(line) == 1:
-                    was_found = re.match(r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
+                    was_found = re.match(
+                        r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
                 if len(line) > 1 and was_found:
                     key = line[0].strip()
                     if key.lower() == "iconsize":
                         scaling_factor = int(line[1].strip())
                         break
-            Logger.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
+            Logger.debug(
+                "Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
         except (FileNotFoundError, KeyError) as kde_error:
-            Logger.debug("KDE scaling factor not detected, error : {0!s}".format(kde_error))
+            Logger.debug(
+                "KDE scaling factor not detected, error : {0!s}".format(kde_error))
     return scaling_factor
 
 
@@ -206,10 +214,11 @@ def backup(back_dir, file_name):
             copy_file(file_name, back_file)
             mchown(back_file)
         try:
-          if len(listdir(back_dir)) == 0:
-              rmtree(back_dir)
+            if len(listdir(back_dir)) == 0:
+                rmtree(back_dir)
         except FileNotFoundError:
             pass
+
 
 def get_backup_folders(application_name):
     """Get a list of backup folders of a sepecific application."""
@@ -246,9 +255,11 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            Logger.debug("The user stopped the reversion for %s", application_name)
+            Logger.debug("The user stopped the reversion for %s",
+                         application_name)
         else:
-            Logger.debug("No backup folder found for the application %s", application_name)
+            Logger.debug(
+                "No backup folder found for the application %s", application_name)
     return None
 
 

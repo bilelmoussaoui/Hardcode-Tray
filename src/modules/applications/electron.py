@@ -24,7 +24,7 @@ from struct import unpack, pack
 from json import loads, dumps
 from .binary import BinaryApplication
 from src.utils import (get_from_dict, change_dict_vals,
-                           set_in_dict, get_pngbytes)
+                       set_in_dict, get_pngbytes)
 
 
 class ElectronApplication(BinaryApplication):
@@ -37,7 +37,8 @@ class ElectronApplication(BinaryApplication):
     def install_icon(self, icon, icon_path):
         """Install the icon."""
         filename = icon_path.append(self.binary)
-        icon_to_repl = "files/{0!s}".format("/files/".join(icon.original.split("/")))
+        icon_to_repl = "files/{0!s}".format(
+            "/files/".join(icon.original.split("/")))
         asarfile = open(filename, 'rb')
         asarfile.seek(4)
 
