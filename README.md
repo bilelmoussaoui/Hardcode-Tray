@@ -1,9 +1,8 @@
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/6ebdcd35681d424285ddf9e00e74b6e2/badge.svg)](https://www.quantifiedcode.com/app/project/6ebdcd35681d424285ddf9e00e74b6e2)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray.svg?branch=master)](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray)[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
-release](https://img.shields.io/badge/release-v3.7-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
+release](https://img.shields.io/badge/release-v3.8-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
 
 # Hardcode-Tray
 
@@ -48,7 +47,7 @@ The one click-installer can be found by following this [link](https://software.o
 #### Manual installation:
   1. Download and install the script:
   ```bash
-  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
+  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh | bash
   ```
 
   2. Install dependencies:
@@ -57,7 +56,7 @@ The one click-installer can be found by following this [link](https://software.o
    - `python3`
    - `python3-gi`
    - [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
-   - 2.1. Pick your favorite conversion tool
+   - 2.1. Pick up your favorite conversion tool
        1. `python3-cairosvg`
        2. `librsvg`
        3. `inkscape`
@@ -138,6 +137,13 @@ Your favorite theme does not provide icons for all those hardcoded icons? Just u
 hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
 ```
 
+- `clear-cache`
+
+Let you clear the backup cache folder
+```bash
+hardcode-tray --clear-cache
+```
+
 - `--version`
 
 You can print the version of Hardcode-Tray using
@@ -164,7 +170,7 @@ Hardcode-Tray also supports a JSON config file that can be placed under `~/.conf
 - `blacklist`: a list of applications that you don't want to be fixed.
 - `conversion-tool`: the default tool to be used everytime you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
-
+- `backup-ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
 An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/config.json).
 Passing `--theme` `--conversion-tool` `--size` will overwrite the default settings.
 
@@ -172,7 +178,7 @@ Passing `--theme` `--conversion-tool` `--size` will overwrite the default settin
 ### Uninstallation
 To remove the script completely from your desktop you can use
 ```bash
-cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/uninstall.sh | bash
+cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/uninstall.sh | bash
 ```
 
 ### Credits

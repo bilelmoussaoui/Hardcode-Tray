@@ -1,5 +1,5 @@
 #!/bin/bash
-version=v3.7
+version=v3.8
 if [[ $EUID -ne 0 ]]; then
     case $1 in
         -u|--update)
@@ -23,7 +23,7 @@ if [[ $EUID -ne 0 ]]; then
             exit 0 ;;
         *)
             cd /opt/Hardcode-Tray/
-            sudo -E python3 script.py "$@"
+            sudo -E python3 hardcode-tray.py "$@"
     esac
 else
     echo "Script shouldn't be run as root"

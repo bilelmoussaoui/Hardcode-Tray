@@ -1,8 +1,0 @@
-{
-    "blacklist": ["telegram", "hangouts"],
-    "icons": {
-        "theme": "Numix",
-        "size": 24
-    },
-    "conversion-tool": "CairoSVG"
-}
