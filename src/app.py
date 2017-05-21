@@ -111,10 +111,12 @@ class App:
                 exit("No apps to fix! Please report on GitHub if this is not the case")
             else:
                 exit("No apps to revert!")
-        
+
+    @staticmethod
     def args():
         return App._args
 
+    @staticmethod
     def config():
         if App._config == None:
             if path.isfile(CONFIG_FILE):
@@ -125,6 +127,8 @@ class App:
                 App._config = {}
         return App._config
 
+
+    @staticmethod
     def svg():
         if App._svgtopng == None:
             if App.args().conversion_tool:
@@ -150,6 +154,7 @@ class App:
                     raise SVGNotInstalled
         return App._svgtopng
 
+    @staticmethod
     def icon_size():
         if App._size == None:
             if App.args().size:
@@ -169,6 +174,7 @@ class App:
                     App._size = icon_size
         return App._size
 
+    @staticmethod
     def scaling_factor():
         if App._scaling_factor == -1:
             scaling_factor = get_scaling_factor(DESKTOP_ENV)
@@ -179,6 +185,7 @@ class App:
                 App.log.debug("Icon size was changed to : %s", App.size)
         return App._scaling_factor
 
+    @staticmethod
     def theme():
         if App._theme == None:
             # If the theme was sepecified on args
@@ -209,6 +216,7 @@ class App:
                     App._theme = Theme(theme_name)
         return App._theme
 
+    @staticmethod
     def colors():
         if App.args().change_color and not App._colors:
             colors = []
@@ -220,6 +228,7 @@ class App:
             App._colors = colors
         return App._colors
 
+    @staticmethod
     def action():
         if App._action == None:
             # Can't use apply and revert action on the same time
@@ -237,6 +246,7 @@ class App:
                     App._action = Action.CLEAR_CACHE
         return App._action
 
+    @staticmethod
     def only():
         if not App._only and App.args().only:
             only = App.args().only.lower().strip().split(",")
@@ -245,6 +255,7 @@ class App:
             App._only = only
         return App._only
 
+    @staticmethod
     def path():
         if App.args().path and len(App.only) != 0:
             proposed_path = App.args().path
