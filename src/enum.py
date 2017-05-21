@@ -23,12 +23,18 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 
 
 class Action:
+    """
+        Different possible actions
+    """
     APPLY = 1
     REVERT = 2
     CLEAR_CACHE = 3
 
 
 class ConversionTools:
+    """
+        Supported Conversion tools
+    """
     INKSCAPE = "Inkscape"
     CAIROSVG = "CairoSVG"
     RSVGCONVERT = "RSVGConvert"
@@ -47,6 +53,9 @@ class ConversionTools:
 
 
 class ApplicationType:
+    """
+        Different Applications Type
+    """
     ELECTRON = "ElectronApplication"
     ZIP = "ZipApplication"
     PAK = "PakApplication"

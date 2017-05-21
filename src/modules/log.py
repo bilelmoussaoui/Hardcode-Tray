@@ -25,6 +25,9 @@ import logging
 from time import strftime
 
 class Logger:
+    """
+    Logger class, logs error and other messages on /tmp/Hardcode-Tray.
+    """
 
     _log  = None
     @staticmethod

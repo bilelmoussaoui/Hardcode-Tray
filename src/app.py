@@ -32,6 +32,19 @@ from .utils import progress
 
 
 class App:
+    """
+        Main script object
+        _args: Arguments Parser output
+        _config: Json config file
+        _theme : Theme object(Current one)
+        _size: Icon size to be used
+        _scaling_factor: 1
+        _only: List of apps to be fixed (all if empty)
+        _path: Application path, only used with --only
+        _colors: list of colors to be replaced
+        _svgtopng: SVG object(convert svg to png/bin)
+        _app: self
+    """
     _args = None  # Arguments Parser
     _config = None  # Config file (json)
     _theme = None  # Theme object

@@ -29,6 +29,10 @@ from src.enum import ApplicationType
 
 class Parser:
 
+    """
+        Parse Json database file
+    """
+
     def __init__(self, db_file):
         self._db_file = db_file
         self.app_path = []

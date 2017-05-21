@@ -26,6 +26,11 @@ from src.utils import create_dir, execute
 from .log import Logger
 
 class Path:
+    """
+        Path class:
+        Check if paths do exists
+    """
+
     DB_VARIABLES = {
         "{userhome}" : USERHOME,
         "{size}" : 22,

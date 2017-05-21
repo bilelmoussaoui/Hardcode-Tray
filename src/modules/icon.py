@@ -29,8 +29,6 @@ class Icon:
 
     Args:
         @icon_dic: the icon dictionnary from the json file
-        @theme: the current theme
-        @default_icon_size: the default icon size
     """
 
     def __init__(self, icon_dic):
