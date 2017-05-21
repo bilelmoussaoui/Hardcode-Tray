@@ -39,7 +39,7 @@ class PakApplication(BinaryApplication):
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
-        filename = icon_path + self.binary
+        filename = icon_path.append(self.binary)
         icon_to_repl = int(icon.original)
         pngbytes = get_pngbytes(icon)
         if pngbytes:

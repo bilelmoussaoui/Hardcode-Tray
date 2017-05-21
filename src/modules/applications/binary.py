@@ -33,7 +33,7 @@ class BinaryApplication(Application):
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
-        backup(self.backup_dir, icon_path + self.binary)
+        backup(self.backup_dir, icon_path.append(self.binary))
 
     def revert_binary(self, icon_path):
         """Restore the backed up binary file."""

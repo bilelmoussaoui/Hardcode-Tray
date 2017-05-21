@@ -20,11 +20,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from subprocess import check_output
+from subprocess import check_output, Popen
 from os import path, environ
-import logging
-logging = logging.getLogger('hardcode-tray')
-
+from .modules.log import Logger
 
 def get_userhome(username):
     """Get real user home path."""
@@ -46,6 +44,6 @@ def detect_de():
     known_desktop = ["pantheon", "gnome", "kde", "unity", "mate", "xfce"]
     for desktop in known_desktop:
         if desktop in desktop_env:
-            logging.debug("Desktop environnement detected : %s", desktop.title())
+            Logger.debug("Desktop environnement detected : {0}".format(desktop.title()))
             return desktop
     return "other"

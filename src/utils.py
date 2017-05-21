@@ -20,18 +20,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+
+from gi.repository import Gio
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from functools import reduce
 from subprocess import PIPE, Popen, call
 from time import strftime
-import logging
 import re
 from sys import stdout
-from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID, BACKUP_EXTENSION,
-                           BACKUP_FOLDER, BACKUP_FILE_FORMAT)
-from gi.repository import Gio
+from .modules.log import Logger
+from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
+                    BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 
 def progress(count, count_max, app_name=""):
     """Used to draw a progress bar."""
@@ -57,7 +58,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        logging.debug("File name %s was not found", source)
+        Logger.debug("File name %s was not found", source)
 
 
 def copy_file(src, destination, overwrite=False):
@@ -96,7 +97,7 @@ def get_scaling_factor(desktop_env):
     if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        logging.debug("Scaling factor of Gnome interface is set to %s", scaling_factor)
+        Logger.debug("Scaling factor of Gnome interface is set to %s", scaling_factor)
     elif desktop_env == "kde":
         try:
             plasma_scaling_config = path.join(USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
@@ -114,9 +115,9 @@ def get_scaling_factor(desktop_env):
                     if key.lower() == "iconsize":
                         scaling_factor = int(line[1].strip())
                         break
-            logging.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
+            Logger.debug("Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
         except (FileNotFoundError, KeyError) as kde_error:
-            logging.debug("KDE scaling factor not detected, error : {0!s}".format(kde_error))
+            Logger.debug("KDE scaling factor not detected, error : {0!s}".format(kde_error))
     return scaling_factor
 
 
@@ -138,7 +139,9 @@ def mchown(directory):
                 if path.isdir(dir_path):
                     chown(dir_path, USER_ID, GROUP_ID)
                 else:
-                    execute(["chmod", "0777", dir_path.rstrip("/")])
+                    file_path = dir_path.rstrip("/")
+                    if not path.islink(file_path):
+                        execute(["chmod", "0777", file_path])
 
 
 def create_dir(folder):
@@ -164,7 +167,7 @@ def execute(command_list, verbose=True):
     cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
     output, error = cmd.communicate()
     if verbose and error:
-        logging.error(error)
+        Logger.error(error.decode("utf-8").strip())
     return output
 
 
@@ -199,7 +202,7 @@ def backup(back_dir, file_name):
         back_file = path.join(back_dir, path.basename(
             file_name) + BACKUP_EXTENSION)
         if path.exists(file_name):
-            logging.debug("Backup current file %s to %s", file_name, back_file)
+            Logger.debug("Backup current file %s to %s", file_name, back_file)
             copy_file(file_name, back_file)
             mchown(back_file)
         try:
@@ -243,9 +246,9 @@ def show_select_backup(application_name):
             except KeyboardInterrupt:
                 exit()
         if stopped:
-            logging.debug("The user stopped the reversion for %s", application_name)
+            Logger.debug("The user stopped the reversion for %s", application_name)
         else:
-            logging.debug("No backup folder found for the application %s", application_name)
+            Logger.debug("No backup folder found for the application %s", application_name)
     return None
 
 

@@ -33,7 +33,6 @@ from .utils import progress
 class App:
     _args = None  # Arguments Parser
     _config = None  # Config file (json)
-    _log = None  # Logger
     _theme = None  # Theme object
     _size = None  # Icon size
     _scaling_factor = -1  # Scaling factor
@@ -112,27 +111,7 @@ class App:
                 exit("No apps to fix! Please report on GitHub if this is not the case")
             else:
                 exit("No apps to revert!")
-
-    def log():
-        if App._log == None:
-            logger = logging.getLogger('hardcode-tray')
-            tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(
-                strftime(LOG_FILE_FORMAT))
-            if not path.exists(path.dirname(tmp_file)):
-                makedirs(path.dirname(tmp_file))
-            if not path.exists(tmp_file):
-                f = open(tmp_file, 'w')
-                f.write('')
-                f.close()
-            handler = logging.FileHandler(tmp_file)
-            formater = logging.Formatter(
-                '[%(levelname)s] - %(asctime)s - %(message)s')
-            handler.setFormatter(formater)
-            logger.addHandler(handler)
-            logger.setLevel(logging.DEBUG)
-            App._log = logging.getLogger("hardcode-tray")
-        return App._log
-
+        
     def args():
         return App._args
 

@@ -101,7 +101,7 @@ class Application:
             for syml in symlinks:
                 for directory in self.app_path:
                     root = symlinks[syml]["root"]
-                    dest = directory + symlinks[syml]["dest"]
+                    dest = directory.append(symlinks[syml]["dest"])
                     backup(self.backup_dir, dest)
                     symlink_file(root, dest)
 
@@ -112,7 +112,7 @@ class Application:
             for syml in symlinks:
                 for directory in self.app_path:
                     revert(self.name, self.selected_backup,
-                           directory + symlinks[syml]["dest"])
+                           directory.append(symlinks[syml]["dest"]))
 
     def clear_cache(self):
         """Clear Backup cache."""

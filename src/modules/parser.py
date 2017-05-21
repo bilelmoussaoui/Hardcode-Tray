@@ -21,7 +21,6 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
-import logging
 from .icon import Icon
 from .path import Path
 from .applications import *
