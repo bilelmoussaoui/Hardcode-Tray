@@ -53,8 +53,8 @@ class App:
               App._app = App(args)
         return App._app
 
-
-    def get_supported_apps(self):
+    @staticmethod
+    def get_supported_apps():
         """Get a list of dict, a dict for each supported application."""
         database_files = []
         blacklist = App.config().get("blacklist", [])
@@ -84,7 +84,7 @@ class App:
                 APPLY: To apply the modifications
                 REVERT: To revert it.
         """
-        apps = self.get_supported_apps()
+        apps = App.get_supported_apps()
         done = []
         if len(apps) != 0:
             cnt = 0

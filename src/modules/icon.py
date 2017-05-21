@@ -43,7 +43,8 @@ class Icon:
     def found(self):
         return self._found
 
-    def get_theme(self, icon_name):
+    @staticmethod
+    def get_theme(icon_name):
         """Get the theme to be used dark or light."""
         from src.app import App
         is_dark = "dark" in icon_name.lower()
@@ -66,7 +67,7 @@ class Icon:
             theme_icon = self.icon_data["theme"]
         ext_orig = get_extension(orig_icon)
         base_name = path.splitext(theme_icon)[0]
-        theme = self.get_theme(orig_icon)
+        theme = Icon.get_theme(orig_icon)
         theme_icon = theme.lookup_icon(base_name, App.icon_size(), 0)
         if theme_icon:
             self.original = orig_icon

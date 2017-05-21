@@ -20,14 +20,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, geteuid
-from glob import glob
+from os import geteuid
 from argparse import ArgumentParser
-from src.utils import progress, get_list_of_themes
-from src.const import DB_FOLDER, DESKTOP_ENV
+from src.utils import get_list_of_themes
+from src.const import DESKTOP_ENV
 from src.enum import Action, ConversionTools
 from src.app import App
-from src.modules.svg.svg import SVG
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\

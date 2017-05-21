@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from .application import Application
-from src.utils import backup, revert, create_backup_dir, show_select_backup
+from src.utils import backup, revert
 from src.decorators import revert_wrapper, install_wrapper
 
 class BinaryApplication(Application):
