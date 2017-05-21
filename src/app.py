@@ -20,20 +20,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from glob import glob
 from json import load
 from os import path
 from .modules.parser import Parser
 from .modules.theme import Theme
-from .modules.svg.svg import SVGNotInstalled
+from .modules.svg import *
 from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
-from .enum import CONVERSION_TOOLS, Action
-
+from .enum import Action, ConversionTools
+from .utils import progress
 
 class App:
     _args = None  # Arguments Parser
     _config = None  # Config file (json)
     _log = None  # Logger
-    _svgtopng = None  # Svg to png object
     _theme = None  # Theme object
     _size = None  # Icon size
     _scaling_factor = -1  # Scaling factor
@@ -41,6 +41,7 @@ class App:
     _only = []  # Fix only list of apps
     _path = None  # App path to use with fix only
     _colors = []  # Colors
+    _svgtopng = None
 
     _app = None # App Object
 
@@ -57,8 +58,8 @@ class App:
     def get_supported_apps(self):
         """Get a list of dict, a dict for each supported application."""
         database_files = []
+        blacklist = App.config().get("blacklist", [])
         if len(App.only()) != 0:
-            blacklist = App.config().get("blacklist", [])
             for db_file in App.only():
                 if db_file not in blacklist:
                     db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
@@ -67,7 +68,7 @@ class App:
         else:
             files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
             for file in files:
-                if path.splitext(path.basename(file))[0] not in BLACKLIST:
+                if path.splitext(path.basename(file))[0] not in blacklist:
                     database_files.append(file)
         database_files.sort()
         supported_apps = []
@@ -81,14 +82,14 @@ class App:
         """Fix Hardcoded Tray icons.
             Args:
                 action(Action):
-                    APPLY: To apply the modifications
-                    REVERT: To revert it.
+                APPLY: To apply the modifications
+                REVERT: To revert it.
         """
         apps = self.get_supported_apps()
         done = []
         if len(apps) != 0:
             cnt = 0
-            counter_total = sum(app.data.supported_icons_cnt for app in apps)
+            counter_total = sum(app.parser.total_icons for app in apps)
             for i, app in enumerate(apps):
                 app_name = app.name
                 if action == Action.APPLY:
@@ -98,7 +99,7 @@ class App:
                 elif action == Action.CLEAR_CACHE:
                     app.clear_cache()
                 if app.is_done:
-                    cnt += app.data.supported_icons_cnt
+                    cnt += app.parser.total_icons
                     if app_name not in done:
                         progress(cnt, counter_total, app_name)
                         done.append(app_name)
@@ -132,33 +133,6 @@ class App:
             App._log = logging.getLogger("hardcode-tray")
         return App._log
 
-    def svgtopng():
-        if App._svgtopng == None:
-            if App.args().conversion_tool:
-                conversion_tool = App.args().conversion_tool
-            elif App.config().get("conversion-tool"):
-                conversion_tool = App.config().get("conversion-tool")
-            if conversion_tool:
-                try:
-                    App._svgtopng = CONVERSION_TOOLS[conversion_tool](
-                        App.colors)
-                except SVGNotInstalled:
-                    exit("The selected conversion tool is not installed.")
-            else:
-                svgtool_found = False
-                for conversion_tool in CONVERSION_TOOLS:
-                    try:
-                        App._svgtopng = CONVERSION_TOOLS[
-                            conversion_tool](App.colors)
-                        svgtool_found = True
-                        break
-                    except SVGNotInstalled:
-                        svgtool_found = False
-
-                if not svgtool_found:
-                    raise SVGNotInstalled
-        return App._svgtopng
-
     def args():
         return App._args
 
@@ -171,6 +145,31 @@ class App:
             else:
                 App._config = {}
         return App._config
+
+    def svg():
+        if App._svgtopng == None:
+            if App.args().conversion_tool:
+                conversion_tool = App.args().conversion_tool
+            elif App.config().get("conversion-tool"):
+                conversion_tool = App.config().get("conversion-tool")
+            if conversion_tool:
+                try:
+                    App._svgtopng = globals()[conversion_tool](App.colors())
+                except SVGNotInstalled:
+                    exit("The selected conversion tool is not installed.")
+            else:
+                svgtool_found = False
+                for conversion_tool in ConversionTools.choices():
+                    try:
+                        App._svgtopng = globals()[conversion_tool](App.colors())
+                        svgtool_found = True
+                        break
+                    except SVGNotInstalled:
+                        svgtool_found = False
+
+                if not svgtool_found:
+                    raise SVGNotInstalled
+        return App._svgtopng
 
     def icon_size():
         if App._size == None:
@@ -240,6 +239,7 @@ class App:
                 for_replace = replace_to_6hex(color[1])
                 colors.append([to_replace, for_replace])
             App._colors = colors
+        return App._colors
 
     def action():
         if App._action == None:

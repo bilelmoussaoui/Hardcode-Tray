@@ -33,15 +33,15 @@ data_pack = load_source('data_pack', data_pack_path)
 class PakApplication(BinaryApplication):
     """Pak Application class, based on data_pak file."""
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Init method."""
-        BinaryApplication.__init__(self, application_data)
+        BinaryApplication.__init__(self, parser)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
         filename = icon_path + self.binary
-        icon_to_repl = int(icon["original"])
-        pngbytes = get_pngbytes(self.svgtopng, icon)
+        icon_to_repl = int(icon.original)
+        pngbytes = get_pngbytes(icon)
         if pngbytes:
             _data_pack = data_pack.read_data_pack(filename)
             _data_pack.resources[icon_to_repl] = pngbytes

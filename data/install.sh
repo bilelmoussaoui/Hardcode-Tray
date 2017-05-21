@@ -22,8 +22,8 @@ else
     versionnb=${version//[a-zA-Z]/}
     cd ./Hardcode-Tray-"$versionnb" || exit
 fi
-rm -rf .git ./screenshots 
-rm -f .gitignore README.md install.sh uninstall.sh
+rm -rf .git ./screenshots
+rm -f .gitignore README.md data/install.sh data/uninstall.sh
 cd ../ || exit
 if [ -d "/opt/Hardcode-Tray" ]; then
     sudo rm -rf /opt/Hardcode-Tray
@@ -34,7 +34,7 @@ else
     sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
 fi
 echo "Creating symbolic link.."
-if [ -L "/usr/bin/hardcode-tray" ] || [ -f "/usr/bin/hardcode-tray" ]; 
+if [ -L "/usr/bin/hardcode-tray" ] || [ -f "/usr/bin/hardcode-tray" ];
 then
     sudo rm -f /usr/bin/hardcode-tray
 fi

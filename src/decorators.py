@@ -5,15 +5,15 @@ def symlinks_installer(func):
     def wrapper(application, icon, icon_path):
         cname = application.__class__.__name__
         func(application, icon, icon_path)
-        if "symlinks" in icon.keys():
-            output_icon = icon_path +  icon["original"]
-            for symlink_icon in icon["symlinks"]:
+        if icon.has_symlinks():
+            output_icon = icon_path.append(icon.original)
+            for symlink_icon in icon.symlinks:
                 if cname != "Application":
                   symlink_icon = '{0}.{1}'.format(
                                 icon_path + symlink_icon,
-                                icon["theme_ext"])
+                                icon.theme_ext)
                 else:
-                    symlink_icon = icon_path + symlink_icon
+                    symlink_icon = icon_path.append(symlink_icon)
                 symlink_file(output_icon, symlink_icon)
     return wrapper
 

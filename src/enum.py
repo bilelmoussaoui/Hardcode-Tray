@@ -20,21 +20,44 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-
-from .modules.svg.inkscape import Inkscape
-from .modules.svg.svgcairo import CairoSVG
-from .modules.svg.rsvgconvert import RSVGConvert
-from .modules.svg.imagemagick import ImageMagick
-from .modules.svg.svgexport import SVGExport
-
 class Action:
     APPLY = 1
     REVERT = 2
     CLEAR_CACHE = 3
 
-CONVERSION_TOOLS = {"Inkscape": Inkscape,
-                    "CairoSVG": CairoSVG,
-                    "RSVGConvert": RSVGConvert,
-                    "ImageMagick": ImageMagick,
-                    "SVGExport": SVGExport
-                   }
+
+class ConversionTools:
+    INKSCAPE = "Inkscape"
+    CAIROSVG = "CairoSVG"
+    RSVGCONVERT = "RSVGConvert"
+    SVGEXPROT = "SVGExport"
+    IMAGEMAGICK = "ImageMagick"
+
+    @staticmethod
+    def choices():
+        choices = {}
+        for choice in ConversionTools.__dict__:
+            if hasattr(ConversionTools, choice):
+                value = getattr(ConversionTools, choice)
+                if isinstance(value, str) and choice != "__module__":
+                    choices[value] = choice
+        return choices
+
+class ApplicationType:
+    ELECTRON = "ElectronApplication"
+    ZIP = "ZipApplication"
+    PAK = "PakApplication"
+    NWJS = "NWJSApplication"
+    QT = "QtApplication"
+    BINARY = "BinaryApplication"
+    NORMAL = "Application"
+
+    @staticmethod
+    def choices():
+        choices = {}
+        for choice in ApplicationType.__dict__:
+            if hasattr(ApplicationType, choice):
+                value = getattr(ApplicationType, choice)
+                if isinstance(value, str) and choice != "__module__":
+                    choices[choice.lower()] = value
+        return choices

@@ -30,16 +30,16 @@ from src.decorators import install_wrapper
 class NWJSApplication(BinaryApplication):
     """NWJS Application class."""
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Init method."""
-        BinaryApplication.__init__(self, application_data)
+        BinaryApplication.__init__(self, parser)
         self.tmp_path = "/tmp/{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.nwjs_path
 
     @property
     def nwjs_path(self):
         """Return the path of the icons in the zip file."""
-        return self.data.data["nwjs_path"]
+        return self.parser.nwjs_path
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""

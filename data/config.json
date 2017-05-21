@@ -4,5 +4,6 @@
         "theme": "Numix",
         "size": 24
     },
-    "conversion-tool": "CairoSVG"
+    "conversion-tool": "CairoSVG",
+    "backup-ignore": true
 }

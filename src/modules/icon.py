@@ -21,7 +21,6 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from src.app import App
 from src.utils import get_iterated_icons, get_extension
 
 class Icon:
@@ -37,12 +36,16 @@ class Icon:
     def __init__(self, icon_dic):
         """Init function."""
         self.icon_data = icon_dic
-        self.icon = {}
-        self.is_exists = False
-        self.read()
+        self._found = False
+        self._read()
+
+    @property
+    def found(self):
+        return self._found
 
     def get_theme(self, icon_name):
         """Get the theme to be used dark or light."""
+        from src.app import App
         is_dark = "dark" in icon_name.lower()
         if isinstance(App.theme(), dict):
             if is_dark:
@@ -53,8 +56,9 @@ class Icon:
             theme = App.theme()
         return theme
 
-    def read(self):
+    def _read(self):
         """Get the theme icon,extensions and size. Save all of that to icon."""
+        from src.app import App
         if isinstance(self.icon_data, str):
             orig_icon = theme_icon = self.icon_data
         else:
@@ -65,42 +69,32 @@ class Icon:
         theme = self.get_theme(orig_icon)
         theme_icon = theme.lookup_icon(base_name, App.icon_size(), 0)
         if theme_icon:
-            self.icon["original"] = orig_icon
-            self.icon["theme"] = theme_icon.get_filename()
-            self.icon["theme_ext"] = get_extension(self.icon["theme"])
-            self.icon["orig_ext"] = ext_orig
-            self.icon["icon_size"] = self.get_icon_size()
-            self.is_exists = True
+            self.original = orig_icon
+            self.theme = theme_icon.get_filename()
+            self.theme_ext = get_extension(self.theme)
+            self.orig_ext = ext_orig
+            self.icon_size = self.get_icon_size(App.icon_size())
+            self._found = True
 
-            if (not isinstance(self.icon_data, str) and
-                    "symlinks" in self.icon_data.keys()):
-                self.icon["symlinks"] = get_iterated_icons(
-                    self.icon_data["symlinks"])
-
-    def get_is_exists(self):
-        """Return if the icon exists on the current theme."""
-        return self.is_exists
-
-    def get_data(self):
-        """Get the icon dictionnary that contains all informations."""
-        return self.icon
+            if (not isinstance(self.icon_data, str)
+                    and self.icon_data.get("symlinks")):
+                self.symlinks = get_iterated_icons(self.icon_data["symlinks"])
 
     def has_symlinks(self):
         """Return if the icon has symlinks or not."""
-        return "symlinks" in self.icon.keys()
+        return hasattr(self, "symlinks")
 
-    def get_icon_size(self):
+    def get_icon_size(self, icon_size):
         """Get the icon size, with hidpi support (depends on the icon name)."""
-        icon_size = App.icon_size()
-        icon_name = self.icon["original"].split("@")
+        icon_name = self.original.split("@")
         if len(icon_name) > 1:
             multiple = int(icon_name[1].split("x")[0])
             if multiple and multiple != 0:
                 icon_size *= multiple
-        icon_size = path.splitext(self.icon["original"])[0].split("-")[-1]
+        icon_size = path.splitext(self.original)[0].split("-")[-1]
         if icon_size.isdigit():
             icon_size = int(icon_size)
-        icon_size = path.splitext(self.icon["original"])[0].split("_")[-1]
+        icon_size = path.splitext(self.original)[0].split("_")[-1]
         if icon_size.isdigit():
             icon_size = int(icon_size)
         return icon_size

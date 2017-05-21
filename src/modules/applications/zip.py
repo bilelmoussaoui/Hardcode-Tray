@@ -31,17 +31,16 @@ from src.decorators import install_wrapper
 class ZipApplication(BinaryApplication):
     """Zip Application class."""
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Init method."""
-        BinaryApplication.__init__(self, application_data)
-        self.binary = self.binary
+        BinaryApplication.__init__(self, parser)
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.zip_path
 
     @property
     def zip_path(self):
         """Return the path of the icons in the zip file."""
-        return self.data.data["zip_path"]
+        return self.parser.zip_path
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""

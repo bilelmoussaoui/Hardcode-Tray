@@ -30,17 +30,16 @@ from src.decorators import symlinks_installer, revert_wrapper
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""
     BACKUP_IGNORE = True
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Init method."""
-        Application.__init__(self, application_data)
+        Application.__init__(self, parser)
 
-    @staticmethod
     @symlinks_installer
-    def install_icon(icon, icon_path):
+    def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
-        base_icon = icon["original"]
-        theme_icon = icon["theme"]
-        ext_theme = icon["theme_ext"]
+        base_icon = icon.original
+        theme_icon = icon.theme
+        ext_theme = icon.theme_ext
         output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
         symlink_file(theme_icon, output_icon)
 

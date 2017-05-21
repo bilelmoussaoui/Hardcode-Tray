@@ -25,8 +25,9 @@ from glob import glob
 from argparse import ArgumentParser
 from src.utils import progress, get_list_of_themes
 from src.const import DB_FOLDER, DESKTOP_ENV
-from src.enum import Action, CONVERSION_TOOLS
+from src.enum import Action, ConversionTools
 from src.app import App
+from src.modules.svg.svg import SVG
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
@@ -34,7 +35,6 @@ if geteuid() != 0:
 
 parser = ArgumentParser(prog="hardcode-tray")
 THEMES_LIST = get_list_of_themes()
-
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -71,7 +71,7 @@ parser.add_argument("--revert", "-r", action='store_true',
                     help="revert fixed hardcoded tray icons")
 parser.add_argument("--conversion-tool", "-ct",
                     help="Which of conversion tool to use",
-                    type=str, choices=CONVERSION_TOOLS.keys())
+                    type=str, choices=ConversionTools.choices())
 parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     help="Replace a color with an other one, "
                     "works only with SVG.")
@@ -91,7 +91,7 @@ if not isinstance(App.theme(), dict):
 else:
     print("Your current dark icon theme is : {0}".format(App.theme()["dark"]))
     print("Your current light icon theme is : {0}".format(App.theme()["light"]))
-print("Conversion tool : {0}".format(App.svgtopng()))
+print("Conversion tool : {0}".format(App.svg()))
 print("Applications will be fixed : ", end="")
 print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
 

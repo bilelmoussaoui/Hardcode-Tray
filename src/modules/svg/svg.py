@@ -24,10 +24,9 @@ from tempfile import NamedTemporaryFile
 from os import remove, path
 from src.utils import copy_file, replace_colors, is_installed
 
-
 class SVG:
     """SVG Interface used by other class's."""
-
+    _svg = None
     def __init__(self, colors):
         """Init function."""
         self.colors = colors

@@ -20,7 +20,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from os import path
 from shutil import rmtree
+from src.const import BACKUP_FOLDER
 from src.utils import backup, revert, symlink_file, mchown
 from src.decorators import symlinks_installer, revert_wrapper, install_wrapper
 
@@ -29,7 +31,7 @@ class Application:
     """Application class."""
     BACKUP_IGNORE = False
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """
         Init method.
 
@@ -38,24 +40,24 @@ class Application:
                     and installed in an other customn path
         """
         self.is_done = True
-        self.data = application_data
+        self.parser = parser
         self._selected_backup = None
         self._back_dir = None
 
     @property
     def name(self):
         """Return the application name."""
-        return self.data.data["name"]
+        return self.parser.name
 
     @property
     def icons(self):
         """Return the application icons."""
-        return self.data.data["icons"]
+        return self.parser.icons
 
     @property
     def app_path(self):
         """Return the application installation paths."""
-        return self.data.data["app_path"]
+        return self.parser.app_path
 
     @property
     def backup_dir(self):
@@ -81,16 +83,16 @@ class Application:
     @property
     def icons_path(self):
         """Return the application installation paths."""
-        return self.data.data["icons_path"]
+        return self.parser.icons_path
 
     @property
     def symlinks(self):
         """Return application symlinks."""
-        return self.data.data["symlinks"]
+        return self.parser.symlinks
 
     def has_symlinks(self):
         """Return a boolean value if either the application have symlinks."""
-        return "symlinks" in self.data.data.keys()
+        return hasattr(self.parser, "symlinks")
 
     def install_symlinks(self):
         """Create symlinks for some applications files."""
@@ -124,9 +126,8 @@ class Application:
         """Return a list of output icons."""
         icons = []
         for icon in self.icons:
-            base_icon = icon["original"]
             for icon_path in self.icons_path:
-                output_icon = icon_path + base_icon
+                output_icon = icon_path.append(icon.original)
                 icons.append({
                     "output_icon": output_icon,
                     "data": icon,
@@ -138,7 +139,7 @@ class Application:
     def install(self):
         """Install the application icons."""
         for icon in self.get_output_icons():
-            if not self.data.data["backup_ignore"]:
+            if not self.parser.backup_ignore:
                 backup(self.backup_dir, icon["output_icon"])
             self.install_icon(icon["data"], icon["path"])
 
@@ -146,7 +147,7 @@ class Application:
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
         for icon in self.get_output_icons():
-            if not self.data.data["backup_ignore"]:
+            if not self.parser.backup_ignore:
                 revert(self.name,
                        self.selected_backup,
                        icon["output_icon"])
@@ -154,17 +155,14 @@ class Application:
     @symlinks_installer
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
-        base_icon = icon["original"]
-        ext_orig = icon["orig_ext"]
-        theme_icon = icon["theme"]
-        ext_theme = icon["theme_ext"]
-        icon_size = icon["icon_size"]
-        output_icon = icon_path + base_icon
+        ext_orig = icon.orig_ext
+        theme_icon = icon.theme
+        ext_theme = icon.theme_ext
+        icon_size = icon.icon_size
+        output_icon = icon_path.append(icon.original)
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
-            if icon_size != self.data.default_icon_size:
-                self.svgtopng.to_png(theme_icon, output_icon, icon_size)
-            else:
-                self.svgtopng.to_png(theme_icon, output_icon)
+            from src.app import App
+            App.svg().to_png(theme_icon, output_icon, icon_size)
             mchown(output_icon)

@@ -30,15 +30,14 @@ from src.utils import (get_from_dict, change_dict_vals,
 class ElectronApplication(BinaryApplication):
     """Electron applicaton object."""
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Use the parent class, Application, modify only the (re)install."""
-        BinaryApplication.__init__(self, application_data)
+        BinaryApplication.__init__(self, parser)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
-        filename = icon_path + self.get_binary()
-        icon_to_repl = "files/{0!s}".format(
-            "/files/".join(icon["original"].split("/")))
+        filename = icon_path + self.binary
+        icon_to_repl = "files/{0!s}".format("/files/".join(icon.original.split("/")))
         asarfile = open(filename, 'rb')
         asarfile.seek(4)
 
@@ -66,7 +65,7 @@ class ElectronApplication(BinaryApplication):
                 bytearr = asarfile.read()
             asarfile.close()
 
-            pngbytes = get_pngbytes(self.svgtopng, icon)
+            pngbytes = get_pngbytes(icon)
 
             if pngbytes:
                 set_in_dict(files, keys + ['size'], len(pngbytes))

@@ -194,8 +194,8 @@ def create_backup_dir(application_name):
 
 def backup(back_dir, file_name):
     """Backup functions."""
-    from modules.app import App
-    if App.config.get("backup-ignore", False):
+    from src.app import App
+    if App.config().get("backup-ignore", False):
         back_file = path.join(back_dir, path.basename(
             file_name) + BACKUP_EXTENSION)
         if path.exists(file_name):
@@ -299,12 +299,14 @@ def get_list_of_themes():
     return themes
 
 
-def get_pngbytes(svgtopng, icon):
+def get_pngbytes(icon):
     """Return the pngbytes of a svg/png icon."""
-    icon_for_repl = icon["theme"]
-    icon_extension = icon["theme_ext"]
+    from src.app import App
+    icon_for_repl = icon.theme
+    icon_extension = icon.theme_ext
+    icon_size = icon.icon_size
     if icon_extension == 'svg':
-        pngbytes = svgtopng.to_bin(icon_for_repl)
+        pngbytes = App.svg().to_bin(icon_for_repl, icon_size)
     elif icon_extension == "png":
         with open(icon_for_repl, 'rb') as pngfile:
             pngbytes = pngfile.read()
@@ -362,4 +364,3 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
-

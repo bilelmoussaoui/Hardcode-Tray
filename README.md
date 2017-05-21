@@ -48,7 +48,7 @@ The one click-installer can be found by following this [link](https://software.o
 #### Manual installation:
   1. Download and install the script:
   ```bash
-  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/install.sh | bash
+  cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh | bash
   ```
 
   2. Install dependencies:
@@ -138,6 +138,13 @@ Your favorite theme does not provide icons for all those hardcoded icons? Just u
 hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
 ```
 
+- `clear-cache`
+
+Let you clear the backup cache folder
+```bash
+hardcode-tray --clear-cache
+```
+
 - `--version`
 
 You can print the version of Hardcode-Tray using
@@ -164,7 +171,7 @@ Hardcode-Tray also supports a JSON config file that can be placed under `~/.conf
 - `blacklist`: a list of applications that you don't want to be fixed.
 - `conversion-tool`: the default tool to be used everytime you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
-
+- `backup-ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
 An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/config.json).
 Passing `--theme` `--conversion-tool` `--size` will overwrite the default settings.
 
@@ -172,7 +179,7 @@ Passing `--theme` `--conversion-tool` `--size` will overwrite the default settin
 ### Uninstallation
 To remove the script completely from your desktop you can use
 ```bash
-cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/uninstall.sh | bash
+cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/uninstall.sh | bash
 ```
 
 ### Credits

@@ -27,9 +27,9 @@ from src.decorators import revert_wrapper, install_wrapper
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
 
-    def __init__(self, application_data):
+    def __init__(self, parser):
         """Init method."""
-        Application.__init__(self, application_data)
+        Application.__init__(self, parser)
 
     def backup_binary(self, icon_path):
         """Backup binary file before modification."""
@@ -43,7 +43,7 @@ class BinaryApplication(Application):
     @property
     def binary(self):
         """Return the binary file if exists."""
-        return self.data.data["binary"]
+        return self.parser.binary
 
     @revert_wrapper
     def reinstall(self):
