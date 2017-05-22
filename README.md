@@ -137,7 +137,7 @@ Your favorite theme does not provide icons for all those hardcoded icons? Just u
 hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
 ```
 
-- `clear-cache`
+- `--clear-cache`
 
 Let you clear the backup cache folder
 ```bash

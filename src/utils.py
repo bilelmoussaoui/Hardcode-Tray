@@ -120,11 +120,11 @@ def get_scaling_factor(desktop_env):
                     if key.lower() == "iconsize":
                         scaling_factor = int(line[1].strip())
                         break
-            Logger.debug(
-                "Scaling factor was detected in the KDE configuration with the value %s", scaling_factor)
+            Logger.debug("Scaling factor was detected in the "
+                         "KDE configuration with the value %s" % scaling_factor)
         except (FileNotFoundError, KeyError) as kde_error:
-            Logger.debug(
-                "KDE scaling factor not detected, error : {0!s}".format(kde_error))
+            Logger.debug("KDE scaling factor not "
+                         "detected, error : {0!s}".format(kde_error))
     return scaling_factor
 
 
@@ -213,7 +213,8 @@ def backup(back_dir, file_name):
             copy_file(file_name, back_file)
             mchown(back_file)
         try:
-            if len(listdir(back_dir)) == 0:
+            cache_files = listdir(back_dir)
+            if len(cache_files) == 0:
                 rmtree(back_dir)
         except FileNotFoundError:
             pass
@@ -257,8 +258,8 @@ def show_select_backup(application_name):
             Logger.debug("The user stopped the reversion for %s",
                          application_name)
         else:
-            Logger.debug(
-                "No backup folder found for the application %s", application_name)
+            Logger.debug("No backup folder found "
+                         "for the application %s" % application_name)
     return None
 
 
@@ -302,7 +303,7 @@ def get_list_of_themes():
         try:
             sub_dirs = listdir(icon_path)
             for theme in sub_dirs:
-                theme_path = path.join(icon_path, theme) + "/"
+                theme_path = path.join(icon_path, theme, "")
                 theme_index = "{0!s}index.theme".format(theme_path)
                 if (path.exists(theme_path) and path.exists(theme_index)
                         and theme not in themes):
