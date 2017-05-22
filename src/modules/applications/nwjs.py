@@ -22,9 +22,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
 from shutil import make_archive, rmtree, move
-from .binary import BinaryApplication
-from src.utils import execute, copy_file
 from src.decorators import install_wrapper
+from src.utils import execute, copy_file
+from .binary import BinaryApplication
 
 
 class NWJSApplication(BinaryApplication):
@@ -45,12 +45,12 @@ class NWJSApplication(BinaryApplication):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
-        execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
+        execute(["unzip", icon_path.append(self.binary), "-d", self.tmp_path])
         execute(["chmod", "0777", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        binary_file = icon_path + self.binary
+        binary_file = icon_path.append(self.binary)
         if path.exists(binary_file):
             remove(binary_file)
         copy_file(self.tmp_path + "package.json", icon_path + "package.json")

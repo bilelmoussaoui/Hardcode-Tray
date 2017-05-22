@@ -22,10 +22,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from shutil import rmtree
-from .application import Application
-from src.utils import symlink_file
 from src.decorators import symlinks_installer, revert_wrapper
-
+from src.utils import symlink_file
+from .application import Application
 
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""

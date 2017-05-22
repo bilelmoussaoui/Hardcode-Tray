@@ -23,9 +23,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove, makedirs
 from zipfile import ZipFile
 from shutil import make_archive, rmtree
-from .binary import BinaryApplication
-from src.utils import execute
 from src.decorators import install_wrapper
+from src.utils import execute
+from .binary import BinaryApplication
 
 
 class ZipApplication(BinaryApplication):

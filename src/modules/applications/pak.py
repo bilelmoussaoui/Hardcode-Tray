@@ -22,8 +22,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from imp import load_source
-from .binary import BinaryApplication
 from src.utils import get_pngbytes
+from .binary import BinaryApplication
 
 absolute_path = path.split(path.abspath(__file__))[0]
 data_pack_path = path.join(absolute_path, "pak", "data_pack.py")

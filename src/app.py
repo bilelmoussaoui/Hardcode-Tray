@@ -23,13 +23,15 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from glob import glob
 from json import load
 from os import path
+from gi.repository import Gio
+
+from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
+from .enum import Action, ConversionTools
+from .utils import progress, get_scaling_factor, replace_to_6hex
+from .modules.log import Logger
 from .modules.parser import Parser
 from .modules.theme import Theme
 from .modules.svg import *
-from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
-from .enum import Action, ConversionTools
-from .utils import progress
-
 
 class App:
     """
@@ -63,7 +65,7 @@ class App:
 
     @staticmethod
     def get_default(args=None):
-        if App._app == None:
+        if App._app is None:
             App._app = App(args)
         return App._app
 
@@ -133,7 +135,7 @@ class App:
 
     @staticmethod
     def config():
-        if App._config == None:
+        if App._config is None:
             if path.isfile(CONFIG_FILE):
                 with open(CONFIG_FILE, 'r') as data:
                     App._config = load(data)
@@ -144,7 +146,7 @@ class App:
 
     @staticmethod
     def svg():
-        if App._svgtopng == None:
+        if App._svgtopng is None:
             if App.args().conversion_tool:
                 conversion_tool = App.args().conversion_tool
             elif App.config().get("conversion-tool"):
@@ -171,7 +173,7 @@ class App:
 
     @staticmethod
     def icon_size():
-        if App._size == None:
+        if App._size is None:
             if App.args().size:
                 App._size = App.args().size
             else:
@@ -183,7 +185,7 @@ class App:
                     App._size = App.config()["icons"].get("size", icon_size)
                     if App._size not in [16, 22, 24]:
                         App._size = icon_size
-                        App.log.debug("Icon size in the config file is wrong. "
+                        Logger.debug("Icon size in the config file is wrong. "
                                       "Falling back to the detected one...")
                 else:
                     App._size = icon_size
@@ -196,13 +198,13 @@ class App:
             App._scaling_factor = scaling_factor
             if scaling_factor > 1:
                 # Change icon size by * it by the scaling factor
-                App._size = round(App.size * scaling_factor, 0)
-                App.log.debug("Icon size was changed to : %s", App.size)
+                App._size = round(App.icon_size() * scaling_factor, 0)
+                Logger.debug("Icon size was changed to : %s", App.icon_size())
         return App._scaling_factor
 
     @staticmethod
     def theme():
-        if App._theme == None:
+        if App._theme is None:
             # If the theme was sepecified on args
             if App.args().theme:
                 App._theme = Theme(App.args().theme)
@@ -245,7 +247,7 @@ class App:
 
     @staticmethod
     def action():
-        if App._action == None:
+        if App._action is None:
             # Can't use apply and revert action on the same time
             if App.args().apply and App.args().revert:
                 raise ValueError
@@ -272,7 +274,7 @@ class App:
 
     @staticmethod
     def path():
-        if App.args().path and len(App.only) != 0:
+        if App.args().path and len(App.only()) != 0:
             proposed_path = App.args().path
             if path.exists(proposed_path) and path.isdir(proposed_path):
                 App._path = proposed_path

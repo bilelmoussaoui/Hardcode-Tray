@@ -29,10 +29,10 @@ class Logger:
     Logger class, logs error and other messages on /tmp/Hardcode-Tray.
     """
 
-    _log  = None
+    _log = None
     @staticmethod
     def get_default():
-        if Logger._log == None:
+        if Logger._log is None:
             from src.const import LOG_FILE_FORMAT
             logger = logging.getLogger('hardcode-tray')
             tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(

@@ -22,9 +22,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from struct import unpack, pack
 from json import loads, dumps
-from .binary import BinaryApplication
 from src.utils import (get_from_dict, change_dict_vals,
                        set_in_dict, get_pngbytes)
+from .binary import BinaryApplication
 
 
 class ElectronApplication(BinaryApplication):
