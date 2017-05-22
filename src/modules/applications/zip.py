@@ -23,17 +23,16 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove, makedirs
 from zipfile import ZipFile
 from shutil import make_archive, rmtree
-from src.decorators import install_wrapper
 from src.utils import execute
-from .binary import BinaryApplication
+from .extract import ExtractApplication
 
 
-class ZipApplication(BinaryApplication):
+class ZipApplication(ExtractApplication):
     """Zip Application class."""
 
     def __init__(self, parser):
         """Init method."""
-        BinaryApplication.__init__(self, parser)
+        ExtractApplication.__init__(self, parser)
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.zip_path
 
@@ -58,13 +57,3 @@ class ZipApplication(BinaryApplication):
             remove(zip_file)
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)
         rmtree(self.tmp_path)
-
-    @install_wrapper
-    def install(self):
-        """Install the application icons."""
-        for icon_path in self.icons_path:
-            self.backup_binary(icon_path)
-            self.extract(icon_path)
-            for icon in self.icons:
-                self.install_icon(icon, self.tmp_data)
-            self.pack(icon_path)

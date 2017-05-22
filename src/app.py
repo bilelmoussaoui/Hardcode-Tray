@@ -33,6 +33,7 @@ from .modules.parser import Parser
 from .modules.theme import Theme
 from .modules.svg import *
 
+
 class App:
     """
         Main script object
@@ -185,8 +186,8 @@ class App:
                     App._size = App.config()["icons"].get("size", icon_size)
                     if App._size not in [16, 22, 24]:
                         App._size = icon_size
-                        Logger.debug("Icon size in the config file is wrong. "
-                                      "Falling back to the detected one...")
+                        Logger.debug("Icon size in the config file is wrong."
+                                     "Falling back to the detected one...")
                 else:
                     App._size = icon_size
         return App._size

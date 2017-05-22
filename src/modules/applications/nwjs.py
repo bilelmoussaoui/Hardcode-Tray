@@ -22,17 +22,16 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
 from shutil import make_archive, rmtree, move
-from src.decorators import install_wrapper
 from src.utils import execute, copy_file
-from .binary import BinaryApplication
+from .extract import ExtractApplication
 
 
-class NWJSApplication(BinaryApplication):
+class NWJSApplication(ExtractApplication):
     """NWJS Application class."""
 
     def __init__(self, parser):
         """Init method."""
-        BinaryApplication.__init__(self, parser)
+        ExtractApplication.__init__(self, parser)
         self.tmp_path = "/tmp/{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.nwjs_path
 
@@ -59,13 +58,3 @@ class NWJSApplication(BinaryApplication):
         execute(["/usr/bin/nw", binary_file + ".nw > " + binary_file])
         execute(["chmod", "+x", binary_file])
         # rmtree(self.tmp_path)
-
-    @install_wrapper
-    def install(self):
-        """Install the application icons."""
-        for icon_path in self.icons_path:
-            self.backup_binary(icon_path)
-            self.extract(icon_path)
-            for icon in self.icons:
-                self.install_icon(icon, self.tmp_data)
-            self.pack(icon_path)
