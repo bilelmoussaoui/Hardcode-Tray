@@ -57,4 +57,4 @@ class NWJSApplication(ExtractApplication):
         move(binary_file + ".zip", binary_file + ".nw")
         execute(["/usr/bin/nw", binary_file + ".nw > " + binary_file])
         execute(["chmod", "+x", binary_file])
-        # rmtree(self.tmp_path)
+        rmtree(self.tmp_path)

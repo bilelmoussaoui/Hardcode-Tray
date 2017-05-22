@@ -28,6 +28,7 @@ class ExtractApplication(BinaryApplication):
 
     def __init__(self, parser):
         BinaryApplication.__init__(self, parser)
+        self.tmp_data = None
 
     @install_wrapper
     def install(self):
@@ -38,3 +39,9 @@ class ExtractApplication(BinaryApplication):
             for icon in self.icons:
                 self.install_icon(icon, self.tmp_data)
             self.pack(icon_path)
+
+    def extract(self, icon_path):
+        pass
+
+    def pack(self, icon_path):
+        pass
