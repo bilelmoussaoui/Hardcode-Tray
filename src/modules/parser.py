@@ -21,14 +21,14 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
+from src.utils import get_iterated_icons
+from src.enum import ApplicationType
 from .icon import Icon
 from .path import Path
 from .applications import *
-from src.utils import get_iterated_icons
-from src.enum import ApplicationType
+
 
 class Parser:
-
     """
         Parse Json database file
     """
@@ -37,7 +37,11 @@ class Parser:
         self._db_file = db_file
         self.app_path = []
         self.icons_path = []
-        self.icons = [] # List of icons per app
+        self.is_script = False
+        self.is_qt = False
+        self.script = None
+        self.exec_path_script = None
+        self.icons = []  # List of icons per app
         self.total_icons = 0
         # By default the app is not installed on the user's system
         self.dont_install = True
@@ -74,14 +78,14 @@ class Parser:
         self._parse_icons(data["icons"])
 
         self.dont_install = not (len(self.icons) > 0
-                                    and len(self.app_path) > 0
-                                    and len(self.icons_path) > 0
-                                )
+                                 and len(self.app_path) > 0
+                                 and len(self.icons_path) > 0
+                                 )
 
     def _parse_paths(self, paths, key="app_path"):
         for path in paths:
             path = Path(path, self.exec_path_script)
-            if path.found: # If path exists
+            if path.found:  # If path exists
                 getattr(self, key).append(path)
 
     def _parse_icons(self, icons):
@@ -92,6 +96,6 @@ class Parser:
                 icon = Icon(icon)
             else:
                 icon = Icon(icons[icon])
-            if icon.found: # If icon found on current Gtk Icon theme
+            if icon.found:  # If icon found on current Gtk Icon theme
                 self.icons.append(icon)
                 self.total_icons += 1

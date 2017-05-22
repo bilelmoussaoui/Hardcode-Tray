@@ -5,7 +5,7 @@ python:
   - "3.6"
 install:
   - "sudo apt-get -y update"
-  - "sudo apt-get -y install inkscape python3-pip"
+  - "sudo apt-get -y install  python3-pip"
   - "pip3 install cairosvg pylint"
-script: 
+script:
   - "find -name \"*.py\" | xargs pylint --disable=C0103 $1"

@@ -21,15 +21,14 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 
-from gi.repository import Gio
+from functools import reduce
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
-from functools import reduce
 from subprocess import PIPE, Popen, call
-from time import strftime
-import re
 from sys import stdout
+from time import strftime
+from gi.repository import Gio
 from .modules.log import Logger
 from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                     BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
@@ -114,7 +113,7 @@ def get_scaling_factor(desktop_env):
             for line in lines:
                 line = line.strip().split("=")
                 if len(line) == 1:
-                    was_found = re.match(
+                    was_found = match(
                         r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
                 if len(line) > 1 and was_found:
                     key = line[0].strip()
