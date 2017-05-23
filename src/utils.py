@@ -23,15 +23,12 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from functools import reduce
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
-from shutil import copyfile, move, rmtree
+from shutil import copyfile
 from subprocess import PIPE, Popen, call
 from sys import stdout
-from tempfile import NamedTemporaryFile
-from time import strftime
 from gi.repository import Gio
 from .modules.log import Logger
-from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
-                    BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
+from .const import USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID
 
 
 def progress(count, count_max, time, app_name=""):
@@ -183,7 +180,6 @@ def is_installed(binary):
     """Check if a binary file exists/installed."""
     ink_flag = call(['which', binary], stdout=PIPE, stderr=PIPE)
     return bool(ink_flag == 0)
-
 
 
 def get_iterated_icons(icons):

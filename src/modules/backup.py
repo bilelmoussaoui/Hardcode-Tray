@@ -57,6 +57,8 @@ class Backup:
         """Backup functions."""
         from src.app import App
         if not App.config().get("backup-ignore", False):
+            if not self.backup_dir:
+                self.create_backup_dir()
             back_file = path.join(self.backup_dir, path.basename(
                 file_name) + BACKUP_EXTENSION)
             if path.exists(file_name):

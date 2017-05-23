@@ -83,7 +83,7 @@ class Path:
                                     verbose=True).decode("utf-8").strip()
             else:
                 Logger.error("Script file `%s` not found", script_path)
-        if self.parser.force_create_folder:
+        if self.parser.force_create_folder and self.type == "icons_path":
             create_dir(self.path)
 
         if self.parser.is_script and self.type == "app_path":

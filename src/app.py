@@ -108,7 +108,7 @@ class App:
         if len(apps) != 0:
             cnt = 0
             counter_total = sum(app.parser.total_icons for app in apps)
-            for i, app in enumerate(apps):
+            for app in apps:
                 app_name = app.name
                 start_time = time()
                 if action == Action.APPLY:

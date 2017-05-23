@@ -89,8 +89,9 @@ class Application:
                 for directory in self.app_path:
                     root = symlinks[syml]["root"]
                     dest = directory.append(symlinks[syml]["dest"])
-                    self.backup.create(dest)
-                    symlink_file(root, dest)
+                    if path.exists(dest):
+                        self.backup.create(dest)
+                        symlink_file(root, dest)
 
     def remove_symlinks(self):
         """Remove symlinks created by the application."""
