@@ -83,7 +83,7 @@ if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
 
 print("Welcome to the tray icons hardcoder fixer!")
 print("Your indicator icon size is : {0}".format(App.icon_size()))
-print("The detected desktop environement : {0}".format(DESKTOP_ENV.title()))
+print("The detected desktop environment : {0}".format(DESKTOP_ENV.title()))
 if not isinstance(App.theme(), dict):
     print("Your current icon theme is : {0}".format(App.theme()))
 else:
