@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from src.const import ARCH, PATH_SCRIPTS_FOLDER, USERHOME
-from src.utils import create_dir, execute
+from src.utils import execute
 from src.modules.log import Logger
 
 
@@ -84,10 +84,8 @@ class Path:
                                     verbose=True).decode("utf-8").strip()
             else:
                 Logger.error("Script file `{0}` not found".format(script_path))
-        if self.parser.force_create_folder and self.type == "icons_path":
-            create_dir(self.path)
 
-        if self.parser.is_script and self.type == "app_path":
+        if self.parser.is_script and self.type == "icons_path":
             binary_file = path.join(self.path, self.parser.binary)
             if not path.exists(self.path) or not path.exists(binary_file):
                 self._exists = False

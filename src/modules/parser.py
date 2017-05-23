@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
 from src.enum import ApplicationType
-from src.utils import get_iterated_icons
+from src.utils import create_dir, get_iterated_icons
 from src.modules.icon import Icon
 from src.modules.path import Path
 from src.modules.applications import *
@@ -43,6 +43,7 @@ class Parser:
         self.exec_path_script = None
         self.icons = []  # List of icons per app
         self.total_icons = 0
+        self.force_create_folder = False
         # By default the app is not installed on the user's system
         self.dont_install = True
         self._read()
@@ -79,11 +80,13 @@ class Parser:
         self._parse_paths(data["icons_path"], "icons_path")
         self._parse_icons(data["icons"])
 
-        self.dont_install = not (
-            len(self.icons) > 0
-            and len(self.app_path) > 0
-            and len(self.icons_path) > 0
-        )
+        found = self.icons and self.app_path
+        if self.force_create_folder and found:
+            for icon_path in self.icons_path:
+                create_dir(icon_path.path)
+            self.dont_install = False
+        else:
+            self.dont_install = not (found and self.icons_path)
 
     def _parse_paths(self, paths, key):
         for path in paths:
