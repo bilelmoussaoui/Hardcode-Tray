@@ -41,7 +41,6 @@ class Parser:
         self.is_script = False
         self.is_qt = False
         self.script = None
-        self.exec_path_script = None
         self.icons = []  # List of icons per app
         self.total_icons = 0
         self.force_create_folder = False

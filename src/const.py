@@ -29,7 +29,6 @@ DB_FOLDER = "./" + path.join("data", "database", "")
 BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
 USERHOME = get_userhome(USERNAME)
-PATH_SCRIPTS_FOLDER = path.join("src", "paths", "")
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
 KDE_CONFIG_FILE = path.join(USERHOME, ".config",

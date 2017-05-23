@@ -96,6 +96,7 @@ def get_extension(filename):
 
 
 def get_kde_scaling_factor():
+    """Return the widgets scaling factor on KDE."""
     scaling_factor = 1
     was_found = False
 

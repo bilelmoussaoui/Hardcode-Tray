@@ -22,19 +22,19 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import listdir, path
 
-from src.const import ARCH, PATH_SCRIPTS_FOLDER, USERHOME
-from src.modules.log import Logger
-from src.utils import execute
+from src.const import ARCH, USERHOME
 
 
-def get_exact_folder(key, directory, callback):
-
+def get_exact_folder(key, directory, condition):
+    """
+        Get subdirs and apply a condition on each until one is found.
+    """
     dirs = directory.split(key)
     exact_directory = ""
     if path.isdir(dirs[0]):
         directories = listdir(dirs[0])
         for dir_ in directories:
-            if callback(path.join(dirs[0], dir_, "")):
+            if condition(path.join(dirs[0], dir_, "")):
                 exact_directory = dir_
                 break
     if exact_directory:

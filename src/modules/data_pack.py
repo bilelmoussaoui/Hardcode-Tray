@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Support for formatting a data pack file.
 
@@ -20,6 +20,7 @@ RAW_TEXT = 1
 
 
 class DataPack:
+    """Read and write .pak files."""
 
     def __init__(self, filename):
         """
@@ -41,7 +42,6 @@ class DataPack:
         except KeyError:
             Logger.warning("The key {0} dosen't seem to"
                            " be found on {1}".format(key, self._filename))
-            pass
 
     def get_value(self, key):
         """Get the value of a specific key in the resources list."""
@@ -60,9 +60,9 @@ class DataPack:
         original_data = data
 
         # Read the header.
-        version, num_entries, encoding = unpack('<IIB', data[:HEADER_LENGTH])
+        version, num_entries, _ = unpack('<IIB', data[:HEADER_LENGTH])
         if version != PACK_FILE_VERSION:
-            Logger.error('Wrong file version in {0!s}'.format(input_file))
+            Logger.error('Wrong file version in {0!s}'.format(self._filename))
             raise Exception
 
         if num_entries != 0:
