@@ -2,10 +2,13 @@ dist: trusty
 sudo: required
 language: python
 python:
-  - "3.6"
+    - "3.6"
 install:
-  - "sudo apt-get -y update"
-  - "sudo apt-get -y install  python3-pip"
-  - "pip3 install cairosvg pylint"
+    - "sudo apt-get -y update"
+    - "sudo apt-get -y install python3-pip"
+    - "pip3 install cairosvg pylint codacy-coverage coverage"
 script:
-  - "find -name \"*.py\" | xargs pylint --disable=C0103 $1"
+    - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
+after_success:
+    - "sudo -E coverage run hardcode-tray.py"
+    - "python-codacy-coverage -r coverage.xml"

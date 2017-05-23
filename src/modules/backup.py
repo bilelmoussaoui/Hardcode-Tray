@@ -71,7 +71,7 @@ class Backup:
         while exists:
             if path.exists(new_back_dir):
                 new_back_dir = back_dir + "_" + str(i)
-            if not path.exists(new_back_dir):
+            if not path.isdir(new_back_dir):
                 create_dir(new_back_dir)
                 exists = False
             i += 1
@@ -82,20 +82,15 @@ class Backup:
         from src.app import App
         if not App.config().get("backup-ignore", False):
             if not self.backup_dir:
+                print("hey")
                 self.create_backup_dir()
             back_file = path.join(self.backup_dir, path.basename(
                 file_name) + BACKUP_EXTENSION)
             if path.exists(file_name):
                 Logger.debug("Backup current file {0} to{1}".format(
                     file_name, back_file))
-                copy_file(file_name, back_file)
+                copy_file(file_name, back_file, True)
                 mchown(back_file)
-            try:
-                cache_files = listdir(self.backup_dir)
-                if cache_files:
-                    rmtree(self.backup_dir)
-            except FileNotFoundError:
-                pass
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""

@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+# C0103: Invalid %s name "%s"
+# C0413: Too few public methods
+# R0902: Too many instance attributes (%s/%s)
+# R0903: Too few public methods
+# R0914: Too many local variables (%s/%s)
+# W0401: Wildcard import %s
+# W0614: Unused import XYZ from wildcard import
+disable=C0103,C0413,R0902,R0903,R0914,W0401,W0614

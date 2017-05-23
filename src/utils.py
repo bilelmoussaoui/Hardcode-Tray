@@ -156,7 +156,7 @@ def create_dir(folder):
     Args :
         folder (str): folder path
     """
-    if not path.isdir(folder):
+    if not path.exists(folder):
         makedirs(folder, exist_ok=True)
         mchown(folder)
 
