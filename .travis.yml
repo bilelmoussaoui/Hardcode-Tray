@@ -12,10 +12,9 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
     - "sleep 3;"
 install:
-    - "sudo pip3 install cairosvg pylint codacy-coverage coverage"
+    - "sudo pip3 install cairosvg pylint coverage"
 script:
     - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
 after_success:
-    - "sudo -E coverage run hardcode-tray.py --apply"
-    - "coverage xml"
-    - "python-codacy-coverage -r coverage.xml"
+    - "sudo -E coverage run hardcode-tray.py --apply --theme hicolor"
+    - "coverage report -m"
