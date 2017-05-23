@@ -24,7 +24,7 @@ from os import path
 from shutil import rmtree
 from src.decorators import symlinks_installer, revert_wrapper
 from src.utils import symlink_file
-from .application import Application
+from src.modules.applications.application import Application
 
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""

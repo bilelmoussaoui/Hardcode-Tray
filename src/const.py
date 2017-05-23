@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import getenv, path
 from platform import machine
-from .tools import get_userhome, detect_de
+from src.tools import get_userhome, detect_de
 
 
 DB_FOLDER = "./" + path.join("data", "database", "")

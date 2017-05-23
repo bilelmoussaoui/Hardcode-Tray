@@ -24,7 +24,7 @@ from os import path, remove, makedirs
 from shutil import make_archive, rmtree
 from zipfile import ZipFile
 from src.utils import execute
-from .extract import ExtractApplication
+from src.modules.applications.extract import ExtractApplication
 
 
 class ZipApplication(ExtractApplication):

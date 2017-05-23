@@ -27,9 +27,8 @@ from src.utils import get_extension, get_iterated_icons
 class Icon:
     """
     Icon class, for each icon of each application.
-
     Args:
-        @icon_dic: the icon dictionnary from the json file
+        @icon_dic: the icon dictionnary/list from the json file
     """
 
     def __init__(self, icon_dic):

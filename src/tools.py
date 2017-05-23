@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from subprocess import check_output
 from os import path, environ
-from .modules.log import Logger
+from src.modules.log import Logger
 
 
 def get_userhome(username):

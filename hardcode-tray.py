@@ -93,7 +93,6 @@ else:
 print("Conversion tool : {0}".format(App.svg()))
 print("Applications will be fixed : ", end="")
 print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
-
 # Clear backup cache
 action = App.action()
 if not action:
@@ -104,7 +103,7 @@ if not action:
     while not has_chosen:
         try:
             action = int(input("Please choose: "))
-            if action not in [1, 2, 3]:
+            if action not in Action.choices():
                 print("Please try again")
             else:
                 has_chosen = True

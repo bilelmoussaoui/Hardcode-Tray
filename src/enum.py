@@ -30,6 +30,20 @@ class Action:
     REVERT = 2
     CLEAR_CACHE = 3
 
+    @staticmethod
+    def choices():
+        """Return a dict of different choices."""
+        choices = {}
+        for choice in Action.__dict__:
+            if hasattr(Action, choice):
+                try:
+                    value = int(getattr(Action, choice))
+                    choices[value] = choice
+                except (TypeError, ValueError):
+                    pass
+        return choices
+
+
 
 class ConversionTools:
     """
@@ -43,6 +57,7 @@ class ConversionTools:
 
     @staticmethod
     def choices():
+        """Return a dict of different choices."""
         choices = {}
         for choice in ConversionTools.__dict__:
             if hasattr(ConversionTools, choice):
@@ -66,6 +81,7 @@ class ApplicationType:
 
     @staticmethod
     def choices():
+        """Return a dict of different choices."""
         choices = {}
         for choice in ApplicationType.__dict__:
             if hasattr(ApplicationType, choice):

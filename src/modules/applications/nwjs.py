@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from shutil import make_archive, rmtree, move
 from src.utils import execute, copy_file
-from .extract import ExtractApplication
+from src.modules.applications.extract import ExtractApplication
 
 
 class NWJSApplication(ExtractApplication):

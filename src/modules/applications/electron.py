@@ -24,8 +24,8 @@ from struct import unpack, pack, error as StructError
 from json import loads, dumps
 from src.utils import (get_from_dict, change_dict_vals,
                        set_in_dict, get_pngbytes)
-from .binary import BinaryApplication
-from ..log import Logger
+from src.modules.applications.binary import BinaryApplication
+from src.modules.log import Logger
 
 
 class ElectronApplication(BinaryApplication):
@@ -45,6 +45,7 @@ class ElectronApplication(BinaryApplication):
 
     @staticmethod
     def get_real_path(icon_name, delimiter="/"):
+        """Get real path of an icon name inside the asar file."""
         return "files/{0}".format(
             "/files/".join(icon_name.split(delimiter)))
 

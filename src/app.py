@@ -23,30 +23,20 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from glob import glob
 from json import load
 from os import path
-from gi.repository import Gio
 from time import time
-from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
-from .enum import Action, ConversionTools
-from .utils import progress, get_scaling_factor, replace_to_6hex
-from .modules.log import Logger
-from .modules.parser import Parser
-from .modules.theme import Theme
-from .modules.svg import *
+from gi.repository import Gio
+from src.const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
+from src.enum import Action, ConversionTools
+from src.utils import progress, get_scaling_factor, replace_to_6hex
+from src.modules.log import Logger
+from src.modules.parser import Parser
+from src.modules.theme import Theme
+from src.modules.svg import *
 
 
 class App:
     """
-        Main script object
-        _args: Arguments Parser output
-        _config: Json config file
-        _theme : Theme object(Current one)
-        _size: Icon size to be used
-        _scaling_factor: 1
-        _only: List of apps to be fixed (all if empty)
-        _path: Application path, only used with --only
-        _colors: list of colors to be replaced
-        _svgtopng: SVG object(convert svg to png/bin)
-        _app: self
+        Main application.
     """
     _args = None  # Arguments Parser
     _config = None  # Config file (json)
@@ -66,6 +56,7 @@ class App:
 
     @staticmethod
     def get_default(args=None):
+        """Return the default instance of App."""
         if App._app is None:
             App._app = App(args)
         return App._app
@@ -75,7 +66,7 @@ class App:
         """Get a list of dict, a dict for each supported application."""
         database_files = []
         blacklist = App.config().get("blacklist", [])
-        if len(App.only()) != 0:
+        if App.only():
             for db_file in App.only():
                 if db_file not in blacklist:
                     db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
@@ -105,7 +96,7 @@ class App:
         apps = App.get_supported_apps()
         done = []
         total_time = 0
-        if len(apps) != 0:
+        if apps:
             cnt = 0
             counter_total = sum(app.parser.total_icons for app in apps)
             for app in apps:
@@ -136,10 +127,16 @@ class App:
 
     @staticmethod
     def args():
+        """
+            Application arguments
+        """
         return App._args
 
     @staticmethod
     def config():
+        """
+            json config file content.
+        """
         if App._config is None:
             if path.isfile(CONFIG_FILE):
                 with open(CONFIG_FILE, 'r') as data:
@@ -151,6 +148,9 @@ class App:
 
     @staticmethod
     def svg():
+        """
+            Return an instance of a conversion tool
+        """
         if App._svgtopng is None:
             conversion_tool = None
             if App.args().conversion_tool:
@@ -179,6 +179,9 @@ class App:
 
     @staticmethod
     def icon_size():
+        """
+            Return the icon size.
+        """
         if App._size is None:
             if App.args().size:
                 App._size = App.args().size
@@ -199,17 +202,23 @@ class App:
 
     @staticmethod
     def scaling_factor():
+        """
+            Returns the scaling factor.
+        """
         if App._scaling_factor == -1:
             scaling_factor = get_scaling_factor(DESKTOP_ENV)
             App._scaling_factor = scaling_factor
             if scaling_factor > 1:
                 # Change icon size by * it by the scaling factor
                 App._size = round(App.icon_size() * scaling_factor, 0)
-                Logger.debug("Icon size was changed to : %s", App.icon_size())
+                Logger.debug("Icon size was changed to : {0}".format(App.icon_size()))
         return App._scaling_factor
 
     @staticmethod
     def theme():
+        """
+            Theme instance.
+        """
         if App._theme is None:
             # If the theme was sepecified on args
             if App.args().theme:
@@ -241,6 +250,9 @@ class App:
 
     @staticmethod
     def colors():
+        """
+            List of colors to be replaced with new ones.
+        """
         if App.args().change_color and not App._colors:
             colors = []
             for color in App.args().change_color:
@@ -253,6 +265,9 @@ class App:
 
     @staticmethod
     def action():
+        """
+            Which action should be done?
+        """
         if App._action is None:
             # Can't use apply and revert action on the same time
             if App.args().apply and App.args().revert:
@@ -271,6 +286,9 @@ class App:
 
     @staticmethod
     def only():
+        """
+            List of applications to be fixed.
+        """
         if not App._only and App.args().only:
             only = App.args().only.lower().strip().split(",")
             for bfile in App.config().get("blacklist", []):
@@ -280,7 +298,10 @@ class App:
 
     @staticmethod
     def path():
-        if App.args().path and len(App.only()) != 0:
+        """
+            The icons path, specified per application.
+        """
+        if App.args().path and App.only():
             proposed_path = App.args().path
             if path.exists(proposed_path) and path.isdir(proposed_path):
                 App._path = proposed_path

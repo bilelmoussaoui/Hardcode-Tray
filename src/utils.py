@@ -27,8 +27,8 @@ from shutil import copyfile
 from subprocess import PIPE, Popen, call
 from sys import stdout
 from gi.repository import Gio
-from .modules.log import Logger
-from .const import USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID
+from src.modules.log import Logger
+from src.const import USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID
 
 
 def progress(count, count_max, time, app_name=""):
@@ -58,7 +58,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        Logger.debug("File name %s was not found", source)
+        Logger.debug("File name {0} was not found".format(source))
 
 
 def copy_file(src, destination, overwrite=False):
@@ -97,8 +97,8 @@ def get_scaling_factor(desktop_env):
     if desktop_env == "gnome":
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
-        Logger.debug(
-            "Scaling factor of Gnome interface is set to %s", scaling_factor)
+        Logger.debug("Scaling factor of Gnome interface"
+                     " is set to {0}".format(scaling_factor))
     elif desktop_env == "kde":
         try:
             plasma_scaling_config = path.join(
@@ -137,8 +137,8 @@ def mchown(directory):
     dir_path = ""
     # Check if the file/folder is in the home directory
     if USERHOME in directory:
-        for directory in path_list:
-            dir_path += str(directory) + "/"
+        for _dir in path_list:
+            dir_path += str(_dir) + "/"
             # Be sure to not change / permissions
             if dir_path.replace("/", "") not in CHMOD_IGNORE_LIST:
                 if path.isdir(dir_path):

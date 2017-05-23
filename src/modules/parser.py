@@ -23,9 +23,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 import json
 from src.enum import ApplicationType
 from src.utils import get_iterated_icons
-from .icon import Icon
-from .path import Path
-from .applications import *
+from src.modules.icon import Icon
+from src.modules.path import Path
+from src.modules.applications import *
 
 
 class Parser:

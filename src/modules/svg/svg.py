@@ -40,7 +40,7 @@ class SVG:
         elif height and not width:
             height = width
         tmp_file = ""
-        if len(self.colors) != 0:
+        if self.colors:
             tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
             copy_file(input_file, tmp_file)
             input_file = tmp_file

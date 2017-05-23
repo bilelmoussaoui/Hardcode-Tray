@@ -21,16 +21,20 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from src.enum import Action
-from .binary import BinaryApplication
+from src.modules.applications.binary import BinaryApplication
 
 
 class ExtractApplication(BinaryApplication):
+    """
+        Extractable binary applications.
+    """
 
     def __init__(self, parser):
         BinaryApplication.__init__(self, parser)
         self.tmp_data = None
 
     def execute(self, action):
+        """Execute actions: Apply/Revert."""
         for icon_path in self.icons_path:
             if self.is_corrupted:
                 break
@@ -44,7 +48,9 @@ class ExtractApplication(BinaryApplication):
         self.is_done = not self.is_corrupted
 
     def extract(self, icon_path):
+        """Extract binary file."""
         pass
 
     def pack(self, icon_path):
+        """Pack the binary file."""
         pass

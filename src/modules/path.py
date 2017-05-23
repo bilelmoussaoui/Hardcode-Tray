@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path
 from src.const import ARCH, PATH_SCRIPTS_FOLDER, USERHOME
 from src.utils import create_dir, execute
-from .log import Logger
+from src.modules.log import Logger
 
 
 class Path:
@@ -51,6 +51,7 @@ class Path:
 
     @property
     def parser(self):
+        """Return Parser instance."""
         return self._parser
 
     @property
@@ -82,7 +83,7 @@ class Path:
                 self.path = execute([script_path, self.path],
                                     verbose=True).decode("utf-8").strip()
             else:
-                Logger.error("Script file `%s` not found", script_path)
+                Logger.error("Script file `{0}` not found".format(script_path))
         if self.parser.force_create_folder and self.type == "icons_path":
             create_dir(self.path)
 

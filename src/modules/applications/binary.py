@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from src.enum import Action
-from .application import Application
+from src.modules.applications.application import Application
 
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
