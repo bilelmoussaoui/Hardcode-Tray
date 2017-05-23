@@ -5,8 +5,6 @@ python:
     - "3.2"
 branches:
     - master
-virtualenv:
-    system_site_packages: true
 before_install:
     - "sudo apt-get -y update"
     - "sudo apt-get install -y  python3-pip python3-gi python3-gobject gir1.2-gtk-3.0"
