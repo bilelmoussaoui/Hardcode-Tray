@@ -45,9 +45,11 @@ class Path:
         self._exists = True
         self._validate()
 
-    def append(self, filename):
-        """Append a file name to the path."""
-        return path.join(self.path, filename)
+    def __add__(self, filename):
+        return self.path + filename
+
+    def __radd__(self, filename):
+        return filename + self.path
 
     @property
     def parser(self):

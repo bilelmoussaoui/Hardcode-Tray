@@ -48,7 +48,7 @@ class PakApplication(BinaryApplication):
 
     def set_icon(self, icon, icon_path, pngbytes, backup=False):
         """Update the icon bytes with the new one."""
-        self.set_binary_file(icon_path.append(self.binary))
+        self.set_binary_file(icon_path + self.binary)
         if self.pak:
             icon_name = int(icon.original)
             if pngbytes and icon_name in self.pak.resources.keys():

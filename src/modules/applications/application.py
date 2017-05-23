@@ -88,7 +88,7 @@ class Application:
             for syml in symlinks:
                 for directory in self.app_path:
                     root = symlinks[syml]["root"]
-                    dest = directory.append(symlinks[syml]["dest"])
+                    dest = directory + symlinks[syml]["dest"]
                     if path.exists(dest):
                         self.backup.create(dest)
                         symlink_file(root, dest)
@@ -99,7 +99,7 @@ class Application:
             symlinks = self.symlinks
             for syml in symlinks:
                 for directory in self.app_path:
-                    self.backup.remove(directory.append(symlinks[syml]["dest"]))
+                    self.backup.remove(directory + symlinks[syml]["dest"])
 
     def clear_cache(self):
         """Clear Backup cache."""
@@ -136,7 +136,7 @@ class Application:
         theme_icon = icon.theme
         ext_theme = icon.theme_ext
         icon_size = icon.icon_size
-        output_icon = icon_path.append(icon.original)
+        output_icon = icon_path + icon.original
         if not self.backup_ignore:
             self.backup.create(output_icon)
         if ext_theme == ext_orig:
@@ -148,6 +148,6 @@ class Application:
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
-        output_icon = icon_path.append(icon.original)
+        output_icon = icon_path + icon.original
         if not self.backup_ignore:
             self.backup.remove(output_icon)

@@ -44,12 +44,12 @@ class NWJSApplication(ExtractApplication):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
-        execute(["unzip", icon_path.append(self.binary), "-d", self.tmp_path])
+        execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
         execute(["chmod", "0777", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        binary_file = icon_path.append(self.binary)
+        binary_file = icon_path + self.binary
         if path.exists(binary_file):
             remove(binary_file)
         copy_file(self.tmp_path + "package.json", icon_path + "package.json")

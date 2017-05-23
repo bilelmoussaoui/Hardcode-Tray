@@ -61,7 +61,7 @@ class ElectronApplication(BinaryApplication):
     def set_icon(self, icon_to_repl, binary_path, pngbytes, backup=False):
         """Set the icon into the electron binary file."""
         icon_to_repl = ElectronApplication.get_real_path(icon_to_repl)
-        binary_file = binary_path.append(self.binary)
+        binary_file = binary_path + self.binary
 
         asarfile = open(binary_file, 'rb')
         try:
