@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, listdir, remove
-from shutil import rmtree, move
+from shutil import move
 from time import strftime
 from src.const import BACKUP_EXTENSION, BACKUP_FILE_FORMAT, BACKUP_FOLDER
 from src.utils import create_dir, copy_file, mchown
