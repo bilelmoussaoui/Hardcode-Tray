@@ -66,9 +66,11 @@ The one click-installer can be found by following this [link](https://software.o
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
-  4. Open Hardcode-Tray using this command<br/>
-  <pre>hardcode-tray</pre>
-  5. Enjoy!
+  3. Open Hardcode-Tray using this command
+  ```bash
+    hardcode-tray
+  ```
+  4. Enjoy!
 
 ### Options
 - `--apply` and `--revert`
@@ -168,11 +170,12 @@ hardcode-tray --update-git
 ### Config file
 Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
 - `blacklist`: a list of applications that you don't want to be fixed.
-- `conversion-tool`: the default tool to be used everytime you use the script.
+- `conversion-tool`: the default tool to be used every time you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
 - `backup-ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
-An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/config.json).
-Passing `--theme` `--conversion-tool` `--size` will overwrite the default settings.
+
+An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
+Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
 
 
 ### Uninstallation
