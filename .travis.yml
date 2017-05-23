@@ -2,10 +2,17 @@ dist: trusty
 sudo: required
 language: python
 python:
-    - "3.6"
-install:
+    - "3.2"
+branches:
+    - master
+virtualenv:
+    system_site_packages: true
+before_install:
     - "sudo apt-get -y update"
-    - "sudo apt-get -y install python3-pip python3-gi python3-gobject"
+    - "sudo apt-get install -y  python3-pip python3-gi python3-gobject gir1.2-gtk-3.0"
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+install:
     - "pip3 install cairosvg pylint codacy-coverage coverage"
 script:
     - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
