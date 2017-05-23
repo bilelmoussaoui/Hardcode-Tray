@@ -8,7 +8,7 @@ release](https://img.shields.io/badge/release-v3.8-blue.svg)](https://github.com
 
 Fixes Hardcoded tray icons in Linux
 
-The script will automatically detect your default theme, the right icon size, the hard-coded applications, the right icons for each indicator and fix them. All that with the possibility to revert to the original icons.
+The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 
 ### Themes
 Here's a list of themes that supports Hardcode-Tray:
@@ -63,17 +63,21 @@ The one click-installer can be found by following this [link](https://software.o
        4. `imagemagick`
        5. `svgexport`
 
-  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using another distro (like Fedora).<br />
+  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
-  4. Open Hardcode-Tray using this command<br/>
-  <pre>hardcode-tray</pre>
-  5. Enjoy!
+  
+  3. Open Hardcode-Tray using this command
+  <pre>
+    hardcode-tray
+  </pre>
+
+  4. Enjoy!
 
 ### Options
 - `--apply` and `--revert`
 
-Hardcode-Tray shows by default a welcome message and asks the user to choose between applying the fix or reverting it. You can hide that using
+Hardcode-Tray shows a welcome message by default and asks the user to choose between applying the fix or reverting it. You can hide that using
 ```bash
 hardcode-tray --apply
 ```
@@ -85,7 +89,7 @@ hardcode-tray --revert
 
 - `--only`
 
-You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
+You can use the `--only` argument to fix/revert only one application; don't use the argument if you want to fix all applications your icon theme supports.
 ```bash
 hardcode-tray --only telegram, skype
 ```
@@ -108,7 +112,7 @@ hardcode-tray --size 24 --only dropbox
 
 - `--theme`
 
-You can fix your hardcoded icons using another theme than the default one.
+You can fix your hardcoded icons using a different theme than the default one.
 ```bash
 hardcode-tray --theme Numix --only dropbox
 ```
@@ -122,7 +126,7 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 
 - `--conversion-tool`
 
-Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
+Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
 ```bash
 hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
 ```
@@ -132,7 +136,7 @@ Cairo has some issues with converting SVG files that use CSS (see [#245](https:/
 
 - `--change-color`
 
-Your favorite theme does not provide icons for all those hardcoded icons? Just use an other theme and change the colors using Hardcode-Tray.
+Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
 ```bash
 hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
 ```
@@ -168,11 +172,12 @@ hardcode-tray --update-git
 ### Config file
 Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
 - `blacklist`: a list of applications that you don't want to be fixed.
-- `conversion-tool`: the default tool to be used everytime you use the script.
+- `conversion-tool`: the default tool to be used every time you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
 - `backup-ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
-An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/config.json).
-Passing `--theme` `--conversion-tool` `--size` will overwrite the default settings.
+
+An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
+Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
 
 
 ### Uninstallation
