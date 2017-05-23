@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from glob import glob
-from json import load
+from json import load, decoder
 from os import path
 from time import time
 from gi.repository import Gio
@@ -138,12 +138,14 @@ class App:
             json config file content.
         """
         if App._config is None:
+            config = {}
             if path.isfile(CONFIG_FILE):
                 with open(CONFIG_FILE, 'r') as data:
-                    App._config = load(data)
-                data.close()
-            else:
-                App._config = {}
+                    try:
+                        config = load(data)
+                    except decoder.JSONDecodeError:
+                        Logger.warning("The config file is not a valid json file.")
+            App._config = config
         return App._config
 
     @staticmethod

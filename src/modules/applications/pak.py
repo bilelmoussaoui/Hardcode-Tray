@@ -51,7 +51,7 @@ class PakApplication(BinaryApplication):
         self.set_binary_file(icon_path.append(self.binary))
         if self.pak:
             icon_name = int(icon.original)
-            if pngbytes:
+            if pngbytes and icon_name in self.pak.resources.keys():
                 if backup:
                     self.backup.file(str(icon_name), self.pak.resources[icon_name])
                 self.pak.resources[icon_name] = pngbytes
