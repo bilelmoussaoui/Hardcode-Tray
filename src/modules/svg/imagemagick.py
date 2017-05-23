@@ -20,8 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from src.utils import execute
 from src.modules.svg.svg import SVG, SVGNotInstalled
+from src.utils import execute
 
 
 class ImageMagick(SVG):

@@ -21,14 +21,11 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from imp import load_source
-from src.utils import get_pngbytes
-from src.modules.applications.binary import BinaryApplication
-from src.modules.log import Logger
 
-absolute_path = path.split(path.abspath(__file__))[0]
-data_pack_path = path.join(absolute_path, "pak", "data_pack.py")
-data_pack = load_source('data_pack', data_pack_path)
+from src.modules.applications.binary import BinaryApplication
+from src.modules.data_pack import DataPack
+from src.modules.log import Logger
+from src.utils import get_pngbytes
 
 
 class PakApplication(BinaryApplication):
@@ -44,18 +41,18 @@ class PakApplication(BinaryApplication):
         """Set pak file and create a new instance of it."""
         if binary_file != self.binary_file and path.exists(binary_file):
             self.binary_file = binary_file
-            self.pak = data_pack.read_data_pack(binary_file)
+            self.pak = DataPack(binary_file)
 
     def set_icon(self, icon, icon_path, pngbytes, backup=False):
         """Update the icon bytes with the new one."""
         self.set_binary_file(icon_path + self.binary)
         if self.pak:
-            icon_name = int(icon.original)
-            if pngbytes and icon_name in self.pak.resources.keys():
+            icon_name = icon.original
+            if pngbytes and self.pak.haskey(icon_name):
                 if backup:
-                    self.backup.file(str(icon_name), self.pak.resources[icon_name])
-                self.pak.resources[icon_name] = pngbytes
-                data_pack.write_data_pack(self.pak.resources, self.binary_file, 0)
+                    self.backup.file(str(icon_name), self.pak.get_value(icon_name))
+                self.pak.set_value(icon_name, pngbytes)
+                self.pak.write()
             else:
                 Logger.error("Couldn't find a PNG file.")
         else:

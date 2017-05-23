@@ -21,9 +21,10 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
-from shutil import make_archive, rmtree, move
-from src.utils import execute, copy_file
+from shutil import make_archive, move, rmtree
+
 from src.modules.applications.extract import ExtractApplication
+from src.utils import copy_file, execute
 
 
 class NWJSApplication(ExtractApplication):

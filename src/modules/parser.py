@@ -21,11 +21,12 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
+
 from src.enum import ApplicationType
-from src.utils import create_dir, get_iterated_icons
+from src.modules.applications import *
 from src.modules.icon import Icon
 from src.modules.path import Path
-from src.modules.applications import *
+from src.utils import create_dir, get_iterated_icons
 
 
 class Parser:

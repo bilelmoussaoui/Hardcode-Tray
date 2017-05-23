@@ -24,14 +24,16 @@ from glob import glob
 from json import load
 from os import path
 from time import time
+
 from gi.repository import Gio
-from src.const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
+
+from src.const import CONFIG_FILE, DB_FOLDER, DESKTOP_ENV
 from src.enum import Action, ConversionTools
-from src.utils import progress, get_scaling_factor, replace_to_6hex
 from src.modules.log import Logger
 from src.modules.parser import Parser
-from src.modules.theme import Theme
 from src.modules.svg import *
+from src.modules.theme import Theme
+from src.utils import get_scaling_factor, progress, replace_to_6hex
 
 
 class App:
@@ -144,7 +146,8 @@ class App:
                     try:
                         config = load(data)
                     except ValueError:
-                        Logger.warning("The config file is not a valid json file.")
+                        Logger.warning(
+                            "The config file is not a valid json file.")
             App._config = config
         return App._config
 
@@ -213,7 +216,8 @@ class App:
             if scaling_factor > 1:
                 # Change icon size by * it by the scaling factor
                 App._size = round(App.icon_size() * scaling_factor, 0)
-                Logger.debug("Icon size was changed to : {0}".format(App.icon_size()))
+                Logger.debug(
+                    "Icon size was changed to : {0}".format(App.icon_size()))
         return App._scaling_factor
 
     @staticmethod

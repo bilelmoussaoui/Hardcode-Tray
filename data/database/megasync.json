@@ -10,7 +10,7 @@
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": true,
-    "exec_path_script": false,
+    
     "icons": {
         "paused": {
             "original": "24b61f93b67c69a1a18b19241134f91d",

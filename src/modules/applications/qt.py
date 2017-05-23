@@ -22,9 +22,11 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 from shutil import rmtree
-from src.decorators import symlinks_installer, revert_wrapper
-from src.utils import symlink_file
+
+from src.decorators import revert_wrapper, symlinks_installer
 from src.modules.applications.application import Application
+from src.utils import symlink_file
+
 
 class QtApplication(Application):
     """Qt application, works only with the patched version of sni-qt."""
@@ -40,7 +42,7 @@ class QtApplication(Application):
         base_icon = icon.original
         theme_icon = icon.theme
         ext_theme = icon.theme_ext
-        output_icon = '{0}.{1}'.format(icon_path+ base_icon, ext_theme)
+        output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
         symlink_file(theme_icon, output_icon)
 
     @revert_wrapper

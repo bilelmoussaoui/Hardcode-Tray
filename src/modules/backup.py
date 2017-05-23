@@ -20,18 +20,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, listdir, remove
+from os import listdir, path, remove
 from shutil import move
 from time import strftime
+
 from src.const import BACKUP_EXTENSION, BACKUP_FILE_FORMAT, BACKUP_FOLDER
-from src.utils import create_dir, copy_file, mchown
 from src.modules.log import Logger
+from src.utils import copy_file, create_dir, mchown
 
 
 class Backup:
     """
         Handle backup/revert for each app.
     """
+
     def __init__(self, application):
         self._app = application
         self._backup_dir = None
@@ -102,7 +104,8 @@ class Backup:
 
     def get_backup_file(self, filename):
         """Return the backup file path."""
-        backup_folder = path.join(BACKUP_FOLDER, self.app.name, self.selected_backup)
+        backup_folder = path.join(
+            BACKUP_FOLDER, self.app.name, self.selected_backup)
         backup_file = path.join(backup_folder, filename + BACKUP_EXTENSION)
         if path.exists(backup_file):
             return backup_file
@@ -156,8 +159,10 @@ class Backup:
             icon(str) : the original icon name
             revert(bool) : True: revert, False: only backup
         """
-        back_dir = path.join(BACKUP_FOLDER, self.app.name, self.selected_backup, "")
+        back_dir = path.join(BACKUP_FOLDER, self.app.name,
+                             self.selected_backup, "")
         if path.exists(back_dir):
-            back_file = path.join(back_dir, path.basename(file_name) + BACKUP_EXTENSION)
+            back_file = path.join(back_dir, path.basename(
+                file_name) + BACKUP_EXTENSION)
             if path.isfile(back_file):
                 move(back_file, file_name)

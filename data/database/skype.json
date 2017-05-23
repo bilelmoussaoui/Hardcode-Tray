@@ -10,7 +10,7 @@
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": true,
-    "exec_path_script": false,
+    
     "icons": {
         "status-away": {
             "original": "602c84fa0f4d61c64f770495a500279e",

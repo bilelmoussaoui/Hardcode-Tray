@@ -11,7 +11,7 @@
     "backup_ignore": false,
     "is_script": false,
     "force_create_folder": false,
-    "exec_path_script": false,
+    
     "icons": [
         "overgrive-app-ind.svg",
         "overgrive-app-ind-con-{1-3}.svg",

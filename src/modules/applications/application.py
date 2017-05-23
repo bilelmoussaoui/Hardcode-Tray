@@ -20,14 +20,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from concurrent.futures import ThreadPoolExecutor as Executor
 from os import path
 from shutil import rmtree
+
+from concurrent.futures import ThreadPoolExecutor as Executor
 from src.const import BACKUP_FOLDER
+from src.decorators import install_wrapper, revert_wrapper, symlinks_installer
 from src.enum import Action
-from src.utils import symlink_file, mchown
-from src.decorators import symlinks_installer, revert_wrapper, install_wrapper
 from src.modules.backup import Backup
+from src.utils import mchown, symlink_file
+
 
 class Application:
     """Application class."""

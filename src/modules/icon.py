@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
+
 from src.utils import get_extension, get_iterated_icons
 
 
@@ -54,6 +55,7 @@ class Icon:
                 theme = App.theme()["light"]
         else:
             theme = App.theme()
+
         return theme
 
     def _read(self):

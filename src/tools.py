@@ -20,8 +20,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from os import environ, path
 from subprocess import check_output
-from os import path, environ
+
 from src.modules.log import Logger
 
 
@@ -48,4 +49,5 @@ def detect_de():
             Logger.debug(
                 "Desktop environnement detected : {0}".format(desktop.title()))
             return desktop
+    Logger.debug("The desktop environment couldn't be detected")
     return "other"

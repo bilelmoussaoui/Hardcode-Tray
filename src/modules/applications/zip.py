@@ -20,11 +20,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, remove, makedirs
+from os import makedirs, path, remove
 from shutil import make_archive, rmtree
 from zipfile import ZipFile
-from src.utils import execute
+
 from src.modules.applications.extract import ExtractApplication
+from src.utils import execute
 
 
 class ZipApplication(ExtractApplication):

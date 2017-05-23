@@ -10,7 +10,7 @@
     "backup_ignore": true,
     "is_script": false,
     "force_create_folder": true,
-    "exec_path_script": false,
+    
     "icons": {
         "panel": {
             "original": "bdf9b53b9cd16f3c032bf1eca0892643",

@@ -20,9 +20,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from os import path, remove
 from tempfile import NamedTemporaryFile
-from os import remove, path
-from src.utils import copy_file, replace_colors, is_installed
+
+from src.utils import copy_file, is_installed, replace_colors
 
 
 class SVG:

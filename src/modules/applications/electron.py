@@ -20,12 +20,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from struct import unpack, pack, error as StructError
-from json import loads, dumps
-from src.utils import (get_from_dict, change_dict_vals,
-                       set_in_dict, get_pngbytes)
+from json import dumps, loads
+from struct import error as StructError
+from struct import pack, unpack
+
 from src.modules.applications.binary import BinaryApplication
 from src.modules.log import Logger
+from src.utils import (change_dict_vals, get_from_dict, get_pngbytes,
+                       set_in_dict)
 
 
 class ElectronApplication(BinaryApplication):
@@ -51,7 +53,8 @@ class ElectronApplication(BinaryApplication):
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
-        backup_file = "|".join(ElectronApplication.get_real_path(icon.original).split("/"))
+        backup_file = "|".join(
+            ElectronApplication.get_real_path(icon.original).split("/"))
         pngbytes = self.get_backup_file(backup_file)
         if pngbytes:
             self.set_icon(icon.original, icon_path, pngbytes)
@@ -95,7 +98,8 @@ class ElectronApplication(BinaryApplication):
 
                     if backup:
                         backup_file = "|".join(keys)
-                        self.backup.file(backup_file, bytearr[offset:offset+size])
+                        self.backup.file(
+                            backup_file, bytearr[offset:offset + size])
 
                     newbytearr = pngbytes.join(
                         [bytearr[:offset], bytearr[offset + size:]])

@@ -13,7 +13,7 @@
     "backup_ignore": false,
     "is_qt": false,
     "force_create_folder": false,
-    "exec_path_script": false,
+    
     "icons": {
         "spotify_icon16": {
             "original": "spotify-linux-16.png",

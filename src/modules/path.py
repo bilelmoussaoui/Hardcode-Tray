@@ -20,10 +20,50 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
+from os import listdir, path
+
 from src.const import ARCH, PATH_SCRIPTS_FOLDER, USERHOME
-from src.utils import execute
 from src.modules.log import Logger
+from src.utils import execute
+
+
+def get_exact_folder(key, directory, callback):
+
+    dirs = directory.split(key)
+    exact_directory = ""
+    if path.isdir(dirs[0]):
+        directories = listdir(dirs[0])
+        for dir_ in directories:
+            if callback(path.join(dirs[0], dir_, "")):
+                exact_directory = dir_
+                break
+    if exact_directory:
+        directory = directory.replace(key, exact_directory)
+
+    return directory
+
+
+def dropbox_callack(directory):
+    """
+    Correct the hardcoded dropbox directory.
+
+    Args:
+        directory(str): the default dropbox directory
+    """
+    if path.isdir(directory):
+        sub_dir = directory.split("-")
+        return len(sub_dir) > 1 and sub_dir[0].lower() == "dropbox"
+    return False
+
+
+def hangouts_callback(directory):
+    """
+    Correct the hardcoded dropbox directory.
+
+    Args:
+        directory(str): the default dropbox directory
+    """
+    return path.isdir(directory)
 
 
 class Path:
@@ -35,7 +75,9 @@ class Path:
     DB_VARIABLES = {
         "{userhome}": USERHOME,
         "{size}": 22,
-        "{arch}": ARCH
+        "{arch}": ARCH,
+        "{dropbox}": dropbox_callack,
+        "{hangouts}": hangouts_callback
     }
 
     def __init__(self, absolute_path, parser, path_key):
@@ -75,17 +117,14 @@ class Path:
             Check wether a folder path exists or not.
         """
         from src.app import App
+
         Path.DB_VARIABLES["{size}"] = App.icon_size()
+
         for key, value in Path.DB_VARIABLES.items():
-            self.path = self.path.replace(key, str(value))
-        if self.parser.exec_path_script:
-            # If application does need a specific script to get the right path
-            script_path = path.join(PATH_SCRIPTS_FOLDER, self.parser.exec_path_script)
-            if path.exists(script_path):
-                self.path = execute([script_path, self.path],
-                                    verbose=True).decode("utf-8").strip()
+            if hasattr(value, "__call__"):  # Check wether it's a function or not
+                self.path = get_exact_folder(key, self.path, value)
             else:
-                Logger.error("Script file `{0}` not found".format(script_path))
+                self.path = self.path.replace(key, str(value))
 
         if self.parser.is_script and self.type == "icons_path":
             binary_file = path.join(self.path, self.parser.binary)

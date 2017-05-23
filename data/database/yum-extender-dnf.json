@@ -12,7 +12,7 @@
     "is_script": false,
     "backup_ignore": false,
     "force_create_folder": false,
-    "exec_path_script": false,
+    
     "icons": {
         "error": {
             "original": "tray-error.png",

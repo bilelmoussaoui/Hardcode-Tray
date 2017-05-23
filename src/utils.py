@@ -21,14 +21,17 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from functools import reduce
-from os import chown, makedirs, path, remove, symlink, listdir
+from os import chown, listdir, makedirs, path, remove, symlink
 from re import findall, match, sub
 from shutil import copyfile
 from subprocess import PIPE, Popen, call
 from sys import stdout
+
 from gi.repository import Gio
+
+from src.const import (CHMOD_IGNORE_LIST, GROUP_ID, KDE_CONFIG_FILE, USER_ID,
+                       USERHOME)
 from src.modules.log import Logger
-from src.const import USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID
 
 
 def progress(count, count_max, time, app_name=""):
@@ -44,7 +47,8 @@ def progress(count, count_max, time, app_name=""):
     stdout.write("\r{0!s}{1!s}".format(
         app_name, " " * (abs(len(app_name) - space))))
     stdout.write('[{0}] {1}/{2} {3}% {4}s\r'.format(progress_bar,
-                                                    count, count_max, percents, time))
+                                                    count, count_max,
+                                                    percents, time))
     print("")
     stdout.flush()
 
@@ -91,38 +95,53 @@ def get_extension(filename):
     return path.splitext(filename)[1].strip(".").lower()
 
 
+def get_kde_scaling_factor():
+    scaling_factor = 1
+    was_found = False
+
+    try:
+        with open(KDE_CONFIG_FILE, 'r') as kde_obj:
+            data = kde_obj.readlines()
+
+        for line in data:
+            line = list(map(lambda x: x.strip(),
+                            line.strip().split("=")))
+
+            if len(line) == 1:
+                was_found = match(
+                    r'\[Containments\]\[[0-9]+\]\[General\]', line[0])
+
+            if len(line) > 1 and was_found:
+                if line[0].lower() == "iconsize":
+                    scaling_factor = int(line[1])
+                    break
+        return scaling_factor
+    except (FileNotFoundError, KeyError) as kde_error:
+        Logger.debug("KDE scaling factor not detected."
+                     " Error : {0!s}".format(kde_error))
+    return None
+
+
 def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
     scaling_factor = 1
+
+    # Scaling factor on GNOME desktop
     if desktop_env == "gnome":
+
         gsettings = Gio.Settings.new("org.gnome.desktop.interface")
         scaling_factor = gsettings.get_uint('scaling-factor') + 1
+
         Logger.debug("Scaling factor of Gnome interface"
                      " is set to {0}".format(scaling_factor))
+
+    # Scaling factor on KDE Desktop
     elif desktop_env == "kde":
-        try:
-            plasma_scaling_config = path.join(
-                USERHOME, ".config", "plasma-org.kde.plasma.desktop-appletsrc")
-            obj = open(plasma_scaling_config, 'r')
-            lines = obj.readlines()
-            obj.close()
-            scaling_factor = 1
-            was_found = False
-            for line in lines:
-                line = line.strip().split("=")
-                if len(line) == 1:
-                    was_found = match(
-                        r'\[Containments\]\[[0-9]+\]\[General\]', line[0].strip())
-                if len(line) > 1 and was_found:
-                    key = line[0].strip()
-                    if key.lower() == "iconsize":
-                        scaling_factor = int(line[1].strip())
-                        break
-            Logger.debug("Scaling factor was detected in the "
-                         "KDE configuration with the value %s" % scaling_factor)
-        except (FileNotFoundError, KeyError) as kde_error:
-            Logger.debug("KDE scaling factor not "
-                         "detected, error : {0!s}".format(kde_error))
+        scaling_factor = get_kde_scaling_factor()
+
+        Logger.debug("Scaling factor was detected in the KDE configuration"
+                     "with the value {0}".format(scaling_factor))
+
     return scaling_factor
 
 
@@ -137,8 +156,8 @@ def mchown(directory):
     dir_path = ""
     # Check if the file/folder is in the home directory
     if USERHOME in directory:
-        for _dir in path_list:
-            dir_path += str(_dir) + "/"
+        for dir_ in path_list:
+            dir_path += str(dir_) + "/"
             # Be sure to not change / permissions
             if dir_path.replace("/", "") not in CHMOD_IGNORE_LIST:
                 if path.isdir(dir_path):
@@ -270,14 +289,17 @@ def replace_to_6hex(color):
 def replace_colors(file_name, colors):
     """Replace the colors in a file name."""
     if path.isfile(file_name):
-        with open(file_name, 'r') as _file:
-            file_data = _file.read()
-        _file.close()
+        # Open SVG file
+        with open(file_name, 'r') as file_:
+            file_data = file_.read()
+
+        # Replace colors
         for color in colors:
             to_replace = color[0]
             for_replace = color[1]
             file_data = sub(to_replace, for_replace, file_data)
 
+        # Save new file content on a tmp file.
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()

@@ -10,7 +10,6 @@
     ],
     "is_qt": false,
     "force_create_folder": false,
-    "exec_path_script": "dropbox.py",
     "backup_ignore": false,
     "is_script": false,
     "icons": [

@@ -22,8 +22,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import getenv, path
 from platform import machine
-from src.tools import get_userhome, detect_de
 
+from src.tools import detect_de, get_userhome
 
 DB_FOLDER = "./" + path.join("data", "database", "")
 BACKUP_EXTENSION = ".bak"
@@ -32,6 +32,8 @@ USERHOME = get_userhome(USERNAME)
 PATH_SCRIPTS_FOLDER = path.join("src", "paths", "")
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
+KDE_CONFIG_FILE = path.join(USERHOME, ".config",
+                            "plasma-org.kde.plasma.desktop-appletsrc")
 BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 CHMOD_IGNORE_LIST = ["", "home"]

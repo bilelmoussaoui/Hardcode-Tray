@@ -11,7 +11,7 @@
     "is_script": false,
     "backup_ignore": true,
     "force_create_folder": true,
-    "exec_path_script": false,
+    
     "icons": {
         "error": {
             "original": "6a85c1b1eca5f176490afbea40b5a85b",
