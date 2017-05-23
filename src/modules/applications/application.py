@@ -20,12 +20,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from concurrent.futures import ThreadPoolExecutor as Executor
 from os import path
 from shutil import rmtree
 from src.const import BACKUP_FOLDER
-from src.utils import backup, revert, symlink_file, mchown
+from src.enum import Action
+from src.utils import symlink_file, mchown
 from src.decorators import symlinks_installer, revert_wrapper, install_wrapper
-
+from src.modules.backup import Backup
 
 class Application:
     """Application class."""
@@ -43,6 +45,7 @@ class Application:
         self.parser = parser
         self._selected_backup = None
         self._back_dir = None
+        self.backup = Backup(self)
 
     @property
     def name(self):
@@ -60,30 +63,14 @@ class Application:
         return self.parser.app_path
 
     @property
-    def backup_dir(self):
-        """Return the backup directory of the current application."""
-        return self._back_dir
-
-    @backup_dir.setter
-    def backup_dir(self, backup_dir):
-        self._back_dir = backup_dir
-
-    @property
-    def selected_backup(self):
-        """Return the selected backup directory during the revert process."""
-        return self._selected_backup
-
-    @selected_backup.setter
-    def selected_backup(self, selected_backup):
-        if path.exists(selected_backup):
-            self._selected_backup = selected_backup
-        else:
-            raise FileNotFoundError
-
-    @property
     def icons_path(self):
         """Return the application installation paths."""
         return self.parser.icons_path
+
+    @property
+    def backup_ignore(self):
+        """Return either the backup files should be created or not."""
+        return self.parser.backup_ignore
 
     @property
     def symlinks(self):
@@ -102,7 +89,7 @@ class Application:
                 for directory in self.app_path:
                     root = symlinks[syml]["root"]
                     dest = directory.append(symlinks[syml]["dest"])
-                    backup(self.backup_dir, dest)
+                    self.backup.create(dest)
                     symlink_file(root, dest)
 
     def remove_symlinks(self):
@@ -111,8 +98,7 @@ class Application:
             symlinks = self.symlinks
             for syml in symlinks:
                 for directory in self.app_path:
-                    revert(self.name, self.selected_backup,
-                           directory.append(symlinks[syml]["dest"]))
+                    self.backup.remove(directory.append(symlinks[syml]["dest"]))
 
     def clear_cache(self):
         """Clear Backup cache."""
@@ -122,35 +108,25 @@ class Application:
             return True
         return False
 
-    def get_output_icons(self):
-        """Return a list of output icons."""
-        icons = []
-        for icon in self.icons:
-            for icon_path in self.icons_path:
-                output_icon = icon_path.append(icon.original)
-                icons.append({
-                    "output_icon": output_icon,
-                    "data": icon,
-                    "path": icon_path
-                })
-        return icons
+    def execute(self, action):
+        """Execute actions: Apply/Revert."""
+        for icon_path in self.icons_path:
+            with Executor(max_workers=4) as exe:
+                for icon in self.icons:
+                    if action == Action.APPLY:
+                        exe.submit(self.install_icon, icon, icon_path)
+                    elif action == Action.REVERT:
+                        exe.submit(self.revert_icon, icon, icon_path)
 
     @install_wrapper
     def install(self):
         """Install the application icons."""
-        for icon in self.get_output_icons():
-            if not self.parser.backup_ignore:
-                backup(self.backup_dir, icon["output_icon"])
-            self.install_icon(icon["data"], icon["path"])
+        self.execute(Action.APPLY)
 
     @revert_wrapper
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
-        for icon in self.get_output_icons():
-            if not self.parser.backup_ignore:
-                revert(self.name,
-                       self.selected_backup,
-                       icon["output_icon"])
+        self.execute(Action.REVERT)
 
     @symlinks_installer
     def install_icon(self, icon, icon_path):
@@ -160,9 +136,17 @@ class Application:
         ext_theme = icon.theme_ext
         icon_size = icon.icon_size
         output_icon = icon_path.append(icon.original)
+        if not self.backup_ignore:
+            self.backup.create(output_icon)
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
             from src.app import App
             App.svg().to_png(theme_icon, output_icon, icon_size)
             mchown(output_icon)
+
+    def revert_icon(self, icon, icon_path):
+        """Revert to the original icon."""
+        output_icon = icon_path.append(icon.original)
+        if not self.backup_ignore:
+            self.backup.remove(output_icon)

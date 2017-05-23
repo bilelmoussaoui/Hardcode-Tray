@@ -20,13 +20,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-
 from functools import reduce
 from os import chown, makedirs, path, remove, symlink, listdir
 from re import findall, match, sub
 from shutil import copyfile, move, rmtree
 from subprocess import PIPE, Popen, call
 from sys import stdout
+from tempfile import NamedTemporaryFile
 from time import strftime
 from gi.repository import Gio
 from .modules.log import Logger
@@ -34,10 +34,11 @@ from .const import (USERHOME, CHMOD_IGNORE_LIST, USER_ID, GROUP_ID,
                     BACKUP_EXTENSION, BACKUP_FOLDER, BACKUP_FILE_FORMAT)
 
 
-def progress(count, count_max, app_name=""):
+def progress(count, count_max, time, app_name=""):
     """Used to draw a progress bar."""
     bar_len = 40
     space = 20
+    time = round(time, 2)
     filled_len = int(round(bar_len * count / float(count_max)))
 
     percents = round(100.0 * count / float(count_max), 1)
@@ -45,8 +46,8 @@ def progress(count, count_max, app_name=""):
 
     stdout.write("\r{0!s}{1!s}".format(
         app_name, " " * (abs(len(app_name) - space))))
-    stdout.write('[{0!s}] {1:d}/{2:d} {3!s}{4!s}\r'.format(progress_bar,
-                                                           count, count_max, percents, '%'))
+    stdout.write('[{0}] {1}/{2} {3}% {4}s\r'.format(progress_bar,
+                                                    count, count_max, percents, time))
     print("")
     stdout.flush()
 
@@ -183,100 +184,6 @@ def is_installed(binary):
     ink_flag = call(['which', binary], stdout=PIPE, stderr=PIPE)
     return bool(ink_flag == 0)
 
-
-def create_backup_dir(application_name):
-    """Create a backup directory for an application (application_name)."""
-    current_time_folder = strftime(BACKUP_FILE_FORMAT)
-    back_dir = path.join(BACKUP_FOLDER, application_name,
-                         current_time_folder, "")
-    exists = True
-    new_back_dir = back_dir
-    i = 1
-    while exists:
-        if path.exists(new_back_dir):
-            new_back_dir = back_dir + "_" + str(i)
-        if not path.exists(new_back_dir):
-            create_dir(new_back_dir)
-            exists = False
-        i += 1
-    return new_back_dir
-
-
-def backup(back_dir, file_name):
-    """Backup functions."""
-    from src.app import App
-    if App.config().get("backup-ignore", False):
-        back_file = path.join(back_dir, path.basename(
-            file_name) + BACKUP_EXTENSION)
-        if path.exists(file_name):
-            Logger.debug("Backup current file %s to %s", file_name, back_file)
-            copy_file(file_name, back_file)
-            mchown(back_file)
-        try:
-            cache_files = listdir(back_dir)
-            if len(cache_files) == 0:
-                rmtree(back_dir)
-        except FileNotFoundError:
-            pass
-
-
-def get_backup_folders(application_name):
-    """Get a list of backup folders of a sepecific application."""
-    return listdir(path.join(BACKUP_FOLDER, application_name))
-
-
-def show_select_backup(application_name):
-    """Show a select option for the backup of each application."""
-    backup_folders = get_backup_folders(application_name)
-    max_i = len(backup_folders)
-    if max_i != 0:
-        backup_folders.sort()
-        i = 1
-        for backup_folder in backup_folders:
-            print("{0}) {1}/{2} ".format(str(i), application_name,
-                                         backup_folder))
-            i += 1
-        print("(Q)uit to not revert to any version")
-        have_chosen = False
-        stopped = False
-        while not have_chosen and not stopped:
-            try:
-                selected_backup = input(
-                    "Select a restore date : ").strip().lower()
-                if selected_backup in ["q", "quit", "exit"]:
-                    stopped = True
-                selected_backup = int(selected_backup)
-                if 1 <= selected_backup <= max_i:
-                    have_chosen = True
-                    backup_folder = backup_folders[selected_backup - 1]
-                    return backup_folder
-            except ValueError:
-                pass
-            except KeyboardInterrupt:
-                exit()
-        if stopped:
-            Logger.debug("The user stopped the reversion for %s",
-                         application_name)
-        else:
-            Logger.debug("No backup folder found "
-                         "for the application %s" % application_name)
-    return None
-
-
-def revert(application_name, selected_backup, file_name):
-    """
-    Backup functions, enables reverting.
-
-    Args:
-        icon(str) : the original icon name
-        revert(bool) : True: revert, False: only backup
-    """
-    back_dir = path.join(BACKUP_FOLDER, application_name, selected_backup, "")
-    if not path.exists(back_dir):
-        back_file = path.join(back_dir, path.basename(
-            file_name) + BACKUP_EXTENSION)
-        if path.isfile(back_file):
-            move(back_file, file_name)
 
 
 def get_iterated_icons(icons):

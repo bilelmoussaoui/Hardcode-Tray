@@ -20,9 +20,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path, makedirs
 import logging
+from os import makedirs, path
 from time import strftime
+
 
 class Logger:
     """
@@ -30,8 +31,10 @@ class Logger:
     """
 
     _log = None
+
     @staticmethod
     def get_default():
+        """Return default instance of Logger."""
         if Logger._log is None:
             from src.const import LOG_FILE_FORMAT
             logger = logging.getLogger('hardcode-tray')
@@ -40,9 +43,8 @@ class Logger:
             if not path.exists(path.dirname(tmp_file)):
                 makedirs(path.dirname(tmp_file))
             if not path.exists(tmp_file):
-                f = open(tmp_file, 'w')
-                f.write('')
-                f.close()
+                with open(tmp_file, 'w') as tmp_obj:
+                    tmp_obj.write('')
             handler = logging.FileHandler(tmp_file)
             formater = logging.Formatter(
                 '[%(levelname)s] - %(asctime)s - %(message)s')
@@ -54,16 +56,20 @@ class Logger:
 
     @staticmethod
     def warning(msg):
+        """Log warning message."""
         Logger.get_default().warning(msg)
 
     @staticmethod
     def debug(msg):
+        """Log debug message."""
         Logger.get_default().debug(msg)
 
     @staticmethod
     def info(msg):
+        """Log info message."""
         Logger.get_default().info(msg)
 
     @staticmethod
     def error(msg):
+        """Log error message."""
         Logger.get_default().error(msg)

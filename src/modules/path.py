@@ -21,9 +21,10 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from src.const import ARCH, USERHOME, PATH_SCRIPTS_FOLDER
+from src.const import ARCH, PATH_SCRIPTS_FOLDER, USERHOME
 from src.utils import create_dir, execute
 from .log import Logger
+
 
 class Path:
     """
@@ -32,22 +33,25 @@ class Path:
     """
 
     DB_VARIABLES = {
-        "{userhome}" : USERHOME,
-        "{size}" : 22,
-        "{arch}" : ARCH
+        "{userhome}": USERHOME,
+        "{size}": 22,
+        "{arch}": ARCH
     }
+
     def __init__(self, absolute_path, exec_path_script=None, force_create=False):
         self._path = absolute_path
         self._path_script = exec_path_script
         self._force_create = force_create
-        self._found = True
+        self._exists = True
         self._validate()
 
     def append(self, filename):
+        """Append a file name to the path."""
         return path.join(self.path, filename)
 
     @property
     def path(self):
+        """Return the path."""
         return self._path
 
     @path.setter
@@ -55,8 +59,9 @@ class Path:
         self._path = value
 
     @property
-    def found(self):
-        return self._found
+    def exists(self):
+        """Return wether the path exists or not."""
+        return self._exists
 
     def _validate(self):
         """
@@ -77,4 +82,4 @@ class Path:
         if self._force_create:
             create_dir(self.path)
         if not path.exists(self.path):
-            self._found = False
+            self._exists = False

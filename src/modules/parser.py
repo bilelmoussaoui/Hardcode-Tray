@@ -21,8 +21,8 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
-from src.utils import get_iterated_icons
 from src.enum import ApplicationType
+from src.utils import get_iterated_icons
 from .icon import Icon
 from .path import Path
 from .applications import *
@@ -56,9 +56,11 @@ class Parser:
         return "normal"
 
     def is_installed(self):
+        """Return wether the application is installed or not."""
         return not self.dont_install
 
     def get_application(self):
+        """Application factory, return an instance of Application."""
         application = ApplicationType.choices()[self.get_type()]
         return globals()[application](self)
 
@@ -66,26 +68,27 @@ class Parser:
         """
             Read the json file and parse it.
         """
-        with open(self._db_file, 'r') as f:
-            data = json.load(f)
-            do_later = ["app_path", "icons_path", "icons"]
+        do_later = ["app_path", "icons_path", "icons"]
+        with open(self._db_file, 'r') as db_obj:
+            data = json.load(db_obj)
             for key, value in data.items():
                 if key not in do_later:
                     setattr(self, key, value)
-        f.close()
+
         self._parse_paths(data["app_path"], "app_path")
         self._parse_paths(data["icons_path"], "icons_path")
         self._parse_icons(data["icons"])
 
-        self.dont_install = not (len(self.icons) > 0
-                                 and len(self.app_path) > 0
-                                 and len(self.icons_path) > 0
-                                 )
+        self.dont_install = not (
+            len(self.icons) > 0
+            and len(self.app_path) > 0
+            and len(self.icons_path) > 0
+        )
 
-    def _parse_paths(self, paths, key="app_path"):
+    def _parse_paths(self, paths, key):
         for path in paths:
             path = Path(path, self.exec_path_script)
-            if path.found:  # If path exists
+            if path.exists:  # If path exists
                 getattr(self, key).append(path)
 
     def _parse_icons(self, icons):
@@ -96,6 +99,6 @@ class Parser:
                 icon = Icon(icon)
             else:
                 icon = Icon(icons[icon])
-            if icon.found:  # If icon found on current Gtk Icon theme
+            if icon.exists:  # If icon found on current Gtk Icon theme
                 self.icons.append(icon)
                 self.total_icons += 1

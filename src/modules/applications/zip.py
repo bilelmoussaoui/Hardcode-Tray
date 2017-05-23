@@ -21,8 +21,8 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove, makedirs
-from zipfile import ZipFile
 from shutil import make_archive, rmtree
+from zipfile import ZipFile
 from src.utils import execute
 from .extract import ExtractApplication
 
@@ -47,12 +47,12 @@ class ZipApplication(ExtractApplication):
             rmtree(self.tmp_path)
         makedirs(self.tmp_path, exist_ok=True)
         execute(["chmod", "0777", self.tmp_path])
-        with ZipFile(icon_path + self.binary) as zf:
-            zf.extractall(self.tmp_path)
+        with ZipFile(icon_path + self.binary) as zip_object:
+            zip_object.extractall(self.tmp_path)
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        zip_file = icon_path + self.binary
+        zip_file = icon_path.append(self.binary)
         if path.isfile(zip_file):
             remove(zip_file)
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)

@@ -24,7 +24,7 @@ from glob import glob
 from json import load
 from os import path
 from gi.repository import Gio
-
+from time import time
 from .const import DESKTOP_ENV, CONFIG_FILE, DB_FOLDER
 from .enum import Action, ConversionTools
 from .utils import progress, get_scaling_factor, replace_to_6hex
@@ -104,26 +104,30 @@ class App:
         """
         apps = App.get_supported_apps()
         done = []
+        total_time = 0
         if len(apps) != 0:
             cnt = 0
             counter_total = sum(app.parser.total_icons for app in apps)
             for i, app in enumerate(apps):
                 app_name = app.name
+                start_time = time()
                 if action == Action.APPLY:
                     app.install()
                 elif action == Action.REVERT:
                     app.reinstall()
                 elif action == Action.CLEAR_CACHE:
                     app.clear_cache()
+                delta = time() - start_time
+                total_time += delta
                 if app.is_done:
                     cnt += app.parser.total_icons
                     if app_name not in done:
-                        progress(cnt, counter_total, app_name)
+                        progress(cnt, counter_total, delta, app_name)
                         done.append(app_name)
                 else:
-                    counter_total -= app.data.supported_icons_cnt
-                    if i == len(apps) - 1:
-                        progress(cnt, counter_total)
+                    counter_total -= app.parser.total_icons
+                    print("Failed to fix {0}".format(app_name))
+            print("Took {0}s to finish the tasks".format(round(total_time, 2)))
         else:
             if action == Action.APPLY:
                 exit("No apps to fix! Please report on GitHub if this is not the case")
@@ -148,6 +152,7 @@ class App:
     @staticmethod
     def svg():
         if App._svgtopng is None:
+            conversion_tool = None
             if App.args().conversion_tool:
                 conversion_tool = App.args().conversion_tool
             elif App.config().get("conversion-tool"):

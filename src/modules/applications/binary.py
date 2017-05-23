@@ -20,10 +20,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from src.decorators import revert_wrapper, install_wrapper
-from src.utils import backup, revert
+from src.enum import Action
 from .application import Application
-
 
 class BinaryApplication(Application):
     """Pak Application class, based on data_pak file."""
@@ -31,31 +29,29 @@ class BinaryApplication(Application):
     def __init__(self, parser):
         """Init method."""
         Application.__init__(self, parser)
-
-    def backup_binary(self, icon_path):
-        """Backup binary file before modification."""
-        backup(self.backup_dir, icon_path.append(self.binary))
-
-    def revert_binary(self, icon_path):
-        """Restore the backed up binary file."""
-        revert(self.name, self.selected_backup,
-               icon_path + self.binary)
+        self.is_corrupted = False
 
     @property
     def binary(self):
         """Return the binary file if exists."""
         return self.parser.binary
 
-    @revert_wrapper
-    def reinstall(self):
-        """Reinstall the old icons."""
-        for icon_path in self.icons_path:
-            self.revert_binary(icon_path)
+    def get_backup_file(self, icon_name):
+        """Return the binary content of a backup file."""
+        backup_file = self.backup.get_backup_file(icon_name)
+        if backup_file:
+            with open(backup_file, 'rb') as binary_obj:
+                pngbytes = binary_obj.read()
+            return pngbytes
+        return None
 
-    @install_wrapper
-    def install(self):
-        """Install the application icons."""
+    def execute(self, action):
         for icon_path in self.icons_path:
-            self.backup_binary(icon_path)
             for icon in self.icons:
-                self.install_icon(icon, icon_path)
+                if self.is_corrupted:
+                    break
+                if action == Action.APPLY:
+                    self.install_icon(icon, icon_path)
+                elif action == Action.REVERT:
+                    self.revert_icon(icon, icon_path)
+        self.is_done = not self.is_corrupted

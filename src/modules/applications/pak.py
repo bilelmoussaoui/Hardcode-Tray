@@ -24,6 +24,7 @@ from os import path
 from imp import load_source
 from src.utils import get_pngbytes
 from .binary import BinaryApplication
+from ..log import Logger
 
 absolute_path = path.split(path.abspath(__file__))[0]
 data_pack_path = path.join(absolute_path, "pak", "data_pack.py")
@@ -36,13 +37,33 @@ class PakApplication(BinaryApplication):
     def __init__(self, parser):
         """Init method."""
         BinaryApplication.__init__(self, parser)
+        self.binary_file = None
+        self.pak = None
+
+    def set_binary_file(self, binary_file):
+        """Set pak file and create a new instance of it."""
+        if binary_file != self.binary_file:
+            self.binary_file = binary_file
+            self.pak = data_pack.read_data_pack(binary_file)
+
+    def set_icon(self, icon, icon_path, pngbytes, backup=False):
+        """Update the icon bytes with the new one."""
+        self.set_binary_file(icon_path.append(self.binary))
+        icon_name = int(icon.original)
+        if pngbytes:
+            if backup:
+                self.backup.file(str(icon_name), self.pak.resources[icon_name])
+            self.pak.resources[icon_name] = pngbytes
+            data_pack.write_data_pack(self.pak.resources, self.binary_file, 0)
+        else:
+            Logger.error("Couldn't find a PNG file.")
 
     def install_icon(self, icon, icon_path):
-        """Install the icon."""
-        filename = icon_path.append(self.binary)
-        icon_to_repl = int(icon.original)
+        """Install the new icon."""
         pngbytes = get_pngbytes(icon)
-        if pngbytes:
-            _data_pack = data_pack.read_data_pack(filename)
-            _data_pack.resources[icon_to_repl] = pngbytes
-            data_pack.write_data_pack(_data_pack.resources, filename, 0)
+        self.set_icon(icon, icon_path, pngbytes, True)
+
+    def revert_icon(self, icon, icon_path):
+        """Revert to the original icon."""
+        pngbytes = self.get_backup_file(icon.original)
+        self.set_icon(icon, icon_path, pngbytes)

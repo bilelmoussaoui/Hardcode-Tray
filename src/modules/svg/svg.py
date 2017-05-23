@@ -27,11 +27,11 @@ from src.utils import copy_file, replace_colors, is_installed
 
 class SVG:
     """SVG Interface used by other class's."""
-    _svg = None
 
     def __init__(self, colors):
         """Init function."""
         self.colors = colors
+        self.cmd = None
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
@@ -55,9 +55,12 @@ class SVG:
         self.to_png(input_file, outfile, width, height)
         with open(outfile, 'rb') as temppng:
             binary = temppng.read()
-        temppng.close()
         remove(outfile)
         return binary
+
+    def convert_to_png(self, input_file, output_file, width, height):
+        """Convert from svg to png. Override the method by childs."""
+        pass
 
     def is_installed(self):
         """Check if the tool is installed."""

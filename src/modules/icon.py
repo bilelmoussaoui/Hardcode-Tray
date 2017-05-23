@@ -21,7 +21,8 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from src.utils import get_iterated_icons, get_extension
+from src.utils import get_extension, get_iterated_icons
+
 
 class Icon:
     """
@@ -34,12 +35,13 @@ class Icon:
     def __init__(self, icon_dic):
         """Init function."""
         self.icon_data = icon_dic
-        self._found = False
+        self._exists = False
         self._read()
 
     @property
-    def found(self):
-        return self._found
+    def exists(self):
+        """Return wether the icon exists or not."""
+        return self._exists
 
     @staticmethod
     def get_theme(icon_name):
@@ -73,7 +75,7 @@ class Icon:
             self.theme_ext = get_extension(self.theme)
             self.orig_ext = ext_orig
             self.icon_size = self.get_icon_size(App.icon_size())
-            self._found = True
+            self._exists = True
 
             if (not isinstance(self.icon_data, str)
                     and self.icon_data.get("symlinks")):

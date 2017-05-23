@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from src.decorators import install_wrapper
+from src.enum import Action
 from .binary import BinaryApplication
 
 
@@ -30,15 +30,18 @@ class ExtractApplication(BinaryApplication):
         BinaryApplication.__init__(self, parser)
         self.tmp_data = None
 
-    @install_wrapper
-    def install(self):
-        """Install the application icons."""
+    def execute(self, action):
         for icon_path in self.icons_path:
-            self.backup_binary(icon_path)
+            if self.is_corrupted:
+                break
             self.extract(icon_path)
             for icon in self.icons:
-                self.install_icon(icon, self.tmp_data)
+                if action == Action.APPLY:
+                    self.install_icon(icon, self.tmp_data)
+                elif action == Action.REVERT:
+                    self.revert_icon(icon, self.tmp_data)
             self.pack(icon_path)
+        self.is_done = not self.is_corrupted
 
     def extract(self, icon_path):
         pass

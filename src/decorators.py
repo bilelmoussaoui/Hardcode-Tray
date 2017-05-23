@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from .utils import symlink_file, show_select_backup, create_backup_dir
+from .utils import symlink_file
 
 
 def symlinks_installer(func):
@@ -42,22 +42,22 @@ def symlinks_installer(func):
 
 def install_wrapper(func):
     def wrapper(app):
-        app.backup_dir = create_backup_dir(app.name)
+        app.backup.create_backup_dir()
         app.install_symlinks()
         func(app)
     return wrapper
 
 
 def revert_wrapper(func):
-    def wrapper(application):
-        if application.BACKUP_IGNORE:
-            application.remove_symlinks()
-            func(application)
+    def wrapper(app):
+        if app.BACKUP_IGNORE:
+            app.remove_symlinks()
+            func(app)
         else:
-            application.selected_backup = show_select_backup(application.name)
-            if application.selected_backup:
-                application.remove_symlinks()
-                func(application)
+            app.backup.select()
+            if app.backup.selected_backup:
+                app.remove_symlinks()
+                func(app)
             else:
-                application.is_done = False
+                app.is_done = False
     return wrapper
