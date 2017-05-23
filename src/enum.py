@@ -47,7 +47,7 @@ class ConversionTools:
         for choice in ConversionTools.__dict__:
             if hasattr(ConversionTools, choice):
                 value = getattr(ConversionTools, choice)
-                if isinstance(value, str) and choice != "__module__":
+                if isinstance(value, str) and choice not in ["__module__", "__doc__"]:
                     choices[value] = choice
         return choices
 
