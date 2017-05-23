@@ -38,16 +38,20 @@ class Path:
         "{arch}": ARCH
     }
 
-    def __init__(self, absolute_path, exec_path_script=None, force_create=False):
+    def __init__(self, absolute_path, parser, path_key):
         self._path = absolute_path
-        self._path_script = exec_path_script
-        self._force_create = force_create
+        self._parser = parser
+        self.type = path_key
         self._exists = True
         self._validate()
 
     def append(self, filename):
         """Append a file name to the path."""
         return path.join(self.path, filename)
+
+    @property
+    def parser(self):
+        return self._parser
 
     @property
     def path(self):
@@ -71,15 +75,21 @@ class Path:
         Path.DB_VARIABLES["{size}"] = App.icon_size()
         for key, value in Path.DB_VARIABLES.items():
             self.path = self.path.replace(key, str(value))
-        if self._path_script:
+        if self.parser.exec_path_script:
             # If application does need a specific script to get the right path
-            script_path = path.join(PATH_SCRIPTS_FOLDER, self._path_script)
+            script_path = path.join(PATH_SCRIPTS_FOLDER, self.parser.exec_path_script)
             if path.exists(script_path):
                 self.path = execute([script_path, self.path],
                                     verbose=True).decode("utf-8").strip()
             else:
                 Logger.error("Script file `%s` not found", script_path)
-        if self._force_create:
+        if self.parser.force_create_folder:
             create_dir(self.path)
-        if not path.exists(self.path):
-            self._exists = False
+
+        if self.parser.is_script and self.type == "app_path":
+            binary_file = path.join(self.path, self.parser.binary)
+            if not path.exists(self.path) or not path.exists(binary_file):
+                self._exists = False
+        else:
+            if not path.exists(self.path):
+                self._exists = False

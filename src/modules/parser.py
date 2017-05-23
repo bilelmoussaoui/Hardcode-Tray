@@ -87,7 +87,7 @@ class Parser:
 
     def _parse_paths(self, paths, key):
         for path in paths:
-            path = Path(path, self.exec_path_script)
+            path = Path(path, self, key)
             if path.exists:  # If path exists
                 getattr(self, key).append(path)
 

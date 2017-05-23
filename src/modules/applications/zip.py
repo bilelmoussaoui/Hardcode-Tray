@@ -47,7 +47,7 @@ class ZipApplication(ExtractApplication):
             rmtree(self.tmp_path)
         makedirs(self.tmp_path, exist_ok=True)
         execute(["chmod", "0777", self.tmp_path])
-        with ZipFile(icon_path + self.binary) as zip_object:
+        with ZipFile(icon_path.append(self.binary)) as zip_object:
             zip_object.extractall(self.tmp_path)
 
     def pack(self, icon_path):

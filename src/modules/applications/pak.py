@@ -42,21 +42,24 @@ class PakApplication(BinaryApplication):
 
     def set_binary_file(self, binary_file):
         """Set pak file and create a new instance of it."""
-        if binary_file != self.binary_file:
+        if binary_file != self.binary_file and path.exists(binary_file):
             self.binary_file = binary_file
             self.pak = data_pack.read_data_pack(binary_file)
 
     def set_icon(self, icon, icon_path, pngbytes, backup=False):
         """Update the icon bytes with the new one."""
         self.set_binary_file(icon_path.append(self.binary))
-        icon_name = int(icon.original)
-        if pngbytes:
-            if backup:
-                self.backup.file(str(icon_name), self.pak.resources[icon_name])
-            self.pak.resources[icon_name] = pngbytes
-            data_pack.write_data_pack(self.pak.resources, self.binary_file, 0)
+        if self.pak:
+            icon_name = int(icon.original)
+            if pngbytes:
+                if backup:
+                    self.backup.file(str(icon_name), self.pak.resources[icon_name])
+                self.pak.resources[icon_name] = pngbytes
+                data_pack.write_data_pack(self.pak.resources, self.binary_file, 0)
+            else:
+                Logger.error("Couldn't find a PNG file.")
         else:
-            Logger.error("Couldn't find a PNG file.")
+            Logger.warning("The file {0} was not found".format(self.binary_file))
 
     def install_icon(self, icon, icon_path):
         """Install the new icon."""
