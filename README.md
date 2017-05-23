@@ -8,7 +8,7 @@ release](https://img.shields.io/badge/release-v3.8-blue.svg)](https://github.com
 
 Fixes Hardcoded tray icons in Linux
 
-The script will automatically detect your default theme, the right icon size, the hard-coded applications, the right icons for each indicator and fix them. All that with the possibility to revert to the original icons.
+The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 
 ### Themes
 Here's a list of themes that supports Hardcode-Tray:
@@ -63,7 +63,7 @@ The one click-installer can be found by following this [link](https://software.o
        4. `imagemagick`
        5. `svgexport`
 
-  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using another distro (like Fedora).<br />
+  You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
   4. Open Hardcode-Tray using this command<br/>
@@ -73,7 +73,7 @@ The one click-installer can be found by following this [link](https://software.o
 ### Options
 - `--apply` and `--revert`
 
-Hardcode-Tray shows by default a welcome message and asks the user to choose between applying the fix or reverting it. You can hide that using
+Hardcode-Tray shows a welcome message by default and asks the user to choose between applying the fix or reverting it. You can hide that using
 ```bash
 hardcode-tray --apply
 ```
@@ -85,7 +85,7 @@ hardcode-tray --revert
 
 - `--only`
 
-You can use `--only` argument to fix/revert only one application, don't use the argument if you want to fix all applications your icon theme supports.
+You can use the `--only` argument to fix/revert only one application; don't use the argument if you want to fix all applications your icon theme supports.
 ```bash
 hardcode-tray --only telegram, skype
 ```
@@ -108,7 +108,7 @@ hardcode-tray --size 24 --only dropbox
 
 - `--theme`
 
-You can fix your hardcoded icons using another theme than the default one.
+You can fix your hardcoded icons using a different theme than the default one.
 ```bash
 hardcode-tray --theme Numix --only dropbox
 ```
@@ -122,7 +122,7 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 
 - `--conversion-tool`
 
-Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use you if one of them is broken in your installation.
+Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
 ```bash
 hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
 ```
@@ -132,7 +132,7 @@ Cairo has some issues with converting SVG files that use CSS (see [#245](https:/
 
 - `--change-color`
 
-Your favorite theme does not provide icons for all those hardcoded icons? Just use an other theme and change the colors using Hardcode-Tray.
+Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
 ```bash
 hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
 ```
