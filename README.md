@@ -66,10 +66,12 @@ The one click-installer can be found by following this [link](https://software.o
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
+  
   3. Open Hardcode-Tray using this command
-  ```bash
+  <pre>
     hardcode-tray
-  ```
+  </pre>
+
   4. Enjoy!
 
 ### Options
