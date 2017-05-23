@@ -42,7 +42,8 @@ def symlinks_installer(func):
 
 def install_wrapper(func):
     def wrapper(app):
-        app.backup.create_backup_dir()
+        if not app.backup_ignore:
+            app.backup.create_backup_dir()
         app.install_symlinks()
         func(app)
     return wrapper
@@ -50,7 +51,7 @@ def install_wrapper(func):
 
 def revert_wrapper(func):
     def wrapper(app):
-        if app.BACKUP_IGNORE:
+        if app.BACKUP_IGNORE or app.backup_ignore:
             app.remove_symlinks()
             func(app)
         else:
