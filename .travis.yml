@@ -16,5 +16,6 @@ install:
 script:
     - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
 after_success:
-    - "sudo -E coverage run hardcode-tray.py"
+    - "sudo -E coverage run hardcode-tray.py --apply"
+    - "coverage xml"
     - "python-codacy-coverage -r coverage.xml"
