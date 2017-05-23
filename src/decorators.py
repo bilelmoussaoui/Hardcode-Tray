@@ -54,7 +54,8 @@ def install_wrapper(func):
         """
         Create backup file and apply the modifications.
         """
-        if not app.backup_ignore:
+        from src.app import App
+        if not app.backup_ignore and not App.config().get("backup-ignore", False):
             app.backup.create_backup_dir()
         app.install_symlinks()
         func(app)
