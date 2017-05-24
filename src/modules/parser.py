@@ -83,7 +83,7 @@ class Parser:
         self._parse_icons(data["icons"])
 
         if len(App.only()) == 1 and App.path():
-            self.app_path.append(App.path)
+            self.app_path.append(App.path())
 
         found = self.icons and self.app_path
 
