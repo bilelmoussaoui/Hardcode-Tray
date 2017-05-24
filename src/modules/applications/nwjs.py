@@ -74,4 +74,4 @@ class NWJSApplication(ExtractApplication):
             move(local_binary_file, icon_path + self.binary)
             execute(["chmod", "+x", icon_path + self.binary])
 
-            rmtree(self.tmp_path)
+        rmtree(self.tmp_path)
