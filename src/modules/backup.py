@@ -67,6 +67,7 @@ class Backup:
         current_time_folder = strftime(BACKUP_FILE_FORMAT)
         back_dir = path.join(BACKUP_FOLDER, self.app.name,
                              current_time_folder, "")
+
         exists = True
         new_back_dir = back_dir
         i = 1
@@ -77,6 +78,7 @@ class Backup:
                 create_dir(new_back_dir)
                 exists = False
             i += 1
+
         self._backup_dir = new_back_dir
 
     def create(self, file_name):
@@ -85,27 +87,31 @@ class Backup:
         if not App.config().get("backup-ignore", False):
             if not self.backup_dir:
                 self.create_backup_dir()
+
             back_file = path.join(self.backup_dir, path.basename(
                 file_name) + BACKUP_EXTENSION)
+
             if path.exists(file_name):
-                Logger.debug("Backup current file {0} to{1}".format(
-                    file_name, back_file))
+                Logger.debug("Backup current file {0} to{1}".format(file_name,
+                                                                    back_file))
                 copy_file(file_name, back_file, True)
                 mchown(back_file)
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""
         tempfile = "/" + path.join("tmp", path.basename(filename))
+
         with open(tempfile, 'wb') as fobj:
             fobj.write(binary)
+
         self.create(tempfile)
         remove(tempfile)
 
     def get_backup_file(self, filename):
         """Return the backup file path."""
-        backup_folder = path.join(
-            BACKUP_FOLDER, self.app.name, self.selected_backup)
-        backup_file = path.join(backup_folder, filename + BACKUP_EXTENSION)
+        backup_file = path.join(BACKUP_FOLDER, self.app.name,
+                                self.selected_backup,
+                                filename + BACKUP_EXTENSION)
         if path.exists(backup_file):
             return backup_file
         return None
@@ -117,17 +123,21 @@ class Backup:
     def select(self):
         """Show a select option for the backup of each application."""
         backup_folders = self.get_backup_folders()
-        max_i = len(backup_folders)
-        if max_i != 0:
+        total = len(backup_folders)
+
+        if total != 0:
             backup_folders.sort()
             i = 1
             for backup_folder in backup_folders:
                 print("{0}) {1}/{2} ".format(str(i),
-                                             self.app.name, backup_folder))
+                                             self.app.name,
+                                             backup_folder))
                 i += 1
             print("(Q)uit to not revert to any version")
+
             have_chosen = False
             stopped = False
+
             while not have_chosen and not stopped:
                 try:
                     selected_backup = input(
@@ -135,13 +145,14 @@ class Backup:
                     if selected_backup in ["q", "quit", "exit"]:
                         stopped = True
                     selected_backup = int(selected_backup)
-                    if 1 <= selected_backup <= max_i:
+                    if 1 <= selected_backup <= total:
                         have_chosen = True
                         self._selected_backup = backup_folders[selected_backup - 1]
                 except ValueError:
                     pass
                 except KeyboardInterrupt:
                     exit()
+
             if stopped:
                 Logger.debug("The user stopped the reversion for {0}".format(
                     self.app.name))
@@ -160,8 +171,9 @@ class Backup:
         """
         back_dir = path.join(BACKUP_FOLDER, self.app.name,
                              self.selected_backup, "")
+
         if path.exists(back_dir):
-            back_file = path.join(back_dir, path.basename(
-                file_name) + BACKUP_EXTENSION)
+            back_file = path.join(back_dir,
+                                  path.basename(file_name) + BACKUP_EXTENSION)
             if path.isfile(back_file):
                 move(back_file, file_name)

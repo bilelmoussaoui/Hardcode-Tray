@@ -79,12 +79,15 @@ class App:
             for file_ in files:
                 if path.splitext(path.basename(file_))[0] not in blacklist:
                     database_files.append(file_)
+
         database_files.sort()
         supported_apps = []
+
         for db_file in database_files:
             application_data = Parser(db_file)
             if application_data.is_installed():
                 supported_apps.append(application_data.get_application())
+
         return supported_apps
 
     @staticmethod
@@ -238,6 +241,7 @@ class App:
                     "dark": Theme(App.args().dark_theme),
                     "light": Theme(App.args().light_theme)
                 }
+
             # Or on the config file
             elif App.config().get("icons"):
                 theme = App.config()["icons"].get("theme", {})

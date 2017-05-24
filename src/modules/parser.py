@@ -69,6 +69,7 @@ class Parser:
         """
             Read the json file and parse it.
         """
+        from src.app import App
         do_later = ["app_path", "icons_path", "icons"]
         with open(self._db_file, 'r') as db_obj:
             data = json.load(db_obj)
@@ -80,7 +81,12 @@ class Parser:
         self._parse_paths(data["icons_path"], "icons_path")
         self._parse_icons(data["icons"])
 
+        if len(App.only()) == 1 and App.path():
+            if path.exists(App.path()):
+                self.app_path.append(App.path)
+
         found = self.icons and self.app_path
+
         if self.force_create_folder and found:
             for icon_path in self.icons_path:
                 create_dir(icon_path.path)
