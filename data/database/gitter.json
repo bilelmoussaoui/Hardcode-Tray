@@ -24,7 +24,7 @@
         },
         "connected": {
             "original": "linux-icon-logo-connected.png",
-            "theme": "messenger-indicator"
+            "theme": "gitter-indicator"
         }
     }
 }

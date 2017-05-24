@@ -98,11 +98,11 @@ class Parser:
             self.dont_install = not path.exists(App.config().get("nwjs", ""))
 
     def _parse_paths(self, paths, key):
-        for path in paths:
-            path = Path(path, self, key)
+        for path_ in paths:
+            path_ = Path(path_, self, key)
             # Check if path exists
-            if path.exists or (self.force_create_folder and key == "icons_path"):
-                getattr(self, key).append(path)
+            if path_.exists or (self.force_create_folder and key == "icons_path"):
+                getattr(self, key).append(path_)
 
     def _parse_icons(self, icons):
         if isinstance(icons, list):

@@ -20,7 +20,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
 from src.utils import symlink_file, get_extension
 
 
@@ -35,7 +34,7 @@ def symlinks_installer(func):
         func(application, icon, icon_path)
 
         if icon.has_symlinks():
-            output_icon = picon_path + icon.original
+            output_icon = icon_path + icon.original
             if not get_extension(output_icon):
                 output_icon += ".{0}".format(icon.theme_ext)
 
