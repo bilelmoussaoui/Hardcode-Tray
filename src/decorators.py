@@ -35,7 +35,7 @@ def symlinks_installer(func):
         func(application, icon, icon_path)
 
         if icon.has_symlinks():
-            output_icon = icon_path + icon.original
+            output_icon = picon_path + icon.original
             if not get_extension(output_icon):
                 output_icon += ".{0}".format(icon.theme_ext)
 

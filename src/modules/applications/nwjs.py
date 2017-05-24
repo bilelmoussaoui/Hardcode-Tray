@@ -35,7 +35,7 @@ class NWJSApplication(ExtractApplication):
         ExtractApplication.__init__(self, parser)
 
         self.tmp_path = "/tmp/{0!s}_extracted/".format(self.name)
-        self.tmp_data = self.tmp_path + self.nwjs_path
+        self.tmp_data = path.join(self.tmp_path, self.nwjs_path)
 
     @property
     def nwjs_path(self):

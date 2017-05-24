@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
+from os import path
 
 from src.enum import ApplicationType
 from src.modules.applications import *
@@ -91,6 +92,10 @@ class Parser:
             self.dont_install = False
         else:
             self.dont_install = not (found and self.icons_path)
+
+        # NWJS special case
+        if self.get_type() == "nwjs" and not self.dont_install:
+            self.dont_install = not path.exists(App.config().get("nwjs", ""))
 
     def _parse_paths(self, paths, key):
         for path in paths:

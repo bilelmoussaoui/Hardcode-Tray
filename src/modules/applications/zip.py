@@ -36,7 +36,7 @@ class ZipApplication(ExtractApplication):
         ExtractApplication.__init__(self, parser)
 
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
-        self.tmp_data = self.tmp_path + self.zip_path
+        self.tmp_data = path.join(self.tmp_path, self.zip_path)
 
     @property
     def zip_path(self):

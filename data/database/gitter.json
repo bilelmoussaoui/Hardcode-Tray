@@ -10,7 +10,7 @@
     "is_script": true,
     "binary": "Gitter",
     "script": "nwjs",
-    "nwjs_path": "/img",
+    "nwjs_path": "img/",
     "force_create_folder": false,
     "backup_ignore": false,
     "icons": {
@@ -24,7 +24,7 @@
         },
         "connected": {
             "original": "linux-icon-logo-connected.png",
-            "theme": "gitter-indicator"
+            "theme": "messenger-indicator"
         }
     }
 }
