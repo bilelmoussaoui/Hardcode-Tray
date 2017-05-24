@@ -30,6 +30,7 @@ class SVGExport(SVG):
     def __init__(self, colors):
         """Init function."""
         super(SVGExport, self).__init__(colors)
+
         self.cmd = "svgexport"
         if not self.is_installed():
             raise SVGNotInstalled
@@ -37,7 +38,10 @@ class SVGExport(SVG):
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, input_file, output_file]
+
         if width and height:
-            cmd.extend(["{0!s}:{1!s}".format(str(width), str(height))])
+            cmd.extend(["{0}:{1}".format(str(width), str(height))])
+
         cmd.extend([input_file, output_file])
+
         execute(cmd)

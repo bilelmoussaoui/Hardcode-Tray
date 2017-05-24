@@ -41,7 +41,8 @@ class CairoSVG(SVG):
     def __init__(self, colors):
         """Init function."""
         super(CairoSVG, self).__init__(colors)
-        if not self.is_installed():
+
+        if not CairoSVG.is_installed():
             raise SVGNotInstalled
 
     @staticmethod

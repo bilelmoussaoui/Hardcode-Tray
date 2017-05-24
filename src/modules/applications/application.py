@@ -109,16 +109,6 @@ class Application:
 
         return False
 
-    def execute(self, action):
-        """Execute actions: Apply/Revert."""
-        for icon_path in self.icons_path:
-            with Executor(max_workers=4) as exe:
-                for icon in self.icons:
-                    if action == Action.APPLY:
-                        exe.submit(self.install_icon, icon, icon_path)
-                    elif action == Action.REVERT:
-                        exe.submit(self.revert_icon, icon, icon_path)
-
     @install_wrapper
     def install(self):
         """Install the application icons."""
@@ -128,6 +118,16 @@ class Application:
     def reinstall(self):
         """Reinstall the application icons and remove symlinks."""
         self.execute(Action.REVERT)
+
+    def execute(self, action):
+        """Execute actions: Apply/Revert."""
+        for icon_path in self.icons_path:
+            with Executor(max_workers=4) as exe:
+                for icon in self.icons:
+                    if action == Action.APPLY:
+                        exe.submit(self.install_icon, icon, icon_path)
+                    elif action == Action.REVERT:
+                        exe.submit(self.revert_icon, icon, icon_path)
 
     @symlinks_installer
     def install_icon(self, icon, icon_path):

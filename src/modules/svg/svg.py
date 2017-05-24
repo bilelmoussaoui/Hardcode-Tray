@@ -40,13 +40,16 @@ class SVG:
             width = height
         elif height and not width:
             height = width
+
         tmp_file = ""
         if self.colors:
-            tmp_file = "/tmp/{0!s}".format(path.basename(input_file))
+            tmp_file = "/tmp/{0}".format(path.basename(input_file))
             copy_file(input_file, tmp_file)
             input_file = tmp_file
             replace_colors(input_file, self.colors)
+
         self.convert_to_png(input_file, output_file, width, height)
+
         if tmp_file and path.isfile(tmp_file):
             remove(tmp_file)
 
@@ -54,9 +57,11 @@ class SVG:
         """Convert svg to binary."""
         outfile = NamedTemporaryFile().name
         self.to_png(input_file, outfile, width, height)
+
         with open(outfile, 'rb') as temppng:
             binary = temppng.read()
         remove(outfile)
+
         return binary
 
     def convert_to_png(self, input_file, output_file, width, height):

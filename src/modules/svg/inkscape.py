@@ -30,6 +30,7 @@ class Inkscape(SVG):
     def __init__(self, colors):
         """Init function."""
         super(Inkscape, self).__init__(colors)
+
         self.cmd = "inkscape"
         if not self.is_installed():
             raise SVGNotInstalled
@@ -37,7 +38,9 @@ class Inkscape(SVG):
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
+
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
+
         # Fix for inkscape 0.92
         execute(cmd, False)

@@ -30,6 +30,7 @@ class RSVGConvert(SVG):
     def __init__(self, colors):
         """Init function."""
         super(RSVGConvert, self).__init__(colors)
+
         self.cmd = "rsvg-convert"
         if not self.is_installed():
             raise SVGNotInstalled
@@ -37,7 +38,10 @@ class RSVGConvert(SVG):
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, "-f", "png", "-o", output_file]
+
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
+
         cmd.append(input_file)
+
         execute(cmd)

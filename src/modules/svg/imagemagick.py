@@ -30,6 +30,7 @@ class ImageMagick(SVG):
     def __init__(self, colors):
         """Init function."""
         super(ImageMagick, self).__init__(colors)
+
         self.cmd = "convert"
         if not self.is_installed():
             raise SVGNotInstalled
@@ -37,8 +38,10 @@ class ImageMagick(SVG):
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
         cmd = [self.cmd, "-background", "none"]
+
         if width and height:
-            cmd.extend(
-                ["-size", "{0!s}x{1!s}".format(str(width), str(height))])
+            cmd.extend(["-size", "{0}x{1}".format(str(width), str(height))])
+
         cmd.extend([input_file, output_file])
+
         execute(cmd)
