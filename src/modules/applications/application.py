@@ -45,8 +45,6 @@ class Application:
         """
         self.is_done = True
         self.parser = parser
-        self._selected_backup = None
-        self._back_dir = None
         self.backup = Backup(self)
 
     @property
@@ -86,11 +84,10 @@ class Application:
     def install_symlinks(self):
         """Create symlinks for some applications files."""
         if self.has_symlinks():
-            symlinks = self.symlinks
-            for syml in symlinks:
-                for directory in self.app_path:
-                    root = symlinks[syml]["root"]
-                    dest = directory + symlinks[syml]["dest"]
+            for app_path in self.app_path:
+                for symlink in self.symlinks.values():
+                    root = symlink["root"]
+                    dest = app_path + symlink["dest"]
                     if path.exists(dest):
                         self.backup.create(dest)
                         symlink_file(root, dest)
@@ -98,17 +95,18 @@ class Application:
     def remove_symlinks(self):
         """Remove symlinks created by the application."""
         if self.has_symlinks():
-            symlinks = self.symlinks
-            for syml in symlinks:
-                for directory in self.app_path:
-                    self.backup.remove(directory + symlinks[syml]["dest"])
+            for app_path in self.app_path:
+                for symlink in self.symlinks.values():
+                    self.backup.remove(app_path + symlink["dest"])
 
     def clear_cache(self):
         """Clear Backup cache."""
         backup_folder = path.join(BACKUP_FOLDER, self.name, "")
+
         if path.exists(backup_folder):
             rmtree(backup_folder)
             return True
+
         return False
 
     def execute(self, action):
@@ -139,8 +137,11 @@ class Application:
         ext_theme = icon.theme_ext
         icon_size = icon.icon_size
         output_icon = icon_path + icon.original
+
+        # Backup the output_icon
         if not self.backup_ignore:
             self.backup.create(output_icon)
+
         if ext_theme == ext_orig:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
@@ -151,5 +152,6 @@ class Application:
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
         output_icon = icon_path + icon.original
+        # Revert to the original icon
         if not self.backup_ignore:
             self.backup.remove(output_icon)

@@ -31,12 +31,14 @@ def get_exact_folder(key, directory, condition):
     """
     dirs = directory.split(key)
     exact_directory = ""
+
     if path.isdir(dirs[0]):
         directories = listdir(dirs[0])
         for dir_ in directories:
             if condition(path.join(dirs[0], dir_, "")):
                 exact_directory = dir_
                 break
+
     if exact_directory:
         directory = directory.replace(key, exact_directory)
 

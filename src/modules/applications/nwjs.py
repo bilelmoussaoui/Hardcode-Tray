@@ -33,6 +33,7 @@ class NWJSApplication(ExtractApplication):
     def __init__(self, parser):
         """Init method."""
         ExtractApplication.__init__(self, parser)
+
         self.tmp_path = "/tmp/{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.nwjs_path
 
@@ -43,8 +44,10 @@ class NWJSApplication(ExtractApplication):
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
+
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
+
         execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
         execute(["chmod", "0777", self.tmp_path])
 
@@ -53,9 +56,12 @@ class NWJSApplication(ExtractApplication):
         binary_file = icon_path + self.binary
         if path.exists(binary_file):
             remove(binary_file)
+
         copy_file(self.tmp_path + "package.json", icon_path + "package.json")
         make_archive(binary_file, 'zip', self.tmp_path)
         move(binary_file + ".zip", binary_file + ".nw")
+
         execute(["/usr/bin/nw", binary_file + ".nw > " + binary_file])
         execute(["chmod", "+x", binary_file])
+
         rmtree(self.tmp_path)

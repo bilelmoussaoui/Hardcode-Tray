@@ -36,7 +36,7 @@ from src.modules.log import Logger
 
 def progress(count, count_max, time, app_name=""):
     """Used to draw a progress bar."""
-    bar_len = 40
+    bar_len = 36
     space = 20
     time = round(time, 2)
     filled_len = int(round(bar_len * count / float(count_max)))
@@ -44,8 +44,8 @@ def progress(count, count_max, time, app_name=""):
     percents = round(100.0 * count / float(count_max), 1)
     progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
-    stdout.write("\r{0!s}{1!s}".format(
-        app_name, " " * (abs(len(app_name) - space))))
+    stdout.write("\r{0!s}{1!s}".format(app_name,
+                                       " " * (abs(len(app_name) - space))))
     stdout.write('[{0}] {1}/{2} {3}% {4}s\r'.format(progress_bar,
                                                     count, count_max,
                                                     percents, time))
@@ -106,7 +106,7 @@ def get_kde_scaling_factor():
 
         for line in data:
             line = list(map(lambda x: x.strip(),
-                            line.strip().split("=")))
+                            line.split("=")))
 
             if len(line) == 1:
                 was_found = match(
@@ -129,9 +129,10 @@ def get_scaling_factor(desktop_env):
 
     # Scaling factor on GNOME desktop
     if desktop_env == "gnome":
-
-        gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-        scaling_factor = gsettings.get_uint('scaling-factor') + 1
+        source = Gio.SettingsSchemaSource.get_default()
+        if source.lookup("org.gnome.desktop.interface", True):
+            gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+            scaling_factor = gsettings.get_uint('scaling-factor') + 1
 
         Logger.debug("Scaling factor of Gnome interface"
                      " is set to {0}".format(scaling_factor))

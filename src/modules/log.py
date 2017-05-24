@@ -38,19 +38,23 @@ class Logger:
         if Logger._log is None:
             from src.const import LOG_FILE_FORMAT
             logger = logging.getLogger('hardcode-tray')
-            tmp_file = '/tmp/Hardcode-Tray/-{0}.log'.format(
+            tmp_file = '/tmp/Hardcode-Tray/{0}.log'.format(
                 strftime(LOG_FILE_FORMAT))
+
             if not path.exists(path.dirname(tmp_file)):
                 makedirs(path.dirname(tmp_file))
+
             if not path.exists(tmp_file):
                 with open(tmp_file, 'w') as tmp_obj:
                     tmp_obj.write('')
+
             handler = logging.FileHandler(tmp_file)
-            formater = logging.Formatter(
-                '[%(levelname)s] - %(asctime)s - %(message)s')
+            formater = logging.Formatter('[%(levelname)s] - %(asctime)s'
+                                         ' - %(message)s')
             handler.setFormatter(formater)
             logger.addHandler(handler)
             logger.setLevel(logging.DEBUG)
+
             Logger._log = logging.getLogger("hardcode-tray")
         return Logger._log
 

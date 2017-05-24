@@ -55,6 +55,7 @@ class ElectronApplication(BinaryApplication):
         """Revert to the original icon."""
         backup_file = "|".join(
             ElectronApplication.get_real_path(icon.original).split("/"))
+
         pngbytes = self.get_backup_file(backup_file)
         if pngbytes:
             self.set_icon(icon.original, icon_path, pngbytes)
@@ -121,6 +122,6 @@ class ElectronApplication(BinaryApplication):
                     asarfile.write(bytearr2)
                     asarfile.close()
         except StructError:
-            Logger.error(
-                "The asar file of {0} seems to be corrupted".format(self.name))
+            Logger.error("The asar file of {0} seems to be "
+                         "corrupted".format(self.name))
             self.is_corrupted = True

@@ -67,18 +67,18 @@ class App:
     def get_supported_apps():
         """Get a list of dict, a dict for each supported application."""
         database_files = []
-        blacklist = App.config().get("blacklist", [])
         if App.only():
             for db_file in App.only():
-                if db_file not in blacklist:
-                    db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
-                    if path.exists(db_file):
-                        database_files.append(db_file)
+                db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
+                if path.exists(db_file):
+                    database_files.append(db_file)
         else:
+            blacklist = App.config().get("blacklist", [])
             files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
-            for file in files:
-                if path.splitext(path.basename(file))[0] not in blacklist:
-                    database_files.append(file)
+
+            for file_ in files:
+                if path.splitext(path.basename(file_))[0] not in blacklist:
+                    database_files.append(file_)
         database_files.sort()
         supported_apps = []
         for db_file in database_files:
@@ -94,6 +94,7 @@ class App:
                 action(Action):
                 APPLY: To apply the modifications
                 REVERT: To revert it.
+                CLEAR_CACHE : To clear backup files cache.
         """
         apps = App.get_supported_apps()
         done = []
@@ -104,14 +105,17 @@ class App:
             for app in apps:
                 app_name = app.name
                 start_time = time()
+
                 if action == Action.APPLY:
                     app.install()
                 elif action == Action.REVERT:
                     app.reinstall()
                 elif action == Action.CLEAR_CACHE:
                     app.clear_cache()
+
                 delta = time() - start_time
                 total_time += delta
+
                 if app.is_done:
                     cnt += app.parser.total_icons
                     if app_name not in done:
@@ -120,7 +124,9 @@ class App:
                 else:
                     counter_total -= app.parser.total_icons
                     print("Failed to fix {0}".format(app_name))
+
             print("Took {0}s to finish the tasks".format(round(total_time, 2)))
+
         else:
             if action == Action.APPLY:
                 exit("No apps to fix! Please report on GitHub if this is not the case")
@@ -158,10 +164,12 @@ class App:
         """
         if App._svgtopng is None:
             conversion_tool = None
+            # Read default config/arguments parser
             if App.args().conversion_tool:
                 conversion_tool = App.args().conversion_tool
             elif App.config().get("conversion-tool"):
                 conversion_tool = App.config().get("conversion-tool")
+
             if conversion_tool:
                 try:
                     App._svgtopng = globals()[conversion_tool](App.colors())
@@ -191,18 +199,14 @@ class App:
             if App.args().size:
                 App._size = App.args().size
             else:
-                if DESKTOP_ENV in ("pantheon", "xfce"):
-                    icon_size = 24
-                else:
-                    icon_size = 22
-                if App.config().get("icons"):
-                    App._size = App.config()["icons"].get("size", icon_size)
-                    if App._size not in [16, 22, 24]:
-                        App._size = icon_size
-                        Logger.debug("Icon size in the config file is wrong."
-                                     "Falling back to the detected one...")
-                else:
-                    App._size = icon_size
+                App._size = App.config().get("icons", {}).get("size")
+                if App._size not in [16, 22, 24]:
+                    if DESKTOP_ENV in ("pantheon", "xfce"):
+                        App._size = 24
+                    else:
+                        App._size = 22
+                    Logger.debug("Icon size in the config file is wrong."
+                                 "Falling back to the detected one...")
         return App._size
 
     @staticmethod
@@ -221,7 +225,7 @@ class App:
         return App._scaling_factor
 
     @staticmethod
-    def theme():
+    def theme(dark_theme=None):
         """
             Theme instance.
         """
@@ -245,6 +249,7 @@ class App:
                             "dark": Theme(theme["dark"]),
                             "light": Theme(theme["light"])
                         }
+
             # Fallback to system theme
             if not App._theme:
                 source = Gio.SettingsSchemaSource.get_default()
@@ -252,6 +257,9 @@ class App:
                     gsettings = Gio.Settings.new("org.gnome.desktop.interface")
                     theme_name = gsettings.get_string("icon-theme")
                     App._theme = Theme(theme_name)
+
+        if dark_theme and isinstance(App._theme, dict):
+            return App._theme[dark_theme]
         return App._theme
 
     @staticmethod

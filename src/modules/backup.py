@@ -84,7 +84,6 @@ class Backup:
         from src.app import App
         if not App.config().get("backup-ignore", False):
             if not self.backup_dir:
-                print("hey")
                 self.create_backup_dir()
             back_file = path.join(self.backup_dir, path.basename(
                 file_name) + BACKUP_EXTENSION)

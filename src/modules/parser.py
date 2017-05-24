@@ -97,6 +97,7 @@ class Parser:
     def _parse_icons(self, icons):
         if isinstance(icons, list):
             icons = get_iterated_icons(icons)
+
         for icon in icons:
             if isinstance(icons, list):
                 icon = Icon(icon)

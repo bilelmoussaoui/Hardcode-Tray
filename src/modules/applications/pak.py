@@ -34,6 +34,7 @@ class PakApplication(BinaryApplication):
     def __init__(self, parser):
         """Init method."""
         BinaryApplication.__init__(self, parser)
+
         self.binary_file = None
         self.pak = None
 
@@ -50,7 +51,8 @@ class PakApplication(BinaryApplication):
             icon_name = icon.original
             if pngbytes and self.pak.haskey(icon_name):
                 if backup:
-                    self.backup.file(str(icon_name), self.pak.get_value(icon_name))
+                    self.backup.file(icon_name, self.pak.get_value(icon_name))
+
                 self.pak.set_value(icon_name, pngbytes)
                 self.pak.write()
             else:

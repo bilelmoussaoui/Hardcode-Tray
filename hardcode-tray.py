@@ -32,8 +32,9 @@ if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-parser = ArgumentParser(prog="hardcode-tray")
 THEMES_LIST = get_list_of_themes()
+
+parser = ArgumentParser(prog="hardcode-tray")
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
                     type=int, choices=[16, 22, 24])
@@ -76,8 +77,9 @@ parser.add_argument('--change-color', "-cc", type=str, nargs='+',
                     "works only with SVG.")
 parser.add_argument("--clear-cache", action="store_true",
                     help="Clear backup files")
+
 args = parser.parse_args()
-hardcode_tray = App.get_default(args)
+App.get_default(args)
 
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
@@ -88,9 +90,8 @@ print("The detected desktop environment : {0}".format(DESKTOP_ENV.title()))
 if not isinstance(App.theme(), dict):
     print("Your current icon theme is : {0}".format(App.theme()))
 else:
-    print("Your current dark icon theme is : {0}".format(App.theme()["dark"]))
-    print("Your current light icon theme is : {0}".format(
-        App.theme()["light"]))
+    print("Your current dark icon theme is : {0}".format(App.theme("dark")))
+    print("Your current light icon theme is : {0}".format(App.theme("light")))
 print("Conversion tool : {0}".format(App.svg()))
 print("Applications will be fixed : ", end="")
 print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")

@@ -34,6 +34,7 @@ class ZipApplication(ExtractApplication):
     def __init__(self, parser):
         """Init method."""
         ExtractApplication.__init__(self, parser)
+
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
         self.tmp_data = self.tmp_path + self.zip_path
 
@@ -46,15 +47,19 @@ class ZipApplication(ExtractApplication):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
+
         makedirs(self.tmp_path, exist_ok=True)
         execute(["chmod", "0777", self.tmp_path])
+
         with ZipFile(icon_path + self.binary) as zip_object:
             zip_object.extractall(self.tmp_path)
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         zip_file = icon_path + self.binary
+
         if path.isfile(zip_file):
             remove(zip_file)
+
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)
         rmtree(self.tmp_path)

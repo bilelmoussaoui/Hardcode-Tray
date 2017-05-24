@@ -39,10 +39,12 @@ class QtApplication(Application):
     @symlinks_installer
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
+
         base_icon = icon.original
         theme_icon = icon.theme
         ext_theme = icon.theme_ext
         output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
+
         symlink_file(theme_icon, output_icon)
 
     @revert_wrapper

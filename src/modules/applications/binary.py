@@ -30,6 +30,7 @@ class BinaryApplication(Application):
     def __init__(self, parser):
         """Init method."""
         Application.__init__(self, parser)
+
         self.is_corrupted = False
 
     @property
@@ -40,6 +41,7 @@ class BinaryApplication(Application):
     def get_backup_file(self, icon_name):
         """Return the binary content of a backup file."""
         backup_file = self.backup.get_backup_file(icon_name)
+
         if backup_file:
             with open(backup_file, 'rb') as binary_obj:
                 pngbytes = binary_obj.read()

@@ -43,7 +43,9 @@ def detect_de():
         ), environ.get("XDG_CURRENT_DESKTOP").lower()]
     except AttributeError:
         desktop_env = []
+
     known_desktop = ["pantheon", "gnome", "kde", "unity", "mate", "xfce"]
+
     for desktop in known_desktop:
         if desktop in desktop_env:
             Logger.debug(
