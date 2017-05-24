@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import json
+from os import path
 
 from src.enum import ApplicationType
 from src.modules.applications import *
@@ -82,8 +83,7 @@ class Parser:
         self._parse_icons(data["icons"])
 
         if len(App.only()) == 1 and App.path():
-            if path.exists(App.path()):
-                self.app_path.append(App.path)
+            self.app_path.append(App.path)
 
         found = self.icons and self.app_path
 
@@ -95,10 +95,10 @@ class Parser:
             self.dont_install = not (found and self.icons_path)
 
     def _parse_paths(self, paths, key):
-        for path in paths:
-            path = Path(path, self, key)
-            if path.exists:  # If path exists
-                getattr(self, key).append(path)
+        for path_ in paths:
+            path_ = Path(path_, self, key)
+            if path_.exists:  # If path exists
+                getattr(self, key).append(path_)
 
     def _parse_icons(self, icons):
         if isinstance(icons, list):

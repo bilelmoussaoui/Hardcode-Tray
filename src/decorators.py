@@ -33,15 +33,17 @@ def symlinks_installer(func):
         """
         cname = application.__class__.__name__
         func(application, icon, icon_path)
+
         if icon.has_symlinks():
             output_icon = icon_path + icon.original
             for symlink_icon in icon.symlinks:
                 if cname != "Application":
-                    symlink_icon = '{0}.{1}'.format(
-                        icon_path + symlink_icon,
-                        icon.theme_ext)
+                    symlink_icon = '{0}.{1}'.format(icon_path + symlink_icon,
+                                                    icon.theme_ext)
+                    output_icon += ".{0}".format(icon.theme_ext)
                 else:
                     symlink_icon = icon_path + symlink_icon
+
                 symlink_file(output_icon, symlink_icon)
     return wrapper
 
@@ -55,8 +57,10 @@ def install_wrapper(func):
         Create backup file and apply the modifications.
         """
         from src.app import App
-        if not app.backup_ignore and not App.config().get("backup-ignore", False):
+        if (not app.backup_ignore and
+            not App.config().get("backup-ignore", False)):
             app.backup.create_backup_dir()
+
         app.install_symlinks()
         func(app)
     return wrapper

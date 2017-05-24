@@ -112,10 +112,10 @@ def get_kde_scaling_factor():
                 was_found = match(
                     r'\[Containments\]\[[0-9]+\]\[General\]', line[0])
 
-            if len(line) > 1 and was_found:
-                if line[0].lower() == "iconsize":
-                    scaling_factor = int(line[1])
-                    break
+            if len(line) > 1 and was_found and line[0].lower() == "iconsize":
+                scaling_factor = int(line[1])
+                break
+
         return scaling_factor
     except (FileNotFoundError, KeyError) as kde_error:
         Logger.debug("KDE scaling factor not detected."
