@@ -38,13 +38,10 @@ def symlinks_installer(func):
             output_icon = icon_path + icon.original
             for symlink_icon in icon.symlinks:
                 if cname != "Application":
-                    symlink_icon = '{0}.{1}'.format(icon_path + symlink_icon,
-                                                    icon.theme_ext)
-                    output_icon += ".{0}".format(icon.theme_ext)
+                    symlink_file(icon.theme, output_icon)
                 else:
                     symlink_icon = icon_path + symlink_icon
-
-                symlink_file(output_icon, symlink_icon)
+                    symlink_file(output_icon, symlink_icon)
     return wrapper
 
 

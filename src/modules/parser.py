@@ -85,9 +85,9 @@ class Parser:
             self.app_path.append(App.path())
 
         found = self.icons and self.app_path
-
         if self.force_create_folder and found:
             for icon_path in self.icons_path:
+                print(icon_path)
                 create_dir(icon_path.path)
             self.dont_install = False
         else:
@@ -96,7 +96,8 @@ class Parser:
     def _parse_paths(self, paths, key):
         for path in paths:
             path = Path(path, self, key)
-            if path.exists:  # If path exists
+            # If path exists
+            if path.exists or (self.force_create_folder and key == "icons_path"):
                 getattr(self, key).append(path)
 
     def _parse_icons(self, icons):

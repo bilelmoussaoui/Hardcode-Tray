@@ -202,7 +202,7 @@ class App:
             if App.args().size:
                 App._size = App.args().size
             else:
-                App._size = App.config().get("icons", {}).get("size")
+                App._size = int(App.config().get("icons", {}).get("size", 0))
                 if App._size not in [16, 22, 24]:
                     if DESKTOP_ENV in ("pantheon", "xfce"):
                         App._size = 24

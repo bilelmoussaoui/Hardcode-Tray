@@ -182,7 +182,7 @@ def create_dir(folder):
         mchown(folder)
 
 
-def execute(command_list, verbose=True):
+def execute(command_list, verbose=True, shell=False, working_directory=None):
     """
     Run a command using "Popen".
 
@@ -190,7 +190,13 @@ def execute(command_list, verbose=True):
         command_list(list)
         verbose(bool)
     """
-    cmd = Popen(command_list, stdout=PIPE, stderr=PIPE)
+    Logger.debug("Executing command : {0}".format(" ".join(command_list)))
+    if working_directory:
+        cmd = Popen(command_list, stdout=PIPE, stderr=PIPE, shell=shell,
+                    cwd=working_directory)
+    else:
+        cmd = Popen(command_list, stdout=PIPE, stderr=PIPE, shell=shell)
+
     output, error = cmd.communicate()
     if verbose and error:
         Logger.error(error.decode("utf-8").strip())

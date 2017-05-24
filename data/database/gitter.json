@@ -1,0 +1,30 @@
+{
+    "name": "Gitter",
+    "app_path": [
+        "/usr/bin/gitter"
+    ],
+    "icons_path": [
+        "/opt/Gitter/linux64/"
+    ],
+    "is_qt": false,
+    "is_script": true,
+    "binary": "Gitter",
+    "script": "nwjs",
+    "nwjs_path": "/img",
+    "force_create_folder": false,
+    "backup_ignore": false,
+    "icons": {
+        "disconnected": {
+            "original": "linux-icon-logo-disconnected.png",
+            "theme": "gitter-indicator-disconnected"
+        },
+        "unread": {
+            "original": "linux-icon-logo-connected-unread.png",
+            "theme": "gitter-indicator-notification"
+        },
+        "connected": {
+            "original": "linux-icon-logo-connected.png",
+            "theme": "gitter-indicator"
+        }
+    }
+}

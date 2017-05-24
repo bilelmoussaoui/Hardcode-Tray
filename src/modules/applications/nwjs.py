@@ -34,7 +34,7 @@ class NWJSApplication(ExtractApplication):
         """Init method."""
         ExtractApplication.__init__(self, parser)
 
-        self.tmp_path = "/tmp/{0!s}/".format(self.name)
+        self.tmp_path = "/tmp/{0!s}_extracted/".format(self.name)
         self.tmp_data = self.tmp_path + self.nwjs_path
 
     @property
@@ -49,19 +49,29 @@ class NWJSApplication(ExtractApplication):
             rmtree(self.tmp_path)
 
         execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
-        execute(["chmod", "0777", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        binary_file = icon_path + self.binary
-        if path.exists(binary_file):
-            remove(binary_file)
+        from src.app import App
+        if App.config().get("nwjs-bin"):
+            binary_file = "/tmp/{0}".format(self.binary)
 
-        copy_file(self.tmp_path + "package.json", icon_path + "package.json")
-        make_archive(binary_file, 'zip', self.tmp_path)
-        move(binary_file + ".zip", binary_file + ".nw")
+            execute(["npm", "install"], True, True, self.tmp_path)
 
-        execute(["/usr/bin/nw", binary_file + ".nw > " + binary_file])
-        execute(["chmod", "+x", binary_file])
+            make_archive(binary_file, "zip", self.tmp_path)
 
-        rmtree(self.tmp_path)
+            move(binary_file + ".zip", binary_file + ".nw")
+
+            local_binary_file = App.config().get("nwjs-bin") + self.binary
+
+            move(binary_file + ".nw", local_binary_file + ".nw")
+
+            execute(["cat which nw " + self.binary + ".nw > " + self.binary],
+                    True, True, App.config().get("nwjs-bin"))
+
+            remove(local_binary_file + ".nw")
+
+            move(local_binary_file, icon_path + self.binary)
+            execute(["chmod", "+x", icon_path + self.binary])
+
+            rmtree(self.tmp_path)
