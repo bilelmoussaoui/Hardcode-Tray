@@ -87,7 +87,6 @@ class Parser:
         found = self.icons and self.app_path
         if self.force_create_folder and found:
             for icon_path in self.icons_path:
-                print(icon_path)
                 create_dir(icon_path.path)
             self.dont_install = False
         else:

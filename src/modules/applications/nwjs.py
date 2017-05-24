@@ -24,7 +24,7 @@ from os import path, remove
 from shutil import make_archive, move, rmtree
 
 from src.modules.applications.extract import ExtractApplication
-from src.utils import copy_file, execute
+from src.utils import execute
 
 
 class NWJSApplication(ExtractApplication):
@@ -53,7 +53,7 @@ class NWJSApplication(ExtractApplication):
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         from src.app import App
-        if App.config().get("nwjs-bin"):
+        if App.config().get("nwjs") and path.exists(App.config().get("nwjs")):
             binary_file = "/tmp/{0}".format(self.binary)
 
             execute(["npm", "install"], True, True, self.tmp_path)
@@ -62,12 +62,12 @@ class NWJSApplication(ExtractApplication):
 
             move(binary_file + ".zip", binary_file + ".nw")
 
-            local_binary_file = App.config().get("nwjs-bin") + self.binary
+            local_binary_file = App.config().get("nwjs") + self.binary
 
             move(binary_file + ".nw", local_binary_file + ".nw")
 
             execute(["cat which nw " + self.binary + ".nw > " + self.binary],
-                    True, True, App.config().get("nwjs-bin"))
+                    True, True, App.config().get("nwjs"))
 
             remove(local_binary_file + ".nw")
 

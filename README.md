@@ -10,7 +10,7 @@ Fixes Hardcoded tray icons in Linux
 
 The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 
-### Themes
+## Themes
 Here's a list of themes that supports Hardcode-Tray:
   - [Numix icon theme](https://github.com/numixproject/numix-icon-theme)
 
@@ -20,7 +20,7 @@ Here's a list of themes that supports Hardcode-Tray:
 
  <div align="center"><img src="screenshots/papirus.png" alt="Preview" /></div>
 
-### Install
+## Install
 
 #### Arch Linux (AUR):
 Stable version:
@@ -66,7 +66,7 @@ The one click-installer can be found by following this [link](https://software.o
   You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
   The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
-  
+
   3. Open Hardcode-Tray using this command
   <pre>
     hardcode-tray
@@ -74,7 +74,7 @@ The one click-installer can be found by following this [link](https://software.o
 
   4. Enjoy!
 
-### Options
+## Options
 - `--apply` and `--revert`
 
 Hardcode-Tray shows a welcome message by default and asks the user to choose between applying the fix or reverting it. You can hide that using
@@ -169,28 +169,32 @@ You can also update to the git version of the script
 hardcode-tray --update-git
 ```
 
-### Config file
+## Config file
 Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
 - `blacklist`: a list of applications that you don't want to be fixed.
 - `conversion-tool`: the default tool to be used every time you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
 - `backup-ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
 
+
+### Node-WebKit JS applications:
+In order to fix those ugly tray icons on NWJS applications, you will need to download the SDK from [here](https://nwjs.io/downloads/). Extract the zip file in your home directory (or place it wherever you want) and add a new key to the config file that points to the NwJS SDK directory.
+
 An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
 Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
 
 
-### Uninstallation
+## Uninstallation
 To remove the script completely from your desktop you can use
 ```bash
 cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/uninstall.sh | bash
 ```
 
-### Credits
+## Credits
 - Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
 - Qt applications icons name by [elementaryPlus](https://github.com/mank319/elementaryPlus) team
 
-### Hardcode-Tray wiki!
+## Hardcode-Tray wiki!
 - [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
 - [FAQ](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/FAQ)
 - [How to build the patched version of Sni-Qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-sni-qt)

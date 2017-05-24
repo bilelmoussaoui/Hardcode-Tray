@@ -6,5 +6,5 @@
     },
     "conversion-tool": "CairoSVG",
     "backup-ignore": true,
-    "nwjs-bin": "/home/bilal/nwjs/"
+    "nwjs": "/home/myusername/Tools/nwjs/"
 }
