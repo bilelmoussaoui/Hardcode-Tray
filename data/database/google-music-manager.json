@@ -14,7 +14,10 @@
     "icons": {
         "indicator": {
             "original": "740a272c66baa9a105e48101377bd5a0",
-            "theme": "google-music-manager-panel"
+            "theme": "google-music-manager-panel",
+            "symlinks": [
+                "1e81c636c8e65b767474caf9dab52c37"
+            ]
         }
     }
 }
