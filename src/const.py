@@ -26,7 +26,6 @@ from platform import machine
 from src.tools import detect_de, get_userhome
 
 DB_FOLDER = "./" + path.join("data", "database", "")
-BACKUP_EXTENSION = ".bak"
 USERNAME = getenv("SUDO_USER")
 USERHOME = get_userhome(USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")

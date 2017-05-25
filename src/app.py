@@ -23,12 +23,12 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from glob import glob
 from json import load
 from os import path
-from time import time
 
 from gi.repository import Gio
 
 from src.const import CONFIG_FILE, DB_FOLDER, DESKTOP_ENV
 from src.enum import Action, ConversionTools
+from src.modules.keyboard import KeyboardInput
 from src.modules.log import Logger
 from src.modules.parser import Parser
 from src.modules.svg import *
@@ -91,7 +91,7 @@ class App:
         return supported_apps
 
     @staticmethod
-    def execute(action):
+    def execute():
         """Fix Hardcoded Tray icons.
             Args:
                 action(Action):
@@ -99,42 +99,39 @@ class App:
                 REVERT: To revert it.
                 CLEAR_CACHE : To clear backup files cache.
         """
+        action = App.action()
         apps = App.get_supported_apps()
         done = []
-        total_time = 0
+        total_time, counter = 0, 0
         if apps:
-            cnt = 0
-            counter_total = sum(app.parser.total_icons for app in apps)
+            total_counter = len(apps)
+
             for app in apps:
+                delta = app.do_action(action)
+
                 app_name = app.name
-                start_time = time()
-
-                if action == Action.APPLY:
-                    app.install()
-                elif action == Action.REVERT:
-                    app.reinstall()
-                elif action == Action.CLEAR_CACHE:
-                    app.clear_cache()
-
-                delta = time() - start_time
+                counter += 1 if app.success else 0
                 total_time += delta
 
-                if app.is_done:
-                    cnt += app.parser.total_icons
-                    if app_name not in done:
-                        progress(cnt, counter_total, delta, app_name)
-                        done.append(app_name)
-                else:
-                    counter_total -= app.parser.total_icons
-                    print("Failed to fix {0}".format(app_name))
+                if not app.success:
+                    if (action == Action.CLEAR_CACHE
+                        or (action == Action.REVERT
+                            and app.backup.selected_backup)):
+                        print("No backup file found for {0}".format(app_name))
+                    elif action != Action.REVERT:
+                        print("Failed to fix {0}".format(app_name))
+                elif app_name not in done:
+                    progress(counter, total_counter, delta, app_name)
+                    done.append(app_name)
 
             print("Took {0}s to finish the tasks".format(round(total_time, 2)))
-
         else:
             if action == Action.APPLY:
-                exit("No apps to fix! Please report on GitHub if this is not the case")
+                print("No apps to fix! Please report on GitHub if this is not the case")
+            elif action == Action.CLEAR_CACHE:
+                print("No cache files were found!")
             else:
-                exit("No apps to revert!")
+                print("No apps to revert!")
 
     @staticmethod
     def args():
@@ -293,13 +290,18 @@ class App:
             # Can't apply/revert and clear cache on the same time
             elif (App.args().apply or App.args().revert) and App.args().clear_cache:
                 raise ValueError
+            elif App.args().apply:
+                App._action = Action.APPLY
+            elif App.args().revert:
+                App._action = Action.REVERT
+            elif App.args().clear_cache:
+                App._action = Action.CLEAR_CACHE
             else:
-                if App.args().apply:
-                    App._action = Action.APPLY
-                elif App.args().revert:
-                    App._action = Action.REVERT
-                elif App.args().clear_cache:
-                    App._action = Action.CLEAR_CACHE
+                user_input = KeyboardInput()
+                user_input.choices = Action.choices(True)
+                App._action = Action.get_by_id(
+                    user_input.select("Please choose : "))
+
         return App._action
 
     @staticmethod

@@ -50,6 +50,10 @@ class QtApplication(Application):
     @revert_wrapper
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""
+        found = False
         for icon_path in self.icons_path:
+            icon_path = icon_path.path
             if path.isdir(icon_path):
                 rmtree(icon_path)
+                found = True
+        self.success = found

@@ -22,8 +22,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from src.modules.applications.binary import BinaryApplication
-from src.modules.data_pack import DataPack
+from src.modules.applications.helpers.binary import BinaryApplication
+from src.modules.applications.helpers.data_pack import DataPack
 from src.modules.log import Logger
 from src.utils import get_pngbytes
 

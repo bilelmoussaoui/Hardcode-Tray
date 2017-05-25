@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from shutil import make_archive, move, rmtree
 
-from src.modules.applications.extract import ExtractApplication
+from src.modules.applications.helpers.extract import ExtractApplication
 from src.utils import execute
 
 
@@ -53,21 +53,22 @@ class NWJSApplication(ExtractApplication):
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         from src.app import App
-        if App.config().get("nwjs") and path.exists(App.config().get("nwjs")):
-            binary_file = "/tmp/{0}".format(self.binary)
 
-            execute(["npm", "install"], True, True, self.tmp_path)
+        nwjs_sdk = App.config().get("nwjs")
+
+        if nwjs_sdk and path.exists(nwjs_sdk):
+            binary_file = "/tmp/{0}".format(self.binary)
 
             make_archive(binary_file, "zip", self.tmp_path)
 
             move(binary_file + ".zip", binary_file + ".nw")
 
-            local_binary_file = App.config().get("nwjs") + self.binary
+            local_binary_file = nwjs_sdk + self.binary
 
             move(binary_file + ".nw", local_binary_file + ".nw")
 
             execute(["cat which nw " + self.binary + ".nw > " + self.binary],
-                    True, True, App.config().get("nwjs"))
+                    True, True, nwjs_sdk)
 
             remove(local_binary_file + ".nw")
 

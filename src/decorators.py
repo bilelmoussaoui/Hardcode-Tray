@@ -82,5 +82,5 @@ def revert_wrapper(func):
                 app.remove_symlinks()
                 func(app)
             else:
-                app.is_done = False
+                app.success = False
     return wrapper
