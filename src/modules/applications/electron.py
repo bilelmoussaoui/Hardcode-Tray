@@ -24,7 +24,7 @@ from json import dumps, loads
 from struct import error as StructError
 from struct import pack, unpack
 
-from src.modules.applications.binary import BinaryApplication
+from src.modules.applications.helpers.binary import BinaryApplication
 from src.modules.log import Logger
 from src.utils import (change_dict_vals, get_from_dict, get_pngbytes,
                        set_in_dict)

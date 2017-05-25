@@ -23,7 +23,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 import json
 from os import path
 
-from src.enum import ApplicationType
+from src.enum import Action, ApplicationType
 from src.modules.applications import *
 from src.modules.icon import Icon
 from src.modules.path import Path
@@ -42,8 +42,8 @@ class Parser:
         self.is_script = False
         self.is_qt = False
         self.script = None
+        self.symlinks = []
         self.icons = []  # List of icons per app
-        self.total_icons = 0
         self.force_create_folder = False
         # By default the app is not installed on the user's system
         self.dont_install = True
@@ -86,16 +86,24 @@ class Parser:
             self.app_path.append(App.path())
 
         found = self.icons and self.app_path
-        if self.force_create_folder and found:
-            for icon_path in self.icons_path:
-                create_dir(icon_path.path)
-            self.dont_install = False
-        else:
-            self.dont_install = not (found and self.icons_path)
+        if App.action() != Action.CLEAR_CACHE:
+            if (self.force_create_folder
+                    and found
+                    and App.action() != Action.REVERT):
 
-        # NWJS special case
-        if self.get_type() == "nwjs" and not self.dont_install:
-            self.dont_install = not path.exists(App.config().get("nwjs", ""))
+                for icon_path in self.icons_path:
+                    create_dir(icon_path.path)
+                self.dont_install = False
+
+            else:
+                self.dont_install = not (found and self.icons_path)
+
+            # NWJS special case
+            if self.get_type() == "nwjs" and not self.dont_install:
+                self.dont_install = not path.exists(
+                    App.config().get("nwjs", ""))
+        else:
+            self.dont_install = not found
 
     def _parse_paths(self, paths, key):
         for path_ in paths:
@@ -115,4 +123,3 @@ class Parser:
                 icon = Icon(icons[icon])
             if icon.exists:  # If icon found on current Gtk Icon theme
                 self.icons.append(icon)
-                self.total_icons += 1

@@ -21,37 +21,40 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from src.enum import Action
-from src.modules.applications.binary import BinaryApplication
+from src.modules.applications.application import Application
 
 
-class ExtractApplication(BinaryApplication):
-    """
-        Extractable binary applications.
-    """
+class BinaryApplication(Application):
+    """Pak Application class, based on data_pak file."""
 
     def __init__(self, parser):
-        BinaryApplication.__init__(self, parser)
+        """Init method."""
+        Application.__init__(self, parser)
 
-        self.tmp_data = None
+        self.is_corrupted = False
+
+    @property
+    def binary(self):
+        """Return the binary file if exists."""
+        return self.parser.binary
+
+    def get_backup_file(self, icon_name):
+        """Return the binary content of a backup file."""
+        backup_file = self.backup.get_backup_file(icon_name)
+
+        if backup_file:
+            with open(backup_file, 'rb') as binary_obj:
+                pngbytes = binary_obj.read()
+            return pngbytes
+        return None
 
     def execute(self, action):
-        """Execute actions: Apply/Revert."""
         for icon_path in self.icons_path:
-            if self.is_corrupted:
-                break
-            self.extract(icon_path) # Extract the file
             for icon in self.icons:
+                if self.is_corrupted:
+                    break
                 if action == Action.APPLY:
-                    self.install_icon(icon, self.tmp_data)
+                    self.install_icon(icon, icon_path)
                 elif action == Action.REVERT:
-                    self.revert_icon(icon, self.tmp_data)
-            self.pack(icon_path) # Pack the file
-        self.is_done = not self.is_corrupted
-
-    def extract(self, icon_path):
-        """Extract binary file."""
-        pass
-
-    def pack(self, icon_path):
-        """Pack the binary file."""
-        pass
+                    self.revert_icon(icon, icon_path)
+        self.success = not self.is_corrupted

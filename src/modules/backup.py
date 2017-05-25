@@ -24,8 +24,9 @@ from os import listdir, path, remove
 from shutil import move
 from time import strftime
 
-from src.const import BACKUP_EXTENSION, BACKUP_FILE_FORMAT, BACKUP_FOLDER
+from src.const import BACKUP_FILE_FORMAT, BACKUP_FOLDER
 from src.modules.log import Logger
+from src.modules.keyboard import KeyboardInput
 from src.utils import copy_file, create_dir, mchown
 
 
@@ -37,12 +38,18 @@ class Backup:
     def __init__(self, application):
         self._app = application
         self._backup_dir = None
+        self._exists = False
         self._selected_backup = None
 
     @property
     def app(self):
         """Return the instance of Application object."""
         return self._app
+
+    @property
+    def exists(self):
+        """Return wether a backup was found or not."""
+        return self._exists
 
     @property
     def backup_dir(self):
@@ -64,22 +71,23 @@ class Backup:
 
     def create_backup_dir(self):
         """Create a backup directory for an application (application_name)."""
-        current_time_folder = strftime(BACKUP_FILE_FORMAT)
-        back_dir = path.join(BACKUP_FOLDER, self.app.name,
-                             current_time_folder, "")
+        backup_dir = path.join(BACKUP_FOLDER,
+                               self.app.name,
+                               strftime(BACKUP_FILE_FORMAT),
+                               "")
 
         exists = True
-        new_back_dir = back_dir
+        new_backup_dir = backup_dir
         i = 1
         while exists:
-            if path.exists(new_back_dir):
-                new_back_dir = back_dir + "_" + str(i)
-            if not path.isdir(new_back_dir):
-                create_dir(new_back_dir)
+            if path.exists(new_backup_dir):
+                new_backup_dir = backup_dir + "_" + str(i)
+            if not path.isdir(new_backup_dir):
+                create_dir(new_backup_dir)
                 exists = False
             i += 1
 
-        self._backup_dir = new_back_dir
+        self._backup_dir = new_backup_dir
 
     def create(self, file_name):
         """Backup functions."""
@@ -88,14 +96,13 @@ class Backup:
             if not self.backup_dir:
                 self.create_backup_dir()
 
-            back_file = path.join(self.backup_dir, path.basename(
-                file_name) + BACKUP_EXTENSION)
+            backup_file = path.join(self.backup_dir, path.basename(file_name))
 
             if path.exists(file_name):
                 Logger.debug("Backup current file {0} to{1}".format(file_name,
-                                                                    back_file))
-                copy_file(file_name, back_file, True)
-                mchown(back_file)
+                                                                    backup_file))
+                copy_file(file_name, backup_file, True)
+                mchown(backup_file)
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""
@@ -109,57 +116,52 @@ class Backup:
 
     def get_backup_file(self, filename):
         """Return the backup file path."""
-        backup_file = path.join(BACKUP_FOLDER, self.app.name,
-                                self.selected_backup,
-                                filename + BACKUP_EXTENSION)
-        if path.exists(backup_file):
-            return backup_file
+        try:
+            backup_file = path.join(self.get_folder(),
+                                    self.selected_backup,
+                                    path.basename(filename))
+
+            if path.exists(backup_file):
+                return backup_file
+        except TypeError:
+            pass
         return None
+
+    def get_folder(self):
+        """Return the full path of the folder wherre the backup are stored."""
+        return path.join(BACKUP_FOLDER, self.app.name, "")
 
     def get_backup_folders(self):
         """Get a list of backup folders of a sepecific application."""
-        return listdir(path.join(BACKUP_FOLDER, self.app.name))
+        try:
+            return listdir(self.get_folder())
+        except FileNotFoundError:
+            return []
 
     def select(self):
         """Show a select option for the backup of each application."""
         backup_folders = self.get_backup_folders()
-        total = len(backup_folders)
 
-        if total != 0:
+        if backup_folders:
+            print("Restore points of {0}".format(self.app.name))
             backup_folders.sort()
-            i = 1
-            for backup_folder in backup_folders:
-                print("{0}) {1}/{2} ".format(str(i),
-                                             self.app.name,
-                                             backup_folder))
-                i += 1
-            print("(Q)uit to not revert to any version")
+            user_input = KeyboardInput()
+            user_input.choices = backup_folders
+            selected_choice = user_input.select("Select a restore date : ")
 
-            have_chosen = False
-            stopped = False
+            if selected_choice:
+                self._selected_backup = backup_folders[selected_choice - 1]
 
-            while not have_chosen and not stopped:
-                try:
-                    selected_backup = input(
-                        "Select a restore date : ").strip().lower()
-                    if selected_backup in ["q", "quit", "exit"]:
-                        stopped = True
-                    selected_backup = int(selected_backup)
-                    if 1 <= selected_backup <= total:
-                        have_chosen = True
-                        self._selected_backup = backup_folders[selected_backup - 1]
-                except ValueError:
-                    pass
-                except KeyboardInterrupt:
-                    exit()
 
-            if stopped:
+            if not selected_choice:
                 Logger.debug("The user stopped the reversion for {0}".format(
                     self.app.name))
             else:
                 Logger.debug("No backup folder found "
                              "for the application {0}".format(
                                  self.app.name))
+        else:
+            self._exists = False
 
     def remove(self, file_name):
         """
@@ -169,11 +171,6 @@ class Backup:
             icon(str) : the original icon name
             revert(bool) : True: revert, False: only backup
         """
-        back_dir = path.join(BACKUP_FOLDER, self.app.name,
-                             self.selected_backup, "")
-
-        if path.exists(back_dir):
-            back_file = path.join(back_dir,
-                                  path.basename(file_name) + BACKUP_EXTENSION)
-            if path.isfile(back_file):
-                move(back_file, file_name)
+        backup_file = self.get_backup_file(file_name)
+        if backup_file and path.isfile(backup_file):
+            move(backup_file, file_name)

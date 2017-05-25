@@ -22,7 +22,6 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from .application import Application
-from .binary import BinaryApplication
 from .electron import ElectronApplication
 from .nwjs import NWJSApplication
 from .pak import PakApplication

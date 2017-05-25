@@ -97,22 +97,6 @@ print("Applications will be fixed : ", end="")
 print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
 # Clear backup cache
 action = App.action()
-if not action:
-    print("1 - Apply")
-    print("2 - Revert")
-    print("3 - Clear Backup Cache")
-    has_chosen = False
-    while not has_chosen:
-        try:
-            action = int(input("Please choose: "))
-            if action not in Action.choices():
-                print("Please try again")
-            else:
-                has_chosen = True
-        except ValueError:
-            print("Please choose a valid value!")
-        except KeyboardInterrupt:
-            exit("")
 
 if action == Action.APPLY:
     print("Applying now..\n")
@@ -120,6 +104,6 @@ elif action == Action.REVERT:
     print("Reverting now..\n")
 elif action == Action.CLEAR_CACHE:
     print("Clearing cache...\n")
-App.execute(action)
+App.execute()
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")

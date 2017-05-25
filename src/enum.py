@@ -26,23 +26,35 @@ class Action:
     """
         Different possible actions
     """
-    APPLY = 1
-    REVERT = 2
-    CLEAR_CACHE = 3
+    APPLY = {"str": "Apply", "id": 1}
+    REVERT = {"str": "Revert", "id": 2}
+    CLEAR_CACHE = {"str": "Clear Cache", "id": 3}
 
     @staticmethod
-    def choices():
+    def choices(use_str=False):
         """Return a dict of different choices."""
         choices = {}
         for choice in Action.__dict__:
             if hasattr(Action, choice):
                 try:
-                    value = int(getattr(Action, choice))
-                    choices[value] = choice
+                    value = getattr(Action, choice)
+                    if isinstance(value, dict):
+                        if use_str:
+                            choices[value["str"]] = choice
+                        else:
+                            choices[value["id"]] = choice
                 except (TypeError, ValueError):
                     pass
         return choices
 
+    @staticmethod
+    def get_by_id(id_):
+        for choice in Action.__dict__:
+            if hasattr(Action, choice):
+                value = getattr(Action, choice)
+                if isinstance(value, dict) and value["id"] == id_:
+                    return value
+        return None
 
 class ConversionTools:
     """
@@ -75,7 +87,6 @@ class ApplicationType:
     PAK = "PakApplication"
     NWJS = "NWJSApplication"
     QT = "QtApplication"
-    BINARY = "BinaryApplication"
     NORMAL = "Application"
 
     @staticmethod
