@@ -8,13 +8,8 @@
         "/opt/franz/resources/",
         "/opt/franz-bin/resources/"
     ],
-    "is_qt": false,
     "script": "electron",
     "binary": "app.asar",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": true,
     "icons": {
         "taskbar": {
             "original": "assets/tray/linux/franz-taskbar.png",

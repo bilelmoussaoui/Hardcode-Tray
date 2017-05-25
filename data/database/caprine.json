@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/lib/caprine/static/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "IconTray.png",

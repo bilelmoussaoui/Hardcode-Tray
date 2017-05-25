@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/lib/twitch-indicator/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": {
         "indicator": {
             "original": "indicator_ubuntu.png",

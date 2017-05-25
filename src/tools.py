@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -48,8 +47,7 @@ def detect_de():
 
     for desktop in known_desktop:
         if desktop in desktop_env:
-            Logger.debug(
-                "Desktop environnement detected : {0}".format(desktop.title()))
+            Logger.debug("DE: {0}".format(desktop.title()))
             return desktop
-    Logger.debug("The desktop environment couldn't be detected")
+    Logger.debug("DE not detected.")
     return "other"

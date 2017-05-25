@@ -8,8 +8,6 @@
     ],
     "is_qt": true,
     "force_create_folder": true,
-    
-    "is_script": false,
     "backup_ignore": true,
     "icons": {
         "indicator": {

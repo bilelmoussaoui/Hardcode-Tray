@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -36,6 +35,7 @@ class Icon:
         """Init function."""
         self.icon_data = icon_dic
         self._exists = False
+        self.symlinks = []
         self._read()
 
     @property
@@ -69,7 +69,6 @@ class Icon:
             orig_icon = self.icon_data["original"]
             theme_icon = self.icon_data["theme"]
 
-        ext_orig = get_extension(orig_icon)
         base_name = path.splitext(theme_icon)[0]
         theme = Icon.get_theme(orig_icon)
         theme_icon = theme.lookup_icon(base_name, App.icon_size(), 0)
@@ -78,13 +77,18 @@ class Icon:
             self.original = orig_icon
             self.theme = theme_icon.get_filename()
             self.theme_ext = get_extension(self.theme)
-            self.orig_ext = ext_orig
+            self.orig_ext = get_extension(orig_icon)
             self.icon_size = self.get_icon_size(App.icon_size())
             self._exists = True
 
             if (not isinstance(self.icon_data, str)
                     and self.icon_data.get("symlinks")):
-                self.symlinks = get_iterated_icons(self.icon_data["symlinks"])
+                symlinks = get_iterated_icons(self.icon_data["symlinks"])
+                # Make sure that symlinks have the right extension
+                for symlink in symlinks:
+                    if not get_extension(symlink):
+                        symlink += ".{0}".format(self.theme_ext)
+                    self.symlinks.append(symlink)
 
     def has_symlinks(self):
         """Return if the icon has symlinks or not."""
@@ -100,14 +104,10 @@ class Icon:
             if multiple and multiple != 0:
                 icon_size *= multiple
 
-        # ICON-22
-        icon_size = path.splitext(self.original)[0].split("-")[-1]
-        if icon_size.isdigit():
-            icon_size = int(icon_size)
-
-        # ICON_24
-        icon_size = path.splitext(self.original)[0].split("_")[-1]
-        if icon_size.isdigit():
-            icon_size = int(icon_size)
-
+        # ICON-22 or ICON_24
+        seperators = ["-", "_"]
+        for seperator in seperators:
+            icon_size = path.splitext(self.original)[0].split(seperator)[-1]
+            if icon_size.isdigit():
+                icon_size = int(icon_size)
         return icon_size

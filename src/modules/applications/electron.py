@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -21,10 +20,11 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from json import dumps, loads
+from os import path
 from struct import error as StructError
 from struct import pack, unpack
 
-from src.modules.applications.binary import BinaryApplication
+from src.modules.applications.helpers.binary import BinaryApplication
 from src.modules.log import Logger
 from src.utils import (change_dict_vals, get_from_dict, get_pngbytes,
                        set_in_dict)
@@ -46,10 +46,9 @@ class ElectronApplication(BinaryApplication):
             Logger.error("PNG file was not found.")
 
     @staticmethod
-    def get_real_path(icon_name, delimiter="/"):
+    def get_real_path(icon_name):
         """Get real path of an icon name inside the asar file."""
-        return "files/{0}".format(
-            "/files/".join(icon_name.split(delimiter)))
+        return "files/{0}".format("/files/".join(icon_name.split("/")))
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
@@ -65,7 +64,7 @@ class ElectronApplication(BinaryApplication):
     def set_icon(self, icon_to_repl, binary_path, pngbytes, backup=False):
         """Set the icon into the electron binary file."""
         icon_to_repl = ElectronApplication.get_real_path(icon_to_repl)
-        binary_file = binary_path + self.binary
+        binary_file = path.join(str(binary_path), self.binary)
 
         asarfile = open(binary_file, 'rb')
         try:

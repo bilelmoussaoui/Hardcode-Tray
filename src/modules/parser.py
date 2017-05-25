@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -39,19 +38,18 @@ class Parser:
         self._db_file = db_file
         self.app_path = []
         self.icons_path = []
-        self.is_script = False
         self.is_qt = False
         self.script = None
         self.icons = []  # List of icons per app
-        self.total_icons = 0
         self.force_create_folder = False
+        self.backup_ignore = False
         # By default the app is not installed on the user's system
         self.dont_install = True
         self._read()
 
     def get_type(self):
         """Get the type of database(Application) file."""
-        if hasattr(self, "is_script") and self.is_script:
+        if hasattr(self, "script") and self.script:
             return self.script
         elif hasattr(self, "is_qt") and self.is_qt:
             return "qt"
@@ -115,4 +113,3 @@ class Parser:
                 icon = Icon(icons[icon])
             if icon.exists:  # If icon found on current Gtk Icon theme
                 self.icons.append(icon)
-                self.total_icons += 1

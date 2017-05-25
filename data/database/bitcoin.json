@@ -7,9 +7,7 @@
         "{userhome}/.local/share/sni-qt/icons/bitcoin-qt/{size}/"
     ],
     "is_qt": true,
-    "is_script": false,
     "force_create_folder": true,
-    
     "backup_ignore": true,
     "icons": {
         "indicator": {

@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -24,7 +23,7 @@ from os import listdir, path, remove
 from shutil import move
 from time import strftime
 
-from src.const import BACKUP_EXTENSION, BACKUP_FILE_FORMAT, BACKUP_FOLDER
+from src.const import BACKUP_FILE_FORMAT, BACKUP_FOLDER
 from src.modules.log import Logger
 from src.utils import copy_file, create_dir, mchown
 
@@ -37,7 +36,13 @@ class Backup:
     def __init__(self, application):
         self._app = application
         self._backup_dir = None
+        self._exists = False
         self._selected_backup = None
+
+    @property
+    def exists(self):
+        """Return if the backup does exists or not."""
+        return self._exists
 
     @property
     def app(self):
@@ -64,38 +69,41 @@ class Backup:
 
     def create_backup_dir(self):
         """Create a backup directory for an application (application_name)."""
-        current_time_folder = strftime(BACKUP_FILE_FORMAT)
-        back_dir = path.join(BACKUP_FOLDER, self.app.name,
-                             current_time_folder, "")
-
+        backup_dir = path.join(BACKUP_FOLDER,
+                               self.app.name,
+                               strftime(BACKUP_FILE_FORMAT), "")
         exists = True
-        new_back_dir = back_dir
+        new_backup_dir = backup_dir
         i = 1
+
         while exists:
-            if path.exists(new_back_dir):
-                new_back_dir = back_dir + "_" + str(i)
-            if not path.isdir(new_back_dir):
-                create_dir(new_back_dir)
+            if path.exists(new_backup_dir):
+                new_backup_dir = backup_dir + "_" + str(i)
+            if not path.isdir(new_backup_dir):
+                Logger.debug("Create new backup folder "
+                             "for {}".format(self.app.name))
+                create_dir(new_backup_dir)
                 exists = False
             i += 1
 
-        self._backup_dir = new_back_dir
+        self._backup_dir = new_backup_dir
 
-    def create(self, file_name):
+    def create(self, filename):
         """Backup functions."""
         from src.app import App
+
         if not App.config().get("backup-ignore", False):
             if not self.backup_dir:
                 self.create_backup_dir()
 
-            back_file = path.join(self.backup_dir, path.basename(
-                file_name) + BACKUP_EXTENSION)
+            backup_file = path.join(self.backup_dir,
+                                    path.basename(filename))
 
-            if path.exists(file_name):
-                Logger.debug("Backup current file {0} to{1}".format(file_name,
-                                                                    back_file))
-                copy_file(file_name, back_file, True)
-                mchown(back_file)
+            if path.exists(filename):
+                Logger.debug("Backup file: {0} to: {1}".format(filename,
+                                                               backup_file))
+                copy_file(filename, backup_file, True)
+                mchown(backup_file)
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""
@@ -109,16 +117,33 @@ class Backup:
 
     def get_backup_file(self, filename):
         """Return the backup file path."""
-        backup_file = path.join(BACKUP_FOLDER, self.app.name,
-                                self.selected_backup,
-                                filename + BACKUP_EXTENSION)
-        if path.exists(backup_file):
-            return backup_file
+        try:
+            backup_file = path.join(BACKUP_FOLDER,
+                                    self.app.name,
+                                    self.selected_backup,
+                                    filename)
+
+            if path.exists(backup_file):
+                return backup_file
+        except (ValueError, TypeError):
+            pass
         return None
 
     def get_backup_folders(self):
         """Get a list of backup folders of a sepecific application."""
-        return listdir(path.join(BACKUP_FOLDER, self.app.name))
+        try:
+            return listdir(path.join(BACKUP_FOLDER, self.app.name))
+        except FileNotFoundError:
+            return []
+
+    def _display_choices(self, restore_points):
+        """Display a list of possible restore points."""
+        i = 1
+        for backup_folder in restore_points:
+            print("{}) {}/{} ".format(str(i),
+                                      self.app.name,
+                                      backup_folder))
+            i += 1
 
     def select(self):
         """Show a select option for the backup of each application."""
@@ -127,39 +152,34 @@ class Backup:
 
         if total != 0:
             backup_folders.sort()
-            i = 1
-            for backup_folder in backup_folders:
-                print("{0}) {1}/{2} ".format(str(i),
-                                             self.app.name,
-                                             backup_folder))
-                i += 1
-            print("(Q)uit to not revert to any version")
 
-            have_chosen = False
+            self._display_choices(backup_folders)
+            print("(Q)uit to cancel")
+
+            has_chosen = False
             stopped = False
 
-            while not have_chosen and not stopped:
+            while not has_chosen and not stopped:
                 try:
-                    selected_backup = input(
-                        "Select a restore date : ").strip().lower()
-                    if selected_backup in ["q", "quit", "exit"]:
+                    selected = input("Select a restore date : ")
+                    if selected in ["q", "quit", "exit"]:
                         stopped = True
-                    selected_backup = int(selected_backup)
-                    if 1 <= selected_backup <= total:
-                        have_chosen = True
-                        self._selected_backup = backup_folders[selected_backup - 1]
+                    selected = int(selected)
+                    if 1 <= selected <= total:
+                        has_chosen = True
+                        self._exists = True
+                        self._selected_backup = backup_folders[selected - 1]
                 except ValueError:
                     pass
                 except KeyboardInterrupt:
                     exit()
 
             if stopped:
-                Logger.debug("The user stopped the reversion for {0}".format(
-                    self.app.name))
+                Logger.debug("The user stopped the "
+                             "reversion for {}".format(self.app.name))
             else:
-                Logger.debug("No backup folder found "
-                             "for the application {0}".format(
-                                 self.app.name))
+                Logger.debug("No backup folder found for "
+                             "the application {0}".format(self.app.name))
 
     def remove(self, file_name):
         """
@@ -169,11 +189,13 @@ class Backup:
             icon(str) : the original icon name
             revert(bool) : True: revert, False: only backup
         """
-        back_dir = path.join(BACKUP_FOLDER, self.app.name,
-                             self.selected_backup, "")
+        try:
+            backup_file = path.join(BACKUP_FOLDER,
+                                    self.app.name,
+                                    self.selected_backup,
+                                    path.basename(file_name))
 
-        if path.exists(back_dir):
-            back_file = path.join(back_dir,
-                                  path.basename(file_name) + BACKUP_EXTENSION)
-            if path.isfile(back_file):
-                move(back_file, file_name)
+            if path.isfile(backup_file):
+                move(backup_file, file_name)
+        except (TypeError, ValueError):
+            self._exists = False

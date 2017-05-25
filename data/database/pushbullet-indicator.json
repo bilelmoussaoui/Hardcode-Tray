@@ -6,11 +6,6 @@
     "icons_path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": false,
     "icons": [
         "pushbullet-indicator-dark.svg",
         "pushbullet-indicator-light.svg",

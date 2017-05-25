@@ -2,7 +2,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
-release](https://img.shields.io/badge/release-v3.8-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
+release](https://img.shields.io/badge/release-v3.8.1-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
 
 # Hardcode-Tray
 
@@ -68,11 +68,11 @@ The one click-installer can be found by following this [link](https://software.o
   Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
 
   3. Open Hardcode-Tray using this command
-  <pre>
-    hardcode-tray
-  </pre>
-
-  4. Enjoy!
+    ```bash
+      hardcode-tray
+    ```
+  
+    4. Enjoy!
 
 ## Options
 - `--apply` and `--revert`

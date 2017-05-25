@@ -8,9 +8,7 @@
     ],
     "is_qt": true,
     "force_create_folder": true,
-    
     "backup_ignore": true,
-    "is_script": false,
     "icons": {
         "panel": {
             "original": "a95f785a927cc4c0e20ad945d18286e7",

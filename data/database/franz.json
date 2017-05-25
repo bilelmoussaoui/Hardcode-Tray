@@ -9,11 +9,6 @@
         "/opt/franz/resources/app.asar.unpacked/assets/tray/linux/",
         "/opt/franz-bin/resources/app.asar.unpacked/assets/tray/linux/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "taskbar": {
             "original": "franz-taskbar.png",

@@ -8,13 +8,8 @@
         "/opt/wire-desktop/resources/",
         "/usr/lib/wire-desktop/resources/"
     ],
-    "is_qt": false,
     "binary": "app.asar",
     "script": "electron",
-    "force_create_folder": false,
-    
-    "is_script": true,
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "img/tray.png",

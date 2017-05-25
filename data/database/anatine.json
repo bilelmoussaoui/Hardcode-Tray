@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/share/anatine/resources/app/media/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "indicator": {
             "original": "IconTray.png",

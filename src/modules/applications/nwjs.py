@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -23,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from shutil import make_archive, move, rmtree
 
-from src.modules.applications.extract import ExtractApplication
+from src.modules.applications.helpers.extract import ExtractApplication
 from src.utils import execute
 
 
@@ -48,12 +47,13 @@ class NWJSApplication(ExtractApplication):
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
 
-        execute(["unzip", icon_path + self.binary, "-d", self.tmp_path])
+        execute(["unzip", path.join(str(icon_path), self.binary), "-d", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         from src.app import App
-        if App.config().get("nwjs") and path.exists(App.config().get("nwjs")):
+        nwjs_sdk = App.config().get("nwjs")
+        if nwjs_sdk and path.exists(nwjs_sdk):
             binary_file = "/tmp/{0}".format(self.binary)
 
             execute(["npm", "install"], True, True, self.tmp_path)
@@ -62,16 +62,16 @@ class NWJSApplication(ExtractApplication):
 
             move(binary_file + ".zip", binary_file + ".nw")
 
-            local_binary_file = App.config().get("nwjs") + self.binary
+            local_binary_file = path.join(nwjs_sdk, self.binary)
 
             move(binary_file + ".nw", local_binary_file + ".nw")
 
             execute(["cat which nw " + self.binary + ".nw > " + self.binary],
-                    True, True, App.config().get("nwjs"))
+                    True, True, nwjs_sdk)
 
             remove(local_binary_file + ".nw")
 
-            move(local_binary_file, icon_path + self.binary)
-            execute(["chmod", "+x", icon_path + self.binary])
+            move(local_binary_file, path.join(str(icon_path), self.binary))
+            execute(["chmod", "+x", path.join(str(icon_path), self.binary)])
 
         rmtree(self.tmp_path)

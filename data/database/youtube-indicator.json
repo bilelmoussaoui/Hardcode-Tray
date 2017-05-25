@@ -6,11 +6,6 @@
     "icons_path": [
         "/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": [
         "youtube-indicator-downloading-dark.svg",
         "youtube-indicator-dark-disabled.svg",

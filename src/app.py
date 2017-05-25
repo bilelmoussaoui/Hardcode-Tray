@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -23,7 +22,6 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from glob import glob
 from json import load
 from os import path
-from time import time
 
 from gi.repository import Gio
 
@@ -91,50 +89,36 @@ class App:
         return supported_apps
 
     @staticmethod
-    def execute(action):
-        """Fix Hardcoded Tray icons.
-            Args:
-                action(Action):
-                APPLY: To apply the modifications
-                REVERT: To revert it.
-                CLEAR_CACHE : To clear backup files cache.
-        """
+    def execute():
+        """Fix Hardcoded Tray icons."""
+        action = App.action()
         apps = App.get_supported_apps()
         done = []
         total_time = 0
-        if apps:
-            cnt = 0
-            counter_total = sum(app.parser.total_icons for app in apps)
-            for app in apps:
-                app_name = app.name
-                start_time = time()
+        counter = 0
+        total_counter = len(apps)
+        for app in apps:
+            app_name = app.name
 
-                if action == Action.APPLY:
-                    app.install()
-                elif action == Action.REVERT:
-                    app.reinstall()
-                elif action == Action.CLEAR_CACHE:
-                    app.clear_cache()
+            delta = app.do_action(action)
 
-                delta = time() - start_time
-                total_time += delta
-
-                if app.is_done:
-                    cnt += app.parser.total_icons
-                    if app_name not in done:
-                        progress(cnt, counter_total, delta, app_name)
-                        done.append(app_name)
-                else:
-                    counter_total -= app.parser.total_icons
-                    print("Failed to fix {0}".format(app_name))
-
-            print("Took {0}s to finish the tasks".format(round(total_time, 2)))
-
-        else:
-            if action == Action.APPLY:
-                exit("No apps to fix! Please report on GitHub if this is not the case")
+            total_time += delta
+            if app.success:
+                counter += 1
+                if app_name not in done:
+                    progress(counter, total_counter, delta, app_name)
+                    done.append(app_name)
             else:
-                exit("No apps to revert!")
+                total_counter -= 1
+
+        if apps:
+            print("Took {:.2f}s to finish the tasks".format(total_time))
+        elif action == Action.APPLY:
+            print("No apps to fix! Please report on GitHub if this is not the case")
+        elif action == Action.CLEAR_CACHE:
+            print("No cache found.")
+        else:
+            print("No apps to revert!")
 
     @staticmethod
     def args():
@@ -151,12 +135,13 @@ class App:
         if App._config is None:
             config = {}
             if path.isfile(CONFIG_FILE):
+                Logger.debug("Reading config file: {}".format(CONFIG_FILE))
                 with open(CONFIG_FILE, 'r') as data:
                     try:
                         config = load(data)
                     except ValueError:
-                        Logger.warning(
-                            "The config file is not a valid json file.")
+                        Logger.warning("The config file is "
+                                       "not a valid json file.")
             App._config = config
         return App._config
 
@@ -170,8 +155,10 @@ class App:
             # Read default config/arguments parser
             if App.args().conversion_tool:
                 conversion_tool = App.args().conversion_tool
+                Logger.debug("Arguments/Conversion Tool: {}".format(conversion_tool))
             elif App.config().get("conversion-tool"):
                 conversion_tool = App.config().get("conversion-tool")
+                Logger.debug("Config/Conversion Tool: {}".format(conversion_tool))
 
             if conversion_tool:
                 try:
@@ -182,8 +169,7 @@ class App:
                 svgtool_found = False
                 for conversion_tool in ConversionTools.choices():
                     try:
-                        App._svgtopng = globals()[conversion_tool](
-                            App.colors())
+                        App._svgtopng = globals()[conversion_tool](App.colors())
                         svgtool_found = True
                         break
                     except SVGNotInstalled:
@@ -201,6 +187,7 @@ class App:
         if App._size is None:
             if App.args().size:
                 App._size = App.args().size
+                Logger.debug("Arguments/Icon Size: {}".format(App._size))
             else:
                 App._size = int(App.config().get("icons", {}).get("size", 0))
                 if App._size not in [16, 22, 24]:
@@ -208,8 +195,11 @@ class App:
                         App._size = 24
                     else:
                         App._size = 22
-                    Logger.debug("Icon size in the config file is wrong."
-                                 "Falling back to the detected one...")
+                    Logger.warning("Icon size in the config file is wrong."
+                                   "Falling back to the detected one...")
+                    Logger.debug("Detected Icon Size: {}".format(App._size))
+                else:
+                    Logger.debug("Config/Icon Size: {}".format(App._size))
         return App._size
 
     @staticmethod
@@ -223,8 +213,7 @@ class App:
             if scaling_factor > 1:
                 # Change icon size by * it by the scaling factor
                 App._size = round(App.icon_size() * scaling_factor, 0)
-                Logger.debug(
-                    "Icon size was changed to : {0}".format(App.icon_size()))
+                Logger.debug("Icon Size: {}".format(App._size))
         return App._scaling_factor
 
     @staticmethod
@@ -236,24 +225,29 @@ class App:
             # If the theme was sepecified on args
             if App.args().theme:
                 App._theme = Theme(App.args().theme)
+                Logger.debug("Arguments/Theme: {}".format(App._theme))
             elif App.args().light_theme and App.args().dark_theme:
                 App._theme = {
                     "dark": Theme(App.args().dark_theme),
                     "light": Theme(App.args().light_theme)
                 }
+                Logger.debug("Arguments/Dark Theme: {}".format(App.args().dark_theme))
+                Logger.debug("Arguments/Light Theme: {}".format(App.args().light_theme))
 
             # Or on the config file
             elif App.config().get("icons"):
                 theme = App.config()["icons"].get("theme", {})
                 if isinstance(theme, str):
                     App._theme = Theme(theme)
+                    Logger.debug("Config/Theme: {}".format(theme))
                 else:
                     if theme.get("light") and theme.get("dark"):
                         App._theme = {
                             "dark": Theme(theme["dark"]),
                             "light": Theme(theme["light"])
                         }
-
+                        Logger.debug("Config/Dark Theme: {}".format(theme.get("dark")))
+                        Logger.debug("Config/Light Theme: {}".format(theme.get("light")))
             # Fallback to system theme
             if not App._theme:
                 source = Gio.SettingsSchemaSource.get_default()
@@ -261,6 +255,9 @@ class App:
                     gsettings = Gio.Settings.new("org.gnome.desktop.interface")
                     theme_name = gsettings.get_string("icon-theme")
                     App._theme = Theme(theme_name)
+                    Logger.debug("System/Theme: {}".format(theme_name))
+                else:
+                    Logger.error("System/Theme: Not detected.")
 
         if dark_theme and isinstance(App._theme, dict):
             return App._theme[dark_theme]
@@ -293,13 +290,29 @@ class App:
             # Can't apply/revert and clear cache on the same time
             elif (App.args().apply or App.args().revert) and App.args().clear_cache:
                 raise ValueError
+            elif App.args().apply:
+                App._action = Action.APPLY
+            elif App.args().revert:
+                App._action = Action.REVERT
+            elif App.args().clear_cache:
+                App._action = Action.CLEAR_CACHE
             else:
-                if App.args().apply:
-                    App._action = Action.APPLY
-                elif App.args().revert:
-                    App._action = Action.REVERT
-                elif App.args().clear_cache:
-                    App._action = Action.CLEAR_CACHE
+                print("1 - Apply")
+                print("2 - Revert")
+                print("3 - Clear Backup Cache")
+                has_chosen = False
+                while not has_chosen:
+                    try:
+                        action = int(input("Please choose: "))
+                        if action not in Action.choices():
+                            print("Please try again")
+                        else:
+                            has_chosen = True
+                            App._action = action
+                    except ValueError:
+                        print("Please choose a valid value!")
+                    except KeyboardInterrupt:
+                        exit("")
         return App._action
 
     @staticmethod

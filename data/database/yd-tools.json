@@ -6,11 +6,6 @@
     "icons_path": [
         "/opt/yd-tools/icons/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": [
         "yd-busy{1-5}.png",
         "yd-ind-error.png",

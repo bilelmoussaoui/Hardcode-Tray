@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/lib/python2.7/site-packages/trimage/pixmaps/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": {
         "indicator": {
             "original": "trimage-icon.png",

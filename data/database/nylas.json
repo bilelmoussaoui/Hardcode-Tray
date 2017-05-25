@@ -8,12 +8,7 @@
         "/usr/share/nylas-mail/resources/",
         "/usr/share/nylas/resources/"
     ],
-    "is_qt": false,
     "script": "electron",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": true,
     "binary": "app.asar",
     "icons": {
         "empty": {

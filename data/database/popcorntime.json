@@ -6,13 +6,9 @@
     "icons_path": [
         "/usr/share/popcorntime-ce/"
     ],
-    "is_qt": false,
-    "is_script": true,
     "binary": "Popcorn-Time-CE",
     "script": "nwjs",
     "nwjs_path": "src/app/images/",
-    "force_create_folder": false,
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "icon.png",

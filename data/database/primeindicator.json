@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/lib/primeindicator/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": false,
     "icons": {
         "intel": {
             "original": "intel.png",

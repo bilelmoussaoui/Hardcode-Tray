@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -20,7 +19,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-
 
 class Action:
     """
@@ -75,7 +73,6 @@ class ApplicationType:
     PAK = "PakApplication"
     NWJS = "NWJSApplication"
     QT = "QtApplication"
-    BINARY = "BinaryApplication"
     NORMAL = "Application"
 
     @staticmethod

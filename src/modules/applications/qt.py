@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -39,17 +38,21 @@ class QtApplication(Application):
     @symlinks_installer
     def install_icon(self, icon, icon_path):
         """Install icon to the current directory."""
+        icon.original = "{}.{}".format(icon.original,
+                                       icon.theme_ext)
 
         base_icon = icon.original
         theme_icon = icon.theme
-        ext_theme = icon.theme_ext
-        output_icon = '{0}.{1}'.format(icon_path + base_icon, ext_theme)
-
+        output_icon = path.join(str(icon_path), base_icon)
         symlink_file(theme_icon, output_icon)
 
     @revert_wrapper
     def reinstall(self):
         """Overwrite the reinstall function, and remove the whole dir."""
+        done = False
         for icon_path in self.icons_path:
+            icon_path = str(icon_path)
             if path.isdir(icon_path):
                 rmtree(icon_path)
+                done = True
+        self.success = done

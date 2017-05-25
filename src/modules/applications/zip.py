@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -24,7 +23,7 @@ from os import makedirs, path, remove
 from shutil import make_archive, rmtree
 from zipfile import ZipFile
 
-from src.modules.applications.extract import ExtractApplication
+from src.modules.applications.helpers.extract import ExtractApplication
 from src.utils import execute
 
 
@@ -51,12 +50,12 @@ class ZipApplication(ExtractApplication):
         makedirs(self.tmp_path, exist_ok=True)
         execute(["chmod", "0777", self.tmp_path])
 
-        with ZipFile(icon_path + self.binary) as zip_object:
+        with ZipFile(path.join(str(icon_path), self.binary)) as zip_object:
             zip_object.extractall(self.tmp_path)
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
-        zip_file = icon_path + self.binary
+        zip_file = path.join(str(icon_path), self.binary)
 
         if path.isfile(zip_file):
             remove(zip_file)

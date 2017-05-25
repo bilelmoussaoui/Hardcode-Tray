@@ -6,11 +6,6 @@
     "icons_path": [
         "/opt/cisco/anyconnect/pixmaps/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": {
         "connected": {
             "original": "systray_connected.png",

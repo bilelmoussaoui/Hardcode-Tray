@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -22,8 +21,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from src.modules.applications.binary import BinaryApplication
-from src.modules.data_pack import DataPack
+from src.modules.applications.helpers.binary import BinaryApplication
+from src.modules.applications.helpers.data_pack import DataPack
 from src.modules.log import Logger
 from src.utils import get_pngbytes
 
@@ -46,7 +45,7 @@ class PakApplication(BinaryApplication):
 
     def set_icon(self, icon, icon_path, pngbytes, backup=False):
         """Update the icon bytes with the new one."""
-        self.set_binary_file(icon_path + self.binary)
+        self.set_binary_file(path.join(str(icon_path), self.binary))
         if self.pak:
             icon_name = icon.original
             if pngbytes and self.pak.haskey(icon_name):

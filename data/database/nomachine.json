@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/NX/share/images/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": false,
     "icons": {
         "indicator": {
             "original": "tray-archlinux.png",

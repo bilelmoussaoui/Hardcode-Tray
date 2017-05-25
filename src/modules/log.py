@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -29,7 +28,9 @@ class Logger:
     """
     Logger class, logs error and other messages on /tmp/Hardcode-Tray.
     """
-
+    FORMAT = "[%(levelname)-s] %(asctime)s %(message)s"
+    DATE = "%Y-%m-%d %H:%M:%S"
+    PATH = "/tmp/Hardcode-Tray/"
     _log = None
 
     @staticmethod
@@ -38,8 +39,9 @@ class Logger:
         if Logger._log is None:
             from src.const import LOG_FILE_FORMAT
             logger = logging.getLogger('hardcode-tray')
-            tmp_file = '/tmp/Hardcode-Tray/{0}.log'.format(
-                strftime(LOG_FILE_FORMAT))
+
+            log_file = "{0}.log".format(strftime(LOG_FILE_FORMAT))
+            tmp_file = path.join(Logger.PATH, log_file)
 
             if not path.exists(path.dirname(tmp_file)):
                 makedirs(path.dirname(tmp_file))
@@ -49,8 +51,7 @@ class Logger:
                     tmp_obj.write('')
 
             handler = logging.FileHandler(tmp_file)
-            formater = logging.Formatter('[%(levelname)s] - %(asctime)s'
-                                         ' - %(message)s')
+            formater = logging.Formatter(Logger.FORMAT, Logger.DATE)
             handler.setFormatter(formater)
             logger.addHandler(handler)
             logger.setLevel(logging.DEBUG)

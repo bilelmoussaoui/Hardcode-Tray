@@ -6,13 +6,8 @@
     "icons_path": [
         "/opt/Ramme/resources/"
     ],
-    "is_qt": false,
-    "is_script": true,
     "binary": "app.asar",
     "script": "electron",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "dist/assets/icon-18x18.png",

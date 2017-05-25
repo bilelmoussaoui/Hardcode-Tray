@@ -10,11 +10,6 @@
     ],
     "binary": "app.asar",
     "script": "electron",
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": true,
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "resources/IconTray.png",

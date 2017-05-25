@@ -6,11 +6,6 @@
     "icons_path": [
         "{userhome}/.jd/themes/standard/org/jdownloader/images/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "indicator": {
             "original": "jd_logo_128_128.png",

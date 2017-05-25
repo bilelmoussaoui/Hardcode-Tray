@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -95,6 +94,9 @@ class Path:
     def __radd__(self, filename):
         return filename + self.path
 
+    def __str__(self):
+        return self.path
+
     @property
     def parser(self):
         """Return Parser instance."""
@@ -128,10 +130,8 @@ class Path:
             else:
                 self.path = self.path.replace(key, str(value))
 
-        if self.parser.is_script and self.type == "icons_path":
+        if self.parser.script and self.type == "icons_path":
             binary_file = path.join(self.path, self.parser.binary)
-            if not path.exists(self.path) or not path.exists(binary_file):
-                self._exists = False
+            self._exists = path.exists(self.path) and path.exists(binary_file)
         else:
-            if not path.exists(self.path):
-                self._exists = False
+            self._exists = path.exists(self.path)

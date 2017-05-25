@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/share/indicator/china/weather/data/media/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "clear": {
             "original": "icon_china_weather.png",

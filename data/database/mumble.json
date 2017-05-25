@@ -8,9 +8,7 @@
     ],
     "is_qt": true,
     "force_create_folder": true,
-    
     "backup_ignore": true,
-    "is_script": false,
     "icons": {
         "indicator": {
             "original": "3b6b0df38d89edf726735f02f23d0f65",

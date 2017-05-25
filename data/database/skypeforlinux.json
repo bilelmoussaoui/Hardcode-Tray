@@ -6,13 +6,8 @@
     "icons_path": [
         "/usr/share/skypeforlinux/resources/"
     ],
-    "is_qt": false,
     "script": "electron",
     "binary": "app.asar",
-    "is_script": true,
-    "backup_ignore": false,
-    "force_create_folder": false,
-    
     "icons": {
         "disturb": {
             "original": "apps/swx/tray/win/tray-donotdisturbTemplate@2x.png",

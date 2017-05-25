@@ -7,10 +7,7 @@
         "{userhome}/.config/hexchat/icons/"
     ],
     "force_create_folder": true,
-    
     "backup_ignore": true,
-    "is_qt": false,
-    "is_script": false,
     "icons": {
         "fileoffer": {
             "original": "tray_fileoffer.png",

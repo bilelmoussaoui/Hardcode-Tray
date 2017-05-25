@@ -18,10 +18,6 @@
         "{userhome}/.config/vivaldi-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts}/images_5/",
         "{userhome}/.config/vivaldi-snapshot/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts}/images_5/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    "backup_ignore": false,
     "icons": {
         "indicator@2x": {
             "original": "icon_default_22.png",

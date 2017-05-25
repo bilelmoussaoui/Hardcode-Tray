@@ -8,13 +8,8 @@
         "/usr/share/discord-canary/resources/",
         "/opt/discord-canary/resources/"
     ],
-    "is_qt": false,
     "binary": "app.asar",
     "script": "electron",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": true,
     "icons": {
         "tray": {
             "original": "images/linux-tray.png",

@@ -7,11 +7,6 @@
     "icons_path": [
         "/usr/lib/python2.7/site-packages/mullvad/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "error": {
             "original": "rdot.png",

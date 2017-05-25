@@ -9,11 +9,6 @@
     "zip_path": "_linux/",
     "binary": "resources.zip",
     "script": "zip",
-    "is_script": true,
-    "backup_ignore": false,
-    "is_qt": false,
-    "force_create_folder": false,
-    
     "icons": {
         "spotify_icon16": {
             "original": "spotify-linux-16.png",

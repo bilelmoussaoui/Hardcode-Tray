@@ -6,11 +6,6 @@
     "icons_path": [
         "/opt/lyricfier/resources/app/render/img/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "icon.png",

@@ -8,10 +8,6 @@
         "/opt/dropbox/images/hicolor/16x16/status/",
         "{userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    "backup_ignore": false,
-    "is_script": false,
     "icons": [
         "dropboxstatus-blank.png",
         "dropboxstatus-busy.png",

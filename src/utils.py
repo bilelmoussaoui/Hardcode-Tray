@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -38,7 +37,6 @@ def progress(count, count_max, time, app_name=""):
     """Used to draw a progress bar."""
     bar_len = 36
     space = 20
-    time = round(time, 2)
     filled_len = int(round(bar_len * count / float(count_max)))
 
     percents = round(100.0 * count / float(count_max), 1)
@@ -46,9 +44,9 @@ def progress(count, count_max, time, app_name=""):
 
     stdout.write("\r{0!s}{1!s}".format(app_name,
                                        " " * (abs(len(app_name) - space))))
-    stdout.write('[{0}] {1}/{2} {3}% {4}s\r'.format(progress_bar,
-                                                    count, count_max,
-                                                    percents, time))
+    stdout.write('[{0}] {1}/{2} {3}% {4:.2f}s\r'.format(progress_bar,
+                                                        count, count_max,
+                                                        percents, time))
     print("")
     stdout.flush()
 
@@ -62,7 +60,7 @@ def symlink_file(source, link_name):
         remove(link_name)
         symlink_file(source, link_name)
     except FileNotFoundError:
-        Logger.debug("File name {0} was not found".format(source))
+        Logger.warning("File not found: {0}".format(source))
 
 
 def copy_file(src, destination, overwrite=False):
@@ -97,7 +95,7 @@ def get_extension(filename):
 
 def get_kde_scaling_factor():
     """Return the widgets scaling factor on KDE."""
-    scaling_factor = 1
+    scaling_factor = None
     was_found = False
 
     try:
@@ -115,34 +113,37 @@ def get_kde_scaling_factor():
             if len(line) > 1 and was_found and line[0].lower() == "iconsize":
                 scaling_factor = int(line[1])
                 break
+        if scaling_factor:
+            Logger.debug("Scaling Factor/KDE: {}".format(scaling_factor))
+
 
         return scaling_factor
     except (FileNotFoundError, KeyError) as kde_error:
-        Logger.debug("KDE scaling factor not detected."
-                     " Error : {0!s}".format(kde_error))
+        Logger.debug("Scaling Factor/KDE not detected.")
+        Logger.error(kde_error)
     return None
 
+def get_gnome_scaling_factor():
+    """Return gnome scaling factor."""
+    source = Gio.SettingsSchemaSource.get_default()
+    if source.lookup("org.gnome.desktop.interface", True):
+        gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+        scaling_factor = gsettings.get_uint('scaling-factor') + 1
+        Logger.debug("Scaling Factor/GNOME: {}".format(scaling_factor))
+        return scaling_factor
+    else:
+        Logger.debug("Scaling Factor/Gnome not detected.")
+    return 1
 
 def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
     scaling_factor = 1
-
     # Scaling factor on GNOME desktop
     if desktop_env == "gnome":
-        source = Gio.SettingsSchemaSource.get_default()
-        if source.lookup("org.gnome.desktop.interface", True):
-            gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-            scaling_factor = gsettings.get_uint('scaling-factor') + 1
-
-        Logger.debug("Scaling factor of Gnome interface"
-                     " is set to {0}".format(scaling_factor))
-
+        scaling_factor = get_gnome_scaling_factor()
     # Scaling factor on KDE Desktop
     elif desktop_env == "kde":
         scaling_factor = get_kde_scaling_factor()
-
-        Logger.debug("Scaling factor was detected in the KDE configuration"
-                     "with the value {0}".format(scaling_factor))
 
     return scaling_factor
 
@@ -170,16 +171,17 @@ def mchown(directory):
                         execute(["chmod", "0777", file_path])
 
 
-def create_dir(folder):
+def create_dir(directory):
     """
     Create a directory and fix folder permissions.
 
     Args :
         folder (str): folder path
     """
-    if not path.exists(folder):
-        makedirs(folder, exist_ok=True)
-        mchown(folder)
+    if not path.exists(directory):
+        Logger.debug("Creating directory: {}".format(directory))
+        makedirs(directory, exist_ok=True)
+        mchown(directory)
 
 
 def execute(command_list, verbose=True, shell=False, working_directory=None):
@@ -190,7 +192,7 @@ def execute(command_list, verbose=True, shell=False, working_directory=None):
         command_list(list)
         verbose(bool)
     """
-    Logger.debug("Executing command : {0}".format(" ".join(command_list)))
+    Logger.debug("Executing command: {0}".format(" ".join(command_list)))
     if working_directory:
         cmd = Popen(command_list, stdout=PIPE, stderr=PIPE, shell=shell,
                     cwd=working_directory)

@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/share/sflphone/"
     ],
-    "force_create_folder": false,
-    
-    "is_qt": false,
-    "is_script": false,
-    "backup_ignore": false,
     "icons": {
         "indicator": {
             "original": "sflphone_small.svg",

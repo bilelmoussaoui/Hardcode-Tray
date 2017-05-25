@@ -11,11 +11,6 @@
         "{userhome}/.TelegramDesktop/tdata/ticons/",
         "{userhome}/.local/share/TelegramDesktop/tdata/ticons/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "backup_ignore": false,
-    "force_create_folder": false,
-    
     "icons": {
         "panel": {
             "original": "icomute_22_0.png",

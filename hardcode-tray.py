@@ -4,7 +4,6 @@ Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
-Version : 3.8
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -84,42 +83,26 @@ App.get_default(args)
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
 
-print("Welcome to the tray icons hardcoder fixer!")
-print("Your indicator icon size is : {0}".format(App.icon_size()))
-print("The detected desktop environment : {0}".format(DESKTOP_ENV.title()))
+print("Welcome to Hardcode-Tray!")
+print("Desktop Environment: {}".format(DESKTOP_ENV.title()))
+print("Scaling Factor: {}".format(App.scaling_factor()))
+print("Icon Size: {}".format(App.icon_size()))
 if not isinstance(App.theme(), dict):
-    print("Your current icon theme is : {0}".format(App.theme()))
+    print("Icon Theme: {}".format(App.theme()))
 else:
-    print("Your current dark icon theme is : {0}".format(App.theme("dark")))
-    print("Your current light icon theme is : {0}".format(App.theme("light")))
-print("Conversion tool : {0}".format(App.svg()))
-print("Applications will be fixed : ", end="")
-print(",".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
+    print("Dark Icon Theme: {}".format(App.theme("dark")))
+    print("Light Icon Theme: {}".format(App.theme("light")))
+print("Conversion Tool: {}".format(App.svg()))
+print("To Do: ", end="")
+print(", ".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
 # Clear backup cache
 action = App.action()
-if not action:
-    print("1 - Apply")
-    print("2 - Revert")
-    print("3 - Clear Backup Cache")
-    has_chosen = False
-    while not has_chosen:
-        try:
-            action = int(input("Please choose: "))
-            if action not in Action.choices():
-                print("Please try again")
-            else:
-                has_chosen = True
-        except ValueError:
-            print("Please choose a valid value!")
-        except KeyboardInterrupt:
-            exit("")
-
 if action == Action.APPLY:
     print("Applying now..\n")
 elif action == Action.REVERT:
     print("Reverting now..\n")
 elif action == Action.CLEAR_CACHE:
     print("Clearing cache...\n")
-App.execute(action)
+App.execute()
 
 print("\nDone, Thank you for using the Hardcode-Tray fixer!")

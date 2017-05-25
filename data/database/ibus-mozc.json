@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/share/ibus-mozc/"
     ],
-    "is_qt": false,
-    "force_create_folder": false,
-    
-    "is_script": false,
-    "backup_ignore": false,
     "icons": {
         "full": {
             "original": "alpha_full.png",

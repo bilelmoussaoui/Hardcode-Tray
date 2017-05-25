@@ -8,11 +8,6 @@
         "/usr/share/slack/resources/app.asar.unpacked/static/",
         "/usr/lib/slack/resources/app.asar.unpacked/src/static/"
     ],
-    "is_script": false,
-    "backup_ignore": false,
-    "is_qt": false,
-    "force_create_folder": false,
-    
     "icons": {
         "highlight": {
             "original": "slack-taskbar-highlight.png",

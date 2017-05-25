@@ -6,12 +6,7 @@
     "icons_path": [
         "/opt/whatsie/resources/"
     ],
-    "is_qt": false,
-    "is_script": true,
     "binary": "app.asar",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
     "script": "electron",
     "icons": {
         "tray": {

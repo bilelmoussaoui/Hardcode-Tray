@@ -8,11 +8,6 @@
         "/usr/share/pixmaps/yumex/",
         "/usr/share/yumex-dnf/gfx/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "backup_ignore": false,
-    "force_create_folder": false,
-    
     "icons": {
         "error": {
             "original": "tray-error.png",

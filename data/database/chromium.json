@@ -9,11 +9,6 @@
         "/usr/lib/chromium/"
     ],
     "script": "pak",
-    "force_create_folder": false,
-    
-    "backup_ignore": false,
-    "is_script": true,
-    "is_qt": false,
     "binary": "resources.pak",
     "icons": {
         "tray": {

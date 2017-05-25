@@ -6,11 +6,6 @@
     "icons_path": [
         "/usr/share/solaar/icons/"
     ],
-    "is_qt": false,
-    "is_script": false,
-    "backup_ignore": false,
-    "force_create_folder": false,
-    
     "icons": {
         "indicator": {
             "original": "solaar-init.svg",

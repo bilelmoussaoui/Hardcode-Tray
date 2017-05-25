@@ -6,13 +6,9 @@
     "icons_path": [
         "/opt/MessengerForDesktop/"
     ],
-    "is_qt": false,
-    "is_script": true,
     "binary": "Messenger",
     "script": "nwjs",
     "nwjs_path": "images/",
-    "force_create_folder": false,
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "icon_tray.png",

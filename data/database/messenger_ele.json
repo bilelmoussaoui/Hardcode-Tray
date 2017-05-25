@@ -6,13 +6,8 @@
     "icons_path": [
         "/opt/messengerfordesktop/resources/"
     ],
-    "is_qt": false,
     "binary": "app.asar",
     "script": "electron",
-    "force_create_folder": false,
-    
-    "is_script": true,
-    "backup_ignore": false,
     "icons": {
         "tray": {
             "original": "images/tray.png",

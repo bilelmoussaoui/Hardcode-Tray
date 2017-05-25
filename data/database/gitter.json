@@ -6,13 +6,9 @@
     "icons_path": [
         "/opt/Gitter/linux64/"
     ],
-    "is_qt": false,
-    "is_script": true,
     "binary": "Gitter",
     "script": "nwjs",
     "nwjs_path": "img/",
-    "force_create_folder": false,
-    "backup_ignore": false,
     "icons": {
         "disconnected": {
             "original": "linux-icon-logo-disconnected.png",
