@@ -37,9 +37,9 @@ class SVG:
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
         if width and not height:
-            width = height
-        elif height and not width:
             height = width
+        elif height and not width:
+            width = height
 
         tmp_file = ""
         if self.colors:
