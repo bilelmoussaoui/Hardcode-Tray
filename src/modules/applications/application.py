@@ -146,7 +146,11 @@ class Application:
             symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
             from src.app import App
-            App.svg().to_png(theme_icon, output_icon, icon_size)
+            if icon_size != App.icon_size():
+                App.svg().to_png(theme_icon, output_icon, App.icon_size())
+            else:
+                App.svg().to_png(theme_icon, output_icon)
+
             mchown(output_icon)
 
     def revert_icon(self, icon, icon_path):

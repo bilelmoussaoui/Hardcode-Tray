@@ -250,7 +250,10 @@ def get_pngbytes(icon):
     icon_extension = icon.theme_ext
     icon_size = icon.icon_size
     if icon_extension == 'svg':
-        pngbytes = App.svg().to_bin(icon_for_repl, icon_size)
+        if icon_size != App.icon_size():
+            pngbytes = App.svg().to_bin(icon_for_repl, App.icon_size())
+        else:
+            pngbytes = App.svg().to_bin(icon_for_repl)
     elif icon_extension == "png":
         with open(icon_for_repl, 'rb') as pngfile:
             pngbytes = pngfile.read()
