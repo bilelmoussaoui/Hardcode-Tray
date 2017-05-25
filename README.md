@@ -194,6 +194,6 @@ cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-
 ## Hardcode-Tray wiki!
 - [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
 - [FAQ](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/FAQ)
-- [How to build the patched version of Sni-Qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-sni-qt)
+- [How to build the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-sni-qt)
 - [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
 - [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
