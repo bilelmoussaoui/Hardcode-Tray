@@ -68,6 +68,7 @@ def revert_wrapper(func):
         """
             Revert to the old version and remove symlinks.
         """
+        from src.app import App
         if app.BACKUP_IGNORE or app.backup_ignore or App.get("backup_ignore"):
             app.remove_symlinks()
             func(app)

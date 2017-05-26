@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from functools import reduce
-from os import chown, listdir, makedirs, path, remove, symlink
+from os import chown, makedirs, path, remove, symlink
 from re import findall, match, sub
 from shutil import copyfile
 from subprocess import PIPE, Popen, call

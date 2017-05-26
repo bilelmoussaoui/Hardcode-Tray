@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from importlib import import_module
 from os import path, remove
 from tempfile import NamedTemporaryFile
 
@@ -37,20 +38,21 @@ class SVG:
     @staticmethod
     def factory(colors, conversion_tool=None):
         """Create a SVG to PNG object."""
-        from src.modules.svg.imagemagick import ImageMagick
-        from src.modules.svg.inkscape import Inkscape
-        from src.modules.svg.rsvgconvert import RSVGConvert
-        from src.modules.svg.svgcairo import CairoSVG
-        from src.modules.svg.svgexport import SVGExport
+        def load(conversion_tool):
+            """Load Objects dynamically."""
+            module = ConversionTools.choices()[conversion_tool].lower()
+            svg = import_module("src.modules.svg." + module)
+            return getattr(svg, conversion_tool)
+
         if conversion_tool:
             try:
-                svg = locals()[conversion_tool](colors)
+                svg = load(conversion_tool)(colors)
             except SVGNotInstalled:
                 exit("The selected conversion tool is not installed.")
         else:
             for tool in ConversionTools.choices():
                 try:
-                    svg = locals()[tool](colors)
+                    svg = load(tool)(colors)
                     break
                 except SVGNotInstalled:
                     pass
