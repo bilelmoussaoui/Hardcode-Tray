@@ -1,5 +1,5 @@
 #!/bin/bash
-version=v3.8.1
+version=v3.8.2
 if [[ $EUID -ne 0 ]]; then
   case $1 in
     -u|--update)
