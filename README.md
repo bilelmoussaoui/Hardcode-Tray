@@ -11,7 +11,7 @@ Fixes Hardcoded tray icons in Linux
 The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 
 <div align="center">
-<img src="https://media.giphy.com/media/3o7btPLoplvNIS6HIY/giphy.gif"/>
+<img src="screenshots/hardcode-tray.gif"/>
 </div>
 
 ## Themes
