@@ -24,6 +24,7 @@ import json
 
 from src.enum import ApplicationType
 from src.modules.icon import Icon
+from src.modules.log import Logger
 from src.modules.path import Path
 from src.utils import create_dir, get_iterated_icons
 
@@ -78,11 +79,14 @@ class Parser:
         """
         from src.app import App
         do_later = ["app_path", "icons_path", "icons"]
-        with open(self._db_file, 'r') as db_obj:
-            data = json.load(db_obj)
-            for key, value in data.items():
-                if key not in do_later:
-                    setattr(self, key, value)
+        try:
+            with open(self._db_file, 'r') as db_obj:
+                data = json.load(db_obj)
+                for key, value in data.items():
+                    if key not in do_later:
+                        setattr(self, key, value)
+        except (FileNotFoundError, ValueError, KeyError):
+            Logger.error("Application file is broken: {}".format(self._db_file))
 
         self._parse_paths(data["app_path"], "app_path")
         self._parse_paths(data["icons_path"], "icons_path")
