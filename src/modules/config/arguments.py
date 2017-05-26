@@ -30,9 +30,9 @@ class ArgumentsConfig:
     """Transform arguments to usable things."""
     _args = None
     _icon_size = None
-    _colors = []
+    _colors = None
     _path = None
-    _only = []
+    _only = None
     _conversion_tool = None
     _theme = None
     _action = None
@@ -105,20 +105,24 @@ class ArgumentsConfig:
     def only():
         """Return list of apps to be fixed."""
         if ArgumentsConfig._only is None:
-            only = ArgumentsConfig.args().only.lower().strip()
-            Logger.debug("Arguments/Only: {}".format(only))
-            ArgumentsConfig._only = only.split(",")
+            only = ArgumentsConfig.args().only
+            if only:
+                only = only.lower().strip()
+                Logger.debug("Arguments/Only: {}".format(only))
+                ArgumentsConfig._only = only.split(",")
         return ArgumentsConfig._only
 
     @staticmethod
     def path():
         """Return app path."""
-        if not ArgumentsConfig._path:
+        if ArgumentsConfig._path is None:
             proposed_path = ArgumentsConfig.args().path
-            if path.exists(proposed_path) and path.isdir(proposed_path):
-                ArgumentsConfig._path = proposed_path
-            else:
-                raise FileNotFoundError("Please select a valid --path")
+            if proposed_path:
+                if path.isdir(proposed_path):
+                    ArgumentsConfig._path = proposed_path
+                else:
+                    raise FileNotFoundError("Please select a valid --path")
+        return ArgumentsConfig._path
 
     @staticmethod
     def action():

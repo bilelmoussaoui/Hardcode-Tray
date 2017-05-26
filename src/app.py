@@ -203,7 +203,7 @@ class App:
             The icons path, specified per application.
         """
         path_ = App.get("path")
-        if len(App.get("only")) > 1 and path_:
+        if len(App.only()) > 1 and path_:
             exit("You can't use --path with more than application at once.")
         return path_
 

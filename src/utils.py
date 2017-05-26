@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from functools import reduce
-from os import chown, makedirs, path, remove, symlink
+from os import chown, makedirs, listdir, path, remove, symlink
 from re import findall, match, sub
 from shutil import copyfile
 from subprocess import PIPE, Popen, call
@@ -298,3 +298,23 @@ def replace_colors(file_name, colors):
         with open(file_name, 'w') as _file:
             _file.write(file_data)
         _file.close()
+
+
+def get_exact_folder(key, directory, condition):
+    """
+        Get subdirs and apply a condition on each until one is found.
+    """
+    dirs = directory.split(key)
+    exact_directory = ""
+
+    if path.isdir(dirs[0]):
+        directories = listdir(dirs[0])
+        for dir_ in directories:
+            if condition(path.join(dirs[0], dir_, "")):
+                exact_directory = dir_
+                break
+
+    if exact_directory:
+        directory = directory.replace(key, exact_directory)
+
+    return directory

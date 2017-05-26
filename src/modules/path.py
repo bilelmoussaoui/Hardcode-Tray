@@ -19,53 +19,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import listdir, path
+from importlib import import_module
+from os import path
 
 from src.const import ARCH, USERHOME
+from src.utils import get_exact_folder
 
-
-def get_exact_folder(key, directory, condition):
-    """
-        Get subdirs and apply a condition on each until one is found.
-    """
-    dirs = directory.split(key)
-    exact_directory = ""
-
-    if path.isdir(dirs[0]):
-        directories = listdir(dirs[0])
-        for dir_ in directories:
-            if condition(path.join(dirs[0], dir_, "")):
-                exact_directory = dir_
-                break
-
-    if exact_directory:
-        directory = directory.replace(key, exact_directory)
-
-    return directory
-
-
-def dropbox_callack(directory):
-    """
-    Correct the hardcoded dropbox directory.
-
-    Args:
-        directory(str): the default dropbox directory
-    """
-    if path.isdir(directory):
-        sub_dir = directory.split("-")
-        return len(sub_dir) > 1 and sub_dir[0].lower() == "dropbox"
-    return False
-
-
-def hangouts_callback(directory):
-    """
-    Correct the hardcoded dropbox directory.
-
-    Args:
-        directory(str): the default dropbox directory
-    """
-    return path.isdir(directory)
-
+from src.modules.log import Logger
 
 class Path:
     """
@@ -77,8 +37,8 @@ class Path:
         "{userhome}": USERHOME,
         "{size}": 22,
         "{arch}": ARCH,
-        "{dropbox}": dropbox_callack,
-        "{hangouts}": hangouts_callback
+        "{dropbox}": "dropbox_callback",
+        "{hangouts}": "hangouts_callback"
     }
 
     def __init__(self, absolute_path, parser, path_key):
@@ -122,16 +82,24 @@ class Path:
         """
         from src.app import App
 
-        Path.DB_VARIABLES["{size}"] = App.icon_size()
+        Path.DB_VARIABLES["{size}"] = str(App.icon_size())
 
         for key, value in Path.DB_VARIABLES.items():
-            if hasattr(value, "__call__"):  # Check wether it's a function or not
-                self.path = get_exact_folder(key, self.path, value)
-            else:
-                self.path = self.path.replace(key, str(value))
+            if key in self.path:
+                if value.endswith("_callback"):  # Check wether it's a function or not
+                    self._validate_with_callback(key, value)
+                else:
+                    self.path = self.path.replace(key, str(value))
 
         if self.parser.script and self.type == "icons_path":
             binary_file = path.join(self.path, self.parser.binary)
             self._exists = path.exists(self.path) and path.exists(binary_file)
         else:
             self._exists = path.exists(self.path)
+
+    def _validate_with_callback(self, key, callback):
+        module = import_module("src.path")
+        if hasattr(module, callback):
+            method = getattr(module, callback)
+            self.path = get_exact_folder(key, self.path, method)
+            Logger.debug("Path with condition: {} {}".format(callback, self.path))

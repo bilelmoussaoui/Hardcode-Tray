@@ -32,7 +32,7 @@ class JSONConfig:
     _config = None
     _icon_size = None
     _conversion_tool = None
-    _blacklist = []
+    _blacklist = None
     _nwjs = None
     _theme = None
     _backup_ignore = None
