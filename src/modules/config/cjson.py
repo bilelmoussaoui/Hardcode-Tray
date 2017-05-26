@@ -44,12 +44,14 @@ class JSONConfig:
             config = {}
             if path.isfile(CONFIG_FILE):
                 Logger.debug("Reading config file: {}".format(CONFIG_FILE))
-            with open(CONFIG_FILE, 'r') as data:
-                try:
-                    config = load(data)
-                except ValueError:
-                    Logger.warning("The config file is "
-                                   "not a valid json file.")
+                with open(CONFIG_FILE, 'r') as data:
+                    try:
+                        config = load(data)
+                    except ValueError:
+                        Logger.warning("The config file is "
+                                       "not a valid json file.")
+            else:
+                Logger.debug("Config file: Not found.")
             JSONConfig._config = config
         return JSONConfig._config
 
