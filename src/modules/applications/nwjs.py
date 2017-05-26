@@ -52,8 +52,8 @@ class NWJSApplication(ExtractApplication):
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         from src.app import App
-        nwjs_sdk = App.config().get("nwjs")
-        if nwjs_sdk and path.exists(nwjs_sdk):
+        nwjs_sdk = App.get("nwjs")
+        if nwjs_sdk:
             binary_file = "/tmp/{0}".format(self.binary)
 
             execute(["npm", "install"], True, True, self.tmp_path)

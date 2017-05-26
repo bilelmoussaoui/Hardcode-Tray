@@ -22,8 +22,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from tempfile import NamedTemporaryFile
 
+from src.enum import ConversionTools
 from src.utils import copy_file, is_installed, replace_colors
-
 
 class SVG:
     """SVG Interface used by other class's."""
@@ -32,6 +32,28 @@ class SVG:
         """Init function."""
         self.colors = colors
         self.cmd = None
+
+    @staticmethod
+    def factory(colors, conversion_tool=None):
+        """Create a SVG to PNG object."""
+        from src.modules.svg.imagemagick import ImageMagick
+        from src.modules.svg.inkscape import Inkscape
+        from src.modules.svg.rsvgconvert import RSVGConvert
+        from src.modules.svg.svgcairo import CairoSVG
+        from src.modules.svg.svgexport import SVGExport
+        if conversion_tool:
+            try:
+                svg = locals()[conversion_tool](colors)
+            except SVGNotInstalled:
+                exit("The selected conversion tool is not installed.")
+        else:
+            for tool in ConversionTools.choices():
+                try:
+                    svg = locals()[tool](colors)
+                    break
+                except SVGNotInstalled:
+                    pass
+        return svg
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""

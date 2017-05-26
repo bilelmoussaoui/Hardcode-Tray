@@ -38,3 +38,4 @@ USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))
 ARCH = machine()
 DESKTOP_ENV = detect_de()
+ICONS_SIZE = [16, 22, 24]
