@@ -25,6 +25,7 @@ from tempfile import NamedTemporaryFile
 from src.enum import ConversionTools
 from src.utils import copy_file, is_installed, replace_colors
 
+
 class SVG:
     """SVG Interface used by other class's."""
 

@@ -47,7 +47,8 @@ class NWJSApplication(ExtractApplication):
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
 
-        execute(["unzip", path.join(str(icon_path), self.binary), "-d", self.tmp_path])
+        execute(["unzip", path.join(str(icon_path),
+                                    self.binary), "-d", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""

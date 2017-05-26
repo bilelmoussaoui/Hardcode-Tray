@@ -54,7 +54,6 @@ class SystemConfig:
             SystemConfig._scaling_factor = scaling_factor
         return SystemConfig._scaling_factor
 
-
     @staticmethod
     def theme():
         """Return a theme object."""

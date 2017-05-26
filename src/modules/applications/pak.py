@@ -57,7 +57,8 @@ class PakApplication(BinaryApplication):
             else:
                 Logger.error("Couldn't find a PNG file.")
         else:
-            Logger.warning("The file {0} was not found".format(self.binary_file))
+            Logger.warning(
+                "The file {0} was not found".format(self.binary_file))
 
     def install_icon(self, icon, icon_path):
         """Install the new icon."""

@@ -37,7 +37,6 @@ class ArgumentsConfig:
     _theme = None
     _action = None
 
-
     @staticmethod
     def set_args(args):
         """Set args."""
@@ -81,7 +80,8 @@ class ArgumentsConfig:
         """Return conversion tool set by --conversion-tool."""
         if not ArgumentsConfig._conversion_tool:
             conversion_tool = ArgumentsConfig.args().conversion_tool
-            Logger.debug("Arguments/Conversion Tool: {}".format(conversion_tool))
+            Logger.debug(
+                "Arguments/Conversion Tool: {}".format(conversion_tool))
             ArgumentsConfig._conversion_tool = conversion_tool
         return ArgumentsConfig._conversion_tool
 
@@ -100,7 +100,6 @@ class ArgumentsConfig:
                 colors.append([to_replace, for_replace])
             ArgumentsConfig._colors = colors
         return ArgumentsConfig._colors
-
 
     @staticmethod
     def only():

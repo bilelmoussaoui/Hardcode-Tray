@@ -1,49 +1,62 @@
 #!/bin/bash
 cd /tmp || exit
+# Remove tmp folder
 if [ -d "/tmp/Hardcode-Tray/" ]; then
-    sudo rm -rf /tmp/Hardcode-Tray
+  sudo rm -rf /tmp/Hardcode-Tray
 fi
 echo "Downloading Hardcode-Tray ..."
+
+# Git version
 if [ "$1" == "--g" ]; then
-    echo "Cloning the repository..."
-    if [ -d "./Hardcode-Tray" ]; then
-    	rm -rf /tmp/Hardcode-Tray
-    fi
-    git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
-    cd ./Hardcode-Tray
+  echo "Cloning the repository..."
+  if [ -d "./Hardcode-Tray" ]; then
+	   rm -rf /tmp/Hardcode-Tray
+  fi
+  git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
+  cd ./Hardcode-Tray
 else
-    echo "Downloading the latest version..."
-    version=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
-    IFS=' ' read -r -a versions <<< "$version"
-    version=${versions[0]}
-    wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/"$version".zip
-    unzip -oq "$version".zip
-    rm -f "$version".zip
-    versionnb=${version//[a-zA-Z]/}
-    cd ./Hardcode-Tray-"$versionnb" || exit
+  echo "Downloading the latest version..."
+  version=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
+  IFS=' ' read -r -a versions <<< "$version"
+  version=${versions[0]}
+  wget -q https://github.com/bil-elmoussaoui/Hardcode-Tray/archive/"$version".zip
+  unzip -oq "$version".zip
+  rm -f "$version".zip
+  versionnb=${version//[a-zA-Z]/}
+  cd ./Hardcode-Tray-"$versionnb" || exit
 fi
+
+# Remove unneeded files
 rm -rf .git ./screenshots
 rm -f .gitignore README.md data/install.sh data/uninstall.sh
+
 cd ../ || exit
+# Remove installed version
 if [ -d "/opt/Hardcode-Tray" ]; then
-    sudo rm -rf /opt/Hardcode-Tray
+  sudo rm -rf /opt/Hardcode-Tray
 fi
+
+# Copy the new version
 if [ "$1" == "--g" ]; then
-    sudo mv Hardcode-Tray/ /opt/Hardcode-Tray
+  sudo mv Hardcode-Tray/ /opt/Hardcode-Tray
 else
-    sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
+  sudo mv Hardcode-Tray-"$versionnb"/ /opt/Hardcode-Tray
 fi
+
 echo "Creating symbolic link.."
-if [ -L "/usr/bin/hardcode-tray" ] || [ -f "/usr/bin/hardcode-tray" ];
-then
-    sudo rm -f /usr/bin/hardcode-tray
+# Remove symbolic link
+if [ -L "/usr/bin/hardcode-tray" ] || [ -f "/usr/bin/hardcode-tray" ]; then
+  sudo rm -f /usr/bin/hardcode-tray
 fi
+
+# Create a symbolic link
 sudo ln -s /opt/Hardcode-Tray/hardcode-tray /usr/bin/hardcode-tray
+
 if [ "$1" == "--u" ]; then
-    echo "The update has completed successfully."
+  echo "The update has completed successfully."
 elif [ "$1" == "--g" ]; then
-    echo "Hardcode-Tray was updated to git version successfully."
+  echo "Hardcode-Tray was updated to git version successfully."
 else
-    echo "Installation completed successfully."
+  echo "Installation completed successfully."
 fi
 echo "You can run the script using 'hardcode-tray'"

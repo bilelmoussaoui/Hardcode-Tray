@@ -116,12 +116,12 @@ def get_kde_scaling_factor():
         if scaling_factor:
             Logger.debug("Scaling Factor/KDE: {}".format(scaling_factor))
 
-
         return scaling_factor
     except (FileNotFoundError, KeyError) as kde_error:
         Logger.debug("Scaling Factor/KDE not detected.")
         Logger.error(kde_error)
     return None
+
 
 def get_gnome_scaling_factor():
     """Return gnome scaling factor."""
@@ -134,6 +134,7 @@ def get_gnome_scaling_factor():
     else:
         Logger.debug("Scaling Factor/Gnome not detected.")
     return 1
+
 
 def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
@@ -224,25 +225,6 @@ def get_iterated_icons(icons):
         else:
             new_icons.append(icon)
     return new_icons
-
-
-def get_list_of_themes():
-    """Return a list of installed icon themes."""
-    paths = ["/usr/share/icons/",
-             "{0!s}/.local/share/icons/".format(USERHOME)]
-    themes = []
-    for icon_path in paths:
-        try:
-            sub_dirs = listdir(icon_path)
-            for theme in sub_dirs:
-                theme_path = path.join(icon_path, theme, "")
-                theme_index = "{0!s}index.theme".format(theme_path)
-                if (path.exists(theme_path) and path.exists(theme_index)
-                        and theme not in themes):
-                    themes.append(theme)
-        except FileNotFoundError:
-            pass
-    return themes
 
 
 def get_pngbytes(icon):

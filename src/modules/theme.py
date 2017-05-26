@@ -20,6 +20,9 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi import require_version
+
+from src.const import THEMES_LIST
+
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
@@ -28,6 +31,9 @@ class Theme(Gtk.IconTheme):
     """Easy way to create new themes based on the theme name."""
 
     def __init__(self, theme_name):
+        if theme_name not in THEMES_LIST:
+            exit("Theme {} does not exists.".format(theme_name))
+
         self._name = theme_name
         Gtk.IconTheme.__init__(self)
         self.set_custom_theme(self.name)
