@@ -9,3 +9,6 @@ insert_final_newline = true
 [*.md]
 indent_size = 2
 trim_trailing_whitespace = false
+
+[*.sh]
+indent_size = 2

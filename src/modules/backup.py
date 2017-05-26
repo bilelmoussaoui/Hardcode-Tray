@@ -92,7 +92,7 @@ class Backup:
         """Backup functions."""
         from src.app import App
 
-        if not App.config().get("backup-ignore", False):
+        if not App.get("backup_ignore"):
             if not self.backup_dir:
                 self.create_backup_dir()
 

@@ -73,7 +73,7 @@ class ApplicationType:
     PAK = "PakApplication"
     NWJS = "NWJSApplication"
     QT = "QtApplication"
-    NORMAL = "Application"
+    APPLICATION = "Application"
 
     @staticmethod
     def choices():

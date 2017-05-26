@@ -23,20 +23,17 @@ from argparse import ArgumentParser
 from os import geteuid
 
 from src.app import App
-from src.const import DESKTOP_ENV
+from src.const import DESKTOP_ENV, ICONS_SIZE, THEMES_LIST
 from src.enum import Action, ConversionTools
-from src.utils import get_list_of_themes
 
 if geteuid() != 0:
     exit("You need to have root privileges to run the script.\
         \nPlease try again, this time using 'sudo'. Exiting.")
 
-THEMES_LIST = get_list_of_themes()
-
 parser = ArgumentParser(prog="hardcode-tray")
 parser.add_argument("--size", "-s", help="use a different icon size instead "
                     "of the default one.",
-                    type=int, choices=[16, 22, 24])
+                    type=int, choices=ICONS_SIZE)
 parser.add_argument("--theme",
                     help="use a different icon theme instead "
                     "of the default one.",

@@ -19,11 +19,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from importlib import import_module
 import json
-from os import path
 
 from src.enum import ApplicationType
-from src.modules.applications import *
 from src.modules.icon import Icon
 from src.modules.path import Path
 from src.utils import create_dir, get_iterated_icons
@@ -53,7 +52,7 @@ class Parser:
             return self.script
         elif hasattr(self, "is_qt") and self.is_qt:
             return "qt"
-        return "normal"
+        return "application"
 
     def is_installed(self):
         """Return wether the application is installed or not."""
@@ -61,8 +60,17 @@ class Parser:
 
     def get_application(self):
         """Application factory, return an instance of Application."""
-        application = ApplicationType.choices()[self.get_type()]
-        return globals()[application](self)
+        def load(application_type):
+            """Load Objects dynamically."""
+            module, class_name = None, None
+            for key, value in ApplicationType.choices().items():
+                if key == application_type:
+                    module = key
+                    class_name = value
+                    break
+            svg = import_module("src.modules.applications." + module)
+            return getattr(svg, class_name)
+        return load(self.get_type())(self)
 
     def _read(self):
         """
@@ -86,21 +94,21 @@ class Parser:
         found = self.icons and self.app_path
         if self.force_create_folder and found:
             for icon_path in self.icons_path:
-                create_dir(icon_path.path)
+                create_dir(str(icon_path))
             self.dont_install = False
         else:
             self.dont_install = not (found and self.icons_path)
 
         # NWJS special case
         if self.get_type() == "nwjs" and not self.dont_install:
-            self.dont_install = not path.exists(App.config().get("nwjs", ""))
+            self.dont_install = not App.get("nwjs")
 
     def _parse_paths(self, paths, key):
-        for path_ in paths:
-            path_ = Path(path_, self, key)
+        for path in paths:
+            path = Path(path, self, key)
             # Check if path exists
-            if path_.exists or (self.force_create_folder and key == "icons_path"):
-                getattr(self, key).append(path_)
+            if path.exists or (self.force_create_folder and key == "icons_path"):
+                getattr(self, key).append(path)
 
     def _parse_icons(self, icons):
         if isinstance(icons, list):

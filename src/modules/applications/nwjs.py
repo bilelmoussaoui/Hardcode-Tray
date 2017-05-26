@@ -47,13 +47,14 @@ class NWJSApplication(ExtractApplication):
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
 
-        execute(["unzip", path.join(str(icon_path), self.binary), "-d", self.tmp_path])
+        execute(["unzip", path.join(str(icon_path),
+                                    self.binary), "-d", self.tmp_path])
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         from src.app import App
-        nwjs_sdk = App.config().get("nwjs")
-        if nwjs_sdk and path.exists(nwjs_sdk):
+        nwjs_sdk = App.get("nwjs")
+        if nwjs_sdk:
             binary_file = "/tmp/{0}".format(self.binary)
 
             execute(["npm", "install"], True, True, self.tmp_path)

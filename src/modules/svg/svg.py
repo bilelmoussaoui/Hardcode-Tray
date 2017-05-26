@@ -19,9 +19,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from importlib import import_module
 from os import path, remove
 from tempfile import NamedTemporaryFile
 
+from src.enum import ConversionTools
 from src.utils import copy_file, is_installed, replace_colors
 
 
@@ -32,6 +34,29 @@ class SVG:
         """Init function."""
         self.colors = colors
         self.cmd = None
+
+    @staticmethod
+    def factory(colors, conversion_tool=None):
+        """Create a SVG to PNG object."""
+        def load(conversion_tool):
+            """Load Objects dynamically."""
+            module = ConversionTools.choices()[conversion_tool].lower()
+            svg = import_module("src.modules.svg." + module)
+            return getattr(svg, conversion_tool)
+
+        if conversion_tool:
+            try:
+                svg = load(conversion_tool)(colors)
+            except SVGNotInstalled:
+                exit("The selected conversion tool is not installed.")
+        else:
+            for tool in ConversionTools.choices():
+                try:
+                    svg = load(tool)(colors)
+                    break
+                except SVGNotInstalled:
+                    pass
+        return svg
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""

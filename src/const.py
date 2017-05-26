@@ -22,7 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import getenv, path
 from platform import machine
 
-from src.tools import detect_de, get_userhome
+from src.tools import detect_de, get_themes, get_userhome
 
 DB_FOLDER = "./" + path.join("data", "database", "")
 USERNAME = getenv("SUDO_USER")
@@ -37,4 +37,6 @@ CHMOD_IGNORE_LIST = ["", "home"]
 USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))
 ARCH = machine()
+THEMES_LIST = get_themes(USERHOME)
 DESKTOP_ENV = detect_de()
+ICONS_SIZE = [16, 22, 24]

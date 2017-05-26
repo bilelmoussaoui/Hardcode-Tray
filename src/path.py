@@ -20,9 +20,26 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 
-from .application import Application
-from .electron import ElectronApplication
-from .nwjs import NWJSApplication
-from .pak import PakApplication
-from .qt import QtApplication
-from .zip import ZipApplication
+from os import path
+
+def dropbox_callback(directory):
+    """
+    Correct the hardcoded dropbox directory.
+
+    Args:
+        directory(str): the default dropbox directory
+    """
+    if path.isdir(directory):
+        sub_dir = directory.split("-")
+        return len(sub_dir) > 1 and sub_dir[0].lower() == "dropbox"
+    return False
+
+
+def hangouts_callback(directory):
+    """
+    Correct the hardcoded dropbox directory.
+
+    Args:
+        directory(str): the default dropbox directory
+    """
+    return path.isdir(directory)
