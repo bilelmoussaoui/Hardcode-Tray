@@ -24,6 +24,7 @@ from os import path, remove
 from tempfile import NamedTemporaryFile
 
 from src.enum import ConversionTools
+from src.modules.log import Logger
 from src.utils import copy_file, is_installed, replace_colors
 
 
@@ -53,9 +54,10 @@ class SVG:
             for tool in ConversionTools.choices():
                 try:
                     svg = load(tool)(colors)
+                    Logger.debug("SVG Factory: Import {}".format(tool))
                     break
                 except SVGNotInstalled:
-                    pass
+                    Logger.debug("SVG Factory: Failed {}".format(tool))
         return svg
 
     def to_png(self, input_file, output_file, width=None, height=None):

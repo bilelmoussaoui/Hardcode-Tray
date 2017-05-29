@@ -4,4 +4,5 @@
 # R0902: Too many instance attributes (%s/%s)
 # R0903: Too few public methods
 # R0914: Too many local variables (%s/%s)
-disable=C0103,C0413,R0902,R0903,R0914,W0401,W0614
+# W0406: Module import itself
+disable=C0103,C0413,R0902,R0903,R0914,W0401,W0406,W0614
