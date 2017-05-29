@@ -136,12 +136,28 @@ def get_gnome_scaling_factor():
     return 1
 
 
+def get_cinnamon_scaling_factor():
+    """Return Cinnamon desktop scaling factor."""
+    source = Gio.SettingsSchemaSource.get_default()
+    if source.lookup("org.cinnamon.desktop.interface", True):
+        gsettings = Gio.Settings.new("org.cinnamon.desktop.interface")
+        scaling_factor = gsettings.get_uint('scaling-factor') + 1
+        Logger.debug("Scaling Factor/Cinnamon: {}".format(scaling_factor))
+        return scaling_factor
+    else:
+        Logger.debug("Scaling Factor/Cinnamon not detected")
+    return 1
+
+
 def get_scaling_factor(desktop_env):
     """Return the widgets scaling factor."""
     scaling_factor = 1
     # Scaling factor on GNOME desktop
     if desktop_env == "gnome":
         scaling_factor = get_gnome_scaling_factor()
+    # Cinnamon scaling factor
+    elif desktop_env == "cinnamon":
+        scaling_factor = get_cinnamon_scaling_factor()
     # Scaling factor on KDE Desktop
     elif desktop_env == "kde":
         scaling_factor = get_kde_scaling_factor()

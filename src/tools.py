@@ -43,7 +43,7 @@ def detect_de():
     except AttributeError:
         desktop_env = []
 
-    known_desktop = ["pantheon", "gnome", "kde", "unity", "mate", "xfce"]
+    known_desktop = ["cinnamon", "pantheon", "gnome", "kde", "unity", "mate", "xfce"]
 
     for desktop in known_desktop:
         if desktop in desktop_env:
