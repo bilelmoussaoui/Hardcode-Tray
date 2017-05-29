@@ -141,7 +141,10 @@ def get_cinnamon_scaling_factor():
     source = Gio.SettingsSchemaSource.get_default()
     if source.lookup("org.cinnamon.desktop.interface", True):
         gsettings = Gio.Settings.new("org.cinnamon.desktop.interface")
-        scaling_factor = gsettings.get_uint('scaling-factor') + 1
+        scaling_factor = gsettings.get_uint('scaling-factor')
+        if scaling_factor == 0:
+            # Cinnamon does have an auto scaling feature which we can't use
+            scaling_factor = 1
         Logger.debug("Scaling Factor/Cinnamon: {}".format(scaling_factor))
         return scaling_factor
     else:
