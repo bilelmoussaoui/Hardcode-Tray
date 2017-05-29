@@ -37,9 +37,9 @@ def dropbox_callback(directory):
 
 def hangouts_callback(directory):
     """
-    Correct the hardcoded dropbox directory.
+    Correct the hardcoded hangouts directory.
 
     Args:
-        directory(str): the default dropbox directory
+        directory(str): the default hangouts directory
     """
     return path.isdir(directory)
