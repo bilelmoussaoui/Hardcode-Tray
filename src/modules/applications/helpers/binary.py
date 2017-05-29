@@ -32,11 +32,6 @@ class BinaryApplication(Application):
 
         self.is_corrupted = False
 
-    @property
-    def binary(self):
-        """Return the binary file if exists."""
-        return self.parser.binary
-
     def get_backup_file(self, icon_name):
         """Return the binary content of a backup file."""
         backup_file = self.backup.get_backup_file(icon_name)

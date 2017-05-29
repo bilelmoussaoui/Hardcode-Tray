@@ -23,6 +23,7 @@ from os import path
 from shutil import rmtree
 
 from src.decorators import revert_wrapper, symlinks_installer
+from src.modules.log import Logger
 from src.modules.applications.application import Application
 from src.utils import symlink_file
 
@@ -54,5 +55,8 @@ class QtApplication(Application):
             icon_path = str(icon_path)
             if path.isdir(icon_path):
                 rmtree(icon_path)
+                Logger.debug("Qt Application: Reverting {} is done.".format(self.name))
                 done = True
+        if not done:
+            Logger.debug("Qt Application: Reverting {} is not done.".format(self.name))
         self.success = done

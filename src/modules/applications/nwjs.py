@@ -22,6 +22,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path, remove
 from shutil import make_archive, move, rmtree
 
+from src.modules.log import Logger
 from src.modules.applications.helpers.extract import ExtractApplication
 from src.utils import execute
 
@@ -36,17 +37,13 @@ class NWJSApplication(ExtractApplication):
         self.tmp_path = "/tmp/{0!s}_extracted/".format(self.name)
         self.tmp_data = path.join(self.tmp_path, self.nwjs_path)
 
-    @property
-    def nwjs_path(self):
-        """Return the path of the icons in the zip file."""
-        return self.parser.nwjs_path
-
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
 
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
 
+        Logger.debug("NWJS Application: Extracting of {}".format(self.binary))
         execute(["unzip", path.join(str(icon_path),
                                     self.binary), "-d", self.tmp_path])
 
@@ -57,8 +54,7 @@ class NWJSApplication(ExtractApplication):
         if nwjs_sdk:
             binary_file = "/tmp/{0}".format(self.binary)
 
-            execute(["npm", "install"], True, True, self.tmp_path)
-
+            Logger.debug("NWJS Application: Creating new archive {}".format(self.binary))
             make_archive(binary_file, "zip", self.tmp_path)
 
             move(binary_file + ".zip", binary_file + ".nw")
@@ -67,6 +63,7 @@ class NWJSApplication(ExtractApplication):
 
             move(binary_file + ".nw", local_binary_file + ".nw")
 
+            Logger.debug("NWJS Application: Creating executable file.")
             execute(["cat which nw " + self.binary + ".nw > " + self.binary],
                     True, True, nwjs_sdk)
 

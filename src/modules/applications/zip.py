@@ -23,8 +23,8 @@ from os import makedirs, path, remove
 from shutil import make_archive, rmtree
 from zipfile import ZipFile
 
+from src.modules.log import Logger
 from src.modules.applications.helpers.extract import ExtractApplication
-from src.utils import execute
 
 
 class ZipApplication(ExtractApplication):
@@ -37,28 +37,30 @@ class ZipApplication(ExtractApplication):
         self.tmp_path = "/tmp/_{0!s}/".format(self.name)
         self.tmp_data = path.join(self.tmp_path, self.zip_path)
 
-    @property
-    def zip_path(self):
-        """Return the path of the icons in the zip file."""
-        return self.parser.zip_path
-
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
         if path.exists(self.tmp_path):
             rmtree(self.tmp_path)
 
         makedirs(self.tmp_path, exist_ok=True)
-        execute(["chmod", "0777", self.tmp_path])
+
+        Logger.debug("Zip Application: Extracting of {} started".format(self.binary))
 
         with ZipFile(path.join(str(icon_path), self.binary)) as zip_object:
             zip_object.extractall(self.tmp_path)
+
+        Logger.debug("Zip Application: Extracting is done.")
 
     def pack(self, icon_path):
         """Recreate the zip file from the tmp directory."""
         zip_file = path.join(str(icon_path), self.binary)
 
         if path.isfile(zip_file):
+            Logger.debug("Zip Application: Removing old binary file {}".format(zip_file))
             remove(zip_file)
 
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)
-        rmtree(self.tmp_path)
+        Logger.debug("Zip Application: Creating a new zip archive.")
+
+        if path.exists(self.tmp_path):
+            rmtree(self.tmp_path)

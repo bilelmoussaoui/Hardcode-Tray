@@ -30,8 +30,8 @@ def dropbox_callback(directory):
         directory(str): the default dropbox directory
     """
     if path.isdir(directory):
-        sub_dir = directory.split("-")
-        return len(sub_dir) > 1 and sub_dir[0].lower() == "dropbox"
+        sub_dir = directory.split("/")
+        return len(sub_dir) > 1 and sub_dir[4].lower().startswith("dropbox-")
     return False
 
 

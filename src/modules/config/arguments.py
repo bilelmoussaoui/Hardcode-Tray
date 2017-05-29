@@ -37,9 +37,7 @@ class ArgumentsConfig:
     _theme = None
     _action = None
 
-    @staticmethod
-    def set_args(args):
-        """Set args."""
+    def __init__(self, args):
         ArgumentsConfig._args = args
 
     @staticmethod

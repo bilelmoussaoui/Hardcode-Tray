@@ -48,8 +48,7 @@ class App:
     _app = None  # App Object
 
     def __init__(self, args):
-        ArgumentsConfig.set_args(args)
-        App._args = ArgumentsConfig
+        App._args = ArgumentsConfig(args)
         App._json = JSONConfig
         App._system = SystemConfig
 

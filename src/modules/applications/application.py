@@ -28,6 +28,7 @@ from src.const import BACKUP_FOLDER
 from src.decorators import install_wrapper, revert_wrapper, symlinks_installer
 from src.enum import Action
 from src.modules.backup import Backup
+from src.modules.log import Logger
 from src.utils import mchown, symlink_file
 
 
@@ -47,35 +48,13 @@ class Application:
         self.parser = parser
         self.backup = Backup(self)
 
-    @property
-    def name(self):
-        """Return the application name."""
-        return self.parser.name
-
-    @property
-    def icons(self):
-        """Return the application icons."""
-        return self.parser.icons
-
-    @property
-    def app_path(self):
-        """Return the application installation paths."""
-        return self.parser.app_path
-
-    @property
-    def icons_path(self):
-        """Return the application installation paths."""
-        return self.parser.icons_path
-
-    @property
-    def backup_ignore(self):
-        """Return either the backup files should be created or not."""
-        return self.parser.backup_ignore
-
-    @property
-    def symlinks(self):
-        """Return application symlinks."""
-        return self.parser.symlinks
+    def __getattr__(self, name):
+        if hasattr(self.parser, name):
+            return getattr(self.parser, name)
+        elif hasattr(self, name):
+            return getattr(self, name)
+        Logger.warning("Couldn't find attribute {}".format(name))
+        return None
 
     def has_symlinks(self):
         """Return a boolean value if either the application have symlinks."""
@@ -103,11 +82,13 @@ class Application:
     def clear_cache(self):
         """Clear Backup cache."""
         backup_folder = path.join(BACKUP_FOLDER, self.name, "")
-
+        Logger.debug("Clearing cache of: {}".format(self.name))
         if path.exists(backup_folder):
             rmtree(backup_folder)
+            Logger.debug("Cache cleaned.")
             self.success = True
         else:
+            Logger.debug("Cache not found.")
             self.success = False
 
     @install_wrapper
@@ -174,6 +155,7 @@ class Application:
             self.reinstall()
             if not self.success and self.backup.exists:
                 print("Couldn't revert to those icons :(")
+
         elif action == Action.CLEAR_CACHE:
             self.clear_cache()
             if not self.success:
