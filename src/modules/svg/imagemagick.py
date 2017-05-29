@@ -43,4 +43,4 @@ class ImageMagick(SVG):
 
         cmd.extend([input_file, output_file])
 
-        execute(cmd)
+        execute(cmd, False, True)

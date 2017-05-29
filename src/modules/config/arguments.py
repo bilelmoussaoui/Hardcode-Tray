@@ -78,8 +78,8 @@ class ArgumentsConfig:
         """Return conversion tool set by --conversion-tool."""
         if not ArgumentsConfig._conversion_tool:
             conversion_tool = ArgumentsConfig.args().conversion_tool
-            Logger.debug(
-                "Arguments/Conversion Tool: {}".format(conversion_tool))
+            Logger.debug("Arguments/Conversion Tool: "
+                         "{}".format(conversion_tool))
             ArgumentsConfig._conversion_tool = conversion_tool
         return ArgumentsConfig._conversion_tool
 

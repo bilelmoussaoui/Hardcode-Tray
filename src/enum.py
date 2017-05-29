@@ -50,7 +50,7 @@ class ConversionTools:
     INKSCAPE = "Inkscape"
     CAIROSVG = "CairoSVG"
     RSVGCONVERT = "RSVGConvert"
-    SVGEXPROT = "SVGExport"
+    SVGEXPORT = "SVGExport"
     IMAGEMAGICK = "ImageMagick"
 
     @staticmethod

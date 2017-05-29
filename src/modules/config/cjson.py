@@ -66,8 +66,8 @@ class JSONConfig:
                 Logger.debug("Config/Icon Size: {}".format(icon_size))
                 if icon_size not in ICONS_SIZE:
                     Logger.warning("Config/Icon Size: Incorrect.")
-                    Logger.debug(
-                        "Config/Icon Size: Detected icon size will be used.")
+                    Logger.debug("Config/Icon Size: Detected icon "
+                                 "size will be used.")
                 JSONConfig._icon_size = icon_size
         return JSONConfig._icon_size
 
@@ -109,8 +109,8 @@ class JSONConfig:
         if not JSONConfig._blacklist:
             blacklist = JSONConfig.get_default().get("blacklist", [])
             if blacklist:
-                Logger.debug(
-                    "Config/Blacklist: {}".format(",".join(blacklist)))
+                Logger.debug("Config/Blacklist: "
+                             "{}".format(",".join(blacklist)))
             JSONConfig._blacklist = blacklist
         return JSONConfig._blacklist
 
