@@ -19,6 +19,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from __future__ import absolute_import
+
 from json import load
 from os import path
 

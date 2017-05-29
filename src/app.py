@@ -30,7 +30,7 @@ from src.modules.log import Logger
 from src.modules.parser import Parser
 
 from src.modules.config.arguments import ArgumentsConfig
-from src.modules.config.cjson import JSONConfig
+from src.modules.config.json import JSONConfig
 from src.modules.config.system import SystemConfig
 
 from src.modules.svg.svg import SVG
