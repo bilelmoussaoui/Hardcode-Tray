@@ -31,15 +31,15 @@ def dropbox_callback(directory):
     """
     if path.isdir(directory):
         sub_dir = directory.split("/")
-        return len(sub_dir) > 1 and sub_dir[4].lower() == "dropbox"
+        return len(sub_dir) > 1 and sub_dir[4].lower().startswith("dropbox-")
     return False
 
 
 def hangouts_callback(directory):
     """
-    Correct the hardcoded dropbox directory.
+    Correct the hardcoded hangouts directory.
 
     Args:
-        directory(str): the default dropbox directory
+        directory(str): the default hangouts directory
     """
     return path.isdir(directory)
