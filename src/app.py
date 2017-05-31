@@ -155,7 +155,7 @@ class App:
         """
         if not App._scaling_factor:
             scaling_factor = App.get("scaling_factor")
-            if scaling_factor > 1:
+            if scaling_factor and scaling_factor > 1:
                 # Change icon size by * it by the scaling factor
                 App._icon_size = round(App.icon_size() * scaling_factor, 0)
                 Logger.debug("Icon Size: {}".format(App._icon_size))
