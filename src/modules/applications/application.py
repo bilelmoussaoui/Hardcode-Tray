@@ -125,7 +125,8 @@ class Application:
             self.backup.create(output_icon)
 
         if ext_theme == ext_orig:
-            symlink_file(theme_icon, output_icon)
+            if theme_icon != output_icon:
+                symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
             from src.app import App
             if icon_size != App.icon_size():
