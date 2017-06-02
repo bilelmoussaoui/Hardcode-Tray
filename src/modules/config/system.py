@@ -21,7 +21,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gi.repository import Gio
 
-from src.const import DESKTOP_ENV
+from src.const import DESKTOP_ENV, THEME_CONFIG
 from src.utils import get_scaling_factor
 from src.modules.log import Logger
 from src.modules.theme import Theme
@@ -58,10 +58,15 @@ class SystemConfig:
     def theme():
         """Return a theme object."""
         if SystemConfig._theme is None:
+            try:
+                theme = THEME_CONFIG[DESKTOP_ENV]
+            except KeyError:
+                theme = THEME_CONFIG["gnome"]
+            key, path = theme["key"], theme["path"]
             source = Gio.SettingsSchemaSource.get_default()
-            if source.lookup("org.gnome.desktop.interface", True):
-                gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-                theme_name = gsettings.get_string("icon-theme")
+            if source.lookup(path, True):
+                gsettings = Gio.Settings.new(path)
+                theme_name = gsettings.get_string(key)
                 SystemConfig._theme = Theme(theme_name)
                 Logger.debug("System/Theme: {}".format(theme_name))
             else:
