@@ -40,9 +40,3 @@ ARCH = machine()
 THEMES_LIST = get_themes(USERHOME)
 DESKTOP_ENV = detect_de()
 ICONS_SIZE = [16, 22, 24]
-THEME_CONFIG = {
-    "gnome": {
-        "key": "icon-theme",
-        "path": "org.gnome.desktop.interface"
-    }
-}

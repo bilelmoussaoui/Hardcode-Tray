@@ -19,9 +19,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from configparser import ConfigParser
+from os import path
+
 from gi.repository import Gio
 
-from src.const import DESKTOP_ENV, THEME_CONFIG
+from src.const import DESKTOP_ENV, USERHOME
 from src.utils import get_scaling_factor
 from src.modules.log import Logger
 from src.modules.theme import Theme
@@ -58,17 +61,25 @@ class SystemConfig:
     def theme():
         """Return a theme object."""
         if SystemConfig._theme is None:
-            try:
-                theme = THEME_CONFIG[DESKTOP_ENV]
-            except KeyError:
-                theme = THEME_CONFIG["gnome"]
-            key, path = theme["key"], theme["path"]
-            source = Gio.SettingsSchemaSource.get_default()
-            if source.lookup(path, True):
-                gsettings = Gio.Settings.new(path)
-                theme_name = gsettings.get_string(key)
-                SystemConfig._theme = Theme(theme_name)
-                Logger.debug("System/Theme: {}".format(theme_name))
+            theme_settings = path.join(USERHOME,
+                                       ".config/gtk-3.0/settings.ini")
+            if DESKTOP_ENV not in ["gnome", "elementary"]:
+                source = Gio.SettingsSchemaSource.get_default()
+                if source.lookup("org.gnome.desktop.interface", True):
+                    gsettings = Gio.Settings.new("org.gnome.desktop.interface")
+                    theme_name = gsettings.get_string("icon-theme")
+                    SystemConfig._theme = Theme(theme_name)
+                    Logger.debug("System/Theme/GSettings: {}".format(theme_name))
+            elif path.exists(theme_settings):
+                try:
+                    cnfg = ConfigParser()
+                    cnfg.read(theme_settings)
+                    theme_name = cnfg.get("Settings", "gtk-icon-theme-name")
+                    Logger.debug("System/Theme/Setting.ini: {}".format(theme_name))
+                    SystemConfig._theme = Theme(theme_name)
+                except KeyError as err:
+                    Logger.error("System/Theme/Settings.ini: {}".format(err))
+                    exit(err)
             else:
                 Logger.error("System/Theme: Not detected.")
         return SystemConfig._theme
