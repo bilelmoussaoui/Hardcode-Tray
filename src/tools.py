@@ -25,7 +25,7 @@ from subprocess import check_output
 from src.modules.log import Logger
 
 
-DE = ["i3", "cinnamon", "deepin", "pantheon",
+DE = ["i3", "cinnamon", "budgie", "deepin", "pantheon",
       "gnome", "kde", "unity", "mate", "xfce"]
 
 

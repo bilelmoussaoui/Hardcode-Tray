@@ -19,6 +19,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from abc import ABCMeta, abstractmethod
+
 from src.enum import Action
 from src.modules.applications.helpers.binary import BinaryApplication
 
@@ -27,6 +29,7 @@ class ExtractApplication(BinaryApplication):
     """
         Extractable binary applications.
     """
+    __metaclass__ = ABCMeta
 
     def __init__(self, parser):
         BinaryApplication.__init__(self, parser)
@@ -47,10 +50,10 @@ class ExtractApplication(BinaryApplication):
             self.pack(icon_path) # Pack the file
         self.success = not self.is_corrupted
 
+    @abstractmethod
     def extract(self, icon_path):
         """Extract binary file."""
-        pass
 
+    @abstractmethod
     def pack(self, icon_path):
         """Pack the binary file."""
-        pass

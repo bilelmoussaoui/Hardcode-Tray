@@ -19,17 +19,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from __future__ import absolute_import
-
-from json import dumps, loads
 from os import path
-from struct import error as StructError
-from struct import pack, unpack
 
 from src.modules.applications.helpers.binary import BinaryApplication
+from src.modules.applications.helpers.asar import AsarFile
 from src.modules.log import Logger
-from src.utils import (change_dict_vals, get_from_dict, get_pngbytes,
-                       set_in_dict)
+from src.utils import get_pngbytes
 
 
 class ElectronApplication(BinaryApplication):
@@ -43,7 +38,8 @@ class ElectronApplication(BinaryApplication):
         """Install the icon."""
         pngbytes = get_pngbytes(icon)
         if pngbytes:
-            self.set_icon(icon.original, icon_path, pngbytes, True)
+            icon_path = ElectronApplication.get_real_path(icon.original)
+            self.set_icon(icon_path, icon_path, pngbytes, True)
         else:
             Logger.error("PNG file was not found.")
 
@@ -54,8 +50,8 @@ class ElectronApplication(BinaryApplication):
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
-        backup_file = "|".join(
-            ElectronApplication.get_real_path(icon.original).split("/"))
+        asar_icon_path = ElectronApplication.get_real_path(icon.original)
+        backup_file = "|".join(asar_icon_path.split("/"))
 
         pngbytes = self.get_backup_file(backup_file)
         if pngbytes:
@@ -65,64 +61,14 @@ class ElectronApplication(BinaryApplication):
 
     def set_icon(self, icon_to_repl, binary_path, pngbytes, backup=False):
         """Set the icon into the electron binary file."""
-        icon_to_repl = ElectronApplication.get_real_path(icon_to_repl)
         binary_file = path.join(str(binary_path), self.binary)
 
-        asarfile = open(binary_file, 'rb')
-        try:
-            asarfile.seek(4)
+        asar = AsarFile(binary_file)
+        asar.write(icon_to_repl, pngbytes)
+        if backup:
+            backup_file = "|".join(asar.keys)
+            content = asar.old_content
+            if content: # in case the icon doesn't exists anymore
+                self.backup.file(backup_file, content)
 
-            # header size is stored in byte 12:16
-            len1 = unpack('I', asarfile.read(4))[0]
-            len2 = unpack('I', asarfile.read(4))[0]
-            len3 = unpack('I', asarfile.read(4))[0]
-            header_size = len3
-            zeros_padding = (len2 - 4 - len3)
-
-            header = asarfile.read(header_size).decode('utf-8')
-            files = loads(header)
-            originaloffset = asarfile.tell() + zeros_padding
-            asarfile.close()
-
-            keys = icon_to_repl.split("/")
-
-            fileinfo = get_from_dict(files, keys)
-            if isinstance(fileinfo, dict) and "offset" in fileinfo.keys():
-                offset0 = int(fileinfo['offset'])
-                offset = offset0 + originaloffset
-                size = int(fileinfo['size'])
-
-                with open(binary_file, 'rb') as asarfile:
-                    bytearr = asarfile.read()
-
-                if pngbytes:
-                    set_in_dict(files, keys + ['size'], len(pngbytes))
-
-                    if backup:
-                        backup_file = "|".join(keys)
-                        self.backup.file(
-                            backup_file, bytearr[offset:offset + size])
-
-                    newbytearr = pngbytes.join(
-                        [bytearr[:offset], bytearr[offset + size:]])
-
-                    sizediff = len(pngbytes) - size
-
-                    newfiles = change_dict_vals(files, sizediff, offset0)
-                    newheader = dumps(newfiles).encode('utf-8')
-                    newheaderlen = len(newheader)
-
-                    bytearr2 = b''.join([bytearr[:4],
-                                         pack('I', newheaderlen + (len1 - len3)),
-                                         pack('I', newheaderlen + (len2 - len3)),
-                                         pack('I', newheaderlen), newheader,
-                                         b'\x00' * zeros_padding,
-                                         newbytearr[originaloffset:]])
-
-                    asarfile = open(binary_file, 'wb')
-                    asarfile.write(bytearr2)
-                    asarfile.close()
-        except StructError:
-            Logger.error("The asar file of {0} seems to be "
-                         "corrupted".format(self.name))
-            self.is_corrupted = True
+        self.is_corrupted = not asar.success
