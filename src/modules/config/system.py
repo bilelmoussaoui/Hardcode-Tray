@@ -67,7 +67,7 @@ class SystemConfig:
         theme = None
         theme_settings = path.join(USERHOME,
                                    ".config/gtk-3.0/settings.ini")
-        if DESKTOP_ENV in ["budgie", "gnome", "elementary", "other"]:
+        if DESKTOP_ENV in ["budgie", "unity", "gnome", "elementary", "other"]:
             source = Gio.SettingsSchemaSource.get_default()
             if source.lookup("org.gnome.desktop.interface", True):
                 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
