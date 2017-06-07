@@ -31,106 +31,85 @@ from src.modules.theme import Theme
 
 class JSONConfig:
     """Read JSON config file and make it usable."""
-    _config = None
-    _icon_size = None
-    _conversion_tool = None
-    _blacklist = None
-    _nwjs = None
-    _theme = None
-    _backup_ignore = None
 
-    @staticmethod
-    def get_default():
-        """Return default instance."""
-        if JSONConfig._config is None:
-            config = {}
-            if path.isfile(CONFIG_FILE):
-                Logger.debug("Reading config file: {}".format(CONFIG_FILE))
-                with open(CONFIG_FILE, 'r') as data:
-                    try:
-                        config = load(data)
-                    except ValueError:
-                        Logger.warning("The config file is "
-                                       "not a valid json file.")
-            else:
-                Logger.debug("Config file: Not found.")
-            JSONConfig._config = config
-        return JSONConfig._config
+    def __init__(self):
+        self.icons = {}
+        self._backup_ignore = False
+        self._blacklist = []
+        self._conversion_tool = None
+        self._nwjs = None
+        self._read()
 
-    @staticmethod
-    def icon_size():
+    def _read(self):
+        """Read the config file."""
+        if path.isfile(CONFIG_FILE):
+            Logger.debug("Reading config file: {}".format(CONFIG_FILE))
+            with open(CONFIG_FILE, 'r') as data:
+                try:
+                    config = load(data)
+                    for key, value in config.items():
+                        setattr(self, "_" + key, value)
+                except ValueError:
+                    Logger.warning("The config file is "
+                                   "not a valid json file.")
+        else:
+            Logger.debug("Config file: Not found.")
+
+
+    def icon_size(self):
         """Return the icon size in the config file."""
-        if JSONConfig._icon_size is None:
-            json = JSONConfig.get_default()
-            icons = json.get("icons")
-            if icons:
-                icon_size = icons.get("size")
-                Logger.debug("Config/Icon Size: {}".format(icon_size))
-                if icon_size not in ICONS_SIZE:
-                    Logger.warning("Config/Icon Size: Incorrect.")
-                    Logger.debug("Config/Icon Size: Detected icon "
-                                 "size will be used.")
-                JSONConfig._icon_size = icon_size
-        return JSONConfig._icon_size
+        icon_size = None
+        if self.icons:
+            icon_size = self.icons.get("size")
+            Logger.debug("Config/Icon Size: {}".format(icon_size))
+            if icon_size not in ICONS_SIZE:
+                Logger.warning("Config/Icon Size: Incorrect.")
+                Logger.debug("Config/Icon Size: Detected icon "
+                             "size will be used.")
+        return icon_size
 
-    @staticmethod
-    def theme():
+    def theme(self):
         """Return theme object set in the config file."""
-        if not JSONConfig._theme:
-            icons = JSONConfig.get_default().get("icons")
-            if icons:
-                theme = icons.get("theme", {})
-                if isinstance(theme, dict):
-                    dark_theme = theme.get("dark")
-                    light_theme = theme.get("light")
+        theme_obj = None
+        if self.icons:
+            theme = self.icons.get("theme", {})
+            if isinstance(theme, dict):
+                dark_theme = theme.get("dark")
+                light_theme = theme.get("light")
 
-                if isinstance(theme, str):
-                    JSONConfig._theme = Theme(theme)
-                    Logger.debug("Config/Theme: {}".format(theme))
-                elif dark_theme and light_theme:
-                    JSONConfig._theme = {
-                        "dark": Theme(dark_theme),
-                        "light": Theme(light_theme)
-                    }
-                    Logger.debug("Config/Dark Theme: {}".format(dark_theme))
-                    Logger.debug("Config/Light Theme: {}".format(light_theme))
-        return JSONConfig._theme
+            if isinstance(theme, str):
+                theme_obj = Theme(theme)
+                Logger.debug("Config/Theme: {}".format(theme))
+            elif dark_theme and light_theme:
+                theme_obj = Theme.new_with_dark_light(dark_theme, light_theme)
 
-    @staticmethod
-    def conversion_tool():
+                Logger.debug("Config/Dark Theme: {}".format(dark_theme))
+                Logger.debug("Config/Light Theme: {}".format(light_theme))
+        return theme_obj
+
+    def conversion_tool(self):
         """Return conversion tool set in the config file."""
-        if not JSONConfig._conversion_tool:
-            conversion_tool = JSONConfig.get_default().get("conversion-tool")
-            Logger.debug("Config/Conversion Tool: {}".format(conversion_tool))
-            JSONConfig._conversion_tool = conversion_tool
-        return JSONConfig._conversion_tool
+        conversion_tool = self._conversion_tool
+        Logger.debug("Config/Conversion Tool: {}".format(conversion_tool))
+        return conversion_tool
 
-    @staticmethod
-    def blacklist():
+    def blacklist(self):
         """Return a list of blacklist apps."""
-        if not JSONConfig._blacklist:
-            blacklist = JSONConfig.get_default().get("blacklist", [])
-            if blacklist:
-                Logger.debug("Config/Blacklist: "
-                             "{}".format(",".join(blacklist)))
-            JSONConfig._blacklist = blacklist
-        return JSONConfig._blacklist
+        blacklist = self._blacklist
+        if blacklist:
+            Logger.debug("Config/Blacklist: "
+                         "{}".format(",".join(blacklist)))
+        return blacklist
 
-    @staticmethod
-    def nwjs():
+    def nwjs(self):
         """Return nwjs sdk path."""
-        if not JSONConfig._nwjs:
-            nwjs = JSONConfig.get_default().get("nwjs")
-            if nwjs and path.exists(nwjs):
-                JSONConfig._nwjs = nwjs
-                Logger.debug("Config/NWJS SDK: {}".format(nwjs))
-        return JSONConfig._nwjs
+        nwjs = self._nwjs
+        if nwjs and path.exists(nwjs):
+            Logger.debug("Config/NWJS SDK: {}".format(nwjs))
+        return nwjs
 
-    @staticmethod
-    def backup_ignore():
+    def backup_ignore(self):
         """Return a boolean, ignore backup or not."""
-        if JSONConfig._backup_ignore is None:
-            backup_ignore = JSONConfig.get_default().get("backup-ignore", False)
-            Logger.debug("Config/Backup Ignore: {}".format(str(backup_ignore)))
-            JSONConfig._backup_ignore = backup_ignore
-        return JSONConfig._backup_ignore
+        backup_ignore = self._backup_ignore
+        Logger.debug("Config/Backup Ignore: {}".format(str(backup_ignore)))
+        return backup_ignore

@@ -36,6 +36,15 @@ class Theme(Gtk.IconTheme):
         Gtk.IconTheme.__init__(self)
         self.set_custom_theme(self.name)
 
+    @staticmethod
+    def new_with_dark_light(dark_theme, light_theme):
+        """Create a new theme object by specifing the dark & light theme."""
+        theme = {
+            "dark": Theme(dark_theme),
+            "light": Theme(light_theme)
+        }
+        return theme
+
     @property
     def name(self):
         """Property: name."""

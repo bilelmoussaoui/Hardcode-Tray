@@ -28,7 +28,7 @@ from src.utils import get_pngbytes
 
 
 class ElectronApplication(BinaryApplication):
-    """Electron applicaton object."""
+    """Electron application object."""
 
     def __init__(self, parser):
         """Use the parent class, Application, modify only the (re)install."""
@@ -36,10 +36,10 @@ class ElectronApplication(BinaryApplication):
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
-        pngbytes = get_pngbytes(icon)
-        if pngbytes:
-            icon_path = ElectronApplication.get_real_path(icon.original)
-            self.set_icon(icon_path, icon_path, pngbytes, True)
+        png_bytes = get_pngbytes(icon)
+        if png_bytes:
+            icon = ElectronApplication.get_real_path(icon.original)
+            self.set_icon(icon, icon_path, png_bytes, True)
         else:
             Logger.error("PNG file was not found.")
 
@@ -53,18 +53,18 @@ class ElectronApplication(BinaryApplication):
         asar_icon_path = ElectronApplication.get_real_path(icon.original)
         backup_file = "|".join(asar_icon_path.split("/"))
 
-        pngbytes = self.get_backup_file(backup_file)
-        if pngbytes:
-            self.set_icon(icon.original, icon_path, pngbytes)
+        png_bytes = self.get_backup_file(backup_file)
+        if png_bytes:
+            self.set_icon(icon.original, icon_path, png_bytes)
         else:
             Logger.error("Backup file of {0} was not found".format(self.name))
 
-    def set_icon(self, icon_to_repl, binary_path, pngbytes, backup=False):
+    def set_icon(self, icon_to_replace, binary_path, png_bytes, backup=False):
         """Set the icon into the electron binary file."""
         binary_file = path.join(str(binary_path), self.binary)
 
         asar = AsarFile(binary_file)
-        asar.write(icon_to_repl, pngbytes)
+        asar.write(icon_to_replace, png_bytes)
         if backup:
             backup_file = "|".join(asar.keys)
             content = asar.old_content

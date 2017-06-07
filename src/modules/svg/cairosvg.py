@@ -53,8 +53,7 @@ class CairoSVG(SVG):
             svg = handle.new_from_file(input_file)
             dim = svg.get_dimensions()
 
-            img = ImageSurface(
-                FORMAT_ARGB32, width, height)
+            img = ImageSurface(FORMAT_ARGB32, width, height)
             ctx = Context(img)
             ctx.scale(width / dim.width, height / dim.height)
             svg.render_cairo(ctx)

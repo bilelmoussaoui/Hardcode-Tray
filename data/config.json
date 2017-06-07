@@ -4,7 +4,7 @@
         "theme": "Numix",
         "size": 24
     },
-    "conversion-tool": "CairoSVG",
-    "backup-ignore": true,
+    "conversion_tool": "CairoSVG",
+    "backup_ignore": true,
     "nwjs": "/home/myusername/Tools/nwjs/"
 }
