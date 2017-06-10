@@ -49,27 +49,33 @@ class App:
 
     def __init__(self, args):
         App._args = ArgumentsConfig(args)
-        App._json = JSONConfig
-        App._system = SystemConfig
+        App._json = JSONConfig()
+        App._system = SystemConfig()
 
     @staticmethod
-    def get_default(args):
+    def set_args(args):
         """Get default instance of the app."""
         if not App._app:
             App._app = App(args)
-        return App._app
 
     @staticmethod
     def get(key):
         """Return a value from Arguments, json config file, System."""
         sources = [App._args, App._json, App._system]
         value = None
+
+        if hasattr(App, "_" + key):
+            value = getattr(App, "_" + key)
+            if value is not None:
+                return value
+
         for source in sources:
             if hasattr(source, key):
                 method = getattr(source, key)
                 if hasattr(method, "__call__"):
                     value = method()
                     if value is not None:
+                        setattr(App, "_" + key, value)
                         return value
         return None
 
@@ -78,8 +84,8 @@ class App:
         """Get a list of dict, a dict for each supported application."""
         supported_apps = []
         files = []
-        if App.only():
-            for db_file in App.only():
+        if App.get("only"):
+            for db_file in App.get("only"):
                 db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
                 if path.exists(db_file):
                     files.append(db_file)
@@ -87,7 +93,9 @@ class App:
             files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
         files.sort()
 
-        blacklist = App.blacklist()
+        blacklist = App.get("blacklist")
+        if not blacklist:
+            blacklist = []
         for db_file in files:
             db_filename = path.splitext(path.basename(db_file))[0]
             if db_filename not in blacklist:
@@ -100,7 +108,7 @@ class App:
     @staticmethod
     def execute():
         """Fix Hardcoded Tray icons."""
-        action = App.action()
+        action = App.get("action")
         apps = App.get_supported_apps()
         done = []
         total_time = 0
@@ -135,7 +143,7 @@ class App:
         """
         if App._svgtopng is None:
             conversion_tool = App.get("conversion_tool")
-            App._svgtopng = SVG.factory(App.colors(), conversion_tool)
+            App._svgtopng = SVG.factory(App.get("colors"), conversion_tool)
         return App._svgtopng
 
     @staticmethod
@@ -171,45 +179,11 @@ class App:
         return theme
 
     @staticmethod
-    def colors():
-        """
-            List of colors to be replaced with new ones.
-        """
-        colors = App.get("colors")
-        return colors
-
-    @staticmethod
-    def action():
-        """
-            Which action should be done?
-        """
-        action = App.get("action")
-        return action
-
-    @staticmethod
-    def only():
-        """
-            List of applications to be fixed.
-        """
-        only = App.get("only")
-        if only:
-            return only
-        return []
-
-    @staticmethod
     def path():
         """
             The icons path, specified per application.
         """
         path_ = App.get("path")
-        if len(App.only()) > 1 and path_:
+        if len(App.get("only")) > 1 and path_:
             exit("You can't use --path with more than application at once.")
         return path_
-
-    @staticmethod
-    def blacklist():
-        """Return a blacklist of apps."""
-        blacklist = App.get("blacklist")
-        if blacklist:
-            return blacklist
-        return []

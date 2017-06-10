@@ -25,11 +25,6 @@ from subprocess import check_output
 from src.modules.log import Logger
 
 
-DE = ["i3", "cinnamon", "deepin", "pantheon",
-      "gnome", "kde", "unity", "mate", "xfce"]
-
-
-
 def get_userhome(username):
     """Get real user home path."""
     userhome = check_output('sh -c "echo $HOME"', shell=True,
@@ -40,7 +35,7 @@ def get_userhome(username):
     return userhome
 
 
-def detect_de():
+def detect_de(de_list):
     """Detect the desktop environment, used to choose the proper icons size."""
     try:
         desktop_env = [environ.get("DESKTOP_SESSION").lower(),
@@ -48,8 +43,8 @@ def detect_de():
     except AttributeError:
         desktop_env = []
 
-    for desktop in DE:
-        if desktop in desktop_env:
+    for desktop in desktop_env:
+        if desktop in de_list:
             Logger.debug("DE: {0}".format(desktop.title()))
             return desktop
     Logger.debug("DE not detected.")

@@ -62,10 +62,10 @@ class PakApplication(BinaryApplication):
 
     def install_icon(self, icon, icon_path):
         """Install the new icon."""
-        pngbytes = get_pngbytes(icon)
-        self.set_icon(icon, icon_path, pngbytes, True)
+        png_bytes = get_pngbytes(icon)
+        self.set_icon(icon, icon_path, png_bytes, True)
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
-        pngbytes = self.get_backup_file(icon.original)
-        self.set_icon(icon, icon_path, pngbytes)
+        png_bytes = self.get_backup_file(icon.original)
+        self.set_icon(icon, icon_path, png_bytes)

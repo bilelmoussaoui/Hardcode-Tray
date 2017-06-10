@@ -28,120 +28,91 @@ from src.modules.theme import Theme
 
 class ArgumentsConfig:
     """Transform arguments to usable things."""
-    _args = None
-    _icon_size = None
-    _colors = None
-    _path = None
-    _only = None
-    _conversion_tool = None
-    _theme = None
-    _action = None
 
     def __init__(self, args):
-        ArgumentsConfig._args = args
+        self._args = args
 
-    @staticmethod
-    def args():
-        """Return list of args."""
-        return ArgumentsConfig._args
-
-    @staticmethod
-    def icon_size():
+    def icon_size(self):
         """Return Icon size set by args --size."""
-        if ArgumentsConfig._icon_size is None:
-            icon_size = ArgumentsConfig.args().size
-            Logger.debug("Arguments/Icon Size: {}".format(icon_size))
-            ArgumentsConfig._icon_size = icon_size
-        return ArgumentsConfig._icon_size
 
-    @staticmethod
-    def theme():
+        icon_size = self._args.size
+        Logger.debug("Arguments/Icon Size: {}".format(icon_size))
+        return icon_size
+
+    def theme(self):
         """Return Theme object set by --theme."""
-        if not ArgumentsConfig._theme:
-            theme = ArgumentsConfig.args().theme
-            dark_theme = ArgumentsConfig.args().dark_theme
-            light_theme = ArgumentsConfig.args().light_theme
-            if theme:
-                ArgumentsConfig._theme = Theme(theme)
-                Logger.debug("Arguments/Theme: {}".format(theme))
-            elif dark_theme and light_theme:
-                ArgumentsConfig._theme = {
-                    "dark": Theme(dark_theme),
-                    "light": Theme(light_theme)
-                }
-                Logger.debug("Arguments/Dark Theme: {}".format(dark_theme))
-                Logger.debug("Arguments/Light Theme: {}".format(light_theme))
-        return ArgumentsConfig._theme
+        theme_obj = None
 
-    @staticmethod
-    def conversion_tool():
+        theme = self._args.theme
+        dark_theme = self._args.dark_theme
+        light_theme = self._args.light_theme
+
+        if theme:
+            theme_obj = Theme(theme)
+            Logger.debug("Arguments/Theme: {}".format(theme))
+        elif dark_theme and light_theme:
+            theme_obj = Theme.new_with_dark_light(dark_theme, light_theme)
+            Logger.debug("Arguments/Dark Theme: {}".format(dark_theme))
+            Logger.debug("Arguments/Light Theme: {}".format(light_theme))
+
+        return theme_obj
+
+    def conversion_tool(self):
         """Return conversion tool set by --conversion-tool."""
-        if not ArgumentsConfig._conversion_tool:
-            conversion_tool = ArgumentsConfig.args().conversion_tool
-            Logger.debug("Arguments/Conversion Tool: "
-                         "{}".format(conversion_tool))
-            ArgumentsConfig._conversion_tool = conversion_tool
-        return ArgumentsConfig._conversion_tool
+        conversion_tool = self._args.conversion_tool
+        Logger.debug("Arguments/Conversion Tool: "
+                     "{}".format(conversion_tool))
+        return conversion_tool
 
-    @staticmethod
-    def colors():
+    def colors(self):
         """Return list of colors set by --change-color."""
-        if not ArgumentsConfig._colors:
-            colors = []
-            args_colors = ArgumentsConfig.args().change_color
-            if not args_colors:
-                args_colors = []
-            for color in args_colors:
-                color = color.strip().split(" ")
-                to_replace = replace_to_6hex(color[0])
-                for_replace = replace_to_6hex(color[1])
-                colors.append([to_replace, for_replace])
-            ArgumentsConfig._colors = colors
-        return ArgumentsConfig._colors
+        colors = []
+        args_colors = self._args.change_color
+        if not args_colors:
+            args_colors = []
+        for color in args_colors:
+            color = color.strip().split(" ")
+            to_replace = replace_to_6hex(color[0])
+            for_replace = replace_to_6hex(color[1])
+            colors.append([to_replace, for_replace])
+        return colors
 
-    @staticmethod
-    def only():
+    def only(self):
         """Return list of apps to be fixed."""
-        if ArgumentsConfig._only is None:
-            only = ArgumentsConfig.args().only
-            if only:
-                only = only.lower().strip()
-                Logger.debug("Arguments/Only: {}".format(only))
-                ArgumentsConfig._only = only.split(",")
-        return ArgumentsConfig._only
+        only = self._args.only
+        if only:
+            only = only.lower().strip()
+            Logger.debug("Arguments/Only: {}".format(only))
+            return only.split(",")
+        return []
 
-    @staticmethod
-    def path():
+    def path(self):
         """Return app path."""
-        if ArgumentsConfig._path is None:
-            proposed_path = ArgumentsConfig.args().path
-            if proposed_path:
-                if path.isdir(proposed_path):
-                    ArgumentsConfig._path = proposed_path
-                else:
-                    raise FileNotFoundError("Please select a valid --path")
-        return ArgumentsConfig._path
+        proposed_path = self._args.path
+        if proposed_path:
+            if path.isdir(proposed_path):
+                return proposed_path
+            else:
+                raise FileNotFoundError("Please select a valid --path")
+        return None
 
-    @staticmethod
-    def action():
+    def action(self):
         """Return which action to be done."""
-        if ArgumentsConfig._action is None:
-            from src.enum import Action
-            action = None
-            is_apply = ArgumentsConfig.args().apply
-            is_revert = ArgumentsConfig.args().revert
-            is_clear_cache = ArgumentsConfig.args().clear_cache
+        from src.enum import Action
+        action = None
+        is_apply = self._args.apply
+        is_revert = self._args.revert
+        is_clear_cache = self._args.clear_cache
 
-            if is_apply and is_revert:
-                raise ValueError
-            # Can't apply/revert and clear cache on the same time
-            elif (is_apply or is_revert) and is_clear_cache:
-                raise ValueError
-            elif is_apply:
-                action = Action.APPLY
-            elif is_revert:
-                action = Action.REVERT
-            elif is_clear_cache:
-                action = Action.CLEAR_CACHE
-            ArgumentsConfig._action = action
-        return ArgumentsConfig._action
+        if is_apply and is_revert:
+            raise ValueError
+        # Can't apply/revert and clear cache on the same time
+        elif (is_apply or is_revert) and is_clear_cache:
+            raise ValueError
+        elif is_apply:
+            action = Action.APPLY
+        elif is_revert:
+            action = Action.REVERT
+        elif is_clear_cache:
+            action = Action.CLEAR_CACHE
+        return action

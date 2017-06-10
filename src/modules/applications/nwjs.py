@@ -28,7 +28,7 @@ from src.utils import execute
 
 
 class NWJSApplication(ExtractApplication):
-    """NWJS Application class."""
+    """NodeWebKit JS Application class."""
 
     def __init__(self, parser):
         """Init method."""

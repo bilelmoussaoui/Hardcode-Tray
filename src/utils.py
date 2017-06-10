@@ -152,22 +152,6 @@ def get_cinnamon_scaling_factor():
     return 1
 
 
-def get_scaling_factor(desktop_env):
-    """Return the widgets scaling factor."""
-    scaling_factor = 1
-    # Scaling factor on GNOME desktop
-    if desktop_env == "gnome":
-        scaling_factor = get_gnome_scaling_factor()
-    # Cinnamon scaling factor
-    elif desktop_env == "cinnamon":
-        scaling_factor = get_cinnamon_scaling_factor()
-    # Scaling factor on KDE Desktop
-    elif desktop_env == "kde":
-        scaling_factor = get_kde_scaling_factor()
-
-    return scaling_factor
-
-
 def mchown(directory):
     """
     Fix folder/file permissions.
@@ -249,21 +233,21 @@ def get_iterated_icons(icons):
 def get_pngbytes(icon):
     """Return the pngbytes of a svg/png icon."""
     from src.app import App
-    icon_for_repl = icon.theme
+    icon_for_replace = icon.theme
     icon_extension = icon.theme_ext
     icon_size = icon.icon_size
     if icon_extension == 'svg':
         if icon_size != App.icon_size():
-            pngbytes = App.svg().to_bin(icon_for_repl, App.icon_size())
+            png_bytes = App.svg().to_bin(icon_for_replace,
+                                         App.icon_size())
         else:
-            pngbytes = App.svg().to_bin(icon_for_repl)
+            png_bytes = App.svg().to_bin(icon_for_replace)
     elif icon_extension == "png":
-        with open(icon_for_repl, 'rb') as pngfile:
-            pngbytes = pngfile.read()
-        pngfile.close()
+        with open(icon_for_replace, 'rb') as png_file:
+            png_bytes = png_file.read()
     else:
-        pngbytes = None
-    return pngbytes
+        png_bytes = None
+    return png_bytes
 
 
 # Functions used in the electron script

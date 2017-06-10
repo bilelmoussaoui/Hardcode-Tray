@@ -38,5 +38,7 @@ USER_ID = int(getenv("SUDO_UID"))
 GROUP_ID = int(getenv("SUDO_GID"))
 ARCH = machine()
 THEMES_LIST = get_themes(USERHOME)
-DESKTOP_ENV = detect_de()
+DE = ["i3", "cinnamon", "budgie", "deepin", "pantheon",
+      "gnome", "kde", "unity", "mate", "xfce"]
+DESKTOP_ENV = detect_de(DE)
 ICONS_SIZE = [16, 22, 24]

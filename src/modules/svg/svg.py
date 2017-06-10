@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from abc import ABCMeta, abstractmethod
 from importlib import import_module
 from os import path, remove
 from tempfile import NamedTemporaryFile
@@ -30,6 +31,8 @@ from src.utils import copy_file, is_installed, replace_colors
 
 class SVG:
     """SVG Interface used by other class's."""
+
+    __metaclass__ = ABCMeta
 
     def __init__(self, colors):
         """Init function."""
@@ -76,9 +79,6 @@ class SVG:
 
         self.convert_to_png(input_file, output_file, width, height)
 
-        if tmp_file and path.isfile(tmp_file):
-            remove(tmp_file)
-
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""
         outfile = NamedTemporaryFile().name
@@ -90,9 +90,9 @@ class SVG:
 
         return binary
 
+    @abstractmethod
     def convert_to_png(self, input_file, output_file, width, height):
         """Convert from svg to png. Override the method by childs."""
-        pass
 
     def is_installed(self):
         """Check if the tool is installed."""

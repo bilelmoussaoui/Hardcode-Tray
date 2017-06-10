@@ -83,10 +83,10 @@ class Application:
         """Clear Backup cache."""
         backup_folder = path.join(BACKUP_FOLDER, self.name, "")
         Logger.debug("Clearing cache of: {}".format(self.name))
+
         if path.exists(backup_folder):
             rmtree(backup_folder)
             Logger.debug("Cache cleaned.")
-            self.success = True
         else:
             Logger.debug("Cache not found.")
             self.success = False

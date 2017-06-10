@@ -75,7 +75,7 @@ parser.add_argument("--clear-cache", action="store_true",
                     help="Clear backup files")
 
 args = parser.parse_args()
-App.get_default(args)
+App.set_args(args)
 
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit("You need to run the script using 'sudo -E'.\nPlease try again")
@@ -91,9 +91,10 @@ else:
     print("Light Icon Theme: {}".format(App.theme("light")))
 print("Conversion Tool: {}".format(App.svg()))
 print("To Do: ", end="")
-print(", ".join(map(lambda x: x.title(), App.only())) if App.only() else "All")
-# Clear backup cache
-action = App.action()
+print(", ".join(map(lambda x: x.title(), App.get("only"))) if App.get("only") else "All")
+
+
+action = App.get("action")
 if action == Action.APPLY:
     print("Applying now..\n")
 elif action == Action.REVERT:
