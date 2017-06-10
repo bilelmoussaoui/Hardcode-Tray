@@ -106,7 +106,8 @@ class JSONConfig:
         nwjs = self._nwjs
         if nwjs and path.exists(nwjs):
             Logger.debug("Config/NWJS SDK: {}".format(nwjs))
-        return nwjs
+            return nwjs
+        return None
 
     def backup_ignore(self):
         """Return a boolean, ignore backup or not."""
