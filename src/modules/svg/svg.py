@@ -78,6 +78,9 @@ class SVG:
             replace_colors(input_file, self.colors)
 
         self.convert_to_png(input_file, output_file, width, height)
+        # Remove uneeded tmp file
+        if path.exists(tmp_file):
+            remove(tmp_file)
 
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""

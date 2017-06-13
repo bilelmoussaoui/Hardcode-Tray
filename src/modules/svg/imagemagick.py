@@ -39,8 +39,8 @@ class ImageMagick(SVG):
         cmd = [self.cmd, "-background", "none"]
 
         if width and height:
-            cmd.extend(["-size", "{0}x{1}".format(str(width), str(height))])
+            cmd.extend(["-resize", "{0}x{1}".format(str(width), str(height))])
 
         cmd.extend([input_file, output_file])
 
-        execute(cmd, False, True)
+        execute(cmd, True, False)
