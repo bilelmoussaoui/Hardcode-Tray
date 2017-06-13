@@ -205,6 +205,7 @@ Hardcode-Tray also supports a JSON config file that can be placed under `~/.conf
 - `conversion_tool`: the default tool to be used every time you use the script.
 - `icons` : An object, that contains `theme` and `size` for the Gtk icon theme and the icon size to be used.
 - `backup_ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
+- `scaling_factor` : Widgets scaling factor. Auto detected on GNOME, KDE and Cinnamon.
 
 
 ### Node-WebKit JS applications:

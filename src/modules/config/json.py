@@ -38,6 +38,7 @@ class JSONConfig:
         self._blacklist = []
         self._conversion_tool = None
         self._nwjs = None
+        self._scaling_factor = 1
         self._read()
 
     def _read(self):
@@ -108,6 +109,12 @@ class JSONConfig:
             Logger.debug("Config/NWJS SDK: {}".format(nwjs))
             return nwjs
         return None
+
+    def scaling_factor(self):
+        """Return widget scaling factor."""
+        if self._scaling_factor and self._scaling_factor > 1:
+            return self._scaling_factor
+        return 1
 
     def backup_ignore(self):
         """Return a boolean, ignore backup or not."""
