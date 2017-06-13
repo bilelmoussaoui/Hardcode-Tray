@@ -24,7 +24,7 @@ from os import path
 
 from gi.repository import Gio
 
-from src.const import DESKTOP_ENV, USERHOME
+from src.const import DE_GTK, DESKTOP_ENV, USERHOME
 from src.utils import (get_gnome_scaling_factor,
                        get_kde_scaling_factor,
                        get_cinnamon_scaling_factor)
@@ -67,7 +67,7 @@ class SystemConfig:
         theme = None
         theme_settings = path.join(USERHOME,
                                    ".config/gtk-3.0/settings.ini")
-        if DESKTOP_ENV in ["budgie", "unity", "gnome", "elementary", "other"]:
+        if DESKTOP_ENV in DE_GTK:
             source = Gio.SettingsSchemaSource.get_default()
             if source.lookup("org.gnome.desktop.interface", True):
                 gsettings = Gio.Settings.new("org.gnome.desktop.interface")
