@@ -1,0 +1,16 @@
+{
+    "name": "WebTorrent Desktop",
+    "app_path": [
+        "/opt/webtorrent-desktop/"
+    ],
+    "icons_path": [
+        "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "WebTorrent.png",
+            "theme": "webtorrent-desktop-panel"
+        }
+        
+    }
+}
