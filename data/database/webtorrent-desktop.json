@@ -1,7 +1,8 @@
 {
     "name": "WebTorrent Desktop",
     "app_path": [
-        "/opt/webtorrent-desktop/"
+        "/opt/webtorrent-desktop/",
+	"/usr/share/webtorrent-desktop/"
     ],
     "icons_path": [
         "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/"
