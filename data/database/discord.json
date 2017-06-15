@@ -2,11 +2,15 @@
     "name": "Discord",
     "app_path": [
         "/usr/share/discord/",
-        "/opt/discord/"
+        "/opt/discord/",
+        "/usr/share/discord-canary/",
+        "/opt/discord-canary/"
     ],
     "icons_path": [
         "/usr/share/discord/resources/",
-        "/opt/discord/resources/"
+        "/opt/discord/resources/",
+        "/usr/share/discord-canary/resources/",
+        "/opt/discord-canary/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
