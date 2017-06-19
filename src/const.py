@@ -40,7 +40,5 @@ ARCH = machine()
 THEMES_LIST = get_themes(USERHOME)
 DE = ["i3", "cinnamon", "budgie", "deepin", "pantheon",
       "gnome", "kde", "unity", "mate", "xfce"]
-DE_GTK = ["budgie", "unity", "gnome", "elementary",
-          "cinnamon", "other"]
 DESKTOP_ENV = detect_de(DE)
 ICONS_SIZE = [16, 22, 24]

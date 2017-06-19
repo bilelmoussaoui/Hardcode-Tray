@@ -19,12 +19,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from configparser import ConfigParser
-from os import path
+from gi import require_version
+require_version("Gtk", "3.0")
+from gi.repository import Gtk
 
-from gi.repository import Gio
-
-from src.const import DE_GTK, DESKTOP_ENV, USERHOME
+from src.const import DESKTOP_ENV
 from src.utils import (get_gnome_scaling_factor,
                        get_kde_scaling_factor,
                        get_cinnamon_scaling_factor)
@@ -64,26 +63,11 @@ class SystemConfig:
     @staticmethod
     def theme():
         """Return a theme object."""
+        theme_name = Gtk.Settings.get_default().get_property("gtk-icon-theme-name")
         theme = None
-        theme_settings = path.join(USERHOME,
-                                   ".config/gtk-3.0/settings.ini")
-        if DESKTOP_ENV in DE_GTK:
-            source = Gio.SettingsSchemaSource.get_default()
-            if source.lookup("org.gnome.desktop.interface", True):
-                gsettings = Gio.Settings.new("org.gnome.desktop.interface")
-                theme_name = gsettings.get_string("icon-theme")
-                Logger.debug("System/Theme/GSettings: {}".format(theme_name))
-                theme = Theme(theme_name)
-        elif path.exists(theme_settings):
-            try:
-                cnfg = ConfigParser()
-                cnfg.read(theme_settings)
-                theme_name = cnfg.get("Settings", "gtk-icon-theme-name")
-                Logger.debug("System/Theme/Setting.ini: {}".format(theme_name))
-                theme = Theme(theme_name)
-            except KeyError as err:
-                Logger.error("System/Theme/Settings.ini: {}".format(err))
-                exit(err)
+        if theme_name:
+            Logger.debug("System/Theme: {}".format(theme_name))
+            theme = Theme(theme_name)
         else:
             Logger.error("System/Theme: Not detected.")
         return theme
