@@ -1,29 +1,29 @@
 #!/bin/bash
 version=v3.9
-if [[ $EUID -ne 0 ]]; then
-  case $1 in
-    -u|--update)
-      upversion=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
-      IFS=' ' read -r -a versions <<< "$upversion"
-      upversion=${versions[0]}
-      if [ ! "$version" == "v$upversion" ]; then
-          cd /tmp
-          wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh && bash install.sh --u
-      else
-          echo "Hardcode-Tray is up to date"
-      fi
-      exit 0 ;;
-    -ug | --update-git)
+case $1 in
+  -u|--update)
+    upversion=$(git ls-remote -t https://github.com/bil-elmoussaoui/Hardcode-Tray.git | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq)
+    IFS=' ' read -r -a versions <<< "$upversion"
+    upversion=${versions[0]}
+    if [ ! "$version" == "v$upversion" ]; then
       cd /tmp
-      wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh && bash install.sh --g
-      exit 0 ;;
-    -v|--version)
-      echo $version
-      exit 0 ;;
-    *)
-      cd /opt/Hardcode-Tray/
+      wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh && bash install.sh --u
+    else
+      echo "Hardcode-Tray is up to date"
+    fi
+    exit 0 ;;
+  -ug | --update-git)
+    cd /tmp
+    wget -q https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh && bash install.sh --g
+    exit 0 ;;
+  -v|--version)
+    echo $version
+    exit 0 ;;
+  *)
+    cd /opt/Hardcode-Tray/
+    if [[ $EUID -ne 0 ]]; then
       sudo -E python3 hardcode-tray.py "$@"
-  esac
-else
-  echo "Script shouldn't be run as root"
-fi
+    else
+      python3 hardcode-tray.py "$@"
+    fi
+esac
