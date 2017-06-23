@@ -19,13 +19,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import getenv, path
+from os import getenv, getegid, geteuid, path
 from platform import machine
 
 from src.tools import detect_de, get_themes, get_userhome
 
 DB_FOLDER = "./" + path.join("data", "database", "")
-USERNAME = getenv("SUDO_USER")
+USERNAME = getenv("SUDO_USER") if getenv("SUDO_USER") else getenv("USER")
 USERHOME = get_userhome(USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
@@ -34,8 +34,8 @@ KDE_CONFIG_FILE = path.join(USERHOME, ".config",
 BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
 CHMOD_IGNORE_LIST = ["", "home"]
-USER_ID = int(getenv("SUDO_UID"))
-GROUP_ID = int(getenv("SUDO_GID"))
+USER_ID = int(getenv("SUDO_UID")) if getenv("SUDO_UID") else geteuid()
+GROUP_ID = int(getenv("SUDO_GID")) if getenv("SUDO_GID") else getegid()
 ARCH = machine()
 THEMES_LIST = get_themes(USERHOME)
 DE = ["i3", "cinnamon", "budgie", "deepin", "pantheon",
