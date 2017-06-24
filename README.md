@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
-release](https://img.shields.io/badge/release-v4.0-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
+release](https://img.shields.io/badge/release-v4.1-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BilalELMoussaoui)
 
 Fixes Hardcoded tray icons in Linux
@@ -29,7 +29,7 @@ Here's a list of themes that supports Hardcode-Tray:
 
 - `python3`
 - `python3-gi`
-- [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
+- [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt)
 - Pick up your favorite conversion tool
   - `python3-cairosvg`
   - `librsvg`
@@ -52,7 +52,7 @@ Stable version:
 yaourt -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
-<small>The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.</small>
+The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.
 Developpement version:
 
 ```bash
@@ -77,7 +77,7 @@ The one click-installer can be found by following this [link](https://software.o
 
 1- Install dependencies
 
-2- Compile:
+2- Compile
 
 ```bash
 git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
@@ -93,8 +93,10 @@ sudo -E hardcode-tray
 
 4- Enjoy!
 
-You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
-The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
+You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).
+
+The `sni-qt:i386` is used for 32 bits applications as Skype.
+
 Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
 
 ## Options

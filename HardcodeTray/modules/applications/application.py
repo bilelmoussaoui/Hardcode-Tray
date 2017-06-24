@@ -123,9 +123,8 @@ class Application:
         if not self.backup_ignore:
             self.backup.create(output_icon)
 
-        if ext_theme == ext_orig:
-            if theme_icon != output_icon:
-                symlink_file(theme_icon, output_icon)
+        if ext_theme == ext_orig and theme_icon != output_icon:
+            symlink_file(theme_icon, output_icon)
         elif ext_theme == "svg" and ext_orig == "png":
             from HardcodeTray.app import App
             if icon_size != App.icon_size():
