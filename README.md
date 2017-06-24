@@ -113,6 +113,42 @@ or
 hardcode-tray --revert
 ```
 
+- `--change-color`
+
+Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
+
+```bash
+hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
+```
+
+- `--clear-cache`
+
+Let you clear the backup cache folder
+
+```bash
+hardcode-tray --clear-cache
+```
+
+- `--conversion-tool`
+
+Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
+
+```bash
+hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
+```
+
+For now, we support : CairoSVG (python3-cairosvg), Inkscape, rsvgconvert (librsvg), Imagemagick and svgexport(npm library)
+
+Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
+
+- `--light-theme` and `--dark-theme`
+
+Some applications provide dark and light tray icons with the possibility to modify them using their UI. In order to use a dark theme for dark icons and a light one for light icons, you can use those two arguments. It only works if you use both of them at the same time.
+
+```bash
+hardcode-tray --dark-theme Numix-light --light-theme Numix
+```
+
 - `--only`
 
 You can use the `--only` argument to fix/revert only one application; don't use the argument if you want to fix all applications your icon theme supports.
@@ -145,42 +181,6 @@ You can fix your hardcoded icons using a different theme than the default one.
 
 ```bash
 hardcode-tray --theme Numix --only dropbox
-```
-
-- `--light-theme` and `--dark-theme`
-
-Some applications provide dark and light tray icons with the possibility to modify them using their UI. In order to use a dark theme for dark icons and a light one for light icons, you can use those two arguments. It only works if you use both of them at the same time.
-
-```bash
-hardcode-tray --dark-theme Numix-light --light-theme Numix
-```
-
-- `--conversion-tool`
-
-Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
-
-```bash
-hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
-```
-
-For now, we support : CairoSVG (python3-cairosvg), Inkscape, rsvgconvert (librsvg), Imagemagick and svgexport(npm library)
-
-Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
-
-- `--change-color`
-
-Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
-
-```bash
-hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
-```
-
-- `--clear-cache`
-
-Let you clear the backup cache folder
-
-```bash
-hardcode-tray --clear-cache
 ```
 
 - `--version`
