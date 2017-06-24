@@ -28,6 +28,7 @@ install_subdir(
 # Configuration params
 conf = configuration_data()
 conf.set('DATA_DIR', script_dir)
+conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('PACKAGE', meson.project_name())
 conf.set('VERSION', meson.project_version())
 
