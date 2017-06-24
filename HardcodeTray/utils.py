@@ -30,7 +30,7 @@ from sys import stdout
 from gi.repository import Gio
 
 from HardcodeTray.const import (CHMOD_IGNORE_LIST, GROUP_ID, KDE_CONFIG_FILE, USER_ID,
-                       USERHOME)
+                                USERHOME)
 from HardcodeTray.modules.log import Logger
 
 

@@ -28,10 +28,12 @@ from struct import pack, unpack
 
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.utils import (change_dict_vals, get_from_dict,
-                       set_in_dict)
+                                set_in_dict)
+
 
 class AsarFile:
     """Write into ASAR files easily."""
+
     def __init__(self, asar_file):
         self._asar_file = asar_file
         self.success = True
@@ -81,8 +83,8 @@ class AsarFile:
         # Make sure the icon to replace is found on the asar file
         # To avoid breaking the binary.
         # This is due to apps renaming/moving the icons around
-        if  (not isinstance(fileinfo, dict)
-             or "offset" not in fileinfo.keys()):
+        if (not isinstance(fileinfo, dict)
+                or "offset" not in fileinfo.keys()):
             return
 
         offset0 = int(fileinfo['offset'])

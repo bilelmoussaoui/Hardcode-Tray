@@ -27,8 +27,8 @@ from gi.repository import Gtk
 
 from HardcodeTray.const import DESKTOP_ENV
 from HardcodeTray.utils import (get_gnome_scaling_factor,
-                       get_kde_scaling_factor,
-                       get_cinnamon_scaling_factor)
+                                get_kde_scaling_factor,
+                                get_cinnamon_scaling_factor)
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.theme import Theme
 
