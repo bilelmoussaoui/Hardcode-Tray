@@ -1,0 +1,214 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the hardcode-tray package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: hardcode-tray\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-24 20:55+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hardcode-tray.py:33
+msgid ""
+"You need to have root privileges to run the script.Please try again, this "
+"time using 'sudo'. Exiting."
+msgstr ""
+
+#: hardcode-tray.py:37
+msgid "use a different icon size instead of the default one."
+msgstr ""
+
+#: hardcode-tray.py:41
+msgid "use a different icon theme instead of the default one."
+msgstr ""
+
+#: hardcode-tray.py:45
+msgid ""
+"use a specified theme for the light icons. Can't be used with --theme.Works "
+"only with --dark-theme."
+msgstr ""
+
+#: hardcode-tray.py:50
+msgid ""
+"use a specified theme for the dark icons.Can't be used with --themeWorks "
+"only with --light-theme."
+msgstr ""
+
+#: hardcode-tray.py:55
+msgid ""
+"fix only one application or more, linked by a ','.\n"
+"example : --only dropbox,telegram"
+msgstr ""
+
+#: hardcode-tray.py:59
+msgid "use a different icon path for a single application."
+msgstr ""
+
+#: hardcode-tray.py:62
+msgid "print the version number of Hardcode-Tray."
+msgstr ""
+
+#: hardcode-tray.py:64
+msgid "fix hardcoded tray icons"
+msgstr ""
+
+#: hardcode-tray.py:66
+msgid "revert fixed hardcoded tray icons"
+msgstr ""
+
+#: hardcode-tray.py:68
+msgid "Which of conversion tool to use"
+msgstr ""
+
+#: hardcode-tray.py:71
+msgid "Replace a color with an other one, works only with SVG."
+msgstr ""
+
+#: hardcode-tray.py:74
+msgid "Clear backup files"
+msgstr ""
+
+#: hardcode-tray.py:80
+msgid ""
+"You need to run the script using 'sudo -E'.\n"
+"Please try again"
+msgstr ""
+
+#: hardcode-tray.py:82
+msgid "Welcome to Hardcode-Tray!"
+msgstr ""
+
+#: hardcode-tray.py:83
+msgid "Desktop Environment: {}"
+msgstr ""
+
+#: hardcode-tray.py:84
+msgid "Scaling Factor: {}"
+msgstr ""
+
+#: hardcode-tray.py:85
+msgid "Icon Size: {}"
+msgstr ""
+
+#: hardcode-tray.py:87
+msgid "Icon Theme: {}"
+msgstr ""
+
+#: hardcode-tray.py:89
+msgid "Dark Icon Theme: {}"
+msgstr ""
+
+#: hardcode-tray.py:90
+msgid "Light Icon Theme: {}"
+msgstr ""
+
+#: hardcode-tray.py:91
+msgid "Conversion Tool: {}"
+msgstr ""
+
+#: hardcode-tray.py:92
+msgid "To Do: "
+msgstr ""
+
+#: hardcode-tray.py:94
+msgid "All"
+msgstr ""
+
+#: hardcode-tray.py:99
+msgid "Applying now.."
+msgstr ""
+
+#: hardcode-tray.py:101
+msgid "Reverting now.."
+msgstr ""
+
+#: hardcode-tray.py:103
+msgid "Clearing cache..."
+msgstr ""
+
+#: hardcode-tray.py:107
+msgid ""
+"\n"
+"Done, Thank you for using the Hardcode-Tray fixer!"
+msgstr ""
+
+#: src/app.py:132
+msgid "Took {:.2f}s to finish the tasks"
+msgstr ""
+
+#: src/app.py:134
+msgid "No apps to fix!"
+msgstr ""
+
+#: src/app.py:136
+msgid "No cache found."
+msgstr ""
+
+#: src/app.py:138
+msgid "No apps to revert!"
+msgstr ""
+
+#: src/app.py:189
+msgid "You can't use --path with more than application at once."
+msgstr ""
+
+#: src/modules/applications/application.py:154
+msgid "Failed to fix {}"
+msgstr ""
+
+#: src/modules/applications/application.py:159
+msgid "Couldn't revert to those icons :("
+msgstr ""
+
+#: src/modules/applications/application.py:164
+msgid "No backup found for {}"
+msgstr ""
+
+#: src/modules/backup.py:158
+msgid "(Q)uit to cancel"
+msgstr ""
+
+#: src/modules/config/system.py:81
+msgid "1 - Apply"
+msgstr ""
+
+#: src/modules/config/system.py:82
+msgid "2 - Revert"
+msgstr ""
+
+#: src/modules/config/system.py:83
+msgid "3 - Clear Backup Cache"
+msgstr ""
+
+#: src/modules/config/system.py:87
+msgid "Please choose: "
+msgstr ""
+
+#: src/modules/config/system.py:89
+msgid "Please try again"
+msgstr ""
+
+#: src/modules/config/system.py:94
+msgid "Please choose a valid value!"
+msgstr ""
+
+#: src/modules/svg/svg.py:56
+msgid "The selected conversion tool is not installed."
+msgstr ""
+
+#: src/modules/theme.py:35
+msgid "Theme {} does not exists."
+msgstr ""
+
+#: src/utils.py:285
+msgid "Invalid color {}"
+msgstr ""
