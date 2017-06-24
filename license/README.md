@@ -3,4 +3,4 @@ This project is dual licensed. The details of this aswell as the licenses themse
 
 The main body of the script is licensed under the [GPL-3.0](GPL). By submitting a pull request you agree to have your work also licensed as such.
 
-The [`data_pack.py`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/src/modules/applications/helpers/data_pack.py) is released under a [BSD license](BSD) as it was originally created by the Chromium developers. 
+The [`data_pack.py`](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/HardcodeTray/modules/applications/helpers/data_pack.py) is released under a [BSD license](BSD) as it was originally created by the Chromium developers. 

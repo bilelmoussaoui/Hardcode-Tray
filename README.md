@@ -1,10 +1,11 @@
+# Hardcode-Tray
+
 [![Build Status](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray.svg?branch=master)](https://travis-ci.org/bil-elmoussaoui/Hardcode-Tray) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Coverage)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
 release](https://img.shields.io/badge/release-v4.0-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
-
-# Hardcode-Tray
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BilalELMoussaoui)
 
 Fixes Hardcoded tray icons in Linux
 
@@ -87,7 +88,7 @@ sudo ninja -C builddir install
 3- Open Hardcode-Tray using this command
 
 ```bash
-hardcode-tray
+sudo -E hardcode-tray
 ```
 
 4- Enjoy!
@@ -110,6 +111,42 @@ or
 
 ```bash
 hardcode-tray --revert
+```
+
+- `--change-color`
+
+Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
+
+```bash
+hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
+```
+
+- `--clear-cache`
+
+Let you clear the backup cache folder
+
+```bash
+hardcode-tray --clear-cache
+```
+
+- `--conversion-tool`
+
+Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
+
+```bash
+hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
+```
+
+For now, we support : CairoSVG (python3-cairosvg), Inkscape, rsvgconvert (librsvg), Imagemagick and svgexport(npm library)
+
+Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
+
+- `--light-theme` and `--dark-theme`
+
+Some applications provide dark and light tray icons with the possibility to modify them using their UI. In order to use a dark theme for dark icons and a light one for light icons, you can use those two arguments. It only works if you use both of them at the same time.
+
+```bash
+hardcode-tray --dark-theme Numix-light --light-theme Numix
 ```
 
 - `--only`
@@ -146,42 +183,6 @@ You can fix your hardcoded icons using a different theme than the default one.
 hardcode-tray --theme Numix --only dropbox
 ```
 
-- `--light-theme` and `--dark-theme`
-
-Some applications provide dark and light tray icons with the possibility to modify them using their UI. In order to use a dark theme for dark icons and a light one for light icons, you can use those two arguments. It only works if you use both of them at the same time.
-
-```bash
-hardcode-tray --dark-theme Numix-light --light-theme Numix
-```
-
-- `--conversion-tool`
-
-Hardcode-Tray by default detects if the user has either Inkscape, CairoSVG, RSVGConvert, ImageMagick or SVGExport installed and use one of them to convert SVG icons to PNG. In order to choose the tool to use if one of them is broken in your installation is
-
-```bash
-hardcode-tray --conversion-tool {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}
-```
-
-For now, we support : CairoSVG (python3-cairosvg), Inkscape, rsvgconvert (librsvg), Imagemagick and svgexport(npm library)
-
-Cairo has some issues with converting SVG files that use CSS (see [#245](https://github.com/bil-elmoussaoui/Hardcode-Tray/issues/245)).
-
-- `--change-color`
-
-Your favorite theme does not provide icons for all those hardcoded icons? Just use a different theme and change the colors using Hardcode-Tray.
-
-```bash
-hardcode-tray --change-color "#FIRSTCOLOR #REPLACE_FIRST_COLOR" "#SECONDCOLOR #REPLACE_SECOND_COLOR"...
-```
-
-- `--clear-cache`
-
-Let you clear the backup cache folder
-
-```bash
-hardcode-tray --clear-cache
-```
-
 - `--version`
 
 You can print the version of Hardcode-Tray using
@@ -200,8 +201,7 @@ Hardcode-Tray also supports a JSON config file that can be placed under `~/.conf
 - `backup_ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
 - `scaling_factor` : Widgets scaling factor. Auto detected on GNOME, KDE and Cinnamon.
 
-
-### Node-WebKit JS applications:
+### Node-WebKit JS applications
 
 In order to fix those ugly tray icons on NWJS applications, you will need to download the SDK from [here](https://nwjs.io/downloads/). Extract the zip file in your home directory (or place it wherever you want) and add a new key to the config file that points to the NwJS SDK directory.
 
@@ -213,7 +213,7 @@ Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
 - Modified version of `data_pack.py`, by The Chromium Authors released under a BSD-style license
 - Qt applications icons name by [elementaryPlus](https://github.com/mank319/elementaryPlus) team
 
-## Hardcode-Tray wiki!
+## Hardcode-Tray wiki
 
 - [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
 - [FAQ](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/FAQ)
