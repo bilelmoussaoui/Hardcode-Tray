@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from gettext import gettext as _
 from os import listdir, path, remove
 from shutil import move
 from time import strftime
@@ -154,7 +155,7 @@ class Backup:
             backup_folders.sort()
 
             self._display_choices(backup_folders)
-            print("(Q)uit to cancel")
+            print(_("(Q)uit to cancel"))
 
             has_chosen = False
             stopped = False

@@ -26,9 +26,28 @@ Here's a list of themes that supports Hardcode-Tray:
 
  <div align="center"><img src="screenshots/papirus.png" alt="Preview" /></div>
 
+## Requirements
+
+### Running dependencies
+
+- `python3`
+- `python3-gi`
+- [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
+- Pick up your favorite conversion tool
+  - `python3-cairosvg`
+  - `librsvg`
+  - `inkscape`
+  - `imagemagick`
+  - `svgexport`
+
+### Building dependencies
+
+- `ninja`
+- `meson`
+
 ## Install
 
-#### Arch Linux (AUR):
+### Arch Linux (AUR)
 
 Stable version:
 
@@ -43,7 +62,7 @@ Developpement version:
 yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
-#### Ubuntu 14.04 / 16.04 / 16.10 / 17.04 (PPA):
+### Ubuntu 14.04 / 16.04 / 16.10 / 17.04 (PPA)
 
 ```bash
 sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
@@ -51,37 +70,31 @@ sudo apt update
 sudo apt install sni-qt sni-qt:i386 hardcode-tray
 ```
 
-#### OpenSUSE (Leap 42.2 / Tumbleweed):
+### OpenSUSE (Leap 42.2 / Tumbleweed)
 
 OpenSUSE package only contains the patched version of sni-qt. In order to get Hardcode-Tray, please follow the manual installation method.
 
 The one click-installer can be found by following this [link](https://software.opensuse.org/package/sni-qt-patched)
 
-#### Manual installation:
+### Manual installation
 
-1. Download and install the script:
+1- Install dependencies
+
+2- Compile:
 
 ```bash
-cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/install.sh | bash
+git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
+meson builddir --prefix=/usr
+sudo ninja -C builddir install
 ```
 
-2. Install dependencies:
+3- Open Hardcode-Tray using this command
 
-- `git`
-- `wget`
-- `python3`
-- `python3-gi`
-- [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt) <br>
-- Pick up your favorite conversion tool
-  - `python3-cairosvg`
-  - `librsvg`
-  - `inkscape`
-  - `imagemagick`
-  - `svgexport`
-3. Open Hardcode-Tray using this command
-  <pre>hardcode-tray</pre>
+```bash
+hardcode-tray
+```
 
-4. Enjoy!
+4- Enjoy!
 
 You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).<br />
 The `sni-qt:i386` is used for 32 bits applications as Skype.<br />
@@ -181,22 +194,6 @@ You can print the version of Hardcode-Tray using
 hardcode-tray --version
 ```
 
-- `--update`
-
-You can also update to the latest version of the script
-
-```bash
-hardcode-tray --update
-```
-
-- `--update-git`
-
-You can also update to the git version of the script
-
-```bash
-hardcode-tray --update-git
-```
-
 ## Config file
 
 Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
@@ -214,14 +211,6 @@ In order to fix those ugly tray icons on NWJS applications, you will need to dow
 
 An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
 Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
-
-## Uninstallation
-
-To remove the script completely from your desktop you can use
-
-```bash
-cd /tmp && wget -O - https://raw.githubusercontent.com/bil-elmoussaoui/Hardcode-Tray/master/data/uninstall.sh | bash
-```
 
 ## Credits
 

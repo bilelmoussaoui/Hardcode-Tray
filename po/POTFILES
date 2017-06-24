@@ -1,0 +1,8 @@
+hardcode-tray.py
+src/app.py
+src/modules/applications/application.py
+src/modules/backup.py
+src/modules/config/system.py
+src/modules/svg/svg.py
+src/modules/theme.py
+src/utils.py

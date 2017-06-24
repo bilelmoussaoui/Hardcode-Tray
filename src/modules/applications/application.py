@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from gettext import gettext as _
 from os import path, remove
 from shutil import rmtree
 from time import time
@@ -152,16 +153,16 @@ class Application:
         if action == Action.APPLY:
             self.install()
             if not self.success:
-                print("Failed to fix {}".format(self.name))
+                print(_("Failed to fix {}").format(self.name))
 
         elif action == Action.REVERT:
             self.reinstall()
             if not self.success and self.backup.exists:
-                print("Couldn't revert to those icons :(")
+                print(_("Couldn't revert to those icons :("))
 
         elif action == Action.CLEAR_CACHE:
             self.clear_cache()
             if not self.success:
-                print("No backup found for {}".format(self.name))
+                print(_("No backup found for {}").format(self.name))
 
         return time() - start_time

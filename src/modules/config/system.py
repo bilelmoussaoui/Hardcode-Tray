@@ -19,6 +19,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from gettext import gettext as _
+
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -76,19 +78,19 @@ class SystemConfig:
     def action():
         """Return the action to be done."""
         from src.enum import Action
-        print("1 - Apply")
-        print("2 - Revert")
-        print("3 - Clear Backup Cache")
+        print(_("1 - Apply"))
+        print(_("2 - Revert"))
+        print(_("3 - Clear Backup Cache"))
         has_chosen = False
         while not has_chosen:
             try:
-                action = int(input("Please choose: "))
+                action = int(input(_("Please choose: ")))
                 if action not in Action.choices():
-                    print("Please try again")
+                    print(_("Please try again"))
                 else:
                     has_chosen = True
                     return action
             except ValueError:
-                print("Please choose a valid value!")
+                print(_("Please choose a valid value!"))
             except KeyboardInterrupt:
                 exit("")

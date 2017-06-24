@@ -19,6 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
+from gettext import gettext as _
 from glob import glob
 from os import path
 
@@ -128,13 +129,13 @@ class App:
                 total_counter -= 1
 
         if apps:
-            print("Took {:.2f}s to finish the tasks".format(total_time))
+            print(_("Took {:.2f}s to finish the tasks").format(total_time))
         elif action == Action.APPLY:
-            print("No apps to fix! Please report on GitHub if this is not the case")
+            print(_("No apps to fix!"))
         elif action == Action.CLEAR_CACHE:
-            print("No cache found.")
+            print(_("No cache found."))
         else:
-            print("No apps to revert!")
+            print(_("No apps to revert!"))
 
     @staticmethod
     def svg():
@@ -185,5 +186,5 @@ class App:
         """
         path_ = App.get("path")
         if len(App.get("only")) > 1 and path_:
-            exit("You can't use --path with more than application at once.")
+            exit(_("You can't use --path with more than application at once."))
         return path_

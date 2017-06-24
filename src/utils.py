@@ -20,6 +20,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from functools import reduce
+from gettext import gettext as _
 from os import chown, makedirs, listdir, path, remove, symlink
 from re import findall, match, sub
 from shutil import copyfile
@@ -281,7 +282,7 @@ def replace_to_6hex(color):
             color = "#{0}{0}{1}{1}{2}{2}".format(color[1], color[2], color[3])
         return color
     else:
-        exit("Invalid color {0}".format(color))
+        exit(_("Invalid color {}").format(color))
 
 
 def replace_colors(file_name, colors):

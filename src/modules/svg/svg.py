@@ -20,6 +20,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from abc import ABCMeta, abstractmethod
+from gettext import gettext as _
 from importlib import import_module
 from os import path, remove
 from tempfile import NamedTemporaryFile
@@ -52,7 +53,7 @@ class SVG:
             try:
                 svg = load(conversion_tool)(colors)
             except SVGNotInstalled:
-                exit("The selected conversion tool is not installed.")
+                exit(_("The selected conversion tool is not installed."))
         else:
             for tool in ConversionTools.choices():
                 try:
