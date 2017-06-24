@@ -24,7 +24,6 @@ from os import path, remove
 from shutil import rmtree
 from time import time
 
-from concurrent.futures import ThreadPoolExecutor as Executor
 from src.const import BACKUP_FOLDER
 from src.decorators import install_wrapper, revert_wrapper, symlinks_installer
 from src.enum import Action
@@ -105,12 +104,11 @@ class Application:
     def execute(self, action):
         """Execute actions: Apply/Revert."""
         for icon_path in self.icons_path:
-            with Executor(max_workers=4) as exe:
-                for icon in self.icons:
-                    if action == Action.APPLY:
-                        exe.submit(self.install_icon, icon, icon_path)
-                    elif action == Action.REVERT:
-                        exe.submit(self.revert_icon, icon, icon_path)
+            for icon in self.icons:
+                if action == Action.APPLY:
+                    self.install_icon(icon, icon_path)
+                elif action == Action.REVERT:
+                    self.revert_icon(icon, icon_path)
 
     @symlinks_installer
     def install_icon(self, icon, icon_path):

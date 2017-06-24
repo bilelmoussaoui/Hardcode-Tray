@@ -10,10 +10,6 @@ Fixes Hardcoded tray icons in Linux
 
 The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 
-<div align="center">
-<img src="screenshots/hardcode-tray.gif"/>
-</div>
-
 ## Themes
 
 Here's a list of themes that supports Hardcode-Tray:
