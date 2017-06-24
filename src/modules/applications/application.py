@@ -19,7 +19,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import path
+from os import path, remove
 from shutil import rmtree
 from time import time
 
@@ -142,6 +142,8 @@ class Application:
         # Revert to the original icon
         if not self.backup_ignore:
             self.backup.remove(output_icon)
+        else:
+            remove(output_icon)
 
     def do_action(self, action):
         """Do an action, return the time it took."""

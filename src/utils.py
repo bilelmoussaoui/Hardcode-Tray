@@ -167,7 +167,7 @@ def mchown(directory):
             dir_path += str(dir_) + "/"
             # Be sure to not change / permissions
             if dir_path.replace("/", "") not in CHMOD_IGNORE_LIST:
-                if path.isdir(dir_path):
+                if path.isdir(dir_path) and USER_ID != 0 and GROUP_ID != 0:
                     chown(dir_path, USER_ID, GROUP_ID)
                 else:
                     file_path = dir_path.rstrip("/")

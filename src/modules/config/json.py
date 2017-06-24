@@ -33,7 +33,7 @@ class JSONConfig:
     """Read JSON config file and make it usable."""
 
     def __init__(self):
-        self.icons = {}
+        self._icons = {}
         self._backup_ignore = False
         self._blacklist = []
         self._conversion_tool = None
@@ -60,8 +60,8 @@ class JSONConfig:
     def icon_size(self):
         """Return the icon size in the config file."""
         icon_size = None
-        if self.icons:
-            icon_size = self.icons.get("size")
+        if self._icons:
+            icon_size = self._icons.get("size")
             Logger.debug("Config/Icon Size: {}".format(icon_size))
             if icon_size not in ICONS_SIZE:
                 Logger.warning("Config/Icon Size: Incorrect.")
@@ -72,8 +72,8 @@ class JSONConfig:
     def theme(self):
         """Return theme object set in the config file."""
         theme_obj = None
-        if self.icons:
-            theme = self.icons.get("theme", {})
+        if self._icons:
+            theme = self._icons.get("theme", {})
             if isinstance(theme, dict):
                 dark_theme = theme.get("dark")
                 light_theme = theme.get("light")
