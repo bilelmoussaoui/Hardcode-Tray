@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardcode-tray\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 20:55+0200\n"
+"POT-Creation-Date: 2017-06-24 22:56+0200\n"
 "PO-Revision-Date: 2017-06-24 23:25+0300\n"
 "Last-Translator: Jacobtey <jacobtey@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -14,79 +14,94 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: hardcode-tray.py:33
-msgid ""
-"You need to have root privileges to run the script.Please try again, this "
-"time using 'sudo'. Exiting."
+#: hardcode-tray.py.in:41
+#, fuzzy
+msgid "You need to have root privileges to run the script."
 msgstr ""
-"Необходимо обладать правами администратора для запуска сценария. "
-"Повторите попытку, используя 'sudo'. Завершаю."
+"Необходимо обладать правами администратора для запуска сценария. Повторите "
+"попытку, используя 'sudo'. Завершаю."
 
-#: hardcode-tray.py:37
-msgid "use a different icon size instead of the default one."
-msgstr "использовать размеры значков, отличные от принятых по-умолчанию"
-
-#: hardcode-tray.py:41
-msgid "use a different icon theme instead of the default one."
-msgstr "использовать тему значков, отличную от принятой по-умолчанию."
-
-#: hardcode-tray.py:45
-msgid ""
-"use a specified theme for the light icons. Can't be used with --theme.Works "
-"only with --dark-theme."
+#: hardcode-tray.py.in:42
+#, fuzzy
+msgid "Please try again, this time using 'sudo'. Exiting."
 msgstr ""
-"использовать отдельную тему для светлых значков. Несовместимо с  --theme. "
-"Только с --dark-theme."
+"Необходимо обладать правами администратора для запуска сценария. Повторите "
+"попытку, используя 'sudo'. Завершаю."
 
-#: hardcode-tray.py:50
+#: hardcode-tray.py.in:51
+#, fuzzy
+msgid "Fix hardcoded tray icons"
+msgstr "исправить значки лотка"
+
+#: hardcode-tray.py.in:53
+msgid "Replace a color with an other one, works only with SVG."
+msgstr "Изменить цвет на другой. Работает только с SVG."
+
+#: hardcode-tray.py.in:56
+msgid "Clear backup files"
+msgstr "Удалить резервные файлы"
+
+#: hardcode-tray.py.in:58
+msgid "Which of conversion tool to use"
+msgstr "Выбрать средство преобразования формата значков"
+
+#: hardcode-tray.py.in:61
+#, fuzzy
 msgid ""
-"use a specified theme for the dark icons.Can't be used with --themeWorks "
+"Use a specified theme for the dark icons.Can't be used with --themeWorks "
 "only with --light-theme."
 msgstr ""
 "использовать отдельную тему для темных значков. Несовместимо с --theme. "
 "Только с --light-theme."
 
-#: hardcode-tray.py:55
+#: hardcode-tray.py.in:66
+#, fuzzy
 msgid ""
-"fix only one application or more, linked by a ','.\n"
+"Use a specified theme for the light icons. Can't be used with --theme.Works "
+"only with --dark-theme."
+msgstr ""
+"использовать отдельную тему для светлых значков. Несовместимо с  --theme. "
+"Только с --dark-theme."
+
+#: hardcode-tray.py.in:71
+#, fuzzy
+msgid ""
+"Fix only one application or more, linked by a ','.\n"
 "example : --only dropbox,telegram"
 msgstr ""
 "применить только к одному или нескольким приложениям через ','\n"
 "например: --only dropbox,telegram"
 
-#: hardcode-tray.py:59
-msgid "use a different icon path for a single application."
+#: hardcode-tray.py.in:75
+#, fuzzy
+msgid "Use a different icon path for a single application."
 msgstr "указать другой путь к значкам для отдельного приложения"
 
-#: hardcode-tray.py:62
-msgid "print the version number of Hardcode-Tray."
-msgstr "отобразить версию Hardcode-Tray"
-
-#: hardcode-tray.py:64
-msgid "fix hardcoded tray icons"
-msgstr "исправить значки лотка"
-
-#: hardcode-tray.py:66
-msgid "revert fixed hardcoded tray icons"
+#: hardcode-tray.py.in:78
+#, fuzzy
+msgid "Revert fixed hardcoded tray icons"
 msgstr "восстановить оригинальные значки лотка"
 
-#: hardcode-tray.py:68
-msgid "Which of conversion tool to use"
-msgstr "Выбрать средство преобразования формата значков"
+#: hardcode-tray.py.in:79
+#, fuzzy
+msgid "Use a different icon size instead of the default one."
+msgstr "использовать размеры значков, отличные от принятых по-умолчанию"
 
-#: hardcode-tray.py:71
-msgid "Replace a color with an other one, works only with SVG."
-msgstr "Изменить цвет на другой. Работает только с SVG."
+#: hardcode-tray.py.in:83
+#, fuzzy
+msgid "Use a different icon theme instead of the default one."
+msgstr "использовать тему значков, отличную от принятой по-умолчанию."
 
-#: hardcode-tray.py:74
-msgid "Clear backup files"
-msgstr "Удалить резервные файлы"
+#: hardcode-tray.py.in:87
+#, fuzzy
+msgid "Print the version number of Hardcode-Tray."
+msgstr "отобразить версию Hardcode-Tray"
 
-#: hardcode-tray.py:80
+#: hardcode-tray.py.in:93
 msgid ""
 "You need to run the script using 'sudo -E'.\n"
 "Please try again"
@@ -94,59 +109,59 @@ msgstr ""
 "Следует запустить сценарий через 'sudo -E'.\n"
 "Попробуйте еще раз"
 
-#: hardcode-tray.py:82
+#: hardcode-tray.py.in:98
 msgid "Welcome to Hardcode-Tray!"
 msgstr "Добро пожаловать в Hardcode-Tray!"
 
-#: hardcode-tray.py:83
+#: hardcode-tray.py.in:99
 msgid "Desktop Environment: {}"
 msgstr "Рабочее окружение: {}"
 
-#: hardcode-tray.py:84
+#: hardcode-tray.py.in:100
 msgid "Scaling Factor: {}"
 msgstr "Увеличение: {}"
 
-#: hardcode-tray.py:85
+#: hardcode-tray.py.in:101
 msgid "Icon Size: {}"
 msgstr "Размер значков: {}"
 
-#: hardcode-tray.py:87
+#: hardcode-tray.py.in:103
 msgid "Icon Theme: {}"
 msgstr "Тема значков: {}"
 
-#: hardcode-tray.py:89
+#: hardcode-tray.py.in:105
 msgid "Dark Icon Theme: {}"
 msgstr "Темная тема значков: {}"
 
-#: hardcode-tray.py:90
+#: hardcode-tray.py.in:106
 msgid "Light Icon Theme: {}"
 msgstr "Светлая тема значков: {}"
 
-#: hardcode-tray.py:91
+#: hardcode-tray.py.in:107
 msgid "Conversion Tool: {}"
 msgstr "Средство конвертирования: {}"
 
-#: hardcode-tray.py:92
+#: hardcode-tray.py.in:108
 msgid "To Do: "
 msgstr "Цель:"
 
-#: hardcode-tray.py:94
+#: hardcode-tray.py.in:110
 msgid "All"
 msgstr "Всё"
 
-#: hardcode-tray.py:99
+#: hardcode-tray.py.in:114
 msgid "Applying now.."
 msgstr "Исправление..."
 
-#: hardcode-tray.py:101
+#: hardcode-tray.py.in:116
 msgid "Reverting now.."
 msgstr "Восстановление..."
 
-#: hardcode-tray.py:103
+#: hardcode-tray.py.in:118
 msgid "Clearing cache..."
 msgstr "Очистка кэша..."
 
-#: hardcode-tray.py:107
+#: hardcode-tray.py.in:122
 msgid ""
 "\n"
 "Done, Thank you for using the Hardcode-Tray fixer!"
@@ -154,75 +169,74 @@ msgstr ""
 "\n"
 "Готово! Благодарим за использование Hardcode-Tray!"
 
-#: src/app.py:132
+#: HardcodeTray/app.py:132
 msgid "Took {:.2f}s to finish the tasks"
 msgstr "Требуется {:.2f}с, чтобы завершить операцию"
 
-#: src/app.py:134
+#: HardcodeTray/app.py:134
 msgid "No apps to fix!"
 msgstr "Приложений для исправления нет!"
 
-#: src/app.py:136
+#: HardcodeTray/app.py:136
 msgid "No cache found."
 msgstr "Кэш не найден."
 
-#: src/app.py:138
+#: HardcodeTray/app.py:138
 msgid "No apps to revert!"
 msgstr "Приложений для восстановления нет!"
 
-#: src/app.py:189
+#: HardcodeTray/app.py:189
 msgid "You can't use --path with more than application at once."
 msgstr "Можно использовать --path для исправления только одного приложения."
 
-#: src/modules/applications/application.py:154
+#: HardcodeTray/modules/applications/application.py:154
 msgid "Failed to fix {}"
 msgstr "Не удалось исправить {}"
 
-#: src/modules/applications/application.py:159
+#: HardcodeTray/modules/applications/application.py:159
 msgid "Couldn't revert to those icons :("
 msgstr "Невозможно восстановить эти значки :("
 
-#: src/modules/applications/application.py:164
+#: HardcodeTray/modules/applications/application.py:164
 msgid "No backup found for {}"
 msgstr "Не найдена резервная копия {}"
 
-#: src/modules/backup.py:158
+#: HardcodeTray/modules/backup.py:158
 msgid "(Q)uit to cancel"
 msgstr "Выйти и отменить (Q)"
 
-#: src/modules/config/system.py:81
+#: HardcodeTray/modules/config/system.py:81
 msgid "1 - Apply"
 msgstr "1 - Исправить"
 
-#: src/modules/config/system.py:82
+#: HardcodeTray/modules/config/system.py:82
 msgid "2 - Revert"
 msgstr "2 - Восстановить"
 
-#: src/modules/config/system.py:83
+#: HardcodeTray/modules/config/system.py:83
 msgid "3 - Clear Backup Cache"
 msgstr "3 - Очистить резервный кэш"
 
-#: src/modules/config/system.py:87
+#: HardcodeTray/modules/config/system.py:87
 msgid "Please choose: "
 msgstr "Выберите:"
 
-#: src/modules/config/system.py:89
+#: HardcodeTray/modules/config/system.py:89
 msgid "Please try again"
 msgstr "Повторите попытку"
 
-#: src/modules/config/system.py:94
+#: HardcodeTray/modules/config/system.py:94
 msgid "Please choose a valid value!"
 msgstr "Выберите корректное значение!"
 
-#: src/modules/svg/svg.py:56
+#: HardcodeTray/modules/svg/svg.py:56
 msgid "The selected conversion tool is not installed."
 msgstr "Выбранный инструмент конвертирования не установлен."
 
-#: src/modules/theme.py:35
+#: HardcodeTray/modules/theme.py:35
 msgid "Theme {} does not exists."
 msgstr "Темы {} не существует."
 
-#: src/utils.py:285
+#: HardcodeTray/utils.py:285
 msgid "Invalid color {}"
 msgstr "Недопустимый цвет {}"
-
