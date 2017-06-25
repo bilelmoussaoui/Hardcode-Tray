@@ -19,21 +19,18 @@ msgstr ""
 "X-Generator: Lokalize 2.0\n"
 
 #: hardcode-tray.py.in:41
-#, fuzzy
 msgid "You need to have root privileges to run the script."
 msgstr ""
 "Необходимо обладать правами администратора для запуска сценария. Повторите "
 "попытку, используя 'sudo'. Завершаю."
 
 #: hardcode-tray.py.in:42
-#, fuzzy
 msgid "Please try again, this time using 'sudo'. Exiting."
 msgstr ""
 "Необходимо обладать правами администратора для запуска сценария. Повторите "
 "попытку, используя 'sudo'. Завершаю."
 
 #: hardcode-tray.py.in:51
-#, fuzzy
 msgid "Fix hardcoded tray icons"
 msgstr "исправить значки лотка"
 
@@ -50,7 +47,6 @@ msgid "Which of conversion tool to use"
 msgstr "Выбрать средство преобразования формата значков"
 
 #: hardcode-tray.py.in:61
-#, fuzzy
 msgid ""
 "Use a specified theme for the dark icons.Can't be used with --themeWorks "
 "only with --light-theme."
@@ -59,7 +55,6 @@ msgstr ""
 "Только с --light-theme."
 
 #: hardcode-tray.py.in:66
-#, fuzzy
 msgid ""
 "Use a specified theme for the light icons. Can't be used with --theme.Works "
 "only with --dark-theme."
@@ -68,7 +63,6 @@ msgstr ""
 "Только с --dark-theme."
 
 #: hardcode-tray.py.in:71
-#, fuzzy
 msgid ""
 "Fix only one application or more, linked by a ','.\n"
 "example : --only dropbox,telegram"
@@ -77,27 +71,22 @@ msgstr ""
 "например: --only dropbox,telegram"
 
 #: hardcode-tray.py.in:75
-#, fuzzy
 msgid "Use a different icon path for a single application."
 msgstr "указать другой путь к значкам для отдельного приложения"
 
 #: hardcode-tray.py.in:78
-#, fuzzy
 msgid "Revert fixed hardcoded tray icons"
 msgstr "восстановить оригинальные значки лотка"
 
 #: hardcode-tray.py.in:79
-#, fuzzy
 msgid "Use a different icon size instead of the default one."
 msgstr "использовать размеры значков, отличные от принятых по-умолчанию"
 
 #: hardcode-tray.py.in:83
-#, fuzzy
 msgid "Use a different icon theme instead of the default one."
 msgstr "использовать тему значков, отличную от принятой по-умолчанию."
 
 #: hardcode-tray.py.in:87
-#, fuzzy
 msgid "Print the version number of Hardcode-Tray."
 msgstr "отобразить версию Hardcode-Tray"
 
@@ -171,7 +160,7 @@ msgstr ""
 
 #: HardcodeTray/app.py:132
 msgid "Took {:.2f}s to finish the tasks"
-msgstr "Требуется {:.2f}с, чтобы завершить операцию"
+msgstr "Потребовалось {:.2f}с, чтобы завершить операцию"
 
 #: HardcodeTray/app.py:134
 msgid "No apps to fix!"
@@ -187,7 +176,7 @@ msgstr "Приложений для восстановления нет!"
 
 #: HardcodeTray/app.py:189
 msgid "You can't use --path with more than application at once."
-msgstr "Можно использовать --path для исправления только одного приложения."
+msgstr "Использовать --path можно для исправления не больше одного приложения."
 
 #: HardcodeTray/modules/applications/application.py:154
 msgid "Failed to fix {}"
