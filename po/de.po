@@ -1,0 +1,227 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the hardcode-tray package.
+#
+# Jacobtey <jacobtey@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: hardcode-tray\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-24 22:56+0200\n"
+"PO-Revision-Date: 2017-06-24 23:25+0300\n"
+"Last-Translator: wa4557\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: hardcode-tray.py.in:41
+msgid "You need to have root privileges to run the script."
+msgstr "Du brauchst Admin Rechte um das Skript auszuführen"
+
+#: hardcode-tray.py.in:42
+msgid "Please try again, this time using 'sudo'. Exiting."
+msgstr "Bitte versuche erneut. Dieses Mal mit 'sudo'"
+
+#: hardcode-tray.py.in:51
+msgid "Fix hardcoded tray icons"
+msgstr "Repariere hardkodierte im Systemtray"
+
+#: hardcode-tray.py.in:53
+msgid "Replace a color with an other one, works only with SVG."
+msgstr "Ersetze Farben in den Icons, funktioniert nur mit SVG"
+
+#: hardcode-tray.py.in:56
+msgid "Clear backup files"
+msgstr "Lösche Backup Dateien"
+
+#: hardcode-tray.py.in:58
+msgid "Which of conversion tool to use"
+msgstr "Welches Konversionswerkzeug zu benutzen ist"
+
+#: hardcode-tray.py.in:61
+msgid ""
+"Use a specified theme for the dark icons.Can't be used with --themeWorks "
+"only with --light-theme."
+msgstr ""
+"Verwende ein spezifisches Thema for dunkle icons. Kann nicht mit --themeWorks "
+"verwendet werden, nur mit --light-theme."
+
+#: hardcode-tray.py.in:66
+msgid ""
+"Use a specified theme for the light icons. Can't be used with --theme.Works "
+"only with --dark-theme."
+msgstr ""
+"Verwende ein spezifisches Thema for helle icons. Kann nicht mit --themeWorks "
+"verwendet werden, nur mit --dark-theme."
+
+#: hardcode-tray.py.in:71
+msgid ""
+"Fix only one application or more, linked by a ','.\n"
+"example : --only dropbox,telegram"
+msgstr ""
+"Repariere nur einzelne Apps, separiert mit einem ','\n"
+"Beispiel: --only dropbox,telegram"
+
+#: hardcode-tray.py.in:75
+msgid "Use a different icon path for a single application."
+msgstr "Verwende einen anderen Icon Pfad for eine einzelne App"
+
+#: hardcode-tray.py.in:78
+msgid "Revert fixed hardcoded tray icons"
+msgstr "Mache das Reparieren der Icons rückgängig"
+
+#: hardcode-tray.py.in:79
+msgid "Use a different icon size instead of the default one."
+msgstr "Verwende eine andere Icon Größe anstelle der Standard Größe"
+
+#: hardcode-tray.py.in:83
+msgid "Use a different icon theme instead of the default one."
+msgstr "Verwende ein anderes Icon Theme anstelle des Standard Themas"
+
+#: hardcode-tray.py.in:87
+msgid "Print the version number of Hardcode-Tray."
+msgstr "Zeige die Versionsnummer von Hardcode-Tray"
+
+#: hardcode-tray.py.in:93
+msgid ""
+"You need to run the script using 'sudo -E'.\n"
+"Please try again"
+msgstr ""
+"Du musst das Skript mit 'sudo -E' laufen.\n"
+"Bitte versuche es noch einmal"
+
+#: hardcode-tray.py.in:98
+msgid "Welcome to Hardcode-Tray!"
+msgstr "Willkommen zu Hardcode-Tray!"
+
+#: hardcode-tray.py.in:99
+msgid "Desktop Environment: {}"
+msgstr "Desktop-Umgebung: {}"
+
+#: hardcode-tray.py.in:100
+msgid "Scaling Factor: {}"
+msgstr "Skalierungsfaktor: {}"
+
+#: hardcode-tray.py.in:101
+msgid "Icon Size: {}"
+msgstr "Icon Größe: {}"
+
+#: hardcode-tray.py.in:103
+msgid "Icon Theme: {}"
+msgstr "Icon Thema: {}"
+
+#: hardcode-tray.py.in:105
+msgid "Dark Icon Theme: {}"
+msgstr "Dunkles Icon Thema: {}"
+
+#: hardcode-tray.py.in:106
+msgid "Light Icon Theme: {}"
+msgstr "Helles Icon Thema: {}"
+
+#: hardcode-tray.py.in:107
+msgid "Conversion Tool: {}"
+msgstr "Konversionswerkzeug: {}"
+
+#: hardcode-tray.py.in:108
+msgid "To Do: "
+msgstr "Zu tun:"
+
+#: hardcode-tray.py.in:110
+msgid "All"
+msgstr "Alle"
+
+#: hardcode-tray.py.in:114
+msgid "Applying now.."
+msgstr "Wende an..."
+
+#: hardcode-tray.py.in:116
+msgid "Reverting now.."
+msgstr "Mache rückgängig..."
+
+#: hardcode-tray.py.in:118
+msgid "Clearing cache..."
+msgstr "Leere den Cache..."
+
+#: hardcode-tray.py.in:122
+msgid ""
+"\n"
+"Done, Thank you for using the Hardcode-Tray fixer!"
+msgstr ""
+"\n"
+"Erledigt! Danke dass du Hardcode-Tray verwendet hast!"
+
+#: HardcodeTray/app.py:132
+msgid "Took {:.2f}s to finish the tasks"
+msgstr "Brauchte {:.2f}s, um den Vorgang zu beenden"
+
+#: HardcodeTray/app.py:134
+msgid "No apps to fix!"
+msgstr "Keine Programme zu reparieren!"
+
+#: HardcodeTray/app.py:136
+msgid "No cache found."
+msgstr "Kein Backup gefunden."
+
+#: HardcodeTray/app.py:138
+msgid "No apps to revert!"
+msgstr "Keine Apps rückgängig zu machen!"
+
+#: HardcodeTray/app.py:189
+msgid "You can't use --path with more than application at once."
+msgstr "Du kannst nicht --path mit mehr als einer Anwendung benutzen."
+
+#: HardcodeTray/modules/applications/application.py:154
+msgid "Failed to fix {}"
+msgstr "Gescheitert {} zu reparieren"
+
+#: HardcodeTray/modules/applications/application.py:159
+msgid "Couldn't revert to those icons :("
+msgstr "Konnte nicht zu diesen Icons zurückkehren :("
+
+#: HardcodeTray/modules/applications/application.py:164
+msgid "No backup found for {}"
+msgstr "Kein Backup für {} gefunden"
+
+#: HardcodeTray/modules/backup.py:158
+msgid "(Q)uit to cancel"
+msgstr "Drücke (Q) um abzubrechen"
+
+#: HardcodeTray/modules/config/system.py:81
+msgid "1 - Apply"
+msgstr "1 - Wende an"
+
+#: HardcodeTray/modules/config/system.py:82
+msgid "2 - Revert"
+msgstr "2 - Mache rückgängig"
+
+#: HardcodeTray/modules/config/system.py:83
+msgid "3 - Clear Backup Cache"
+msgstr "3 - Leere den Backup Cache"
+
+#: HardcodeTray/modules/config/system.py:87
+msgid "Please choose: "
+msgstr "Bitte wähle:"
+
+#: HardcodeTray/modules/config/system.py:89
+msgid "Please try again"
+msgstr "Bitte versuche noch einmal"
+
+#: HardcodeTray/modules/config/system.py:94
+msgid "Please choose a valid value!"
+msgstr "Bitte wähle einen funktionierenden Wert!"
+
+#: HardcodeTray/modules/svg/svg.py:56
+msgid "The selected conversion tool is not installed."
+msgstr "Das gewählte Konversionswerkzeug ist nicht installiert."
+
+#: HardcodeTray/modules/theme.py:35
+msgid "Theme {} does not exists."
+msgstr "Thema {} existiert nicht."
+
+#: HardcodeTray/utils.py:285
+msgid "Invalid color {}"
+msgstr "Ungültige Farbe {}"
