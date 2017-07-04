@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -23,7 +22,7 @@ from abc import ABCMeta, abstractmethod
 from gettext import gettext as _
 from importlib import import_module
 from os import path, remove
-from tempfile import NamedTemporaryFile
+from tempfile import gettempdir, NamedTemporaryFile
 
 from HardcodeTray.enum import ConversionTools
 from HardcodeTray.modules.log import Logger
@@ -73,7 +72,7 @@ class SVG:
 
         tmp_file = ""
         if self.colors:
-            tmp_file = "/tmp/{0}".format(path.basename(input_file))
+            tmp_file = path.join(gettempdir(), path.basename(input_file))
             copy_file(input_file, tmp_file)
             input_file = tmp_file
             replace_colors(input_file, self.colors)

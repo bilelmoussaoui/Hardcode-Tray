@@ -1,4 +1,4 @@
 install_subdir(
   'database',
-  install_dir: script_dir
+  install_dir: DATA_DIR
 )

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -24,8 +23,7 @@ from platform import machine
 
 from HardcodeTray.tools import detect_de, get_themes, get_userhome
 
-DB_FOLDER = path.join(environ.get("DATA_DIR", "/opt/Hardcode-Tray"),
-                      "database") + "/"
+DB_FOLDER = path.join(environ["DATA_DIR"], "database", "")
 USERNAME = getenv("SUDO_USER") if getenv("SUDO_USER") else getenv("USER")
 USERHOME = get_userhome(USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")

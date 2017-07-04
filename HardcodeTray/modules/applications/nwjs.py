@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -21,6 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
 from shutil import make_archive, move, rmtree
+from tempfile import gettempdir
 
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.applications.helpers.extract import ExtractApplication
@@ -34,7 +34,7 @@ class NWJSApplication(ExtractApplication):
         """Init method."""
         ExtractApplication.__init__(self, parser)
 
-        self.tmp_path = "/tmp/{0!s}_extracted/".format(self.name)
+        self.tmp_path = path.join(gettempdir(), "{}_extracted".format(self.name))
         self.tmp_data = path.join(self.tmp_path, self.nwjs_path)
 
     def extract(self, icon_path):
@@ -52,7 +52,7 @@ class NWJSApplication(ExtractApplication):
         from HardcodeTray.app import App
         nwjs_sdk = App.get("nwjs")
         if nwjs_sdk:
-            binary_file = "/tmp/{0}".format(self.binary)
+            binary_file = path.join(gettempdir(), self.binary)
 
             Logger.debug("NWJS Application: Creating new archive {}".format(self.binary))
             make_archive(binary_file, "zip", self.tmp_path)

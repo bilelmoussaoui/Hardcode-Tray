@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # pylint: disable=E0611
 """
 Fixes Hardcoded tray icons in Linux.
