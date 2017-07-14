@@ -128,7 +128,7 @@ msgstr "Konversionswerkzeug: {}"
 
 #: hardcode-tray.py.in:108
 msgid "To Do: "
-msgstr "Zu tun:"
+msgstr "Zu tun: "
 
 #: hardcode-tray.py.in:110
 msgid "All"
@@ -204,7 +204,7 @@ msgstr "3 - Leere den Backup Cache"
 
 #: HardcodeTray/modules/config/system.py:87
 msgid "Please choose: "
-msgstr "Bitte wähle:"
+msgstr "Bitte wähle: "
 
 #: HardcodeTray/modules/config/system.py:89
 msgid "Please try again"
