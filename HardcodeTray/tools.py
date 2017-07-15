@@ -53,8 +53,8 @@ def detect_de(de_list):
 def get_themes(userhome):
     """Return a list of installed icon themes."""
     paths = ["/usr/share/icons/",
-             f"{userhome}/.local/share/icons/",
-             f"{userhome}/.icons/"]
+             "{}/.local/share/icons/".format(userhome),
+             "{}/.icons/".format(userhome)]
     themes = []
     for icon_path in paths:
         try:
@@ -65,4 +65,4 @@ def get_themes(userhome):
                     themes.append(theme)
         except FileNotFoundError:
             pass
-    return themes
+    return sorted(themes)
