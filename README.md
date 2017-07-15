@@ -40,7 +40,7 @@ Here's a list of themes that supports Hardcode-Tray:
 ### Building dependencies
 
 - `ninja`
-- `meson`
+- `meson (>= 0.40)`
 
 ## Install
 
