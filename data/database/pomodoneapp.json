@@ -22,7 +22,7 @@
             "theme": "pomodoneapp-paused"
         },
         "break": {
-            "original": tray_iconBreakTemplate.png",
+            "original": "tray_iconBreakTemplate.png",
             "theme": "pomodoneapp-break"
         }
     }
