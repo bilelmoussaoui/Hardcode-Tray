@@ -93,7 +93,7 @@ sudo -E hardcode-tray
 
 4- Enjoy!
 
-You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from source code if you are using a different distribution (like Fedora).
+You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from the source code if you are using a different distribution (like Fedora).
 
 The `sni-qt:i386` is used for 32 bits applications as Skype.
 
