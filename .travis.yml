@@ -7,14 +7,14 @@ branches:
     - master
 before_install:
     - "sudo apt-get -y update"
-    - "sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0"
+    - "sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0 meson ninja"
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
     - "sleep 3;"
 install:
-    - "sudo pip3 install cairosvg pylint coverage"
+    - "sudo pip3 install cairosvg pylint"
+    - "sudo pip3 install --upgrade meson"
+    - "meson builddir --prefix=/usr"
+    - "sudo ninja -C builddir install"
 script:
-    - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
-after_success:
-    - "sudo -E coverage run hardcode-tray.py --apply --theme hicolor"
-    - "coverage report -m"
+    - "find -name \"/usr/lib/python3.4/site-packages/HardcodeTray/*.py\" | xargs pylint --rcfile=.pylintrc $1"
