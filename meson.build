@@ -1,7 +1,8 @@
 project('hardcode-tray',
   version: '4.1',
   meson_version: '>= 0.40.0',
-  license: 'GPL-3.0'
+  license: 'GPL-3.0',
+  default_options: ['prefix=/usr']
 )
 
 dependency('gobject-introspection-1.0')
