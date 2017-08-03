@@ -58,7 +58,7 @@ Developpement version:
 yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
-### Ubuntu 14.04 / 16.04 / 16.10 / 17.04 (PPA)
+### Ubuntu 16.04 / 16.10 / 17.04 (PPA)
 
 ```bash
 sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
