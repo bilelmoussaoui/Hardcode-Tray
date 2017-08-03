@@ -7,7 +7,7 @@ branches:
     - master
 before_install:
     - sudo apt-get -y update
-    - sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0 libgtk3-dev libgirepository1.0-dev
+    - sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0 libgtk-3-dev libgirepository1.0-dev
     - wget https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-linux.zip && unzip -q ninja-linux.zip -d build
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
