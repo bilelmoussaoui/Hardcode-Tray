@@ -19,6 +19,7 @@ LOCALE_DIR = join_paths(get_option('prefix'), get_option('localedir'))
 conf = configuration_data()
 conf.set('DATA_DIR', DATA_DIR)
 conf.set('LOCALE_DIR', LOCALE_DIR)
+conf.set('PYTHON_DIR', PYTHON_DIR)
 conf.set('PACKAGE', meson.project_name())
 conf.set('VERSION', meson.project_version())
 

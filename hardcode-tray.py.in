@@ -24,7 +24,8 @@ from argparse import ArgumentParser
 from gettext import bindtextdomain, textdomain, gettext as _
 from locale import bindtextdomain as locale_bindtextdomain
 from locale import textdomain as locale_textdomain
-from os import geteuid, environ
+from os import geteuid
+from sys import path as sys_path
 
 from gi import require_version
 require_version("Gtk", "3.0")
@@ -34,11 +35,15 @@ locale_bindtextdomain("@PACKAGE@", '@LOCALE_DIR@')
 locale_textdomain("@PACKAGE@")
 bindtextdomain("@PACKAGE@", '@LOCALE_DIR@')
 textdomain("@PACKAGE@")
+sys_path.insert(0, "@PYTHON_DIR@")
 
 from HardcodeTray.app import App
 from HardcodeTray.const import DESKTOP_ENV, ICONS_SIZE, THEMES_LIST
 from HardcodeTray.enum import Action, ConversionTools
 
+if geteuid() != 0:
+    print(_("You need to have root privileges to run the script."))
+    exit(_("Please try again, this time using 'sudo'. Exiting."))
 
 parser = ArgumentParser(prog="@PACKAGE@")
 parser.add_argument("--apply", "-a", action='store_true',
