@@ -1,6 +1,6 @@
+# pylint: skip-file
 """
 Fixes Hardcoded tray icons in Linux.
-
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
