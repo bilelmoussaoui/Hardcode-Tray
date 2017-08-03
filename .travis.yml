@@ -16,6 +16,6 @@ before_install:
 install:
     - sudo pip3 install cairosvg pylint meson
     - meson builddir
-    - sudo ninja -C builddir install
+    - sudo ./build/ninja -C builddir install
 script:
     - find -name \/usr/lib/python3.4/site-packages/HardcodeTray/*.py\ | xargs pylint --rcfile=.pylintrc $1
