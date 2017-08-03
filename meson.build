@@ -13,7 +13,7 @@ python = import('python3')
 
 PYTHON_DIR = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-LOCALE_DIR = join_paths(get_option('prefix'), get_option('datadir'), 'locale')
+LOCALE_DIR = join_paths(get_option('prefix'), get_option('localedir'))
 
 # Configuration params
 conf = configuration_data()
@@ -46,5 +46,5 @@ configure_file(
   input: meson.project_name() + '.py.in',
   output: meson.project_name(),
   configuration: conf,
-  install_dir: join_paths(get_option('prefix'), 'bin')
+  install_dir: join_paths(get_option('prefix'), get_option('bindir'))
 )
