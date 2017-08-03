@@ -1,7 +1,6 @@
-#!/usr/bin/python3
+# pylint: skip-file
 """
 Fixes Hardcoded tray icons in Linux.
-
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
 Contributors : Andreas Angerer, Joshua Fogg
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
@@ -19,13 +18,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from os import environ, getenv, getegid, geteuid, path
+from os import getenv, getegid, geteuid, path
 from platform import machine
 
 from HardcodeTray.tools import detect_de, get_themes, get_userhome
 
-DB_FOLDER = path.join(environ.get("DATA_DIR", "/opt/Hardcode-Tray"),
-                      "database") + "/"
+DB_FOLDER = path.join("@DATA_DIR@", "database", "")
 USERNAME = getenv("SUDO_USER") if getenv("SUDO_USER") else getenv("USER")
 USERHOME = get_userhome(USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")

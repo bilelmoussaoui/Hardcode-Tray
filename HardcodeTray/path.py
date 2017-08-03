@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -30,7 +29,7 @@ def dropbox_callback(directory):
         directory(str): the default dropbox directory
     """
     if path.isdir(directory):
-        sub_dir = directory.split("/")
+        sub_dir = directory.split(path.sep)
         return len(sub_dir) > 1 and sub_dir[4].lower().startswith("dropbox-")
     return False
 

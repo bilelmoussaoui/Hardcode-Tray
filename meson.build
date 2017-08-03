@@ -1,40 +1,50 @@
 project('hardcode-tray',
-  version: '4.1'
+  version: '4.1',
+  meson_version: '>= 0.40.0',
+  license: 'GPL-3.0',
+  default_options: ['prefix=/usr']
 )
 
-i18n = import('i18n')
-python = find_program('python3')
-message('Getting python install dir')
-r = run_command(python, '-c', 'from distutils.sysconfig import get_python_lib; print(get_python_lib())')
-if r.returncode() != 0
-    error('Cannot find python install dir')
-endif
-python_dir = r.stdout().strip()
+dependency('gobject-introspection-1.0')
+dependency('gtk+-3.0')
 
-script_dir = '/opt/Hardcode-Tray/'
+i18n = import('i18n')
+python = import('python3')
+
+PYTHON_DIR = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
+DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+LOCALE_DIR = join_paths(get_option('prefix'), get_option('localedir'))
+
+# Configuration params
+conf = configuration_data()
+conf.set('DATA_DIR', DATA_DIR)
+conf.set('LOCALE_DIR', LOCALE_DIR)
+conf.set('PACKAGE', meson.project_name())
+conf.set('VERSION', meson.project_version())
 
 subdir('data')
 subdir('po')
 
 install_subdir(
   'HardcodeTray',
-  install_dir: python_dir
+  install_dir: PYTHON_DIR
+)
+
+configure_file(
+  input: 'const.py.in',
+  output: 'const.py',
+  configuration: conf,
+  install_dir: join_paths(PYTHON_DIR, 'HardcodeTray')
 )
 
 install_subdir(
   'license',
-  install_dir: script_dir
+  install_dir: DATA_DIR
 )
-# Configuration params
-conf = configuration_data()
-conf.set('DATA_DIR', script_dir)
-conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
-conf.set('PACKAGE', meson.project_name())
-conf.set('VERSION', meson.project_version())
 
 configure_file(
   input: meson.project_name() + '.py.in',
   output: meson.project_name(),
   configuration: conf,
-  install_dir: join_paths(get_option('prefix'), 'bin')
+  install_dir: join_paths(get_option('prefix'), get_option('bindir'))
 )

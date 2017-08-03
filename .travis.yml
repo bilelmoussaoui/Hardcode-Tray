@@ -2,19 +2,20 @@ dist: trusty
 sudo: required
 language: python
 python:
-    - "3.4_with_system_site_packages"
+    - 3.4_with_system_site_packages
 branches:
     - master
 before_install:
-    - "sudo apt-get -y update"
-    - "sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0"
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - "sleep 3;"
+    - export PATH="`pwd`/build:${PATH}"
+    - sudo apt-get -y update
+    - sudo apt-get install -y python3-pip python3-gi python3-gobject gir1.2-gtk-3.0 libgtk-3-dev libgirepository1.0-dev
+    - wget https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-linux.zip && unzip -q ninja-linux.zip -d build
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - sleep 3;
 install:
-    - "sudo pip3 install cairosvg pylint coverage"
+    - sudo pip3 install cairosvg pylint meson
+    - meson builddir
+    - sudo ./build/ninja -C builddir install
 script:
-    - "find -name \"*.py\" | xargs pylint --rcfile=.pylintrc $1"
-after_success:
-    - "sudo -E coverage run hardcode-tray.py --apply --theme hicolor"
-    - "coverage report -m"
+    - find /usr/lib/python3.4/site-packages/HardcodeTray/ -name "*.py" | xargs pylint --rcfile=.pylintrc $1

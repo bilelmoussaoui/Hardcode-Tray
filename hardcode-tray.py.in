@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -22,24 +22,18 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 __version__ = "@VERSION@"
 from argparse import ArgumentParser
 from gettext import bindtextdomain, textdomain, gettext as _
-import locale
+from locale import bindtextdomain as locale_bindtextdomain
+from locale import textdomain as locale_textdomain
 from os import geteuid, environ
 
 from gi import require_version
 require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-
-environ["DATA_DIR"] = "@DATA_DIR@"
-
-locale.bindtextdomain("@PACKAGE@", '@LOCALE_DIR@')
-locale.textdomain("@PACKAGE@")
+locale_bindtextdomain("@PACKAGE@", '@LOCALE_DIR@')
+locale_textdomain("@PACKAGE@")
 bindtextdomain("@PACKAGE@", '@LOCALE_DIR@')
 textdomain("@PACKAGE@")
-
-if geteuid() != 0:
-    print(_("You need to have root privileges to run the script."))
-    exit(_("Please try again, this time using 'sudo'. Exiting."))
 
 from HardcodeTray.app import App
 from HardcodeTray.const import DESKTOP_ENV, ICONS_SIZE, THEMES_LIST

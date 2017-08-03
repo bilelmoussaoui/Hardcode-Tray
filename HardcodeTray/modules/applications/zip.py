@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -21,6 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import makedirs, path, remove
 from shutil import make_archive, rmtree
+from tempfile import gettempdir
 from zipfile import ZipFile
 
 from HardcodeTray.modules.log import Logger
@@ -34,7 +34,7 @@ class ZipApplication(ExtractApplication):
         """Init method."""
         ExtractApplication.__init__(self, parser)
 
-        self.tmp_path = "/tmp/_{0!s}/".format(self.name)
+        self.tmp_path = path.join(gettempdir(), "_{}".format(self.name))
         self.tmp_data = path.join(self.tmp_path, self.zip_path)
 
     def extract(self, icon_path):

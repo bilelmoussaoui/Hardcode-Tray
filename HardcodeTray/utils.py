@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -160,18 +159,18 @@ def mchown(directory):
     Args:
         directory (str): folder/file path
     """
-    path_list = directory.split("/")
+    path_list = directory.split(path.sep)
     dir_path = ""
     # Check if the file/folder is in the home directory
     if USERHOME in directory:
         for dir_ in path_list:
-            dir_path += str(dir_) + "/"
+            dir_path += str(dir_) + path.sep
             # Be sure to not change / permissions
-            if dir_path.replace("/", "") not in CHMOD_IGNORE_LIST:
+            if dir_path.replace(path.sep, "") not in CHMOD_IGNORE_LIST:
                 if path.isdir(dir_path) and USER_ID != 0 and GROUP_ID != 0:
                     chown(dir_path, USER_ID, GROUP_ID)
                 else:
-                    file_path = dir_path.rstrip("/")
+                    file_path = dir_path.rstrip(path.sep)
                     if not path.islink(file_path):
                         execute(["chmod", "0777", file_path])
 

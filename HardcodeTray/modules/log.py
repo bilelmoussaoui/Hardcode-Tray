@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -21,6 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 import logging
 from os import makedirs, path
+from tempfile import gettempdir
 from time import strftime
 
 
@@ -30,7 +30,7 @@ class Logger:
     """
     FORMAT = "[%(levelname)-s] %(asctime)s %(message)s"
     DATE = "%Y-%m-%d %H:%M:%S"
-    PATH = "/tmp/Hardcode-Tray/"
+    PATH = path.join(gettempdir(), "Hardcode-Tray")
     _log = None
 
     @staticmethod
@@ -40,7 +40,7 @@ class Logger:
             from HardcodeTray.const import LOG_FILE_FORMAT
             logger = logging.getLogger('hardcode-tray')
 
-            log_file = "{0}.log".format(strftime(LOG_FILE_FORMAT))
+            log_file = "{}.log".format(strftime(LOG_FILE_FORMAT))
             tmp_file = path.join(Logger.PATH, log_file)
 
             if not path.exists(path.dirname(tmp_file)):

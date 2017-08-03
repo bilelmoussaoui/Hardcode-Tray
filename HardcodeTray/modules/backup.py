@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Fixes Hardcoded tray icons in Linux.
 
@@ -22,6 +21,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from gettext import gettext as _
 from os import listdir, path, remove
 from shutil import move
+from tempfile import gettempdir
 from time import strftime
 
 from HardcodeTray.const import BACKUP_FILE_FORMAT, BACKUP_FOLDER
@@ -108,7 +108,7 @@ class Backup:
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""
-        tempfile = "/" + path.join("tmp", path.basename(filename))
+        tempfile = path.join(gettempdir(), path.basename(filename))
 
         with open(tempfile, 'wb') as fobj:
             fobj.write(binary)

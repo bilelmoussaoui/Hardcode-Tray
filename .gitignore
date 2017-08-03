@@ -62,3 +62,4 @@ tags
 
 .vscode/
 hardcode-tray
+HardcodeTray/const.py
