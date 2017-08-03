@@ -18,4 +18,4 @@ install:
     - meson builddir
     - sudo ./build/ninja -C builddir install
 script:
-    - find -name \/usr/lib/python3.4/site-packages/HardcodeTray/*.py\ | xargs pylint --rcfile=.pylintrc $1
+    - find /usr/lib/python3.4/site-packages/HardcodeTray/ -name "*.py" | xargs pylint --rcfile=.pylintrc $1
