@@ -26,7 +26,7 @@ from time import strftime
 
 from HardcodeTray.const import BACKUP_FILE_FORMAT, BACKUP_FOLDER
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import copy_file, create_dir, mchown
+from HardcodeTray.utils.fs import copy_file, create_dir
 
 
 class Backup:
@@ -104,7 +104,6 @@ class Backup:
                 Logger.debug("Backup file: {0} to: {1}".format(filename,
                                                                backup_file))
                 copy_file(filename, backup_file, True)
-                mchown(backup_file)
 
     def file(self, filename, binary):
         """Backup a binary content as a file."""

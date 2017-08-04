@@ -19,10 +19,11 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import makedirs, path, remove
-from shutil import make_archive, rmtree
+from shutil import make_archive
 from tempfile import gettempdir
 from zipfile import ZipFile
 
+from HardcodeTray.utils.fs import create_dir, remove_dir
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.applications.helpers.extract import ExtractApplication
 
@@ -39,10 +40,9 @@ class ZipApplication(ExtractApplication):
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
-        if path.exists(self.tmp_path):
-            rmtree(self.tmp_path)
-
-        makedirs(self.tmp_path, exist_ok=True)
+        # Remove tmp directory and create a new one
+        remove_dir(self.tmp_path)
+        create_dir(self.tmp_path)
 
         Logger.debug("Zip Application: Extracting of {} started".format(self.binary))
 
@@ -62,5 +62,4 @@ class ZipApplication(ExtractApplication):
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)
         Logger.debug("Zip Application: Creating a new zip archive.")
 
-        if path.exists(self.tmp_path):
-            rmtree(self.tmp_path)
+        remove_dir(self.tmp_path)

@@ -18,28 +18,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from HardcodeTray.modules.svg.svg import SVG, SVGNotInstalled
-from HardcodeTray.utils.os import execute
+from sys import stdout
 
+def progress(count, count_max, time, app_name=""):
+    """Used to draw a progress bar."""
+    bar_len = 36
+    space = 20
+    filled_len = int(round(bar_len * count / float(count_max)))
 
-class ImageMagick(SVG):
-    """Inkscape implemntation of SVG Interface."""
+    percents = round(100.0 * count / float(count_max), 1)
+    progress_bar = '#' * filled_len + '.' * (bar_len - filled_len)
 
-    def __init__(self, colors):
-        """Init function."""
-        super(ImageMagick, self).__init__(colors)
-
-        self.cmd = "convert"
-        if not self.is_installed():
-            raise SVGNotInstalled
-
-    def convert_to_png(self, input_file, output_file, width=None, height=None):
-        """Convert svg to png."""
-        cmd = [self.cmd, "-background", "none"]
-
-        if width and height:
-            cmd.extend(["-resize", "{0}x{1}".format(str(width), str(height))])
-
-        cmd.extend([input_file, output_file])
-
-        execute(cmd, True, False)
+    stdout.write("\r{0!s}{1!s}".format(app_name,
+                                       " " * (abs(len(app_name) - space))))
+    stdout.write('[{0}] {1}/{2} {3}% {4:.2f}s\r'.format(progress_bar,
+                                                        count, count_max,
+                                                        percents, time))
+    print("")
+    stdout.flush()

@@ -26,7 +26,7 @@ from struct import error as StructError
 from struct import pack, unpack
 
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import (change_dict_vals, get_from_dict,
+from HardcodeTray.utils.dict import (change_dict_vals, get_from_dict,
                                 set_in_dict)
 
 

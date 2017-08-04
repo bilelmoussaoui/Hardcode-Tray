@@ -23,7 +23,7 @@ from os import path
 from HardcodeTray.modules.applications.helpers.binary import BinaryApplication
 from HardcodeTray.modules.applications.helpers.data_pack import DataPack
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import get_pngbytes
+from HardcodeTray.utils.icons import get_pngbytes
 
 
 class PakApplication(BinaryApplication):

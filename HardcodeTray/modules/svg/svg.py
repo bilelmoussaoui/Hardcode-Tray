@@ -26,7 +26,9 @@ from tempfile import gettempdir, NamedTemporaryFile
 
 from HardcodeTray.enum import ConversionTools
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import copy_file, is_installed, replace_colors
+from HardcodeTray.utils.icons import replace_colors
+from HardcodeTray.utils.fs import copy_file
+from HardcodeTray.utils.os import is_installed
 
 
 class SVG:

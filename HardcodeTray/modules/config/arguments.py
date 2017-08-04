@@ -20,7 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.utils import replace_to_6hex
+from HardcodeTray.utils.icons import replace_to_6hex
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.theme import Theme
 

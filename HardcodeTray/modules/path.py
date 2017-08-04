@@ -22,7 +22,7 @@ from importlib import import_module
 from os import path
 
 from HardcodeTray.const import ARCH, USERHOME
-from HardcodeTray.utils import get_exact_folder
+from HardcodeTray.utils.os import get_exact_folder
 
 from HardcodeTray.modules.log import Logger
 

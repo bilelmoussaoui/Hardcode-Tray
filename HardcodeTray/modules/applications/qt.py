@@ -19,12 +19,11 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
-from shutil import rmtree
 
 from HardcodeTray.decorators import revert_wrapper, symlinks_installer
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.applications.application import Application
-from HardcodeTray.utils import symlink_file
+from HardcodeTray.utils.fs import remove_dir, symlink_file
 
 
 class QtApplication(Application):
@@ -52,8 +51,7 @@ class QtApplication(Application):
         done = False
         for icon_path in self.icons_path:
             icon_path = str(icon_path)
-            if path.isdir(icon_path):
-                rmtree(icon_path)
+            if remove_dir(icon_path):
                 Logger.debug("Qt Application: Reverting {} is done.".format(self.name))
                 done = True
         if not done:

@@ -1,0 +1,10 @@
+- Refactor the code to make unittests possible
+- Finish the unittests
+- Add unittests to Travis
+- Create jsonlint tests for database files
+- Refactor the documentations
+- Create a man page
+- Make the man page translatable 
+- Save the files permissions instead of overwriting them
+- Refactor the backup module
+- Refactor the modules/enum.py file
