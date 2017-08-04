@@ -280,8 +280,7 @@ def replace_to_6hex(color):
         if len(color) == 4:
             color = "#{0}{0}{1}{1}{2}{2}".format(color[1], color[2], color[3])
         return color
-    else:
-        exit(_("Invalid color {}").format(color))
+    return None
 
 
 def replace_colors(file_name, colors):
