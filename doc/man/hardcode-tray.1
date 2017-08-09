@@ -7,7 +7,7 @@
 .Sh SYNOPSIS
 .Nm
 .Ar --apply
-.Op --change-color Ar \"#COLOR #NEWCOLOR\" ...
+.Op --change-color Ar ``#COLOR #NEWCOLOR'' ...
 .Op --conversion-tool Ar TOOL
 .Op --theme Ar THEME
 .Op --light-theme Ar THEME Ar --dark-theme Ar THEME
@@ -28,7 +28,7 @@ is a python utility that fetches theme icons for application tray icons and repl
 Applies the selected THEME onto tray icons, instead of launching in interactive mode.
 .It --revert
 Reverts the original icons from backup instead of launching in interactive mode.
-.It --change-color Ar \"#COLOR #NEWCOLOR\" ...
+.It --change-color Ar ''#COLOR #NEWCOLOR'' ...
 In THEME icon, change #COLOR to #NEWCOLOR.
 .It --clear-cache
 Clears the backup cache folder.
@@ -49,7 +49,7 @@ Prints the version of
 .Nm
 .Sh FILES
 .Nm
-uses a JSON configuration file at ~/.config/hardcode-tray.json, is it exists. The file supports the following options:
+uses a JSON configuration file at \fB~/.config/hardcode-tray.json\fR, is it exists. The file supports the following options:
 .Bl -tag -width Ds
 .It blacklist
 List applications whose tray icons will never be patched.
