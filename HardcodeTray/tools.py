@@ -19,19 +19,8 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import environ, listdir, path
-from subprocess import check_output
 
 from HardcodeTray.modules.log import Logger
-
-
-def get_userhome(username):
-    """Get real user home path."""
-    userhome = check_output('sh -c "echo $HOME"', shell=True,
-                            universal_newlines=True).strip()
-    if userhome.lower() == "/root":
-        userhome = path.join("home", username)
-    userhome = path.join(path.sep, userhome)
-    return userhome
 
 
 def detect_de(de_list):
