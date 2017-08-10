@@ -20,8 +20,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.utils import get_extension, get_iterated_icons
-
+from HardcodeTray.utils.icons import get_iterated_icons
+from HardcodeTray.utils.fs import get_extension
 
 class Icon:
     """

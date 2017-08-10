@@ -25,9 +25,9 @@ require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 from HardcodeTray.const import DESKTOP_ENV
-from HardcodeTray.utils import (get_gnome_scaling_factor,
-                                get_kde_scaling_factor,
-                                get_cinnamon_scaling_factor)
+from HardcodeTray.utils.scaling_factor import (gnome_scaling_factor,
+                                kde_scaling_factor,
+                                cinnamon_scaling_factor)
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.theme import Theme
 
@@ -51,13 +51,13 @@ class SystemConfig:
         scaling_factor = 1
         # Scaling factor on GNOME desktop
         if DESKTOP_ENV == "gnome":
-            scaling_factor = get_gnome_scaling_factor()
+            scaling_factor = gnome_scaling_factor()
         # Cinnamon scaling factor
         elif DESKTOP_ENV == "cinnamon":
-            scaling_factor = get_cinnamon_scaling_factor()
+            scaling_factor = cinnamon_scaling_factor()
         # Scaling factor on KDE Desktop
         elif DESKTOP_ENV == "kde":
-            scaling_factor = get_kde_scaling_factor()
+            scaling_factor = kde_scaling_factor()
 
         return scaling_factor
 

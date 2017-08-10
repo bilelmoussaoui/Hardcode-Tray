@@ -19,12 +19,12 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path, remove
-from shutil import make_archive, move, rmtree
+from shutil import make_archive, move
 from tempfile import gettempdir
 
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.applications.helpers.extract import ExtractApplication
-from HardcodeTray.utils import execute
+from HardcodeTray.utils.os import execute
 
 
 class NWJSApplication(ExtractApplication):
@@ -39,9 +39,7 @@ class NWJSApplication(ExtractApplication):
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
-
-        if path.exists(self.tmp_path):
-            rmtree(self.tmp_path)
+        remove_dir(self.tmp_path)
 
         Logger.debug("NWJS Application: Extracting of {}".format(self.binary))
         execute(["unzip", path.join(str(icon_path),
@@ -72,4 +70,4 @@ class NWJSApplication(ExtractApplication):
             move(local_binary_file, path.join(str(icon_path), self.binary))
             execute(["chmod", "+x", path.join(str(icon_path), self.binary)])
 
-        rmtree(self.tmp_path)
+        remove_dir(self.tmp_path)

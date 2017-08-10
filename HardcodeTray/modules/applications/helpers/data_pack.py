@@ -55,7 +55,6 @@ class DataPack:
         """Read a data pack file and returns a dictionary."""
         with open(self._filename, 'rb') as file_object:
             data = file_object.read()
-        file_object.close()
         original_data = data
 
         # Read the header.
@@ -102,4 +101,3 @@ class DataPack:
         content = b''.join(ret)
         with open(self._filename, 'wb') as _file:
             _file.write(content)
-        _file.close()

@@ -25,8 +25,9 @@ from HardcodeTray.enum import ApplicationType
 from HardcodeTray.modules.icon import Icon
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.path import Path
-from HardcodeTray.utils import create_dir, get_iterated_icons
 
+from HardcodeTray.utils.icons import get_iterated_icons
+from HardcodeTray.utils.fs import create_dir
 
 class Parser:
     """

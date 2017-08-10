@@ -24,7 +24,7 @@ from os import path
 
 from HardcodeTray.const import DB_FOLDER
 from HardcodeTray.enum import Action
-from HardcodeTray.utils import progress
+from HardcodeTray.utils.cli import progress
 
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.parser import Parser

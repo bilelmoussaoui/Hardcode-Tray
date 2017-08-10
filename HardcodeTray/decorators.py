@@ -20,7 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.utils import symlink_file
+from HardcodeTray.utils.fs import symlink_file
 
 
 def symlinks_installer(func):

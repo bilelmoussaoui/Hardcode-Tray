@@ -18,28 +18,28 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from HardcodeTray.modules.svg.svg import SVG, SVGNotInstalled
-from HardcodeTray.utils.os import execute
+from functools import reduce
 
 
-class ImageMagick(SVG):
-    """Inkscape implemntation of SVG Interface."""
+def get_from_dict(data_dict, map_list):
+    """Get a value from a dictionnary following a map list."""
+    try:
+        return reduce(lambda d, k: d[k], map_list, data_dict)
+    except KeyError:
+        return None
 
-    def __init__(self, colors):
-        """Init function."""
-        super(ImageMagick, self).__init__(colors)
 
-        self.cmd = "convert"
-        if not self.is_installed():
-            raise SVGNotInstalled
+def set_in_dict(data_dict, map_list, value):
+    """Set a value in a dictionnary following a map list."""
+    get_from_dict(data_dict, map_list[:-1])[map_list[-1]] = value
 
-    def convert_to_png(self, input_file, output_file, width=None, height=None):
-        """Convert svg to png."""
-        cmd = [self.cmd, "-background", "none"]
 
-        if width and height:
-            cmd.extend(["-resize", "{0}x{1}".format(str(width), str(height))])
+def change_dict_vals(d, sizediff, offset):
+    """Iterative funtion to account for the new size of the png bytearray."""
+    if isinstance(d, dict):
+        d2 = {k: change_dict_vals(v, sizediff, offset) for k, v in d.items()}
+        if d2.get('offset') and int(d2.get('offset')) > offset:
+            d2['offset'] = str(int(d2['offset']) + sizediff)
+        return d2
+    return d
 
-        cmd.extend([input_file, output_file])
-
-        execute(cmd, True, False)

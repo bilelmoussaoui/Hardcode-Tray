@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from HardcodeTray.modules.svg.svg import SVG, SVGNotInstalled
-from HardcodeTray.utils import execute
+from HardcodeTray.utils.os import execute
 
 
 class Inkscape(SVG):

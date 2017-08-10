@@ -20,7 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.utils import replace_to_6hex
+from HardcodeTray.utils.icons import replace_to_6hex
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.theme import Theme
 
@@ -73,7 +73,8 @@ class ArgumentsConfig:
             color = color.strip().split(" ")
             to_replace = replace_to_6hex(color[0])
             for_replace = replace_to_6hex(color[1])
-            colors.append([to_replace, for_replace])
+            if to_replace and for_replace:
+                colors.append([to_replace, for_replace])
         return colors
 
     def only(self):

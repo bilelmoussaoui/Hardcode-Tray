@@ -20,7 +20,6 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from gettext import gettext as _
 from os import path, remove
-from shutil import rmtree
 from time import time
 
 from HardcodeTray.const import BACKUP_FOLDER
@@ -28,7 +27,7 @@ from HardcodeTray.decorators import install_wrapper, revert_wrapper, symlinks_in
 from HardcodeTray.enum import Action
 from HardcodeTray.modules.backup import Backup
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import mchown, symlink_file
+from HardcodeTray.utils.fs import symlink_file, remove_dir
 
 
 class Application:
@@ -83,8 +82,7 @@ class Application:
         backup_folder = path.join(BACKUP_FOLDER, self.name, "")
         Logger.debug("Clearing cache of: {}".format(self.name))
 
-        if path.exists(backup_folder):
-            rmtree(backup_folder)
+        if remove_dir(backup_folder):
             Logger.debug("Cache cleaned.")
         else:
             Logger.debug("Cache not found.")
@@ -131,7 +129,6 @@ class Application:
             else:
                 App.svg().to_png(theme_icon, output_icon)
 
-            mchown(output_icon)
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""

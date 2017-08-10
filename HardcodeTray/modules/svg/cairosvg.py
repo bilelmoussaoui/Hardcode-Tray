@@ -61,18 +61,15 @@ class CairoSVG(SVG):
             img.write_to_png(png_io)
             with open(output_file, 'wb') as fout:
                 fout.write(png_io.getvalue())
-            fout.close()
             svg.close()
             png_io.close()
             img.finish()
         else:
             with open(input_file, "r") as content_file:
                 svg = content_file.read()
-            content_file.close()
-            fout = open(output_file, "wb")
-            svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
-            fout.close()
-
+            with open(output_file, "wb") as fout:
+                svg2png(bytestring=bytes(svg, "UTF-8"), write_to=fout)
+    
     @staticmethod
     def is_installed():
         """Check if Cairo is installed or not."""
