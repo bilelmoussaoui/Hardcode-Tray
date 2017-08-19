@@ -20,7 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from functools import reduce
 from gettext import gettext as _
-from os import chown, makedirs, listdir, path, remove, symlink
+from os import makedirs, listdir, path, remove, symlink
 from re import findall, match, sub
 from shutil import copyfile
 from subprocess import PIPE, Popen, call
@@ -28,7 +28,7 @@ from sys import stdout
 
 from gi.repository import Gio
 
-from HardcodeTray.const import KDE_CONFIG_FILE, USERHOME
+from HardcodeTray.const import KDE_CONFIG_FILE
 from HardcodeTray.modules.log import Logger
 
 
