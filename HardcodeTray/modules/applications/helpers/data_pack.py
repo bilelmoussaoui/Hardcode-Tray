@@ -10,16 +10,11 @@ from struct import pack, unpack
 
 from HardcodeTray.modules.log import Logger
 
-PACK_FILE_VERSION = 4
-# Two uint32s. (file version, number of entries) and
-# one uint8 (encoding of text resources)
-HEADER_LENGTH = 2 * 4 + 1
-BINARY, UTF8, UTF16 = list(range(3))
-RAW_TEXT = 1
-
 
 class DataPack:
     """Read and write .pak files."""
+    # Two uint32s and one uint8.
+    HEADER_LENGTH = 2 * 4 + 1
 
     def __init__(self, filename):
         """
@@ -28,6 +23,7 @@ class DataPack:
         """
         self._filename = filename
         self._resources = {}
+        self._version = 4
         self._read()
 
     def haskey(self, key):
@@ -59,14 +55,12 @@ class DataPack:
         original_data = data
 
         # Read the header.
-        version, num_entries, _ = unpack('<IIB', data[:HEADER_LENGTH])
-        if version != PACK_FILE_VERSION:
-            Logger.error('Wrong file version in {0!s}'.format(self._filename))
-            raise Exception
+        version, num_entries, _ = unpack('<IIB', data[:DataPack.HEADER_LENGTH])
+        self._version = version
 
         if num_entries != 0:
             # Read the index and data.
-            data = data[HEADER_LENGTH:]
+            data = data[DataPack.HEADER_LENGTH:]
             index_entry = 2 + 4  # Each entry is a uint16 and a uint32.
             for _ in range(num_entries):
                 _id, offset = unpack('<HI', data[:index_entry])
@@ -80,16 +74,13 @@ class DataPack:
         ret = []
 
         # Write file header.
-        ret.append(pack('<IIB', PACK_FILE_VERSION, len(ids), 0))
-        # Two uint32s and one uint8.
-        header_length = 2 * 4 + 1
-
+        ret.append(pack('<IIB', self._version, len(ids), 0))
         # Each entry is a uint16 + a uint32s. We have one extra entry for the last
         # item.
         index_length = (len(ids) + 1) * (2 + 4)
 
         # Write index.
-        data_offset = header_length + index_length
+        data_offset = DataPack.HEADER_LENGTH + index_length
         for _id in ids:
             ret.append(pack('<HI', _id, data_offset))
             data_offset += len(self.get_value(_id))
