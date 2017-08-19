@@ -28,8 +28,7 @@ from sys import stdout
 
 from gi.repository import Gio
 
-from HardcodeTray.const import (CHMOD_IGNORE_LIST, GROUP_ID, KDE_CONFIG_FILE, USER_ID,
-                                USERHOME)
+from HardcodeTray.const import KDE_CONFIG_FILE, USERHOME
 from HardcodeTray.modules.log import Logger
 
 
@@ -55,7 +54,6 @@ def symlink_file(source, link_name):
     """Symlink a file, remove the dest file if already exists."""
     try:
         symlink(source, link_name)
-        mchown(link_name)
     except FileExistsError:
         remove(link_name)
         symlink_file(source, link_name)
@@ -152,29 +150,6 @@ def get_cinnamon_scaling_factor():
     return 1
 
 
-def mchown(directory):
-    """
-    Fix folder/file permissions.
-
-    Args:
-        directory (str): folder/file path
-    """
-    path_list = directory.split(path.sep)
-    dir_path = ""
-    # Check if the file/folder is in the home directory
-    if USERHOME in directory:
-        for dir_ in path_list:
-            dir_path += str(dir_) + path.sep
-            # Be sure to not change / permissions
-            if dir_path.replace(path.sep, "") not in CHMOD_IGNORE_LIST:
-                if path.isdir(dir_path) and USER_ID != 0 and GROUP_ID != 0:
-                    chown(dir_path, USER_ID, GROUP_ID)
-                else:
-                    file_path = dir_path.rstrip(path.sep)
-                    if not path.islink(file_path):
-                        execute(["chmod", "0777", file_path])
-
-
 def create_dir(directory):
     """
     Create a directory and fix folder permissions.
@@ -185,7 +160,6 @@ def create_dir(directory):
     if not path.exists(directory):
         Logger.debug("Creating directory: {}".format(directory))
         makedirs(directory, exist_ok=True)
-        mchown(directory)
 
 
 def execute(command_list, verbose=True, shell=False, working_directory=None):

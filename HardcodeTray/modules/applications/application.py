@@ -28,7 +28,7 @@ from HardcodeTray.decorators import install_wrapper, revert_wrapper, symlinks_in
 from HardcodeTray.enum import Action
 from HardcodeTray.modules.backup import Backup
 from HardcodeTray.modules.log import Logger
-from HardcodeTray.utils import mchown, symlink_file
+from HardcodeTray.utils import symlink_file
 
 
 class Application:
@@ -131,7 +131,6 @@ class Application:
             else:
                 App.svg().to_png(theme_icon, output_icon)
 
-            mchown(output_icon)
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
