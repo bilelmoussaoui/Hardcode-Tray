@@ -1,0 +1,20 @@
+{
+    "name": "Liferea",
+    "app_path": [
+        "/usr/bin/liferea"
+    ],
+    "icons_path": [
+        "/usr/share/pixmaps/",
+        "/usr/share/liferea/pixmaps/"
+    ],
+    "icons": {
+        "unread": {
+            "original": "unread.png",
+            "theme": "liferea-unread"
+        },
+        "available": {
+            "original": "available.png",
+            "theme": "liferea-available"
+        }
+    }
+}
