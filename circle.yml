@@ -10,6 +10,7 @@ jobs:
           meson
           gettext
           gtk3-devel
+          python-cffi
       - checkout
       - run: sudo pip3 install --upgrade pip
       - run: sudo pip3 install cairosvg pylint jsonschema
