@@ -28,7 +28,7 @@ from jsonschema import validate, ValidationError
 DB_FOLDER = path.join(path.dirname(path.abspath(__file__)),
                       "../../data/database")
 DB_FILES = sorted(glob("{}/*.json".format(DB_FOLDER)))
-SCHEMA_FILE = path.join(path.abspath(__file__), 'schema.json')
+SCHEMA_FILE = path.join(path.dirname(path.abspath(__file__)), 'schema.json')
 
 with open(SCHEMA_FILE, 'r') as schema_obj:
     SCHEMA = json.load(schema_obj)
