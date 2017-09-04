@@ -14,8 +14,9 @@ before_install:
     - sh -e /etc/init.d/xvfb start
     - sleep 3;
 install:
-    - sudo pip3 install cairosvg pylint meson
+    - sudo pip3 install cairosvg pylint meson jsonschema
     - meson builddir
     - sudo ./build/ninja -C builddir install
 script:
     - find /usr/lib/python3.4/site-packages/HardcodeTray/ -name "*.py" | xargs pylint --rcfile=.pylintrc $1
+    - python3 ./tests/database/database.py

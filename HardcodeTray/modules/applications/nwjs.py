@@ -35,7 +35,6 @@ class NWJSApplication(ExtractApplication):
         ExtractApplication.__init__(self, parser)
 
         self.tmp_path = path.join(gettempdir(), "{}_extracted".format(self.name))
-        self.tmp_data = path.join(self.tmp_path, self.nwjs_path)
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""

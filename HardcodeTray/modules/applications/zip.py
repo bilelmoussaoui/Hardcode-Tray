@@ -35,7 +35,6 @@ class ZipApplication(ExtractApplication):
         ExtractApplication.__init__(self, parser)
 
         self.tmp_path = path.join(gettempdir(), "_{}".format(self.name))
-        self.tmp_data = path.join(self.tmp_path, self.zip_path)
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""

@@ -8,14 +8,13 @@
     ],
     "binary": "Messenger",
     "script": "nwjs",
-    "nwjs_path": "images/",
     "icons": {
         "tray": {
-            "original": "icon_tray.png",
+            "original": "images/icon_tray.png",
             "theme": "messenger-indicator"
         },
         "unread": {
-            "original": "icon_tray_alert.png",
+            "original": "images/icon_tray_alert.png",
             "theme": "messenger-notification"
         }
     }
