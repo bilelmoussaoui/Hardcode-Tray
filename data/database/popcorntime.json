@@ -8,10 +8,9 @@
     ],
     "binary": "Popcorn-Time-CE",
     "script": "nwjs",
-    "nwjs_path": "src/app/images/",
     "icons": {
         "tray": {
-            "original": "icon.png",
+            "original": "src/app/images/icon.png",
             "theme": "popcorntime-tray"
         }
     }

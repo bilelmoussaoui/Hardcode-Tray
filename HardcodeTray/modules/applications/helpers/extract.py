@@ -33,7 +33,6 @@ class ExtractApplication(BinaryApplication):
     def __init__(self, parser):
         BinaryApplication.__init__(self, parser)
 
-        self.tmp_data = None
 
     def execute(self, action):
         """Execute actions: Apply/Revert."""
@@ -43,9 +42,9 @@ class ExtractApplication(BinaryApplication):
             self.extract(icon_path) # Extract the file
             for icon in self.icons:
                 if action == Action.APPLY:
-                    self.install_icon(icon, self.tmp_data)
+                    self.install_icon(icon, self.tmp_path)
                 elif action == Action.REVERT:
-                    self.revert_icon(icon, self.tmp_data)
+                    self.revert_icon(icon, self.tmp_path)
             self.pack(icon_path) # Pack the file
         self.success = not self.is_corrupted
 

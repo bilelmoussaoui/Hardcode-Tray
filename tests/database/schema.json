@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "app_path": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "icons_path": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "icons": {
+            "anyOf": [
+                {
+                    "type": "object",
+                    "items": {
+                        "type": "object",
+                        "items": {
+                            "theme": {"type": "string"},
+                            "original": {"type": "string"}
+                        },
+                        "required": ["theme", "original"]
+                    }
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "is_qt": {
+            "type": "boolean"
+        },
+        "force_create_folder": {
+            "type": "boolean"
+        },
+        "backup_ignore": {
+            "type": "boolean"
+        },
+        "binary": {
+            "type": "string"
+        },
+        "script": {
+            "type": "string",
+            "enum": [
+                "electron",
+                "nwjs",
+                "zip",
+                "pak"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "app_path",
+        "icons_path",
+        "icons"
+    ]
+}

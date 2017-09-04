@@ -8,18 +8,17 @@
     ],
     "binary": "Gitter",
     "script": "nwjs",
-    "nwjs_path": "img/",
     "icons": {
         "disconnected": {
-            "original": "linux-icon-logo-disconnected.png",
+            "original": "img/linux-icon-logo-disconnected.png",
             "theme": "gitter-indicator-disconnected"
         },
         "unread": {
-            "original": "linux-icon-logo-connected-unread.png",
+            "original": "img/linux-icon-logo-connected-unread.png",
             "theme": "gitter-indicator-notification"
         },
         "connected": {
-            "original": "linux-icon-logo-connected.png",
+            "original": "img/linux-icon-logo-connected.png",
             "theme": "gitter-indicator"
         }
     }
