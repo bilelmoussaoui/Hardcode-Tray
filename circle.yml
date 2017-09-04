@@ -7,9 +7,10 @@ jobs:
     steps:
       - run: >
           dnf -y install
-          meson
           gettext
           gtk3-devel
+          meson
+          sudo
       - checkout
       - run: sudo pip3 install --upgrade pip
       - run: sudo pip3 install cairosvg pylint jsonschema
