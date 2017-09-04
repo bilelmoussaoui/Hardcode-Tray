@@ -28,8 +28,9 @@ from jsonschema import validate, ValidationError
 DB_FOLDER = path.join(path.dirname(path.abspath(__file__)),
                       "../../data/database")
 DB_FILES = sorted(glob("{}/*.json".format(DB_FOLDER)))
+SCHEMA_FILE = path.join(path.dirname(path.abspath(__file__)), 'schema.json')
 
-with open('./schema.json', 'r') as schema_obj:
+with open(SCHEMA_FILE, 'r') as schema_obj:
     SCHEMA = json.load(schema_obj)
 
 has_errors = False
@@ -38,9 +39,10 @@ for data_file in DB_FILES:
     with open(data_file, 'r') as file_obj:
         try:
             validate(json.load(file_obj), SCHEMA)
-        except ValidationError:
+        except (ValidationError, json.decoder.JSONDecodeError) as error:
             has_errors = True
             print("\033[91m File invalid: {}\033[0m".format(filename))
+            print("\033[91m {}\033[0m".format(error))
         else:
             print("\033[92m File Valid: {}\033[0m".format(filename))
 exit(int(has_errors))
