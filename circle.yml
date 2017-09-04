@@ -16,7 +16,7 @@ jobs:
           python-cffi
       - checkout
       - run: pip3 install --user --upgrade pip
-      - run: pip3 install --user cairosvg jsonschema
+      - run: pip3 install --user jsonschema
       - run: meson builddir
       - run: ninja -C builddir install
       - run: python3 ./tests/database/database.py
