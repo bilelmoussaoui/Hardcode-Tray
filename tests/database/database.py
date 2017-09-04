@@ -39,9 +39,10 @@ for data_file in DB_FILES:
     with open(data_file, 'r') as file_obj:
         try:
             validate(json.load(file_obj), SCHEMA)
-        except ValidationError:
+        except (ValidationError, json.decoder.JSONDecodeError) as error:
             has_errors = True
             print("\033[91m File invalid: {}\033[0m".format(filename))
+            print("\033[91m {}\033[0m".format(error))
         else:
             print("\033[92m File Valid: {}\033[0m".format(filename))
 exit(int(has_errors))
