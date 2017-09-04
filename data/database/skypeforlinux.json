@@ -128,6 +128,38 @@
         "_hidden-notification": {
             "original": "tray/win/tray-hiddenUnreadTemplate@2x.png",
             "theme": "skype-status-hidden-notification"
+        },
+        "offline_preview": {
+            "original": "images/tray/linux/tray-offlineTemplate.png",
+            "theme": "skype-status-offline"
+        },
+        "offline2_preview": {
+            "original": "images/tray/linux/tray-offlineTemplate@2x.png",
+            "theme": "skype-status-offline"
+        },
+        "offline-notification_preview": {
+            "original": "images/tray/linux/tray-offlineUnreadTemplate.png",
+            "theme": "skype-status-offline-notification"
+        },
+        "offline-notification2_preview": {
+            "original": "images/tray/linux/tray-offlineUnreadTemplate@2x.png",
+            "theme": "skype-status-offline-notification"
+        },
+        "online_preview": {
+            "original": "images/tray/linux/tray-onlineTemplate.png",
+            "theme": "skype-status-connected"
+        },
+        "online2_preview": {
+            "original": "images/tray/linux/tray-onlineTemplate@2x.png",
+            "theme": "skype-status-connected"
+        },
+        "online-notification_preview": {
+            "original": "images/tray/linux/tray-onlineUnreadTemplate.png",
+            "theme": "skype-status-connected-notification"
+        },
+        "online-notification2_preview": {
+            "original": "images/tray/linux/tray-onlineUnreadTemplate@2x.png",
+            "theme": "skype-status-connected-notification"
         }
     }
 }
