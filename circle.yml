@@ -1,0 +1,19 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: fedora:latest
+    working_directory: ~/Hardcode-Tray
+    steps:
+      - run: >
+          dnf -y install
+          meson
+          gettext
+          gtk3-devel
+      - checkout
+      - run: pip3 install cairosvg pylint jsonschema
+      - run: meson builddir
+      - run: sudo ninja -C builddir install
+      - run: python3 ./tests/database/database.py
+      - run: sh ./tests/pylint.sh
