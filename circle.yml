@@ -11,7 +11,7 @@ jobs:
           libffi
           gtk3-devel
           meson
-          ninja
+          ninja-build
           pylint
       - checkout
       - run: pip3 install --user --upgrade pip
