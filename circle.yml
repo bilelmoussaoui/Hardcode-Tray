@@ -8,11 +8,14 @@ jobs:
       - run: >
           dnf -y install
           gettext
+          libffi
           gtk3-devel
           meson
+          ninja
+          pylint
       - checkout
       - run: pip3 install --user --upgrade pip
-      - run: pip3 install --user cairosvg pylint jsonschema
+      - run: pip3 install --user cairosvg jsonschema
       - run: meson builddir
       - run: ninja -C builddir install
       - run: python3 ./tests/database/database.py
