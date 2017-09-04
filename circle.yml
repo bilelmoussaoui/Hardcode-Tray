@@ -13,6 +13,7 @@ jobs:
           meson
           ninja-build
           pylint
+          python-cffi
       - checkout
       - run: pip3 install --user --upgrade pip
       - run: pip3 install --user cairosvg jsonschema
