@@ -15,6 +15,7 @@ jobs:
           ninja-build
           pylint
           python-cffi
+          python3-gobject
       - checkout
       - run: pip3 install --user --upgrade pip
       - run: pip3 install --user jsonschema
