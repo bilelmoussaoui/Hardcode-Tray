@@ -11,7 +11,8 @@ jobs:
           gettext
           gtk3-devel
       - checkout
-      - run: pip3 install cairosvg pylint jsonschema
+      - run: sudo pip3 install --upgrade pip
+      - run: sudo pip3 install cairosvg pylint jsonschema
       - run: meson builddir
       - run: sudo ninja -C builddir install
       - run: python3 ./tests/database/database.py
