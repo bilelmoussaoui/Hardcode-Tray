@@ -19,4 +19,4 @@ install:
     - sudo ./build/ninja -C builddir install
 script:
     - find /usr/lib/python3.4/site-packages/HardcodeTray/ -name "*.py" | xargs pylint --rcfile=.pylintrc $1
-    - python ./tests/database/database.py
+    - python3 ./tests/database/database.py
