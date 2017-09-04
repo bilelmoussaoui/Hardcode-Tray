@@ -9,7 +9,7 @@ jobs:
           dnf -y install
           gettext
           libffi
-          gobject-introspection
+          gobject-introspection-devel
           gtk3-devel
           meson
           ninja-build
