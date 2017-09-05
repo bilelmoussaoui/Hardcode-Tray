@@ -85,7 +85,8 @@ class Parser:
                     if key not in do_later:
                         setattr(self, key, value)
         except (FileNotFoundError, ValueError, KeyError):
-            Logger.error("Application file is broken: {}".format(self._db_file))
+            Logger.error("Application file is broken"
+                         ": {}".format(self._db_file))
 
         self._parse_paths(data["app_path"], "app_path")
         self._parse_paths(data["icons_path"], "icons_path")

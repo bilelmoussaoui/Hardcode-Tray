@@ -21,6 +21,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 
 from os import path
 
+
 def dropbox_callback(directory):
     """
     Correct the hardcoded dropbox directory.

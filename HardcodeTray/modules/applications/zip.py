@@ -43,7 +43,8 @@ class ZipApplication(ExtractApplication):
 
         makedirs(self.tmp_path, exist_ok=True)
 
-        Logger.debug("Zip Application: Extracting of {} started".format(self.binary))
+        Logger.debug("Zip Application: Extracting of "
+                     "{} started".format(self.binary))
 
         with ZipFile(path.join(str(icon_path), self.binary)) as zip_object:
             zip_object.extractall(self.tmp_path)
@@ -55,7 +56,8 @@ class ZipApplication(ExtractApplication):
         zip_file = path.join(str(icon_path), self.binary)
 
         if path.isfile(zip_file):
-            Logger.debug("Zip Application: Removing old binary file {}".format(zip_file))
+            Logger.debug("Zip Application: Removing "
+                         "old binary file {}".format(zip_file))
             remove(zip_file)
 
         make_archive(zip_file.replace(".zip", ""), 'zip', self.tmp_path)

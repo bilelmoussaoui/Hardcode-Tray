@@ -47,7 +47,7 @@ class SVG:
             module = ConversionTools.choices()[conversion_tool].lower()
             svg = import_module("HardcodeTray.modules.svg." + module)
             return getattr(svg, conversion_tool)
-
+        svg = None
         if conversion_tool:
             try:
                 svg = load(conversion_tool)(colors)
@@ -61,7 +61,9 @@ class SVG:
                     break
                 except SVGNotInstalled:
                     Logger.debug("SVG Factory: Failed {}".format(tool))
-        return svg
+        if svg:
+            return svg
+        exit(_("Failed to load any SVG module."))
 
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""

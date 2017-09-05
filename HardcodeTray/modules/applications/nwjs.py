@@ -34,7 +34,8 @@ class NWJSApplication(ExtractApplication):
         """Init method."""
         ExtractApplication.__init__(self, parser)
 
-        self.tmp_path = path.join(gettempdir(), "{}_extracted".format(self.name))
+        self.tmp_path = path.join(gettempdir(),
+                                  "{}_extracted".format(self.name))
 
     def extract(self, icon_path):
         """Extract the zip file in /tmp directory."""
@@ -53,7 +54,8 @@ class NWJSApplication(ExtractApplication):
         if nwjs_sdk:
             binary_file = path.join(gettempdir(), self.binary)
 
-            Logger.debug("NWJS Application: Creating new archive {}".format(self.binary))
+            Logger.debug(
+                "NWJS Application: Creating new archive {}".format(self.binary))
             make_archive(binary_file, "zip", self.tmp_path)
 
             move(binary_file + ".zip", binary_file + ".nw")
