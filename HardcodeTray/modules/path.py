@@ -26,6 +26,7 @@ from HardcodeTray.utils import get_exact_folder
 
 from HardcodeTray.modules.log import Logger
 
+
 class Path:
     """
         Path class:
@@ -101,4 +102,5 @@ class Path:
         if hasattr(module, callback):
             method = getattr(module, callback)
             self.path = get_exact_folder(key, self.path, method)
-            Logger.debug("Path with condition: {} {}".format(callback, self.path))
+            Logger.debug("Path with condition: "
+                         "{} {}".format(callback, self.path))

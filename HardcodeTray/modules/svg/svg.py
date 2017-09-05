@@ -64,7 +64,7 @@ class SVG:
         if svg:
             return svg
         exit(_("Failed to load any SVG module."))
-        
+
     def to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png and save it in a destination."""
         if width and not height:

@@ -131,7 +131,6 @@ class Application:
             else:
                 App.svg().to_png(theme_icon, output_icon)
 
-
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
         output_icon = path.join(str(icon_path), icon.original)

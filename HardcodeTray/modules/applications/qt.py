@@ -54,8 +54,10 @@ class QtApplication(Application):
             icon_path = str(icon_path)
             if path.isdir(icon_path):
                 rmtree(icon_path)
-                Logger.debug("Qt Application: Reverting {} is done.".format(self.name))
+                Logger.debug("Qt Application: Reverting"
+                             " {} is done.".format(self.name))
                 done = True
         if not done:
-            Logger.debug("Qt Application: Reverting {} is not done.".format(self.name))
+            Logger.debug("Qt Application: Reverting "
+                         "{} is not done.".format(self.name))
         self.success = done

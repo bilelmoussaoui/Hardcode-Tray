@@ -67,7 +67,7 @@ class ElectronApplication(BinaryApplication):
         if backup:
             backup_file = "|".join(asar.keys)
             content = asar.old_content
-            if content: # in case the icon doesn't exists anymore
+            if content:  # in case the icon doesn't exists anymore
                 self.backup.file(backup_file, content)
 
         self.is_corrupted = not asar.success

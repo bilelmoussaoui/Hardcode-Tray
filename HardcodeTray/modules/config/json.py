@@ -55,7 +55,6 @@ class JSONConfig:
         else:
             Logger.debug("Config file: Not found.")
 
-
     def icon_size(self):
         """Return the icon size in the config file."""
         icon_size = None

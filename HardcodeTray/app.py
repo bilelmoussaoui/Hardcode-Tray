@@ -35,6 +35,7 @@ from HardcodeTray.modules.config.system import SystemConfig
 
 from HardcodeTray.modules.svg.svg import SVG
 
+
 class App:
     """
         Main application.
