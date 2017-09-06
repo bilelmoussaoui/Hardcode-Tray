@@ -1,27 +1,27 @@
 {
-    "name": "Yakyak",
-    "app_path": [
-        "/usr/share/yakyak/"
-    ],
-    "icons_path": [
-        "/usr/share/yakyak/app/icons/"
-    ],
-    "icons": [
-        {
-            "original": "icon-read.png",
-            "theme": "hangouts-available"
-        },
-        {
-            "original": "icon-read@2x.png",
-            "theme": "hangouts-available"
-        },
-        {
-            "original": "icon-unread.png",
-            "theme": "hangouts-notification"
-        },
-        {
-            "original": "icon-unread@2x.png",
-            "theme": "hangouts-notification"
-        }
-    ]
+  "name": "Yakyak",
+  "app_path": [
+    "/usr/share/yakyak/"
+  ],
+  "icons_path": [
+    "/usr/share/yakyak/app/icons/"
+  ],
+  "icons": [
+    {
+      "original": "icon-read.png",
+      "theme": "hangouts-available"
+    },
+    {
+      "original": "icon-read@2x.png",
+      "theme": "hangouts-available"
+    },
+    {
+      "original": "icon-unread.png",
+      "theme": "hangouts-notification"
+    },
+    {
+      "original": "icon-unread@2x.png",
+      "theme": "hangouts-notification"
+    }
+  ]
 }

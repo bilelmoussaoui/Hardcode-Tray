@@ -1,25 +1,25 @@
 {
-    "name": "Gitter",
-    "app_path": [
-        "/usr/bin/gitter"
-    ],
-    "icons_path": [
-        "/opt/Gitter/linux64/"
-    ],
-    "binary": "Gitter",
-    "module": "nwjs",
-    "icons": [
-        {
-            "original": "img/linux-icon-logo-disconnected.png",
-            "theme": "gitter-indicator-disconnected"
-        },
-        {
-            "original": "img/linux-icon-logo-connected-unread.png",
-            "theme": "gitter-indicator-notification"
-        },
-        {
-            "original": "img/linux-icon-logo-connected.png",
-            "theme": "gitter-indicator"
-        }
-    ]
+  "name": "Gitter",
+  "app_path": [
+    "/usr/bin/gitter"
+  ],
+  "icons_path": [
+    "/opt/Gitter/linux64/"
+  ],
+  "binary": "Gitter",
+  "module": "nwjs",
+  "icons": [
+    {
+      "original": "img/linux-icon-logo-disconnected.png",
+      "theme": "gitter-indicator-disconnected"
+    },
+    {
+      "original": "img/linux-icon-logo-connected-unread.png",
+      "theme": "gitter-indicator-notification"
+    },
+    {
+      "original": "img/linux-icon-logo-connected.png",
+      "theme": "gitter-indicator"
+    }
+  ]
 }

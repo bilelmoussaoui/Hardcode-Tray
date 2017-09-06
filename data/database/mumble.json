@@ -1,16 +1,16 @@
 {
-    "name": "Mumble",
-    "app_path": [
-        "/usr/bin/mumble"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/mumble/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "3b6b0df38d89edf726735f02f23d0f65",
-            "theme": "mumble-indicator"
-        }
-    ]
+  "name": "Mumble",
+  "app_path": [
+    "/usr/bin/mumble"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/mumble/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "3b6b0df38d89edf726735f02f23d0f65",
+      "theme": "mumble-indicator"
+    }
+  ]
 }

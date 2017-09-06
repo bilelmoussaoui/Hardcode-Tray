@@ -1,17 +1,17 @@
 {
-    "name": "Stremio",
-    "app_path": [
-        "/usr/share/stremio/"
-    ],
-    "icons_path": [
-        "/usr/share/stremio/resources/"
-    ],
-    "binary": "app.asar",
-    "module": "electron",
-    "icons": [
-        {
-            "original": "images/stremio-small.png",
-            "theme": "stremio-tray"
-        }
-    ]
+  "name": "Stremio",
+  "app_path": [
+    "/usr/share/stremio/"
+  ],
+  "icons_path": [
+    "/usr/share/stremio/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "images/stremio-small.png",
+      "theme": "stremio-tray"
+    }
+  ]
 }

@@ -1,20 +1,20 @@
 {
-    "name": "Synergy",
-    "app_path": [
-        "/usr/bin/synergy"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/synergy/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "fb0c715d61dd307a2885bf5ec1a197bd",
-            "theme": "synergy-panel"
-        },
-        {
-            "original": "28bf00a5115d5398379ed0827d52bf43",
-            "theme": "synergy-panel-ok"
-        }
-    ]
+  "name": "Synergy",
+  "app_path": [
+    "/usr/bin/synergy"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/synergy/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "fb0c715d61dd307a2885bf5ec1a197bd",
+      "theme": "synergy-panel"
+    },
+    {
+      "original": "28bf00a5115d5398379ed0827d52bf43",
+      "theme": "synergy-panel-ok"
+    }
+  ]
 }

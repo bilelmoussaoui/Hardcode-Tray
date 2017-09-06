@@ -1,17 +1,17 @@
 {
-    "name": "PopcornTime CE",
-    "app_path": [
-        "/usr/share/popcorntime-ce/"
-    ],
-    "icons_path": [
-        "/usr/share/popcorntime-ce/"
-    ],
-    "binary": "Popcorn-Time-CE",
-    "module": "nwjs",
-    "icons": [
-        {
-            "original": "src/app/images/icon.png",
-            "theme": "popcorntime-tray"
-        }
-    ]
+  "name": "PopcornTime CE",
+  "app_path": [
+    "/usr/share/popcorntime-ce/"
+  ],
+  "icons_path": [
+    "/usr/share/popcorntime-ce/"
+  ],
+  "binary": "Popcorn-Time-CE",
+  "module": "nwjs",
+  "icons": [
+    {
+      "original": "src/app/images/icon.png",
+      "theme": "popcorntime-tray"
+    }
+  ]
 }

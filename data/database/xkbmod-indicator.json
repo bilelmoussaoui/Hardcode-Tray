@@ -1,15 +1,15 @@
 {
-    "name": "Xkbmod Indicator",
-    "app_path": [
-        "/usr/share/indicator-xkbmod/"
-    ],
-    "icons_path": [
-        "/usr/share/indicator-xkbmod/icons/"
-    ],
-    "icons": [
-        {
-            "original": "icon.png",
-            "theme": "xkbmod-indicator"
-        }
-    ]
+  "name": "Xkbmod Indicator",
+  "app_path": [
+    "/usr/share/indicator-xkbmod/"
+  ],
+  "icons_path": [
+    "/usr/share/indicator-xkbmod/icons/"
+  ],
+  "icons": [
+    {
+      "original": "icon.png",
+      "theme": "xkbmod-indicator"
+    }
+  ]
 }

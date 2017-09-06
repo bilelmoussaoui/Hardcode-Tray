@@ -1,39 +1,39 @@
 {
-    "name": "Rambox",
-    "app_path": [
-        "/opt/rambox/",
-        "/opt/Rambox/"
-    ],
-    "icons_path": [
-        "/opt/rambox/resources/",
-        "/opt/Rambox/resources/"
-    ],
-    "binary": "app.asar",
-    "module": "electron",
-    "icons": [
-        {
-            "original": "resources/IconTray.png",
-            "theme": "rambox-indicator"
-        },
-        {
-            "original": "resources/IconTray@2x.png",
-            "theme": "rambox-indicator"
-        },
-        {
-            "original": "resources/IconTray@4x.png",
-            "theme": "rambox-indicator"
-        },
-        {
-            "original": "resources/IconTrayUnread.png",
-            "theme": "rambox-notification"
-        },
-        {
-            "original": "resources/IconTrayUnread@2x.png",
-            "theme": "rambox-notification"
-        },
-        {
-            "original": "resources/IconTrayUnread@4x.png",
-            "theme": "rambox-notification"
-        }
-    ]
+  "name": "Rambox",
+  "app_path": [
+    "/opt/rambox/",
+    "/opt/Rambox/"
+  ],
+  "icons_path": [
+    "/opt/rambox/resources/",
+    "/opt/Rambox/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "resources/IconTray.png",
+      "theme": "rambox-indicator"
+    },
+    {
+      "original": "resources/IconTray@2x.png",
+      "theme": "rambox-indicator"
+    },
+    {
+      "original": "resources/IconTray@4x.png",
+      "theme": "rambox-indicator"
+    },
+    {
+      "original": "resources/IconTrayUnread.png",
+      "theme": "rambox-notification"
+    },
+    {
+      "original": "resources/IconTrayUnread@2x.png",
+      "theme": "rambox-notification"
+    },
+    {
+      "original": "resources/IconTrayUnread@4x.png",
+      "theme": "rambox-notification"
+    }
+  ]
 }

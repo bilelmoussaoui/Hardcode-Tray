@@ -1,15 +1,15 @@
 {
-    "name": "Google Tasks Indicator",
-    "app_path": [
-        "/usr/share/google-tasks-indicator/"
-    ],
-    "icons_path": [
-        "/usr/share/google-tasks-indicator/icons/"
-    ],
-    "icons": [
-        "google-tasks-indicator-dark-normal.svg",
-        "google-tasks-indicator-dark-starred.svg",
-        "google-tasks-indicator-light-normal.svg",
-        "google-tasks-indicator-light-starred.svg"
-    ]
+  "name": "Google Tasks Indicator",
+  "app_path": [
+    "/usr/share/google-tasks-indicator/"
+  ],
+  "icons_path": [
+    "/usr/share/google-tasks-indicator/icons/"
+  ],
+  "icons": [
+    "google-tasks-indicator-dark-normal.svg",
+    "google-tasks-indicator-dark-starred.svg",
+    "google-tasks-indicator-light-normal.svg",
+    "google-tasks-indicator-light-starred.svg"
+  ]
 }

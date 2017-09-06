@@ -1,19 +1,19 @@
 {
-    "name": "Dropbox",
-    "app_path": [
-        "/opt/dropbox/",
-        "{userhome}/.dropbox-dist/"
-    ],
-    "icons_path": [
-        "/opt/dropbox/images/hicolor/16x16/status/",
-        "{userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/"
-    ],
-    "icons": [
-        "dropboxstatus-blank.png",
-        "dropboxstatus-busy.png",
-        "dropboxstatus-busy2.png",
-        "dropboxstatus-idle.png",
-        "dropboxstatus-logo.png",
-        "dropboxstatus-x.png"
-    ]
+  "name": "Dropbox",
+  "app_path": [
+    "/opt/dropbox/",
+    "{userhome}/.dropbox-dist/"
+  ],
+  "icons_path": [
+    "/opt/dropbox/images/hicolor/16x16/status/",
+    "{userhome}/.dropbox-dist/{dropbox}/images/hicolor/16x16/status/"
+  ],
+  "icons": [
+    "dropboxstatus-blank.png",
+    "dropboxstatus-busy.png",
+    "dropboxstatus-busy2.png",
+    "dropboxstatus-idle.png",
+    "dropboxstatus-logo.png",
+    "dropboxstatus-x.png"
+  ]
 }

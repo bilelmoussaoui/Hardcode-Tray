@@ -1,31 +1,31 @@
 {
-    "name": "Electronic WeChat",
-    "app_path": [
-        "/usr/lib/electronic-wechat/"
-    ],
-    "icons_path": [
-        "/usr/lib/electronic-wechat/assets/"
-    ],
-    "icons": [
-        {
-            "original": "status_bar_linux.png",
-            "theme": "wechat-tray"
-        },
-        {
-            "original": "tray_black.png",
-            "theme": "wechat-tray"
-        },
-        {
-            "original": "tray_white.png",
-            "theme": "wechat-tray"
-        },
-        {
-            "original": "tray_unread_white.png",
-            "theme": "wechat-tray-unread"
-        },
-        {
-            "original": "tray_unread_black.png",
-            "theme": "wechat-tray-unread"
-        }
-    ]
+  "name": "Electronic WeChat",
+  "app_path": [
+    "/usr/lib/electronic-wechat/"
+  ],
+  "icons_path": [
+    "/usr/lib/electronic-wechat/assets/"
+  ],
+  "icons": [
+    {
+      "original": "status_bar_linux.png",
+      "theme": "wechat-tray"
+    },
+    {
+      "original": "tray_black.png",
+      "theme": "wechat-tray"
+    },
+    {
+      "original": "tray_white.png",
+      "theme": "wechat-tray"
+    },
+    {
+      "original": "tray_unread_white.png",
+      "theme": "wechat-tray-unread"
+    },
+    {
+      "original": "tray_unread_black.png",
+      "theme": "wechat-tray-unread"
+    }
+  ]
 }

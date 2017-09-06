@@ -1,21 +1,21 @@
 {
-    "name": "MessengerForDesktop",
-    "app_path": [
-        "/opt/MessengerForDesktop/"
-    ],
-    "icons_path": [
-        "/opt/MessengerForDesktop/"
-    ],
-    "binary": "Messenger",
-    "module": "nwjs",
-    "icons": [
-        {
-            "original": "images/icon_tray.png",
-            "theme": "messenger-indicator"
-        },
-        {
-            "original": "images/icon_tray_alert.png",
-            "theme": "messenger-notification"
-        }
-    ]
+  "name": "MessengerForDesktop",
+  "app_path": [
+    "/opt/MessengerForDesktop/"
+  ],
+  "icons_path": [
+    "/opt/MessengerForDesktop/"
+  ],
+  "binary": "Messenger",
+  "module": "nwjs",
+  "icons": [
+    {
+      "original": "images/icon_tray.png",
+      "theme": "messenger-indicator"
+    },
+    {
+      "original": "images/icon_tray_alert.png",
+      "theme": "messenger-notification"
+    }
+  ]
 }

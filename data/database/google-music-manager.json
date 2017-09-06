@@ -1,19 +1,19 @@
 {
-    "name": "Google Music Manager",
-    "app_path": [
-        "/opt/google/musicmanager/"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/MusicManager/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "740a272c66baa9a105e48101377bd5a0",
-            "theme": "google-music-manager-panel",
-            "symlinks": [
-                "1e81c636c8e65b767474caf9dab52c37"
-            ]
-        }
-    ]
+  "name": "Google Music Manager",
+  "app_path": [
+    "/opt/google/musicmanager/"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/MusicManager/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "740a272c66baa9a105e48101377bd5a0",
+      "theme": "google-music-manager-panel",
+      "symlinks": [
+        "1e81c636c8e65b767474caf9dab52c37"
+      ]
+    }
+  ]
 }

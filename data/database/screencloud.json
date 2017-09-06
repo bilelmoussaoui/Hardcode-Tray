@@ -1,20 +1,20 @@
 {
-    "name": "ScreenCloud",
-    "app_path": [
-        "/usr/bin/screencloud"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "ea96aeff94b195ceed14c6b3f96f47e1",
-            "theme": "screencloud-indicator"
-        },
-        {
-            "original": "cabd24e9e2f8f313bc910b101daf6800",
-            "theme": "screencloud-uploading"
-        }
-    ]
+  "name": "ScreenCloud",
+  "app_path": [
+    "/usr/bin/screencloud"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "ea96aeff94b195ceed14c6b3f96f47e1",
+      "theme": "screencloud-indicator"
+    },
+    {
+      "original": "cabd24e9e2f8f313bc910b101daf6800",
+      "theme": "screencloud-uploading"
+    }
+  ]
 }

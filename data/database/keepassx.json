@@ -1,20 +1,19 @@
 {
-    "name": "Keepassx",
-    "app_path": [
-        "/usr/share/keepassx/"
-    ],
-    "icons_path": [
-        "/usr/share/keepassx/icons/"
-    ],
-    "icons": [
-
+  "name": "Keepassx",
+  "app_path": [
+    "/usr/share/keepassx/"
+  ],
+  "icons_path": [
+    "/usr/share/keepassx/icons/"
+  ],
+  "icons": [
     {
-            "original": "keepassx.png",
-            "theme": "keepassx-indicator"
-        },
-        {
-            "original": "keepassx_locked.png",
-            "theme": "keepassx-locked"
-        }
-    ]
+      "original": "keepassx.png",
+      "theme": "keepassx-indicator"
+    },
+    {
+      "original": "keepassx_locked.png",
+      "theme": "keepassx-locked"
+    }
+  ]
 }

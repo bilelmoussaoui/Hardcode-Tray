@@ -1,16 +1,16 @@
 {
-    "name": "QElectroTech",
-    "app_path": [
-        "/usr/share/qelectrotech/"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/qelectrotech/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "a95f785a927cc4c0e20ad945d18286e7",
-            "theme": "qelectrotech-indicator"
-        }
-    ]
+  "name": "QElectroTech",
+  "app_path": [
+    "/usr/share/qelectrotech/"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/qelectrotech/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "a95f785a927cc4c0e20ad945d18286e7",
+      "theme": "qelectrotech-indicator"
+    }
+  ]
 }

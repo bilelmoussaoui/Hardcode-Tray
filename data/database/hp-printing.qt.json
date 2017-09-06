@@ -1,20 +1,20 @@
 {
-    "name": "HP Printer",
-    "app_path": [
-        "/usr/bin/hp-systray"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/python2.7/{size}/",
-        "{userhome}/.local/share/sni-qt/icons/python3.5/{size}/"
-    ],
-    "module": "qt",
-    "icons": [
-        {
-            "original": "2f282c85ef0c788eb09624bc3decd0b5",
-            "theme": "hp-indicator",
-            "symlinks": [
-                "39d31fe8b825d025a4c20a155aba616f"
-            ]
-        }
-    ]
+  "name": "HP Printer",
+  "app_path": [
+    "/usr/bin/hp-systray"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/python2.7/{size}/",
+    "{userhome}/.local/share/sni-qt/icons/python3.5/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "2f282c85ef0c788eb09624bc3decd0b5",
+      "theme": "hp-indicator",
+      "symlinks": [
+        "39d31fe8b825d025a4c20a155aba616f"
+      ]
+    }
+  ]
 }

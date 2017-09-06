@@ -1,15 +1,15 @@
 {
-    "name": "Disper Indicator",
-    "app_path" : [
-        "/usr/lib/disper-indicator/"
-    ],
-    "icons_path": [
-        "/usr/share/pixmaps/disper-indicator/"
-    ],
-    "icons": [
-        {
-            "original": "disper.svg",
-            "theme": "disper-panel"
-        }
-    ]
+  "name": "Disper Indicator",
+  "app_path": [
+    "/usr/lib/disper-indicator/"
+  ],
+  "icons_path": [
+    "/usr/share/pixmaps/disper-indicator/"
+  ],
+  "icons": [
+    {
+      "original": "disper.svg",
+      "theme": "disper-panel"
+    }
+  ]
 }

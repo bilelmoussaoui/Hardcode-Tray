@@ -1,21 +1,21 @@
 {
-    "name": "Ghetto Skype",
-    "app_path": [
-        "/opt/Ghetto Skype/"
-    ],
-    "icons_path": [
-        "/opt/Ghetto Skype/resources/"
-    ],
-    "binary": "app.asar",
-    "module": "electron",
-    "icons": [
-        {
-            "original": "assets/skype24.png",
-            "theme": "skype-indicator"
-        },
-        {
-            "original": "assets/skype24-1.png",
-            "theme": "skype-status-connected-notification"
-        }
-    ]
+  "name": "Ghetto Skype",
+  "app_path": [
+    "/opt/Ghetto Skype/"
+  ],
+  "icons_path": [
+    "/opt/Ghetto Skype/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "assets/skype24.png",
+      "theme": "skype-indicator"
+    },
+    {
+      "original": "assets/skype24-1.png",
+      "theme": "skype-status-connected-notification"
+    }
+  ]
 }

@@ -1,12 +1,12 @@
 {
-    "name": "Ibus Anthy",
-    "app_path": [
-        "/usr/share/ibus-anthy/"
-    ],
-    "icons_path": [
-        "/usr/share/ibus-anthy/icons/"
-    ],
-    "icons": [
-        "ibus-anthy.png"
-    ]
+  "name": "Ibus Anthy",
+  "app_path": [
+    "/usr/share/ibus-anthy/"
+  ],
+  "icons_path": [
+    "/usr/share/ibus-anthy/icons/"
+  ],
+  "icons": [
+    "ibus-anthy.png"
+  ]
 }

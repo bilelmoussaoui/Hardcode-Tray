@@ -1,15 +1,15 @@
 {
-    "name": "Steam",
-    "app_path": [
-        "{userhome}/.steam/"
-    ],
-    "icons_path": [
-        "/usr/share/pixmaps/"
-    ],
-    "icons": [
-        {
-            "original": "steam_tray_mono.png",
-            "theme": "steam_tray_mono"
-        }
-    ]
+  "name": "Steam",
+  "app_path": [
+    "{userhome}/.steam/"
+  ],
+  "icons_path": [
+    "/usr/share/pixmaps/"
+  ],
+  "icons": [
+    {
+      "original": "steam_tray_mono.png",
+      "theme": "steam_tray_mono"
+    }
+  ]
 }

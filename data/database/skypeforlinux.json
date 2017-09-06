@@ -1,165 +1,165 @@
 {
-    "name": "Skype",
-    "app_path": [
-        "/usr/share/skypeforlinux/"
-    ],
-    "icons_path": [
-        "/usr/share/skypeforlinux/resources/"
-    ],
-    "module": "electron",
-    "binary": "app.asar",
-    "icons": [
-        {
-            "original": "apps/swx/tray/win/tray-donotdisturbTemplate@2x.png",
-            "theme": "skype-status-disturb"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-donotdisturbSmallTemplate@2x.png",
-            "theme": "skype-status-disturb"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-donotdisturbUnreadTemplate@2x.png",
-            "theme": "skype-status-disturb-notification"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-awayTemplate@2x.png",
-            "theme": "skype-status-away"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-awaySmallTemplate@2x.png",
-            "theme": "skype-status-away"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-awayUnreadTemplate@2x.png",
-            "theme": "skype-status-away-notification"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-offlineTemplate@2x.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-offlineSmallTemplate@2x.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-onlineTemplate@2x.png",
-            "theme": "skype-status-connected"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-onlineSmallTemplate@2x.png",
-            "theme": "skype-status-connected"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-onlineUnreadTemplate@2x.png",
-            "theme": "skype-status-connected-notification"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-skypeTemplate@2x.png",
-            "theme": "skype-indicator"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-hiddenTemplate@2x.png",
-            "theme": "skype-status-hidden"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-hiddenSmallTemplate@2x.png",
-            "theme": "skype-status-hidden"
-        },
-        {
-            "original": "apps/swx/tray/win/tray-hiddenUnreadTemplate@2x.png",
-            "theme": "skype-status-hidden-notification"
-        },
-        {
-            "original": "tray/win/tray-donotdisturbTemplate@2x.png",
-            "theme": "skype-status-disturb"
-        },
-        {
-            "original": "tray/win/tray-donotdisturbSmallTemplate@2x.png",
-            "theme": "skype-status-disturb"
-        },
-        {
-            "original": "tray/win/tray-donotdisturbUnreadTemplate@2x.png",
-            "theme": "skype-status-disturb-notification"
-        },
-        {
-            "original": "tray/win/tray-awayTemplate@2x.png",
-            "theme": "skype-status-away"
-        },
-        {
-            "original": "tray/win/tray-awaySmallTemplate@2x.png",
-            "theme": "skype-status-away"
-        },
-        {
-            "original": "tray/win/tray-awayUnreadTemplate@2x.png",
-            "theme": "skype-status-away-notification"
-        },
-        {
-            "original": "tray/win/tray-offlineTemplate@2x.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "tray/win/tray-offlineSmallTemplate@2x.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "tray/win/tray-onlineTemplate@2x.png",
-            "theme": "skype-status-connected"
-        },
-        {
-            "original": "tray/win/tray-onlineSmallTemplate@2x.png",
-            "theme": "skype-status-connected"
-        },
-        {
-            "original": "tray/win/tray-onlineUnreadTemplate@2x.png",
-            "theme": "skype-status-connected-notification"
-        },
-        {
-            "original": "tray/win/tray-skypeTemplate@2x.png",
-            "theme": "skype-indicator"
-        },
-        {
-            "original": "tray/win/tray-hiddenTemplate@2x.png",
-            "theme": "skype-status-hidden"
-        },
-        {
-            "original": "tray/win/tray-hiddenSmallTemplate@2x.png",
-            "theme": "skype-status-hidden"
-        },
-        {
-            "original": "tray/win/tray-hiddenUnreadTemplate@2x.png",
-            "theme": "skype-status-hidden-notification"
-        },
-        {
-            "original": "images/tray/linux/tray-offlineTemplate.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "images/tray/linux/tray-offlineTemplate@2x.png",
-            "theme": "skype-status-offline"
-        },
-        {
-            "original": "images/tray/linux/tray-offlineUnreadTemplate.png",
-            "theme": "skype-status-offline-notification"
-        },
-         {
-            "original": "images/tray/linux/tray-offlineUnreadTemplate@2x.png",
-            "theme": "skype-status-offline-notification"
-        },
-       {
-            "original": "images/tray/linux/tray-onlineTemplate.png",
-            "theme": "skype-status-connected"
-        },
-        {
-            "original": "images/tray/linux/tray-onlineTemplate@2x.png",
-            "theme": "skype-status-connected"
-        },
-       {
-            "original": "images/tray/linux/tray-onlineUnreadTemplate.png",
-            "theme": "skype-status-connected-notification"
-        },
-        {
-            "original": "images/tray/linux/tray-onlineUnreadTemplate@2x.png",
-            "theme": "skype-status-connected-notification"
-        }
-    ]
+  "name": "Skype",
+  "app_path": [
+    "/usr/share/skypeforlinux/"
+  ],
+  "icons_path": [
+    "/usr/share/skypeforlinux/resources/"
+  ],
+  "module": "electron",
+  "binary": "app.asar",
+  "icons": [
+    {
+      "original": "apps/swx/tray/win/tray-donotdisturbTemplate@2x.png",
+      "theme": "skype-status-disturb"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-donotdisturbSmallTemplate@2x.png",
+      "theme": "skype-status-disturb"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-donotdisturbUnreadTemplate@2x.png",
+      "theme": "skype-status-disturb-notification"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-awayTemplate@2x.png",
+      "theme": "skype-status-away"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-awaySmallTemplate@2x.png",
+      "theme": "skype-status-away"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-awayUnreadTemplate@2x.png",
+      "theme": "skype-status-away-notification"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-offlineTemplate@2x.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-offlineSmallTemplate@2x.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-onlineTemplate@2x.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-onlineSmallTemplate@2x.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-onlineUnreadTemplate@2x.png",
+      "theme": "skype-status-connected-notification"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-skypeTemplate@2x.png",
+      "theme": "skype-indicator"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-hiddenTemplate@2x.png",
+      "theme": "skype-status-hidden"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-hiddenSmallTemplate@2x.png",
+      "theme": "skype-status-hidden"
+    },
+    {
+      "original": "apps/swx/tray/win/tray-hiddenUnreadTemplate@2x.png",
+      "theme": "skype-status-hidden-notification"
+    },
+    {
+      "original": "tray/win/tray-donotdisturbTemplate@2x.png",
+      "theme": "skype-status-disturb"
+    },
+    {
+      "original": "tray/win/tray-donotdisturbSmallTemplate@2x.png",
+      "theme": "skype-status-disturb"
+    },
+    {
+      "original": "tray/win/tray-donotdisturbUnreadTemplate@2x.png",
+      "theme": "skype-status-disturb-notification"
+    },
+    {
+      "original": "tray/win/tray-awayTemplate@2x.png",
+      "theme": "skype-status-away"
+    },
+    {
+      "original": "tray/win/tray-awaySmallTemplate@2x.png",
+      "theme": "skype-status-away"
+    },
+    {
+      "original": "tray/win/tray-awayUnreadTemplate@2x.png",
+      "theme": "skype-status-away-notification"
+    },
+    {
+      "original": "tray/win/tray-offlineTemplate@2x.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "tray/win/tray-offlineSmallTemplate@2x.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "tray/win/tray-onlineTemplate@2x.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "tray/win/tray-onlineSmallTemplate@2x.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "tray/win/tray-onlineUnreadTemplate@2x.png",
+      "theme": "skype-status-connected-notification"
+    },
+    {
+      "original": "tray/win/tray-skypeTemplate@2x.png",
+      "theme": "skype-indicator"
+    },
+    {
+      "original": "tray/win/tray-hiddenTemplate@2x.png",
+      "theme": "skype-status-hidden"
+    },
+    {
+      "original": "tray/win/tray-hiddenSmallTemplate@2x.png",
+      "theme": "skype-status-hidden"
+    },
+    {
+      "original": "tray/win/tray-hiddenUnreadTemplate@2x.png",
+      "theme": "skype-status-hidden-notification"
+    },
+    {
+      "original": "images/tray/linux/tray-offlineTemplate.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "images/tray/linux/tray-offlineTemplate@2x.png",
+      "theme": "skype-status-offline"
+    },
+    {
+      "original": "images/tray/linux/tray-offlineUnreadTemplate.png",
+      "theme": "skype-status-offline-notification"
+    },
+    {
+      "original": "images/tray/linux/tray-offlineUnreadTemplate@2x.png",
+      "theme": "skype-status-offline-notification"
+    },
+    {
+      "original": "images/tray/linux/tray-onlineTemplate.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "images/tray/linux/tray-onlineTemplate@2x.png",
+      "theme": "skype-status-connected"
+    },
+    {
+      "original": "images/tray/linux/tray-onlineUnreadTemplate.png",
+      "theme": "skype-status-connected-notification"
+    },
+    {
+      "original": "images/tray/linux/tray-onlineUnreadTemplate@2x.png",
+      "theme": "skype-status-connected-notification"
+    }
+  ]
 }

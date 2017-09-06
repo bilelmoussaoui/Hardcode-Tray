@@ -1,51 +1,51 @@
 {
-    "name": "Ibus Mozc",
-    "app_path": [
-        "/usr/share/ibus-mozc/"
-    ],
-    "icons_path": [
-        "/usr/share/ibus-mozc/"
-    ],
-    "icons": [
-        {
-            "original": "alpha_full.png",
-            "theme": "ibus-mozc-alpha_full"
-        },
-        {
-            "original": "alpha_half.png",
-            "theme": "ibus-mozc-alpha_half"
-        },
-       {
-            "original": "direct.png",
-            "theme": "ibus-mozc-direct"
-        },
-        {
-            "original": "directory.png",
-            "theme": "ibus-mozc-directory"
-        },
+  "name": "Ibus Mozc",
+  "app_path": [
+    "/usr/share/ibus-mozc/"
+  ],
+  "icons_path": [
+    "/usr/share/ibus-mozc/"
+  ],
+  "icons": [
     {
-            "original": "hiragana.png",
-            "theme": "ibus-mozc-hiragana"
-        },
-        {
-            "original": "katakana_full.png",
-            "theme": "ibus-mozc-katakana_full"
-        },
-        {
-            "original": "katakana_half.png",
-            "theme": "ibus-mozc-katakana_half"
-        },
-        {
-            "original": "product_icon.png",
-            "theme": "ibus-mozc-product_icon"
-        },
-        {
-            "original": "properties.png",
-            "theme": "ibus-mozc-properties"
-        },
-        {
-            "original": "tools.png",
-            "theme": "ibus-mozc-tool"
-        }
-    ]
+      "original": "alpha_full.png",
+      "theme": "ibus-mozc-alpha_full"
+    },
+    {
+      "original": "alpha_half.png",
+      "theme": "ibus-mozc-alpha_half"
+    },
+    {
+      "original": "direct.png",
+      "theme": "ibus-mozc-direct"
+    },
+    {
+      "original": "directory.png",
+      "theme": "ibus-mozc-directory"
+    },
+    {
+      "original": "hiragana.png",
+      "theme": "ibus-mozc-hiragana"
+    },
+    {
+      "original": "katakana_full.png",
+      "theme": "ibus-mozc-katakana_full"
+    },
+    {
+      "original": "katakana_half.png",
+      "theme": "ibus-mozc-katakana_half"
+    },
+    {
+      "original": "product_icon.png",
+      "theme": "ibus-mozc-product_icon"
+    },
+    {
+      "original": "properties.png",
+      "theme": "ibus-mozc-properties"
+    },
+    {
+      "original": "tools.png",
+      "theme": "ibus-mozc-tool"
+    }
+  ]
 }

@@ -1,94 +1,98 @@
 {
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string"
-        },
-        "app_path": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1,
-            "uniqueItems": true
-        },
-        "icons_path": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1,
-            "uniqueItems": true
-        },
-        "icons": {
-            "type": "array",
-            "items": {
-                "oneOf": [{
-                        "type": "string"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "original": {
-                                "type": "string"
-                            },
-                            "theme": {
-                                "type": "string"
-                            },
-                            "symlinks": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "minItems": 1,
-                                "uniqueItems": true
-                            }
-                        },
-                        "required": ["theme", "original"]
-                    }
-                ]
-            },
-            "minItems": 1,
-            "uniqueItems": true
-        },
-        "force_create_folder": {
-            "type": "boolean"
-        },
-        "backup_ignore": {
-            "type": "boolean"
-        },
-        "binary": {
-            "type": "string"
-        },
-        "module": {
-            "type": "string",
-            "enum": [
-                "electron",
-                "nwjs",
-                "zip",
-                "pak",
-                "qt"
-            ]
-        },
-        "symlinks": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "root": {
-                        "type": "string"
-                    },
-                    "dest": {
-                        "type": "string"
-                    }
-                }
-            }
-        }
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
     },
-    "required": [
-        "name",
-        "app_path",
-        "icons_path",
-        "icons"
-    ]
+    "app_path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "icons_path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "icons": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "original": {
+                "type": "string"
+              },
+              "theme": {
+                "type": "string"
+              },
+              "symlinks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "theme",
+              "original"
+            ]
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "force_create_folder": {
+      "type": "boolean"
+    },
+    "backup_ignore": {
+      "type": "boolean"
+    },
+    "binary": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "electron",
+        "nwjs",
+        "zip",
+        "pak",
+        "qt"
+      ]
+    },
+    "symlinks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "root": {
+            "type": "string"
+          },
+          "dest": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "app_path",
+    "icons_path",
+    "icons"
+  ]
 }

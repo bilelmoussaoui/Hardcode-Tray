@@ -1,29 +1,29 @@
 {
-    "name": "Google Chrome",
-    "app_path": [
-        "/opt/google/chrome/",
-        "/opt/google/chrome-unstable/",
-        "/opt/google/chrome-beta/"
-    ],
-    "icons_path": [
-        "/opt/google/chrome/",
-        "/opt/google/chrome-unstable/",
-        "/opt/google/chrome-beta/"
-    ],
-    "module": "pak",
-    "binary": "resources.pak",
-    "icons": [
-        {
-            "original": "8003",
-            "theme": "google-chrome-tray"
-        },
-        {
-            "original": "10153",
-            "theme": "google-chrome-tray"
-        },
-        {
-            "original": "10154",
-            "theme": "google-chrome-tray"
-        }
-    ]
+  "name": "Google Chrome",
+  "app_path": [
+    "/opt/google/chrome/",
+    "/opt/google/chrome-unstable/",
+    "/opt/google/chrome-beta/"
+  ],
+  "icons_path": [
+    "/opt/google/chrome/",
+    "/opt/google/chrome-unstable/",
+    "/opt/google/chrome-beta/"
+  ],
+  "module": "pak",
+  "binary": "resources.pak",
+  "icons": [
+    {
+      "original": "8003",
+      "theme": "google-chrome-tray"
+    },
+    {
+      "original": "10153",
+      "theme": "google-chrome-tray"
+    },
+    {
+      "original": "10154",
+      "theme": "google-chrome-tray"
+    }
+  ]
 }

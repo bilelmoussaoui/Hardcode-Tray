@@ -1,23 +1,23 @@
 {
-    "name": "China Weather",
-    "app_path": [
-        "/usr/share/indicator/china/weather/"
-    ],
-    "icons_path": [
-        "/usr/share/indicator/china/weather/data/media/"
-    ],
-    "icons": [
-        {
-            "original": "icon_china_weather.png",
-            "theme": "weather-clear"
-        },
-        {
-            "original": "icon_connection_error.png",
-            "theme": "weather-server-alert"
-        },
-        {
-            "original": "icon_unknown_condition.png",
-            "theme": "weather-none-available"
-        }
-    ]
+  "name": "China Weather",
+  "app_path": [
+    "/usr/share/indicator/china/weather/"
+  ],
+  "icons_path": [
+    "/usr/share/indicator/china/weather/data/media/"
+  ],
+  "icons": [
+    {
+      "original": "icon_china_weather.png",
+      "theme": "weather-clear"
+    },
+    {
+      "original": "icon_connection_error.png",
+      "theme": "weather-server-alert"
+    },
+    {
+      "original": "icon_unknown_condition.png",
+      "theme": "weather-none-available"
+    }
+  ]
 }

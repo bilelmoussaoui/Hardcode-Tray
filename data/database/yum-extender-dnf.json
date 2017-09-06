@@ -1,33 +1,33 @@
 {
-    "name": "Yum Extender",
-    "app_path": [
-        "/usr/share/pixmaps/yumex/",
-        "/usr/share/yumex-dnf/gfx/"
-    ],
-    "icons_path": [
-        "/usr/share/pixmaps/yumex/",
-        "/usr/share/yumex-dnf/gfx/"
-    ],
-    "icons": [
-        {
-            "original": "tray-error.png",
-            "theme": "yum-indicator-error"
-        },
-        {
-            "original": "tray-info.png",
-            "theme": "yum-indicator-info"
-        },
-        {
-            "original": "tray-no-updates.png",
-            "theme": "yum-indicator-no-updates"
-        },
-        {
-            "original": "tray-updates.png",
-            "theme": "yum-indicator-updates"
-        },
-        {
-            "original": "tray-working.png",
-            "theme": "yum-indicator-working"
-        }
-    ]
+  "name": "Yum Extender",
+  "app_path": [
+    "/usr/share/pixmaps/yumex/",
+    "/usr/share/yumex-dnf/gfx/"
+  ],
+  "icons_path": [
+    "/usr/share/pixmaps/yumex/",
+    "/usr/share/yumex-dnf/gfx/"
+  ],
+  "icons": [
+    {
+      "original": "tray-error.png",
+      "theme": "yum-indicator-error"
+    },
+    {
+      "original": "tray-info.png",
+      "theme": "yum-indicator-info"
+    },
+    {
+      "original": "tray-no-updates.png",
+      "theme": "yum-indicator-no-updates"
+    },
+    {
+      "original": "tray-updates.png",
+      "theme": "yum-indicator-updates"
+    },
+    {
+      "original": "tray-working.png",
+      "theme": "yum-indicator-working"
+    }
+  ]
 }

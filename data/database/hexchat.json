@@ -1,29 +1,29 @@
 {
-    "name": "Hexchat",
-    "app_path": [
-        "/usr/bin/hexchat"
-    ],
-    "icons_path": [
-        "{userhome}/.config/hexchat/icons/"
-    ],
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": [
-        {
-            "original": "tray_fileoffer.png",
-            "theme": "hexchat-fileoffer"
-        },
-        {
-            "original": "tray_highlight.png",
-            "theme": "hexchat-highlight"
-        },
-        {
-            "original": "tray_message.png",
-            "theme": "hexchat-message"
-        },
-        {
-            "original": "hexchat.png",
-            "theme": "hexchat-indicator"
-        }
-    ]
+  "name": "Hexchat",
+  "app_path": [
+    "/usr/bin/hexchat"
+  ],
+  "icons_path": [
+    "{userhome}/.config/hexchat/icons/"
+  ],
+  "force_create_folder": true,
+  "backup_ignore": true,
+  "icons": [
+    {
+      "original": "tray_fileoffer.png",
+      "theme": "hexchat-fileoffer"
+    },
+    {
+      "original": "tray_highlight.png",
+      "theme": "hexchat-highlight"
+    },
+    {
+      "original": "tray_message.png",
+      "theme": "hexchat-message"
+    },
+    {
+      "original": "hexchat.png",
+      "theme": "hexchat-indicator"
+    }
+  ]
 }

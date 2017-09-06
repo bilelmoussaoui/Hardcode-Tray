@@ -1,35 +1,35 @@
 {
-    "name": "Spotify Web Player",
-    "app_path": [
-        "/usr/bin/spotifywebplayer"
-    ],
-    "icons_path": [
-        "/usr/bin/spotifywebplayer/icons/"
-    ],
-    "icons": [
-        {
-            "original": "spotify-ico-small.png",
-            "theme": "spotify-indicator"
-        },
-        {
-            "original": "spotify-ico-small-black.png",
-            "theme": "spotify-indicator"
-        },
-        {
-            "original": "spotify-ico-small-green.png",
-            "theme": "spotify-indicator"
-        },
-        {
-            "original": "spotify-ico-small-lime.png",
-            "theme": "spotify-indicator"
-        },
-        {
-            "original": "spotify-ico-small-old.png",
-            "theme": "spotify-indicator"
-        },
-       {
-            "original": "spotify-ico-small-white.png",
-            "theme": "spotify-indicator"
-        }
-    ]
+  "name": "Spotify Web Player",
+  "app_path": [
+    "/usr/bin/spotifywebplayer"
+  ],
+  "icons_path": [
+    "/usr/bin/spotifywebplayer/icons/"
+  ],
+  "icons": [
+    {
+      "original": "spotify-ico-small.png",
+      "theme": "spotify-indicator"
+    },
+    {
+      "original": "spotify-ico-small-black.png",
+      "theme": "spotify-indicator"
+    },
+    {
+      "original": "spotify-ico-small-green.png",
+      "theme": "spotify-indicator"
+    },
+    {
+      "original": "spotify-ico-small-lime.png",
+      "theme": "spotify-indicator"
+    },
+    {
+      "original": "spotify-ico-small-old.png",
+      "theme": "spotify-indicator"
+    },
+    {
+      "original": "spotify-ico-small-white.png",
+      "theme": "spotify-indicator"
+    }
+  ]
 }

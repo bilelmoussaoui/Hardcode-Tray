@@ -1,11 +1,14 @@
 {
-    "blacklist": ["telegram", "hangouts"],
-    "icons": {
-        "theme": "Numix",
-        "size": 24
-    },
-    "conversion_tool": "CairoSVG",
-    "backup_ignore": true,
-    "nwjs": "/home/myusername/Tools/nwjs/",
-    "scaling_factor": 1
+  "backup_ignore": true,
+  "blacklist": [
+    "telegram",
+    "hangouts"
+  ],
+  "conversion_tool": "CairoSVG",
+  "icons": {
+    "size": 24,
+    "theme": "Numix"
+  },
+  "nwjs": "/home/myusername/Tools/nwjs/",
+  "scaling_factor": 1
 }

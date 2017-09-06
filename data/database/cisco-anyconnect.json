@@ -1,31 +1,31 @@
 {
-    "name": "Cisco AnyConnect",
-    "app_path": [
-        "/opt/cisco/anyconnect/bin/vpnui"
-    ],
-    "icons_path": [
-        "/opt/cisco/anyconnect/pixmaps/"
-    ],
-    "icons": [
-        {
-            "original": "systray_connected.png",
-            "theme": "cisco-tray-connected"
-        },
-        {
-            "original": "systray_notconnected.png",
-            "theme": "cisco-tray-notconnected"
-        },
-        {
-            "original": "systray_disconnecting.png",
-            "theme": "cisco-tray-disconnecting"
-        },
-        {
-            "original": "systray_reconnecting.png",
-            "theme": "cisco-tray-reconnecting"
-        },
-        {
-            "original": "systray_quarantined.png",
-            "theme": "cisco-tray-quarantined"
-        }
-    ]
+  "name": "Cisco AnyConnect",
+  "app_path": [
+    "/opt/cisco/anyconnect/bin/vpnui"
+  ],
+  "icons_path": [
+    "/opt/cisco/anyconnect/pixmaps/"
+  ],
+  "icons": [
+    {
+      "original": "systray_connected.png",
+      "theme": "cisco-tray-connected"
+    },
+    {
+      "original": "systray_notconnected.png",
+      "theme": "cisco-tray-notconnected"
+    },
+    {
+      "original": "systray_disconnecting.png",
+      "theme": "cisco-tray-disconnecting"
+    },
+    {
+      "original": "systray_reconnecting.png",
+      "theme": "cisco-tray-reconnecting"
+    },
+    {
+      "original": "systray_quarantined.png",
+      "theme": "cisco-tray-quarantined"
+    }
+  ]
 }

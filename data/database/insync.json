@@ -1,21 +1,21 @@
 {
-    "name": "Insync",
-    "app_path": [
-        "/usr/bin/insync",
-        "/usr/lib/insync/"
-    ],
-    "icons_path": [
-        "/usr/share/icons/hicolor/48x48/status/"
-    ],
-    "icons": [
-        "insync-action.png",
-        "insync-error.png",
-        "insync-feed.png",
-        "insync-normal.png",
-        "insync-offline.png",
-        "insync-paused.png",
-        "insync-share.png",
-        "insync-synced.png",
-        "insync-syncing.png"
-    ]
+  "name": "Insync",
+  "app_path": [
+    "/usr/bin/insync",
+    "/usr/lib/insync/"
+  ],
+  "icons_path": [
+    "/usr/share/icons/hicolor/48x48/status/"
+  ],
+  "icons": [
+    "insync-action.png",
+    "insync-error.png",
+    "insync-feed.png",
+    "insync-normal.png",
+    "insync-offline.png",
+    "insync-paused.png",
+    "insync-share.png",
+    "insync-synced.png",
+    "insync-syncing.png"
+  ]
 }

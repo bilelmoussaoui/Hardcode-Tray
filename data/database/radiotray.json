@@ -1,14 +1,14 @@
 {
-    "name": "RadioTray",
-    "app_path": [
-        "/usr/share/radiotray/"
-    ],
-    "icons_path": [
-        "/usr/share/radiotray/images/"
-    ],
-    "icons": [
-        "radiotray_connecting.svg",
-        "radiotray_off.svg",
-        "radiotray_on.svg"
-    ]
+  "name": "RadioTray",
+  "app_path": [
+    "/usr/share/radiotray/"
+  ],
+  "icons_path": [
+    "/usr/share/radiotray/images/"
+  ],
+  "icons": [
+    "radiotray_connecting.svg",
+    "radiotray_off.svg",
+    "radiotray_on.svg"
+  ]
 }

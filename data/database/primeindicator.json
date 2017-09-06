@@ -1,19 +1,19 @@
 {
-    "name": "Prime Indicator",
-    "app_path": [
-        "/usr/lib/primeindicator/"
-    ],
-    "icons_path": [
-        "/usr/lib/primeindicator/"
-    ],
-    "icons": [
-        {
-            "original": "intel.png",
-            "theme": "prime-intel"
-        },
-        {
-            "original": "nividia.png",
-            "theme": "prime-nvidia"
-        }
-    ]
+  "name": "Prime Indicator",
+  "app_path": [
+    "/usr/lib/primeindicator/"
+  ],
+  "icons_path": [
+    "/usr/lib/primeindicator/"
+  ],
+  "icons": [
+    {
+      "original": "intel.png",
+      "theme": "prime-intel"
+    },
+    {
+      "original": "nividia.png",
+      "theme": "prime-nvidia"
+    }
+  ]
 }

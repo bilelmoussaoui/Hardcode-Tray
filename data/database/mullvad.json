@@ -1,24 +1,24 @@
 {
-    "name": "Mullvad",
-    "app_path": [
-        "/usr/bin/",
-        "/usr/lib/python2.7/site-packages/mullvad/"
-    ],
-    "icons_path": [
-        "/usr/lib/python2.7/site-packages/mullvad/"
-    ],
-    "icons": [
-        {
-            "original": "rdot.png",
-            "theme": "mullvad-error"
-        },
-        {
-            "original": "ydot.png",
-            "theme": "mullvad-config"
-        },
-        {
-            "original": "gdot.png",
-            "theme": "mullvad-success"
-        }
-    ]
+  "name": "Mullvad",
+  "app_path": [
+    "/usr/bin/",
+    "/usr/lib/python2.7/site-packages/mullvad/"
+  ],
+  "icons_path": [
+    "/usr/lib/python2.7/site-packages/mullvad/"
+  ],
+  "icons": [
+    {
+      "original": "rdot.png",
+      "theme": "mullvad-error"
+    },
+    {
+      "original": "ydot.png",
+      "theme": "mullvad-config"
+    },
+    {
+      "original": "gdot.png",
+      "theme": "mullvad-success"
+    }
+  ]
 }

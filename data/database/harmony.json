@@ -1,15 +1,15 @@
 {
-    "name": "Harmony",
-    "app_path": [
-        "/opt/Harmony/harmony"
-    ],
-    "icons_path": [
-        "/opt/Harmony/resources/app/icons/"
-    ],
-    "icons": [
-        {
-            "original": "icon.png",
-            "theme": "harmony-tray"
-        }
-    ]
+  "name": "Harmony",
+  "app_path": [
+    "/opt/Harmony/harmony"
+  ],
+  "icons_path": [
+    "/opt/Harmony/resources/app/icons/"
+  ],
+  "icons": [
+    {
+      "original": "icon.png",
+      "theme": "harmony-tray"
+    }
+  ]
 }

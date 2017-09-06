@@ -1,23 +1,23 @@
 {
-    "name": "Indicator Weather",
-    "app_path": [
-        "/usr/share/indicator-weather/"
-    ],
-    "icons_path": [
-        "/usr/share/indicator-weather/media/"
-    ],
-    "icons": [
-        {
-            "original": "icon.png",
-            "theme": "weather-clear"
-        },
-        {
-            "original": "icon_connection_error.png",
-            "theme": "weather-server-alert"
-        },
-        {
-            "original": "icon_unknown_condition.png",
-            "theme": "weather-none-available"
-        }
-    ]
+  "name": "Indicator Weather",
+  "app_path": [
+    "/usr/share/indicator-weather/"
+  ],
+  "icons_path": [
+    "/usr/share/indicator-weather/media/"
+  ],
+  "icons": [
+    {
+      "original": "icon.png",
+      "theme": "weather-clear"
+    },
+    {
+      "original": "icon_connection_error.png",
+      "theme": "weather-server-alert"
+    },
+    {
+      "original": "icon_unknown_condition.png",
+      "theme": "weather-none-available"
+    }
+  ]
 }

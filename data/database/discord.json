@@ -1,23 +1,23 @@
 {
-    "name": "Discord",
-    "app_path": [
-        "/usr/share/discord/",
-        "/opt/discord/"
-    ],
-    "icons_path": [
-        "/usr/share/discord/resources/",
-        "/opt/discord/resources/"
-    ],
-    "binary": "app.asar",
-    "module": "electron",
-    "icons": [
-        {
-            "original": "images/linux-tray.png",
-            "theme": "discord-tray"
-        },
-        {
-            "original": "images/linux-tray-unread.png",
-            "theme": "discord-tray-notification"
-        }
-    ]
+  "name": "Discord",
+  "app_path": [
+    "/usr/share/discord/",
+    "/opt/discord/"
+  ],
+  "icons_path": [
+    "/usr/share/discord/resources/",
+    "/opt/discord/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "images/linux-tray.png",
+      "theme": "discord-tray"
+    },
+    {
+      "original": "images/linux-tray-unread.png",
+      "theme": "discord-tray-notification"
+    }
+  ]
 }

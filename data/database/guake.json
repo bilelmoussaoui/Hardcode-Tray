@@ -1,19 +1,19 @@
 {
-    "name": "Guake",
-    "app_path": [
-        "/usr/bin/guake"
-    ],
-    "icons_path": [
-        "/usr/share/pixmaps/guake/"
-    ],
-    "icons": [
-        {
-            "original": "guake-tray.png",
-            "theme": "guake-tray"
-        },
-        {
-            "original": "guake-tray.svg",
-            "theme": "guake-tray"
-        }
-    ]
+  "name": "Guake",
+  "app_path": [
+    "/usr/bin/guake"
+  ],
+  "icons_path": [
+    "/usr/share/pixmaps/guake/"
+  ],
+  "icons": [
+    {
+      "original": "guake-tray.png",
+      "theme": "guake-tray"
+    },
+    {
+      "original": "guake-tray.svg",
+      "theme": "guake-tray"
+    }
+  ]
 }
