@@ -72,6 +72,16 @@ OpenSUSE package only contains the patched version of sni-qt. In order to get Ha
 
 The one click-installer can be found by following this [link](https://software.opensuse.org/package/sni-qt-patched)
 
+Or you can use unofficial build
+
+```bash
+sudo zypper ar -p 98 http://download.opensuse.org/repositories/home:/GNorth:/Arc_and_Papirus/openSUSE_Leap_42.3/home:GNorth:Arc_and_Papirus.repo
+sudo zypper ref
+sudo zypper in Hardcode-Tray
+```
+Where openSUSE Leap 42.3 can be changed to 42.2 or Tumbleweed
+
+
 ### Manual installation
 
 1- Install dependencies
