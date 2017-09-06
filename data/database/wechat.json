@@ -6,26 +6,26 @@
     "icons_path": [
         "/usr/lib/electronic-wechat/assets/"
     ],
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "status_bar_linux.png",
             "theme": "wechat-tray"
         },
-        "tray-black": {
+        {
             "original": "tray_black.png",
             "theme": "wechat-tray"
         },
-        "tray-white": {
-            "original": "tray_white.png.png",
+        {
+            "original": "tray_white.png",
             "theme": "wechat-tray"
         },
-        "unread-white": {
+        {
             "original": "tray_unread_white.png",
             "theme": "wechat-tray-unread"
         },
-        "unread-black": {
+        {
             "original": "tray_unread_black.png",
             "theme": "wechat-tray-unread"
         }
-    }
+    ]
 }

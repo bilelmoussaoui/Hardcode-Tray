@@ -6,10 +6,10 @@
     "icons_path": [
         "/usr/share/hplip/data/images/32x32/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "hp_logo.png",
             "theme": "hp-indicator"
         }
-    }
+    ]
 }

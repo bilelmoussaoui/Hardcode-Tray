@@ -6,14 +6,15 @@
     "icons_path": [
         "/usr/share/keepassx/icons/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+
+    {
             "original": "keepassx.png",
             "theme": "keepassx-indicator"
         },
-        "locked": {
+        {
             "original": "keepassx_locked.png",
             "theme": "keepassx-locked"
         }
-    }
+    ]
 }

@@ -6,10 +6,10 @@
     "icons_path": [
         "/usr/share/pixmaps/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "steam_tray_mono.png",
             "theme": "steam_tray_mono"
         }
-    }
+    ]
 }

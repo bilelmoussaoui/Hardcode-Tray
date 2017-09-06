@@ -6,22 +6,22 @@
     "icons_path": [
         "/usr/share/yakyak/app/icons/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "icon-read.png",
             "theme": "hangouts-available"
         },
-        "indicator@2x": {
+        {
             "original": "icon-read@2x.png",
             "theme": "hangouts-available"
         },
-        "notification": {
+        {
             "original": "icon-unread.png",
             "theme": "hangouts-notification"
         },
-        "notification@2x": {
+        {
             "original": "icon-unread@2x.png",
             "theme": "hangouts-notification"
         }
-    }
+    ]
 }

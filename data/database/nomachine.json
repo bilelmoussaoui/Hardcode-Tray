@@ -6,8 +6,8 @@
     "icons_path": [
         "/usr/NX/share/images/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "tray-archlinux.png",
             "theme": "nomachine-indicator",
             "symlinks": [
@@ -27,7 +27,7 @@
                 "tray-ubuntu-light.png"
             ]
         },
-        "disabled": {
+        {
             "original": "tray-archlinux-faded.png",
             "theme": "nomachine-disabled",
             "symlinks": [
@@ -44,5 +44,5 @@
                 "tray-ubuntu-faded.png"
             ]
         }
-    }
+    ]
 }

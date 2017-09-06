@@ -6,10 +6,10 @@
     "icons_path": [
         "/usr/share/icons/hicolor/256x256/apps/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "keepass2-locked.png",
             "theme": "keepassx-locked"
         }
-    }
+    ]
 }

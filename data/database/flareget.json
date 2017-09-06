@@ -6,13 +6,11 @@
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/flareget/{size}/"
     ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "panel": {
+    "module": "qt",
+    "icons": [
+        {
             "original": "300c99bb493a7061e9852c73b89a09e4",
             "theme": "flareget-panel"
         }
-    }
+    ]
 }

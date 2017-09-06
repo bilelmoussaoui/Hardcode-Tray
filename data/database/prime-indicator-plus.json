@@ -6,14 +6,14 @@
     "icons_path": [
         "/usr/lib/prime-indicator/icons/"
     ],
-    "icons": {
-        "intel": {
+    "icons": [
+        {
             "original": "prime-indicator-intel.svg",
             "theme": "prime-intel"
         },
-        "nividia": {
+        {
             "original": "prime-indicator-nvidia.svg",
             "theme": "prime-nvidia"
         }
-    }
+    ]
 }

@@ -18,32 +18,31 @@
         "{userhome}/.config/vivaldi-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts}/images_5/",
         "{userhome}/.config/vivaldi-snapshot/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/{hangouts}/images_5/"
     ],
-    "icons": {
-        "indicator@2x": {
+    "icons": [{
             "original": "icon_default_22.png",
             "theme": "hangouts-available"
         },
-        "indicator@3x": {
+        {
             "original": "icon_default_24.png",
             "theme": "hangouts-available"
         },
-        "unavailable@2x": {
+        {
             "original": "icon_unavailable_22.png",
             "theme": "hangouts-offline"
         },
-        "unavailable@3x": {
+        {
             "original": "icon_unavailable_24.png",
             "theme": "hangouts-offline"
         },
-        "loading@2x": {
+        {
             "original": "icon_loading_22.png",
             "theme": "hangouts-working"
         },
-        "loading@3x": {
+        {
             "original": "icon_loading_24.png",
             "theme": "hangouts-working"
         },
-        "notification@2x": {
+        {
             "original": "icon_1_22.png",
             "theme": "hangouts-notification",
             "symlinks": [
@@ -51,7 +50,7 @@
                 "icon_9plus_22.png"
             ]
         },
-        "notification@3x": {
+        {
             "original": "icon_1_24.png",
             "theme": "hangouts-notification",
             "symlinks": [
@@ -59,5 +58,5 @@
                 "icon_9plus_24.png"
             ]
         }
-    }
+    ]
 }

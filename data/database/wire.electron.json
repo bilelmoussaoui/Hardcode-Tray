@@ -11,15 +11,15 @@
         "/usr/share/wire/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "img/tray.png",
             "theme": "wire-tray"
         },
-        "notification": {
+        {
             "original": "img/tray.badge.png",
             "theme": "wire-tray-attention"
         }
-    }
+    ]
 }

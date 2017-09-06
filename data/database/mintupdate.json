@@ -6,26 +6,26 @@
     "icons_path": [
         "/usr/lib/linuxmint/mintUpdate/icons/"
     ],
-    "icons": {
-        "apply": {
+    "icons": [
+        {
             "original": "original-apply.svg",
             "theme": "mintupdate-indicator-apply"
         },
-        "error": {
+        {
             "original": "original-error2.svg,",
             "theme": "mintupdate-indicator-error"
         },
-        "working": {
+        {
             "original": "original-exec.svg",
             "theme": "mintupdate-indicator-working"
         },
-        "info": {
+        {
             "original": "original-info.svg",
             "theme": "mintupdate-indicator-info"
         },
-        "indicator": {
+        {
             "original": "original.svg",
             "theme": "mintupdate-indicator"
         }
-    }
+    ]
 }

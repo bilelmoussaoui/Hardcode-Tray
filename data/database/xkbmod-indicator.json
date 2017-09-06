@@ -6,10 +6,10 @@
     "icons_path": [
         "/usr/share/indicator-xkbmod/icons/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "icon.png",
             "theme": "xkbmod-indicator"
         }
-    }
+    ]
 }

@@ -10,12 +10,12 @@
         "/opt/vivaldi-beta/",
         "/opt/vivaldi-snapshot/"
     ],
-    "script": "pak",
+    "module": "pak",
     "binary": "resources.pak",
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "8038",
             "theme": "vivaldi-tray"
         }
-    }
+    ]
 }

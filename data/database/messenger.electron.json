@@ -7,31 +7,31 @@
         "/opt/messengerfordesktop/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "images/tray.png",
             "theme": "messenger-indicator"
         },
-        "tray@2x": {
+        {
             "original": "images/tray@2x.png",
             "theme": "messenger-indicator"
         },
-        "tray@3x": {
+        {
             "original": "images/tray@3x.png",
             "theme": "messenger-indicator"
         },
-        "trayAlert": {
+        {
             "original": "images/trayAlert.png",
             "theme": "messenger-notification"
         },
-        "trayAlert@2x": {
+        {
             "original": "images/trayAlert@2x.png",
             "theme": "messenger-notification"
         },
-        "trayAlert@3x": {
+        {
             "original": "images/trayAlert@3x.png",
             "theme": "messenger-notification"
         }
-    }
+    ]
 }

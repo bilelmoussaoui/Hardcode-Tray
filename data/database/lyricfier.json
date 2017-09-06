@@ -6,10 +6,10 @@
     "icons_path": [
         "/opt/lyricfier/resources/app/render/img/"
     ],
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "icon.png",
             "theme": "lyricfier-tray"
         }
-    }
+    ]
 }

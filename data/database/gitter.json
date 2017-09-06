@@ -7,19 +7,19 @@
         "/opt/Gitter/linux64/"
     ],
     "binary": "Gitter",
-    "script": "nwjs",
-    "icons": {
-        "disconnected": {
+    "module": "nwjs",
+    "icons": [
+        {
             "original": "img/linux-icon-logo-disconnected.png",
             "theme": "gitter-indicator-disconnected"
         },
-        "unread": {
+        {
             "original": "img/linux-icon-logo-connected-unread.png",
             "theme": "gitter-indicator-notification"
         },
-        "connected": {
+        {
             "original": "img/linux-icon-logo-connected.png",
             "theme": "gitter-indicator"
         }
-    }
+    ]
 }

@@ -6,10 +6,10 @@
     "icons_path": [
         "/opt/Harmony/resources/app/icons/"
     ],
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "icon.png",
             "theme": "harmony-tray"
         }
-    }
+    ]
 }

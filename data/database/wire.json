@@ -8,14 +8,14 @@
         "/opt/wire-desktop/resources/app/img/",
         "/usr/lib/wire-desktop/resources/app/img/"
     ],
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "tray.png",
             "theme": "wire-tray"
         },
-        "notification": {
+        {
             "original": "tray.badge.png",
             "theme": "wire-tray-attention"
         }
-    }
+    ]
 }

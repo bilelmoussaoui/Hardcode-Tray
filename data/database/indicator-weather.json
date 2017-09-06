@@ -6,18 +6,18 @@
     "icons_path": [
         "/usr/share/indicator-weather/media/"
     ],
-    "icons": {
-        "clear": {
+    "icons": [
+        {
             "original": "icon.png",
             "theme": "weather-clear"
         },
-        "server-alert": {
+        {
             "original": "icon_connection_error.png",
             "theme": "weather-server-alert"
         },
-        "none-available": {
+        {
             "original": "icon_unknown_condition.png",
             "theme": "weather-none-available"
         }
-    }
+    ]
 }

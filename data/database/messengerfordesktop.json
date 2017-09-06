@@ -7,15 +7,15 @@
         "/opt/MessengerForDesktop/"
     ],
     "binary": "Messenger",
-    "script": "nwjs",
-    "icons": {
-        "tray": {
+    "module": "nwjs",
+    "icons": [
+        {
             "original": "images/icon_tray.png",
             "theme": "messenger-indicator"
         },
-        "unread": {
+        {
             "original": "images/icon_tray_alert.png",
             "theme": "messenger-notification"
         }
-    }
+    ]
 }

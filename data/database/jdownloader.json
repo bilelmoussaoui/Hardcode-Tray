@@ -6,10 +6,10 @@
     "icons_path": [
         "{userhome}/.jd/themes/standard/org/jdownloader/images/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "jd_logo_128_128.png",
             "theme": "jdownloader-indicator"
         }
-    }
+    ]
 }

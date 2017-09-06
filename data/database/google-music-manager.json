@@ -6,16 +6,14 @@
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/MusicManager/{size}/"
     ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "indicator": {
+    "module": "qt",
+    "icons": [
+        {
             "original": "740a272c66baa9a105e48101377bd5a0",
             "theme": "google-music-manager-panel",
             "symlinks": [
                 "1e81c636c8e65b767474caf9dab52c37"
             ]
         }
-    }
+    ]
 }

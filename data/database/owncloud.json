@@ -7,42 +7,40 @@
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/owncloud/{size}/"
     ],
-    "is_qt": true,
-    "backup_ignore": true,
-    "force_create_folder": true,
-    "icons": {
-        "error": {
+    "module": "qt",
+    "icons": [
+        {
             "original": "6a85c1b1eca5f176490afbea40b5a85b",
             "theme": "state-error"
         },
-        "information": {
+        {
             "original": "e9b111ea19684326fa5140f7d14b215b",
             "theme": "state-information",
             "symlinks": [
                 "9aa8a4ac4a70ca6c739c4de13dfbfedb"
             ]
         },
-        "sync": {
+        {
             "original": "23064844cb89c0654026212a3faa910f",
             "theme": "state-sync",
             "symlinks": [
                 "955975a2df38cbb96611087290ee1b04"
             ]
         },
-        "pause": {
+        {
             "original": "4c8bee6fca0c59f47088f37c25880a24",
             "theme": "state-pause"
         },
-        "offline": {
+        {
             "original": "9d626aa048ccbd28c9a5bf6bbaadee43",
             "theme": "state-offline"
         },
-        "ok": {
+        {
             "original": "a4d0f4e492fad2e38e62dc68de83aaa0",
             "theme": "state-ok",
             "symlinks": [
                 "1fafe385a1c772643e5b313c5fd421cf"
             ]
         }
-    }
+    ]
 }

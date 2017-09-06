@@ -6,26 +6,26 @@
     "icons_path": [
         "/opt/cisco/anyconnect/pixmaps/"
     ],
-    "icons": {
-        "connected": {
+    "icons": [
+        {
             "original": "systray_connected.png",
             "theme": "cisco-tray-connected"
         },
-        "notconnected": {
+        {
             "original": "systray_notconnected.png",
             "theme": "cisco-tray-notconnected"
         },
-        "disconnecting": {
+        {
             "original": "systray_disconnecting.png",
             "theme": "cisco-tray-disconnecting"
         },
-        "reconnecting": {
+        {
             "original": "systray_reconnecting.png",
             "theme": "cisco-tray-reconnecting"
         },
-        "quarantined": {
+        {
             "original": "systray_quarantined.png",
             "theme": "cisco-tray-quarantined"
         }
-    }
+    ]
 }

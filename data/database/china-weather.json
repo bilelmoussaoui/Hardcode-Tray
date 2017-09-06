@@ -6,18 +6,18 @@
     "icons_path": [
         "/usr/share/indicator/china/weather/data/media/"
     ],
-    "icons": {
-        "clear": {
+    "icons": [
+        {
             "original": "icon_china_weather.png",
             "theme": "weather-clear"
         },
-        "server-alert": {
+        {
             "original": "icon_connection_error.png",
             "theme": "weather-server-alert"
         },
-        "none-available": {
+        {
             "original": "icon_unknown_condition.png",
             "theme": "weather-none-available"
         }
-    }
+    ]
 }

@@ -9,15 +9,15 @@
         "/opt/discord-canary/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "images/linux-tray.png",
             "theme": "discord-tray"
         },
-        "tray-unread": {
+        {
             "original": "images/linux-tray-unread.png",
             "theme": "discord-tray-notification"
         }
-    }
+    ]
 }

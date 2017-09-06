@@ -8,26 +8,26 @@
         "/usr/share/pixmaps/yumex/",
         "/usr/share/yumex-dnf/gfx/"
     ],
-    "icons": {
-        "error": {
+    "icons": [
+        {
             "original": "tray-error.png",
             "theme": "yum-indicator-error"
         },
-        "info": {
+        {
             "original": "tray-info.png",
             "theme": "yum-indicator-info"
         },
-        "no-updates": {
+        {
             "original": "tray-no-updates.png",
             "theme": "yum-indicator-no-updates"
         },
-        "updates": {
+        {
             "original": "tray-updates.png",
             "theme": "yum-indicator-updates"
         },
-        "working": {
+        {
             "original": "tray-working.png",
             "theme": "yum-indicator-working"
         }
-    }
+    ]
 }

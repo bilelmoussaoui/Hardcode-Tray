@@ -6,14 +6,14 @@
     "icons_path": [
         "/usr/share/recored-desktop/resources/app/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "icon.png",
             "theme": "record-desktop-indicator"
         },
-        "recording": {
+        {
             "original": "icon-recording.png",
             "theme": "record-desktop-indicator-recording"
         }
-    }
+    ]
 }

@@ -6,15 +6,13 @@
     "icons_path": [
         "{userhome}/.local/share/sni-qt/icons/skype/{size}/"
     ],
-    "is_qt": true,
-    "backup_ignore": true,
-    "force_create_folder": true,
-    "icons": {
-        "status-away": {
+    "module": "qt",
+    "icons": [
+        {
             "original": "602c84fa0f4d61c64f770495a500279e",
             "theme": "skype-status-away"
         },
-        "status-away-notification": {
+        {
             "original": "5928f8a678494eb017181ebb00695682",
             "theme": "skype-status-away-notification",
             "symlinks": [
@@ -29,11 +27,11 @@
                 "5768209d6793270698137ed2fa06482a"
             ]
         },
-        "status-connected": {
+        {
             "original": "37e170fc54e7355d9d298917e74f9ea9",
             "theme": "skype-status-connected"
         },
-        "status-connected-notification": {
+        {
             "original": "4905a21912d8d5803f345d06ab56e88b",
             "theme": "skype-status-connected-notification",
             "symlinks": [
@@ -48,11 +46,11 @@
                 "2ad68f9fa3b206fa4416d357cb824006"
             ]
         },
-        "status-disturb": {
+        {
             "original": "bd2e3972c2a97520bbabac7e275d7b9f",
             "theme": "skype-status-disturb"
         },
-        "status-disurb-notification": {
+        {
             "original": "fd56304306a9b229dbdaf4cf7dc4cbc7",
             "theme": "skype-status-disturb-notification",
             "symlinks": [
@@ -67,11 +65,11 @@
                 "54775fa41d44a47f19cb6520aacdacf4"
             ]
         },
-        "status-invisible": {
+        {
             "original": "ad07f7e1479ab81315ec8c6c23e19170",
             "theme": "skype-status-invisible"
         },
-        "status-invisible-notification": {
+        {
             "original": "c083094322ffc728a53f83dfe24194de",
             "theme": "skype-status-invisible-notification",
             "symlinks": [
@@ -86,11 +84,11 @@
                 "86623faa12e1d62e147b372326a120b6"
             ]
         },
-        "status-offline": {
+        {
             "original": "2d1ee5482260fd9cd180b32787792683",
             "theme": "skype-status-offline"
         },
-        "status-offline-notification": {
+        {
             "original": "287ee46e101cabf27ff0509d79bbf636",
             "theme": "skype-status-offline-notification",
             "symlinks": [
@@ -105,21 +103,21 @@
                 "8de9250315c868c51ed6c0404847aedd"
             ]
         },
-        "status-connecting-0": {
+        {
             "original": "6cbeda8e2c9f56d3ac75ccdf8d282a69",
             "theme": "skype-status-connecting-0"
         },
-        "status-connecting-1": {
+        {
             "original": "0972e5fde53a4a87346ebb91c4c2b159",
             "theme": "skype-status-connecting-1"
         },
-        "status-connecting-2": {
+        {
             "original": "dad77418071bead905e2dbe605715dcd",
             "theme": "skype-status-connecting-2"
         },
-        "status-connecting-3": {
+        {
             "original": "f2fc4a539a7b9553f5b35241d1154e84",
             "theme": "skype-status-connecting-3"
         }
-    }
+    ]
 }

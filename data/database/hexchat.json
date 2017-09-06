@@ -8,22 +8,22 @@
     ],
     "force_create_folder": true,
     "backup_ignore": true,
-    "icons": {
-        "fileoffer": {
+    "icons": [
+        {
             "original": "tray_fileoffer.png",
             "theme": "hexchat-fileoffer"
         },
-        "highlight": {
+        {
             "original": "tray_highlight.png",
             "theme": "hexchat-highlight"
         },
-        "message": {
+        {
             "original": "tray_message.png",
             "theme": "hexchat-message"
         },
-        "indicator": {
+        {
             "original": "hexchat.png",
             "theme": "hexchat-indicator"
         }
-    }
+    ]
 }

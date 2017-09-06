@@ -8,10 +8,10 @@
         "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/",
         "/usr/share/webtorrent-desktop/resources/app.asar.unpacked/static/"
     ],
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "WebTorrent.png",
             "theme": "webtorrent-desktop-panel"
         }
-    }
+    ]
 }

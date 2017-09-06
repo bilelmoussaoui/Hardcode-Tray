@@ -8,32 +8,32 @@
         "/usr/share/google-play-music-desktop-player/resources/",
         "/usr/share/gpmdp/resources/"
     ],
-    "script": "electron",
+    "module": "electron",
     "binary": "app.asar",
-    "icons": {
-        "normal-light": {
+    "icons": [
+        {
             "original": "build/assets/img/main_tray_white_s.png",
             "theme": "gpmdp-tray"
         },
-        "play-light": {
+        {
             "original": "build/assets/img/playing/main_tray_white_s.png",
             "theme": "gpmdp-tray-play"
         },
-        "pause-light": {
+        {
             "original": "build/assets/img/paused/main_tray_white_s.png",
             "theme": "gpmdp-tray-pause"
         },
-        "normal-dark": {
+        {
             "original": "build/assets/img/main_tray_black_s.png",
             "theme": "gpmdp-tray"
         },
-        "play-dark": {
+        {
             "original": "build/assets/img/playing/main_tray_black_s.png",
             "theme": "gpmdp-tray-play"
         },
-        "pause-dark": {
+        {
             "original": "build/assets/img/paused/main_tray_black_s.png",
             "theme": "gpmdp-tray-pause"
         }
-    }
+    ]
 }

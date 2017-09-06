@@ -6,14 +6,14 @@
     "icons_path": [
         "/usr/share/pixmaps/guake/"
     ],
-    "icons": {
-        "tray-png": {
+    "icons": [
+        {
             "original": "guake-tray.png",
             "theme": "guake-tray"
         },
-        "tray-svg": {
+        {
             "original": "guake-tray.svg",
             "theme": "guake-tray"
         }
-    }
+    ]
 }

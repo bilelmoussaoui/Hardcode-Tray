@@ -7,15 +7,15 @@
         "/opt/whatsie/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "images/tray.png",
             "theme": "whatsie-tray"
         },
-        "notification": {
+        {
             "original": "images/trayAlert.png",
             "theme": "whatsie-tray-attention"
         }
-    }
+    ]
 }

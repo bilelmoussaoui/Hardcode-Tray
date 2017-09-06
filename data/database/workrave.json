@@ -6,18 +6,18 @@
     "icons_path": [
         "/usr/share/workrave/images/"
     ],
-    "icons": {
-        "indicator": {
+    "icons": [
+        {
             "original": "workrave-icon-medium.png",
             "theme": "workrave-indicator"
         },
-        "quiet": {
+        {
             "original": "workrave-quiet-icon-medium.png",
             "theme": "workrave-indicator-quiet"
         },
-        "suspended": {
+        {
             "original": "workrave-suspended-icon-medium.png",
             "theme": "workrave-indicator-suspended"
         }
-    }
+    ]
 }

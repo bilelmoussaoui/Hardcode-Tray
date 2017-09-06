@@ -6,14 +6,14 @@
     "icons_path": [
         "{userhome}/.local/share/rhythmbox/plugins/"
     ],
-    "icons": {
-        "playing": {
+    "icons": [
+        {
             "original": "tray_playing.png",
             "theme": "rhythmbox-playing"
         },
-        "indicator": {
+        {
             "original": "tray_stopped.png",
             "theme": "rhythmbox-indicator"
         }
-    }
+    ]
 }

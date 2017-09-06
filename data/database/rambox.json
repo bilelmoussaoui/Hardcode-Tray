@@ -9,31 +9,31 @@
         "/opt/Rambox/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "resources/IconTray.png",
             "theme": "rambox-indicator"
         },
-        "tray@2x": {
+        {
             "original": "resources/IconTray@2x.png",
             "theme": "rambox-indicator"
         },
-        "tray@4x": {
+        {
             "original": "resources/IconTray@4x.png",
             "theme": "rambox-indicator"
         },
-        "trayUnread": {
+        {
             "original": "resources/IconTrayUnread.png",
             "theme": "rambox-notification"
         },
-        "trayUnread@2x": {
+        {
             "original": "resources/IconTrayUnread@2x.png",
             "theme": "rambox-notification"
         },
-        "trayUnread@4x": {
+        {
             "original": "resources/IconTrayUnread@4x.png",
             "theme": "rambox-notification"
         }
-    }
+    ]
 }

@@ -7,11 +7,11 @@
         "/usr/share/popcorntime-ce/"
     ],
     "binary": "Popcorn-Time-CE",
-    "script": "nwjs",
-    "icons": {
-        "tray": {
+    "module": "nwjs",
+    "icons": [
+        {
             "original": "src/app/images/icon.png",
             "theme": "popcorntime-tray"
         }
-    }
+    ]
 }

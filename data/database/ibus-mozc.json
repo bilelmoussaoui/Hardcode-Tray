@@ -6,46 +6,46 @@
     "icons_path": [
         "/usr/share/ibus-mozc/"
     ],
-    "icons": {
-        "full": {
+    "icons": [
+        {
             "original": "alpha_full.png",
             "theme": "ibus-mozc-alpha_full"
         },
-        "half": {
+        {
             "original": "alpha_half.png",
             "theme": "ibus-mozc-alpha_half"
         },
-        "direct": {
+       {
             "original": "direct.png",
             "theme": "ibus-mozc-direct"
         },
-        "directory": {
+        {
             "original": "directory.png",
             "theme": "ibus-mozc-directory"
         },
-        "hiragana": {
+    {
             "original": "hiragana.png",
             "theme": "ibus-mozc-hiragana"
         },
-        "katakana_full": {
+        {
             "original": "katakana_full.png",
             "theme": "ibus-mozc-katakana_full"
         },
-        "katakana_half": {
+        {
             "original": "katakana_half.png",
             "theme": "ibus-mozc-katakana_half"
         },
-        "product": {
+        {
             "original": "product_icon.png",
             "theme": "ibus-mozc-product_icon"
         },
-        "properties": {
+        {
             "original": "properties.png",
             "theme": "ibus-mozc-properties"
         },
-        "tools": {
+        {
             "original": "tools.png",
             "theme": "ibus-mozc-tool"
         }
-    }
+    ]
 }

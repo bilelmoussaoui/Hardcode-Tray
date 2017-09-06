@@ -6,10 +6,10 @@
     "icons_path": [
         "/usr/share/pixmaps/disper-indicator/"
     ],
-    "icons": {
-        "panel": {
+    "icons": [
+        {
             "original": "disper.svg",
             "theme": "disper-panel"
         }
-    }
+    ]
 }

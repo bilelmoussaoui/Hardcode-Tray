@@ -7,31 +7,31 @@
         "/usr/share/caprine/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "media/IconTray.png",
             "theme": "messenger-indicator"
         },
-        "tray@2x": {
+        {
             "original": "media/IconTray@2x.png",
             "theme": "messenger-indicator"
         },
-        "tray@4x": {
+        {
             "original": "media/IconTray@4x.png",
             "theme": "messenger-indicator"
         },
-        "trayUnread": {
+        {
             "original": "media/IconTrayUnread.png",
             "theme": "messenger-notification"
         },
-        "trayUnread@2x": {
+        {
             "original": "media/IconTrayUnread@2x.png",
             "theme": "messenger-notification"
         },
-        "trayUnread@4x": {
+        {
             "original": "media/IconTrayUnread@4x.png",
             "theme": "messenger-notification"
         }
-    }
+    ]
 }

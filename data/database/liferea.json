@@ -7,14 +7,14 @@
         "/usr/share/pixmaps/",
         "/usr/share/liferea/pixmaps/"
     ],
-    "icons": {
-        "unread": {
+    "icons": [
+        {
             "original": "unread.png",
             "theme": "liferea-unread"
         },
-        "available": {
+        {
             "original": "available.png",
             "theme": "liferea-available"
         }
-    }
+    ]
 }

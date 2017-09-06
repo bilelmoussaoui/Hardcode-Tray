@@ -21,28 +21,35 @@
             "uniqueItems": true
         },
         "icons": {
-            "anyOf": [
-                {
-                    "type": "object",
-                    "items": {
+            "type": "array",
+            "items": {
+                "oneOf": [{
+                        "type": "string"
+                    },
+                    {
                         "type": "object",
-                        "items": {
-                            "theme": {"type": "string"},
-                            "original": {"type": "string"}
+                        "properties": {
+                            "original": {
+                                "type": "string"
+                            },
+                            "theme": {
+                                "type": "string"
+                            },
+                            "symlinks": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "minItems": 1,
+                                "uniqueItems": true
+                            }
                         },
                         "required": ["theme", "original"]
                     }
-                },
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "is_qt": {
-            "type": "boolean"
+                ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
         },
         "force_create_folder": {
             "type": "boolean"
@@ -53,14 +60,29 @@
         "binary": {
             "type": "string"
         },
-        "script": {
+        "module": {
             "type": "string",
             "enum": [
                 "electron",
                 "nwjs",
                 "zip",
-                "pak"
+                "pak",
+                "qt"
             ]
+        },
+        "symlinks": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "root": {
+                        "type": "string"
+                    },
+                    "dest": {
+                        "type": "string"
+                    }
+                }
+            }
         }
     },
     "required": [

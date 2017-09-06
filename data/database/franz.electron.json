@@ -8,28 +8,28 @@
         "/opt/franz/resources/",
         "/opt/franz-bin/resources/"
     ],
-    "script": "electron",
+    "module": "electron",
     "binary": "app.asar",
-    "icons": {
-        "taskbar": {
+    "icons": [
+        {
             "original": "assets/tray/linux/franz-taskbar.png",
             "theme": "franz-panel"
         },
-        "taskbar@2x": {
+        {
             "original": "assets/tray/linux/franz-taskbar@2x.png",
             "theme": "franz-panel"
         },
-        "taskbar-dock": {
+        {
             "original": "assets/franz-win-dock-alert.png",
             "theme": "franz-attention-panel"
         },
-        "taskbar-unread": {
+        {
             "original": "assets/tray/linux/franz-taskbar-unread.png",
             "theme": "franz-attention-panel"
         },
-        "taskbar-unread@2x": {
+        {
             "original": "assets/tray/linux/franz-taskbar-unread@2x.png",
             "theme": "franz-attention-panel"
         }
-    }
+    ]
 }

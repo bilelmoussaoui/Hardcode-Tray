@@ -7,11 +7,11 @@
         "/usr/share/stremio/resources/"
     ],
     "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "module": "electron",
+    "icons": [
+        {
             "original": "images/stremio-small.png",
             "theme": "stremio-tray"
         }
-    }
+    ]
 }

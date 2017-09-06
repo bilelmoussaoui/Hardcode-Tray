@@ -8,20 +8,20 @@
         "/usr/share/nylas-mail/resources/",
         "/usr/share/nylas/resources/"
     ],
-    "script": "electron",
+    "module": "electron",
     "binary": "app.asar",
-    "icons": {
-        "empty": {
+    "icons": [
+        {
             "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
             "theme": "nylas-tray-empty"
         },
-        "full": {
+        {
             "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
             "theme": "nylas-tray-full"
         },
-        "newitems": {
+        {
             "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
             "theme": "nylas-tray-full-newitems"
         }
-    }
+    ]
 }

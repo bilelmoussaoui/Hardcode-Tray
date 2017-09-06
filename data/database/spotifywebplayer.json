@@ -6,30 +6,30 @@
     "icons_path": [
         "/usr/bin/spotifywebplayer/icons/"
     ],
-    "icons": {
-        "spotify_small": {
+    "icons": [
+        {
             "original": "spotify-ico-small.png",
             "theme": "spotify-indicator"
         },
-        "spotify_small_black": {
+        {
             "original": "spotify-ico-small-black.png",
             "theme": "spotify-indicator"
         },
-        "spotify_small_green": {
+        {
             "original": "spotify-ico-small-green.png",
             "theme": "spotify-indicator"
         },
-        "spotify_small_lime": {
+        {
             "original": "spotify-ico-small-lime.png",
             "theme": "spotify-indicator"
         },
-        "spotify_small_old": {
+        {
             "original": "spotify-ico-small-old.png",
             "theme": "spotify-indicator"
         },
-        "spotify_small_white": {
+       {
             "original": "spotify-ico-small-white.png",
             "theme": "spotify-indicator"
         }
-    }
+    ]
 }

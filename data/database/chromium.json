@@ -8,16 +8,16 @@
         "/usr/lib/chromium-browser/",
         "/usr/lib/chromium/"
     ],
-    "script": "pak",
+    "module": "pak",
     "binary": "resources.pak",
-    "icons": {
-        "tray": {
+    "icons": [
+        {
             "original": "8003",
             "theme": "google-chrome-tray"
         },
-        "tray": {
+        {
             "original": "10153",
             "theme": "google-chrome-tray"
         }
-    }
+    ]
 }
