@@ -20,7 +20,7 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import environ, listdir, path
 
-from HardcodeTray.modules.log import Logger
+from HardcodeTray.log import Logger
 
 
 def detect_de(de_list):
@@ -41,11 +41,14 @@ def detect_de(de_list):
 
 def get_themes(userhome):
     """Return a list of installed icon themes."""
-    paths = ["/usr/share/icons/",
-             "{}/.local/share/icons/".format(userhome),
-             "{}/.icons/".format(userhome)]
+    icon_paths = [
+        "/usr/share/icons/",
+        "/usr/share/local/icons/",
+        path.join(userhome, "/.local/share/icons/"),
+        path.join(userhome, "/.icons/")
+    ]
     themes = []
-    for icon_path in paths:
+    for icon_path in icon_paths:
         try:
             sub_dirs = listdir(icon_path)
             for theme in sub_dirs:

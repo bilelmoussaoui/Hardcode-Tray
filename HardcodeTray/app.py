@@ -22,95 +22,87 @@ from gettext import gettext as _
 from glob import glob
 from os import path
 
-from HardcodeTray.const import DB_FOLDER
+from HardcodeTray.const import DB_FOLDER, USERHOME
 from HardcodeTray.enum import Action
-from HardcodeTray.utils import progress
+from HardcodeTray.utils.cli import progress
 
-from HardcodeTray.modules.log import Logger
-from HardcodeTray.modules.parser import Parser
+from HardcodeTray.parser import Parser
+from HardcodeTray.config import Config
 
-from HardcodeTray.modules.config.arguments import ArgumentsConfig
-from HardcodeTray.modules.config.json import JSONConfig
-from HardcodeTray.modules.config.system import SystemConfig
-
-from HardcodeTray.modules.svg.svg import SVG
+from HardcodeTray.svg import SVG
 
 
 class App:
     """
         Main application.
     """
-    _args = None  # Arguments Parser
-    _json = None  # Config file (json)
-    _system = None  # System config
-    _svgtopng = None
-    _icon_size = None
-    _scaling_factor = None
-    _app = None  # App Object
+    instance = None
 
     def __init__(self, args):
-        App._args = ArgumentsConfig(args)
-        App._json = JSONConfig()
-        App._system = SystemConfig()
+        self.config = Config(args)
+        self.parser = Parser()
+        # Default instance of an svg to png converter
+        self.svg = None
+        self.init()
+
+    def init(self):
+        """Init some important objects like SVG;"""
+        conversion_tool = self.config.get("conversion_tool")
+        colors = self.config.get("colors")
+        self.svg = SVG.factory(colors, conversion_tool)
+        self.parser.register_callback(
+            r'\{userhome\}', lambda key, path: path.replace(key, USERHOME)
+        )
+        self.parser.register_callback(
+            r'\{size\}', lambda key, path: path.replace(key, self.config.get("icon_size"))
+        )
+        self.parser.register_callback(
+            r'\{dropbox\}', lambda key, path: path.replace(
+                key, "dropbox-lnx.x86_64-34.3.18")
+        )
+        App.instance = self
 
     @staticmethod
-    def set_args(args):
-        """Get default instance of the app."""
-        if not App._app:
-            App._app = App(args)
+    def get_default():
+        """Return default instance of the app."""
+        return App.instance
 
-    @staticmethod
-    def get(key):
-        """Return a value from Arguments, json config file, System."""
-        sources = [App._args, App._json, App._system]
-        value = None
-
-        if hasattr(App, "_" + key):
-            value = getattr(App, "_" + key)
-            if value is not None:
-                return value
-
-        for source in sources:
-            if hasattr(source, key):
-                method = getattr(source, key)
-                if hasattr(method, "__call__"):
-                    value = method()
-                    if value is not None:
-                        setattr(App, "_" + key, value)
-                        return value
-        return None
-
-    @staticmethod
-    def get_supported_apps():
-        """Get a list of dict, a dict for each supported application."""
-        supported_apps = []
+    def list_apps(self):
+        """Return a list apps to fix."""
         files = []
-        if App.get("only"):
-            for db_file in App.get("only"):
+        if self.config.get("only"):
+            for db_file in self.config.get("only"):
                 db_file = "{0}{1}.json".format(DB_FOLDER, db_file)
                 if path.exists(db_file):
                     files.append(db_file)
         else:
             files = glob("{0}*.json".format(path.join(DB_FOLDER, "")))
         files.sort()
+        return files
 
-        blacklist = App.get("blacklist")
-        if not blacklist:
-            blacklist = []
-        for db_file in files:
+    def get_supported_apps(self):
+        """Get a list of dict, a dict for each supported application."""
+        # List of supported apps by your current theme/installed
+        apps = []
+        db_files = self.list_apps()
+        blacklist = self.config.get("blacklist")
+
+        for db_file in db_files:
             db_filename = path.splitext(path.basename(db_file))[0]
             if db_filename not in blacklist:
-                application_data = Parser(db_file)
-                if application_data.is_installed():
-                    supported_apps.append(application_data.get_application())
+                db = self.parser.parse(db_file)
+                if db.is_installed:
+                    # Create an application instance
+                    # From a database
+                    app = db.factory()
+                    apps.append(app)
 
-        return supported_apps
+        return apps
 
-    @staticmethod
-    def execute():
+    def execute(self):
         """Fix Hardcoded Tray icons."""
-        action = App.get("action")
-        apps = App.get_supported_apps()
+        action = self.config.get("action")
+        apps = self.get_supported_apps()
         done = []
         total_time = 0
         counter = 0
@@ -136,55 +128,3 @@ class App:
             print(_("No cache found."))
         else:
             print(_("No apps to revert!"))
-
-    @staticmethod
-    def svg():
-        """
-            Return an instance of a conversion tool
-        """
-        if App._svgtopng is None:
-            conversion_tool = App.get("conversion_tool")
-            App._svgtopng = SVG.factory(App.get("colors"), conversion_tool)
-        return App._svgtopng
-
-    @staticmethod
-    def icon_size():
-        """
-            Return the icon size.
-        """
-        if not App._icon_size:
-            icon_size = App.get("icon_size")
-            App._icon_size = icon_size
-        return App._icon_size
-
-    @staticmethod
-    def scaling_factor():
-        """
-            Returns the scaling factor.
-        """
-        if not App._scaling_factor:
-            scaling_factor = App.get("scaling_factor")
-            if scaling_factor and scaling_factor > 1:
-                # Change icon size by * it by the scaling factor
-                App._icon_size = round(App.icon_size() * scaling_factor, 0)
-                Logger.debug("Icon Size: {}".format(App._icon_size))
-            App._scaling_factor = scaling_factor
-        return App._scaling_factor
-
-    @staticmethod
-    def theme(key=None):
-        """Return the icon theme instance"""
-        theme = App.get("theme")
-        if key and isinstance(theme, dict):
-            return theme.get(key)
-        return theme
-
-    @staticmethod
-    def path():
-        """
-            The icons path, specified per application.
-        """
-        path_ = App.get("path")
-        if len(App.get("only")) > 1 and path_:
-            exit(_("You can't use --path with more than application at once."))
-        return path_

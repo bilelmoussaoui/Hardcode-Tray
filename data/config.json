@@ -5,10 +5,8 @@
     "hangouts"
   ],
   "conversion_tool": "CairoSVG",
-  "icons": {
-    "size": 24,
-    "theme": "Numix"
-  },
+  "icons_size": 24,
+  "theme": "Numix",
   "nwjs": "/home/myusername/Tools/nwjs/",
   "scaling_factor": 1
 }

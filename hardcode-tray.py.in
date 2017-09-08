@@ -56,22 +56,9 @@ parser.add_argument("--clear-cache", action="store_true",
 parser.add_argument("--conversion-tool", "-ct",
                     help=_("Which of conversion tool to use"),
                     type=str, choices=ConversionTools.choices())
-parser.add_argument("--dark-theme", "-dt",
-                    help=_("Use a specified theme for the dark icons."
-                           "Can't be used with --theme"
-                           "Works only with --light-theme."),
-                    type=str)
-parser.add_argument("--light-theme", "-lt",
-                    help=_("Use a specified theme for the light icons."
-                           " Can't be used with --theme."
-                           "Works only with --dark-theme."),
-                    type=str)
 parser.add_argument("--only", "-o",
                     help=_("Fix only one application or more, linked by a ','.\n"
                            "example : --only dropbox,telegram"),
-                    type=str)
-parser.add_argument("--path", "-p",
-                    help=_("Use a different icon path for a single application."),
                     type=str)
 parser.add_argument("--revert", "-r", action='store_true',
                     help=_("Revert fixed hardcoded tray icons"))
@@ -86,7 +73,8 @@ parser.add_argument("--version", "-v", action='store_true',
                     help=_("Print the version number of Hardcode-Tray."))
 
 args = parser.parse_args()
-App.set_args(args)
+app = App(args)
+print(app)
 
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit(_("You need to run the script using 'sudo -E'.\nPlease try again"))
@@ -96,19 +84,34 @@ if args.version:
 else:
     print(_("Welcome to Hardcode-Tray!"))
     print(_("Desktop Environment: {}").format(DESKTOP_ENV.title()))
-    print(_("Scaling Factor: {}").format(App.scaling_factor()))
-    print(_("Icon Size: {}").format(App.icon_size()))
-    if not isinstance(App.theme(), dict):
-        print(_("Icon Theme: {}").format(App.theme()))
-    else:
-        print(_("Dark Icon Theme: {}").format(App.theme("dark")))
-        print(_("Light Icon Theme: {}").format(App.theme("light")))
-    print(_("Conversion Tool: {}").format(App.svg()))
+    print(_("Scaling Factor: {}").format(app.config.get("scaling_factor")))
+    print(_("Icon Size: {}").format(app.config.get("icon_size")))
+    print(_("Icon Theme: {}").format(app.config.get("theme")))
+    print(_("Conversion Tool: {}").format(app.config.get("conversion_tool")))
     print(_("To Do: "), end="")
-    print(", ".join(map(lambda x: x.title(), App.get("only")))
-          if App.get("only") else _("All"))
+    if app.config.get("only"):
+        print(", ".join(map(lambda x: x.title(), app.config.get("only"))))
+    else:
+        print(_("all"))
 
-    action = App.get("action")
+    action = app.config.get("action")
+    if not action:
+        print(_("1 - Apply"))
+        print(_("2 - Revert"))
+        print(_("3 - Clear Backup Cache"))
+        has_chosen = False
+        while not has_chosen:
+            try:
+                action = int(input(_("Please choose: ")))
+                if action not in Action.choices():
+                    print(_("Please try again"))
+                else:
+                    has_chosen = True
+            except ValueError:
+                print(_("Please choose a valid value!"))
+            except KeyboardInterrupt:
+                exit("")
+
     if action == Action.APPLY:
         print(_("Applying now.."))
     elif action == Action.REVERT:
@@ -116,6 +119,6 @@ else:
     elif action == Action.CLEAR_CACHE:
         print(_("Clearing cache..."))
     print("\n")
-    App.execute()
+    app.execute()
 
     print(_("\nDone, Thank you for using the Hardcode-Tray fixer!"))
