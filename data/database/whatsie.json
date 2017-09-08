@@ -1,21 +1,21 @@
 {
-    "name": "Whatsie",
-    "app_path": [
-        "/opt/whatsie/"
-    ],
-    "icons_path": [
-        "/opt/whatsie/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "images/tray.png",
-            "theme": "whatsie-tray"
-        },
-        "notification": {
-            "original": "images/trayAlert.png",
-            "theme": "whatsie-tray-attention"
-        }
+  "name": "Whatsie",
+  "app_path": [
+    "/opt/whatsie/"
+  ],
+  "icons_path": [
+    "/opt/whatsie/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "images/tray.png",
+      "theme": "whatsie-tray"
+    },
+    {
+      "original": "images/trayAlert.png",
+      "theme": "whatsie-tray-attention"
     }
+  ]
 }

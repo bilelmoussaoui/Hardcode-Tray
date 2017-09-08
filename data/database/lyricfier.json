@@ -1,15 +1,15 @@
 {
-    "name": "Lyricfier",
-    "app_path": [
-        "/opt/lyricfier/"
-    ],
-    "icons_path": [
-        "/opt/lyricfier/resources/app/render/img/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "icon.png",
-            "theme": "lyricfier-tray"
-        }
+  "name": "Lyricfier",
+  "app_path": [
+    "/opt/lyricfier/"
+  ],
+  "icons_path": [
+    "/opt/lyricfier/resources/app/render/img/"
+  ],
+  "icons": [
+    {
+      "original": "icon.png",
+      "theme": "lyricfier-tray"
     }
+  ]
 }

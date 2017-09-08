@@ -1,29 +1,29 @@
 {
-    "name": "PomoDoneApp",
-    "app_path": [
-        "/opt/PomoDoneApp/"
-    ],
-    "icons_path": [
-        "/opt/PomoDoneApp/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "tray_iconTemplate.png",
-            "theme": "pomodoneapp-indicator"
-        },
-        "started": {
-            "original": "icon_timerTemplate.png",
-            "theme": "pomodoneapp-started"
-        },
-        "paused": {
-            "original": "icon_pauseTemplate.png",
-            "theme": "pomodoneapp-paused"
-        },
-        "break": {
-            "original": "tray_iconBreakTemplate.png",
-            "theme": "pomodoneapp-break"
-        }
+  "name": "PomoDoneApp",
+  "app_path": [
+    "/opt/PomoDoneApp/"
+  ],
+  "icons_path": [
+    "/opt/PomoDoneApp/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "tray_iconTemplate.png",
+      "theme": "pomodoneapp-indicator"
+    },
+    {
+      "original": "icon_timerTemplate.png",
+      "theme": "pomodoneapp-started"
+    },
+    {
+      "original": "icon_pauseTemplate.png",
+      "theme": "pomodoneapp-paused"
+    },
+    {
+      "original": "tray_iconBreakTemplate.png",
+      "theme": "pomodoneapp-break"
     }
+  ]
 }

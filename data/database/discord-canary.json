@@ -1,23 +1,23 @@
 {
-    "name": "Discord Canary",
-    "app_path": [
-        "/usr/share/discord-canary/",
-        "/opt/discord-canary/"
-    ],
-    "icons_path": [
-        "/usr/share/discord-canary/resources/",
-        "/opt/discord-canary/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "images/linux-tray.png",
-            "theme": "discord-tray"
-        },
-        "tray-unread": {
-            "original": "images/linux-tray-unread.png",
-            "theme": "discord-tray-notification"
-        }
+  "name": "Discord Canary",
+  "app_path": [
+    "/usr/share/discord-canary/",
+    "/opt/discord-canary/"
+  ],
+  "icons_path": [
+    "/usr/share/discord-canary/resources/",
+    "/opt/discord-canary/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "images/linux-tray.png",
+      "theme": "discord-tray"
+    },
+    {
+      "original": "images/linux-tray-unread.png",
+      "theme": "discord-tray-notification"
     }
+  ]
 }

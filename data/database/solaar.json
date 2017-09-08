@@ -1,48 +1,47 @@
 {
-    "name": "Solaar",
-    "app_path": [
-        "/usr/share/solaar/"
-    ],
-    "icons_path": [
-        "/usr/share/solaar/icons/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "solaar-init.svg",
-            "theme": "solaar-indicator"
-        },
-        "attention": {
-            "original": "solaar-attention.svg",
-            "theme": "solaar-attention"
-        },
-        "000": {
-            "original": "light_000.png",
-            "theme": "battery-000"
-        },
-        "020": {
-            "original": "light_020.png",
-            "theme": "battery-020"
-        },
-        "040": {
-            "original": "light_040.png",
-            "theme": "battery-040"
-        },
-        "060": {
-            "original": "light_060.png",
-            "theme": "battery-060"
-        },
-        "080": {
-            "original": "light_080.png",
-            "theme": "battery-080"
-        },
-        "100": {
-            "original": "light_100.png",
-            "theme": "battery-100"
-        },
-        "unknown": {
-            "original": "light_unknown.png",
-            "theme": "battery-missing"
-        }
-
+  "name": "Solaar",
+  "app_path": [
+    "/usr/share/solaar/"
+  ],
+  "icons_path": [
+    "/usr/share/solaar/icons/"
+  ],
+  "icons": [
+    {
+      "original": "solaar-init.svg",
+      "theme": "solaar-indicator"
+    },
+    {
+      "original": "solaar-attention.svg",
+      "theme": "solaar-attention"
+    },
+    {
+      "original": "light_000.png",
+      "theme": "battery-000"
+    },
+    {
+      "original": "light_020.png",
+      "theme": "battery-020"
+    },
+    {
+      "original": "light_040.png",
+      "theme": "battery-040"
+    },
+    {
+      "original": "light_060.png",
+      "theme": "battery-060"
+    },
+    {
+      "original": "light_080.png",
+      "theme": "battery-080"
+    },
+    {
+      "original": "light_100.png",
+      "theme": "battery-100"
+    },
+    {
+      "original": "light_unknown.png",
+      "theme": "battery-missing"
     }
+  ]
 }

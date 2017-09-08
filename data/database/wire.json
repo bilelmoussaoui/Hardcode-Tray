@@ -1,21 +1,21 @@
 {
-    "name": "Wire",
-    "app_path": [
-        "/opt/wire-desktop/",
-        "/usr/lib/wire-desktop/"
-    ],
-    "icons_path": [
-        "/opt/wire-desktop/resources/app/img/",
-        "/usr/lib/wire-desktop/resources/app/img/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "tray.png",
-            "theme": "wire-tray"
-        },
-        "notification": {
-            "original": "tray.badge.png",
-            "theme": "wire-tray-attention"
-        }
+  "name": "Wire",
+  "app_path": [
+    "/opt/wire-desktop/",
+    "/usr/lib/wire-desktop/"
+  ],
+  "icons_path": [
+    "/opt/wire-desktop/resources/app/img/",
+    "/usr/lib/wire-desktop/resources/app/img/"
+  ],
+  "icons": [
+    {
+      "original": "tray.png",
+      "theme": "wire-tray"
+    },
+    {
+      "original": "tray.badge.png",
+      "theme": "wire-tray-attention"
     }
+  ]
 }

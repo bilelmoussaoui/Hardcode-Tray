@@ -1,18 +1,18 @@
 {
-    "name": "Twitch Indicator",
-    "app_path": [
-        "/usr/lib/twitch-indicator/"
-    ],
-    "icons_path": [
-        "/usr/lib/twitch-indicator/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "indicator_ubuntu.png",
-            "theme": "twitch-indicator",
-            "symlinks": [
-                "indicator_elementary.png"
-            ]
-        }
+  "name": "Twitch Indicator",
+  "app_path": [
+    "/usr/lib/twitch-indicator/"
+  ],
+  "icons_path": [
+    "/usr/lib/twitch-indicator/"
+  ],
+  "icons": [
+    {
+      "original": "indicator_ubuntu.png",
+      "theme": "twitch-indicator",
+      "symlinks": [
+        "indicator_elementary.png"
+      ]
     }
+  ]
 }

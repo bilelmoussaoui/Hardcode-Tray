@@ -1,15 +1,15 @@
 {
-    "name": "Grive Tools",
-    "app_path": [
-        "/opt/thefanclub/grive-tools/"
-    ],
-    "icons_path": [
-        "/opt/thefanclub/grive-tools/icons/dark/",
-        "/opt/thefanclub/grive-tools/icons/light/"
-    ],
-    "icons": [
-        "grive-app-ind.svg",
-        "grive-app-ind-con-{1-3}.svg",
-        "grive-app-ind-sleep.svg"
-    ]
+  "name": "Grive Tools",
+  "app_path": [
+    "/opt/thefanclub/grive-tools/"
+  ],
+  "icons_path": [
+    "/opt/thefanclub/grive-tools/icons/dark/",
+    "/opt/thefanclub/grive-tools/icons/light/"
+  ],
+  "icons": [
+    "grive-app-ind.svg",
+    "grive-app-ind-con-{1-3}.svg",
+    "grive-app-ind-sleep.svg"
+  ]
 }

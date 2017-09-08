@@ -1,30 +1,28 @@
 {
-    "name": "Megasync",
-    "app_path": [
-        "/usr/bin/megasync"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/megasync/{size}/"
-    ],
-    "is_qt": true,
-    "backup_ignore": true,
-    "force_create_folder": true,
-    "icons": {
-        "paused": {
-            "original": "24b61f93b67c69a1a18b19241134f91d",
-            "theme": "megasync-status-paused"
-        },
-        "syncing": {
-            "original": "812e388b8682ab46d064b6e782dc04ec",
-            "theme": "megasync-status-syncing"
-        },
-        "disconnected": {
-            "original": "5e6bbab03e062640f0a3c6c540f119a7",
-            "theme": "megasync-status-disconnected"
-        },
-        "ok": {
-            "original": "edb2de513ea9f0779804343d19513ffa",
-            "theme": "megasync-status-ok"
-        }
+  "name": "Megasync",
+  "app_path": [
+    "/usr/bin/megasync"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/megasync/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "24b61f93b67c69a1a18b19241134f91d",
+      "theme": "megasync-status-paused"
+    },
+    {
+      "original": "812e388b8682ab46d064b6e782dc04ec",
+      "theme": "megasync-status-syncing"
+    },
+    {
+      "original": "5e6bbab03e062640f0a3c6c540f119a7",
+      "theme": "megasync-status-disconnected"
+    },
+    {
+      "original": "edb2de513ea9f0779804343d19513ffa",
+      "theme": "megasync-status-ok"
     }
+  ]
 }

@@ -1,23 +1,23 @@
 {
-    "name": "Chromium",
-    "app_path": [
-        "/usr/lib/chromium-browser/",
-        "/usr/lib/chromium/"
-    ],
-    "icons_path": [
-        "/usr/lib/chromium-browser/",
-        "/usr/lib/chromium/"
-    ],
-    "script": "pak",
-    "binary": "resources.pak",
-    "icons": {
-        "tray": {
-            "original": "8003",
-            "theme": "google-chrome-tray"
-        },
-        "tray": {
-            "original": "10153",
-            "theme": "google-chrome-tray"
-        }
+  "name": "Chromium",
+  "app_path": [
+    "/usr/lib/chromium-browser/",
+    "/usr/lib/chromium/"
+  ],
+  "icons_path": [
+    "/usr/lib/chromium-browser/",
+    "/usr/lib/chromium/"
+  ],
+  "module": "pak",
+  "binary": "resources.pak",
+  "icons": [
+    {
+      "original": "8003",
+      "theme": "google-chrome-tray"
+    },
+    {
+      "original": "10153",
+      "theme": "google-chrome-tray"
     }
+  ]
 }

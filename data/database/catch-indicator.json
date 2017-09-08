@@ -1,15 +1,15 @@
 {
-    "name": "Catch Indicator",
-    "app_path": [
-        "/usr/share/catch-indicator/"
-    ],
-    "icons_path": [
-        "/usr/share/catch-indicator/icons/"
-    ],
-    "icons": [
-        "catch-indicator-dark-starred.svg",
-        "catch-indicator-dark-normal.svg",
-        "catch-indicator-light-starred.svg",
-        "catch-indicator-light-normal.svg"
-    ]
+  "name": "Catch Indicator",
+  "app_path": [
+    "/usr/share/catch-indicator/"
+  ],
+  "icons_path": [
+    "/usr/share/catch-indicator/icons/"
+  ],
+  "icons": [
+    "catch-indicator-dark-starred.svg",
+    "catch-indicator-dark-normal.svg",
+    "catch-indicator-light-starred.svg",
+    "catch-indicator-light-normal.svg"
+  ]
 }

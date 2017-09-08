@@ -1,35 +1,35 @@
 {
-    "name": "Franz",
-    "app_path": [
-        "/opt/franz/",
-        "/opt/franz-bin/"
-    ],
-    "icons_path": [
-        "/opt/franz/resources/",
-        "/opt/franz-bin/resources/"
-    ],
-    "script": "electron",
-    "binary": "app.asar",
-    "icons": {
-        "taskbar": {
-            "original": "assets/tray/linux/franz-taskbar.png",
-            "theme": "franz-panel"
-        },
-        "taskbar@2x": {
-            "original": "assets/tray/linux/franz-taskbar@2x.png",
-            "theme": "franz-panel"
-        },
-        "taskbar-dock": {
-            "original": "assets/franz-win-dock-alert.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-unread": {
-            "original": "assets/tray/linux/franz-taskbar-unread.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-unread@2x": {
-            "original": "assets/tray/linux/franz-taskbar-unread@2x.png",
-            "theme": "franz-attention-panel"
-        }
+  "name": "Franz",
+  "app_path": [
+    "/opt/franz/",
+    "/opt/franz-bin/"
+  ],
+  "icons_path": [
+    "/opt/franz/resources/",
+    "/opt/franz-bin/resources/"
+  ],
+  "module": "electron",
+  "binary": "app.asar",
+  "icons": [
+    {
+      "original": "assets/tray/linux/franz-taskbar.png",
+      "theme": "franz-panel"
+    },
+    {
+      "original": "assets/tray/linux/franz-taskbar@2x.png",
+      "theme": "franz-panel"
+    },
+    {
+      "original": "assets/franz-win-dock-alert.png",
+      "theme": "franz-attention-panel"
+    },
+    {
+      "original": "assets/tray/linux/franz-taskbar-unread.png",
+      "theme": "franz-attention-panel"
+    },
+    {
+      "original": "assets/tray/linux/franz-taskbar-unread@2x.png",
+      "theme": "franz-attention-panel"
     }
+  ]
 }

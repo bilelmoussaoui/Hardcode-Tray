@@ -1,31 +1,31 @@
 {
-    "name": "Mint Update Manager",
-    "app_path": [
-        "/usr/lib/linuxmint/mintUpdate/"
-    ],
-    "icons_path": [
-        "/usr/lib/linuxmint/mintUpdate/icons/"
-    ],
-    "icons": {
-        "apply": {
-            "original": "original-apply.svg",
-            "theme": "mintupdate-indicator-apply"
-        },
-        "error": {
-            "original": "original-error2.svg,",
-            "theme": "mintupdate-indicator-error"
-        },
-        "working": {
-            "original": "original-exec.svg",
-            "theme": "mintupdate-indicator-working"
-        },
-        "info": {
-            "original": "original-info.svg",
-            "theme": "mintupdate-indicator-info"
-        },
-        "indicator": {
-            "original": "original.svg",
-            "theme": "mintupdate-indicator"
-        }
+  "name": "Mint Update Manager",
+  "app_path": [
+    "/usr/lib/linuxmint/mintUpdate/"
+  ],
+  "icons_path": [
+    "/usr/lib/linuxmint/mintUpdate/icons/"
+  ],
+  "icons": [
+    {
+      "original": "original-apply.svg",
+      "theme": "mintupdate-indicator-apply"
+    },
+    {
+      "original": "original-error2.svg,",
+      "theme": "mintupdate-indicator-error"
+    },
+    {
+      "original": "original-exec.svg",
+      "theme": "mintupdate-indicator-working"
+    },
+    {
+      "original": "original-info.svg",
+      "theme": "mintupdate-indicator-info"
+    },
+    {
+      "original": "original.svg",
+      "theme": "mintupdate-indicator"
     }
+  ]
 }

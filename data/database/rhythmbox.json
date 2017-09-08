@@ -1,19 +1,19 @@
 {
-    "name": "Rhythmbox",
-    "app_path": [
-        "{userhome}/.local/share/rhythmbox/plugins/tray_icon.py"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/rhythmbox/plugins/"
-    ],
-    "icons": {
-        "playing": {
-            "original": "tray_playing.png",
-            "theme": "rhythmbox-playing"
-        },
-        "indicator": {
-            "original": "tray_stopped.png",
-            "theme": "rhythmbox-indicator"
-        }
+  "name": "Rhythmbox",
+  "app_path": [
+    "{userhome}/.local/share/rhythmbox/plugins/tray_icon.py"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/rhythmbox/plugins/"
+  ],
+  "icons": [
+    {
+      "original": "tray_playing.png",
+      "theme": "rhythmbox-playing"
+    },
+    {
+      "original": "tray_stopped.png",
+      "theme": "rhythmbox-indicator"
     }
+  ]
 }

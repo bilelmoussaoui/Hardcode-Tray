@@ -1,39 +1,39 @@
 {
-    "name": "Google Play Music Desktop Player",
-    "app_path": [
-        "/usr/share/google-play-music-desktop-player/",
-        "/usr/share/gpmdp/"
-    ],
-    "icons_path": [
-        "/usr/share/google-play-music-desktop-player/resources/",
-        "/usr/share/gpmdp/resources/"
-    ],
-    "script": "electron",
-    "binary": "app.asar",
-    "icons": {
-        "normal-light": {
-            "original": "build/assets/img/main_tray_white_s.png",
-            "theme": "gpmdp-tray"
-        },
-        "play-light": {
-            "original": "build/assets/img/playing/main_tray_white_s.png",
-            "theme": "gpmdp-tray-play"
-        },
-        "pause-light": {
-            "original": "build/assets/img/paused/main_tray_white_s.png",
-            "theme": "gpmdp-tray-pause"
-        },
-        "normal-dark": {
-            "original": "build/assets/img/main_tray_black_s.png",
-            "theme": "gpmdp-tray"
-        },
-        "play-dark": {
-            "original": "build/assets/img/playing/main_tray_black_s.png",
-            "theme": "gpmdp-tray-play"
-        },
-        "pause-dark": {
-            "original": "build/assets/img/paused/main_tray_black_s.png",
-            "theme": "gpmdp-tray-pause"
-        }
+  "name": "Google Play Music Desktop Player",
+  "app_path": [
+    "/usr/share/google-play-music-desktop-player/",
+    "/usr/share/gpmdp/"
+  ],
+  "icons_path": [
+    "/usr/share/google-play-music-desktop-player/resources/",
+    "/usr/share/gpmdp/resources/"
+  ],
+  "module": "electron",
+  "binary": "app.asar",
+  "icons": [
+    {
+      "original": "build/assets/img/main_tray_white_s.png",
+      "theme": "gpmdp-tray"
+    },
+    {
+      "original": "build/assets/img/playing/main_tray_white_s.png",
+      "theme": "gpmdp-tray-play"
+    },
+    {
+      "original": "build/assets/img/paused/main_tray_white_s.png",
+      "theme": "gpmdp-tray-pause"
+    },
+    {
+      "original": "build/assets/img/main_tray_black_s.png",
+      "theme": "gpmdp-tray"
+    },
+    {
+      "original": "build/assets/img/playing/main_tray_black_s.png",
+      "theme": "gpmdp-tray-play"
+    },
+    {
+      "original": "build/assets/img/paused/main_tray_black_s.png",
+      "theme": "gpmdp-tray-pause"
     }
+  ]
 }

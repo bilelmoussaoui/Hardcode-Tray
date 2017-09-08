@@ -1,17 +1,17 @@
 {
-    "name": "Ramme",
-    "app_path": [
-        "/opt/Ramme/"
-    ],
-    "icons_path": [
-        "/opt/Ramme/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "dist/assets/icon-18x18.png",
-            "theme": "ramme-indicator"
-        }
+  "name": "Ramme",
+  "app_path": [
+    "/opt/Ramme/"
+  ],
+  "icons_path": [
+    "/opt/Ramme/resources/"
+  ],
+  "binary": "app.asar",
+  "module": "electron",
+  "icons": [
+    {
+      "original": "dist/assets/icon-18x18.png",
+      "theme": "ramme-indicator"
     }
+  ]
 }

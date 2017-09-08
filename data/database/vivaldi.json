@@ -1,21 +1,21 @@
 {
-    "name": "Vivaldi",
-    "app_path": [
-        "/opt/vivaldi/",
-        "/opt/vivaldi-beta/",
-        "/opt/vivaldi-snapshot/"
-    ],
-    "icons_path": [
-        "/opt/vivaldi/",
-        "/opt/vivaldi-beta/",
-        "/opt/vivaldi-snapshot/"
-    ],
-    "script": "pak",
-    "binary": "resources.pak",
-    "icons": {
-        "tray": {
-            "original": "8038",
-            "theme": "vivaldi-tray"
-        }
+  "name": "Vivaldi",
+  "app_path": [
+    "/opt/vivaldi/",
+    "/opt/vivaldi-beta/",
+    "/opt/vivaldi-snapshot/"
+  ],
+  "icons_path": [
+    "/opt/vivaldi/",
+    "/opt/vivaldi-beta/",
+    "/opt/vivaldi-snapshot/"
+  ],
+  "module": "pak",
+  "binary": "resources.pak",
+  "icons": [
+    {
+      "original": "8038",
+      "theme": "vivaldi-tray"
     }
+  ]
 }

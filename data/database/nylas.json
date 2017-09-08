@@ -1,27 +1,27 @@
 {
-    "name": "Nylas N1(Mail)",
-    "app_path": [
-        "/usr/share/nylas-mail/",
-        "/usr/share/nylas/"
-    ],
-    "icons_path": [
-        "/usr/share/nylas-mail/resources/",
-        "/usr/share/nylas/resources/"
-    ],
-    "script": "electron",
-    "binary": "app.asar",
-    "icons": {
-        "empty": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
-            "theme": "nylas-tray-empty"
-        },
-        "full": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
-            "theme": "nylas-tray-full"
-        },
-        "newitems": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
-            "theme": "nylas-tray-full-newitems"
-        }
+  "name": "Nylas N1(Mail)",
+  "app_path": [
+    "/usr/share/nylas-mail/",
+    "/usr/share/nylas/"
+  ],
+  "icons_path": [
+    "/usr/share/nylas-mail/resources/",
+    "/usr/share/nylas/resources/"
+  ],
+  "module": "electron",
+  "binary": "app.asar",
+  "icons": [
+    {
+      "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
+      "theme": "nylas-tray-empty"
+    },
+    {
+      "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
+      "theme": "nylas-tray-full"
+    },
+    {
+      "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
+      "theme": "nylas-tray-full-newitems"
     }
+  ]
 }

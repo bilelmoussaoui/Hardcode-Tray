@@ -1,18 +1,16 @@
 {
-    "name": "WizNote",
-    "app_path": [
-        "/usr/bin/WizNote/"
-    ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/WizNote/{size}/"
-    ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "indicator": {
-            "original": "7d0d85ecd83a67c0ed9abb74975ca50e",
-            "theme": "wiznote-indicator"
-        }
+  "name": "WizNote",
+  "app_path": [
+    "/usr/bin/WizNote/"
+  ],
+  "icons_path": [
+    "{userhome}/.local/share/sni-qt/icons/WizNote/{size}/"
+  ],
+  "module": "qt",
+  "icons": [
+    {
+      "original": "7d0d85ecd83a67c0ed9abb74975ca50e",
+      "theme": "wiznote-indicator"
     }
+  ]
 }

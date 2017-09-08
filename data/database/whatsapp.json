@@ -1,19 +1,19 @@
 {
-    "name": "WhatsApp Desktop",
-    "app_path": [
-        "/opt/Whatsapp/"
-    ],
-    "icons_path": [
-        "/opt/Whatsapp/resources/app/assets/img/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "trayTemplate.png",
-            "theme": "whatsapp-tray"
-        },
-        "tray@2x": {
-            "original": "trayTemplate@2x.png",
-            "theme": "whatsapp-tray"
-        }
+  "name": "WhatsApp Desktop",
+  "app_path": [
+    "/opt/Whatsapp/"
+  ],
+  "icons_path": [
+    "/opt/Whatsapp/resources/app/assets/img/"
+  ],
+  "icons": [
+    {
+      "original": "trayTemplate.png",
+      "theme": "whatsapp-tray"
+    },
+    {
+      "original": "trayTemplate@2x.png",
+      "theme": "whatsapp-tray"
     }
+  ]
 }
