@@ -14,7 +14,10 @@
     "icons": {
         "panel": {
             "original": "icomute_22_0.png",
-            "theme": "telegram-panel"
+            "theme": "telegram-panel",
+            "symlinks": [
+                "ico_22_0.png"
+            ]
         },
         "mute-panel": {
             "original": "icomute_22_1.png",
