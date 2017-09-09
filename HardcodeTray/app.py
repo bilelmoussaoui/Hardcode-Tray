@@ -95,8 +95,8 @@ class App:
                     # Create an application instance
                     # From a database
                     app = db.factory()
+                    print(app)
                     apps.append(app)
-
         return apps
 
     def execute(self):

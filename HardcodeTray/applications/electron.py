@@ -20,10 +20,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.applications.helpers.binary import BinaryApplication
-from HardcodeTray.applications.helpers.asar import AsarFile
+from HardcodeTray.applications.helpers import AsarFile, BinaryApplication
 from HardcodeTray.log import Logger
-from HardcodeTray.utils import get_pngbytes
 
 
 class ElectronApplication(BinaryApplication):

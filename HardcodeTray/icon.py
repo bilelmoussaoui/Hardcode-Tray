@@ -59,7 +59,7 @@ class Icon:
                 symlinks = []
                 for symlink in self.symlinks:
                     if not symlink.extension:
-                        symlink += ".{0}".format(self.theme.extension)
+                        symlink.extension = self.theme.extension
                     symlinks.append(symlink)
                 self.symlinks = symlinks
 
@@ -81,7 +81,7 @@ class Icon:
         # ICON-22 or ICON_24
         seperators = ["-", "_"]
         for seperator in seperators:
-            icon_size = path.splitext(self.original)[0].split(seperator)[-1]
+            icon_size = self.original.filename.split(seperator)[-1]
             if icon_size.isdigit():
                 icon_size = int(icon_size)
         return icon_size

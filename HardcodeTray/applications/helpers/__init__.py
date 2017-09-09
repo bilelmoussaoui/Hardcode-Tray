@@ -18,30 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
-from .arguments import ArgumentsConfig
-from .json import JSONConfig
-from .system import SystemConfig
-
-
-class Config:
-    """Store the config from args, json file & system."""
-
-    def __init__(self, args):
-        self.data = {}
-        self.sources = [
-            ArgumentsConfig(args),
-            JSONConfig(),
-            SystemConfig()
-        ]
-        self.parse_data()
-
-    def parse_data(self):
-        """Parse the data from different sources."""
-        for source in self.sources:
-            for key, value in source.data.items():
-                if value != None or not self.data.get(key):
-                    self.data[key] = value
-
-    def get(self, key):
-        """Return the value of key."""
-        return self.data.get(key)
+from .asar import AsarFile
+from .binary import BinaryApplication
+from .extract import ExtractApplication
+from .data_pack import DataPack

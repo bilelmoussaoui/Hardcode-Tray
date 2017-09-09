@@ -1,11 +1,31 @@
+"""
+Fixes Hardcoded tray icons in Linux.
+
+Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
+Contributors : Andreas Angerer, Joshua Fogg
+Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
+Licence : The script is released under GPL, uses a modified script
+     form Chromium project released under BSD license
+This file is part of Hardcode-Tray.
+Hardcode-Tray is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+Hardcode-Tray is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
+"""
 import re
 import json
+
+from .database import Database
+from .qt import QtDatabase
+
 from HardcodeTray.icon import Icon
 from HardcodeTray.fs import Directory, File
-from HardcodeTray.parser.database import Database
-from HardcodeTray.parser.qt import QtDatabase
-
-
 
 
 class Parser:
@@ -127,6 +147,7 @@ class Parser:
                 theme = icon["theme"]
                 original = icon["original"]
                 symlinks = icon.get("symlinks", [])
+            symlinks = [File(symlink) for symlink in symlinks]
             icon = Icon(original, theme, symlinks)
             if icon.found:  # If the icon was found
                 icons_.append(icon)

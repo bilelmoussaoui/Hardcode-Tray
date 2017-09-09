@@ -20,11 +20,8 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 """
 from os import path
 
-from HardcodeTray.applications.helpers.binary import BinaryApplication
-from HardcodeTray.applications.helpers.data_pack import DataPack
 from HardcodeTray.log import Logger
-from HardcodeTray.utils import get_pngbytes
-
+from HardcodeTray.applications.helpers import BinaryApplication, DataPack
 
 class PakApplication(BinaryApplication):
     """Pak Application class, based on data_pak file."""

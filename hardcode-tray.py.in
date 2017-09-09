@@ -74,7 +74,6 @@ parser.add_argument("--version", "-v", action='store_true',
 
 args = parser.parse_args()
 app = App(args)
-print(app)
 
 if (not DESKTOP_ENV or DESKTOP_ENV == "other") and not App.icon_size():
     exit(_("You need to run the script using 'sudo -E'.\nPlease try again"))

@@ -23,7 +23,7 @@ from shutil import make_archive, move, rmtree
 from tempfile import gettempdir
 
 from HardcodeTray.log import Logger
-from HardcodeTray.applications.helpers.extract import ExtractApplication
+from HardcodeTray.applications.helpers import ExtractApplication
 from HardcodeTray.utils.cli import execute
 
 class NWJSApplication(ExtractApplication):

@@ -55,6 +55,6 @@ def get_themes(userhome):
                 theme_path = path.join(icon_path, theme, "index.theme")
                 if path.exists(theme_path) and theme not in themes:
                     themes.append(theme)
-        except FileNotFoundError:
+        except (FileNotFoundError, PermissionError):
             pass
     return sorted(themes)

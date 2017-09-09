@@ -24,7 +24,7 @@ from tempfile import gettempdir
 from zipfile import ZipFile
 
 from HardcodeTray.log import Logger
-from HardcodeTray.applications.helpers.extract import ExtractApplication
+from HardcodeTray.applications.helpers import ExtractApplication
 
 
 class ZipApplication(ExtractApplication):

@@ -23,8 +23,7 @@ from shutil import rmtree
 
 from HardcodeTray.decorators import revert_wrapper, symlinks_installer
 from HardcodeTray.log import Logger
-from HardcodeTray.applications.application import Application
-from HardcodeTray.utils import symlink_file
+from HardcodeTray.applications import Application
 
 
 class QtApplication(Application):

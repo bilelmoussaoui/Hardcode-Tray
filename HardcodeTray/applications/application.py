@@ -28,7 +28,6 @@ from HardcodeTray.decorators import install_wrapper, revert_wrapper, symlinks_in
 from HardcodeTray.enum import Action
 from HardcodeTray.backup import Backup
 from HardcodeTray.log import Logger
-from HardcodeTray.utils import symlink_file
 
 
 class Application:
