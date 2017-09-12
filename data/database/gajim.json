@@ -11,7 +11,6 @@
             "original": "dcraven/32x32/online.png",
             "theme": "user-available",
             "symlinks": [
-                "sun/32x32/online.png",
                 "gnome/32x32/online.png",
                 "goojim/32x32/online.png",
                 "gota/32x32/online.png",
@@ -24,7 +23,6 @@
             "original": "dcraven/32x32/chat.png",
             "theme": "user-available",
             "symlinks": [
-                "sun/32x32/chat.png",
                 "gnome/32x32/chat.png",
                 "goojim/32x32/chat.png",
                 "gota/32x32/chat.png",
@@ -37,7 +35,6 @@
             "original": "dcraven/32x32/offline.png",
             "theme": "user-offline",
             "symlinks": [
-                "sun/32x32/offline.png",
                 "gnome/32x32/offline.png",
                 "goojim/32x32/offline.png",
                 "gota/32x32/offline.png",
@@ -50,7 +47,6 @@
             "original": "dcraven/32x32/invisible.png",
             "theme": "user-invisible",
             "symlinks": [
-                "sun/32x32/invisible.png",
                 "gnome/32x32/invisible.png",
                 "goojim/32x32/invisible.png",
                 "gota/32x32/invisible.png",
@@ -63,7 +59,6 @@
             "original": "dcraven/32x32/away.png",
             "theme": "user-away",
             "symlinks": [
-                "sun/32x32/away.png",
                 "gnome/32x32/away.png",
                 "goojim/32x32/away.png",
                 "gota/32x32/away.png",
@@ -76,7 +71,6 @@
             "original": "dcraven/32x32/xa.png",
             "theme": "user-away",
             "symlinks": [
-                "sun/32x32/xa.png",
                 "gnome/32x32/xa.png",
                 "goojim/32x32/xa.png",
                 "gota/32x32/xa.png",
@@ -89,7 +83,6 @@
             "original": "dcraven/32x32/dnd.png",
             "theme": "user-busy",
             "symlinks": [
-                "sun/32x32/dnd.png",
                 "gnome/32x32/dnd.png",
                 "goojim/32x32/dnd.png",
                 "gota/32x32/dnd.png",
@@ -102,7 +95,6 @@
             "original": "dcraven/32x32/connecting.png",
             "theme": "user-status-pending",
             "symlinks": [
-                "sun/32x32/connecting.png",
                 "gnome/32x32/connecting.png",
                 "goojim/32x32/connecting.png",
                 "gota/32x32/connecting.png",
@@ -115,7 +107,6 @@
             "original": "dcraven/32x32/event.png",
             "theme": "user-status-new",
             "symlinks": [
-                "sun/32x32/event.png",
                 "gnome/32x32/event.png",
                 "goojim/32x32/event.png",
                 "gota/32x32/event.png",
@@ -128,7 +119,6 @@
             "original": "dcraven/32x32/error.png",
             "theme": "user-status-new",
             "symlinks": [
-                "sun/32x32/error.png",
                 "gnome/32x32/error.png",
                 "goojim/32x32/error.png",
                 "gota/32x32/error.png",
@@ -141,7 +131,6 @@
             "original": "dcraven/32x32/requested.png",
             "theme": "user-status-new",
             "symlinks": [
-                "sun/32x32/requested.png",
                 "gnome/32x32/requested.png",
                 "goojim/32x32/requested.png",
                 "gota/32x32/requested.png",
