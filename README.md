@@ -52,7 +52,7 @@ yaourt -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
 The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.
-Developpement version:
+Development version:
 
 ```bash
 yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
