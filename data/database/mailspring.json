@@ -1,0 +1,25 @@
+{
+    "name": "Mailspring",
+    "app_path": [
+        "/usr/share/mailspring/"
+    ],
+    "icons_path": [
+        "/usr/share/mailspring/resources/"
+    ],
+    "script": "electron",
+    "binary": "app.asar",
+    "icons": {
+        "empty": {
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
+            "theme": "mailspring-tray-empty"
+        },
+        "full": {
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
+            "theme": "mailspring-tray-full"
+        },
+        "newitems": {
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
+            "theme": "mailspring-tray-full-newitems"
+        }
+    }
+}
