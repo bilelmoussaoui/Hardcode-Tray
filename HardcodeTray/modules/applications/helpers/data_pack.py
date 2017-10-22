@@ -100,10 +100,7 @@ class DataPack:
         _header = DataPack.HEADER[self._version]
         ret = []
         # Write file header.
-        if self._version == 4:
-            ret.append(pack(_header['fmt'], self._header))
-        elif self._version == 5:
-            ret.append(pack(_header['fmt'], self._header))
+        ret.append(pack(_header['fmt'], *self._header))
         # Each entry is a uint16 + a uint32s. We have one extra entry for the last
         # item.
         index_length = (len(ids) + 1) * (2 + 4)
