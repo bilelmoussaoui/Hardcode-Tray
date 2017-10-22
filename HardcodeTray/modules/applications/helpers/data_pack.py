@@ -13,8 +13,26 @@ from HardcodeTray.modules.log import Logger
 
 class DataPack:
     """Read and write .pak files."""
-    # Two uint32s and one uint8.
-    HEADER_LENGTH = 2 * 4 + 1
+    HEADER = {
+        # int32(version), int32(resource_count), int8(encoding)
+        # 4 byte version number
+        # 4 byte number of resources
+        # 1 byte encoding
+        4: {
+            'length': 2 * 4 + 1,
+            'fmt': '<IIB'
+        },
+        # int32(version), int8(encoding), 3 bytes padding,
+        # int16(resource_count), int16(alias_count)
+        # 4 bytes version number
+        # 4 bytes encoding + padding
+        # 2 bytes number of resources
+        # 2 bytes number of aliases
+        5: {
+            'length': 4 + 1 + 3 + 2 * 2,
+            'fmt': '<IIhh'
+        }
+    }
 
     def __init__(self, filename):
         """
@@ -24,6 +42,8 @@ class DataPack:
         self._filename = filename
         self._resources = {}
         self._version = 4
+        # Header information
+        self._header = None
         self._read()
 
     def haskey(self, key):
@@ -51,16 +71,22 @@ class DataPack:
         """Read a data pack file and returns a dictionary."""
         with open(self._filename, 'rb') as file_object:
             data = file_object.read()
-        file_object.close()
         original_data = data
 
         # Read the header.
-        version, num_entries, _ = unpack('<IIB', data[:DataPack.HEADER_LENGTH])
+        version = unpack('<i', data[:4])[0]
+        _header = DataPack.HEADER[version]
+        header = unpack(_header['fmt'], data[:_header['length']])
         self._version = version
+        if version == 4:
+            num_entries = header[1]
+        elif version == 5:
+            num_entries = header[2]
+        self._header = header
 
         if num_entries != 0:
             # Read the index and data.
-            data = data[DataPack.HEADER_LENGTH:]
+            data = data[_header['length']:]
             index_entry = 2 + 4  # Each entry is a uint16 and a uint32.
             for _ in range(num_entries):
                 _id, offset = unpack('<HI', data[:index_entry])
@@ -71,16 +97,19 @@ class DataPack:
     def write(self):
         """Write a map of id=>data into output_file as a data pack."""
         ids = sorted(self._resources.keys())
+        _header = DataPack.HEADER[self._version]
         ret = []
-
         # Write file header.
-        ret.append(pack('<IIB', self._version, len(ids), 0))
+        if self._version == 4:
+            ret.append(pack(_header['fmt'], self._header))
+        elif self._version == 5:
+            ret.append(pack(_header['fmt'], self._header))
         # Each entry is a uint16 + a uint32s. We have one extra entry for the last
         # item.
         index_length = (len(ids) + 1) * (2 + 4)
 
         # Write index.
-        data_offset = DataPack.HEADER_LENGTH + index_length
+        data_offset = _header['length'] + index_length
         for _id in ids:
             ret.append(pack('<HI', _id, data_offset))
             data_offset += len(self.get_value(_id))
@@ -91,6 +120,6 @@ class DataPack:
         for _id in ids:
             ret.append(self.get_value(_id))
         content = b''.join(ret)
+
         with open(self._filename, 'wb') as _file:
             _file.write(content)
-        _file.close()
