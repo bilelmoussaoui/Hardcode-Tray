@@ -45,6 +45,12 @@ Here's a list of themes that supports Hardcode-Tray:
 
 ### Arch Linux (AUR)
 
+Make sure the `base-devel` group is installed:
+
+```bash
+sudo pacman -S base-devel
+```
+
 Stable version:
 
 ```bash
