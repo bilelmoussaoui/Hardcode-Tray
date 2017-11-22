@@ -2,12 +2,12 @@
     "name": "Discord",
     "app_path": [
         "/usr/share/discord/",
-        "/opt/discord/"
+        "/opt/discord/",
         "/opt/discord-stable/"
     ],
     "icons_path": [
         "/usr/share/discord/resources/",
-        "/opt/discord/resources/"
+        "/opt/discord/resources/",
         "/opt/discord-stable/resources/"
     ],
     "binary": "app.asar",
