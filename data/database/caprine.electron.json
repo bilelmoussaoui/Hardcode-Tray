@@ -1,10 +1,12 @@
 {
     "name": "Caprine",
     "app_path": [
-        "/usr/share/caprine/"
+        "/usr/share/caprine/",
+        "/opt/Caprine/"
     ],
     "icons_path": [
-        "/usr/share/caprine/resources/"
+        "/usr/share/caprine/resources/",
+        "/opt/Caprine/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
