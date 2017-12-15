@@ -20,6 +20,30 @@
         "tray-unread": {
             "original": "images/linux-tray-unread.png",
             "theme": "discord-tray-notification"
+        },
+        "tray-linux": {
+            "original": "images/systemtray/linux/tray.png",
+            "theme": "discord-tray"
+        },
+        "tray-unread-linux": {
+            "original": "images/systemtray/linux/tray-unread.png",
+            "theme": "discord-tray-notification"
+        },
+        "tray-connected": {
+            "original": "images/systemtray/linux/tray-connected.png",
+            "theme": "discord-tray-connected"
+        },
+        "tray-deafended": {
+            "original": "images/systemtray/linux/tray-deafened.png",
+            "theme": "discord-tray-deafened"
+        },
+        "tray-muted": {
+            "original": "images/systemtray/linux/tray-muted.png",
+            "theme": "discord-tray-muted"
+        },
+        "tray-speaking": {
+            "original": "images/systemtray/linux/tray-speaking.png",
+            "theme": "discord-tray-speaking"
         }
     }
 }
