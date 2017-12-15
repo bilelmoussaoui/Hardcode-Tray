@@ -1,0 +1,21 @@
+{
+    "name": "Tusk",
+    "app_path": [
+        "/opt/Tusk/"
+    ],
+    "icons_path": [
+        "/opt/Tusk/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "static/IconTray.png",
+            "theme": "tusk-indicator"
+        },
+        "tray@2x": {
+            "original": "static/IconTray@2x.png",
+            "theme": "tusk-indicator"
+        }
+    }
+}
