@@ -35,7 +35,7 @@ class DataPack:
             self._resources[int(key)] = value
         except KeyError:
             Logger.warning("The key {0} dosen't seem to"
-                  " be found on {1}".format(key, self._filename))
+                           " be found on {1}".format(key, self._filename))
 
     def get_value(self, key):
         """Get the value of a specific key in the resources list."""
@@ -43,7 +43,7 @@ class DataPack:
             return self._resources.get(int(key))
         except KeyError:
             Logger.warning("The key {0} dosen't seem to"
-                  " be found on {1}".format(key, self._filename))
+                           " be found on {1}".format(key, self._filename))
             return None
 
     def _read(self):
@@ -54,15 +54,16 @@ class DataPack:
         version = unpack('<I', data[:4])[0]
         self._version = version
         if version == 4:
-            resources_count, encoding = unpack('IB', data[4:0])
+            resources_count, _ = unpack('IB', data[4:0])
             alias_count = 0
             header_size = 9
         elif version == 5:
-            encoding, resources_count, alias_count = unpack(
+            _, resources_count, alias_count = unpack(
                 'BxxxHH', data[4:12])
             header_size = 12
 
         def entry_at_index(idx):
+            """Return the source entry at the index @idx."""
             entry_size = 2 + 4
             offset = header_size + idx * entry_size
             return unpack('<HI', data[offset: offset + entry_size])
@@ -78,6 +79,7 @@ class DataPack:
         id_table_size = (resources_count + 1) * (2 + 4)
 
         def alias_at_index(idx):
+            """Return the alias at index @idx. Works only on V5."""
             alias_size = 2 + 2
             offset = header_size + id_table_size + idx * alias_size
             return unpack('<HH', data[offset: offset + alias_size])
@@ -101,12 +103,8 @@ class DataPack:
 
         resource_count = len(self._resources) - len(alias_map)
 
-        ret.append(pack('<IBxxxHH',
-                        self._version,
-                        0,
-                        resource_count,
-                        len(alias_map)
-                        ))
+        ret.append(pack('<IBxxxHH', self._version, 0,
+                        resource_count, len(alias_map)))
 
         # Write index.
         HEADER_LENGTH = 4 + 4 + 2 + 2
