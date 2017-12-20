@@ -20,6 +20,10 @@
         "tray": {
             "original": "10153",
             "theme": "google-chrome-tray"
+        },
+        "tray": {
+            "original": "10154",
+            "theme": "google-chrome-tray"
         }
     }
 }
