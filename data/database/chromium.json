@@ -2,10 +2,12 @@
     "name": "Chromium",
     "app_path": [
         "/usr/lib/chromium-browser/",
+        "/usr/lib/chromium-dev/",
         "/usr/lib/chromium/"
     ],
     "icons_path": [
         "/usr/lib/chromium-browser/",
+        "/usr/lib/chromium-dev/",
         "/usr/lib/chromium/"
     ],
     "script": "pak",
