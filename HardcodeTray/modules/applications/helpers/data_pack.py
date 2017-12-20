@@ -1,3 +1,15 @@
+"""
+Support for formatting a data pack file.
+
+Used for platform agnostic resource files.
+Copyright (c) 2012 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE directory.
+"""
+from struct import pack, unpack
+
+from HardcodeTray.modules.log import Logger
+
 
 class DataPack:
     """Read and write .pak files."""
@@ -22,7 +34,7 @@ class DataPack:
         try:
             self._resources[int(key)] = value
         except KeyError:
-            print("The key {0} dosen't seem to"
+            Logger.warning("The key {0} dosen't seem to"
                   " be found on {1}".format(key, self._filename))
 
     def get_value(self, key):
@@ -30,7 +42,7 @@ class DataPack:
         try:
             return self._resources.get(int(key))
         except KeyError:
-            print("The key {0} dosen't seem to"
+            Logger.warning("The key {0} dosen't seem to"
                   " be found on {1}".format(key, self._filename))
             return None
 
