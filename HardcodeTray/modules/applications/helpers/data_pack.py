@@ -103,12 +103,8 @@ class DataPack:
 
         resource_count = len(self._resources) - len(alias_map)
 
-        ret.append(pack('<IBxxxHH',
-                        self._version,
-                        0,
-                        resource_count,
-                        len(alias_map)
-                        ))
+        ret.append(pack('<IBxxxHH', self._version, 0,
+                        resource_count, len(alias_map)))
 
         # Write index.
         HEADER_LENGTH = 4 + 4 + 2 + 2
