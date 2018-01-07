@@ -1,10 +1,12 @@
 {
     "name": "WhatsApp Desktop",
     "app_path": [
-        "/opt/Whatsapp/"
+        "/opt/Whatsapp/",
+        "/opt/whatsapp-desktop/"
     ],
     "icons_path": [
-        "/opt/Whatsapp/resources/app/assets/img/"
+        "/opt/Whatsapp/resources/app/assets/img/",
+        "/opt/whatsapp-desktop/resources/app/assets/icon/"
     ],
     "icons": {
         "tray": {
@@ -14,6 +16,34 @@
         "tray@2x": {
             "original": "trayTemplate@2x.png",
             "theme": "whatsapp-tray"
+        },
+        "icon": {
+            "original": "icon.png",
+            "theme": "whatsapp-tray"
+        },
+        "icon@1.25x": {
+            "original": "icon@1.25x.png",
+            "theme": "whatsapp-tray"
+        },
+        "icon@1.5x": {
+            "original": "icon@1.5.png",
+            "theme": "whatsapp-tray"
+        },
+        "icon@2x": {
+            "original": "icon@2x.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray-warning": {
+            "original": "iconWarning.png",
+            "theme": "whatsapp-warning"
+        },
+        "tray-warning-msg": {
+            "original": "iconWarningWithMsg.png",
+            "theme": "whatsapp-warning-msg"
+        },
+        "tray-msg": {
+            "original": "iconWithMsg.png",
+            "theme": "whatsapp-msg"
         }
     }
 }
