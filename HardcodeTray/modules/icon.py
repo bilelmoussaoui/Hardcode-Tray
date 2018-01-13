@@ -99,10 +99,12 @@ class Icon:
         # ICON@2x
         icon_name = self.original.split("@")
         if len(icon_name) > 1:
-            multiple = int(icon_name[1].split("x")[0])
-            if multiple and multiple != 0:
-                icon_size *= multiple
-
+            try:
+                multiple = int(icon_name[1].split("x")[0])
+                if multiple and multiple != 0:
+                    icon_size *= multiple
+            except ValueError:
+                pass
         # ICON-22 or ICON_24
         seperators = ["-", "_"]
         for seperator in seperators:
