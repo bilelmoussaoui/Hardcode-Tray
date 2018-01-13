@@ -1,0 +1,37 @@
+{
+    "name": "Rambox",
+    "app_path": [
+        "/usr/lib/rambox/",
+        "/usr/lib/Rambox/"
+    ],
+    "icons_path": [
+        "/usr/lib/rambox/resources/",
+        "/usr/lib/Rambox/resources/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "IconTray.png",
+            "theme": "rambox-indicator"
+        },
+        "tray@2x": {
+            "original": "IconTray@2x.png",
+            "theme": "rambox-indicator"
+        },
+        "tray@4x": {
+            "original": "IconTray@4x.png",
+            "theme": "rambox-indicator"
+        },
+        "trayUnread": {
+            "original": "IconTrayUnread.png",
+            "theme": "rambox-notification"
+        },
+        "trayUnread@2x": {
+            "original": "IconTrayUnread@2x.png",
+            "theme": "rambox-notification"
+        },
+        "trayUnread@4x": {
+            "original": "IconTrayUnread@4x.png",
+            "theme": "rambox-notification"
+        }
+    }
+}
