@@ -1,0 +1,15 @@
+{
+    "name": "OpenBazaar 2.0 Desktop Client",
+    "app_path": [
+        "/usr/lib/openbazaar2client"
+    ],
+    "icons_path": [
+        "/usr/lib/openbazaar2client/resources/app/imgs/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "openbazaar-system-tray.png",
+            "theme": "openbazaar-system-tray"
+        }
+    }
+}
