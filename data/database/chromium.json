@@ -24,6 +24,10 @@
         "tray": {
             "original": "10154",
             "theme": "google-chrome-tray"
+        },
+        "tray": {
+            "original": "10156",
+            "theme": "google-chrome-tray"
         }
     }
 }
