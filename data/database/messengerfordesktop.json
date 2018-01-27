@@ -1,0 +1,35 @@
+{
+    "name": "MessengerForDesktop",
+    "app_path": [
+        "/usr/lib/messengerfordesktop/"
+    ],
+    "icons_path": [
+        "/usr/lib/messengerfordesktop/images/"
+    ],
+    "icons": {
+        "indicator": {
+            "original": "tray.png",
+            "theme": "messenger-indicator"
+        },
+        "indicator@2x": {
+            "original": "tray@2x.png",
+            "theme": "messenger-indicator"
+        },
+        "indicator@3x": {
+            "original": "tray@3x.png",
+            "theme": "messenger-indicator"
+        },
+        "notification": {
+            "original": "trayAlert.png",
+            "theme": "messenger-notification"
+        },
+        "notification@2x": {
+            "original": "trayAlert@2x.png",
+            "theme": "messenger-notification"
+        }
+        "notification@3x": {
+            "original": "trayAlert@2x.png",
+            "theme": "messenger-notification"
+        }
+    }
+}
