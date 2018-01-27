@@ -95,6 +95,8 @@ if args.version:
     print("Gtk: {}.{}".format(Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION))
 else:
     print(_("Welcome to Hardcode-Tray!"))
+    print(_("Hardcode-Tray replaces some icons on the binary files of some applications. \n"
+            "Please close all the running applications before running Hardcode-Tray script."))
     print(_("Desktop Environment: {}").format(DESKTOP_ENV.title()))
     print(_("Scaling Factor: {}").format(App.scaling_factor()))
     print(_("Icon Size: {}").format(App.icon_size()))
