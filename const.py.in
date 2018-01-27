@@ -30,8 +30,8 @@ BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
 KDE_CONFIG_FILE = path.join(USERHOME, ".config",
                             "plasma-org.kde.plasma.desktop-appletsrc")
-BACKUP_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
-LOG_FILE_FORMAT = "%d-%m-%Y_%H-%M-%S"
+BACKUP_FILE_FORMAT = "%Y-%m-%d %H:%M:%S"
+LOG_FILE_FORMAT = "%Y-%m-%d %H:%M:%S"
 ARCH = machine()
 THEMES_LIST = get_themes(USERHOME)
 DE = ["i3", "cinnamon", "budgie", "deepin", "pantheon",
