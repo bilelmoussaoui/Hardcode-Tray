@@ -6,7 +6,9 @@
     ],
     "icons_path": [
         "/opt/Whatsapp/resources/app/assets/img/",
-        "/opt/whatsapp-desktop/resources/app/assets/icon/"
+        "/opt/Whatsapp/resources/app/assets/icon/",
+        "/opt/whatsapp-desktop/resources/app/assets/icon/",
+        "/opt/whatsapp-desktop/resources/app/assets/img/"
     ],
     "icons": {
         "tray": {
