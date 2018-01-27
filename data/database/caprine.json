@@ -1,35 +1,40 @@
 {
     "name": "Caprine",
     "app_path": [
-        "/usr/lib/caprine/"
+        "/usr/lib/caprine/",
+        "/usr/share/caprine/",
+        "/opt/Caprine/"
     ],
     "icons_path": [
-        "/usr/lib/caprine/static/"
+        "/usr/lib/caprine/static/",
+        "/usr/share/caprine/resources/",
+        "/opt/Caprine/resources/"
     ],
-    "icons": {
-        "tray": {
-            "original": "IconTray.png",
-            "theme": "messenger-indicator"
+    "icons": [{
+            "name": "message-indicator",
+            "originals": [
+                "IconTray.png",
+                "IconTray@2x.png",
+                "IconTray@4x.png"
+            ],
+            "originals::electron": [
+                "media/IconTray.png",
+                "media/IconTray@2x.png",
+                "media/IconTray@4x.png"
+            ]
         },
-        "tray@2x": {
-            "original": "IconTray@2x.png",
-            "theme": "messenger-indicator"
-        },
-        "tray@4x": {
-            "original": "IconTray@4x.png",
-            "theme": "messenger-indicator"
-        },
-        "trayUnread": {
-            "original": "IconTrayUnread.png",
-            "theme": "messenger-notification"
-        },
-        "trayUnread@2x": {
-            "original": "IconTrayUnread@2x.png",
-            "theme": "messenger-notification"
-        },
-        "trayUnread@4x": {
-            "original": "IconTrayUnread@4x.png",
-            "theme": "messenger-notification"
+        {
+            "name": "messenger-notification",
+            "originals": [
+                "media/IconTrayUnread.png",
+                "media/IconTrayUnread@2x.png",
+                "media/IconTrayUnread@4x.png"
+            ],
+            "originals::electron": [
+                "media/IconTrayUnread.png",
+                "media/IconTrayUnread@2x.png",
+                "media/IconTrayUnread@4x.png"
+            ]
         }
-    }
+    ]
 }

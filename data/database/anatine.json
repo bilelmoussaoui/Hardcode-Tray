@@ -6,22 +6,19 @@
     "icons_path": [
         "/usr/share/anatine/resources/app/media/"
     ],
-    "icons": {
-        "indicator": {
-            "original": "IconTray.png",
-            "theme": "anatine-indicator"
+    "icons": [{
+            "theme": "anatine-indicator",
+            "originals": [
+                "IconTray.png",
+                "IconTray@2x.png"
+            ]
         },
-        "indicator@2x": {
-            "original": "IconTray@2x.png",
-            "theme": "anatine-indicator"
-        },
-        "notification": {
-            "original": "IconTrayUnread.png",
-            "theme": "anatine-notification"
-        },
-        "notification@2x": {
-            "original": "IconTrayUnread@2x.png",
-            "theme": "anatine-notification"
+        {
+            "theme": "anatine-notification",
+            "originals": [
+                "IconTrayUnread.png",
+                "IconTrayUnread@2x.png"
+            ]
         }
-    }
+    ]
 }
