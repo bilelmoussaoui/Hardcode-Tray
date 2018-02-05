@@ -29,7 +29,10 @@
         },
         "icon@1.5x": {
             "original": "icon@1.5.png",
-            "theme": "whatsapp-tray"
+            "theme": "whatsapp-tray",
+            "symlinks": [
+                "icon@1.5x.png"   
+            ]
         },
         "icon@2x": {
             "original": "icon@2x.png",
