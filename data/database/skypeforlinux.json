@@ -160,6 +160,22 @@
         "online-notification2_preview": {
             "original": "images/tray/linux/tray-onlineUnreadTemplate@2x.png",
             "theme": "skype-status-connected-notification"
+        },
+        "disturb_preview": {
+            "original": "images/tray/linux/tray-donotdisturbTemplate.png",
+            "theme": "skype-status-disturb"
+        },
+        "disturb2_preview": {
+            "original": "images/tray/linux/tray-donotdisturbTemplate@2x.png",
+            "theme": "skype-status-disturb"
+        },
+        "disturb-notification_preview": {
+            "original": "images/tray/linux/tray-donotdisturbUnreadTemplate.png",
+            "theme": "skype-status-disturb-notification"
+        },
+        "disturb-notification2_preview": {
+            "original": "images/tray/linux/tray-donotdisturbUnreadTemplate@2x.png",
+            "theme": "skype-status-disturb-notification"
         }
     }
 }
