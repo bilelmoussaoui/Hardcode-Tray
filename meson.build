@@ -1,5 +1,5 @@
 project('hardcode-tray',
-  version: '4.2',
+  version: '4.3',
   meson_version: '>= 0.40.0',
   license: 'GPL-3.0',
   default_options: ['prefix=/usr']
