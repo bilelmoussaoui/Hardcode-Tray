@@ -22,7 +22,7 @@
             "theme": "hexchat-message"
         },
         "indicator": {
-            "original": "hexchat.png",
+            "original": "tray_normal.png",
             "theme": "hexchat-indicator"
         }
     }
