@@ -1,10 +1,12 @@
 {
     "name": "Yakyak",
     "app_path": [
-        "/usr/share/yakyak/"
+        "/usr/share/yakyak/",
+        "/opt/yakyak/"
     ],
     "icons_path": [
-        "/usr/share/yakyak/app/icons/"
+        "/usr/share/yakyak/app/icons/",
+        "/opt/yakyak/resources/app/icons/"
     ],
     "icons": {
         "indicator": {
@@ -17,11 +19,17 @@
         },
         "notification": {
             "original": "icon-unread.png",
-            "theme": "hangouts-notification"
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon.png"
+            ]
         },
         "notification@2x": {
             "original": "icon-unread@2x.png",
-            "theme": "hangouts-notification"
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon@2x.png"
+            ]
         }
     }
 }
