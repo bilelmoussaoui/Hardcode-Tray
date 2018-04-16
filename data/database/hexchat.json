@@ -23,7 +23,10 @@
         },
         "indicator": {
             "original": "tray_normal.png",
-            "theme": "hexchat-indicator"
+            "theme": "hexchat-indicator",
+            "symlinks": [
+                "hexchat.png"   
+            ]
         }
     }
 }
