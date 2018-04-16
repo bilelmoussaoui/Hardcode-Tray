@@ -11,6 +11,14 @@
     "binary": "app.asar",
     "script": "electron",
     "icons": {
+        "static-tray": {
+            "original": "static/IconTray.png",
+            "theme": "messenger-indicator"
+        },
+        "static-tray@2x": {
+            "original": "static/IconTray@2x.png",
+            "theme": "messenger-indicator"
+        },
         "tray": {
             "original": "media/IconTray.png",
             "theme": "messenger-indicator"
@@ -29,6 +37,14 @@
         },
         "trayUnread@2x": {
             "original": "media/IconTrayUnread@2x.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread-static": {
+            "original": "static/IconTrayUnread.png",
+            "theme": "messenger-notification"
+        },
+        "trayUnread@2x-static": {
+            "original": "static/IconTrayUnread@2x.png",
             "theme": "messenger-notification"
         },
         "trayUnread@4x": {
