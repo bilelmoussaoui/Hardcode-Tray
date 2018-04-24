@@ -10,15 +10,15 @@
     "icons": {
         "error": {
             "original": "rdot.png",
-            "theme": "mullvad-error"
+            "theme": "mullvadr"
         },
         "config": {
             "original": "ydot.png",
-            "theme": "mullvad-config"
+            "theme": "mullvady"
         },
         "success": {
             "original": "gdot.png",
-            "theme": "mullvad-success"
+            "theme": "mullvadg"
         }
     }
 }
