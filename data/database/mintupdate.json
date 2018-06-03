@@ -3,7 +3,7 @@
     "path": [
         "/usr/lib/linuxmint/mintUpdate/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/lib/linuxmint/mintUpdate/icons/"
     ],
     "icons": {

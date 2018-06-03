@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/skypeforlinux/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/skypeforlinux/resources/"
     ],
     "script": "electron",

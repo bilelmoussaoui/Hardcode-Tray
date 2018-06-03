@@ -3,13 +3,15 @@
     "path": [
         "/opt/extras.ubuntu.com/cryptfolder-indicator/"
     ],
-    "icons_path": [
-        "/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/"
-    ],
-    "icons": [
-        "cryptfolder-closed-dark.svg",
-        "cryptfolder-indicator-dark.svg",
-        "cryptfolder-indicator-light.svg",
-        "cryptfolder-open-light.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/cryptfolder-indicator/share/cryptfolder-indicator/icons/"
+        ],
+        "icons": [
+            "cryptfolder-closed-dark.svg",
+            "cryptfolder-indicator-dark.svg",
+            "cryptfolder-indicator-light.svg",
+            "cryptfolder-open-light.svg"
+        ]
+    }
 }

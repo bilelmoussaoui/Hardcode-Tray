@@ -7,7 +7,7 @@
       "/usr/bin/telegram-desktop",
       "/opt/telegram/Telegram"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.TelegramDesktop/tdata/ticons/",
         "{userhome}/.local/share/TelegramDesktop/tdata/ticons/"
     ],

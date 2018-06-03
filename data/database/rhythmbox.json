@@ -3,7 +3,7 @@
     "path": [
         "{userhome}/.local/share/rhythmbox/plugins/tray_icon.py"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/rhythmbox/plugins/"
     ],
     "icons": {

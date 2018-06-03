@@ -4,7 +4,7 @@
         "/usr/share/google-play-music-desktop-player/",
         "/usr/share/gpmdp/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/google-play-music-desktop-player/resources/",
         "/usr/share/gpmdp/resources/"
     ],

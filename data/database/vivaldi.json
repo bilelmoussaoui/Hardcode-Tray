@@ -5,7 +5,7 @@
         "/opt/vivaldi-beta/",
         "/opt/vivaldi-snapshot/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/vivaldi/",
         "/opt/vivaldi-beta/",
         "/opt/vivaldi-snapshot/"

@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/museeq"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/museeq/{size}/"
     ],
     "is_qt": true,

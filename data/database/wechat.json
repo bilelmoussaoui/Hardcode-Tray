@@ -3,29 +3,25 @@
     "path": [
         "/usr/lib/electronic-wechat/"
     ],
-    "icons_path": [
-        "/usr/lib/electronic-wechat/assets/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "status_bar_linux.png",
-            "theme": "wechat-tray"
-        },
-        "tray-black": {
-            "original": "tray_black.png",
-            "theme": "wechat-tray"
-        },
-        "tray-white": {
-            "original": "tray_white.png.png",
-            "theme": "wechat-tray"
-        },
-        "unread-white": {
-            "original": "tray_unread_white.png",
-            "theme": "wechat-tray-unread"
-        },
-        "unread-black": {
-            "original": "tray_unread_black.png",
-            "theme": "wechat-tray-unread"
-        }
+    "normal": {
+        "path": [
+            "/usr/lib/electronic-wechat/assets/"
+        ],
+        "icons": [{
+                "original": "status_bar_linux.png",
+                "theme": "wechat-tray",
+                "symlinks": [
+                    "tray_black.png",
+                    "tray_white.png"
+                ]
+            },
+            {
+                "original": "tray_unread_white.png",
+                "theme": "wechat-tray-unread",
+                "symlinks": [
+                    "tray_unread_black.png"
+                ]
+            }
+        ]
     }
 }

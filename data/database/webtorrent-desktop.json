@@ -4,7 +4,7 @@
         "/opt/webtorrent-desktop/",
         "/usr/share/webtorrent-desktop/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/",
         "/usr/share/webtorrent-desktop/resources/app.asar.unpacked/static/"
     ],

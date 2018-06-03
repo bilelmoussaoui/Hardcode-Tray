@@ -3,18 +3,17 @@
     "path": [
         "/usr/bin/liferea"
     ],
-    "icons_path": [
-        "/usr/share/pixmaps/",
-        "/usr/share/liferea/pixmaps/"
-    ],
-    "icons": {
-        "unread": {
+    "normal": {
+        "path": [
+            "/usr/share/pixmaps/",
+            "/usr/share/liferea/pixmaps/"
+        ],
+        "icons": [{
             "original": "unread.png",
             "theme": "liferea-unread"
-        },
-        "available": {
+        }, {
             "original": "available.png",
             "theme": "liferea-available"
-        }
+        }]
     }
 }

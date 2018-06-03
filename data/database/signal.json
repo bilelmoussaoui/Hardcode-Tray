@@ -3,7 +3,7 @@
     "path": [
         "/opt/Signal/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/Signal/resources/"
     ],
     "binary": "app.asar",

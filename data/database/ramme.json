@@ -3,7 +3,7 @@
     "path": [
         "/opt/Ramme/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/Ramme/resources/"
     ],
     "binary": "app.asar",

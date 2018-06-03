@@ -3,19 +3,20 @@
     "path": [
         "/opt/Tusk/"
     ],
-    "icons_path": [
-        "/opt/Tusk/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "static/IconTray.png",
-            "theme": "tusk-indicator"
-        },
-        "tray@2x": {
-            "original": "static/IconTray@2x.png",
-            "theme": "tusk-indicator"
-        }
+    "electron": {
+        "path": [
+            "/opt/Tusk/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "static/IconTray.png",
+                "theme": "tusk-indicator"
+            },
+            {
+                "original": "static/IconTray@2x.png",
+                "theme": "tusk-indicator",
+                "scale": 2
+            }
+        ]
     }
 }

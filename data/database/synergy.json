@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/synergy"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/synergy/{size}/"
     ],
     "is_qt": true,

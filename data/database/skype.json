@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/skype/"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/skype/{size}/"
     ],
     "is_qt": true,

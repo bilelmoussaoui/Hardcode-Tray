@@ -4,7 +4,7 @@
         "/usr/share/nylas-mail/",
         "/usr/share/nylas/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/nylas-mail/resources/",
         "/usr/share/nylas/resources/"
     ],

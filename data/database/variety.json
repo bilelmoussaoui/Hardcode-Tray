@@ -3,13 +3,15 @@
     "path": [
         "/opt/extras.ubuntu.com/variety/"
     ],
-    "icons_path": [
-        "/opt/extras.ubuntu.com/variety/share/variety/media/"
-    ],
-    "icons": [
-        "variety-indicator.png",
-        "variety-indicator-dark.png",
-        "variety-indicator.svg",
-        "variety-indicator-dark.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/variety/share/variety/media/"
+        ],
+        "icons": [
+            "variety-indicator.png",
+            "variety-indicator-dark.png",
+            "variety-indicator.svg",
+            "variety-indicator-dark.svg"
+        ]
+    }
 }

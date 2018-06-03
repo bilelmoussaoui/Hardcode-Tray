@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/stremio/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/stremio/resources/"
     ],
     "binary": "app.asar",

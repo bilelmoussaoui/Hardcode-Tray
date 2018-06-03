@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/jdownloader"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.jd/themes/standard/org/jdownloader/images/"
     ],
     "icons": {

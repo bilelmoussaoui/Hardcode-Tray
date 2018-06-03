@@ -3,13 +3,14 @@
     "path": [
         "/usr/lib/python2.7/site-packages/trimage/"
     ],
-    "icons_path": [
-        "/usr/lib/python2.7/site-packages/trimage/pixmaps/"
-    ],
-    "icons": {
-        "indicator": {
+    "normal": {
+
+        "path": [
+            "/usr/lib/python2.7/site-packages/trimage/pixmaps/"
+        ],
+        "icons": [{
             "original": "trimage-icon.png",
             "theme": "trimage-indicator"
-        }
+        }]
     }
 }

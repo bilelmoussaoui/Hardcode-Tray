@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/spotifywebplayer"
     ],
-    "icons_path": [
+    "path": [
         "/usr/bin/spotifywebplayer/icons/"
     ],
     "icons": {

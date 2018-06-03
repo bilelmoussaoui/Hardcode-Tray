@@ -3,7 +3,7 @@
     "path": [
         "/usr/lib/openbazaar2client"
     ],
-    "icons_path": [
+    "path": [
         "/usr/lib/openbazaar2client/resources/app/imgs/"
     ],
     "icons": {

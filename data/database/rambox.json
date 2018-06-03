@@ -4,34 +4,74 @@
         "/usr/lib/rambox/",
         "/usr/lib/Rambox/"
     ],
-    "icons_path": [
-        "/usr/lib/rambox/resources/",
-        "/usr/lib/Rambox/resources/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "IconTray.png",
-            "theme": "rambox-indicator"
-        },
-        "tray@2x": {
-            "original": "IconTray@2x.png",
-            "theme": "rambox-indicator"
-        },
-        "tray@4x": {
-            "original": "IconTray@4x.png",
-            "theme": "rambox-indicator"
-        },
-        "trayUnread": {
-            "original": "IconTrayUnread.png",
-            "theme": "rambox-notification"
-        },
-        "trayUnread@2x": {
-            "original": "IconTrayUnread@2x.png",
-            "theme": "rambox-notification"
-        },
-        "trayUnread@4x": {
-            "original": "IconTrayUnread@4x.png",
-            "theme": "rambox-notification"
-        }
+    "normal": {
+        "path": [
+            "/usr/lib/rambox/resources/",
+            "/usr/lib/Rambox/resources/"
+        ],
+        "icons": [{
+                "original": "IconTray.png",
+                "theme": "rambox-indicator"
+            },
+            {
+                "original": "IconTray@2x.png",
+                "theme": "rambox-indicator",
+                "scale": 2
+            },
+            {
+                "original": "IconTray@4x.png",
+                "theme": "rambox-indicator",
+                "scale": 4
+            },
+            {
+                "original": "IconTrayUnread.png",
+                "theme": "rambox-notification"
+            },
+            {
+                "original": "IconTrayUnread@2x.png",
+                "theme": "rambox-notification",
+                "scale": 2
+            },
+            {
+                "original": "IconTrayUnread@4x.png",
+                "theme": "rambox-notification",
+                "scale": 4
+            }
+        ]
+    },
+    "electron": {
+        "path": [
+            "/opt/rambox/resources/",
+            "/opt/Rambox/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "resources/IconTray.png",
+                "theme": "rambox-indicator"
+            },
+            {
+                "original": "resources/IconTray@2x.png",
+                "theme": "rambox-indicator",
+                "scale": 2
+            }, {
+                "original": "resources/IconTray@4x.png",
+                "theme": "rambox-indicator",
+                "scale": 4
+            },
+            {
+                "original": "resources/IconTrayUnread.png",
+                "theme": "rambox-notification"
+            },
+            {
+                "original": "resources/IconTrayUnread@2x.png",
+                "theme": "rambox-notification",
+                "scale": 2
+            },
+            {
+                "original": "resources/IconTrayUnread@4x.png",
+                "theme": "rambox-notification",
+                "scale": 4
+            }
+        ]
     }
 }

@@ -3,21 +3,21 @@
     "path": [
         "/usr/share/sflphone/"
     ],
-    "icons_path": [
-        "/usr/share/sflphone/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "sflphone_small.svg",
-            "theme": "sflphone-indicator"
-        },
-        "notif": {
-            "original": "sflphone_notif.svg",
-            "theme": "sflphone-notification"
-        },
-        "offline": {
-            "original": "sflphone_offline.svg",
-            "theme": "sflphone-offline"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/sflphone/"
+        ],
+        "icons": [{
+                "original": "sflphone_small.svg",
+                "theme": "sflphone-indicator"
+            }, {
+                "original": "sflphone_notif.svg",
+                "theme": "sflphone-notification"
+            },
+            {
+                "original": "sflphone_offline.svg",
+                "theme": "sflphone-offline"
+            }
+        ]
     }
 }

@@ -3,7 +3,7 @@
     "path": [
         "/opt/Protonmail Desktop/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/Protonmail Desktop/resources/"
     ],
     "binary": "app.asar",

@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/keepassx/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/keepassx/icons/"
     ],
     "icons": {

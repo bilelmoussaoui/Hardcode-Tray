@@ -3,7 +3,7 @@
     "path": [
         "/opt/Rocket.Chat+/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/Rocket.Chat+/resources/"
     ],
     "binary": "app.asar",

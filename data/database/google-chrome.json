@@ -5,29 +5,21 @@
         "/opt/google/chrome-unstable/",
         "/opt/google/chrome-beta/"
     ],
-    "icons_path": [
-        "/opt/google/chrome/",
-        "/opt/google/chrome-unstable/",
-        "/opt/google/chrome-beta/"
-    ],
-    "script": "pak",
-    "binary": "resources.pak",
-    "icons": {
-        "tray": {
+    "pak": {
+        "path": [
+            "/opt/google/chrome/",
+            "/opt/google/chrome-unstable/",
+            "/opt/google/chrome-beta/"
+        ],
+        "binary": "resources.pak",
+        "icons": [{
             "original": "8003",
-            "theme": "google-chrome-tray"
-        },
-        "tray-56": {
-            "original": "10153",
-            "theme": "google-chrome-tray"
-        },
-        "tray-60-dev": {
-            "original": "10154",
-            "theme": "google-chrome-tray"
-        },
-        "tray-64": {
-            "original": "10156",
-            "theme": "google-chrome-tray"
-        }
+            "theme": "google-chrome-tray",
+            "symlinks": [
+                "10153",
+                "10154",
+                "10156"
+            ]
+        }]
     }
 }

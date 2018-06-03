@@ -3,7 +3,7 @@
     "path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/"
     ],
     "icons": [

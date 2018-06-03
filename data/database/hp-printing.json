@@ -3,13 +3,26 @@
     "path": [
         "/usr/bin/hp-systray"
     ],
-    "icons_path": [
-        "/usr/share/hplip/data/images/32x32/"
-    ],
-    "icons": {
-        "indicator": {
+    "normal": {
+        "path": [
+            "/usr/share/hplip/data/images/32x32/"
+        ],
+        "icons": [{
             "original": "hp_logo.png",
             "theme": "hp-indicator"
-        }
+        }]
+    },
+    "qt": {
+        "path": [
+            "{userhome}/.local/share/sni-qt/icons/python2.7/{size}/",
+            "{userhome}/.local/share/sni-qt/icons/python3.5/{size}/"
+        ],
+        "icons": [{
+            "original": "2f282c85ef0c788eb09624bc3decd0b5",
+            "theme": "hp-indicator",
+            "symlinks": [
+                "39d31fe8b825d025a4c20a155aba616f"
+            ]
+        }]
     }
 }

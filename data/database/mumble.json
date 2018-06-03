@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/mumble"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/mumble/{size}/"
     ],
     "is_qt": true,

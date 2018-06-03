@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/rescuetime"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/rescuetime/{size}/"
     ],
     "is_qt": true,

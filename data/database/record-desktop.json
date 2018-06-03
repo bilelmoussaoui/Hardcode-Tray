@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/record-desktop"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/recored-desktop/resources/app/"
     ],
     "icons": {

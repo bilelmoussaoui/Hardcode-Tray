@@ -3,7 +3,7 @@
     "path": [
         "/opt/extras.ubuntu.com/my-weather-indicator/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons/"
     ],
     "icons": {

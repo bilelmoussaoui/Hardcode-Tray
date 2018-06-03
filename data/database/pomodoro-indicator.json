@@ -3,7 +3,7 @@
     "path": [
         "/opt/extras.ubuntu.com/pomodoro-indicator/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/"
     ],
     "icons": [

@@ -4,7 +4,7 @@
         "/usr/share/owncloud/",
         "/usr/share/owncloud-client/"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/owncloud/{size}/"
     ],
     "is_qt": true,

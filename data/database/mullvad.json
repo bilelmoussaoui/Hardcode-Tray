@@ -4,7 +4,7 @@
         "/usr/bin/",
         "/usr/lib/python2.7/site-packages/mullvad/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/lib/python2.7/site-packages/mullvad/"
     ],
     "icons": {

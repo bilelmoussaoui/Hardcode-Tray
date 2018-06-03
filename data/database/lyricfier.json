@@ -3,13 +3,13 @@
     "path": [
         "/opt/lyricfier/"
     ],
-    "icons_path": [
-        "/opt/lyricfier/resources/app/render/img/"
-    ],
-    "icons": {
-        "tray": {
+    "normal": {
+        "path": [
+            "/opt/lyricfier/resources/app/render/img/"
+        ],
+        "icons": [{
             "original": "icon.png",
             "theme": "lyricfier-tray"
-        }
+        }]
     }
 }

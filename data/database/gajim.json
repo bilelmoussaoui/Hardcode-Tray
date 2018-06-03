@@ -3,141 +3,142 @@
     "path": [
         "/usr/share/gajim/data/iconsets/"
     ],
-    "icons_path": [
-        "/usr/share/gajim/data/iconsets/"
-    ],
-    "icons": {
-        "online": {
-            "original": "dcraven/32x32/online.png",
-            "theme": "user-available",
-            "symlinks": [
-                "gnome/32x32/online.png",
-                "goojim/32x32/online.png",
-                "gota/32x32/online.png",
-                "jabberbulb/32x32/online.png",
-                "sun/32x32/online.png",
-                "wroop/32x32/online.png"
-            ]
-        },
-        "available": {
-            "original": "dcraven/32x32/chat.png",
-            "theme": "user-available",
-            "symlinks": [
-                "gnome/32x32/chat.png",
-                "goojim/32x32/chat.png",
-                "gota/32x32/chat.png",
-                "jabberbulb/32x32/chat.png",
-                "sun/32x32/chat.png",
-                "wroop/32x32/chat.png"
-            ]
-        },
-        "offline": {
-            "original": "dcraven/32x32/offline.png",
-            "theme": "user-offline",
-            "symlinks": [
-                "gnome/32x32/offline.png",
-                "goojim/32x32/offline.png",
-                "gota/32x32/offline.png",
-                "jabberbulb/32x32/offline.png",
-                "sun/32x32/offline.png",
-                "wroop/32x32/offline.png"
-            ]
-        },
-        "invisible": {
-            "original": "dcraven/32x32/invisible.png",
-            "theme": "user-invisible",
-            "symlinks": [
-                "gnome/32x32/invisible.png",
-                "goojim/32x32/invisible.png",
-                "gota/32x32/invisible.png",
-                "jabberbulb/32x32/invisible.png",
-                "sun/32x32/invisible.png",
-                "wroop/32x32/invisible.png"
-            ]
-        },
-        "away": {
-            "original": "dcraven/32x32/away.png",
-            "theme": "user-away",
-            "symlinks": [
-                "gnome/32x32/away.png",
-                "goojim/32x32/away.png",
-                "gota/32x32/away.png",
-                "jabberbulb/32x32/away.png",
-                "sun/32x32/away.png",
-                "wroop/32x32/away.png"
-            ]
-        },
-        "extended-away": {
-            "original": "dcraven/32x32/xa.png",
-            "theme": "user-away",
-            "symlinks": [
-                "gnome/32x32/xa.png",
-                "goojim/32x32/xa.png",
-                "gota/32x32/xa.png",
-                "jabberbulb/32x32/xa.png",
-                "sun/32x32/xa.png",
-                "wroop/32x32/xa.png"
-            ]
-        },
-        "busy": {
-            "original": "dcraven/32x32/dnd.png",
-            "theme": "user-busy",
-            "symlinks": [
-                "gnome/32x32/dnd.png",
-                "goojim/32x32/dnd.png",
-                "gota/32x32/dnd.png",
-                "jabberbulb/32x32/dnd.png",
-                "sun/32x32/dnd.png",
-                "wroop/32x32/dnd.png"
-            ]
-        },
-        "connecting": {
-            "original": "dcraven/32x32/connecting.png",
-            "theme": "user-status-pending",
-            "symlinks": [
-                "gnome/32x32/connecting.png",
-                "goojim/32x32/connecting.png",
-                "gota/32x32/connecting.png",
-                "jabberbulb/32x32/connecting.png",
-                "sun/32x32/connecting.png",
-                "wroop/32x32/connecting.png"
-            ]
-        },
-        "event": {
-            "original": "dcraven/32x32/event.png",
-            "theme": "user-status-new",
-            "symlinks": [
-                "gnome/32x32/event.png",
-                "goojim/32x32/event.png",
-                "gota/32x32/event.png",
-                "jabberbulb/32x32/event.png",
-                "sun/32x32/event.png",
-                "wroop/32x32/event.png"
-            ]
-        },
-        "error": {
-            "original": "dcraven/32x32/error.png",
-            "theme": "user-status-new",
-            "symlinks": [
-                "gnome/32x32/error.png",
-                "goojim/32x32/error.png",
-                "gota/32x32/error.png",
-                "jabberbulb/32x32/error.png",
-                "sun/32x32/error.png",
-                "wroop/32x32/error.png"
-            ]
-        },
-        "requested": {
-            "original": "dcraven/32x32/requested.png",
-            "theme": "user-status-new",
-            "symlinks": [
-                "gnome/32x32/requested.png",
-                "goojim/32x32/requested.png",
-                "gota/32x32/requested.png",
-                "jabberbulb/32x32/requested.png",
-                "sun/32x32/requested.png",
-                "wroop/32x32/requested.png"
-            ]
-        }
+    "normal": {
+        "path": [
+            "/usr/share/gajim/data/iconsets/"
+        ],
+        "icons": [{
+                "original": "dcraven/32x32/online.png",
+                "theme": "user-available",
+                "symlinks": [
+                    "gnome/32x32/online.png",
+                    "goojim/32x32/online.png",
+                    "gota/32x32/online.png",
+                    "jabberbulb/32x32/online.png",
+                    "sun/32x32/online.png",
+                    "wroop/32x32/online.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/chat.png",
+                "theme": "user-available",
+                "symlinks": [
+                    "gnome/32x32/chat.png",
+                    "goojim/32x32/chat.png",
+                    "gota/32x32/chat.png",
+                    "jabberbulb/32x32/chat.png",
+                    "sun/32x32/chat.png",
+                    "wroop/32x32/chat.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/offline.png",
+                "theme": "user-offline",
+                "symlinks": [
+                    "gnome/32x32/offline.png",
+                    "goojim/32x32/offline.png",
+                    "gota/32x32/offline.png",
+                    "jabberbulb/32x32/offline.png",
+                    "sun/32x32/offline.png",
+                    "wroop/32x32/offline.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/invisible.png",
+                "theme": "user-invisible",
+                "symlinks": [
+                    "gnome/32x32/invisible.png",
+                    "goojim/32x32/invisible.png",
+                    "gota/32x32/invisible.png",
+                    "jabberbulb/32x32/invisible.png",
+                    "sun/32x32/invisible.png",
+                    "wroop/32x32/invisible.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/away.png",
+                "theme": "user-away",
+                "symlinks": [
+                    "gnome/32x32/away.png",
+                    "goojim/32x32/away.png",
+                    "gota/32x32/away.png",
+                    "jabberbulb/32x32/away.png",
+                    "sun/32x32/away.png",
+                    "wroop/32x32/away.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/xa.png",
+                "theme": "user-away",
+                "symlinks": [
+                    "gnome/32x32/xa.png",
+                    "goojim/32x32/xa.png",
+                    "gota/32x32/xa.png",
+                    "jabberbulb/32x32/xa.png",
+                    "sun/32x32/xa.png",
+                    "wroop/32x32/xa.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/dnd.png",
+                "theme": "user-busy",
+                "symlinks": [
+                    "gnome/32x32/dnd.png",
+                    "goojim/32x32/dnd.png",
+                    "gota/32x32/dnd.png",
+                    "jabberbulb/32x32/dnd.png",
+                    "sun/32x32/dnd.png",
+                    "wroop/32x32/dnd.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/connecting.png",
+                "theme": "user-status-pending",
+                "symlinks": [
+                    "gnome/32x32/connecting.png",
+                    "goojim/32x32/connecting.png",
+                    "gota/32x32/connecting.png",
+                    "jabberbulb/32x32/connecting.png",
+                    "sun/32x32/connecting.png",
+                    "wroop/32x32/connecting.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/event.png",
+                "theme": "user-status-new",
+                "symlinks": [
+                    "gnome/32x32/event.png",
+                    "goojim/32x32/event.png",
+                    "gota/32x32/event.png",
+                    "jabberbulb/32x32/event.png",
+                    "sun/32x32/event.png",
+                    "wroop/32x32/event.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/error.png",
+                "theme": "user-status-new",
+                "symlinks": [
+                    "gnome/32x32/error.png",
+                    "goojim/32x32/error.png",
+                    "gota/32x32/error.png",
+                    "jabberbulb/32x32/error.png",
+                    "sun/32x32/error.png",
+                    "wroop/32x32/error.png"
+                ]
+            },
+            {
+                "original": "dcraven/32x32/requested.png",
+                "theme": "user-status-new",
+                "symlinks": [
+                    "gnome/32x32/requested.png",
+                    "goojim/32x32/requested.png",
+                    "gota/32x32/requested.png",
+                    "jabberbulb/32x32/requested.png",
+                    "sun/32x32/requested.png",
+                    "wroop/32x32/requested.png"
+                ]
+            }
+        ]
     }
 }

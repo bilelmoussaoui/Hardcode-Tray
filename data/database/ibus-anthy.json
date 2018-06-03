@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/ibus-anthy/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/ibus-anthy/icons/"
     ],
     "icons": [

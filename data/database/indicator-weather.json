@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/indicator-weather/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/share/indicator-weather/media/"
     ],
     "icons": {

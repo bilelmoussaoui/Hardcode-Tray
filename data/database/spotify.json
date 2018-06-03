@@ -3,7 +3,7 @@
     "path": [
         "/opt/spotify/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/spotify/spotify-client/Data/"
     ],
     "binary": "resources.zip",

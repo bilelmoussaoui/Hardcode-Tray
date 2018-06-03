@@ -3,7 +3,7 @@
     "path": [
         "/opt/teamviewer/"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/TVGuiDelegate/{size}/"
     ],
     "is_qt": true,

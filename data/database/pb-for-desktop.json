@@ -3,7 +3,7 @@
     "path": [
         "/opt/PB for Desktop/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/PB for Desktop/resources/"
     ],
     "binary": "app.asar",

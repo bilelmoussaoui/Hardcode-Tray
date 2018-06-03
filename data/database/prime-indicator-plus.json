@@ -3,7 +3,7 @@
     "path": [
         "/usr/lib/prime-indicator/"
     ],
-    "icons_path": [
+    "path": [
         "/usr/lib/prime-indicator/icons/"
     ],
     "icons": {

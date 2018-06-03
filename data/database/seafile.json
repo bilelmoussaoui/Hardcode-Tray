@@ -3,40 +3,38 @@
     "path": [
         "/usr/bin/seafile-applet"
     ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/seafile-applet/{size}/"
-    ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "paused": {
-            "original": "4c16979858a9017e6468e7fc4a561a6d",
-            "theme": "seafile-status-paused"
-        },
-        "syncing-2": {
-            "original": "9b4a2ba8368f3919bfacf83f20983bc6",
-            "theme": "seafile-status-syncing-1"
-        },
-        "syncing-2": {
-            "original": "172dc743183f1f56888fc7cdc438c14d",
-            "theme": "seafile-status-syncing-2"
-        },
-        "error": {
-            "original": "8b3c60683a1b1dddb7a1aa9cd627c5dd",
-            "theme": "seafile-status-error"
-        },
-        "notification": {
-            "original": "30ca9727b24ea1be40bde896ac51a0c0",
-            "theme": "seafile-status-notification"
-        },
-        "offline": {
-            "original": "99a735316904d33f9b6438055b7dbd4e",
-            "theme": "seafile-status-offline"
-        },
-        "ok": {
-            "original": "d3a522e228bfe7067ec4df9e3f43d527",
-            "theme": "seafile-status-ok"
-        }
+    "qt": {
+        "path": [
+            "{userhome}/.local/share/sni-qt/icons/seafile-applet/{size}/"
+        ],
+        "icons": [{
+                "original": "4c16979858a9017e6468e7fc4a561a6d",
+                "theme": "seafile-status-paused"
+            },
+            {
+                "original": "9b4a2ba8368f3919bfacf83f20983bc6",
+                "theme": "seafile-status-syncing-1"
+            },
+            {
+                "original": "172dc743183f1f56888fc7cdc438c14d",
+                "theme": "seafile-status-syncing-2"
+            },
+            {
+                "original": "8b3c60683a1b1dddb7a1aa9cd627c5dd",
+                "theme": "seafile-status-error"
+            },
+            {
+                "original": "30ca9727b24ea1be40bde896ac51a0c0",
+                "theme": "seafile-status-notification"
+            },
+            {
+                "original": "99a735316904d33f9b6438055b7dbd4e",
+                "theme": "seafile-status-offline"
+            },
+            {
+                "original": "d3a522e228bfe7067ec4df9e3f43d527",
+                "theme": "seafile-status-ok"
+            }
+        ]
     }
 }

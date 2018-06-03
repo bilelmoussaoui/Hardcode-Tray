@@ -3,7 +3,7 @@
     "path": [
         "/usr/bin/screencloud"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
     ],
     "is_qt": true,

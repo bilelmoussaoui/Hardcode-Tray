@@ -3,7 +3,7 @@
     "path": [
         "/opt/messengerfordesktop/"
     ],
-    "icons_path": [
+    "path": [
         "/opt/messengerfordesktop/resources/"
     ],
     "binary": "app.asar",

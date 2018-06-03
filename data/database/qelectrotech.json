@@ -3,7 +3,7 @@
     "path": [
         "/usr/share/qelectrotech/"
     ],
-    "icons_path": [
+    "path": [
         "{userhome}/.local/share/sni-qt/icons/qelectrotech/{size}/"
     ],
     "is_qt": true,
