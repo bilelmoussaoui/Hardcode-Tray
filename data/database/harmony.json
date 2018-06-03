@@ -1,6 +1,6 @@
 {
     "name": "Harmony",
-    "app_path": [
+    "path": [
         "/opt/Harmony/harmony"
     ],
     "icons_path": [

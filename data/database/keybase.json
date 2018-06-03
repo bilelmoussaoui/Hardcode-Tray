@@ -1,6 +1,6 @@
 {
     "name": "Keybase",
-    "app_path": [
+    "path": [
         "/opt/keybase/"
     ],
     "icons_path": [

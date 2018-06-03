@@ -1,6 +1,6 @@
 {
     "name": "Dropbox",
-    "app_path": [
+    "path": [
         "/opt/dropbox/",
         "{userhome}/.dropbox-dist/"
     ],

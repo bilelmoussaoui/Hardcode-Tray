@@ -1,6 +1,6 @@
 {
     "name": "Synergy",
-    "app_path": [
+    "path": [
         "/usr/bin/synergy"
     ],
     "icons_path": [

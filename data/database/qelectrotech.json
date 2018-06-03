@@ -1,6 +1,6 @@
 {
     "name": "QElectroTech",
-    "app_path": [
+    "path": [
         "/usr/share/qelectrotech/"
     ],
     "icons_path": [

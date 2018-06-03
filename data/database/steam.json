@@ -1,6 +1,6 @@
 {
     "name": "Steam",
-    "app_path": [
+    "path": [
         "{userhome}/.steam/"
     ],
     "icons_path": [

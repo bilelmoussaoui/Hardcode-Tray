@@ -1,6 +1,6 @@
 {
     "name": "Tomahawk",
-    "app_path": [
+    "path": [
         "/usr/bin/tomahawk"
     ],
     "icons_path": [

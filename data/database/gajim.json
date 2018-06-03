@@ -1,6 +1,6 @@
 {
     "name": "Gajim",
-    "app_path": [
+    "path": [
         "/usr/share/gajim/data/iconsets/"
     ],
     "icons_path": [

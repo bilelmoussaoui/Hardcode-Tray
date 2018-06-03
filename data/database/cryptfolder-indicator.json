@@ -1,6 +1,6 @@
 {
     "name": "Cryptfolder Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/cryptfolder-indicator/"
     ],
     "icons_path": [

@@ -1,54 +1,43 @@
 {
     "name": "WhatsApp Desktop",
-    "app_path": [
+    "path": [
         "/opt/Whatsapp/",
         "/opt/whatsapp-desktop/"
     ],
-    "icons_path": [
-        "/opt/Whatsapp/resources/app/assets/img/",
-        "/opt/Whatsapp/resources/app/assets/icon/",
-        "/opt/whatsapp-desktop/resources/app/assets/icon/",
-        "/opt/whatsapp-desktop/resources/app/assets/img/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "trayTemplate.png",
-            "theme": "whatsapp-tray"
-        },
-        "tray@2x": {
-            "original": "trayTemplate@2x.png",
-            "theme": "whatsapp-tray"
-        },
-        "icon": {
-            "original": "icon.png",
-            "theme": "whatsapp-tray"
-        },
-        "icon@1.25x": {
-            "original": "icon@1.25x.png",
-            "theme": "whatsapp-tray"
-        },
-        "icon@1.5x": {
-            "original": "icon@1.5.png",
-            "theme": "whatsapp-tray",
-            "symlinks": [
-                "icon@1.5x.png"   
-            ]
-        },
-        "icon@2x": {
-            "original": "icon@2x.png",
-            "theme": "whatsapp-tray"
-        },
-        "tray-warning": {
-            "original": "iconWarning.png",
-            "theme": "whatsapp-warning"
-        },
-        "tray-warning-msg": {
-            "original": "iconWarningWithMsg.png",
-            "theme": "whatsapp-warning-msg"
-        },
-        "tray-msg": {
-            "original": "iconWithMsg.png",
-            "theme": "whatsapp-msg"
-        }
+    "normal": {
+        "path": [
+            "/opt/Whatsapp/resources/app/assets/img/",
+            "/opt/Whatsapp/resources/app/assets/icon/",
+            "/opt/whatsapp-desktop/resources/app/assets/icon/",
+            "/opt/whatsapp-desktop/resources/app/assets/img/"
+        ],
+        "icons": [{
+                "original": "trayTemplate.png",
+                "theme": "whatsapp-tray",
+                "symlinks": [
+                    "icon.png"
+                ]
+            },
+            {
+                "original": "trayTemplate@2x.png",
+                "theme": "whatsapp-tray",
+                "symlinks": [
+                    "icon@2x.png"
+                ],
+                "scale": 2
+            },
+            {
+                "original": "iconWarning.png",
+                "theme": "whatsapp-warning"
+            },
+            {
+                "original": "iconWarningWithMsg.png",
+                "theme": "whatsapp-warning-msg"
+            },
+            {
+                "original": "iconWithMsg.png",
+                "theme": "whatsapp-msg"
+            }
+        ]
     }
 }

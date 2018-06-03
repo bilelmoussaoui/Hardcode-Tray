@@ -1,6 +1,6 @@
 {
     "name": "PopcornTime CE",
-    "app_path": [
+    "path": [
         "/usr/share/popcorntime-ce/"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "RocketChat",
-    "app_path": [
+    "path": [
         "/opt/Rocket.Chat+/"
     ],
     "icons_path": [

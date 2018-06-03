@@ -1,6 +1,6 @@
 {
     "name": "Record Desktop",
-    "app_path": [
+    "path": [
         "/usr/bin/record-desktop"
     ],
     "icons_path": [

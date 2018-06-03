@@ -1,6 +1,6 @@
 {
     "name": "Cisco AnyConnect",
-    "app_path": [
+    "path": [
         "/opt/cisco/anyconnect/bin/vpnui"
     ],
     "icons_path": [

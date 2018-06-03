@@ -1,6 +1,6 @@
 {
     "name": "Ramme",
-    "app_path": [
+    "path": [
         "/opt/Ramme/"
     ],
     "icons_path": [

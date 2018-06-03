@@ -1,6 +1,6 @@
 {
     "name": "ProtonMail",
-    "app_path": [
+    "path": [
         "/opt/Protonmail Desktop/"
     ],
     "icons_path": [

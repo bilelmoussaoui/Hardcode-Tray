@@ -1,6 +1,6 @@
 {
     "name": "Tusk",
-    "app_path": [
+    "path": [
         "/opt/Tusk/"
     ],
     "icons_path": [

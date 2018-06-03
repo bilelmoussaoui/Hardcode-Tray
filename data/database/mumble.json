@@ -1,6 +1,6 @@
 {
     "name": "Mumble",
-    "app_path": [
+    "path": [
         "/usr/bin/mumble"
     ],
     "icons_path": [

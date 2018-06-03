@@ -1,6 +1,6 @@
 {
     "name": "Pomodoro Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/pomodoro-indicator/"
     ],
     "icons_path": [

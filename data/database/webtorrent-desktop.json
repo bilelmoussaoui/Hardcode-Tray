@@ -1,6 +1,6 @@
 {
     "name": "WebTorrent Desktop",
-    "app_path": [
+    "path": [
         "/opt/webtorrent-desktop/",
         "/usr/share/webtorrent-desktop/"
     ],

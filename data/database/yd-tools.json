@@ -1,15 +1,17 @@
 {
     "name": "yd-tools",
-    "app_path": [
+    "path": [
         "/opt/yd-tools/"
     ],
-    "icons_path": [
-        "/opt/yd-tools/icons/"
-    ],
-    "icons": [
-        "yd-busy{1-5}.png",
-        "yd-ind-error.png",
-        "yd-ind-idle.png",
-        "yd-ind-pause.png"
-    ]
+    "normal": {
+        "path": [
+            "/opt/yd-tools/icons/"
+        ],
+        "icons": [
+            "yd-busy{1-5}.png",
+            "yd-ind-error.png",
+            "yd-ind-idle.png",
+            "yd-ind-pause.png"
+        ]
+    }
 }

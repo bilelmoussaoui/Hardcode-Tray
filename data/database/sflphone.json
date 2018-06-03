@@ -1,6 +1,6 @@
 {
     "name": "Sflphone",
-    "app_path": [
+    "path": [
         "/usr/share/sflphone/"
     ],
     "icons_path": [

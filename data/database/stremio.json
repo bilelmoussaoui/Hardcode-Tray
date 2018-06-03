@@ -1,6 +1,6 @@
 {
     "name": "Stremio",
-    "app_path": [
+    "path": [
         "/usr/share/stremio/"
     ],
     "icons_path": [

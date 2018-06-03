@@ -1,6 +1,6 @@
 {
     "name": "Liferea",
-    "app_path": [
+    "path": [
         "/usr/bin/liferea"
     ],
     "icons_path": [

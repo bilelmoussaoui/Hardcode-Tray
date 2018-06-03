@@ -1,6 +1,6 @@
 {
     "name": "Variety",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/variety/"
     ],
     "icons_path": [

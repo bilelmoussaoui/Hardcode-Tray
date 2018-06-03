@@ -1,6 +1,6 @@
 {
     "name": "PB for Desktop",
-    "app_path": [
+    "path": [
         "/opt/PB for Desktop/"
     ],
     "icons_path": [

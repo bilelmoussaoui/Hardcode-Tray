@@ -1,6 +1,6 @@
 {
     "name": "Hexchat",
-    "app_path": [
+    "path": [
         "/usr/bin/hexchat"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "Gitter",
-    "app_path": [
+    "path": [
         "/usr/bin/gitter"
     ],
     "icons_path": [

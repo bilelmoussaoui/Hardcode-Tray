@@ -1,6 +1,6 @@
 {
     "name": "Discord",
-    "app_path": [
+    "path": [
         "/usr/share/discord/",
         "/opt/discord/",
         "/opt/discord-stable/"

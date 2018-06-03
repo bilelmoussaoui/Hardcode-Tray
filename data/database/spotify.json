@@ -1,6 +1,6 @@
 {
     "name": "Spotify",
-    "app_path": [
+    "path": [
         "/opt/spotify/"
     ],
     "icons_path": [

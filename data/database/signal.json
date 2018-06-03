@@ -1,6 +1,6 @@
 {
     "name": "Signal",
-    "app_path": [
+    "path": [
         "/opt/Signal/"
     ],
     "icons_path": [

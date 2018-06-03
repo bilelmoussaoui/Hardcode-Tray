@@ -1,6 +1,6 @@
 {
     "name": "OpenBazaar 2.0 Desktop Client",
-    "app_path": [
+    "path": [
         "/usr/lib/openbazaar2client"
     ],
     "icons_path": [

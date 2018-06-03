@@ -1,18 +1,6 @@
 {
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string"
-        },
-        "app_path": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1,
-            "uniqueItems": true
-        },
-        "icons_path": {
+    "definitions": {
+        "path": {
             "type": "array",
             "items": {
                 "type": "string"
@@ -21,52 +9,122 @@
             "uniqueItems": true
         },
         "icons": {
-            "anyOf": [
-                {
+            "type": "array",
+            "items": {
+                "oneOf": [{
                     "type": "object",
-                    "items": {
-                        "type": "object",
-                        "items": {
-                            "theme": {"type": "string"},
-                            "original": {"type": "string"}
+                    "properties": {
+                        "original": {
+                            "type": "string"
                         },
-                        "required": ["theme", "original"]
-                    }
-                },
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "is_qt": {
-            "type": "boolean"
-        },
-        "force_create_folder": {
-            "type": "boolean"
-        },
-        "backup_ignore": {
-            "type": "boolean"
-        },
-        "binary": {
+                        "theme": {
+                            "type": "string"
+                        },
+                        "symlinks": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        },
+                        "scale": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 4
+                        }
+                    },
+                    "required": ["original", "theme"]
+                }, {
+                    "type": "string"
+                }]
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "name": {
             "type": "string"
         },
-        "script": {
-            "type": "string",
-            "enum": [
-                "electron",
-                "nwjs",
-                "zip",
-                "pak"
-            ]
+        "path": {
+            "$ref": "#/definitions/path"
+        },
+        "normal": {
+            "type": "object",
+            "properties": {
+                "normal": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "$ref": "#/definitions/path"
+                        },
+                        "icons": {
+                            "$ref": "#/definitions/icons"
+                        }
+                    }
+
+                }
+            }
+        },
+        "electron": {
+            "type": "object",
+            "properties": {
+                "normal": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "$ref": "#/definitions/path"
+                        },
+                        "binary": {
+                            "type": "string"
+                        },
+                        "icons": {
+                            "$ref": "#/definitions/icons"
+                        }
+                    }
+
+                }
+            }
+        },
+        "pak": {
+            "type": "object",
+            "properties": {
+                "normal": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "$ref": "#/definitions/path"
+                        },
+                        "binary": {
+                            "type": "string"
+                        },
+                        "icons": {
+                            "$ref": "#/definitions/icons"
+                        }
+                    }
+
+                }
+            }
+        },
+        "qt": {
+            "type": "object",
+            "properties": {
+                "normal": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "$ref": "#/definitions/path"
+                        },
+                        "icons": {
+                            "$ref": "#/definitions/icons"
+                        }
+                    }
+
+                }
+            }
         }
     },
     "required": [
         "name",
-        "app_path",
-        "icons_path",
-        "icons"
+        "path"
     ]
 }

@@ -1,6 +1,6 @@
 {
     "name": "MessengerForDesktop",
-    "app_path": [
+    "path": [
         "/usr/lib/messengerfordesktop/"
     ],
     "icons_path": [

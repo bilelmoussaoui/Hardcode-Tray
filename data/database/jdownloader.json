@@ -1,6 +1,6 @@
 {
     "name": "JDownloader",
-    "app_path": [
+    "path": [
         "/usr/bin/jdownloader"
     ],
     "icons_path": [

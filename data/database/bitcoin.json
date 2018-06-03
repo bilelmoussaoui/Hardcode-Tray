@@ -1,18 +1,15 @@
 {
     "name": "Bitcoin",
-    "app_path": [
+    "path": [
         "/usr/bin/bitcoin-qt"
     ],
-    "icons_path": [
-        "{userhome}/.local/share/sni-qt/icons/bitcoin-qt/{size}/"
-    ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "indicator": {
+    "qt": {
+        "path": [
+            "{userhome}/.local/share/sni-qt/icons/bitcoin-qt/{size}/"
+        ],
+        "icons": [{
             "original": "a7645681bdc53a4f4e8080546ccbb93d",
             "theme": "bitcoin-indicator"
-        }
+        }]
     }
 }

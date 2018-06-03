@@ -1,6 +1,6 @@
 {
     "name": "Spotify Web Player",
-    "app_path": [
+    "path": [
         "/usr/bin/spotifywebplayer"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "Mullvad",
-    "app_path": [
+    "path": [
         "/usr/bin/",
         "/usr/lib/python2.7/site-packages/mullvad/"
     ],

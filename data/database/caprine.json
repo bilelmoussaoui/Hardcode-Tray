@@ -1,35 +1,89 @@
 {
     "name": "Caprine",
-    "app_path": [
+    "path": [
         "/usr/lib/caprine/"
     ],
-    "icons_path": [
-        "/usr/lib/caprine/static/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "IconTray.png",
-            "theme": "messenger-indicator"
-        },
-        "tray@2x": {
-            "original": "IconTray@2x.png",
-            "theme": "messenger-indicator"
-        },
-        "tray@4x": {
-            "original": "IconTray@4x.png",
-            "theme": "messenger-indicator"
-        },
-        "trayUnread": {
-            "original": "IconTrayUnread.png",
-            "theme": "messenger-notification"
-        },
-        "trayUnread@2x": {
-            "original": "IconTrayUnread@2x.png",
-            "theme": "messenger-notification"
-        },
-        "trayUnread@4x": {
-            "original": "IconTrayUnread@4x.png",
-            "theme": "messenger-notification"
-        }
+    "normal": {
+        "path": [
+            "/usr/lib/caprine/static/"
+        ],
+        "icons": [{
+                "original": "IconTray.png",
+                "theme": "messenger-indicator"
+            },
+            {
+                "original": "IconTray@2x.png",
+                "theme": "messenger-indicator",
+                "scale": 2
+            },
+            {
+                "original": "IconTray@4x.png",
+                "theme": "messenger-indicator",
+                "scale": 4
+            },
+            {
+                "original": "IconTrayUnread.png",
+                "theme": "messenger-notification"
+            },
+            {
+                "original": "IconTrayUnread@2x.png",
+                "theme": "messenger-notification",
+                "scale": 2
+            },
+            {
+                "original": "IconTrayUnread@4x.png",
+                "theme": "messenger-notification",
+                "scale": 4
+            }
+        ]
+    },
+    "electron": {
+        "binary": "app.asar",
+        "path": [
+            "/usr/share/caprine/resources/",
+            "/opt/Caprine/resources/"
+        ],
+        "icons": [{
+                "original": "static/IconTray.png",
+                "theme": "messenger-indicator",
+                "symlinks": [
+                    "media/IconTray.png"
+                ]
+            },
+            {
+                "original": "static/IconTray@2x.png",
+                "theme": "messenger-indicator",
+                "symlinks": [
+                    "media/IconTray@2x.png"
+                ],
+                "scale": 2
+            },
+            {
+                "original": "media/IconTray@4x.png",
+                "theme": "messenger-indicator",
+                "scale": 4
+            },
+            {
+                "original": "media/IconTrayUnread.png",
+                "theme": "messenger-notification",
+                "symlinks": [
+                    "static/IconTrayUnread.png"
+                ]
+            },
+            {
+                "original": "media/IconTrayUnread@2x.png",
+                "theme": "messenger-notification",
+                "symlinks": [
+                    "static/IconTrayUnread@2x.png"
+                ],
+                "scale": 2
+            },
+            {
+                "original": "media/IconTrayUnread@4x.png",
+                "theme": "messenger-notification",
+                "scale": 4
+            }
+        ]
     }
+
 }

@@ -1,6 +1,6 @@
 {
     "name": "Mailspring",
-    "app_path": [
+    "path": [
         "/usr/share/mailspring/"
     ],
     "icons_path": [

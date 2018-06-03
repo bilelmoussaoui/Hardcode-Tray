@@ -1,6 +1,6 @@
 {
     "name": "Google Play Music Desktop Player",
-    "app_path": [
+    "path": [
         "/usr/share/google-play-music-desktop-player/",
         "/usr/share/gpmdp/"
     ],

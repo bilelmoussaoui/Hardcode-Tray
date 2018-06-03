@@ -1,6 +1,6 @@
 {
     "name": "Skype",
-    "app_path": [
+    "path": [
         "/usr/share/skype/"
     ],
     "icons_path": [

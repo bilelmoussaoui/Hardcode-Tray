@@ -1,21 +1,40 @@
 {
     "name": "Wire",
-    "app_path": [
+    "path": [
         "/opt/wire-desktop/",
-        "/usr/lib/wire-desktop/"
+        "/usr/lib/wire-desktop/",
+        "/usr/share/wire/"
     ],
-    "icons_path": [
-        "/opt/wire-desktop/resources/app/img/",
-        "/usr/lib/wire-desktop/resources/app/img/"
-    ],
-    "icons": {
-        "tray": {
-            "original": "tray.png",
-            "theme": "wire-tray"
-        },
-        "notification": {
-            "original": "tray.badge.png",
-            "theme": "wire-tray-attention"
-        }
+    "normal": {
+        "path": [
+            "/opt/wire-desktop/resources/app/img/",
+            "/usr/lib/wire-desktop/resources/app/img/"
+        ],
+        "icons": [{
+                "original": "tray.png",
+                "theme": "wire-tray"
+            },
+            {
+                "original": "tray.badge.png",
+                "theme": "wire-tray-attention"
+            }
+        ]
+    },
+    "electron": {
+        "path": [
+            "/opt/wire-desktop/resources/",
+            "/usr/lib/wire-desktop/resources/",
+            "/usr/share/wire/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "img/tray.png",
+                "theme": "wire-tray"
+            },
+            {
+                "original": "img/tray.badge.png",
+                "theme": "wire-tray-attention"
+            }
+        ]
     }
 }

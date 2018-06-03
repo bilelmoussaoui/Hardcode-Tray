@@ -1,6 +1,6 @@
 {
     "name": "Indicator Weather",
-    "app_path": [
+    "path": [
         "/usr/share/indicator-weather/"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "Google Music Manager",
-    "app_path": [
+    "path": [
         "/opt/google/musicmanager/"
     ],
     "icons_path": [

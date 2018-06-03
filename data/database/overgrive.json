@@ -1,6 +1,6 @@
 {
     "name": "overGrive",
-    "app_path": [
+    "path": [
         "/opt/thefanclub/overgrive/"
     ],
     "icons_path": [

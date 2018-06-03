@@ -1,6 +1,6 @@
 {
     "name": "Slack",
-    "app_path": [
+    "path": [
         "/usr/share/slack/",
         "/usr/lib/slack/"
     ],

@@ -1,6 +1,6 @@
 {
     "name": "Insync",
-    "app_path": [
+    "path": [
         "/usr/bin/insync",
         "/usr/lib/insync/"
     ],

@@ -1,6 +1,6 @@
 {
     "name": "Touchpad Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/touchpad-indicator/"
     ],
     "icons_path": [

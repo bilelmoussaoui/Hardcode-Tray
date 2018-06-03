@@ -1,6 +1,6 @@
 {
     "name": "PomoDoneApp",
-    "app_path": [
+    "path": [
         "/opt/PomoDoneApp/"
     ],
     "icons_path": [

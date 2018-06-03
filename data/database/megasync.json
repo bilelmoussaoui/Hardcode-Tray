@@ -1,6 +1,6 @@
 {
     "name": "Megasync",
-    "app_path": [
+    "path": [
         "/usr/bin/megasync"
     ],
     "icons_path": [

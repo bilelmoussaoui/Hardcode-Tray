@@ -1,6 +1,6 @@
 {
     "name": "RescueTime",
-    "app_path": [
+    "path": [
         "/usr/bin/rescuetime"
     ],
     "icons_path": [

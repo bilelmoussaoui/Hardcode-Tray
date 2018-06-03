@@ -1,34 +1,81 @@
 {
     "name": "Franz",
-    "app_path": [
+    "path": [
         "/opt/franz/",
+        "/opt/Franz/",
         "/opt/franz-bin/"
     ],
-    "icons_path": [
-        "/opt/franz/resources/app.asar.unpacked/assets/",
-        "/opt/franz/resources/app.asar.unpacked/assets/tray/linux/",
-        "/opt/franz-bin/resources/app.asar.unpacked/assets/tray/linux/"
-    ],
-    "icons": {
-        "taskbar": {
-            "original": "franz-taskbar.png",
-            "theme": "franz-panel"
-        },
-        "taskbar@2x": {
-            "original": "franz-taskbar@2x.png",
-            "theme": "franz-panel"
-        },
-        "taskbar-unread": {
-            "original": "franz-taskbar-unread.png",
-            "theme": "franz-attention-panel",
-            "symlinks": [
-                "franz-win-dock-alert.png",
-                "franz-win-dock-alert-{1-10}.png"
-            ]
-        },
-        "taskbar-unread@2x": {
-            "original": "franz-taskbar-unread@2x.png",
-            "theme": "franz-attention-panel"
-        }
+    "normal": {
+        "path": [
+            "/opt/franz/resources/app.asar.unpacked/assets/",
+            "/opt/franz/resources/app.asar.unpacked/assets/tray/linux/",
+            "/opt/franz-bin/resources/app.asar.unpacked/assets/tray/linux/"
+        ],
+        "icons": [
+            {
+                "original": "franz-taskbar.png",
+                "theme": "franz-panel"
+            },
+            {
+                "original": "franz-taskbar@2x.png",
+                "theme": "franz-panel",
+                "scale": 2
+            },
+            {
+                "original": "franz-taskbar-unread.png",
+                "theme": "franz-attention-panel",
+                "symlinks": [
+                    "franz-win-dock-alert.png",
+                    "franz-win-dock-alert-{1-10}.png"
+                ]
+            },
+            {
+                "original": "franz-taskbar-unread@2x.png",
+                "theme": "franz-attention-panel",
+                "scale": 2
+            }
+        ]
+    },
+    "electron": {
+        "binary": "app.asar",
+        "path": [
+            "/opt/franz/resources/",
+            "/opt/Franz/resources/",
+            "/opt/franz-bin/resources/"
+        ],
+        "icons": [
+            {
+                "original": "assets/tray/linux/franz-taskbar.png",
+                "symlinks": [
+                    "assets/images/tray/linux/tray.png"
+                ],
+                "theme": "franz-panel"
+            },
+            {
+                "original": "assets/tray/linux/franz-taskbar@2x.png",
+                "theme": "franz-panel",
+                "symlinks": [
+                    "assets/images/tray/linux/tray@2x.png"
+                ],
+                "scale": 2
+            },
+            {
+                "original": "assets/tray/linux/franz-taskbar-unread.png",
+                "theme": "franz-attention-panel",
+                "symlinks": [
+                    "assets/franz-win-dock-alert.png",
+                    "assets/images/tray/linux/tray-unread.png"
+                ]
+            },
+            {
+                "original": "assets/tray/linux/franz-taskbar-unread@2x.png",
+                "theme": "franz-attention-panel",
+                "symlinks": [
+                    "assets/images/tray/linux/tray-unread@2x.png"
+                ],
+                "scale": 2
+            }
+        ]
     }
+
 }

@@ -1,6 +1,6 @@
 {
     "name": "Twitch Indicator",
-    "app_path": [
+    "path": [
         "/usr/lib/twitch-indicator/"
     ],
     "icons_path": [

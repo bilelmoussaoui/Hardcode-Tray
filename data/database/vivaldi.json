@@ -1,6 +1,6 @@
 {
     "name": "Vivaldi",
-    "app_path": [
+    "path": [
         "/opt/vivaldi/",
         "/opt/vivaldi-beta/",
         "/opt/vivaldi-snapshot/"

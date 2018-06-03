@@ -1,6 +1,6 @@
 {
     "name": "Guake",
-    "app_path": [
+    "path": [
         "/usr/bin/guake"
     ],
     "icons_path": [

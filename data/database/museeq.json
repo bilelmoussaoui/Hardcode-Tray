@@ -1,6 +1,6 @@
 {
     "name": "Museeq",
-    "app_path": [
+    "path": [
         "/usr/bin/museeq"
     ],
     "icons_path": [

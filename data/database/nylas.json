@@ -1,6 +1,6 @@
 {
     "name": "Nylas N1(Mail)",
-    "app_path": [
+    "path": [
         "/usr/share/nylas-mail/",
         "/usr/share/nylas/"
     ],

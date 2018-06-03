@@ -1,6 +1,6 @@
 {
     "name": "Google Chrome",
-    "app_path": [
+    "path": [
         "/opt/google/chrome/",
         "/opt/google/chrome-unstable/",
         "/opt/google/chrome-beta/"

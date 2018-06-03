@@ -1,6 +1,6 @@
 {
     "name": "Seafile",
-    "app_path": [
+    "path": [
         "/usr/bin/seafile-applet"
     ],
     "icons_path": [

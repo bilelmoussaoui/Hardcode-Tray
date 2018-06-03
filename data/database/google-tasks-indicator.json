@@ -1,6 +1,6 @@
 {
     "name": "Google Tasks Indicator",
-    "app_path": [
+    "path": [
         "/usr/share/google-tasks-indicator/"
     ],
     "icons_path": [

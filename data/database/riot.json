@@ -1,0 +1,15 @@
+{
+    "name": "Riot Web",
+    "path": [
+        "/opt/Riot/"
+    ],
+    "normal": {
+        "path": [
+            "/opt/Riot/resources/app/img/"
+        ],
+        "icons": [{
+            "original": "riot.png",
+            "theme": "riot-tray"
+        }]
+    }
+}

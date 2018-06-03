@@ -1,19 +1,21 @@
 {
     "name": "Youtube Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/youtube-indicator/"
     ],
-    "icons_path": [
-        "/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons/"
-    ],
-    "icons": [
-        "youtube-indicator-downloading-dark.svg",
-        "youtube-indicator-dark-disabled.svg",
-        "youtube-indicator-dark-sync{0-9}.svg",
-        "youtube-indicator-dark.svg",
-        "youtube-indicator-downloading-light.svg",
-        "youtube-indicator-light-disabled.svg",
-        "youtube-indicator-light-sync{0-9}.svg",
-        "youtube-indicator-light.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/youtube-indicator/share/youtube-indicator/icons/"
+        ],
+        "icons": [
+            "youtube-indicator-downloading-dark.svg",
+            "youtube-indicator-dark-disabled.svg",
+            "youtube-indicator-dark-sync{0-9}.svg",
+            "youtube-indicator-dark.svg",
+            "youtube-indicator-downloading-light.svg",
+            "youtube-indicator-light-disabled.svg",
+            "youtube-indicator-light-sync{0-9}.svg",
+            "youtube-indicator-light.svg"
+        ]
+    }
 }

@@ -1,6 +1,6 @@
 {
     "name": "Prime Indicator",
-    "app_path": [
+    "path": [
         "/usr/lib/primeindicator/"
     ],
     "icons_path": [

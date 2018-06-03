@@ -1,6 +1,6 @@
 {
     "name": "Ibus Anthy",
-    "app_path": [
+    "path": [
         "/usr/share/ibus-anthy/"
     ],
     "icons_path": [

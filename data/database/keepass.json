@@ -1,6 +1,6 @@
 {
     "name": "KeePass",
-    "app_path": [
+    "path": [
         "/usr/share/keepass/"
     ],
     "icons_path": [

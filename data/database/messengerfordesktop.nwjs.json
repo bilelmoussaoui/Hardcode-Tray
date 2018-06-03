@@ -1,6 +1,6 @@
 {
     "name": "MessengerForDesktop",
-    "app_path": [
+    "path": [
         "/opt/MessengerForDesktop/"
     ],
     "icons_path": [

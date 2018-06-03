@@ -1,6 +1,6 @@
 {
     "name": "Teamviewer",
-    "app_path": [
+    "path": [
         "/opt/teamviewer/"
     ],
     "icons_path": [

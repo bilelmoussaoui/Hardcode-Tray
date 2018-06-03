@@ -1,6 +1,6 @@
 {
     "name": "Pushbullet Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/"
     ],
     "icons_path": [

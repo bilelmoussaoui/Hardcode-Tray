@@ -1,6 +1,6 @@
 {
     "name": "Flarget",
-    "app_path": [
+    "path": [
         "/usr/bin/flareget"
     ],
     "icons_path": [

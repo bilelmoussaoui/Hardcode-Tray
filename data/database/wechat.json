@@ -1,6 +1,6 @@
 {
     "name": "Electronic WeChat",
-    "app_path": [
+    "path": [
         "/usr/lib/electronic-wechat/"
     ],
     "icons_path": [

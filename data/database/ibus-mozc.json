@@ -1,6 +1,6 @@
 {
     "name": "Ibus Mozc",
-    "app_path": [
+    "path": [
         "/usr/share/ibus-mozc/"
     ],
     "icons_path": [

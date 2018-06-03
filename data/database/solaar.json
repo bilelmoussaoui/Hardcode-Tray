@@ -1,6 +1,6 @@
 {
     "name": "Solaar",
-    "app_path": [
+    "path": [
         "/usr/share/solaar/"
     ],
     "icons_path": [

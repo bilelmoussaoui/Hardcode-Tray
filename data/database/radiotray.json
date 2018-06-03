@@ -1,6 +1,6 @@
 {
     "name": "RadioTray",
-    "app_path": [
+    "path": [
         "/usr/share/radiotray/"
     ],
     "icons_path": [

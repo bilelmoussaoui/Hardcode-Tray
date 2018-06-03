@@ -1,6 +1,6 @@
 {
     "name": "No Machine",
-    "app_path": [
+    "path": [
         "/usr/NX/"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "OwnCloud",
-    "app_path": [
+    "path": [
         "/usr/share/owncloud/",
         "/usr/share/owncloud-client/"
     ],

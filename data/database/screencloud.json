@@ -1,6 +1,6 @@
 {
     "name": "ScreenCloud",
-    "app_path": [
+    "path": [
         "/usr/bin/screencloud"
     ],
     "icons_path": [

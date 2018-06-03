@@ -1,6 +1,6 @@
 {
     "name": "Rambox",
-    "app_path": [
+    "path": [
         "/opt/rambox/",
         "/opt/Rambox/"
     ],

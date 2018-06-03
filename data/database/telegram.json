@@ -1,6 +1,6 @@
 {
     "name": "Telegram",
-    "app_path": [
+    "path": [
       "{userhome}/.TelegramDesktop/Telegram",
       "{userhome}/.local/share/TelegramDesktop/Telegram",
       "{userhome}/.local/share/TelegramDesktop/log.txt",

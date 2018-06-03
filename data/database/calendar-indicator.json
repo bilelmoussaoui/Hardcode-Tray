@@ -1,15 +1,17 @@
 {
     "name": "Calendar Indicator",
-    "app_path": [
+    "path": [
         "/opt/extras.ubuntu.com/calendar-indicator/"
     ],
-    "icons_path": [
-        "/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/"
-    ],
-    "icons": [
-        "{1-31}-dark-normal.svg",
-        "{1-31}-dark-starred.svg",
-        "{1-31}-light-normal.svg",
-        "{1-31}-light-starred.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/calendar-indicator/share/calendar-indicator/icons/"
+        ],
+        "icons": [
+            "{1-31}-dark-normal.svg",
+            "{1-31}-dark-starred.svg",
+            "{1-31}-light-normal.svg",
+            "{1-31}-light-starred.svg"
+        ]
+    }
 }

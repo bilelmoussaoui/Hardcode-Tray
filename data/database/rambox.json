@@ -1,6 +1,6 @@
 {
     "name": "Rambox",
-    "app_path": [
+    "path": [
         "/usr/lib/rambox/",
         "/usr/lib/Rambox/"
     ],

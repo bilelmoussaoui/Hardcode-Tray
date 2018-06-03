@@ -1,6 +1,6 @@
 {
     "name": "Hangouts",
-    "app_path": [
+    "path": [
         "{userhome}/.config/chromium/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
         "{userhome}/.config/google-chrome/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",
         "{userhome}/.config/google-chrome-beta/Default/Extensions/nckgahadagoaajjgafhacjanaoiihapd/",

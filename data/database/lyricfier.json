@@ -1,6 +1,6 @@
 {
     "name": "Lyricfier",
-    "app_path": [
+    "path": [
         "/opt/lyricfier/"
     ],
     "icons_path": [

@@ -1,6 +1,6 @@
 {
     "name": "HP Printer",
-    "app_path": [
+    "path": [
         "/usr/bin/hp-systray"
     ],
     "icons_path": [

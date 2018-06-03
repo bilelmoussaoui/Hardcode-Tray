@@ -1,23 +1,24 @@
 {
     "name": "Workrave",
-    "app_path": [
+    "path": [
         "/usr/share/workrave/"
     ],
-    "icons_path": [
-        "/usr/share/workrave/images/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "workrave-icon-medium.png",
-            "theme": "workrave-indicator"
-        },
-        "quiet": {
-            "original": "workrave-quiet-icon-medium.png",
-            "theme": "workrave-indicator-quiet"
-        },
-        "suspended": {
-            "original": "workrave-suspended-icon-medium.png",
-            "theme": "workrave-indicator-suspended"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/workrave/images/"
+        ],
+        "icons": [{
+                "original": "workrave-icon-medium.png",
+                "theme": "workrave-indicator"
+            },
+            {
+                "original": "workrave-quiet-icon-medium.png",
+                "theme": "workrave-indicator-quiet"
+            },
+            {
+                "original": "workrave-suspended-icon-medium.png",
+                "theme": "workrave-indicator-suspended"
+            }
+        ]
     }
 }
