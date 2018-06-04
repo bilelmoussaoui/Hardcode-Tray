@@ -3,17 +3,18 @@
     "path": [
         "/usr/bin/record-desktop"
     ],
-    "path": [
-        "/usr/share/recored-desktop/resources/app/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "icon.png",
-            "theme": "record-desktop-indicator"
-        },
-        "recording": {
-            "original": "icon-recording.png",
-            "theme": "record-desktop-indicator-recording"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/recored-desktop/resources/app/"
+        ],
+        "icons": [{
+                "original": "icon.png",
+                "theme": "record-desktop-indicator"
+            },
+            {
+                "original": "icon-recording.png",
+                "theme": "record-desktop-indicator-recording"
+            }
+        ]
     }
 }

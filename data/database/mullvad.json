@@ -4,21 +4,22 @@
         "/usr/bin/",
         "/usr/lib/python2.7/site-packages/mullvad/"
     ],
-    "path": [
-        "/usr/lib/python2.7/site-packages/mullvad/"
-    ],
-    "icons": {
-        "error": {
-            "original": "rdot.png",
-            "theme": "mullvad-error"
-        },
-        "config": {
-            "original": "ydot.png",
-            "theme": "mullvad-config"
-        },
-        "success": {
-            "original": "gdot.png",
-            "theme": "mullvad-success"
-        }
+    "normal": {
+        "path": [
+            "/usr/lib/python2.7/site-packages/mullvad/"
+        ],
+        "icons": [{
+                "original": "rdot.png",
+                "theme": "mullvad-error"
+            },
+            {
+                "original": "ydot.png",
+                "theme": "mullvad-config"
+            },
+            {
+                "original": "gdot.png",
+                "theme": "mullvad-success"
+            }
+        ]
     }
 }

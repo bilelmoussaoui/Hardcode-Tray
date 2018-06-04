@@ -3,63 +3,63 @@
     "path": [
         "/opt/Rocket.Chat+/"
     ],
-    "path": [
-        "/opt/Rocket.Chat+/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "app/public/images/linux/icon-tray.png",
-            "theme": "rocketchat-tray"
-        },
-        "tray-alert": {
-            "original": "app/public/images/linux/icon-tray-alert.png",
-            "theme": "rocketchat-tray-alert"
-        },
-        "tray-dot": {
-            "original": "app/public/images/linux/icon-trayDot.png",
-            "theme": "rocketchat-tray-dot"
-        },
-        "tray-1": {
-            "original": "app/public/images/linux/icon-tray1.png",
-            "theme": "rocketchat-tray-1"
-        },
-        "tray-2": {
-            "original": "app/public/images/linux/icon-tray2.png",
-            "theme": "rocketchat-tray-2"
-        },
-        "tray-3": {
-            "original": "app/public/images/linux/icon-tray3.png",
-            "theme": "rocketchat-tray-3"
-        },
-        "tray-4": {
-            "original": "app/public/images/linux/icon-tray4.png",
-            "theme": "rocketchat-tray-4"
-        },
-        "tray-5": {
-            "original": "app/public/images/linux/icon-tray5.png",
-            "theme": "rocketchat-tray-5"
-        },
-        "tray-6": {
-            "original": "app/public/images/linux/icon-tray6.png",
-            "theme": "rocketchat-tray-6"
-        },
-        "tray-7": {
-            "original": "app/public/images/linux/icon-tray7.png",
-            "theme": "rocketchat-tray-7"
-        },
-        "tray-8": {
-            "original": "app/public/images/linux/icon-tray1.png",
-            "theme": "rocketchat-tray-8"
-        },
-        "tray-9": {
-            "original": "app/public/images/linux/icon-tray1.png",
-            "theme": "rocketchat-tray-9"
-        },
-        "tray-9-plus": {
-            "original": "app/public/images/linux/icon-tray9Plus.png",
-            "theme": "rocketchat-tray-9-plus"
-        }
+    "electron": {
+        "path": [
+            "/opt/Rocket.Chat+/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "app/public/images/linux/icon-tray.png",
+                "theme": "rocketchat-tray"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray-alert.png",
+                "theme": "rocketchat-tray-alert"
+            },
+            {
+                "original": "app/public/images/linux/icon-trayDot.png",
+                "theme": "rocketchat-tray-dot"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray1.png",
+                "theme": "rocketchat-tray-1"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray2.png",
+                "theme": "rocketchat-tray-2"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray3.png",
+                "theme": "rocketchat-tray-3"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray4.png",
+                "theme": "rocketchat-tray-4"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray5.png",
+                "theme": "rocketchat-tray-5"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray6.png",
+                "theme": "rocketchat-tray-6"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray7.png",
+                "theme": "rocketchat-tray-7"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray1.png",
+                "theme": "rocketchat-tray-8"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray1.png",
+                "theme": "rocketchat-tray-9"
+            },
+            {
+                "original": "app/public/images/linux/icon-tray9Plus.png",
+                "theme": "rocketchat-tray-9-plus"
+            }
+        ]
     }
 }

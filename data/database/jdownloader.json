@@ -3,13 +3,13 @@
     "path": [
         "/usr/bin/jdownloader"
     ],
-    "path": [
-        "{userhome}/.jd/themes/standard/org/jdownloader/images/"
-    ],
-    "icons": {
-        "indicator": {
+    "normal": {
+        "path": [
+            "{userhome}/.jd/themes/standard/org/jdownloader/images/"
+        ],
+        "icons": [{
             "original": "jd_logo_128_128.png",
             "theme": "jdownloader-indicator"
-        }
+        }]
     }
 }

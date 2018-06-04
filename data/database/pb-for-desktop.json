@@ -3,47 +3,41 @@
     "path": [
         "/opt/PB for Desktop/"
     ],
-    "path": [
-        "/opt/PB for Desktop/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
-            "original": "icons/linux/icon-tray-default.png",
-            "theme": "pushbullet-indicator"
-        },
-        "tray": {
-            "original": "icons/linux/icon-tray-opaque.png",
-            "theme": "pushbullet-indicator"
-        },
-        "disabled": {
-            "original": "media/icon-tray-disabled.png",
-            "theme": "pushbullet-indicator-disabled"
-        },
-        "paused": {
-            "original": "media/icon-tray-paused.png",
-            "theme": "pushbullet-indicator-paused"
-        },
-        "transparent": {
-            "original": "media/icon-tray-transparent.png",
-            "theme": "pushbullet-indicator-transparent"
-        },
-        "disabled-linux": {
-            "original": "icons/linux/icon-tray-disabled.png",
-            "theme": "pushbullet-indicator-disabled"
-        },
-        "paused-linux": {
-            "original": "icons/linux/icon-tray-paused.png",
-            "theme": "pushbullet-indicator-paused"
-        },
-        "pause-linux": {
-            "original": "icons/linux/icon-tray-transparent-pause.png",
-            "theme": "pushbullet-indicator-paused"
-        },
-        "transparent-linux": {
-            "original": "icons/linux/icon-tray-transparent.png",
-            "theme": "pushbullet-indicator-transparent"
-        }
+    "electron": {
+        "path": [
+            "/opt/PB for Desktop/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "icons/linux/icon-tray-default.png",
+                "theme": "pushbullet-indicator",
+                "symlinks": [
+                    "icons/linux/icon-tray-opaque.png"
+                ]
+            },
+            {
+                "original": "media/icon-tray-disabled.png",
+                "theme": "pushbullet-indicator-disabled"
+            },
+            {
+                "original": "media/icon-tray-paused.png",
+                "theme": "pushbullet-indicator-paused",
+                "symlinks": [
+                    "icons/linux/icon-tray-transparent-pause.png",
+                    "icons/linux/icon-tray-paused.png"
+                ]
+            },
+            {
+                "original": "media/icon-tray-transparent.png",
+                "theme": "pushbullet-indicator-transparent",
+                "symlinks": [
+                    "icons/linux/icon-tray-transparent.png"
+                ]
+            },
+            {
+                "original": "icons/linux/icon-tray-disabled.png",
+                "theme": "pushbullet-indicator-disabled"
+            }
+        ]
     }
 }

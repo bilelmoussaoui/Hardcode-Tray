@@ -3,13 +3,15 @@
     "path": [
         "/opt/thefanclub/overgrive/"
     ],
-    "path": [
-        "/opt/thefanclub/overgrive/icons/dark/",
-        "/opt/thefanclub/overgrive/icons/light/"
-    ],
-    "icons": [
-        "overgrive-app-ind.svg",
-        "overgrive-app-ind-con-{1-3}.svg",
-        "overgrive-app-ind-sleep.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/thefanclub/overgrive/icons/dark/",
+            "/opt/thefanclub/overgrive/icons/light/"
+        ],
+        "icons": [
+            "overgrive-app-ind.svg",
+            "overgrive-app-ind-con-{1-3}.svg",
+            "overgrive-app-ind-sleep.svg"
+        ]
+    }
 }

@@ -3,165 +3,148 @@
     "path": [
         "/opt/extras.ubuntu.com/my-weather-indicator/"
     ],
-    "path": [
-        "/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons/"
-    ],
-    "icons": {
-        "showers": {
-            "original": "mwil-rain.png",
-            "theme": "weather-showers",
-            "symlinks": [
-                "mwid-light-rain.png",
-                "mwid-rain-new.png",
-                "mwid-rain.png",
-                "mwil-light-rain.png",
-                "mwil-rain-new.png"
-            ]
-        },
-        "clear": {
-            "original": "mwil-clear.png",
-            "theme": "weather-clear",
-            "symlinks": [
-                "mwid-clear.png",
-                "mwid-mostly-sunny.png",
-                "mwil-mostly-sunny.png"
-            ]
-        },
-        "storm": {
-            "original": "mwil-storm.png",
-            "theme": "weather-storm",
-            "symlinks": [
-                "mwid-chance-of-thunderstorms-night.png",
-                "mwid-chance-of-thunderstorms.png",
-                "mwid-storm.png",
-                "mwil-chance-of-thunderstorms-night.png",
-                "mwil-chance-of-thunderstorms.png"
-            ]
-        },
-        "snow": {
-            "original": "mwil-snow.png",
-            "theme": "weather-snow",
-            "symlinks": [
-                "mwid-snow.png",
-                "mwil-light-snow.png",
-                "mwid-light-snow.png"
-            ]
-        },
-        "fog": {
-            "original": "mwil-fog.png",
-            "theme": "weather-fog",
-            "symlinks": [
-                "mwil-fog-night.png",
-                "mwid-fog.png",
-                "mwid-fog-night.png"
-            ]
-        },
-        "clear-night": {
-            "original": "mwid-clear-night.png",
-            "theme": "weather-clear-night",
-            "symlinks": [
-                "mwid-mostly-sunny-night.png",
-                "mwil-clear-night.png",
-                "mwil-mostly-sunny-night.png"
-            ]
-        },
-        "snow-scattered": {
-            "original": "mwid-chance-of-snow.png",
-            "theme": "weather-snow-scattered",
-            "symlinks": [
-                "mwid-chance-of-snow-night.png",
-                "mwid-flurries.png",
-                "mwil-chance-of-snow.png",
-                "mwil-chance-of-snow-night.png",
-                "mwil-flurries.png"
-            ]
-        },
-        "freezing-rain": {
-            "original": "mwid-icy.png",
-            "theme": "weather-freezing-rain",
-            "symlinks": [
-                "mwil-freezing-drizzle.png",
-                "mwid-freezing-drizzle.png",
-                "mwil-icy.png"
-            ]
-        },
-        "hail": {
-            "original": "mwil-hail.png",
-            "theme": "weather-hail",
-            "symlinks": [
-                "mwid-hail.png"
-            ]
-        },
-        "windy": {
-            "original": "mwil-windy.png",
-            "theme": "weather-windy",
-            "symlinks": [
-                "mwid-windy.png"
-            ]
-        },
-
-        "not-available": {
-            "original": "mwil-not-available.png",
-            "theme": "weather-none-available",
-            "symlinks": [
-                "mwid-not-available.png"
-            ]
-        },
-        "cloudy": {
-            "original": "mwil-cloudy.png",
-            "theme": "weather-overcast",
-            "symlinks": [
-                "mwid-cloudy.png"
-            ]
-        },
-        "rain-and-snow": {
-            "original": "mwil-rain-and-snow.png",
-            "theme": "weather-snow-rain",
-            "symlinks": [
-                "mwid-rain-and-snow.png"
-            ]
-        },
-        "partly-cloudy": {
-            "original": "mwil-partly-cloudy.png",
-            "theme": "weather-few-clouds",
-            "symlinks": [
-                "mwid-partly-cloudy.png"
-            ]
-        },
-        "mostly-cloudy": {
-            "original": "mwil-mostly-cloudy.png",
-            "theme": "weather-clouds",
-            "symlinks": [
-                "mwid-mostly-cloudy.png"
-            ]
-        },
-        "partly-cloudy-night": {
-            "original": "mwil-partly-cloudy-night.png",
-            "theme": "weather-few-clouds-night",
-            "symlinks": [
-                "mwid-partly-cloudy-night.png"
-            ]
-        },
-        "mostly-cloudy-night": {
-            "original": "mwil-mostly-cloudy-night.png",
-            "theme": "weather-clouds-night",
-            "symlinks": [
-                "mwid-mostly-cloudy-night.png"
-            ]
-        },
-        "chance-of-rain-night": {
-            "original": "mwil-chance-of-rain-night.png",
-            "theme": "weather-showers-scattered-night",
-            "symlinks": [
-                "mwid-chance-of-rain-night.png"
-            ]
-        },
-        "chance-of-rain": {
-            "original": "mwil-chance-of-rain.png",
-            "theme": "weather-showers-scattered-day",
-            "symlinks": [
-                "mwid-chance-of-rain.png"
-            ]
-        }
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/my-weather-indicator/share/my-weather-indicator/icons/"
+        ],
+        "icons": [{
+                "original": "mwil-rain.png",
+                "theme": "weather-showers",
+                "symlinks": [
+                    "mwid-light-rain.png",
+                    "mwid-rain-new.png",
+                    "mwid-rain.png",
+                    "mwil-light-rain.png",
+                    "mwil-rain-new.png"
+                ]
+            }, {
+                "original": "mwil-clear.png",
+                "theme": "weather-clear",
+                "symlinks": [
+                    "mwid-clear.png",
+                    "mwid-mostly-sunny.png",
+                    "mwil-mostly-sunny.png"
+                ]
+            }, {
+                "original": "mwil-storm.png",
+                "theme": "weather-storm",
+                "symlinks": [
+                    "mwid-chance-of-thunderstorms-night.png",
+                    "mwid-chance-of-thunderstorms.png",
+                    "mwid-storm.png",
+                    "mwil-chance-of-thunderstorms-night.png",
+                    "mwil-chance-of-thunderstorms.png"
+                ]
+            }, {
+                "original": "mwil-snow.png",
+                "theme": "weather-snow",
+                "symlinks": [
+                    "mwid-snow.png",
+                    "mwil-light-snow.png",
+                    "mwid-light-snow.png"
+                ]
+            }, {
+                "original": "mwil-fog.png",
+                "theme": "weather-fog",
+                "symlinks": [
+                    "mwil-fog-night.png",
+                    "mwid-fog.png",
+                    "mwid-fog-night.png"
+                ]
+            }, {
+                "original": "mwid-clear-night.png",
+                "theme": "weather-clear-night",
+                "symlinks": [
+                    "mwid-mostly-sunny-night.png",
+                    "mwil-clear-night.png",
+                    "mwil-mostly-sunny-night.png"
+                ]
+            }, {
+                "original": "mwid-chance-of-snow.png",
+                "theme": "weather-snow-scattered",
+                "symlinks": [
+                    "mwid-chance-of-snow-night.png",
+                    "mwid-flurries.png",
+                    "mwil-chance-of-snow.png",
+                    "mwil-chance-of-snow-night.png",
+                    "mwil-flurries.png"
+                ]
+            }, {
+                "original": "mwid-icy.png",
+                "theme": "weather-freezing-rain",
+                "symlinks": [
+                    "mwil-freezing-drizzle.png",
+                    "mwid-freezing-drizzle.png",
+                    "mwil-icy.png"
+                ]
+            }, {
+                "original": "mwil-hail.png",
+                "theme": "weather-hail",
+                "symlinks": [
+                    "mwid-hail.png"
+                ]
+            }, {
+                "original": "mwil-windy.png",
+                "theme": "weather-windy",
+                "symlinks": [
+                    "mwid-windy.png"
+                ]
+            },
+            {
+                "original": "mwil-not-available.png",
+                "theme": "weather-none-available",
+                "symlinks": [
+                    "mwid-not-available.png"
+                ]
+            }, {
+                "original": "mwil-cloudy.png",
+                "theme": "weather-overcast",
+                "symlinks": [
+                    "mwid-cloudy.png"
+                ]
+            }, {
+                "original": "mwil-rain-and-snow.png",
+                "theme": "weather-snow-rain",
+                "symlinks": [
+                    "mwid-rain-and-snow.png"
+                ]
+            }, {
+                "original": "mwil-partly-cloudy.png",
+                "theme": "weather-few-clouds",
+                "symlinks": [
+                    "mwid-partly-cloudy.png"
+                ]
+            }, {
+                "original": "mwil-mostly-cloudy.png",
+                "theme": "weather-clouds",
+                "symlinks": [
+                    "mwid-mostly-cloudy.png"
+                ]
+            }, {
+                "original": "mwil-partly-cloudy-night.png",
+                "theme": "weather-few-clouds-night",
+                "symlinks": [
+                    "mwid-partly-cloudy-night.png"
+                ]
+            }, {
+                "original": "mwil-mostly-cloudy-night.png",
+                "theme": "weather-clouds-night",
+                "symlinks": [
+                    "mwid-mostly-cloudy-night.png"
+                ]
+            }, {
+                "original": "mwil-chance-of-rain-night.png",
+                "theme": "weather-showers-scattered-night",
+                "symlinks": [
+                    "mwid-chance-of-rain-night.png"
+                ]
+            }, {
+                "original": "mwil-chance-of-rain.png",
+                "theme": "weather-showers-scattered-day",
+                "symlinks": [
+                    "mwid-chance-of-rain.png"
+                ]
+            }
+        ]
     }
 }

@@ -3,17 +3,17 @@
     "path": [
         "{userhome}/.local/share/rhythmbox/plugins/tray_icon.py"
     ],
-    "path": [
-        "{userhome}/.local/share/rhythmbox/plugins/"
-    ],
-    "icons": {
-        "playing": {
+    "normal": {
+
+        "path": [
+            "{userhome}/.local/share/rhythmbox/plugins/"
+        ],
+        "icons": [{
             "original": "tray_playing.png",
             "theme": "rhythmbox-playing"
-        },
-        "indicator": {
+        }, {
             "original": "tray_stopped.png",
             "theme": "rhythmbox-indicator"
-        }
+        }]
     }
 }

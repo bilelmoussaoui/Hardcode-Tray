@@ -3,13 +3,14 @@
     "path": [
         "/usr/share/keepass/"
     ],
-    "path": [
-        "/usr/share/icons/hicolor/256x256/apps/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "keepass2-locked.png",
-            "theme": "keepassx-locked"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/icons/hicolor/256x256/apps/"
+        ],
+        "icons": [{
+                "original": "keepass2-locked.png",
+                "theme": "keepassx-locked"
+            }
+        ]
     }
 }

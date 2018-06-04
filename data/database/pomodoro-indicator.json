@@ -3,17 +3,19 @@
     "path": [
         "/opt/extras.ubuntu.com/pomodoro-indicator/"
     ],
-    "path": [
-        "/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/"
-    ],
-    "icons": [
-        "pomodoro-indicator-all.svg",
-        "pomodoro-indicator-dark-{00-36}.svg",
-        "pomodoro-indicator-light-{00-36}.svg",
-        "pomodoro-indicator-light.svg",
-        "pomodoro-start-dark.svg",
-        "pomodoro-start-light.svg",
-        "pomodoro-stop-dark.svg",
-        "pomodoro-stop-light.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/pomodoro-indicator/share/pomodoro-indicator/icons/"
+        ],
+        "icons": [
+            "pomodoro-indicator-all.svg",
+            "pomodoro-indicator-dark-{00-36}.svg",
+            "pomodoro-indicator-light-{00-36}.svg",
+            "pomodoro-indicator-light.svg",
+            "pomodoro-start-dark.svg",
+            "pomodoro-start-light.svg",
+            "pomodoro-stop-dark.svg",
+            "pomodoro-stop-light.svg"
+        ]
+    }
 }

@@ -3,35 +3,37 @@
     "path": [
         "/usr/share/mailspring/"
     ],
-    "path": [
-        "/usr/share/mailspring/resources/"
-    ],
-    "script": "electron",
-    "binary": "app.asar",
-    "icons": {
-        "empty@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
-            "theme": "mailspring-tray-empty"
-        },
-        "full@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
-            "theme": "mailspring-tray-full"
-        },
-        "newitems@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
-            "theme": "mailspring-tray-full-newitems"
-        },
-        "empty": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero.png",
-            "theme": "mailspring-tray-empty"
-        },
-        "full": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full.png",
-            "theme": "mailspring-tray-full"
-        },
-        "newitems": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems.png",
-            "theme": "mailspring-tray-full-newitems"
-        }
+    "electron": {
+        "path": [
+            "/usr/share/mailspring/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
+                "theme": "mailspring-tray-empty",
+                "scale": 2
+            },
+            {
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
+                "theme": "mailspring-tray-full",
+                "scale": 2
+            },
+            {
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
+                "theme": "mailspring-tray-full-newitems",
+                "scale": 2
+            },
+            {
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero.png",
+                "theme": "mailspring-tray-empty"
+            }, {
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full.png",
+                "theme": "mailspring-tray-full"
+            },
+            {
+                "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems.png",
+                "theme": "mailspring-tray-full-newitems"
+            }
+        ]
     }
 }

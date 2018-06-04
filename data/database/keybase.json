@@ -3,57 +3,64 @@
     "path": [
         "/opt/keybase/"
     ],
-    "path": [
-        "/opt/keybase/resources/app/images/menubarIcon/"
-    ],
-    "icons": {
-        "regular": {
-            "original": "icon-keybase-menubar-regular-white-22.png",
-            "theme": "keybase-tray"
-        },
-        "regular@2x": {
-            "original": "icon-keybase-menubar-regular-white-22@2x.png",
-            "theme": "keybase-tray"
-        },
-        "regular@3x": {
-            "original": "icon-keybase-menubar-regular-white-22@3x.png",
-            "theme": "keybase-tray"
-        },
-        "badged": {
-            "original": "icon-keybase-menubar-badged-white-22.png",
-            "theme": "keybase-badged"
-        },
-        "badged@2x": {
-            "original": "icon-keybase-menubar-badged-white-22@2x.png",
-            "theme": "keybase-badged"
-        },
-        "badged@3x": {
-            "original": "icon-keybase-menubar-badged-white-22@3x.png",
-            "theme": "keybase-badged"
-        },
-        "update": {
-            "original": "icon-keybase-menubar-update-white-22.png",
-            "theme": "keybase-update"
-        },
-        "update@2x": {
-            "original": "icon-keybase-menubar-update-white-22@2x.png",
-            "theme": "keybase-update"
-        },
-        "update@3x": {
-            "original": "icon-keybase-menubar-update-white-22@3x.png",
-            "theme": "keybase-update"
-        },
-        "uploading": {
-            "original": "icon-keybase-menubar-uploading-white-22.png",
-            "theme": "keybase-uploading"
-        },
-        "uploading@2x": {
-            "original": "icon-keybase-menubar-uploading-white-22@2x.png",
-            "theme": "keybase-uploading"
-        },
-        "uploading@3x": {
-            "original": "icon-keybase-menubar-uploading-white-22@3x.png",
-            "theme": "keybase-uploading"
-        }
+    "normal": {
+        "path": [
+            "/opt/keybase/resources/app/images/menubarIcon/"
+        ],
+        "icons": [{
+                "original": "icon-keybase-menubar-regular-white-22.png",
+                "theme": "keybase-tray"
+            },
+            {
+                "original": "icon-keybase-menubar-regular-white-22@2x.png",
+                "theme": "keybase-tray",
+                "scale": 2
+            },
+            {
+                "original": "icon-keybase-menubar-regular-white-22@3x.png",
+                "theme": "keybase-tray",
+                "scale": 3
+            }, {
+                "original": "icon-keybase-menubar-badged-white-22.png",
+                "theme": "keybase-badged"
+            },
+            {
+                "original": "icon-keybase-menubar-badged-white-22@2x.png",
+                "theme": "keybase-badged",
+                "scale": 2
+            },
+            {
+                "original": "icon-keybase-menubar-badged-white-22@3x.png",
+                "theme": "keybase-badged",
+                "scale": 3
+            }, {
+                "original": "icon-keybase-menubar-update-white-22.png",
+                "theme": "keybase-update"
+            },
+            {
+                "original": "icon-keybase-menubar-update-white-22@2x.png",
+                "theme": "keybase-update",
+                "scale": 2
+            },
+            {
+                "original": "icon-keybase-menubar-update-white-22@3x.png",
+                "theme": "keybase-update",
+                "scale": 3
+            },
+            {
+                "original": "icon-keybase-menubar-uploading-white-22.png",
+                "theme": "keybase-uploading"
+            },
+            {
+                "original": "icon-keybase-menubar-uploading-white-22@2x.png",
+                "theme": "keybase-uploading",
+                "scale": 2
+            },
+            {
+                "original": "icon-keybase-menubar-uploading-white-22@3x.png",
+                "theme": "keybase-uploading",
+                "scale": 3
+            }
+        ]
     }
 }

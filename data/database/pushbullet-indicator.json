@@ -3,13 +3,15 @@
     "path": [
         "/opt/extras.ubuntu.com/pushbullet-indicator/"
     ],
-    "path": [
-        "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/"
-    ],
-    "icons": [
-        "pushbullet-indicator-dark.svg",
-        "pushbullet-indicator-light.svg",
-        "pushbullet-indicator-sync{0-3}-dark.svg",
-        "pushbullet-indicator-sync{0-3}-light.svg"
-    ]
+    "normal": {
+        "path": [
+            "/opt/extras.ubuntu.com/pushbullet-indicator/share/pushbullet-indicator/icons/"
+        ],
+        "icons": [
+            "pushbullet-indicator-dark.svg",
+            "pushbullet-indicator-light.svg",
+            "pushbullet-indicator-sync{0-3}-dark.svg",
+            "pushbullet-indicator-sync{0-3}-light.svg"
+        ]
+    }
 }

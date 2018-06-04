@@ -3,15 +3,14 @@
     "path": [
         "/usr/share/popcorntime-ce/"
     ],
-    "path": [
-        "/usr/share/popcorntime-ce/"
-    ],
-    "binary": "Popcorn-Time-CE",
-    "script": "nwjs",
-    "icons": {
-        "tray": {
+    "nwjs": {
+        "path": [
+            "/usr/share/popcorntime-ce/"
+        ],
+        "binary": "Popcorn-Time-CE",
+        "icons": [{
             "original": "src/app/images/icon.png",
             "theme": "popcorntime-tray"
-        }
+        }]
     }
 }

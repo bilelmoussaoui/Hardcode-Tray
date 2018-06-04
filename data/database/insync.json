@@ -4,18 +4,20 @@
         "/usr/bin/insync",
         "/usr/lib/insync/"
     ],
-    "path": [
-        "/usr/share/icons/hicolor/48x48/status/"
-    ],
-    "icons": [
-        "insync-action.png",
-        "insync-error.png",
-        "insync-feed.png",
-        "insync-normal.png",
-        "insync-offline.png",
-        "insync-paused.png",
-        "insync-share.png",
-        "insync-synced.png",
-        "insync-syncing.png"
-    ]
+    "normal": {
+        "path": [
+            "/usr/share/icons/hicolor/48x48/status/"
+        ],
+        "icons": [
+            "insync-action.png",
+            "insync-error.png",
+            "insync-feed.png",
+            "insync-normal.png",
+            "insync-offline.png",
+            "insync-paused.png",
+            "insync-share.png",
+            "insync-synced.png",
+            "insync-syncing.png"
+        ]
+    }
 }

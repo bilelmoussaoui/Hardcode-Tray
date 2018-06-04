@@ -1,0 +1,16 @@
+{
+    "name": "RuTracker Proxy",
+    "path": [
+        "/opt/rto-proxy/"
+    ],
+    "electron": {
+        "path": [
+            "/opt/rto-proxy/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+            "original": "icons/icon.png",
+            "theme": "rto-proxy-tray"
+        }]
+    }
+}

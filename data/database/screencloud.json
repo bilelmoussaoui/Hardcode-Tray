@@ -3,20 +3,17 @@
     "path": [
         "/usr/bin/screencloud"
     ],
-    "path": [
-        "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
-    ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "indicator": {
+    "qt": {
+        "path": [
+            "{userhome}/.local/share/sni-qt/icons/screencloud/{size}/"
+        ],
+        "icons": [{
             "original": "ea96aeff94b195ceed14c6b3f96f47e1",
             "theme": "screencloud-indicator"
-        },
-        "uploading": {
+        }, {
             "original": "cabd24e9e2f8f313bc910b101daf6800",
             "theme": "screencloud-uploading"
-        }
+        }]
     }
+
 }

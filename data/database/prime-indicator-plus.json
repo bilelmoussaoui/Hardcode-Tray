@@ -3,17 +3,16 @@
     "path": [
         "/usr/lib/prime-indicator/"
     ],
-    "path": [
-        "/usr/lib/prime-indicator/icons/"
-    ],
-    "icons": {
-        "intel": {
+    "noraml": {
+        "path": [
+            "/usr/lib/prime-indicator/icons/"
+        ],
+        "icons": [{
             "original": "prime-indicator-intel.svg",
             "theme": "prime-intel"
-        },
-        "nividia": {
+        },{
             "original": "prime-indicator-nvidia.svg",
             "theme": "prime-nvidia"
-        }
+        }]
     }
 }

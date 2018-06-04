@@ -3,15 +3,15 @@
     "path": [
         "/usr/share/stremio/"
     ],
-    "path": [
-        "/usr/share/stremio/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "electron": {
+        "path": [
+            "/usr/share/stremio/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
             "original": "images/stremio-small.png",
             "theme": "stremio-tray"
-        }
+        }]
     }
+
 }

@@ -1,37 +1,39 @@
 {
     "name": "Telegram",
     "path": [
-      "{userhome}/.TelegramDesktop/Telegram",
-      "{userhome}/.local/share/TelegramDesktop/Telegram",
-      "{userhome}/.local/share/TelegramDesktop/log.txt",
-      "/usr/bin/telegram-desktop",
-      "/opt/telegram/Telegram"
+        "{userhome}/.TelegramDesktop/Telegram",
+        "{userhome}/.local/share/TelegramDesktop/Telegram",
+        "{userhome}/.local/share/TelegramDesktop/log.txt",
+        "/usr/bin/telegram-desktop",
+        "/opt/telegram/Telegram"
     ],
-    "path": [
-        "{userhome}/.TelegramDesktop/tdata/ticons/",
-        "{userhome}/.local/share/TelegramDesktop/tdata/ticons/"
-    ],
-    "icons": {
-        "panel": {
-            "original": "icomute_22_0.png",
-            "theme": "telegram-panel",
-            "symlinks": [
-                "ico_22_0.png"
-            ]
-        },
-        "mute-panel": {
-            "original": "icomute_22_1.png",
-            "theme": "telegram-mute-panel",
-            "symlinks": [
-                "icomute_22_{2-2000}.png"
-            ]
-        },
-        "attention-panel": {
-            "original": "ico_22_1.png",
-            "theme": "telegram-attention-panel",
-            "symlinks": [
-                "ico_22_{2-2000}.png"
-            ]
-        }
+    "normal": {
+        "path": [
+            "{userhome}/.TelegramDesktop/tdata/ticons/",
+            "{userhome}/.local/share/TelegramDesktop/tdata/ticons/"
+        ],
+        "icons": [{
+                "original": "icomute_22_0.png",
+                "theme": "telegram-panel",
+                "symlinks": [
+                    "ico_22_0.png"
+                ]
+            },
+            {
+                "original": "icomute_22_1.png",
+                "theme": "telegram-mute-panel",
+                "symlinks": [
+                    "icomute_22_{2-2000}.png"
+                ]
+            },
+            {
+                "original": "ico_22_1.png",
+                "theme": "telegram-attention-panel",
+                "symlinks": [
+                    "ico_22_{2-2000}.png"
+                ]
+            }
+
+        ]
     }
 }

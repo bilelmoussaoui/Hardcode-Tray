@@ -3,15 +3,14 @@
     "path": [
         "/opt/Ramme/"
     ],
-    "path": [
-        "/opt/Ramme/resources/"
-    ],
-    "binary": "app.asar",
-    "script": "electron",
-    "icons": {
-        "tray": {
+    "electron": {
+        "path": [
+            "/opt/Ramme/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
             "original": "dist/assets/icon-18x18.png",
             "theme": "ramme-indicator"
-        }
+        }]
     }
 }

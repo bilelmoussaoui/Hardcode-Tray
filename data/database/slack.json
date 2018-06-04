@@ -4,22 +4,23 @@
         "/usr/share/slack/",
         "/usr/lib/slack/"
     ],
-    "path": [
-        "/usr/share/slack/resources/app.asar.unpacked/static/",
-        "/usr/lib/slack/resources/app.asar.unpacked/src/static/"
-    ],
-    "icons": {
-        "highlight": {
-            "original": "slack-taskbar-highlight.png",
-            "theme": "slack-indicator-highlight"
-        },
-        "indicator": {
-            "original": "slack-taskbar-rest.png",
-            "theme": "slack-indicator"
-        },
-        "unread": {
-            "original": "slack-taskbar-unread.png",
-            "theme": "slack-indicator-unread"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/slack/resources/app.asar.unpacked/static/",
+            "/usr/lib/slack/resources/app.asar.unpacked/src/static/"
+        ],
+        "icons": [{
+                "original": "slack-taskbar-highlight.png",
+                "theme": "slack-indicator-highlight"
+            },
+            {
+                "original": "slack-taskbar-rest.png",
+                "theme": "slack-indicator"
+            },
+            {
+                "original": "slack-taskbar-unread.png",
+                "theme": "slack-indicator-unread"
+            }
+        ]
     }
 }

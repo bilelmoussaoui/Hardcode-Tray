@@ -3,13 +3,13 @@
     "path": [
         "/usr/lib/openbazaar2client"
     ],
-    "path": [
-        "/usr/lib/openbazaar2client/resources/app/imgs/"
-    ],
-    "icons": {
-        "tray": {
+    "normal": {
+        "path": [
+            "/usr/lib/openbazaar2client/resources/app/imgs/"
+        ],
+        "icons": [{
             "original": "openbazaar-system-tray.png",
             "theme": "openbazaar-system-tray"
-        }
+        }]
     }
 }

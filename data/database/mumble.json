@@ -3,16 +3,13 @@
     "path": [
         "/usr/bin/mumble"
     ],
-    "path": [
-        "{userhome}/.local/share/sni-qt/icons/mumble/{size}/"
-    ],
-    "is_qt": true,
-    "force_create_folder": true,
-    "backup_ignore": true,
-    "icons": {
-        "indicator": {
+    "qt": {
+        "path": [
+            "{userhome}/.local/share/sni-qt/icons/mumble/{size}/"
+        ],
+        "icons": [{
             "original": "3b6b0df38d89edf726735f02f23d0f65",
             "theme": "mumble-indicator"
-        }
+        }]
     }
 }

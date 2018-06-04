@@ -1,35 +1,93 @@
 {
     "name": "MessengerForDesktop",
     "path": [
-        "/usr/lib/messengerfordesktop/"
+        "/usr/lib/messengerfordesktop/",
+        "/opt/MessengerForDesktop/",
+        "/opt/messengerfordesktop/"
     ],
-    "path": [
-        "/usr/lib/messengerfordesktop/images/"
-    ],
-    "icons": {
-        "indicator": {
-            "original": "tray.png",
-            "theme": "messenger-indicator"
-        },
-        "indicator@2x": {
-            "original": "tray@2x.png",
-            "theme": "messenger-indicator"
-        },
-        "indicator@3x": {
-            "original": "tray@3x.png",
-            "theme": "messenger-indicator"
-        },
-        "notification": {
-            "original": "trayAlert.png",
-            "theme": "messenger-notification"
-        },
-        "notification@2x": {
-            "original": "trayAlert@2x.png",
-            "theme": "messenger-notification"
-        },
-        "notification@3x": {
-            "original": "trayAlert@2x.png",
-            "theme": "messenger-notification"
-        }
+    "normal": {
+        "path": [
+            "/usr/lib/messengerfordesktop/images/"
+        ],
+        "icons": [{
+                "original": "tray.png",
+                "theme": "messenger-indicator"
+            },
+            {
+                "original": "tray@2x.png",
+                "theme": "messenger-indicator",
+                "scale": 2
+            },
+            {
+                "original": "tray@3x.png",
+                "theme": "messenger-indicator",
+                "scale": 3
+            },
+            {
+                "original": "trayAlert.png",
+                "theme": "messenger-notification"
+            },
+            {
+                "original": "trayAlert@2x.png",
+                "theme": "messenger-notification",
+                "scale": 2
+            },
+            {
+                "original": "trayAlert@3x.png",
+                "theme": "messenger-notification",
+                "scale": 3
+            }
+        ]
+    },
+    "electron": {
+        "path": [
+            "/opt/messengerfordesktop/resources/"
+        ],
+        "binary": "app.asar",
+        "icons": [{
+                "original": "images/tray.png",
+                "theme": "messenger-indicator"
+            },
+            {
+                "original": "images/tray@2x.png",
+                "theme": "messenger-indicator",
+                "scale": 2
+            },
+            {
+                "original": "images/tray@3x.png",
+                "theme": "messenger-indicator",
+                "scale": 3
+            },
+            {
+                "original": "images/trayAlert.png",
+                "theme": "messenger-notification"
+            },
+            {
+                "original": "images/trayAlert@2x.png",
+                "theme": "messenger-notification",
+                "scale": 2
+            },
+            {
+                "original": "images/trayAlert@3x.png",
+                "theme": "messenger-notification",
+                "scale": 3
+            }
+
+        ]
+    },
+    "nwjs": {
+        "path": [
+            "/opt/MessengerForDesktop/"
+        ],
+        "binary": "Messenger",
+        "icons": [{
+                "original": "images/icon_tray.png",
+                "theme": "messenger-indicator"
+            },
+            {
+                "original": "images/icon_tray_alert.png",
+                "theme": "messenger-notification"
+            }
+        ]
     }
 }

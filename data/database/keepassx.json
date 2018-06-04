@@ -3,17 +3,16 @@
     "path": [
         "/usr/share/keepassx/"
     ],
-    "path": [
-        "/usr/share/keepassx/icons/"
-    ],
-    "icons": {
-        "indicator": {
+    "normal": {
+        "path": [
+            "/usr/share/keepassx/icons/"
+        ],
+        "icons": [{
             "original": "keepassx.png",
             "theme": "keepassx-indicator"
-        },
-        "locked": {
+        }, {
             "original": "keepassx_locked.png",
             "theme": "keepassx-locked"
-        }
+        }]
     }
 }

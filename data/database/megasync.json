@@ -3,29 +3,30 @@
     "path": [
         "/usr/bin/megasync"
     ],
-    "path": [
-        "/usr/share/icons/hicolor/scalable/status/"
-    ],
-    "icons": {
-        "paused": {
-            "original": "megapaused.svg",
-            "theme": "megapaused"
-        },
-        "synching": {
-            "original": "megasynching.svg",
-            "theme": "megasynching"
-        },
-        "logging": {
-            "original": "megalogging.svg",
-            "theme": "megalogging"
-        },
-        "warning": {
-            "original": "megawarning.svg",
-            "theme": "megawarning"
-        },
-        "ok": {
-            "original": "megauptodate.svg",
-            "theme": "megauptodate"
-        }
+    "normal": {
+        "path": [
+            "/usr/share/icons/hicolor/scalable/status/"
+        ],
+        "icons": [{
+                "original": "megapaused.svg",
+                "theme": "megapaused"
+            },
+            {
+                "original": "megasynching.svg",
+                "theme": "megasynching"
+            },
+            {
+                "original": "megalogging.svg",
+                "theme": "megalogging"
+            },
+            {
+                "original": "megawarning.svg",
+                "theme": "megawarning"
+            },
+            {
+                "original": "megauptodate.svg",
+                "theme": "megauptodate"
+            }
+        ]
     }
 }

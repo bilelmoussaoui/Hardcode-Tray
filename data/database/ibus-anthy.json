@@ -3,10 +3,12 @@
     "path": [
         "/usr/share/ibus-anthy/"
     ],
-    "path": [
-        "/usr/share/ibus-anthy/icons/"
-    ],
-    "icons": [
-        "ibus-anthy.png"
-    ]
+    "normal": {
+        "path": [
+            "/usr/share/ibus-anthy/icons/"
+        ],
+        "icons": [
+            "ibus-anthy.png"
+        ]
+    }
 }

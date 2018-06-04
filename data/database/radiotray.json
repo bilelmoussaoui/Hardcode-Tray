@@ -3,12 +3,14 @@
     "path": [
         "/usr/share/radiotray/"
     ],
-    "path": [
-        "/usr/share/radiotray/images/"
-    ],
-    "icons": [
-        "radiotray_connecting.svg",
-        "radiotray_off.svg",
-        "radiotray_on.svg"
-    ]
+    "normal": {
+        "path": [
+            "/usr/share/radiotray/images/"
+        ],
+        "icons": [
+            "radiotray_connecting.svg",
+            "radiotray_off.svg",
+            "radiotray_on.svg"
+        ]
+    }
 }

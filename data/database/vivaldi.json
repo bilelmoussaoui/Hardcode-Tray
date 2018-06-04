@@ -5,17 +5,16 @@
         "/opt/vivaldi-beta/",
         "/opt/vivaldi-snapshot/"
     ],
-    "path": [
-        "/opt/vivaldi/",
-        "/opt/vivaldi-beta/",
-        "/opt/vivaldi-snapshot/"
-    ],
-    "script": "pak",
-    "binary": "resources.pak",
-    "icons": {
-        "tray": {
+    "pak": {
+        "path": [
+            "/opt/vivaldi/",
+            "/opt/vivaldi-beta/",
+            "/opt/vivaldi-snapshot/"
+        ],
+        "binary": "resources.pak",
+        "icons": [{
             "original": "8038",
             "theme": "vivaldi-tray"
-        }
+        }]
     }
 }
