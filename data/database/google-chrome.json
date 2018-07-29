@@ -28,6 +28,10 @@
         "tray-64": {
             "original": "10156",
             "theme": "google-chrome-tray"
+        },
+        "tray-68": {
+            "original": "10158",
+            "theme": "google-chrome-tray"
         }
     }
 }
