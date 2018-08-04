@@ -1,0 +1,31 @@
+{
+    "name": "pCloud Drive",
+    "app_path": [
+        "/opt/pcloud/"
+    ],
+    "icons_path": [
+        "/opt/pcloud/resources/app/app/img/tray/"
+    ],
+    "icons": {
+        "offline": {
+            "original": "offline.png",
+            "theme": "pcloud-offline"
+        }
+        "ok": {
+            "original": "ok.png",
+            "theme": "pcloud-ok"
+        }
+        "pause": {
+            "original": "pause.png",
+            "theme": "pcloud-pause"
+        }
+        "sync": {
+            "original": "sync.png",
+            "theme": "pcloud-sync"
+        }
+        "warning": {
+            "original": "warning.png",
+            "theme": "pcloud-warning"
+        }
+    }
+}
