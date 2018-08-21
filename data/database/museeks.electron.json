@@ -1,0 +1,17 @@
+{
+    "name": "Museeks",
+    "app_path": [
+        "/opt/Museeks/"
+    ],
+    "icons_path": [
+        "/opt/Museeks/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "src/images/logos/museeks-tray.png",
+            "theme": "museeks-tray"
+        }
+    }
+}
