@@ -1,0 +1,17 @@
+{
+    "name": "Bitwarden",
+    "app_path": [
+        "/opt/Bitwarden/"
+    ],
+    "icons_path": [
+        "/opt/Bitwarden/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "images/icon.png",
+            "theme": "bitwarden-tray"
+        }
+    }
+}
