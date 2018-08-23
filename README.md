@@ -92,6 +92,11 @@ Where openSUSE Leap 42.3 can be changed to 42.2 or Tumbleweed
 
 1- Install dependencies
 
+#### On Ubuntu:
+```bash
+sudo apt install git build-essential meson libgirepository1.0-dev libgtk-3-dev python3 python3-gi gir1.2-rsvg-2.0 librsvg2-bin gir1.2-gtk-3.0
+```
+
 2- Compile
 
 ```bash
