@@ -1,0 +1,29 @@
+{
+    "name": "IRCCloud",
+    "app_path": [
+        "/opt/IRCCloud/"
+    ],
+    "icons_path": [
+        "/opt/IRCCloud/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "app/tray-icon.png",
+            "theme": "irccloud-desktop-tray"
+        },
+        "tray@2x": {
+            "original": "app/tray-icon@2x.png",
+            "theme": "irccloud-desktop-tray"
+        },
+        "tray@4x": {
+            "original": "app/tray-icon@4x.png",
+            "theme": "irccloud-desktop-tray"
+        },
+        "tray@8x": {
+            "original": "app/tray-icon@8x.png",
+            "theme": "irccloud-desktop-tray"
+        }
+    }
+}
