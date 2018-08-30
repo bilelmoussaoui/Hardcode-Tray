@@ -1,0 +1,21 @@
+{
+    "name": "Ao",
+    "app_path": [
+        "/opt/Ao/"
+    ],
+    "icons_path": [
+        "/opt/Ao/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "static/IconTray.png",
+            "theme": "ao-app-tray"
+        },
+        "tray@2x": {
+            "original": "static/IconTray@2x.png",
+            "theme": "ao-app-tray"
+        }
+    }
+}
