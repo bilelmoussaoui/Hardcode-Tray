@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the hardcode-tray package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hardcode-tray\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-24 22:56+0200\n"
+"PO-Revision-Date: 2018-09-02 18:47+0200\n"
+"Language-Team: Dutch <vistausss@outlook.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl_NL\n"
+
+#: hardcode-tray.py.in:41
+msgid "You need to have root privileges to run the script."
+msgstr "Je moet root-rechten hebben om dit script te kunnen draaien."
+
+#: hardcode-tray.py.in:42
+msgid "Please try again, this time using 'sudo'. Exiting."
+msgstr "Probeer het opnieuw met 'sudo'. Het script wordt nu afgesloten."
+
+#: hardcode-tray.py.in:51
+msgid "Fix hardcoded tray icons"
+msgstr "Repareer hardgecodeerde systeemvakpictogrammen"
+
+#: hardcode-tray.py.in:53
+msgid "Replace a color with an other one, works only with SVG."
+msgstr ""
+"Vervang de ene kleur door een andere. Dit werkt alleen bij SVG-bestanden."
+
+#: hardcode-tray.py.in:56
+msgid "Clear backup files"
+msgstr "Back-upbestanden wissen"
+
+#: hardcode-tray.py.in:58
+msgid "Which of conversion tool to use"
+msgstr "Het te gebruiken conversiehulpmiddel"
+
+#: hardcode-tray.py.in:61
+msgid ""
+"Use a specified theme for the dark icons.Can't be used with --themeWorks "
+"only with --light-theme."
+msgstr ""
+"Gebruik een opgegeven thema voor de donkere pictogrammen. Kan niet tegelijk "
+"worden gebruikt met --themeWorks - alleen met --light-theme."
+
+#: hardcode-tray.py.in:66
+msgid ""
+"Use a specified theme for the light icons. Can't be used with --theme.Works "
+"only with --dark-theme."
+msgstr ""
+"Gebruik een opgegeven thema voor de lichte pictogrammen. Kan niet tegelijk "
+"worden gebruikt met --theme.Works - alleen met --dark-theme."
+
+#: hardcode-tray.py.in:71
+msgid ""
+"Fix only one application or more, linked by a ','.\n"
+"example : --only dropbox,telegram"
+msgstr ""
+"Repareer één of meerdere applicaties, kommagescheiden (',').\n"
+"Voorbeeld: --only dropbox,telegram"
+
+#: hardcode-tray.py.in:75
+msgid "Use a different icon path for a single application."
+msgstr "Gebruik een ander pictogrampad voor een enkele applicatie."
+
+#: hardcode-tray.py.in:78
+msgid "Revert fixed hardcoded tray icons"
+msgstr "Herstel de originele pictogrammen"
+
+#: hardcode-tray.py.in:79
+msgid "Use a different icon size instead of the default one."
+msgstr "Gebruik een andere pictogramgrootte dan de standaardgrootte."
+
+#: hardcode-tray.py.in:83
+msgid "Use a different icon theme instead of the default one."
+msgstr "Gebruik een ander pictogramthema dan het standaardthema."
+
+#: hardcode-tray.py.in:87
+msgid "Print the version number of Hardcode-Tray."
+msgstr "Toon het versienummer van Hardcode-Tray."
+
+#: hardcode-tray.py.in:93
+msgid ""
+"You need to run the script using 'sudo -E'.\n"
+"Please try again"
+msgstr ""
+"Je moet het script draaien met 'sudo -E'.\n"
+"Probeer het opnieuw."
+
+#: hardcode-tray.py.in:98
+msgid "Welcome to Hardcode-Tray!"
+msgstr "Welkom bij Hardcode-Tray!"
+
+#: hardcode-tray.py.in:99
+msgid "Desktop Environment: {}"
+msgstr "Werkomgeving: {}"
+
+#: hardcode-tray.py.in:100
+msgid "Scaling Factor: {}"
+msgstr "Schaal: {}"
+
+#: hardcode-tray.py.in:101
+msgid "Icon Size: {}"
+msgstr "Pictogramgrootte: {}"
+
+#: hardcode-tray.py.in:103
+msgid "Icon Theme: {}"
+msgstr "Pictogramthema: {}"
+
+#: hardcode-tray.py.in:105
+msgid "Dark Icon Theme: {}"
+msgstr "Donker pictogramthema: {}"
+
+#: hardcode-tray.py.in:106
+msgid "Light Icon Theme: {}"
+msgstr "Licht pictogramthema: {}"
+
+#: hardcode-tray.py.in:107
+msgid "Conversion Tool: {}"
+msgstr "Conversiehulpmiddel: {}"
+
+#: hardcode-tray.py.in:108
+msgid "To Do: "
+msgstr "Nog te doen: "
+
+#: hardcode-tray.py.in:110
+msgid "All"
+msgstr "Alles"
+
+#: hardcode-tray.py.in:114
+msgid "Applying now.."
+msgstr "Bezig met toepassen..."
+
+#: hardcode-tray.py.in:116
+msgid "Reverting now.."
+msgstr "Bezig het herstellen..."
+
+#: hardcode-tray.py.in:118
+msgid "Clearing cache..."
+msgstr "Bezig met opschonen van cache..."
+
+#: hardcode-tray.py.in:122
+msgid ""
+"\n"
+"Done, Thank you for using the Hardcode-Tray fixer!"
+msgstr ""
+"\n"
+"Klaar! Bedankt voor het gebruiken van Hardcode-Tray!"
+
+#: HardcodeTray/app.py:132
+msgid "Took {:.2f}s to finish the tasks"
+msgstr "De taken zijn afgerond in {:2f}s"
+
+#: HardcodeTray/app.py:134
+msgid "No apps to fix!"
+msgstr "Geen te repareren apps!"
+
+#: HardcodeTray/app.py:136
+msgid "No cache found."
+msgstr "Geen cache aangetroffen."
+
+#: HardcodeTray/app.py:138
+msgid "No apps to revert!"
+msgstr "Geen te herstellen apps!"
+
+#: HardcodeTray/app.py:189
+msgid "You can't use --path with more than application at once."
+msgstr ""
+"Je kunt --path niet i.c.m. meer dan één applicatie tegelijkertijd gebruiken."
+
+#: HardcodeTray/modules/applications/application.py:154
+msgid "Failed to fix {}"
+msgstr "Repareren van {} mislukt"
+
+#: HardcodeTray/modules/applications/application.py:159
+msgid "Couldn't revert to those icons :("
+msgstr "De pictogrammen kunnen niet worden hersteld :("
+
+#: HardcodeTray/modules/applications/application.py:164
+msgid "No backup found for {}"
+msgstr "Geen back-up aangetroffen voor {}"
+
+#: HardcodeTray/modules/backup.py:158
+msgid "(Q)uit to cancel"
+msgstr "Druk op (Q) om te annuleren"
+
+#: HardcodeTray/modules/config/system.py:81
+msgid "1 - Apply"
+msgstr "1 - Toepassen"
+
+#: HardcodeTray/modules/config/system.py:82
+msgid "2 - Revert"
+msgstr "2 - Herstellen"
+
+#: HardcodeTray/modules/config/system.py:83
+msgid "3 - Clear Backup Cache"
+msgstr "3 - Back-upcache opschonen"
+
+#: HardcodeTray/modules/config/system.py:87
+msgid "Please choose: "
+msgstr "Kies een taak: "
+
+#: HardcodeTray/modules/config/system.py:89
+msgid "Please try again"
+msgstr "Probeer het opnieuw"
+
+#: HardcodeTray/modules/config/system.py:94
+msgid "Please choose a valid value!"
+msgstr "Kies een geldige waarde!"
+
+#: HardcodeTray/modules/svg/svg.py:56
+msgid "The selected conversion tool is not installed."
+msgstr "Het geselecteerde conversiehulpmiddel is niet geïnstalleerd."
+
+#: HardcodeTray/modules/theme.py:35
+msgid "Theme {} does not exists."
+msgstr "Het thema '{}' bestaat niet."
+
+#: HardcodeTray/utils.py:285
+msgid "Invalid color {}"
+msgstr "Ongeldige kleur: {}"
