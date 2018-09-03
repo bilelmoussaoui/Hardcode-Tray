@@ -1,0 +1,15 @@
+{
+    "name": "QJoyPad",
+    "app_path": [
+        "/usr/share/qjoypad/"
+    ],
+    "icons_path": [
+        "/usr/share/icons/hicolor/24x24/apps/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "qjoypad.png",
+            "theme": "qjoypad-tray"
+        }
+    }
+}
