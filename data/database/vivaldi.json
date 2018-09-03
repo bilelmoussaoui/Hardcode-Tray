@@ -16,6 +16,10 @@
         "tray": {
             "original": "8038",
             "theme": "vivaldi-tray"
+        },
+	"tray1.15": {
+	    "original": "10190",
+	    "theme": "vivaldi-tray"
         }
     }
 }
