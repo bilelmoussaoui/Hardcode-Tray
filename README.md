@@ -215,7 +215,8 @@ hardcode-tray --version
 
 ## Config file
 
-Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. The file supports the following options for now.
+Hardcode-Tray also supports a JSON config file that can be placed under `~/.config`. The file must be named `hardcode-tray.json`. An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
+The file supports the following options for now.
 
 - `blacklist`: a list of applications that you don't want to be fixed.
 - `conversion_tool`: the default tool to be used every time you use the script.
@@ -223,12 +224,13 @@ Hardcode-Tray also supports a JSON config file that can be placed under `~/.conf
 - `backup_ignore` : A boolean, to configure either you want default icons to be saved on the backup folder or not.
 - `scaling_factor` : Widgets scaling factor. Auto detected on GNOME, KDE and Cinnamon.
 
+Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
+
 ### Node-WebKit JS applications
 
 In order to fix those ugly tray icons on NWJS applications, you will need to download the SDK from [here](https://nwjs.io/downloads/). Extract the zip file in your home directory (or place it wherever you want) and add a new key to the config file that points to the NwJS SDK directory.
 
-An example of the config file can be found [here](https://github.com/bil-elmoussaoui/Hardcode-Tray/blob/master/data/config.json).
-Passing `--theme` `--conversion-tool` `--size` will overwrite those settings.
+
 
 ## Credits
 
