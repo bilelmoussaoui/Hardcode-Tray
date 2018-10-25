@@ -176,6 +176,22 @@
         "disturb-notification2_preview": {
             "original": "images/tray/linux/tray-donotdisturbUnreadTemplate@2x.png",
             "theme": "skype-status-disturb-notification"
+        },
+        "away_preview": {
+            "original": "images/tray/linux/tray-awayTemplate.png",
+            "theme": "skype-status-away"
+        },
+        "away2_preview": {
+            "original": "images/tray/linux/tray-awayTemplate@2x.png",
+            "theme": "skype-status-away"
+        },
+        "away-notification_preview": {
+            "original": "images/tray/linux/tray-awayUnreadTemplate.png",
+            "theme": "skype-status-away-notification"
+        },
+        "away-notification2_preview": {
+            "original": "images/tray/linux/tray-awayUnreadTemplate@2x.png",
+            "theme": "skype-status-away-notification"
         }
     }
 }
