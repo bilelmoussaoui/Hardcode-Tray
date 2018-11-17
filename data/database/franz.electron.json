@@ -13,39 +13,19 @@
     "script": "electron",
     "binary": "app.asar",
     "icons": {
-        "taskbar": {
-            "original": "assets/tray/linux/franz-taskbar.png",
-            "theme": "franz-panel"
-        },
-        "taskbar@2x": {
-            "original": "assets/tray/linux/franz-taskbar@2x.png",
-            "theme": "franz-panel"
-        },
-        "taskbar": {
+        "tray": {
             "original": "assets/images/tray/linux/tray.png",
             "theme": "franz-panel"
         },
-        "taskbar@2x": {
+        "tray@2x": {
             "original": "assets/images/tray/linux/tray@2x.png",
             "theme": "franz-panel"
         },
-        "taskbar-dock": {
-            "original": "assets/franz-win-dock-alert.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-unread": {
-            "original": "assets/tray/linux/franz-taskbar-unread.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-unread@2x": {
-            "original": "assets/tray/linux/franz-taskbar-unread@2x.png",
-            "theme": "franz-attention-panel"
-        },
-        "taskbar-unread": {
+        "tray-unread": {
             "original": "assets/images/tray/linux/tray-unread.png",
             "theme": "franz-attention-panel"
         },
-        "taskbar-unread@2x": {
+        "tray-unread@2x": {
             "original": "assets/images/tray/linux/tray-unread@2x.png",
             "theme": "franz-attention-panel"
         }
