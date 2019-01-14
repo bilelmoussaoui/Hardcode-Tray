@@ -1,0 +1,21 @@
+{
+    "name": "Kaku",
+    "app_path": [
+        "/opt/Kaku/"
+    ],
+    "icons_path": [
+        "/opt/Kaku/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "src/public/images/icons/tray/default.png",
+            "theme": "kaku-tray"
+        },
+        "tray@2x": {
+            "original": "src/public/images/icons/tray/default@2x.png",
+            "theme": "kaku-tray"
+        }
+    }
+}
