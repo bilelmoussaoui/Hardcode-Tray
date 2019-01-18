@@ -13,24 +13,24 @@
     ],
     "icons": {
         "panel": {
-            "original": "icomute_22_0.png",
+            "original": "iconmute_22_0.png",
             "theme": "telegram-panel",
             "symlinks": [
-                "ico_22_0.png"
+                "icon_22_0.png"
             ]
         },
         "mute-panel": {
-            "original": "icomute_22_1.png",
+            "original": "iconmute_22_1.png",
             "theme": "telegram-mute-panel",
             "symlinks": [
-                "icomute_22_{2-2000}.png"
+                "iconmute_22_{2-2000}.png"
             ]
         },
         "attention-panel": {
-            "original": "ico_22_1.png",
+            "original": "icon_22_1.png",
             "theme": "telegram-attention-panel",
             "symlinks": [
-                "ico_22_{2-2000}.png"
+                "icon_22_{2-2000}.png"
             ]
         }
     }
