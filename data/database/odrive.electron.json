@@ -1,0 +1,25 @@
+{
+    "name": "ODrive",
+    "app_path": [
+        "/opt/OpenDrive/"
+    ],
+    "icons_path": [
+        "/opt/OpenDrive/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "public/images/logo.png",
+            "theme": "odrive-tray"
+        },
+        "grey": {
+            "original": "public/images/logo-grey.png",
+            "theme": "odrive-tray-grey"
+        }
+        "sync": {
+            "original": "public/images/logo-sync.png",
+            "theme": "odrive-tray-sync"
+        }
+    }
+}
