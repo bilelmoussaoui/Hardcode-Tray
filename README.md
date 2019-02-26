@@ -35,6 +35,8 @@ Here's a list of themes that supports Hardcode-Tray:
   - `inkscape`
   - `imagemagick`
   - `svgexport`
+  
+If the icons looks blury, you should try installing this package `libappindicator3-1`. See [#567](https://github.com/bilelmoussaoui/Hardcode-Tray/issues/567) for reference.
 
 ### Building dependencies
 
