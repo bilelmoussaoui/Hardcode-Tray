@@ -16,7 +16,7 @@
         "grey": {
             "original": "public/images/logo-grey.png",
             "theme": "odrive-tray-grey"
-        }
+        },
         "sync": {
             "original": "public/images/logo-sync.png",
             "theme": "odrive-tray-sync"
