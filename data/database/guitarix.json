@@ -1,0 +1,15 @@
+{
+    "name": "Guitarix",
+    "app_path": [
+        "/usr/share/gx_head/"
+    ],
+    "icons_path": [
+        "/usr/share/pixmaps/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "gx_head.png",
+            "theme": "guitarix-tray"
+        }
+    }
+}
