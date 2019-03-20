@@ -1,9 +1,9 @@
 # Hardcode-Tray
-[![CircleCI](https://circleci.com/gh/bil-elmoussaoui/Hardcode-Tray/tree/master.svg?style=shield)](https://circleci.com/gh/bil-elmoussaoui/Hardcode-Tray/tree/master)
+[![CircleCI](https://circleci.com/gh/bilelmoussaoui/Hardcode-Tray/tree/master.svg?style=shield)](https://circleci.com/gh/bilelmoussaoui/Hardcode-Tray/tree/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d5c0768b874407bb1dcc2f928899ba5)](https://www.codacy.com/app/bil-elmoussaoui/Hardcode-Tray?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bil-elmoussaoui/Hardcode-Tray&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Hardcode-Tray/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 [![Hardcode-Tray
-release](https://img.shields.io/badge/release-v4.3-blue.svg)](https://github.com/bil-elmoussaoui/Hardcode-Tray/releases)
+release](https://img.shields.io/badge/release-v4.3-blue.svg)](https://github.com/bilelmoussaoui/Hardcode-Tray/releases)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BilalELMoussaoui)
 
 Fixes Hardcoded tray icons in Linux
