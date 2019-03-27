@@ -66,10 +66,10 @@ Development version:
 yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
-### Ubuntu 16.04 / 16.10 / 17.04 (PPA)
+### Ubuntu 16.04 / 18.04 / 18.10 / 19.04 (PPA)
 
 ```bash
-sudo add-apt-repository ppa:andreas-angerer89/sni-qt-patched
+sudo add-apt-repository ppa:papirus/hardcode-tray
 sudo apt update
 sudo apt install sni-qt sni-qt:i386 hardcode-tray
 ```
