@@ -1,0 +1,32 @@
+{
+    "name": "Yate",
+    "app_path": [
+        "/usr/bin/yate-qt4"
+    ],
+    "icons_path": [
+        "/usr/share/yate/skins/default/",
+        "/usr/local/share/yate/skins/default/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "null_team-32.png",
+            "theme": "yate-tray"
+        },
+        "tray-incomingcall": {
+            "original": "tray_incomingcall.png",
+            "theme": "yate-tray-incomingcall"
+        },
+        "tray-incomingchat": {
+            "original": "tray_incomingchat.png",
+            "theme": "yate-tray-incomingchat"
+        },
+        "tray-notification": {
+            "original": "tray_notification.png",
+            "theme": "yate-tray-notification"
+        },
+        "tray-info": {
+            "original": "tray_info.png",
+            "theme": "yate-tray-info"
+        }
+    }
+}
