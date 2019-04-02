@@ -1,0 +1,93 @@
+{
+    "name": "MullvadVPN",
+    "app_path": [
+        "/opt/Mullvad VPN/"
+    ],
+    "icons_path": [
+        "/opt/Mullvad VPN/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray1": {
+            "original": "build/assets/images/menubar icons/lock-1.png",
+            "theme": "mullvad-tray-1"
+        },
+        "tray1@2x": {
+            "original": "build/assets/images/menubar icons/lock-1@2x.png",
+            "theme": "mullvad-tray-1"
+        },
+        "tray2": {
+            "original": "build/assets/images/menubar icons/lock-2.png",
+            "theme": "mullvad-tray-2"
+        },
+        "tray2@2x": {
+            "original": "build/assets/images/menubar icons/lock-2@2x.png",
+            "theme": "mullvad-tray-2"
+        },
+        "tray3": {
+            "original": "build/assets/images/menubar icons/lock-3.png",
+            "theme": "mullvad-tray-3"
+        },
+        "tray3@2x": {
+            "original": "build/assets/images/menubar icons/lock-3@2x.png",
+            "theme": "mullvad-tray-3"
+        },
+        "tray4": {
+            "original": "build/assets/images/menubar icons/lock-4.png",
+            "theme": "mullvad-tray-4"
+        },
+        "tray4@2x": {
+            "original": "build/assets/images/menubar icons/lock-4@2x.png",
+            "theme": "mullvad-tray-4"
+        },
+        "tray5": {
+            "original": "build/assets/images/menubar icons/lock-5.png",
+            "theme": "mullvad-tray-5"
+        },
+        "tray5@2x": {
+            "original": "build/assets/images/menubar icons/lock-5@2x.png",
+            "theme": "mullvad-tray-5"
+        },
+        "tray6": {
+            "original": "build/assets/images/menubar icons/lock-6.png",
+            "theme": "mullvad-tray-6"
+        },
+        "tray6@2x": {
+            "original": "build/assets/images/menubar icons/lock-6@2x.png",
+            "theme": "mullvad-tray-6"
+        },
+        "tray7": {
+            "original": "build/assets/images/menubar icons/lock-7.png",
+            "theme": "mullvad-tray-7"
+        },
+        "tray7@2x": {
+            "original": "build/assets/images/menubar icons/lock-7@2x.png",
+            "theme": "mullvad-tray-7"
+        },
+        "tray8": {
+            "original": "build/assets/images/menubar icons/lock-8.png",
+            "theme": "mullvad-tray-8"
+        },
+        "tray8@2x": {
+            "original": "build/assets/images/menubar icons/lock-8@2x.png",
+            "theme": "mullvad-tray-8"
+        },
+        "tray9": {
+            "original": "build/assets/images/menubar icons/lock-9.png",
+            "theme": "mullvad-tray-9"
+        },
+        "tray9@2x": {
+            "original": "build/assets/images/menubar icons/lock-9@2x.png",
+            "theme": "mullvad-tray-9"
+        },
+        "tray10": {
+            "original": "build/assets/images/menubar icons/lock-10.png",
+            "theme": "mullvad-tray-10"
+        },
+        "tray10@2x": {
+            "original": "build/assets/images/menubar icons/lock-10@2x.png",
+            "theme": "mullvad-tray-10"
+        }
+    }
+}
