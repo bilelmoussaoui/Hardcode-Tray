@@ -1,10 +1,12 @@
 {
     "name": "MullvadVPN",
     "app_path": [
-        "/opt/Mullvad VPN/"
+        "/opt/Mullvad VPN/",
+        "/opt/mullvad-vpn/"
     ],
     "icons_path": [
-        "/opt/Mullvad VPN/resources/"
+        "/opt/Mullvad VPN/resources/",
+        "/opt/mullvad-vpn/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
