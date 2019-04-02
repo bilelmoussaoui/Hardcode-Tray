@@ -1,0 +1,17 @@
+{
+    "name": "ElectronMail",
+    "app_path": [
+        "/opt/ElectronMail/"
+    ],
+    "icons_path": [
+        "/opt/ElectronMail/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "app/assets/icons/icon.png",
+            "theme": "electron-mail-tray"
+        }
+    }
+}
