@@ -194,11 +194,11 @@
             "theme": "skype-status-away-notification"
         },
         "newIcons_recently-active_preview": {
-            "original": "images/tray/linux/newIcons/tray-tray-recentlyactiveTemplate.png",
+            "original": "images/tray/linux/newIcons/tray-recentlyactiveTemplate.png",
             "theme": "skype-status-connected-notification"
         },
         "newIcons_recently-active2_preview": {
-            "original": "images/tray/linux/newIcons/tray-tray-recentlyactiveTemplate@2x.png",
+            "original": "images/tray/linux/newIcons/tray-recentlyactiveTemplate@2x.png",
             "theme": "skype-status-connected-notification"
         },
         "newIcons_online_preview": {
