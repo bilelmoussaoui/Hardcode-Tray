@@ -11,14 +11,23 @@
     "icons": {
         "highlight": {
             "original": "slack-taskbar-highlight.png",
+            "symlinks": [
+                "slack-taskbar-highlight-linux.png"
+            ],
             "theme": "slack-indicator-highlight"
         },
         "indicator": {
             "original": "slack-taskbar-rest.png",
+            "symlinks": [
+                "slack-taskbar-rest-linux.png"
+            ],
             "theme": "slack-indicator"
         },
         "unread": {
             "original": "slack-taskbar-unread.png",
+            "symlinks": [
+                "slack-taskbar-unread-linux.png"
+            ],
             "theme": "slack-indicator-unread"
         }
     }
