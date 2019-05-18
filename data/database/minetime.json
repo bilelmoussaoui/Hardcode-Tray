@@ -1,0 +1,19 @@
+{
+    "name": "MineTime",
+    "app_path": [
+        "/opt/MineTime/"
+    ],
+    "icons_path": [
+        "/opt/MineTime/resources/app.asar.unpacked/assets/tray/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon_tray.png",
+            "theme": "minetime-tray"
+        },
+        "tray@2x": {
+            "original": "icon_tray@2x.png",
+            "theme": "minetime-tray"
+        }
+    }
+}
