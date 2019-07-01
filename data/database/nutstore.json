@@ -1,0 +1,37 @@
+{
+    "name": "Nutstore",
+    "app_path": [
+        "{userhome}/.nutstore/dist/bin/",
+        "/opt/nutstore/bin/"
+    ],
+    "icons_path": [
+        "{userhome}/.nutstore/dist/bin/resource/tray_pics/",
+        "/opt/nutstore/bin/resource/tray_pics/"
+    ],
+    "icons": {
+        "panel": {
+            "original": "nutstore.png",
+            "theme": "nutstore-panel"
+        },
+        "offline": {
+            "original": "offline.png",
+            "theme": "nutstore-offline-panel"
+        },
+        "oops": {
+            "original": "oops.png",
+            "theme": "nutstore-oops-panel"
+        },
+        "paused": {
+            "original": "paused.png",
+            "theme": "nutstore-paused-panel"
+        },
+        "synchronized": {
+            "original": "synchronized.png",
+            "theme": "nutstore-synchronized-panel"
+        },
+        "synchronizing": {
+            "original": "synchronizing.png",
+            "theme": "nutstore-synchronizing-panel"
+        }
+    }
+}
