@@ -1,0 +1,29 @@
+{
+    "name": "WhatsDesk",
+    "app_path": [
+        "/opt/whatsdesk/"
+    ],
+    "icons_path": [
+        "/opt/whatsdesk/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "src/icon/tray-icon-off.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray@2x": {
+            "original": "src/icon/tray-icon-off2.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray-msg": {
+            "original": "src/icon/tray-icon-on.png",
+            "theme": "whatsapp-msg"
+        },
+        "tray-msg@2x": {
+            "original": "src/icon/tray-icon-on2.png",
+            "theme": "whatsapp-msg"
+        }
+    }
+}
