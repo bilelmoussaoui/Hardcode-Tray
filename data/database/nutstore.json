@@ -1,14 +1,16 @@
 {
     "name": "Nutstore",
     "app_path": [
-        "{userhome}/.nutstore/dist/bin/"
+        "{userhome}/.nutstore/dist/bin/",
+        "/opt/nutstore/bin/"
     ],
     "icons_path": [
-        "{userhome}/.nutstore/dist/bin/resource/tray_pics/"
+        "{userhome}/.nutstore/dist/bin/resource/tray_pics/",
+        "/opt/nutstore/bin/resource/tray_pics/"
     ],
     "icons": {
         "panel": {
-            "original": "panel.png",
+            "original": "nutstore.png",
             "theme": "nutstore-panel"
         },
         "offline": {
