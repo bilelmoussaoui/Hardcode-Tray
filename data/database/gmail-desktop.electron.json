@@ -1,0 +1,21 @@
+{
+    "name": "Gmail Desktop",
+    "app_path": [
+        "/opt/Gmail Desktop/"
+    ],
+    "icons_path": [
+        "/opt/Gmail Desktop/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "static/tray-icon.png",
+            "theme": "gmail-tray"
+        },
+        "tray-unread": {
+            "original": "static/tray-icon-unread.png",
+            "theme": "gmail-tray-unread"
+        }
+    }
+}
