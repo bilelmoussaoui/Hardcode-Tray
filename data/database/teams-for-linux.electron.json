@@ -1,0 +1,17 @@
+{
+    "name": "Teams for Linux",
+    "app_path": [
+        "/opt/teams-for-linux/"
+    ],
+    "icons_path": [
+        "/opt/teams-for-linux/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "app/assets/icons/icon-96x96.png",
+            "theme": "teams-for-linux-tray.svg"
+        }
+    }
+}
