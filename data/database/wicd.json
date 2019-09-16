@@ -1,0 +1,195 @@
+{
+    "name": "Wicd",
+    "app_path": [
+        "/usr/share/wicd/"
+    ],
+    "icons_path": [
+        "/usr/share/wicd/icons/hicolor/22x22/status/"
+    ],
+    "icons": {
+        "bad-signal": {
+            "original": "bad-signal.png",
+            "theme": "bad-signal"
+        },
+        "bad-signal-lock": {
+            "original": "bad-signal-lock.png",
+            "theme": "bad-signal-lock"
+        },
+        "both-bad-signal": {
+            "original": "both-bad-signal.png",
+            "theme": "both-bad-signal"
+        },
+        "both-bad-signal-lock": {
+            "original": "both-bad-signal-lock.png",
+            "theme": "both-bad-signal-lock"
+        },
+        "both-good-signal": {
+            "original": "both-good-signal.png",
+            "theme": "both-good-signal"
+        },
+        "both-good-signal-lock": {
+            "original": "both-good-signal-lock.png",
+            "theme": "both-good-signal-lock"
+        },
+        "both-high-signal": {
+            "original": "both-high-signal.png",
+            "theme": "both-high-signal"
+        },
+        "both-high-signal-lock": {
+            "original": "both-high-signal-lock.png",
+            "theme": "both-high-signal-lock"
+        },
+        "both-low-signal": {
+            "original": "both-low-signal.png",
+            "theme": "both-low-signal"
+        },
+        "both-low-signal-lock": {
+            "original": "both-low-signal-lock.png",
+            "theme": "both-low-signal-lock"
+        },
+        "good-signal": {
+            "original": "good-signal.png",
+            "theme": "good-signal"
+        },
+        "good-signal-lock": {
+            "original": "good-signal-lock.png",
+            "theme": "good-signal-lock"
+        },
+        "high-signal": {
+            "original": "high-signal.png",
+            "theme": "high-signal"
+        },
+        "high-signal-lock": {
+            "original": "high-signal-lock.png",
+            "theme": "high-signal-lock"
+        },
+        "idle-bad-signal": {
+            "original": "idle-bad-signal.png",
+            "theme": "idle-bad-signal"
+        },
+        "idle-bad-signal-lock": {
+            "original": "idle-bad-signal-lock.png",
+            "theme": "idle-bad-signal-lock"
+        },
+        "idle-good-signal": {
+            "original": "idle-good-signal.png",
+            "theme": "idle-good-signal"
+        },
+        "idle-good-signal-lock": {
+            "original": "idle-good-signal-lock.png",
+            "theme": "idle-good-signal-lock"
+        },
+        "idle-high-signal": {
+            "original": "idle-high-signal.png",
+            "theme": "idle-high-signal"
+        },
+        "idle-high-signal-lock": {
+            "original": "idle-high-signal-lock.png",
+            "theme": "idle-high-signal-lock"
+        },
+        "idle-low-signal": {
+            "original": "idle-low-signal.png",
+            "theme": "idle-low-signal"
+        },
+        "idle-low-signal-lock": {
+            "original": "idle-low-signal-lock.png",
+            "theme": "idle-low-signal-lock"
+        },
+        "low-signal": {
+            "original": "low-signal.png",
+            "theme": "low-signal"
+        },
+        "low-signal-lock": {
+            "original": "low-signal-lock.png",
+            "theme": "low-signal-lock"
+        },
+        "no-signal": {
+            "original": "no-signal.png",
+            "theme": "no-signal"
+        },
+        "receiving-bad-signal": {
+            "original": "receiving-bad-signal.png",
+            "theme": "receiving-bad-signal"
+        },
+        "receiving-bad-signal-lock": {
+            "original": "receiving-bad-signal-lock.png",
+            "theme": "receiving-bad-signal-lock"
+        },
+        "receiving-good-signal": {
+            "original": "receiving-good-signal.png",
+            "theme": "receiving-good-signal"
+        },
+        "receiving-good-signal-lock": {
+            "original": "receiving-good-signal-lock.png",
+            "theme": "receiving-good-signal-lock"
+        },
+        "receiving-high-signal": {
+            "original": "receiving-high-signal.png",
+            "theme": "receiving-high-signal"
+        },
+        "receiving-high-signal-lock": {
+            "original": "receiving-high-signal-lock.png",
+            "theme": "receiving-high-signal-lock"
+        },
+        "receiving-low-signal": {
+            "original": "receiving-low-signal.png",
+            "theme": "receiving-low-signal"
+        },
+        "receiving-low-signal-lock": {
+            "original": "receiving-low-signal-lock.png",
+            "theme": "receiving-low-signal-lock"
+        },
+        "signal-25": {
+            "original": "signal-25.png",
+            "theme": "signal-25"
+        },
+        "signal-50": {
+            "original": "signal-50.png",
+            "theme": "signal-50"
+        },
+        "signal-75": {
+            "original": "signal-75.png",
+            "theme": "signal-75"
+        },
+        "signal-100": {
+            "original": "signal-100.png",
+            "theme": "signal-100"
+        },
+        "transmitting-bad-signal": {
+            "original": "transmitting-bad-signal.png",
+            "theme": "transmitting-bad-signal"
+        },
+        "transmitting-bad-signal-lock": {
+            "original": "transmitting-bad-signal-lock.png",
+            "theme": "transmitting-bad-signal-lock"
+        },
+        "transmitting-good-signal": {
+            "original": "transmitting-good-signal.png",
+            "theme": "transmitting-good-signal"
+        },
+        "transmitting-good-signal-lock": {
+            "original": "transmitting-good-signal-lock.png",
+            "theme": "transmitting-good-signal-lock"
+        },
+        "transmitting-high-signal": {
+            "original": "transmitting-high-signal.png",
+            "theme": "transmitting-high-signal"
+        },
+        "transmitting-high-signal-lock": {
+            "original": "transmitting-high-signal-lock.png",
+            "theme": "transmitting-high-signal-lock"
+        },
+        "transmitting-low-signal": {
+            "original": "transmitting-low-signal.png",
+            "theme": "transmitting-low-signal"
+        },
+        "transmitting-low-signal-lock": {
+            "original": "transmitting-low-signal-lock.png",
+            "theme": "transmitting-low-signal-lock"
+        },
+        "wired": {
+            "original": "wired.png",
+            "theme": "wired"
+        }
+    }
+}
