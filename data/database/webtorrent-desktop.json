@@ -1,10 +1,12 @@
 {
     "name": "WebTorrent Desktop",
     "app_path": [
+        "/usr/lib/webtorrent-desktop/",
         "/opt/webtorrent-desktop/",
         "/usr/share/webtorrent-desktop/"
     ],
     "icons_path": [
+        "/usr/lib/webtorrent-desktop/resources/app.asar.unpacked/static/",
         "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/",
         "/usr/share/webtorrent-desktop/resources/app.asar.unpacked/static/"
     ],
