@@ -1,0 +1,23 @@
+{
+    "name": "LADI Tools",
+    "app_path": [
+        "/usr/bin/laditray"
+    ],
+    "icons_path": [
+        "/usr/share/laditools/data/"
+    ],
+    "icons": {
+        "started": {
+            "original": "started.svg",
+            "theme": "ladi-started"
+        },
+        "starting": {
+            "original": "starting.svg",
+            "theme": "ladi-starting"
+        },
+        "stopped": {
+            "original": "stopped.svg",
+            "theme": "ladi-stopped"
+        }
+    }
+}
