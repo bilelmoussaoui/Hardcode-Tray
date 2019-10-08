@@ -35,7 +35,7 @@ Here's a list of themes that supports Hardcode-Tray:
   - `inkscape`
   - `imagemagick`
   - `svgexport`
-  
+
 If the icons looks blury, you should try installing this package `libappindicator3-1`. See [#567](https://github.com/bilelmoussaoui/Hardcode-Tray/issues/567) for reference.
 
 ### Building dependencies
@@ -66,13 +66,33 @@ Development version:
 yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
-### Ubuntu 16.04 / 18.04 / 18.10 / 19.04 (PPA)
+### Ubuntu 16.04+ (PPA)
 
 ```bash
 sudo add-apt-repository ppa:papirus/hardcode-tray
 sudo apt update
-sudo apt install sni-qt sni-qt:i386 hardcode-tray
+sudo apt install hardcode-tray
 ```
+
+### Debian 10
+
+```bash
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/SmartFinn:/hardcode-tray/openSUSE_Tools_Debian_10/ /' > /etc/apt/sources.list.d/hardcode-tray.list"
+wget -qO- https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/openSUSE_Tools_Debian_10/Release.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install hardcode-tray
+```
+
+### Fedora 29+ / Fedora Rawhide
+
+To install hardcode-tray on Fedora 30 run the following commands:
+
+```bash
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/openSUSE_Tools_Fedora_30/home:SmartFinn:hardcode-tray.repo
+sudo dnf install hardcode-tray
+```
+
+You can find packages for other Fedora versions [here](https://software.opensuse.org/download.html?project=home%3ASmartFinn%3Ahardcode-tray&package=hardcode-tray).
 
 ### OpenSUSE (Leap 42.2 / Tumbleweed)
 
