@@ -1,0 +1,19 @@
+{
+    "name": "RCloneTray",
+    "app_path": [
+        "/opt/RcloneTray/"
+    ],
+    "icons_path": [
+        "/opt/RcloneTray/resources/app.asar.unpacked/src/ui/icons/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon.png",
+            "theme": "rclonetray-tray"
+        },
+        "tray-connected": {
+            "original": "icon-connected.png",
+            "theme": "rclonetray-connected-tray"
+        }
+    }
+}
