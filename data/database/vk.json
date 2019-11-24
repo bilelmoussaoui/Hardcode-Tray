@@ -1,0 +1,15 @@
+{
+    "name": "VK Messenger",
+    "app_path": [
+        "/usr/lib/vk/"
+    ],
+    "icons_path": [
+        "/usr/lib/vk/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon24.png",
+            "theme": "vk-tray"
+        }
+    }
+}
