@@ -1,0 +1,23 @@
+{
+    "name": "Motrix",
+    "app_path": [
+        "/opt/Motrix/",
+        "/opt/motrix/"
+    ],
+    "icons_path": [
+        "/opt/Motrix/resources/",
+        "/opt/motrix/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "dist/electron/static/mo-tray-colorful-normal.png",
+            "theme": "motrix-tray"
+        },
+        "tray-active": {
+            "original": "dist/electron/static/mo-tray-colorful-active.png",
+            "theme": "motrix-tray-active"
+        }
+    }
+}
