@@ -4,7 +4,7 @@
         "/usr/share/yd-tools/"
     ],
     "icons_path": [
-        "/usr/share/yd-tools/icons/light/"
+        "/usr/share/yd-tools/icons/dark/"
     ],
     "icons": {
         "tray": {
