@@ -1,15 +1,43 @@
 {
-    "name": "yd-tools",
+    "name": "Yandex Tools",
     "app_path": [
-        "/opt/yd-tools/"
+        "/usr/share/yd-tools/"
     ],
     "icons_path": [
-        "/opt/yd-tools/icons/"
+        "/usr/share/yd-tools/icons/light/"
     ],
-    "icons": [
-        "yd-busy{1-5}.png",
-        "yd-ind-error.png",
-        "yd-ind-idle.png",
-        "yd-ind-pause.png"
-    ]
+    "icons": {
+        "tray": {
+            "original": "yd-ind-idle.png",
+            "theme": "yd-ind-idle"
+        },
+        "tray-pause": {
+            "original": "yd-ind-pause.png",
+            "theme": "yd-ind-pause"
+        },
+        "tray-error": {
+            "original": "yd-ind-error.png",
+            "theme": "yd-ind-error"
+        },
+        "tray-busy1": {
+            "original": "yd-busy1.png",
+            "theme": "yd-busy1"
+        },
+        "tray-busy2": {
+            "original": "yd-busy2.png",
+            "theme": "yd-busy2"
+        },
+        "tray-busy3": {
+            "original": "yd-busy3.png",
+            "theme": "yd-busy3"
+        },
+        "tray-busy4": {
+            "original": "yd-busy4.png",
+            "theme": "yd-busy4"
+        },
+        "tray-busy5": {
+            "original": "yd-busy5.png",
+            "theme": "yd-busy5"
+        }
+    }
 }
