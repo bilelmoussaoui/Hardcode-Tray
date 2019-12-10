@@ -1,0 +1,19 @@
+{
+    "name": "MX Updater",
+    "app_path": [
+        "/usr/share/apt-notifier/"
+    ],
+    "icons_path": [
+        "/usr/share/icons/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "mnotify-none-wireframe.png",
+            "theme": "mnotify-none-wireframe"
+        },
+        "tray-update": {
+            "original": "mnotify-some-wireframe.png",
+            "theme": "mnotify-some-wireframe"
+        }
+    }
+}
