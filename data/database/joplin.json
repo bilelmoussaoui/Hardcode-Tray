@@ -1,0 +1,67 @@
+{
+    "name": "Joplin",
+    "app_path": [
+        "/usr/share/joplin/"
+    ],
+    "icons_path": [
+        "/usr/share/joplin/resources/build/icons/"
+    ],
+    "icons": {
+        "icon16": {
+            "original": "16x16.png",
+            "theme": "joplin-tray"
+        },
+        "icon16@2x": {
+            "original": "16x16@2x.png",
+            "theme": "joplin-tray"
+        },
+        "icon16@3x": {
+            "original": "16x16@3x.png",
+            "theme": "joplin-tray"
+        },
+        "icon24": {
+            "original": "24x24.png",
+            "theme": "joplin-tray"
+        },
+        "icon32": {
+            "original": "32x32.png",
+            "theme": "joplin-tray"
+        },
+        "icon32@3": {
+            "original": "32x32@3.png",
+            "theme": "joplin-tray"
+        },
+        "icon48": {
+            "original": "48x48.png",
+            "theme": "joplin-tray"
+        },
+        "icon72": {
+            "original": "72x72.png",
+            "theme": "joplin-tray"
+        },
+        "icon96": {
+            "original": "96x96.png",
+            "theme": "joplin-tray"
+        },
+        "icon128": {
+            "original": "128x128.png",
+            "theme": "joplin-tray"
+        },
+        "icon144": {
+            "original": "144x144.png",
+            "theme": "joplin-tray"
+        },
+        "icon256": {
+            "original": "256x256.png",
+            "theme": "joplin-tray"
+        },
+        "icon512": {
+            "original": "512x512.png",
+            "theme": "joplin-tray"
+        },
+        "icon1024": {
+            "original": "1024x1024.png",
+            "theme": "joplin-tray"
+        }
+    }
+}
