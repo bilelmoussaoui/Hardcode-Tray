@@ -1,0 +1,19 @@
+{
+    "name": "Microsoft Teams",
+    "app_path": [
+        "/usr/share/teams/"
+    ],
+    "icons_path": [
+        "/usr/share/teams/resources/assets/"
+    ],
+    "icons": {
+        "tray-activity": {
+            "original": "Presence-Activity-Systray16x16@2x.png",
+            "theme": "teams-tray-activity"
+        },
+        "tray-noactivity": {
+            "original": "Presence-NoActivity-Systray16x16@2x.png",
+            "theme": "teams-tray-noactivity"
+        }
+    }
+}
