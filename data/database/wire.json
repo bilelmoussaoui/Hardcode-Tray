@@ -1,10 +1,12 @@
 {
     "name": "Wire",
     "app_path": [
-        "/opt/Wire/"
+        "/opt/Wire/",
+        "/usr/lib/wire-desktop/"
     ],
     "icons_path": [
-        "/opt/Wire/resources/"
+        "/opt/Wire/resources/",
+        "/usr/lib/wire-desktop/"
     ],
     "binary": "app.asar",
     "script": "electron",
