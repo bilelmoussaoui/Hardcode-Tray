@@ -4,95 +4,97 @@
         "/opt/Wire/"
     ],
     "icons_path": [
-        "/opt/Wire/resources/app/electron/img/tray-icon/"
+        "/opt/Wire/resources/"
     ],
+    "binary": "app.asar",
+    "script": "electron",
     "icons": {
         "tray": {
-            "original": "tray/tray.png",
+            "original": "electron/img/tray-icon/tray/tray.png",
             "theme": "wire-tray"
         },
         "tray@1.25x": {
-            "original": "tray/tray@1.25x.png",
+            "original": "electron/img/tray-icon/tray/tray@1.25x.png",
             "theme": "wire-tray"
         },
         "tray@1.33x": {
-            "original": "tray/tray@1.33x.png",
+            "original": "electron/img/tray-icon/tray/tray@1.33x.png",
             "theme": "wire-tray"
         },
         "tray@1.4x": {
-            "original": "tray/tray@1.4x.png",
+            "original": "electron/img/tray-icon/tray/tray@1.4x.png",
             "theme": "wire-tray"
         },
         "tray@1.5x": {
-            "original": "tray/tray@1.5x.png",
+            "original": "electron/img/tray-icon/tray/tray@1.5x.png",
             "theme": "wire-tray"
         },
         "tray@1.8x": {
-            "original": "tray/tray@1.8x.png",
+            "original": "electron/img/tray-icon/tray/tray@1.8x.png",
             "theme": "wire-tray"
         },
         "tray@2.5x": {
-            "original": "tray/tray@2.5x.png",
+            "original": "electron/img/tray-icon/tray/tray@2.5x.png",
             "theme": "wire-tray"
         },
         "tray@2x": {
-            "original": "tray/tray@2x.png",
+            "original": "electron/img/tray-icon/tray/tray@2x.png",
             "theme": "wire-tray"
         },
         "tray@3x": {
-            "original": "tray/tray@3x.png",
+            "original": "electron/img/tray-icon/tray/tray@3x.png",
             "theme": "wire-tray"
         },
         "tray@4x": {
-            "original": "tray/tray@4x.png",
+            "original": "electron/img/tray-icon/tray/tray@4x.png",
             "theme": "wire-tray"
         },
         "tray@5x": {
-            "original": "tray/tray@5x.png",
+            "original": "electron/img/tray-icon/tray/tray@5x.png",
             "theme": "wire-tray"
         },
         "notification": {
-            "original": "tray-with-badge/tray.badge.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge.png",
             "theme": "wire-tray-attention"
 	    },
         "notification@1.25x": {
-            "original": "tray-with-badge/tray.badge@1.25x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@1.25x.png",
             "theme": "wire-tray-attention"
         },
         "notification@1.33x": {
-            "original": "tray-with-badge/tray.badge@1.33x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@1.33x.png",
             "theme": "wire-tray-attention"
         },
         "notification@1.4x": {
-            "original": "tray-with-badge/tray.badge@1.4x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@1.4x.png",
             "theme": "wire-tray-attention"
         },
         "notification@1.5x": {
-            "original": "tray-with-badge/tray.badge@1.5x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@1.5x.png",
             "theme": "wire-tray-attention"
         },
         "notification@1.8x": {
-            "original": "tray-with-badge/tray.badge@1.8x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@1.8x.png",
             "theme": "wire-tray-attention"
         },
         "notification@2.5x": {
-            "original": "tray-with-badge/tray.badge@2.5x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@2.5x.png",
             "theme": "wire-tray-attention"
         },
         "notification@2x": {
-            "original": "tray-with-badge/tray.badge@2x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@2x.png",
             "theme": "wire-tray-attention"
         },
         "notification@3x": {
-            "original": "tray-with-badge/tray.badge@3x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@3x.png",
             "theme": "wire-tray-attention"
         },
         "notification@4x": {
-            "original": "tray-with-badge/tray.badge@4x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@4x.png",
             "theme": "wire-tray-attention"
         },
         "notification@5x": {
-            "original": "tray-with-badge/tray.badge@5x.png",
+            "original": "electron/img/tray-icon/tray-with-badge/tray.badge@5x.png",
             "theme": "wire-tray-attention"
         }
     }
