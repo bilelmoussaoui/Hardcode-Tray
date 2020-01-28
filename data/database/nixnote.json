@@ -1,0 +1,15 @@
+{
+    "name": "NixNote2",
+    "app_path": [ 
+        "/usr/bin/nixnote2"
+    ],
+    "icons_path": [ 
+        "/usr/share/nixnote2/images/"
+    ],
+    "icons": {
+        "indicator": {
+            "original": "/usr/share/nixnote2/images/trayicon.png",
+            "theme": "nixnote2-tray"
+        }
+    }
+}

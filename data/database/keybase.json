@@ -7,52 +7,388 @@
         "/opt/keybase/resources/app/images/menubarIcon/"
     ],
     "icons": {
-        "regular": {
+        "regular-dark": {
             "original": "icon-keybase-menubar-regular-white-22.png",
             "theme": "keybase-tray"
         },
-        "regular@2x": {
+        "regular-dark@2x": {
             "original": "icon-keybase-menubar-regular-white-22@2x.png",
             "theme": "keybase-tray"
         },
-        "regular@3x": {
+        "regular-dark@3x": {
             "original": "icon-keybase-menubar-regular-white-22@3x.png",
             "theme": "keybase-tray"
         },
-        "badged": {
+        "regular-dev-dark": {
+            "original": "icon-keybase-menubar-regular-white-22-dev.png",
+            "theme": "keybase-tray"
+        },
+        "regular-dev-dark@2x": {
+            "original": "icon-keybase-menubar-regular-white-22-dev@2x.png",
+            "theme": "keybase-tray"
+        },
+        "regular-dev-dark@3x": {
+            "original": "icon-keybase-menubar-regular-white-22-dev@3x.png",
+            "theme": "keybase-tray"
+        },
+        "regular-light": {
+            "original": "icon-keybase-menubar-regular-black-22.png",
+            "theme": "keybase-tray"
+        },
+        "regular-light@2x": {
+            "original": "icon-keybase-menubar-regular-black-22@2x.png",
+            "theme": "keybase-tray"
+        },
+        "regular-light@3x": {
+            "original": "icon-keybase-menubar-regular-black-22@3x.png",
+            "theme": "keybase-tray"
+        },
+        "regular-dev-light": {
+            "original": "icon-keybase-menubar-regular-black-22-dev.png",
+            "theme": "keybase-tray"
+        },
+        "regular-dev-light@2x": {
+            "original": "icon-keybase-menubar-regular-black-22-dev@2x.png",
+            "theme": "keybase-tray"
+        },
+        "regular-dev-light@3x": {
+            "original": "icon-keybase-menubar-regular-black-22-dev@3x.png",
+            "theme": "keybase-tray"
+        },
+        "badged-dark": {
             "original": "icon-keybase-menubar-badged-white-22.png",
             "theme": "keybase-badged"
         },
-        "badged@2x": {
+        "badged-dark@2x": {
             "original": "icon-keybase-menubar-badged-white-22@2x.png",
             "theme": "keybase-badged"
         },
-        "badged@3x": {
+        "badged-dark@3x": {
             "original": "icon-keybase-menubar-badged-white-22@3x.png",
             "theme": "keybase-badged"
         },
-        "update": {
+        "badged-dev-dark": {
+            "original": "icon-keybase-menubar-badged-white-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-dev-dark@2x": {
+            "original": "icon-keybase-menubar-badged-white-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-dev-dark@3x": {
+            "original": "icon-keybase-menubar-badged-white-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-light": {
+            "original": "icon-keybase-menubar-badged-black-22.png",
+            "theme": "keybase-badged"
+        },
+        "badged-light@2x": {
+            "original": "icon-keybase-menubar-badged-black-22@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-light@3x": {
+            "original": "icon-keybase-menubar-badged-black-22@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-dev-light": {
+            "original": "icon-keybase-menubar-badged-black-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-dev-light@2x": {
+            "original": "icon-keybase-menubar-badged-black-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-dev-light@3x": {
+            "original": "icon-keybase-menubar-badged-black-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dark": {
+            "original": "icon-keybase-menubar-badged-error-white-22.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dark@2x": {
+            "original": "icon-keybase-menubar-badged-error-white-22@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dark@3x": {
+            "original": "icon-keybase-menubar-badged-error-white-22@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-dark": {
+            "original": "icon-keybase-menubar-badged-error-white-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-dark@2x": {
+            "original": "icon-keybase-menubar-badged-error-white-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-dark@3x": {
+            "original": "icon-keybase-menubar-badged-error-white-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-light": {
+            "original": "icon-keybase-menubar-badged-error-black-22.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-light@2x": {
+            "original": "icon-keybase-menubar-badged-error-black-22@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-light@3x": {
+            "original": "icon-keybase-menubar-badged-error-black-22@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-light": {
+            "original": "icon-keybase-menubar-badged-error-black-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-light@2x": {
+            "original": "icon-keybase-menubar-badged-error-black-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-error-dev-light@3x": {
+            "original": "icon-keybase-menubar-badged-error-black-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dark": {
+            "original": "icon-keybase-menubar-badged-regular-white-22.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dark@2x": {
+            "original": "icon-keybase-menubar-badged-regular-white-22@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dark@3x": {
+            "original": "icon-keybase-menubar-badged-regular-white-22@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-dark": {
+            "original": "icon-keybase-menubar-badged-regular-white-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-dark@2x": {
+            "original": "icon-keybase-menubar-badged-regular-white-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-dark@3x": {
+            "original": "icon-keybase-menubar-badged-regular-white-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-light": {
+            "original": "icon-keybase-menubar-badged-regular-black-22.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-light@2x": {
+            "original": "icon-keybase-menubar-badged-regular-black-22@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-light@3x": {
+            "original": "icon-keybase-menubar-badged-regular-black-22@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-light": {
+            "original": "icon-keybase-menubar-badged-regular-black-22-dev.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-light@2x": {
+            "original": "icon-keybase-menubar-badged-regular-black-22-dev@2x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-regular-dev-light@3x": {
+            "original": "icon-keybase-menubar-badged-regular-black-22-dev@3x.png",
+            "theme": "keybase-badged"
+        },
+        "badged-uploading-dark": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dark@2x": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dark@3x": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-dark": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22-dev.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-dark@2x": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22-dev@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-dark@3x": {
+            "original": "icon-keybase-menubar-badged-uploading-white-22-dev@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-light": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-light@2x": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-light@3x": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-light": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22-dev.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-light@2x": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22-dev@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "badged-uploading-dev-light@3x": {
+            "original": "icon-keybase-menubar-badged-uploading-black-22-dev@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "error-dark": {
+            "original": "icon-keybase-menubar-error-white-22.png",
+            "theme": "keybase-tray"
+        },
+        "error-dark@2x": {
+            "original": "icon-keybase-menubar-error-white-22@2x.png",
+            "theme": "keybase-tray"
+        },
+        "error-dark@3x": {
+            "original": "icon-keybase-menubar-error-white-22@3x.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-dark": {
+            "original": "icon-keybase-menubar-error-white-22-dev.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-dark@2x": {
+            "original": "icon-keybase-menubar-error-white-22-dev@2x.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-dark@3x": {
+            "original": "icon-keybase-menubar-error-white-22-dev@3x.png",
+            "theme": "keybase-tray"
+        },
+        "error-light": {
+            "original": "icon-keybase-menubar-error-black-22.png",
+            "theme": "keybase-tray"
+        },
+        "error-light@2x": {
+            "original": "icon-keybase-menubar-error-black-22@2x.png",
+            "theme": "keybase-tray"
+        },
+        "error-light@3x": {
+            "original": "icon-keybase-menubar-error-black-22@3x.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-light": {
+            "original": "icon-keybase-menubar-error-black-22-dev.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-light@2x": {
+            "original": "icon-keybase-menubar-error-black-22-dev@2x.png",
+            "theme": "keybase-tray"
+        },
+        "error-dev-light@3x": {
+            "original": "icon-keybase-menubar-error-black-22-dev@3x.png",
+            "theme": "keybase-tray"
+        },
+        "update-dark": {
             "original": "icon-keybase-menubar-update-white-22.png",
             "theme": "keybase-update"
         },
-        "update@2x": {
+        "update-dark@2x": {
             "original": "icon-keybase-menubar-update-white-22@2x.png",
             "theme": "keybase-update"
         },
-        "update@3x": {
+        "update-dark@3x": {
             "original": "icon-keybase-menubar-update-white-22@3x.png",
             "theme": "keybase-update"
         },
-        "uploading": {
+        "update-dev-dark": {
+            "original": "icon-keybase-menubar-update-white-22-dev.png",
+            "theme": "keybase-update"
+        },
+        "update-dev-dark@2x": {
+            "original": "icon-keybase-menubar-update-white-22-dev@2x.png",
+            "theme": "keybase-update"
+        },
+        "update-dev-dark@3x": {
+            "original": "icon-keybase-menubar-update-white-22-dev@3x.png",
+            "theme": "keybase-update"
+        },
+        "update-light": {
+            "original": "icon-keybase-menubar-update-black-22.png",
+            "theme": "keybase-update"
+        },
+        "update-light@2x": {
+            "original": "icon-keybase-menubar-update-black-22@2x.png",
+            "theme": "keybase-update"
+        },
+        "update-light@3x": {
+            "original": "icon-keybase-menubar-update-black-22@3x.png",
+            "theme": "keybase-update"
+        },
+        "update-dev-light": {
+            "original": "icon-keybase-menubar-update-black-22-dev.png",
+            "theme": "keybase-update"
+        },
+        "update-dev-light@2x": {
+            "original": "icon-keybase-menubar-update-black-22-dev@2x.png",
+            "theme": "keybase-update"
+        },
+        "update-dev-light@3x": {
+            "original": "icon-keybase-menubar-update-black-22-dev@3x.png",
+            "theme": "keybase-update"
+        },
+        "uploading-dark": {
             "original": "icon-keybase-menubar-uploading-white-22.png",
             "theme": "keybase-uploading"
         },
-        "uploading@2x": {
+        "uploading-dark@2x": {
             "original": "icon-keybase-menubar-uploading-white-22@2x.png",
             "theme": "keybase-uploading"
         },
-        "uploading@3x": {
+        "uploading-dark@3x": {
             "original": "icon-keybase-menubar-uploading-white-22@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-dark": {
+            "original": "icon-keybase-menubar-uploading-white-22-dev.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-dark@2x": {
+            "original": "icon-keybase-menubar-uploading-white-22-dev@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-dark@3x": {
+            "original": "icon-keybase-menubar-uploading-white-22-dev@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-light": {
+            "original": "icon-keybase-menubar-uploading-black-22.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-light@2x": {
+            "original": "icon-keybase-menubar-uploading-black-22@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-light@3x": {
+            "original": "icon-keybase-menubar-uploading-black-22@3x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-light": {
+            "original": "icon-keybase-menubar-uploading-black-22-dev.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-light@2x": {
+            "original": "icon-keybase-menubar-uploading-black-22-dev@2x.png",
+            "theme": "keybase-uploading"
+        },
+        "uploading-dev-light@3x": {
+            "original": "icon-keybase-menubar-uploading-black-22-dev@3x.png",
             "theme": "keybase-uploading"
         }
     }

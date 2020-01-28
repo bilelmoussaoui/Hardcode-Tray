@@ -1,0 +1,13 @@
+version: "1"
+rules:
+  - base: master
+    upstream: bilelmoussaoui:master
+    mergeMethod: rebase
+  - base: beta
+    upstream: bilelmoussaoui:beta
+    mergeMethod: rebase
+    assignees:
+      - RogueScholar
+    reviewers:
+      - RogueScholar
+label: ":arrow_heading_down: pull"

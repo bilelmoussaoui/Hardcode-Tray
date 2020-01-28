@@ -56,14 +56,14 @@ sudo pacman -S base-devel
 Stable version:
 
 ```bash
-yaourt -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
+yay -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
 The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.
 Development version:
 
 ```bash
-yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
+yay -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
 ```
 
 ### Ubuntu 16.04+ (PPA)

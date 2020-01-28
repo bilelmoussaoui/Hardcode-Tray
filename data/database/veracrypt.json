@@ -1,0 +1,20 @@
+{
+    "name": "VeraCrypt",
+    "app_path": [
+        "/usr/bin/veracrypt"
+    ],
+    "icons_path": [
+        "/usr/share/pixmaps/"
+    ],
+    "is_qt": false,
+    "is_script": false,
+    "force_create_folder": false,
+    "exec_path_script": false,
+    "backup_ignore": true,
+    "icons": {
+        "indicator": {
+            "original": "/usr/share/pixmaps/veracrypt.xpm",
+            "theme": "veracrypt-panel"
+        }
+    }
+}

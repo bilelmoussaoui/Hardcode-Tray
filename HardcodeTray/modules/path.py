@@ -86,7 +86,8 @@ class Path:
 
         for key, value in Path.DB_VARIABLES.items():
             if key in self.path:
-                if value.endswith("_callback"):  # Check wether it's a function or not
+                # Check whether it's a function or not
+                if value.endswith("_callback"):
                     self._validate_with_callback(key, value)
                 else:
                     self.path = self.path.replace(key, str(value))
