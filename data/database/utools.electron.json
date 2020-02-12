@@ -1,0 +1,17 @@
+{
+    "name": "uTools",
+    "app_path": [
+        "/opt/uTools/"
+    ],
+    "icons_path": [
+        "/opt/uTools/resources/"
+    ],
+    "script": "electron",
+    "binary": "app.asar",
+    "icons": {
+        "tray": {
+            "original": "dist/res/icon@2x.png",
+            "theme": "utools-tray"
+        }
+    }
+}
