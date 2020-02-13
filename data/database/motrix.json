@@ -1,0 +1,21 @@
+{
+    "name": "Motrix",
+    "app_path": [
+        "/usr/lib/motrix/",
+        "/usr/lib/motrix/"
+    ],
+    "icons_path": [
+        "/usr/lib/motrix/app/electron/static/",
+        "/usr/lib/motrix/app/electron/static/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "mo-tray-colorful-normal.png",
+            "theme": "motrix-tray"
+        },
+        "tray-active": {
+            "original": "mo-tray-colorful-active.png",
+            "theme": "motrix-tray-active"
+        }
+    }
+}
