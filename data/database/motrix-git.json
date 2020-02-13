@@ -1,11 +1,9 @@
 {
-    "name": "Motrix",
+    "name": "Motrix Git",
     "app_path": [
-        "/usr/lib/motrix/",
         "/usr/lib/motrix/"
     ],
     "icons_path": [
-        "/usr/lib/motrix/app/electron/static/",
         "/usr/lib/motrix/app/electron/static/"
     ],
     "icons": {
