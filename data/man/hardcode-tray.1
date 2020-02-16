@@ -21,7 +21,7 @@
 .Ar --clear-cache
 .Sh DESCRIPTION
 .Nm
-is a python utility that fetches theme icons for application tray icons and replace the hardcoded onces, usually packaged with Qt or Electron applications. The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
+is a python utility that fetches theme icons for application tray icons and replace the hardcoded ones, usually packaged with Qt or Electron applications. The script will automatically detect your default theme, the correct icon size, the hard-coded applications, the correct icons for each indicator and fix them. All that with the possibility to revert to the original icons.
 .Sh OPTIONS
 .Bl -tag -width Ds
 .It --apply
@@ -33,9 +33,9 @@ In THEME icon, change #COLOR to #NEWCOLOR.
 .It --clear-cache
 Clears the backup cache folder.
 .It --conversion-tool Ar TOOL
-By default, the conversion tool is detected form installed applications. The user can choose to override htis by providing a tool, where TOOL is one of {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}.
+By default, the conversion tool is detected form installed applications. The user can choose to override this by providing a tool, where TOOL is one of {Inkscape, CairoSVG, RSVGConvert, ImageMagick, SVGExport}.
 .It --dark-theme Ar THEME Ar --light-theme Ar THEME
-Useful for applications with different sets of icons for light and dark themes. THEME is respectively set as the dark and light theme. Supercedes \fI--theme\fR.
+Useful for applications with different sets of icons for light and dark themes. THEME is respectively set as the dark and light theme. Supersedes \fI--theme\fR.
 .It --only Ar APP, ...
 Choose to only apply given applications instead of all of them.
 .It --path Ar PATH
@@ -54,10 +54,10 @@ uses a JSON configuration file at \fI~/.config/hardcode-tray.json\fR, is it exis
 .It blacklist
 List applications whose tray icons will never be patched.
 .It conversion_tool
-Default tool to be used. Supercedes autodetection.
+Default tool to be used. Supersedes autodetection.
 .It icons
 Object containing the \fItheme\fR and \fIsize\fR of the icon to be used.
 .It backup_ignore
-Boolean setting wether to ignore backing up the original icon.
+Boolean setting whether to ignore backing up the original icon.
 .It scaling_factor
 Widgets scaling factor, autodetected in GNOME, KDE and Cinnamon.
