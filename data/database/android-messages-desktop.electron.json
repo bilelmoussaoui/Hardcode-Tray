@@ -1,0 +1,23 @@
+{
+    "name": "Android Messages Desktop",
+    "app_path": [
+        "/opt/Android Messages/",
+        "/usr/lib/android-messages-desktop"
+    ],
+    "icons_path": [
+        "/opt/Android Messages/resources/",
+        "/usr/lib/android-messages-desktop/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "resources/tray/icon.png",
+            "theme": "android-messages-desktop-tray"
+        },
+        "tray@2x": {
+            "original": "resources/tray/icon@2x.png",
+            "theme": "android-messages-desktop-tray"
+        }
+    }
+}
