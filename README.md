@@ -28,7 +28,6 @@ Here's a list of themes that supports Hardcode-Tray:
 
 - `python3`
 - `python3-gi`
-- [`patched sni-qt`](https://github.com/bil-elmoussaoui/sni-qt)
 - Pick up your favorite conversion tool
   - `python3-cairosvg`
   - `librsvg`
@@ -56,14 +55,13 @@ sudo pacman -S base-devel
 Stable version:
 
 ```bash
-yaourt -S hardcode-tray sni-qt-patched-git lib32-sni-qt-patched-git
+yaourt -S hardcode-tray
 ```
 
-The sni-qt patched library by Hardcode-Tray team is still on beta, we will replace the git version with a stable release once we release one.
 Development version:
 
 ```bash
-yaourt -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
+yaourt -S hardcode-tray-git
 ```
 
 ### Ubuntu 16.04+ (PPA)
@@ -96,11 +94,7 @@ You can find packages for other Fedora versions [here](https://software.opensuse
 
 ### OpenSUSE (Leap 42.2 / Tumbleweed)
 
-OpenSUSE package only contains the patched version of sni-qt. In order to get Hardcode-Tray, please follow the manual installation method.
-
-The one click-installer can be found by following this [link](https://software.opensuse.org/package/sni-qt-patched)
-
-Or you can use unofficial build
+You can use unofficial build
 
 ```bash
 sudo zypper ar -p 98 http://download.opensuse.org/repositories/home:/GNorth:/Arc_and_Papirus/openSUSE_Leap_42.3/home:GNorth:Arc_and_Papirus.repo
@@ -134,12 +128,6 @@ sudo -E hardcode-tray
 ```
 
 4- Enjoy!
-
-You can build [the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-Sni-qt) from the source code if you are using a different distribution (like Fedora).
-
-The `sni-qt:i386` is used for 32 bits applications as Skype.
-
-Teamviewer is also using the `sni-qt` package. However, it is shipping its own version. Therefore this script also overwrites the version shipped by TeamViewer with the patched one.
 
 ## Options
 
@@ -198,7 +186,7 @@ hardcode-tray --dark-theme Numix-light --light-theme Numix
 You can use the `--only` argument to fix/revert only one application; don't use the argument if you want to fix all applications your icon theme supports.
 
 ```bash
-hardcode-tray --only telegram, skype
+hardcode-tray --only android-messages-desktop.electron, skypeforlinux
 ```
 
 In order to get the names needed to fix only specific programs, you can look at the `app_name` key in the JSON files for the program. There you can find the corresponding name for the program you want to fix.
@@ -208,7 +196,7 @@ In order to get the names needed to fix only specific programs, you can look at 
 If you installed your app in a non-standard location, you can override the path where the icons are stored using the `--path` argument. Only works in combination with the `--only` argument for a single application.
 
 ```bash
-hardcode-tray --only telegram --path /home/user/telegram/
+hardcode-tray --only teams --path /opt/teams/resources/assets
 ```
 
 - `--size`
@@ -263,6 +251,5 @@ In order to fix those ugly tray icons on NWJS applications, you will need to dow
 
 - [Changelog](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Changelog)
 - [FAQ](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/FAQ)
-- [How to build the patched version of sni-qt](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-build-sni-qt)
 - [How to contribute](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/How-to-contribute)
 - [Supported applications](https://github.com/bil-elmoussaoui/Hardcode-Tray/wiki/Supported-applications)
