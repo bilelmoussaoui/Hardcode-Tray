@@ -1,10 +1,12 @@
 {
     "name": "Bitwarden",
     "app_path": [
-        "/opt/Bitwarden/"
+        "/opt/Bitwarden/",
+        "/usr/lib/bitwarden/"
     ],
     "icons_path": [
-        "/opt/Bitwarden/resources/"
+        "/opt/Bitwarden/resources/",
+        "/usr/lib/bitwarden/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
