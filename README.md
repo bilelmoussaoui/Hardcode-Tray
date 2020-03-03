@@ -72,25 +72,23 @@ sudo apt update
 sudo apt install hardcode-tray
 ```
 
-### Debian 10
+### Debian 10+
 
 ```bash
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/SmartFinn:/hardcode-tray/openSUSE_Tools_Debian_10/ /' > /etc/apt/sources.list.d/hardcode-tray.list"
-wget -qO- https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/openSUSE_Tools_Debian_10/Release.key | sudo apt-key add -
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/SmartFinn:/hardcode-tray/Debian_$(lsb_release -rs)/ /' > /etc/apt/sources.list.d/hardcode-tray.list"
+wget -qO- https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/Debian_$(lsb_release -rs)/Release.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install hardcode-tray
 ```
 
-### Fedora 29+ / Fedora Rawhide
-
-To install hardcode-tray on Fedora 30 run the following commands:
+### Fedora 30+ / Fedora Rawhide
 
 ```bash
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/openSUSE_Tools_Fedora_30/home:SmartFinn:hardcode-tray.repo
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:SmartFinn:hardcode-tray/Fedora_$(rpm -E %fedora)/home:SmartFinn:hardcode-tray.repo
 sudo dnf install hardcode-tray
 ```
 
-You can find packages for other Fedora versions [here](https://software.opensuse.org/download.html?project=home%3ASmartFinn%3Ahardcode-tray&package=hardcode-tray).
+You can see all available packages [here](https://software.opensuse.org/download.html?project=home%3ASmartFinn%3Ahardcode-tray&package=hardcode-tray).
 
 ### Manual installation
 
