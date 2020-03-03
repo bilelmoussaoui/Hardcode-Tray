@@ -92,18 +92,6 @@ sudo dnf install hardcode-tray
 
 You can find packages for other Fedora versions [here](https://software.opensuse.org/download.html?project=home%3ASmartFinn%3Ahardcode-tray&package=hardcode-tray).
 
-### OpenSUSE (Leap 42.2 / Tumbleweed)
-
-You can use unofficial build
-
-```bash
-sudo zypper ar -p 98 http://download.opensuse.org/repositories/home:/GNorth:/Arc_and_Papirus/openSUSE_Leap_42.3/home:GNorth:Arc_and_Papirus.repo
-sudo zypper ref
-sudo zypper in Hardcode-Tray
-```
-Where openSUSE Leap 42.3 can be changed to 42.2 or Tumbleweed
-
-
 ### Manual installation
 
 1- Install dependencies
