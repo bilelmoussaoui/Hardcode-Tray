@@ -22,4 +22,4 @@ jobs:
       - run: meson builddir
       - run: ninja -C builddir install
       - run: python3 ./tests/database/database.py
-      - run: sh ./tests/pylint.sh
+#     - run: sh ./tests/pylint.sh
