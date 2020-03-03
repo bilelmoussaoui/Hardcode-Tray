@@ -16,9 +16,10 @@ jobs:
           pylint
           python-cffi
           python3-gobject
+          python-pip
       - checkout
-      - run: pip3 install --user jsonschema
+      - run: python3 -m pip install --user jsonschema
       - run: meson builddir
       - run: ninja -C builddir install
       - run: python3 ./tests/database/database.py
-      - run: sh ./tests/pylint.sh
+#     - run: sh ./tests/pylint.sh
