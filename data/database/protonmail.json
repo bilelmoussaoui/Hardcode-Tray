@@ -1,28 +1,34 @@
 {
     "name": "ProtonMail",
     "app_path": [
-        "/opt/Protonmail Desktop/"
+        "/usr/lib/protonmail-desktop/",
+        "/opt/Protonmail Desktop (unofficial)/"
     ],
     "icons_path": [
-        "/opt/Protonmail Desktop/resources/"
+        "/usr/lib/protonmail-desktop/resources/",
+        "/opt/Protonmail Desktop (unofficial)/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "app/static/IconTray.png",
+            "original": "app/images/IconTray.png",
+            "theme": "protonmail-indicator"
+        },
+        "tray11": {
+            "original": "app/images/IconTray11.png",
             "theme": "protonmail-indicator"
         },
         "tray@2x": {
-            "original": "app/static/IconTray@2x.png",
+            "original": "app/images/IconTray@2x.png",
             "theme": "protonmail-indicator"
         },
         "trayUnread": {
-            "original": "app/static/IconTrayUnread.png",
+            "original": "app/images/IconTrayUnread.png",
             "theme": "protonmail-notification"
         },
         "trayUnread@2x": {
-            "original": "app/static/IconTrayUnread@2x.png",
+            "original": "app/images/IconTrayUnread@2x.png",
             "theme": "protonmail-notification"
         }
     }
