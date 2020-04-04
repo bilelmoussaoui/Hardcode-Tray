@@ -4,7 +4,8 @@
         "/usr/share/joplin/"
     ],
     "icons_path": [
-        "/usr/share/joplin/resources/build/icons/"
+        "/usr/share/joplin/resources/build/icons/",
+        "/usr/share/joplin/desktop/resources/build/icons/"
     ],
     "icons": {
         "icon16": {
