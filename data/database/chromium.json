@@ -36,6 +36,10 @@
         "tray-77": {
             "original": "10151",
             "theme": "google-chrome-tray"
+        },
+        "tray-80": {
+            "original": "9151",
+            "theme": "google-chrome-tray"
         }
     }
 }
