@@ -1,0 +1,21 @@
+{
+    "name": "Tweet Tray",
+    "app_path": [
+        "/opt/Tweet Tray/"
+    ],
+    "icons_path": [
+        "/opt/Tweet Tray/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "includes/icons/tray.png",
+            "theme": "tweet-tray-panel"
+        },
+        "tray@2x": {
+            "original": "includes/icons/tray@2x.png",
+            "theme": "tweet-tray-panel"
+        }
+    }
+}
