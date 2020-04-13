@@ -31,7 +31,7 @@
         },
         "tray-unread-5": {
             "original": "images/alert/256/5.png",
-            "theme": "signal-unread-1"
+            "theme": "signal-unread-5"
         },
         "tray-unread-6": {
             "original": "images/alert/256/6.png",
