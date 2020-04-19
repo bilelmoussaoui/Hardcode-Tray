@@ -1,0 +1,19 @@
+{
+    "name": "AceStream Engine",
+    "app_path": [
+        "/opt/acestream/"
+    ],
+    "icons_path": [
+        "/opt/acestream/data/images/"
+    ],
+    "icons": {
+        "tray16": {
+            "original": "acestream16.png",
+            "theme": "acestream-tray"
+        },
+        "tray32": {
+            "original": "acestream32.png",
+            "theme": "acestream-tray"
+        }
+    }
+}
