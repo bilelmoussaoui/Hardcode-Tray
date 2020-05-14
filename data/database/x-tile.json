@@ -1,0 +1,15 @@
+{
+    "name": "X Tile",
+    "app_path": [
+        "/usr/share/x-tile/"
+    ],
+    "icons_path": [
+        "/usr/share/x-tile/glade/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "tile-quad.svg",
+            "theme": "x-tile-panel"
+        }
+    }
+}
