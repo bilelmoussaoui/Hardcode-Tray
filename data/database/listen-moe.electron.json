@@ -1,0 +1,17 @@
+{
+    "name": "LISTEN.moe",
+    "app_path": [
+        "/usr/lib/listen-moe-desktop/"
+    ],
+    "icons_path": [
+        "/usr/lib/listen-moe-desktop/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "logo-trans.png",
+            "theme": "listen.moe-desktop-app-tray"
+        }
+    }
+}
