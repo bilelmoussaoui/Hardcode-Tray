@@ -1,0 +1,23 @@
+{
+    "name": "PreMiD",
+    "app_path": [
+        "/usr/lib/premid/",
+        "/opt/premid/"
+    ],
+    "icons_path": [
+        "/usr/lib/premid/resources/",
+        "/opt/premid/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/tray/icon.png",
+            "theme": "premid-tray"
+        },
+        "tray@2x": {
+            "original": "assets/tray/Icon@2x.png",
+            "theme": "premid-tray"
+        }
+    }
+}
