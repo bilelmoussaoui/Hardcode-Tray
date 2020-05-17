@@ -4,7 +4,7 @@
         "/usr/bin/jdownloader"
     ],
     "icons_path": [
-        "{userhome}/.jd/themes/standard/org/jdownloader/images/"
+        "{userhome}/.jd2/themes/standard/org/jdownloader/images/logo/"
     ],
     "icons": {
         "indicator": {
