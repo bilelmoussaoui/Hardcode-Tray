@@ -1,0 +1,31 @@
+{
+    "name": "MATE Sensors Applet",
+    "app_path": [
+        "/usr/lib/mate-sensors-applet/"
+    ],
+    "icons_path": [
+        "/usr/share/pixmaps/mate-sensors-applet/"
+    ],
+    "icons": {
+        "very-low-temp-icon": {
+            "original": "very-low-temp-icon.png",
+            "theme": "very-low-temp-icon"
+        },
+        "low-temp-icon": {
+            "original": "low-temp-icon.png",
+            "theme": "low-temp-icon"
+        },
+        "normal-temp-icon": {
+            "original": "normal-temp-icon.png",
+            "theme": "normal-temp-icon"
+        },
+        "high-temp-icon": {
+            "original": "high-temp-icon.png",
+            "theme": "high-temp-icon"
+        },
+        "very-high-temp-icon": {
+            "original": "very-high-temp-icon.png",
+            "theme": "very-high-temp-icon"
+        }
+    }
+}
