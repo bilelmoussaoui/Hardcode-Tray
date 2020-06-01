@@ -1,0 +1,34 @@
+{
+    "name": "Brave",
+    "app_path": [
+        "/opt/brave.com/brave/",
+        "/opt/brave.com/brave-dev/",
+        "/opt/brave.com/brave-nightly/",
+        "/opt/brave.com/brave-beta/",
+        "/usr/lib/brave-bin/",
+        "/usr/lib/brave-dev-bin/",
+        "/usr/lib/brave-beta-bin/",
+        "/usr/lib/brave-nightly-bin/",
+        "/usr/lib/brave/"
+    ],
+    "icons_path": [
+        "/opt/brave.com/brave/",
+        "/opt/brave.com/brave-dev/",
+        "/opt/brave.com/brave-nightly/",
+        "/opt/brave.com/brave-beta/",
+        "/usr/lib/brave-bin/",
+        "/usr/lib/brave-dev-bin/",
+        "/usr/lib/brave-beta-bin/",
+        "/usr/lib/brave-nightly-bin/",
+        "/usr/lib/brave/"
+
+    ],
+    "script": "pak",
+    "binary": "resources.pak",
+    "icons": {
+        "tray-1.9": {
+            "original": "9151",
+            "theme": "brave-tray"
+        }
+    }
+}
