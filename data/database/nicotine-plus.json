@@ -1,0 +1,27 @@
+{
+    "name": "Nicotine +",
+    "app_path": [
+        "/usr/share/nicotine/"
+    ],
+    "icons_path": [
+        "/usr/share/nicotine/trayicons/"
+    ],
+    "icons": {
+        "away": {
+            "original": "trayicon_away.png",
+            "theme": "nicotine-tray-away"
+        },
+        "connect": {
+            "original": "trayicon_connect.png",
+            "theme": "nicotine-tray-connect"
+        },
+        "disconnect": {
+            "original": "trayicon_disconnect.png",
+            "theme": "nicotine-tray-disconnect"
+        },
+        "msg": {
+            "original": "trayicon_msg.png",
+            "theme": "nicotine-tray-msg"
+        }
+    }
+}
