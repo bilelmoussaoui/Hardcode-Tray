@@ -17,6 +17,14 @@
             "original": "icon-read@2x.png",
             "theme": "hangouts-available"
         },
+        "indicator@8x": {
+            "original": "icon-read@8x.png",
+            "theme": "hangouts-available"
+        },
+        "indicator@20": {
+            "original": "icon-read@20.png",
+            "theme": "hangouts-available"
+        },
         "notification": {
             "original": "icon-unread.png",
             "theme": "hangouts-notification",
@@ -29,6 +37,20 @@
             "theme": "hangouts-notification",
             "symlinks": [
                 "icon@2x.png"
+            ]
+        },
+	    "notification@8x": {
+            "original": "icon-unread@8x.png",
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon@8x.png"
+            ]
+        },
+	    "notification@20": {
+            "original": "icon-unread@20.png",
+            "theme": "hangouts-notification",
+            "symlinks": [
+                "icon@20.png"
             ]
         }
     }
