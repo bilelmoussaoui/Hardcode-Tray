@@ -162,7 +162,7 @@ class Backup:
             while not has_chosen and not stopped:
                 try:
                     selected = input("Select a restore date : ")
-                    if selected in ["q", "quit", "exit"]:
+                    if selected in ["Q", "q", "quit", "exit"]:
                         stopped = True
                     selected = int(selected)
                     if 1 <= selected <= total:
