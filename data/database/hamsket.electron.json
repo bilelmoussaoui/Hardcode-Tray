@@ -2,11 +2,13 @@
     "name": "Hamsket",
     "app_path": [
         "/opt/Rambox-OS/",
-        "/opt/hamsket/"
+        "/opt/hamsket/",
+        "/opt/Hamsket/"
     ],
     "icons_path": [
         "/opt/Rambox-OS/resources/",
-        "/opt/hamsket/resources/"
+        "/opt/hamsket/resources/",
+        "/opt/Hamsket/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
