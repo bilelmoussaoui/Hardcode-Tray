@@ -1,0 +1,15 @@
+{
+    "name": "Tutanota Desktop",
+    "app_path": [
+        "/opt/tutanota-desktop/"
+    ],
+    "icons_path": [
+        "/opt/tutanota-desktop/resources/icons/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "logo-solo-red.png",
+            "theme": "tutanota-desktop-tray"
+        }
+    }
+}
