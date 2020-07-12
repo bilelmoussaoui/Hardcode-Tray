@@ -29,6 +29,10 @@
         "tray-1.9": {
             "original": "9151",
             "theme": "brave-tray"
+        },
+        "tray-1.12": {
+            "original": "10151",
+            "theme": "brave-tray"
         }
     }
 }
