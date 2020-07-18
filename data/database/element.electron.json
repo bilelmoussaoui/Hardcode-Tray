@@ -1,0 +1,15 @@
+{
+    "name": "Element Desktop",
+    "app_path": [
+        "/opt/Element/"
+    ],
+    "icons_path": [
+        "/opt/Element/resources/img/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "element.png",
+            "theme": "element-desktop-tray"
+        }
+    }
+}
