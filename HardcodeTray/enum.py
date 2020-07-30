@@ -69,12 +69,12 @@ class ApplicationType:
         Different Applications Type
     """
     ELECTRON = "ElectronApplication"
+    B64ELECTRON = "B64ElectronApplication"
     ZIP = "ZipApplication"
     PAK = "PakApplication"
     NWJS = "NWJSApplication"
     QT = "QtApplication"
     APPLICATION = "Application"
-    JS = "JavaScriptApplication"
 
     @staticmethod
     def choices():

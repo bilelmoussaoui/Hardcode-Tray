@@ -29,8 +29,8 @@ from HardcodeTray.modules.log import Logger
 from HardcodeTray.utils import get_pngbytes
 
 
-class JavaScriptApplication(BinaryApplication):
-    """JavaScript (Electron) application object."""
+class B64ElectronApplication(BinaryApplication):
+    """Electron application with Base64 hardcoded icons."""
 
     def __init__(self, parser):
         """Use the parent class, Application, modify only the (re)install."""
