@@ -9,7 +9,7 @@
         "/usr/lib/slack/resources/"
     ],
     "binary": "app.asar",
-    "script": "js",
+    "script": "b64electron",
     "file": "dist/main.[1,2]*.js",
     "icons": {
         "highlight": {
