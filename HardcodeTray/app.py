@@ -22,9 +22,9 @@ from gettext import gettext as _
 from glob import glob
 from os import path
 
-from HardcodeTray.const import DB_FOLDER
+from HardcodeTray.const import BACKUP_FOLDER, DB_FOLDER
 from HardcodeTray.enum import Action
-from HardcodeTray.utils import progress
+from HardcodeTray.utils import progress, set_user_permissions
 
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.modules.parser import Parser
@@ -130,6 +130,7 @@ class App:
 
         if apps:
             print(_("Took {:.2f}s to finish the tasks").format(total_time))
+            set_user_permissions(BACKUP_FOLDER)
         elif action == Action.APPLY:
             print(_("No apps to fix!"))
         elif action == Action.CLEAR_CACHE:

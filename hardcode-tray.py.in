@@ -41,9 +41,10 @@ from HardcodeTray.app import App
 from HardcodeTray.const import DESKTOP_ENV, ICONS_SIZE, THEMES_LIST
 from HardcodeTray.enum import Action, ConversionTools
 
-if geteuid() != 0:
-    print(_("You need to have root privileges to run the script."))
-    exit(_("Please try again, this time using 'sudo'. Exiting."))
+def check_root():
+    if geteuid() != 0:
+        print(_("\nYou need to have root privileges to modify system files."))
+        exit(_("Please try again, this time using 'sudo'. Exiting."))
 
 parser = ArgumentParser(prog="@PACKAGE@")
 parser.add_argument("--apply", "-a", action='store_true',
@@ -112,8 +113,10 @@ else:
 
     action = App.get("action")
     if action == Action.APPLY:
+        check_root()
         print(_("Applying now.."))
     elif action == Action.REVERT:
+        check_root()
         print(_("Reverting now.."))
     elif action == Action.CLEAR_CACHE:
         print(_("Clearing cache..."))
