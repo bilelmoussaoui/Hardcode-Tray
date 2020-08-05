@@ -3,7 +3,7 @@
 Fixes Hardcoded tray icons in Linux.
 
 Author : Bilal Elmoussaoui (bil.elmoussaoui@gmail.com)
-Contributors : Andreas Angerer, Joshua Fogg
+Contributors : Andreas Angerer, Joshua Fogg, Ivo Šmerek
 Website : https://github.com/bil-elmoussaoui/Hardcode-Tray
 Licence : The script is released under GPL, uses a modified script
      form Chromium project released under BSD license
@@ -119,3 +119,22 @@ class AsarFile:
         asarfile = open(self._asar_file, 'wb')
         asarfile.write(asar_content)
         asarfile.close()
+
+    def read_file(self, path):
+        """Read a file in asar archive."""
+        self._keys = path.split("/")
+
+        fileinfo = get_from_dict(self._header, self._keys)
+
+        if (not isinstance(fileinfo, dict)
+                or "offset" not in fileinfo.keys()):
+            return
+
+        offset0 = int(fileinfo['offset'])
+        offset = offset0 + self._offset
+        size = int(fileinfo['size'])
+
+        with open(self._asar_file, 'rb') as asarfile:
+            asar = asarfile.read()
+
+        return asar[offset: offset + size]
