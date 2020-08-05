@@ -44,10 +44,9 @@ class B64ElectronApplication(ElectronApplication):
         png_bytes = get_pngbytes(icon)
 
         if png_bytes:
-            binary_file = path.join(str(icon_path), self.binary)
-            asar = AsarFile(binary_file)
-            target = B64ElectronApplication.get_real_path(self.file)
             # Read a target file
+            asar = AsarFile(path.join(str(icon_path), self.binary))
+            target = B64ElectronApplication.get_real_path(self.file)
             file_content = asar.read_file(target).decode()
             # Create new base64 binary file
             base64_icon = b64encode(App.svg().to_bin(icon.theme, icon.icon_size, icon.icon_size))
@@ -55,13 +54,36 @@ class B64ElectronApplication(ElectronApplication):
             new_icon = "data:image/png;base64," + base64_icon.decode()
             # Replace the original icon with newly built one
             file_content = file_content.replace(icon.original, new_icon)
-            # Write changed file
-            asar.write(target, file_content.encode())
+            bytes = file_content.encode()
+            self.set_icon(target, icon_path, bytes, True)
         else:
             Logger.error("Icon file was not found.")
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
-        # I don't know what is the best way to handle backup here.
-        # Maybe backup whole app.asar file?
-        Logger.error("Backup file of {0} was not found".format(self.name))
+        target = B64ElectronApplication.get_real_path(self.file)
+        backup_file = "|".join(target.split("/"))
+
+        bytes = self.get_backup_file(backup_file)
+        if bytes:
+            self.set_icon(target, icon_path, bytes)
+        else:
+            Logger.error("Backup file of {0} was not found".format(self.name))
+            print("Backup file of {0} was not found".format(self.name))
+
+    def set_icon(self, icon_to_replace, binary_path, png_bytes, backup=False):
+        """Set the icon into the electron binary file."""
+        binary_file = path.join(str(binary_path), self.binary)
+
+        asar = AsarFile(binary_file)
+        asar.write(icon_to_replace, png_bytes)
+        backup_file = "|".join(asar.keys)
+        # If script edits one file multiple times,
+        # it has to backup only the first time.
+        if backup and not self.backup._exists:
+            content = asar.old_content
+            if content:  # in case the icon doesn't exists anymore
+                self.backup.file(backup_file, content)
+                self.backup._exists = True
+
+        self.is_corrupted = not asar.success
