@@ -69,7 +69,6 @@ class B64ElectronApplication(ElectronApplication):
             self.set_icon(target, icon_path, bytes)
         else:
             Logger.error("Backup file of {0} was not found".format(self.name))
-            print("Backup file of {0} was not found".format(self.name))
 
     def set_icon(self, icon_to_replace, binary_path, png_bytes, backup=False):
         """Set the icon into the electron binary file."""
