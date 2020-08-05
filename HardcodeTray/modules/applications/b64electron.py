@@ -24,17 +24,18 @@ from os import path, system
 from fileinput import FileInput
 
 from HardcodeTray.app import App
-from HardcodeTray.modules.applications.helpers.binary import BinaryApplication
+from HardcodeTray.modules.applications.electron import ElectronApplication
+from HardcodeTray.modules.applications.helpers.asar import AsarFile
 from HardcodeTray.modules.log import Logger
 from HardcodeTray.utils import get_pngbytes
 
 
-class B64ElectronApplication(BinaryApplication):
+class B64ElectronApplication(ElectronApplication):
     """Electron application with Base64 hardcoded icons."""
 
     def __init__(self, parser):
         """Use the parent class, Application, modify only the (re)install."""
-        BinaryApplication.__init__(self, parser)
+        ElectronApplication.__init__(self, parser)
 
     def install_icon(self, icon, icon_path):
         """Install the icon."""
@@ -43,31 +44,21 @@ class B64ElectronApplication(BinaryApplication):
         png_bytes = get_pngbytes(icon)
 
         if png_bytes:
-            # Extract <binary_name> into /tmp/<binary_name>.unpacked
-            extraction_path = "/tmp/%s.unpacked" % self.binary
-            self.extract(extraction_path, icon_path)
-            target_files = glob("%s/%s" % (extraction_path, self.file))
+            binary_file = path.join(str(icon_path), self.binary)
+            asar = AsarFile(binary_file)
+            target = B64ElectronApplication.get_real_path(self.file)
+            # Read a target file
+            file_content = asar.read_file(target).decode()
             # Create new base64 binary file
             base64_icon = b64encode(App.svg().to_bin(icon.theme, icon.icon_size, icon.icon_size))
             # Build new icon
             new_icon = "data:image/png;base64," + base64_icon.decode()
             # Replace the original icon with newly built one
-            for file in target_files:
-                with FileInput(file, inplace=True) as file:
-                    for line in file:
-                        print(line.replace(icon.original, new_icon), end='')
-            # Pack /tmp/<binary_name>.unpacked back to default location
-            self.pack(extraction_path, icon_path)
+            file_content = file_content.replace(icon.original, new_icon)
+            # Write changed file
+            asar.write(target, file_content.encode())
         else:
             Logger.error("Icon file was not found.")
-
-    def extract(self, output_path, icon_path):
-        """Extract binary file into output_path."""
-        system("npx asar extract %s%s %s 2> /dev/null" % (icon_path, self.binary, output_path))
-
-    def pack(self, input_path, icon_path):
-        """Pack extracted binary file back to default location."""
-        system("npx asar pack %s %s%s 2> /dev/null" % (input_path, icon_path, self.binary))
 
     def revert_icon(self, icon, icon_path):
         """Revert to the original icon."""
