@@ -2,11 +2,13 @@
     "name": "Rambox",
     "app_path": [
         "/opt/rambox/",
-        "/opt/Rambox/"
+        "/opt/Rambox/",
+        "/usr/lib/rambox"
     ],
     "icons_path": [
         "/opt/rambox/resources/",
-        "/opt/Rambox/resources/"
+        "/opt/Rambox/resources/",
+        "/usr/lib/rambox/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
