@@ -1,0 +1,17 @@
+{
+    "name": "Todoist",
+    "app_path": [
+        "/opt/Todoist/"
+    ],
+    "icons_path": [
+        "/opt/Todoist/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "icons/icon.png",
+            "theme": "todoist-tray"
+        }
+    }
+}
