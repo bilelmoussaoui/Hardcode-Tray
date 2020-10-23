@@ -103,6 +103,7 @@ sudo apt install git build-essential meson libgirepository1.0-dev libgtk-3-dev p
 
 ```bash
 git clone https://github.com/bil-elmoussaoui/Hardcode-Tray
+cd Hardcode-Tray
 meson builddir --prefix=/usr
 sudo ninja -C builddir install
 ```
