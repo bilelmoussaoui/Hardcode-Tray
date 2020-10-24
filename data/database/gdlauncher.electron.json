@@ -1,0 +1,25 @@
+{
+    "name": "GDLauncher",
+    "app_path": [
+        "/opt/GDLauncher/",
+        "/opt/gdlauncher/",
+        "/opt/gdlauncher-appimage/",
+        "/opt/gdlauncher-bin/",
+        "/usr/lib/gdlauncher/"
+    ],
+    "icons_path": [
+        "/opt/GDLauncher/resources/",
+        "/opt/gdlauncher/resources/",
+        "/opt/gdlauncher-appimage/resources/",
+        "/opt/gdlauncher-bin/resources/",
+        "/usr/lib/gdlauncher/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "build/logo_32x32.png",
+            "theme": "gdlauncher-tray"
+        }
+    }
+}
