@@ -15,9 +15,9 @@
             "original": "resources/tray/icon.png",
             "theme": "android-messages-desktop-tray"
         },
-        "tray@2x": {
-            "original": "resources/tray/icon@2x.png",
-            "theme": "android-messages-desktop-tray"
+        "tray-unread": {
+            "original": "resources/tray/unread_icon.png",
+            "theme": "android-messages-desktop-tray-unread"
         }
     }
 }
