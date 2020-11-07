@@ -1,0 +1,31 @@
+{
+    "name": "Super Productivity",
+    "app_path": [
+        "/opt/superProductivity/",
+        "/usr/lib/superproductivity/"
+    ],
+    "icons_path": [
+        "/opt/superProductivity/resources/",
+        "/usr/lib/superproductivity/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray-d": {
+            "original": "electron/assets/icons/tray-ico-d.png",
+            "theme": "superproductivity-tray"
+        },
+        "tray-d@2x": {
+            "original": "electron/assets/icons/tray-ico-d@2x.png",
+            "theme": "superproductivity-tray"
+        },
+        "tray-l": {
+            "original": "electron/assets/icons/tray-ico-l.png",
+            "theme": "superproductivity-tray"
+        },
+        "tray-l@2x": {
+            "original": "electron/assets/icons/tray-ico-l@2x.png",
+            "theme": "superproductivity-tray"
+        }
+    }
+}
