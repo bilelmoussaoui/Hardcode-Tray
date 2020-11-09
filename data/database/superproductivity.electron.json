@@ -26,6 +26,294 @@
         "tray-l@2x": {
             "original": "electron/assets/icons/tray-ico-l@2x.png",
             "theme": "superproductivity-tray"
+        },
+        "running-d": {
+            "original": "electron/assets/icons/indicator/running-d.png",
+            "theme": "superproductivity-tray-run"
+        },
+        "running-d@2x": {
+            "original": "electron/assets/icons/indicator/running-d@2x.png",
+            "theme": "superproductivity-tray-run"
+        },
+        "running-l": {
+            "original": "electron/assets/icons/indicator/running-l.png",
+            "theme": "superproductivity-tray-run"
+        },
+        "running-l@2x": {
+            "original": "electron/assets/icons/indicator/running-l@2x.png",
+            "theme": "superproductivity-tray-run"
+        },
+        "stopped-d": {
+            "original": "electron/assets/icons/indicator/stopped-d.png",
+            "theme": "superproductivity-tray"
+        },
+        "stopped-d@2x": {
+            "original": "electron/assets/icons/indicator/stopped-d@2x.png",
+            "theme": "superproductivity-tray"
+        },
+        "stopped-l": {
+            "original": "electron/assets/icons/indicator/stopped-l.png",
+            "theme": "superproductivity-tray"
+        },
+        "stopped-l@2x": {
+            "original": "electron/assets/icons/indicator/stopped-l@2x.png",
+            "theme": "superproductivity-tray"
+        },
+        "d0": {
+            "original": "electron/assets/icons/indicator/running-anim-d/0.png",
+            "theme": "superproductivity-tray-0"
+        },
+        "d0@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/0@2x.png",
+            "theme": "superproductivity-tray-0"
+        },
+        "d1": {
+            "original": "electron/assets/icons/indicator/running-anim-d/1.png",
+            "theme": "superproductivity-tray-1"
+        },
+        "d1@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/1@2x.png",
+            "theme": "superproductivity-tray-1"
+        },
+        "d2": {
+            "original": "electron/assets/icons/indicator/running-anim-d/2.png",
+            "theme": "superproductivity-tray-2"
+        },
+        "d2@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/2@2x.png",
+            "theme": "superproductivity-tray-2"
+        },
+        "d3": {
+            "original": "electron/assets/icons/indicator/running-anim-d/3.png",
+            "theme": "superproductivity-tray-3"
+        },
+        "d3@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/3@2x.png",
+            "theme": "superproductivity-tray-3"
+        },
+        "d4": {
+            "original": "electron/assets/icons/indicator/running-anim-d/4.png",
+            "theme": "superproductivity-tray-4"
+        },
+        "d4@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/4@2x.png",
+            "theme": "superproductivity-tray-4"
+        },
+        "d5": {
+            "original": "electron/assets/icons/indicator/running-anim-d/5.png",
+            "theme": "superproductivity-tray-5"
+        },
+        "d5@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/5@2x.png",
+            "theme": "superproductivity-tray-5"
+        },
+        "d6": {
+            "original": "electron/assets/icons/indicator/running-anim-d/6.png",
+            "theme": "superproductivity-tray-6"
+        },
+        "d6@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/6@2x.png",
+            "theme": "superproductivity-tray-6"
+        },
+        "d7": {
+            "original": "electron/assets/icons/indicator/running-anim-d/7.png",
+            "theme": "superproductivity-tray-7"
+        },
+        "d7@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/7@2x.png",
+            "theme": "superproductivity-tray-7"
+        },
+        "d8": {
+            "original": "electron/assets/icons/indicator/running-anim-d/8.png",
+            "theme": "superproductivity-tray-8"
+        },
+        "d8@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/8@2x.png",
+            "theme": "superproductivity-tray-8"
+        },
+        "d9": {
+            "original": "electron/assets/icons/indicator/running-anim-d/9.png",
+            "theme": "superproductivity-tray-9"
+        },
+        "d9@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/9@2x.png",
+            "theme": "superproductivity-tray-9"
+        },
+        "d10": {
+            "original": "electron/assets/icons/indicator/running-anim-d/10.png",
+            "theme": "superproductivity-tray-10"
+        },
+        "d10@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/10@2x.png",
+            "theme": "superproductivity-tray-10"
+        },
+        "d11": {
+            "original": "electron/assets/icons/indicator/running-anim-d/11.png",
+            "theme": "superproductivity-tray-11"
+        },
+        "d11@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/11@2x.png",
+            "theme": "superproductivity-tray-11"
+        },
+        "d12": {
+            "original": "electron/assets/icons/indicator/running-anim-d/12.png",
+            "theme": "superproductivity-tray-12"
+        },
+        "d12@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/12@2x.png",
+            "theme": "superproductivity-tray-12"
+        },
+        "d13": {
+            "original": "electron/assets/icons/indicator/running-anim-d/13.png",
+            "theme": "superproductivity-tray-13"
+        },
+        "d13@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/13@2x.png",
+            "theme": "superproductivity-tray-13"
+        },
+        "d14": {
+            "original": "electron/assets/icons/indicator/running-anim-d/14.png",
+            "theme": "superproductivity-tray-14"
+        },
+        "d14@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/14@2x.png",
+            "theme": "superproductivity-tray-14"
+        },
+        "d15": {
+            "original": "electron/assets/icons/indicator/running-anim-d/15.png",
+            "theme": "superproductivity-tray-15"
+        },
+        "d15@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-d/15@2x.png",
+            "theme": "superproductivity-tray-15"
+        },
+        "l0": {
+            "original": "electron/assets/icons/indicator/running-anim-l/0.png",
+            "theme": "superproductivity-tray-0"
+        },
+        "l0@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/0@2x.png",
+            "theme": "superproductivity-tray-0"
+        },
+        "l1": {
+            "original": "electron/assets/icons/indicator/running-anim-l/1.png",
+            "theme": "superproductivity-tray-1"
+        },
+        "l1@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/1@2x.png",
+            "theme": "superproductivity-tray-1"
+        },
+        "l2": {
+            "original": "electron/assets/icons/indicator/running-anim-l/2.png",
+            "theme": "superproductivity-tray-2"
+        },
+        "l2@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/2@2x.png",
+            "theme": "superproductivity-tray-2"
+        },
+        "l3": {
+            "original": "electron/assets/icons/indicator/running-anim-l/3.png",
+            "theme": "superproductivity-tray-3"
+        },
+        "l3@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/3@2x.png",
+            "theme": "superproductivity-tray-3"
+        },
+        "l4": {
+            "original": "electron/assets/icons/indicator/running-anim-l/4.png",
+            "theme": "superproductivity-tray-4"
+        },
+        "l4@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/4@2x.png",
+            "theme": "superproductivity-tray-4"
+        },
+        "l5": {
+            "original": "electron/assets/icons/indicator/running-anim-l/5.png",
+            "theme": "superproductivity-tray-5"
+        },
+        "l5@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/5@2x.png",
+            "theme": "superproductivity-tray-5"
+        },
+        "l6": {
+            "original": "electron/assets/icons/indicator/running-anim-l/6.png",
+            "theme": "superproductivity-tray-6"
+        },
+        "l6@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/6@2x.png",
+            "theme": "superproductivity-tray-6"
+        },
+        "l7": {
+            "original": "electron/assets/icons/indicator/running-anim-l/7.png",
+            "theme": "superproductivity-tray-7"
+        },
+        "l7@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/7@2x.png",
+            "theme": "superproductivity-tray-7"
+        },
+        "l8": {
+            "original": "electron/assets/icons/indicator/running-anim-l/8.png",
+            "theme": "superproductivity-tray-8"
+        },
+        "l8@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/8@2x.png",
+            "theme": "superproductivity-tray-8"
+        },
+        "l9": {
+            "original": "electron/assets/icons/indicator/running-anim-l/9.png",
+            "theme": "superproductivity-tray-9"
+        },
+        "l9@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/9@2x.png",
+            "theme": "superproductivity-tray-9"
+        },
+        "l10": {
+            "original": "electron/assets/icons/indicator/running-anim-l/10.png",
+            "theme": "superproductivity-tray-10"
+        },
+        "l10@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/10@2x.png",
+            "theme": "superproductivity-tray-10"
+        },
+        "l11": {
+            "original": "electron/assets/icons/indicator/running-anim-l/11.png",
+            "theme": "superproductivity-tray-11"
+        },
+        "l11@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/11@2x.png",
+            "theme": "superproductivity-tray-11"
+        },
+        "l12": {
+            "original": "electron/assets/icons/indicator/running-anim-l/12.png",
+            "theme": "superproductivity-tray-12"
+        },
+        "l12@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/12@2x.png",
+            "theme": "superproductivity-tray-12"
+        },
+        "l13": {
+            "original": "electron/assets/icons/indicator/running-anim-l/13.png",
+            "theme": "superproductivity-tray-13"
+        },
+        "l13@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/13@2x.png",
+            "theme": "superproductivity-tray-13"
+        },
+        "l14": {
+            "original": "electron/assets/icons/indicator/running-anim-l/14.png",
+            "theme": "superproductivity-tray-14"
+        },
+        "l14@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/14@2x.png",
+            "theme": "superproductivity-tray-14"
+        },
+        "l15": {
+            "original": "electron/assets/icons/indicator/running-anim-l/15.png",
+            "theme": "superproductivity-tray-15"
+        },
+        "l15@2x": {
+            "original": "electron/assets/icons/indicator/running-anim-l/15@2x.png",
+            "theme": "superproductivity-tray-15"
         }
     }
 }
