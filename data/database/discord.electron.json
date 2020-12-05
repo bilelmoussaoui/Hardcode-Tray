@@ -18,19 +18,19 @@
             "theme": "discord-tray-notification"
         },
         "tray-connected": {
-            "original": "app/images/systemtray/linux/systemtray/linux/tray-connected.png",
+            "original": "app/images/systemtray/linux/tray-connected.png",
             "theme": "discord-tray-connected"
         },
         "tray-deafended": {
-            "original": "app/images/systemtray/linux/systemtray/linux/tray-deafened.png",
+            "original": "app/images/systemtray/linux/tray-deafened.png",
             "theme": "discord-tray-deafened"
         },
         "tray-muted": {
-            "original": "app/images/systemtray/linux/systemtray/linux/tray-muted.png",
+            "original": "app/images/systemtray/linux/tray-muted.png",
             "theme": "discord-tray-muted"
         },
         "tray-speaking": {
-            "original": "app/images/systemtray/linux/systemtray/linux/tray-speaking.png",
+            "original": "app/images/systemtray/linux/tray-speaking.png",
             "theme": "discord-tray-speaking"
         }
     }
