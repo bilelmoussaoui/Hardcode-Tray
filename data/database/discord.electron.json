@@ -2,13 +2,15 @@
     "name": "Discord",
     "app_path": [
         "{userhome}/.config/discord",
+        "{userhome}/.config/discordptb",
         "{userhome}/.config/discordcanary",
-        "{userhome}/.config/discordptb"
+        "{userhome}/.config/discorddevelopment"
     ],
     "icons_path": [
         "{userhome}/.config/discord/0.0.13/modules/discord_desktop_core/",
+        "{userhome}/.config/discordptb/0.0.23/modules/discord_desktop_core/",
         "{userhome}/.config/discordcanary/0.0.116/modules/discord_desktop_core/",
-        "{userhome}/.config/discordptb/0.0.23/modules/discord_desktop_core/"
+        "{userhome}/.config/discorddevelopment/0.0.122/modules/discord_desktop_core/"
     ],
     "binary": "core.asar",
     "script": "electron",
