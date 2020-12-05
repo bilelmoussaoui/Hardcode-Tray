@@ -15,7 +15,7 @@
         },
         "tray-unread": {
             "original": "app/images/systemtray/linux/tray-unread.png",
-            "theme": "discord-tray-notification"
+            "theme": "discord-tray-unread"
         },
         "tray-connected": {
             "original": "app/images/systemtray/linux/tray-connected.png",
