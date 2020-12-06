@@ -1,0 +1,19 @@
+{
+    "name": "Vorta",
+    "app_path": [
+        "/usr/lib/python3/dist-packages/vorta/"
+    ],
+    "icons_path": [
+        "/usr/lib/python3/dist-packages/vorta/assets/icons/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "hdd-o.png",
+            "theme": "vorta-tray"
+        },
+        "tray-active": {
+            "original": "hdd-o-active.png",
+            "theme": "vorta-tray-active"
+        }
+    }
+}
