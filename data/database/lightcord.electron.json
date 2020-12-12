@@ -1,0 +1,37 @@
+{
+    "name": "Lightcord",
+    "app_path": [
+        "/opt/lightcord/"
+    ],
+    "icons_path": [
+        "/opt/lightcord/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray.png",
+            "theme": "discord-tray"
+        },
+        "tray-unread": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray-unread.png",
+            "theme": "discord-tray-unread"
+        },
+        "tray-connected": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray-connected.png",
+            "theme": "discord-tray-connected"
+        },
+        "tray-deafended": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray-deafened.png",
+            "theme": "discord-tray-deafened"
+        },
+        "tray-muted": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray-muted.png",
+            "theme": "discord-tray-muted"
+        },
+        "tray-speaking": {
+            "original": "modules/discord_desktop_core/core/app/images/systemtray/linux/tray-speaking.png",
+            "theme": "discord-tray-speaking"
+        }
+    }
+}
