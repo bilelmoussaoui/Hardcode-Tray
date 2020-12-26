@@ -1,0 +1,51 @@
+{
+    "name": "Microsoft Teams",
+    "app_path": [
+        "/usr/share/teams-insiders/"
+    ],
+    "icons_path": [
+        "/usr/share/teams-insiders/resources/assets/"
+    ],
+    "icons": {
+        "tray-error": {
+            "original": "Error-Systray16x16@2x.png",
+            "theme": "teams-tray-error"
+        },
+        "tray-dnd": {
+            "original": "Presence-DnD-Systray16x16@2x.png",
+            "theme": "teams-tray-dnd"
+        },
+        "tray-away": {
+            "original": "Presence-Away-Systray16x16@2x.png",
+            "theme": "teams-tray-away"
+        },
+        "tray-busy": {
+            "original": "Presence-Busy-Systray16x16@2x.png",
+            "theme": "teams-tray-busy"
+        },
+        "tray-offline": {
+            "original": "Presence-Offline-Systray16x16@2x.png",
+            "theme": "teams-tray-offline"
+        },
+        "tray-onshift": {
+            "original": "Presence-OnShift-Systray16x16@2x.png",
+            "theme": "teams-tray-onshift"
+        },
+        "tray-activity": {
+            "original": "Presence-Activity-Systray16x16@2x.png",
+            "theme": "teams-tray-activity"
+        },
+        "tray-offshift": {
+            "original": "Presence-OffShift-Systray16x16@2x.png",
+            "theme": "teams-tray-offshift"
+        },
+        "tray-available": {
+            "original": "Presence-Available-Systray16x16@2x.png",
+            "theme": "teams-tray-available"
+        },
+        "tray-noactivity": {
+            "original": "Presence-NoActivity-Systray16x16@2x.png",
+            "theme": "teams-tray-noactivity"
+        }
+    }
+}
