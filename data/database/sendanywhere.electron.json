@@ -1,0 +1,23 @@
+{
+    "name": "Send Anywhere",
+    "app_path": [
+        "/opt/SendAnywhere/",
+        "/usr/lib/sendanywhere/"
+    ],
+    "icons_path": [
+        "/opt/SendAnywhere/resources/",
+        "/usr/lib/sendanywhere/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray32": {
+            "original": "assets/app/32x32.png",
+            "theme": "sendanywhere-tray"
+        },
+        "tray64": {
+            "original": "assets/app/64x64.png",
+            "theme": "sendanywhere-tray"
+        }
+    }
+}
