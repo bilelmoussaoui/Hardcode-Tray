@@ -3,12 +3,14 @@
     "app_path": [
         "/opt/franz/",
         "/opt/Franz/",
-        "/opt/franz-bin/"
+        "/opt/franz-bin/",
+        "/usr/lib/franz/"
     ],
     "icons_path": [
         "/opt/franz/resources/",
         "/opt/Franz/resources/",
-        "/opt/franz-bin/resources/"
+        "/opt/franz-bin/resources/",
+        "/usr/lib/franz/resources/"
     ],
     "script": "electron",
     "binary": "app.asar",
