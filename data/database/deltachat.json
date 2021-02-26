@@ -1,0 +1,15 @@
+{
+    "name": "DeltaChat",
+    "app_path": [
+        "/opt/DeltaChat/"
+    ],
+    "icons_path": [
+        "/opt/DeltaChat/electron_app/images/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "deltachat.png",
+            "theme": "deltachat-tray"
+        }
+    }
+}
