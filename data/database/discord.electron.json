@@ -4,7 +4,7 @@
         "{userhome}/.config/discord"
     ],
     "icons_path": [
-        "{userhome}/.config/discord/0.0.13/modules/discord_desktop_core/"
+        "{userhome}/.config/discord/0.0.14/modules/discord_desktop_core/"
     ],
     "binary": "core.asar",
     "script": "electron",
