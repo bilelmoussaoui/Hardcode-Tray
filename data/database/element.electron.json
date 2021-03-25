@@ -1,10 +1,12 @@
 {
     "name": "Element Desktop",
     "app_path": [
-        "/opt/Element/"
+        "/opt/Element/",
+        "/usr/lib/element/"
     ],
     "icons_path": [
-        "/opt/Element/resources/img/"
+        "/opt/Element/resources/img/",
+        "/usr/lib/element/img/"
     ],
     "icons": {
         "tray": {
