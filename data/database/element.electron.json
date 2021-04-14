@@ -2,10 +2,12 @@
     "name": "Element Desktop",
     "app_path": [
         "/opt/Element/",
+        "/opt/Element-Nightly/",
         "/usr/lib/element/"
     ],
     "icons_path": [
         "/opt/Element/resources/img/",
+        "/opt/Element-Nightly/resources/img/",
         "/usr/lib/element/img/"
     ],
     "icons": {
