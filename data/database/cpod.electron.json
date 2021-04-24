@@ -1,0 +1,19 @@
+{
+    "name": "CPod",
+    "app_path": [
+        "/opt/CPod/",
+        "/usr/share/cpod/"
+    ],
+    "icons_path": [
+        "/opt/CPod/resources/",
+        "/usr/share/cpod/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "build/icon.png",
+            "theme": "cpod-tray"
+        }
+    }
+}
