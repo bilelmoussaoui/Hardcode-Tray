@@ -1,10 +1,12 @@
 {
     "name": "Signal",
     "app_path": [
-        "/opt/Signal/"
+        "/opt/Signal/",
+        "/usr/lib/signal-desktop/"
     ],
     "icons_path": [
-        "/opt/Signal/resources/"
+        "/opt/Signal/resources/",
+        "/usr/lib/signal-desktop/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
