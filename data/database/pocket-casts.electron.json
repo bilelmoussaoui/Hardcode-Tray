@@ -1,0 +1,17 @@
+{
+    "name": "Pocket Casts",
+    "app_path": [
+        "/opt/Pocket Casts/"
+    ],
+    "icons_path": [
+        "/opt/Pocket Casts/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "tray-icon.png",
+            "theme": "pocket-casts-tray"
+        }
+    }
+}
