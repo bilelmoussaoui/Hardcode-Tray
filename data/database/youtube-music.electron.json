@@ -1,0 +1,17 @@
+{
+    "name": "YouTube Music",
+    "app_path": [
+        "/opt/YouTube Music/"
+    ],
+    "icons_path": [
+        "/opt/YouTube Music/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/youtube-music-tray.png",
+            "theme": "youtube-music-tray"
+        }
+    }
+}
