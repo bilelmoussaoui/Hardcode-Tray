@@ -1,0 +1,23 @@
+{
+    "name": "Slimbook AMD Controller",
+    "app_path": [
+        "/usr/share/slimbookamdcontroller/"
+    ],
+    "icons_path": [
+        "/usr/share/slimbookamdcontroller/src/"
+    ],
+    "icons": {
+        "bajo": {
+            "original": "amd-1.png",
+            "theme": "amd-bajo"
+        },
+        "medio": {
+            "original": "amd-2.png",
+            "theme": "amd-medio"
+        },
+        "alto": {
+            "original": "amd-3.png",
+            "theme": "amd-alto"
+        }
+    }
+}
