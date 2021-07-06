@@ -1,0 +1,31 @@
+{
+    "name": "Opensnitch",
+    "app_path": [
+        "/usr/bin/opensnitch-ui"
+    ],
+    "icons_path": [
+        "/usr/lib/python3/dist-packages/opensnitch/res/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon-white.svg",
+            "theme": "opensnitch-tray"
+        },
+        "tray-pause": {
+            "original": "icon-pause.png",
+            "theme": "opensnitch-tray-pause"
+        },
+        "tray-off": {
+            "original": "icon-off.png",
+            "theme": "opensnitch-tray-off"
+        },
+        "tray-alert": {
+            "original": "icon-alert.png",
+            "theme": "opensnitch-tray-alert"
+        },
+        "tray-red": {
+            "original": "icon-red.png",
+            "theme": "opensnitch-tray-red"
+        }
+    }
+}
