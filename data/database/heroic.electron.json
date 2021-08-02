@@ -1,0 +1,19 @@
+{
+    "name": "Heroic",
+    "app_path": [
+        "/opt/Heroic/"
+    ],
+    "icons_path": [
+        "/opt/Heroic/resources/app.asar.unpacked/build/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon-light.png",
+            "theme": "heroic-tray"
+        },
+        "tray-dark": {
+            "original": "icon-dark.png",
+            "theme": "heroic-tray"
+        }
+    }
+}
