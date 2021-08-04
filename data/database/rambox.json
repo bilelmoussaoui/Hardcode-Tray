@@ -3,7 +3,7 @@
     "app_path": [
         "/usr/lib/rambox/",
         "/usr/lib/Rambox/",
-        "/opt/ramboxpro"
+        "/opt/ramboxpro/"
     ],
     "icons_path": [
         "/usr/lib/rambox/resources/",
