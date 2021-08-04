@@ -2,11 +2,13 @@
     "name": "Rambox",
     "app_path": [
         "/usr/lib/rambox/",
-        "/usr/lib/Rambox/"
+        "/usr/lib/Rambox/",
+        "/opt/ramboxpro"
     ],
     "icons_path": [
         "/usr/lib/rambox/resources/",
-        "/usr/lib/Rambox/resources/"
+        "/usr/lib/Rambox/resources/",
+        "/opt/ramboxpro/resources/"
     ],
     "icons": {
         "tray": {
