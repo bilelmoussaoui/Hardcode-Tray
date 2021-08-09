@@ -1,0 +1,15 @@
+{
+    "name": "QtWAW",
+    "app_path": [
+        "/usr/share/qtwaw/"
+    ],
+    "icons_path": [
+        "/usr/share/icons/hicolor/256x256/apps/"
+    ],
+    "icons": {
+        "tray16": {
+            "original": "eu.scarpetta.QtWAW.png",
+            "theme": "eu.scarpetta.QtWAW-tray"
+        }
+    }
+}
