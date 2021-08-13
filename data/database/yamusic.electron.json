@@ -1,0 +1,17 @@
+{
+    "name": "YaMusic.app",
+    "app_path": [
+        "/opt/YaMusic.app/"
+    ],
+    "icons_path": [
+        "/opt/YaMusic.app/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "img/icons/16x16.png",
+            "theme": "yaradio-yamusic-tray"
+        }
+    }
+}
