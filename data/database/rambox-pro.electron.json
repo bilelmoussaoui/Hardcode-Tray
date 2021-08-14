@@ -1,0 +1,47 @@
+{
+    "name": "Rambox Pro",
+    "app_path": [
+        "/opt/ramboxpro/",
+        "/opt/RamboxPro/"
+    ],
+    "icons_path": [
+        "/opt/ramboxpro/resources/",
+        "/opt/RamboxPro/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "active": "dist/electron/static/tray/linux/active.png",
+            "theme": "rambox-indicator"
+        },
+        "active@2x": {
+            "original": "dist/electron/static/tray/linux/active@2x.png",
+            "theme": "rambox-indicator"
+        },
+        "done": {
+            "original": "dist/electron/static/tray/linux/done.png",
+            "theme": "rambox-done"
+        },
+        "inactive": {
+            "original": "dist/electron/static/tray/linux/inactive.png",
+            "theme": "rambox-inactive"
+        },
+        "inactive@2x": {
+            "original": "dist/electron/static/tray/linux/inactive@2x.png",
+            "theme": "rambox-inactive"
+        },
+        "mention": {
+            "original": "dist/electron/static/tray/linux/mention.png",
+            "theme": "rambox-mention"
+        },
+        "unread": {
+            "original": "dist/electron/static/tray/linux/unread.png",
+            "theme": "rambox-notification"
+        },
+        "warning": {
+            "original": "dist/electron/static/tray/linux/warning.png",
+            "theme": "rambox-warning"
+        }
+    }
+}
