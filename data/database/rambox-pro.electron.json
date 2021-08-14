@@ -11,8 +11,8 @@
     "binary": "app.asar",
     "script": "electron",
     "icons": {
-        "tray": {
-            "active": "dist/electron/static/tray/linux/active.png",
+        "active": {
+            "original": "dist/electron/static/tray/linux/active.png",
             "theme": "rambox-indicator"
         },
         "active@2x": {
