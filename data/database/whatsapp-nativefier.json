@@ -1,0 +1,15 @@
+{
+    "name": "Whatsapp Nativefier",
+    "app_path": [
+        "/opt/whatsapp-nativefier/"
+    ],
+    "icons_path": [
+        "/opt/whatsapp-nativefier/resources/app/"
+    ],
+    "icons": {
+        "tray16": {
+            "original": "icon.png",
+            "theme": "whatsapp-tray"
+        }
+    }
+}
