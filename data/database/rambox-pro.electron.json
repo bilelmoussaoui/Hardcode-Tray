@@ -42,6 +42,38 @@
         "warning": {
             "original": "dist/electron/static/tray/linux/warning.png",
             "theme": "rambox-warning"
+        },
+        "active-win": {
+            "original": "dist/electron/static/tray/win/active.png",
+            "theme": "rambox-indicator"
+        },
+        "active@2x-win": {
+            "original": "dist/electron/static/tray/win/active@2x.png",
+            "theme": "rambox-indicator"
+        },
+        "done-win": {
+            "original": "dist/electron/static/tray/win/done.png",
+            "theme": "rambox-done"
+        },
+        "inactive-win": {
+            "original": "dist/electron/static/tray/win/inactive.png",
+            "theme": "rambox-inactive"
+        },
+        "inactive@2x-win": {
+            "original": "dist/electron/static/tray/win/inactive@2x.png",
+            "theme": "rambox-inactive"
+        },
+        "mention-win": {
+            "original": "dist/electron/static/tray/win/mention.png",
+            "theme": "rambox-mention"
+        },
+        "unread-win": {
+            "original": "dist/electron/static/tray/win/unread.png",
+            "theme": "rambox-notification"
+        },
+        "warning-win": {
+            "original": "dist/electron/static/tray/win/warning.png",
+            "theme": "rambox-warning"
         }
     }
 }
