@@ -23,6 +23,10 @@
             "original": "dist/electron/static/tray/linux/done.png",
             "theme": "rambox-done"
         },
+        "done.fw": {
+            "original": "dist/electron/static/tray/linux/done.fw.png",
+            "theme": "rambox-mention"
+        },
         "inactive": {
             "original": "dist/electron/static/tray/linux/inactive.png",
             "theme": "rambox-inactive"
@@ -54,6 +58,10 @@
         "done-win": {
             "original": "dist/electron/static/tray/win/done.png",
             "theme": "rambox-done"
+        },
+        "done.fw-win": {
+            "original": "dist/electron/static/tray/win/done.fw.png",
+            "theme": "rambox-mention"
         },
         "inactive-win": {
             "original": "dist/electron/static/tray/win/inactive.png",
