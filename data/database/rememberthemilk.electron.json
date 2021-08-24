@@ -1,0 +1,25 @@
+{
+    "name": "Remember The Milk",
+    "app_path": [
+        "/opt/RememberTheMilk/"
+    ],
+    "icons_path": [
+        "/opt/RememberTheMilk/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "resources/balloon-moo.png",
+            "theme": "rememberthemilk-tray"
+        },
+        "tray-unseen": {
+            "original": "resources/moo-unseen-notification.png",
+            "theme": "rememberthemilk-unseen-notification"
+        },
+        "tray-notification": {
+            "original": "resources/moo-notification.png",
+            "theme": "rememberthemilk-notification"
+        }
+    }
+}
