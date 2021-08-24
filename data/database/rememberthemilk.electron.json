@@ -1,10 +1,12 @@
 {
     "name": "Remember The Milk",
     "app_path": [
-        "/opt/RememberTheMilk/"
+        "/opt/RememberTheMilk/",
+        "/opt/rememberthemilk/"
     ],
     "icons_path": [
-        "/opt/RememberTheMilk/resources/"
+        "/opt/RememberTheMilk/resources/",
+        "/opt/rememberthemilk/"
     ],
     "binary": "app.asar",
     "script": "electron",
