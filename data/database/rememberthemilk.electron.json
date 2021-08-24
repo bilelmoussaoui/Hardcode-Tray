@@ -5,22 +5,20 @@
         "/opt/rememberthemilk/"
     ],
     "icons_path": [
-        "/opt/RememberTheMilk/resources/",
-        "/opt/rememberthemilk/"
+        "/opt/RememberTheMilk/resources/app.asar.unpacked/resources/",
+        "/opt/rememberthemilk/resources/app.asar.unpacked/resources/"
     ],
-    "binary": "app.asar",
-    "script": "electron",
     "icons": {
         "tray": {
-            "original": "resources/balloon-moo.png",
+            "original": "moo.png",
             "theme": "rememberthemilk-tray"
         },
         "tray-unseen": {
-            "original": "resources/moo-unseen-notification.png",
+            "original": "moo-unseen-notification.png",
             "theme": "rememberthemilk-unseen-notification"
         },
         "tray-notification": {
-            "original": "resources/moo-notification.png",
+            "original": "moo-notification.png",
             "theme": "rememberthemilk-notification"
         }
     }
