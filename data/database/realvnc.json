@@ -1,0 +1,23 @@
+{
+    "name": "RealVNC",
+    "app_path": [
+        "/usr/lib/vnc/"
+    ],
+    "icons_path": [
+        "/usr/share/icons/hicolor/48x48/apps/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "vncserver.png",
+            "theme": "vnc-tray"
+        },
+        "tray-error": {
+            "original": "vncserverError.png",
+            "theme": "vnc-tray-error"
+        },
+        "tray-warning": {
+            "original": "vncserverWarning.png",
+            "theme": "vnc-tray-warning"
+        }
+    }
+}
