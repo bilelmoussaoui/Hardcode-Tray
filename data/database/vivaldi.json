@@ -20,6 +20,10 @@
 	"tray1.15": {
 	    "original": "10190",
 	    "theme": "vivaldi-tray"
+        },
+        "tray4.2.2406.40": {
+	    "original": "11151",
+	    "theme": "vivaldi-tray"
         }
     }
 }
