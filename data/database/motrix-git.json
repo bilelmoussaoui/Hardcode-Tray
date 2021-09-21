@@ -11,8 +11,24 @@
             "original": "mo-tray-colorful-normal.png",
             "theme": "motrix-tray"
         },
+        "tray@1x": {
+            "original": "mo-tray-dark-normal@1x.png",
+            "theme": "motrix-tray"
+        },
+        "tray@2x": {
+            "original": "mo-tray-dark-normal@2x.png",
+            "theme": "motrix-tray"
+        },
         "tray-active": {
             "original": "mo-tray-colorful-active.png",
+            "theme": "motrix-tray-active"
+        },
+        "tray-active@1x": {
+            "original": "mo-tray-dark-active@1x.png",
+            "theme": "motrix-tray-active"
+        },
+        "tray-active@2x": {
+            "original": "mo-tray-dark-active@2x.png",
             "theme": "motrix-tray-active"
         }
     }
