@@ -2,11 +2,13 @@
     "name": "CPod",
     "app_path": [
         "/opt/CPod/",
-        "/usr/share/cpod/"
+        "/usr/share/cpod/",
+        "/var/lib/flatpak/app/com.github.z.Cumulonimbus/"
     ],
     "icons_path": [
         "/opt/CPod/resources/",
-        "/usr/share/cpod/resources/"
+        "/usr/share/cpod/resources/",
+        "/var/lib/flatpak/app/com.github.z.Cumulonimbus/current/active/files/bin/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

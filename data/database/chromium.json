@@ -4,13 +4,15 @@
         "/usr/lib/chromium-browser/",
         "/usr/lib64/chromium-browser/",
         "/usr/lib/chromium-dev/",
-        "/usr/lib/chromium/"
+        "/usr/lib/chromium/",
+        "/var/lib/flatpak/app/org.chromium.Chromium/"
     ],
     "icons_path": [
         "/usr/lib/chromium-browser/",
         "/usr/lib64/chromium-browser/",
         "/usr/lib/chromium-dev/",
-        "/usr/lib/chromium/"
+        "/usr/lib/chromium/",
+        "/var/lib/flatpak/app/org.chromium.Chromium/current/active/files/chromium/"
     ],
     "script": "pak",
     "binary": "resources.pak",

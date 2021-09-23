@@ -1,10 +1,12 @@
 {
     "name": "DeltaChat",
     "app_path": [
-        "/opt/DeltaChat/"
+        "/opt/DeltaChat/",
+        "/var/lib/flatpak/app/chat.delta.desktop/"
     ],
     "icons_path": [
-        "/opt/DeltaChat/electron_app/images/"
+        "/opt/DeltaChat/electron_app/images/",
+        "/var/lib/flatpak/app/chat.delta.desktop/current/active/files/delta/resources/app/images/"
     ],
     "icons": {
         "tray": {
