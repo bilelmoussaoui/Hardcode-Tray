@@ -2,11 +2,13 @@
     "name": "Bitwarden",
     "app_path": [
         "/opt/Bitwarden/",
-        "/usr/lib/bitwarden/"
+        "/usr/lib/bitwarden/",
+        "/var/lib/flatpak/app/com.bitwarden.desktop/"
     ],
     "icons_path": [
         "/opt/Bitwarden/resources/",
-        "/usr/lib/bitwarden/resources/"
+        "/usr/lib/bitwarden/resources/",
+        "/var/lib/flatpak/app/com.bitwarden.desktop/current/active/files/Bitwarden/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
