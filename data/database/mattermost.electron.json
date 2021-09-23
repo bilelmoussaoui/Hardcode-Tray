@@ -12,51 +12,51 @@
     "script": "electron",
     "icons": {
         "tray-light": {
-            "original": "assets/linux/light/MenuIcon.png",
+            "original": "assets/linux/top_bar_light_16.png",
             "theme": "mattermost-tray"
         },
         "tray-light-unread": {
-            "original": "assets/linux/light/MenuIconUnread.png",
+            "original": "assets/linux/top_bar_light_unread_16.png",
             "theme": "mattermost-unread"
         },
         "tray-light-mention": {
-            "original": "assets/linux/light/MenuIconMention.png",
+            "original": "assets/linux/top_bar_light_mention_16.png",
             "theme": "mattermost-mention"
         },
         "tray-light@2x": {
-            "original": "assets/linux/light/MenuIcon@2x.png",
+            "original": "assets/linux/top_bar_light_16@2x.png",
             "theme": "mattermost-tray"
         },
         "tray-light@2x-unread": {
-            "original": "assets/linux/light/MenuIconUnread@2x.png",
+            "original": "assets/linux/top_bar_light_unread_16@2x.png",
             "theme": "mattermost-unread"
         },
         "tray-light@2x-mention": {
-            "original": "assets/linux/light/MenuIconMention@2x.png",
+            "original": "assets/linux/top_bar_light_mention_16@2x.png",
             "theme": "mattermost-mention"
         },
         "tray-dark": {
-            "original": "assets/linux/dark/MenuIcon.png",
+            "original": "assets/linux/top_bar_dark_16.png",
             "theme": "mattermost-tray"
         },
         "tray-dark-unread": {
-            "original": "assets/linux/dark/MenuIconUnread.png",
+            "original": "assets/linux/top_bar_dark_unread_16.png",
             "theme": "mattermost-unread"
         },
         "tray-dark-mention": {
-            "original": "assets/linux/dark/MenuIconMention.png",
+            "original": "assets/linux/top_bar_dark_mention_16.png",
             "theme": "mattermost-mention"
         },
         "tray-dark@2x": {
-            "original": "assets/linux/dark/MenuIcon@2x.png",
+            "original": "assets/linux/top_bar_dark_16@2x.png",
             "theme": "mattermost-tray"
         },
         "tray-dark@2x-unread": {
-            "original": "assets/linux/dark/MenuIconUnread@2x.png",
+            "original": "assets/linux/top_bar_dark_unread_16@2x.png",
             "theme": "mattermost-unread"
         },
         "tray-dark@2x-mention": {
-            "original": "assets/linux/dark/MenuIconMention@2x.png",
+            "original": "assets/linux/top_bar_dark_mention_16@2x.png",
             "theme": "mattermost-mention"
         }
     }
