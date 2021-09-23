@@ -1,11 +1,13 @@
 {
     "name": "JDownloader",
     "app_path": [
-        "/usr/bin/jdownloader"
+        "/usr/bin/jdownloader",
+        "/var/lib/flatpak/app/org.jdownloader.JDownloader/"
     ],
     "icons_path": [
         "{userhome}/.jd2/themes/standard/org/jdownloader/images/logo/",
-        "{userhome}/.jd/themes/standard/org/jdownloader/images/logo/"
+        "{userhome}/.jd/themes/standard/org/jdownloader/images/logo/",
+        "{userhome}/.var/app/org.jdownloader.JDownloader/data/jdownloader/themes/standard/org/jdownloader/images/logo/"
     ],
     "icons": {
         "indicator": {

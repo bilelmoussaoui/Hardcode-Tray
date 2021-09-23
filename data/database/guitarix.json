@@ -1,10 +1,12 @@
 {
     "name": "Guitarix",
     "app_path": [
-        "/usr/share/gx_head/"
+        "/usr/share/gx_head/",
+        "/var/lib/flatpak/app/org.guitarix.Guitarix"
     ],
     "icons_path": [
-        "/usr/share/pixmaps/"
+        "/usr/share/pixmaps/",
+        "/var/lib/flatpak/app/org.guitarix.Guitarix/current/active/files/share/pixmaps/"
     ],
     "icons": {
         "tray": {

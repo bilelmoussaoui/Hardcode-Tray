@@ -2,11 +2,13 @@
     "name": "Mattermost",
     "app_path": [
         "/opt/Mattermost/",
-        "/usr/lib/mattermost/"
+        "/usr/lib/mattermost/",
+        "/var/lib/flatpak/app/com.mattermost.Desktop/"
     ],
     "icons_path": [
         "/opt/Mattermost/resources/",
-        "/usr/lib/mattermost/resources/"
+        "/usr/lib/mattermost/resources/",
+        "/var/lib/flatpak/app/com.mattermost.Desktop/current/active/files/main/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

@@ -3,12 +3,14 @@
     "app_path": [
         "/opt/Element/",
         "/opt/Element-Nightly/",
-        "/usr/lib/element/"
+        "/usr/lib/element/",
+        "/var/lib/flatpak/app/im.riot.Riot"
     ],
     "icons_path": [
         "/opt/Element/resources/img/",
         "/opt/Element-Nightly/resources/img/",
-        "/usr/lib/element/img/"
+        "/usr/lib/element/img/",
+        "/var/lib/flatpak/app/im.riot.Riot/current/active/files/Element/resources/img/"
     ],
     "icons": {
         "tray": {

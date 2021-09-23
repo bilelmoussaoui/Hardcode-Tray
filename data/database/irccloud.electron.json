@@ -1,10 +1,12 @@
 {
     "name": "IRCCloud",
     "app_path": [
-        "/opt/IRCCloud/"
+        "/opt/IRCCloud/",
+        "/var/lib/flatpak/app/com.irccloud.desktop"
     ],
     "icons_path": [
-        "/opt/IRCCloud/resources/"
+        "/opt/IRCCloud/resources/",
+        "/var/lib/flatpak/app/com.irccloud.desktop/current/active/files/irccloud/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

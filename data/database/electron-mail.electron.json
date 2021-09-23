@@ -1,10 +1,12 @@
 {
     "name": "ElectronMail",
     "app_path": [
-        "/opt/ElectronMail/"
+        "/opt/ElectronMail/",
+        "/var/lib/flatpak/app/com.github.vladimiry.ElectronMail/"
     ],
     "icons_path": [
-        "/opt/ElectronMail/resources/"
+        "/opt/ElectronMail/resources/",
+        "/var/lib/flatpak/app/com.github.vladimiry.ElectronMail/current/active/files/ElectronMail/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

@@ -2,11 +2,13 @@
     "name": "Google Play Music Desktop Player",
     "app_path": [
         "/usr/share/google-play-music-desktop-player/",
-        "/usr/share/gpmdp/"
+        "/usr/share/gpmdp/",
+        "/var/lib/flatpak/app/com.googleplaymusicdesktopplayer.GPMDP"
     ],
     "icons_path": [
         "/usr/share/google-play-music-desktop-player/resources/",
-        "/usr/share/gpmdp/resources/"
+        "/usr/share/gpmdp/resources/",
+        "/var/lib/flatpak/app/com.googleplaymusicdesktopplayer.GPMDP/current/active/files/share/google-play-music-desktop-player/resources/"
     ],
     "script": "electron",
     "binary": "app.asar",

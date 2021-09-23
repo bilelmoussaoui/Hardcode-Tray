@@ -1,10 +1,12 @@
 {
     "name": "Megasync",
     "app_path": [
-        "/usr/bin/megasync"
+        "/usr/bin/megasync",
+        "/var/lib/flatpak/app/nz.mega.MEGAsync/"
     ],
     "icons_path": [
-        "/usr/share/icons/hicolor/scalable/status/"
+        "/usr/share/icons/hicolor/scalable/status/",
+        "/var/lib/flatpak/app/nz.mega.MEGAsync/current/active/files/share/icons/hicolor/scalable/status/"
     ],
     "icons": {
         "paused": {
@@ -26,6 +28,10 @@
         "ok": {
             "original": "megauptodate.svg",
             "theme": "megauptodate"
+        },
+        "alert": {
+            "original": "megaalert.svg",
+            "theme": "megaalert"
         }
     }
 }

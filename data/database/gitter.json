@@ -1,10 +1,12 @@
 {
     "name": "Gitter",
     "app_path": [
-        "/usr/bin/gitter"
+        "/usr/bin/gitter",
+        "/var/lib/flatpak/app/im.gitter.Gitter"
     ],
     "icons_path": [
-        "/opt/Gitter/linux64/"
+        "/opt/Gitter/linux64/",
+        "/var/lib/flatpak/app/im.gitter.Gitter/current/active/files/bin/"
     ],
     "binary": "Gitter",
     "script": "nwjs",

@@ -5,14 +5,16 @@
         "/opt/gdlauncher/",
         "/opt/gdlauncher-appimage/",
         "/opt/gdlauncher-bin/",
-        "/usr/lib/gdlauncher/"
+        "/usr/lib/gdlauncher/",
+        "/var/lib/flatpak/app/io.gdevs.GDLauncher"
     ],
     "icons_path": [
         "/opt/GDLauncher/resources/",
         "/opt/gdlauncher/resources/",
         "/opt/gdlauncher-appimage/resources/",
         "/opt/gdlauncher-bin/resources/",
-        "/usr/lib/gdlauncher/resources/"
+        "/usr/lib/gdlauncher/resources/",
+        "/var/lib/flatpak/app/io.gdevs.GDLauncher/current/active/files/bin/gdlauncher/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
