@@ -2,11 +2,13 @@
     "name": "Slack",
     "app_path": [
         "/usr/share/slack/",
-        "/usr/lib/slack/"
+        "/usr/lib/slack/",
+        "/var/lib/flatpak/app/com.slack.Slack/"
     ],
     "icons_path": [
         "/usr/share/slack/resources/",
-        "/usr/lib/slack/resources/"
+        "/usr/lib/slack/resources/",
+        "/var/lib/flatpak/app/com.slack.Slack/current/active/files/extra/lib/slack/resources/"
     ],
     "binary": "app.asar",
     "script": "b64electron",
