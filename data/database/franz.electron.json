@@ -4,13 +4,15 @@
         "/opt/franz/",
         "/opt/Franz/",
         "/opt/franz-bin/",
-        "/usr/lib/franz/"
+        "/usr/lib/franz/",
+        "/var/lib/flatpak/app/com.meetfranz.Franz/"
     ],
     "icons_path": [
         "/opt/franz/resources/",
         "/opt/Franz/resources/",
         "/opt/franz-bin/resources/",
-        "/usr/lib/franz/resources/"
+        "/usr/lib/franz/resources/",
+        "/var/lib/flatpak/app/com.meetfranz.Franz/current/active/files/Franz/resources/"
     ],
     "script": "electron",
     "binary": "app.asar",
