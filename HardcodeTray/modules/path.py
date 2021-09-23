@@ -37,6 +37,7 @@ class Path:
         "{userhome}": USERHOME,
         "{size}": 22,
         "{arch}": ARCH,
+        "{discord}": "discord_callback",
         "{dropbox}": "dropbox_callback",
         "{hangouts}": "hangouts_callback"
     }
