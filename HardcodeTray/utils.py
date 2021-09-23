@@ -242,8 +242,11 @@ def change_dict_vals(d, sizediff, offset):
     """Iterative funtion to account for the new size of the png bytearray."""
     if isinstance(d, dict):
         d2 = {k: change_dict_vals(v, sizediff, offset) for k, v in d.items()}
-        if d2.get('offset') and int(d2.get('offset')) > offset:
-            d2['offset'] = str(int(d2['offset']) + sizediff)
+        ofval = d2.get('offset')
+        if ofval and isinstance(ofval, str):
+            ofval = int(ofval)
+            if ofval > offset:
+                d2['offset'] = str(ofval + sizediff)
         return d2
     return d
 
