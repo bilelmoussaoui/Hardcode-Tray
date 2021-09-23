@@ -5,8 +5,8 @@
         "{userhome}/.var/app/com.discordapp.Discord"
     ],
     "icons_path": [
-        "{userhome}/.config/discord/0.0.16/modules/discord_desktop_core/",
-        "{userhome}/.var/app/com.discordapp.Discord/config/discord/0.0.16/modules/discord_desktop_core/"
+        "{userhome}/.config/discord/{discord}/modules/discord_desktop_core/",
+        "{userhome}/.var/app/com.discordapp.Discord/config/discord/{discord}/modules/discord_desktop_core/"
     ],
     "binary": "core.asar",
     "script": "electron",

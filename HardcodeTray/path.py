@@ -22,6 +22,18 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from os import path
 
 
+def discord_callback(directory):
+    """
+    Correct the hardcoded discord directory.
+
+    Args:
+        directory(str): the default discord config directory
+    """
+    if path.isdir(directory):
+        return path.isdir(path.join(directory, 'modules/discord_desktop_core'))
+    return False
+
+
 def dropbox_callback(directory):
     """
     Correct the hardcoded dropbox directory.
