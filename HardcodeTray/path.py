@@ -31,7 +31,7 @@ def dropbox_callback(directory):
     """
     if path.isdir(directory):
         sub_dir = directory.split(path.sep)
-        return len(sub_dir) > 1 and sub_dir[4].lower().startswith("dropbox-")
+        return len(sub_dir) > 1 and sub_dir[-2].lower().startswith("dropbox-")
     return False
 
 
