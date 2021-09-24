@@ -1,10 +1,14 @@
 {
     "name": "Microsoft Teams",
     "app_path": [
-        "/usr/share/teams/"
+        "/usr/share/teams-insiders/",
+        "/usr/share/teams/",
+        "/var/lib/flatpak/app/com.microsoft.Teams/"
     ],
     "icons_path": [
-        "/usr/share/teams/resources/assets/"
+        "/usr/share/teams-insiders/resources/assets/",
+        "/usr/share/teams/resources/assets/",
+        "/var/lib/flatpak/app/com.microsoft.Teams/current/active/files/extra/teams/resources/assets/"
     ],
     "icons": {
         "tray-error": {

@@ -1,0 +1,111 @@
+{
+    "name": "RocketChat",
+    "app_path": [
+        "/opt/Rocket.Chat/",
+        "/var/lib/flatpak/app/chat.rocket.RocketChat/"
+    ],
+    "icons_path": [
+        "/opt/Rocket.Chat/resources/",
+        "/var/lib/flatpak/app/chat.rocket.RocketChat/current/active/files/Rocket.Chat/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "app/images/tray/linux/default.png",
+            "theme": "rocketchat-tray"
+        },
+        "tray-dot": {
+            "original": "app/images/tray/linux/notification-dot.png",
+            "theme": "rocketchat-tray-dot"
+        },
+        "tray-1": {
+            "original": "app/images/tray/linux/notification-1.png",
+            "theme": "rocketchat-tray-1"
+        },
+        "tray-2": {
+            "original": "app/images/tray/linux/notification-2.png",
+            "theme": "rocketchat-tray-2"
+        },
+        "tray-3": {
+            "original": "app/images/tray/linux/notification-3.png",
+            "theme": "rocketchat-tray-3"
+        },
+        "tray-4": {
+            "original": "app/images/tray/linux/notification-4.png",
+            "theme": "rocketchat-tray-4"
+        },
+        "tray-5": {
+            "original": "app/images/tray/linux/notification-5.png",
+            "theme": "rocketchat-tray-5"
+        },
+        "tray-6": {
+            "original": "app/images/tray/linux/notification-6.png",
+            "theme": "rocketchat-tray-6"
+        },
+        "tray-7": {
+            "original": "app/images/tray/linux/notification-7.png",
+            "theme": "rocketchat-tray-7"
+        },
+        "tray-8": {
+            "original": "app/images/tray/linux/notification-8.png",
+            "theme": "rocketchat-tray-8"
+        },
+        "tray-9": {
+            "original": "app/images/tray/linux/notification-9.png",
+            "theme": "rocketchat-tray-9"
+        },
+        "tray-9-plus": {
+            "original": "app/images/tray/linux/notification-plus-9.png",
+            "theme": "rocketchat-tray-9-plus"
+        },
+        "tray@2x": {
+            "original": "app/images/tray/linux/default@2x.png",
+            "theme": "rocketchat-tray"
+        },
+        "tray-dot@2x": {
+            "original": "app/images/tray/linux/notification-dot@2x.png",
+            "theme": "rocketchat-tray-dot"
+        },
+        "tray-1@2x": {
+            "original": "app/images/tray/linux/notification-1@2x.png",
+            "theme": "rocketchat-tray-1"
+        },
+        "tray-2@2x": {
+            "original": "app/images/tray/linux/notification-2@2x.png",
+            "theme": "rocketchat-tray-2"
+        },
+        "tray-3@2x": {
+            "original": "app/images/tray/linux/notification-3@2x.png",
+            "theme": "rocketchat-tray-3"
+        },
+        "tray-4@2x": {
+            "original": "app/images/tray/linux/notification-4@2x.png",
+            "theme": "rocketchat-tray-4"
+        },
+        "tray-5@2x": {
+            "original": "app/images/tray/linux/notification-5@2x.png",
+            "theme": "rocketchat-tray-5"
+        },
+        "tray-6@2x": {
+            "original": "app/images/tray/linux/notification-6@2x.png",
+            "theme": "rocketchat-tray-6"
+        },
+        "tray-7@2x": {
+            "original": "app/images/tray/linux/notification-7@2x.png",
+            "theme": "rocketchat-tray-7"
+        },
+        "tray-8@2x": {
+            "original": "app/images/tray/linux/notification-8@2x.png",
+            "theme": "rocketchat-tray-8"
+        },
+        "tray-9@2x": {
+            "original": "app/images/tray/linux/notification-9@2x.png",
+            "theme": "rocketchat-tray-9"
+        },
+        "tray-9-plus@2x": {
+            "original": "app/images/tray/linux/notification-plus-9@2x.png",
+            "theme": "rocketchat-tray-9-plus"
+        }
+    }
+}

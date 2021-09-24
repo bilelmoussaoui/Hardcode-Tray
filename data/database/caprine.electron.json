@@ -2,11 +2,13 @@
     "name": "Caprine",
     "app_path": [
         "/usr/share/caprine/",
-        "/opt/Caprine/"
+        "/opt/Caprine/",
+        "/var/lib/flatpak/app/com.sindresorhus.Caprine"
     ],
     "icons_path": [
         "/usr/share/caprine/resources/",
-        "/opt/Caprine/resources/"
+        "/opt/Caprine/resources/",
+        "/var/lib/flatpak/app/com.sindresorhus.Caprine/current/active/files/main/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

@@ -2,17 +2,27 @@
     "name": "YouTube Music Desktop",
     "app_path": [
         "/opt/ytmdesktop/",
-        "/usr/lib/ytmdesktop"
+        "/usr/lib/ytmdesktop",
+        "/var/lib/flatpak/app/app.ytmdesktop.ytmdesktop/"
     ],
     "icons_path": [
         "/opt/ytmdesktop/resources/",
-        "/usr/lib/ytmdesktop/resources/"
+        "/usr/lib/ytmdesktop/resources/",
+        "/var/lib/flatpak/app/app.ytmdesktop.ytmdesktop/current/active/files/ytmdesktop/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
     "icons": {
         "tray": {
             "original": "src/assets/favicon.png",
+            "theme": "youtube-music-desktop-app-tray"
+        },
+        "trayT": {
+            "original": "src/assets/trayTemplate.png",
+            "theme": "youtube-music-desktop-app-tray"
+        },
+        "trayT@2x": {
+            "original": "src/assets/trayTemplate@2x.png",
             "theme": "youtube-music-desktop-app-tray"
         },
         "tray-play": {

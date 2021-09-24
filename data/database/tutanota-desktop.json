@@ -1,10 +1,12 @@
 {
     "name": "Tutanota Desktop",
     "app_path": [
-        "/opt/tutanota-desktop/"
+        "/opt/tutanota-desktop/",
+        "/var/lib/flatpak/app/com.tutanota.Tutanota/"
     ],
     "icons_path": [
-        "/opt/tutanota-desktop/resources/icons/"
+        "/opt/tutanota-desktop/resources/icons/",
+        "/var/lib/flatpak/app/com.tutanota.Tutanota/current/active/files/lib/tutanota/resources/icons/"
     ],
     "icons": {
         "tray": {

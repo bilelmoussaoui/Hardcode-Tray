@@ -1,10 +1,12 @@
 {
     "name": "ODrive",
     "app_path": [
-        "/opt/OpenDrive/"
+        "/opt/OpenDrive/",
+        "/var/lib/flatpak/app/io.github.liberodark.OpenDrive/"
     ],
     "icons_path": [
-        "/opt/OpenDrive/resources/"
+        "/opt/OpenDrive/resources/",
+        "/var/lib/flatpak/app/io.github.liberodark.OpenDrive/current/active/files/OpenDrive/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

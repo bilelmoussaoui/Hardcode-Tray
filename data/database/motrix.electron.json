@@ -2,11 +2,13 @@
     "name": "Motrix",
     "app_path": [
         "/opt/Motrix/",
-        "/opt/motrix/"
+        "/opt/motrix/",
+        "/var/lib/flatpak/app/net.agalwood.Motrix"
     ],
     "icons_path": [
         "/opt/Motrix/resources/",
-        "/opt/motrix/resources/"
+        "/opt/motrix/resources/",
+        "/var/lib/flatpak/app/net.agalwood.Motrix/current/active/files/motrix/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

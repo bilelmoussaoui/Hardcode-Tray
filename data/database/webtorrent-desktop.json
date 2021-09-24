@@ -3,12 +3,14 @@
     "app_path": [
         "/usr/lib/webtorrent-desktop/",
         "/opt/webtorrent-desktop/",
-        "/usr/share/webtorrent-desktop/"
+        "/usr/share/webtorrent-desktop/",
+        "/var/lib/flatpak/app/io.webtorrent.WebTorrent/"
     ],
     "icons_path": [
         "/usr/lib/webtorrent-desktop/resources/app.asar.unpacked/static/",
         "/opt/webtorrent-desktop/resources/app.asar.unpacked/static/",
-        "/usr/share/webtorrent-desktop/resources/app.asar.unpacked/static/"
+        "/usr/share/webtorrent-desktop/resources/app.asar.unpacked/static/",
+        "/var/lib/flatpak/app/io.webtorrent.WebTorrent/current/active/files/lib/webtorrent-desktop/resources/app.asar.unpacked/static/"
     ],
     "icons": {
         "tray": {

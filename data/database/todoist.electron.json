@@ -1,10 +1,12 @@
 {
     "name": "Todoist",
     "app_path": [
-        "/opt/Todoist/"
+        "/opt/Todoist/",
+        "/var/lib/flatpak/app/com.todoist.Todoist/"
     ],
     "icons_path": [
-        "/opt/Todoist/resources/"
+        "/opt/Todoist/resources/",
+        "/var/lib/flatpak/app/com.todoist.Todoist/current/active/files/extra/todoist/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

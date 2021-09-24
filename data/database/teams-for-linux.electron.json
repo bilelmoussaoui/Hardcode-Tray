@@ -1,10 +1,12 @@
 {
     "name": "Teams for Linux",
     "app_path": [
-        "/opt/teams-for-linux/"
+        "/opt/teams-for-linux/",
+        "/var/lib/flatpak/app/com.github.IsmaelMartinez.teams_for_linux/"
     ],
     "icons_path": [
-        "/opt/teams-for-linux/resources/"
+        "/opt/teams-for-linux/resources/",
+        "/var/lib/flatpak/app/com.github.IsmaelMartinez.teams_for_linux/current/active/files/teams-for-linux/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

@@ -2,11 +2,13 @@
     "name": "Signal",
     "app_path": [
         "/opt/Signal/",
-        "/usr/lib/signal-desktop/"
+        "/usr/lib/signal-desktop/",
+        "/var/lib/flatpak/app/org.signal.Signal/"
     ],
     "icons_path": [
         "/opt/Signal/resources/",
-        "/usr/lib/signal-desktop/resources/"
+        "/usr/lib/signal-desktop/resources/",
+        "/var/lib/flatpak/app/org.signal.Signal/current/active/files/Signal/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

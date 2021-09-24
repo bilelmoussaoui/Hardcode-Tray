@@ -2,11 +2,13 @@
     "name": "Wire",
     "app_path": [
         "/opt/Wire/",
-        "/usr/lib/wire-desktop/"
+        "/usr/lib/wire-desktop/",
+        "/var/lib/flatpak/app/com.wire.WireDesktop/"
     ],
     "icons_path": [
         "/opt/Wire/resources/",
-        "/usr/lib/wire-desktop/"
+        "/usr/lib/wire-desktop/",
+        "/var/lib/flatpak/app/com.wire.WireDesktop/current/active/files/Wire/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

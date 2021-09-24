@@ -1,10 +1,12 @@
 {
     "name": "Pocket Casts",
     "app_path": [
-        "/opt/Pocket Casts/"
+        "/opt/Pocket Casts/",
+        "/var/lib/flatpak/app/tech.feliciano.pocket-casts/"
     ],
     "icons_path": [
-        "/opt/Pocket Casts/resources/"
+        "/opt/Pocket Casts/resources/",
+        "/var/lib/flatpak/app/tech.feliciano.pocket-casts/current/active/files/lib/pocket-casts/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

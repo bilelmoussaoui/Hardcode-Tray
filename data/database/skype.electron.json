@@ -1,10 +1,12 @@
 {
     "name": "Skype",
     "app_path": [
-        "/usr/share/skypeforlinux/"
+        "/usr/share/skypeforlinux/",
+        "/var/lib/flatpak/app/com.skype.Client/"
     ],
     "icons_path": [
-        "/usr/share/skypeforlinux/resources/"
+        "/usr/share/skypeforlinux/resources/",
+        "/var/lib/flatpak/app/com.skype.Client/current/active/files/extra/share/skypeforlinux/resources/"
     ],
     "script": "electron",
     "binary": "app.asar",

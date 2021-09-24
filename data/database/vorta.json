@@ -1,10 +1,12 @@
 {
     "name": "Vorta",
     "app_path": [
-        "/usr/lib/python3/dist-packages/vorta/"
+        "/usr/lib/python3/dist-packages/vorta/",
+        "/var/lib/flatpak/app/com.borgbase.Vorta/"
     ],
     "icons_path": [
-        "/usr/lib/python3/dist-packages/vorta/assets/icons/"
+        "/usr/lib/python3/dist-packages/vorta/assets/icons/",
+        "/var/lib/flatpak/app/com.borgbase.Vorta/current/active/files/lib/python3.7/site-packages/vorta/assets/icons/"
     ],
     "icons": {
         "tray": {
