@@ -46,11 +46,11 @@ class ConversionTools:
     """
         Supported Conversion tools
     """
-    INKSCAPE = "Inkscape"
-    CAIROSVG = "CairoSVG"
     RSVGCONVERT = "RSVGConvert"
+    CAIROSVG = "CairoSVG"
     SVGEXPORT = "SVGExport"
     IMAGEMAGICK = "ImageMagick"
+    INKSCAPE = "Inkscape"
 
     @staticmethod
     def choices():
