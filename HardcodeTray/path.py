@@ -45,13 +45,3 @@ def dropbox_callback(directory):
         sub_dir = directory.split(path.sep)
         return len(sub_dir) > 1 and sub_dir[-2].lower().startswith("dropbox-")
     return False
-
-
-def hangouts_callback(directory):
-    """
-    Correct the hardcoded hangouts directory.
-
-    Args:
-        directory(str): the default hangouts directory
-    """
-    return path.isdir(directory)

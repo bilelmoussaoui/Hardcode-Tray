@@ -38,8 +38,7 @@ class Path:
         "{size}": 22,
         "{arch}": ARCH,
         "{discord}": "discord_callback",
-        "{dropbox}": "dropbox_callback",
-        "{hangouts}": "hangouts_callback"
+        "{dropbox}": "dropbox_callback"
     }
 
     def __init__(self, absolute_path, parser, path_key):
