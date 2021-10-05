@@ -1,20 +1,24 @@
 {
     "name": "Bauh",
     "app_path": [
+        "/usr/lib/python3.10/site-packages/bauh/",
         "/usr/lib/python3.9/site-packages/bauh/",
         "/usr/lib/python3.8/site-packages/bauh/",
         "/usr/lib/python3.7/site-packages/bauh/",
         "/usr/lib/python3.6/site-packages/bauh/",
+        "/usr/local/lib/python3.10/dist-packages/bauh/",
         "/usr/local/lib/python3.9/dist-packages/bauh/",
         "/usr/local/lib/python3.8/dist-packages/bauh/",
         "/usr/local/lib/python3.7/dist-packages/bauh/",
         "/usr/local/lib/python3.6/dist-packages/bauh/"
     ],
     "icons_path": [
+        "/usr/lib/python3.10/site-packages/bauh/view/resources/img/",
         "/usr/lib/python3.9/site-packages/bauh/view/resources/img/",
         "/usr/lib/python3.8/site-packages/bauh/view/resources/img/",
         "/usr/lib/python3.7/site-packages/bauh/view/resources/img/",
         "/usr/lib/python3.6/site-packages/bauh/view/resources/img/",
+        "/usr/local/lib/python3.10/dist-packages/bauh/view/resources/img/",
         "/usr/local/lib/python3.9/dist-packages/bauh/view/resources/img/",
         "/usr/local/lib/python3.8/dist-packages/bauh/view/resources/img/",
         "/usr/local/lib/python3.7/dist-packages/bauh/view/resources/img/",
