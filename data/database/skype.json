@@ -1,0 +1,115 @@
+{
+    "name": "Skype",
+    "app_path": [
+        "/usr/share/skypeforlinux/"
+    ],
+    "icons_path": [
+        "/usr/share/skypeforlinux/resources/app.asar.unpacked/images/tray"
+    ],
+    "icons": {
+        "away": {
+            "original": "linux/tray-awayTemplate.png",
+            "theme": "skype-status-away"
+        },
+        "away2": {
+            "original": "linux/tray-awayTemplate@2x.png",
+            "theme": "skype-status-away"
+        },
+        "away_notification": {
+            "original": "linux/tray-awayUnreadTemplate.png",
+            "theme": "skype-status-away-notification"
+        },
+        "away2_notification": {
+            "original": "linux/tray-awayUnreadTemplate@2x.png",
+            "theme": "skype-status-away-notification"
+        },
+        "disturb": {
+            "original": "linux/tray-donotdisturbTemplate.png",
+            "theme": "skype-status-disturb"
+        },
+        "disturb2": {
+            "original": "linux/tray-donotdisturbTemplate@2x.png",
+            "theme": "skype-status-disturb"
+        },
+        "disturb_notification": {
+            "original": "linux/tray-donotdisturbUnreadTemplate.png",
+            "theme": "skype-status-disturb-notification"
+        },
+        "disturb2_notification": {
+            "original": "linux/tray-donotdisturbUnreadTemplate@2x.png",
+            "theme": "skype-status-disturb-notification"
+        },
+        "hidden": {
+            "original": "linux/tray-hiddenTemplate.png",
+            "theme": "skype-status-hidden"
+        },
+        "hidden2": {
+            "original": "linux/tray-hiddenTemplate@2x.png",
+            "theme": "skype-status-hidden"
+        },
+        "hidden_notification": {
+            "original": "linux/tray-hiddenUnreadTemplate.png",
+            "theme": "skype-status-hidden-notification"
+        },
+        "hidden2_notification": {
+            "original": "linux/tray-hiddenUnreadTemplate@2x.png",
+            "theme": "skype-status-hidden-notification"
+        },
+        "offline": {
+            "original": "linux/tray-offlineTemplate.png",
+            "theme": "skype-status-offline"
+        },
+        "offline2": {
+            "original": "linux/tray-offlineTemplate@2x.png",
+            "theme": "skype-status-offline"
+        },
+        "online": {
+            "original": "linux/tray-onlineTemplate.png",
+            "theme": "skype-status-connected"
+        },
+        "online2": {
+            "original": "linux/tray-onlineTemplate@2x.png",
+            "theme": "skype-status-connected"
+        },
+        "online_notification": {
+            "original": "linux/tray-onlineUnreadTemplate.png",
+            "theme": "skype-status-connected-notification"
+        },
+        "online2_notification": {
+            "original": "linux/tray-onlineUnreadTemplate@2x.png",
+            "theme": "skype-status-connected-notification"
+        },
+        "presence_away": {
+            "original": "presence/dot-away.png",
+            "theme": "skype-status-away"
+        },
+        "presence_away2": {
+            "original": "presence/dot-away@2x.png",
+            "theme": "skype-status-away"
+        },
+        "presence_disturb": {
+            "original": "presence/dot-donotdisturb.png",
+            "theme": "skype-status-disturb"
+        },
+        "presence_disturb2": {
+            "original": "presence/dot-donotdisturb@2x.png",
+            "theme": "skype-status-disturb"
+        },
+        "presence_hidden": {
+            "original": "presence/dot-hidden.png",
+            "theme": "skype-status-hidden"
+        },
+        "presence_hidden2": {
+            "original": "presence/dot-hidden@2x.png",
+            "theme": "skype-status-hidden"
+        },
+        "presence_online": {
+            "original": "presence/dot-online.png",
+            "theme": "skype-status-connected"
+        },
+        "presence_online2": {
+            "original": "presence/dot-online@2x.png",
+            "theme": "skype-status-connected"
+        }
+    }
+}
