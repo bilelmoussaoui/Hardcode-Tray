@@ -2,11 +2,11 @@
     "name": "PreMiD",
     "app_path": [
         "/usr/lib/premid/",
-        "/opt/premid/"
+        "/opt/PreMiD/"
     ],
     "icons_path": [
         "/usr/lib/premid/resources/",
-        "/opt/premid/resources/"
+        "/opt/PreMiD/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
