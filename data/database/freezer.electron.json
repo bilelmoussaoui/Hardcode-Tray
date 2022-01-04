@@ -1,0 +1,25 @@
+{
+    "name": "Freezer",
+    "app_path": [
+        "/opt/Freezer/"
+    ],
+    "icons_path": [
+        "/opt/Freezer/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray-black": {
+            "original": "assets/icon-taskbar-black.png",
+            "theme": "freezer-panel"
+        },
+        "tray-white": {
+            "original": "assets/icon-taskbar-white.png",
+            "theme": "freezer-panel"
+        },
+        "tray": {
+            "original": "assets/icon-taskbar.png",
+            "theme": "freezer-panel"
+        }
+    }
+}
