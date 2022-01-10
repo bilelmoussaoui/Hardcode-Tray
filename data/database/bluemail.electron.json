@@ -1,0 +1,17 @@
+{
+    "name": "BlueMail",
+    "app_path": [
+        "/opt/BlueMail/"
+    ],
+    "icons_path": [
+        "/opt/BlueMail/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "icon.png",
+            "theme": "bluemail-tray"
+        }
+    }
+}
