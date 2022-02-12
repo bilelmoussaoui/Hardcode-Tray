@@ -14,27 +14,19 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "tray/win/active.png",
+            "original": "resources/IconTray.png",
             "theme": "rambox-indicator"
         },
         "tray@2x": {
-            "original": "tray/win/active@2x.png",
+            "original": "resources/IconTray@2x.png",
             "theme": "rambox-indicator"
         },
-        "inactive": {
-            "original": "tray/win/inactive.png",
-            "theme": "rambox-inactive"
-        },
-        "inactive@2x": {
-            "original": "tray/win/inactive@2x.png",
-            "theme": "rambox-inactive"
-        },
         "unread": {
-            "original": "tray/win/unread.png",
+            "original": "resources/IconTrayUnread.png",
             "theme": "rambox-notification"
         },
         "unread@2x": {
-            "original": "tray/win/unread@2x.png",
+            "original": "resources/IconTrayUnread@2x.png",
             "theme": "rambox-notification"
         }
     }
