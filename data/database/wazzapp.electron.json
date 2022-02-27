@@ -1,0 +1,37 @@
+{
+    "name": "WazzApp",
+    "app_path": [
+        "/opt/wazzapp/"
+    ],
+    "icons_path": [
+        "/opt/wazzapp/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "electron-build/src/icon/tray-icon-off.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray@2x": {
+            "original": "electron-build/src/icon/tray-icon-off2.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray@3x": {
+            "original": "electron-build/src/icon/tray-icon-off3.png",
+            "theme": "whatsapp-tray"
+        },
+        "tray-msg": {
+            "original": "electron-build/src/icon/tray-icon-on.png",
+            "theme": "whatsapp-msg"
+        },
+        "tray-msg@2x": {
+            "original": "electron-build/src/icon/tray-icon-on2.png",
+            "theme": "whatsapp-msg"
+        },
+        "tray-msg@3x": {
+            "original": "electron-build/src/icon/tray-icon-on3.png",
+            "theme": "whatsapp-msg"
+        }
+    }
+}
