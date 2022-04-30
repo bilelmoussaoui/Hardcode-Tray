@@ -14,20 +14,28 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "resources/IconTray.png",
+            "original": "tray/active.png",
             "theme": "rambox-indicator"
         },
         "tray@2x": {
-            "original": "resources/IconTray@2x.png",
+            "original": "tray/active@2x.png",
             "theme": "rambox-indicator"
         },
         "unread": {
-            "original": "resources/IconTrayUnread.png",
+            "original": "tray/unread.png",
             "theme": "rambox-notification"
         },
         "unread@2x": {
-            "original": "resources/IconTrayUnread@2x.png",
+            "original": "tray/unread@2x.png",
             "theme": "rambox-notification"
+        },
+        "inactive": {
+            "original": "tray/inactive.png",
+            "theme": "rambox-inactive"
+        },
+        "inactive@2x": {
+            "original": "tray/inactive@2x.png",
+            "theme": "rambox-inactive"
         }
     }
 }
