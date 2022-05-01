@@ -1,0 +1,17 @@
+{
+    "name": "ModernDeck",
+    "app_path": [
+        "/opt/moderndeck/"
+    ],
+    "icons_path": [
+        "/opt/moderndeck/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "common/assets/img/app/Tray.png",
+            "theme": "moderndeck-tray"
+        }
+    }
+}
