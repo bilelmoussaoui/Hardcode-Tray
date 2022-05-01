@@ -1,0 +1,49 @@
+{
+    "name": "Google Chat Linux",
+    "app_path": [
+        "/opt/google-chat-linux/"
+    ],
+    "icons_path": [
+        "/opt/google-chat-linux/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "badge48": {
+            "original": "assets/icon/badge-48.png",
+            "theme": "google-chat-badge"
+        },
+        "badge64": {
+            "original": "assets/icon/badge-64.png",
+            "theme": "google-chat-badge"
+        },
+        "badge256": {
+            "original": "assets/icon/badge-256.png",
+            "theme": "google-chat-badge"
+        },
+        "offline48": {
+            "original": "assets/icon/offline-48.png",
+            "theme": "google-chat-offline"
+        },
+        "offline64": {
+            "original": "assets/icon/offline-64.png",
+            "theme": "google-chat-offline"
+        },
+        "offline256": {
+            "original": "assets/icon/offline-256.png",
+            "theme": "google-chat-offline"
+        },
+        "tray48": {
+            "original": "assets/icon/normal-48.png",
+            "theme": "google-chat-tray"
+        },
+        "tray64": {
+            "original": "assets/icon/normal-64.png",
+            "theme": "google-chat-tray"
+        },
+        "tray256": {
+            "original": "assets/icon/normal-256.png",
+            "theme": "google-chat-tray"
+        }
+    }
+}
