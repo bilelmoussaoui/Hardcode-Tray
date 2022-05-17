@@ -1,0 +1,25 @@
+{
+    "name": "Session Desktop",
+    "app_path": [
+        "/opt/Session/"
+    ],
+    "icons_path": [
+        "/opt/Session/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "images/session/session_icon.png",
+            "theme": "session-desktop-tray"
+        },
+        "tray-16": {
+            "original": "images/session/session_icon_16.png",
+            "theme": "session-desktop-tray"
+        },
+        "tray-32": {
+            "original": "images/session/session_icon_32.png",
+            "theme": "session-desktop-tray"
+        }
+    }
+}
