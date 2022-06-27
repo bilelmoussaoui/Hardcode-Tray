@@ -1,0 +1,21 @@
+{
+    "name": "Kuro",
+    "app_path": [
+        "/opt/Kuro/"
+    ],
+    "icons_path": [
+        "/opt/Kuro/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "static/IconTray.png",
+            "theme": "kuro-tray"
+        },
+        "tray@2x": {
+            "original": "static/IconTray@2x.png",
+            "theme": "kuro-tray"
+        }
+    }
+}
