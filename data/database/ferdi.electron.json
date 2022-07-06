@@ -1,0 +1,39 @@
+{
+    "name": "Ferdi",
+    "app_path": [
+        "/opt/Ferdi/",
+        "/opt/ferdi/"
+    ],
+    "icons_path": [
+        "/opt/Ferdi/resources/",
+        "/opt/ferdi/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/images/tray/linux/tray.png",
+            "theme": "ferdi-tray"
+        },
+        "tray@2x": {
+            "original": "assets/images/tray/linux/tray@2x.png",
+            "theme": "ferdi-tray"
+        },
+        "tray-indirect": {
+            "original": "assets/images/tray/linux/tray-indirect.png",
+            "theme": "ferdi-indirect"
+        },
+        "tray-indirect@2x": {
+            "original": "assets/images/tray/linux/tray-indirect@2x.png",
+            "theme": "ferdi-indirect"
+        },
+        "tray-unread": {
+            "original": "assets/images/tray/linux/tray-unread.png",
+            "theme": "ferdi-unread"
+        },
+        "tray-unread@2x": {
+            "original": "assets/images/tray/linux/tray-unread@2x.png",
+            "theme": "ferdi-unread"
+        }
+    }
+}
