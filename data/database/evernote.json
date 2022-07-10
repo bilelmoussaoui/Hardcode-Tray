@@ -1,0 +1,19 @@
+{
+    "name": "Evernote",
+    "app_path": [
+        "/usr/lib/evernote-client/"
+    ],
+    "icons_path": [
+        "/usr/lib/evernote-client/resources/static/linux/icons/"
+    ],
+    "icons": {
+        "tray": {
+            "original": "icon.png",
+            "theme": "everpad-mono"
+        },
+        "tray512": {
+            "original": "512x512.png",
+            "theme": "everpad-mono"
+        }
+    }
+}
