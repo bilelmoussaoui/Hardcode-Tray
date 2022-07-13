@@ -1,0 +1,25 @@
+{
+    "name": "Internxt Drive",
+    "app_path": [
+        "/opt/Internxt Drive/",
+        "/opt/internxt-drive/"
+    ],
+    "icons_path": [
+        "/opt/Internxt Drive/resources/assets/tray/",
+        "/opt/internxt-drive/resources/assets/tray/"
+    ],
+    "icons": {
+        "standby@2x": {
+            "original": "standby@2x.png",
+            "theme": "internxt-drive-standby"
+        },
+        "issues@2x": {
+            "original": "issues@2x.png",
+            "theme": "internxt-drive-issues"
+        },
+        "syncing@2x": {
+            "original": "syncing@2x.png",
+            "theme": "internxt-drive-syncing"
+        }
+    }
+}
