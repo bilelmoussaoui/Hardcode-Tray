@@ -1,0 +1,19 @@
+{
+    "name": "TickTick",
+    "app_path": [
+        "/opt/TickTick/",
+        "/var/lib/flatpak/app/com.ticktick.TickTick/"
+    ],
+    "icons_path": [
+        "/opt/TickTick/resources/",
+        "/var/lib/flatpak/app/com.ticktick.TickTick/current/active/files/extra/opt/TickTick/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/linux/tray/tray.png",
+            "theme": "ticktick-tray"
+        }
+    }
+}

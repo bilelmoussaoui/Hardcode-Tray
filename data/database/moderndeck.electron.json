@@ -1,10 +1,12 @@
 {
     "name": "ModernDeck",
     "app_path": [
-        "/opt/moderndeck/"
+        "/opt/moderndeck/",
+        "/var/lib/flatpak/app/com.dangeredwolf.ModernDeck/"
     ],
     "icons_path": [
-        "/opt/moderndeck/resources/"
+        "/opt/moderndeck/resources/",
+        "/var/lib/flatpak/app/com.dangeredwolf.ModernDeck/current/active/files/bin/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",

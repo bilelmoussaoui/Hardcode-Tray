@@ -2,11 +2,13 @@
     "name": "Ferdi",
     "app_path": [
         "/opt/Ferdi/",
-        "/opt/ferdi/"
+        "/opt/ferdi/",
+        "/var/lib/flatpak/app/com.getferdi.Ferdi/"
     ],
     "icons_path": [
         "/opt/Ferdi/resources/",
-        "/opt/ferdi/resources/"
+        "/opt/ferdi/resources/",
+        "/var/lib/flatpak/app/com.getferdi.Ferdi/current/active/files/Ferdi/resources/"
     ],
     "binary": "app.asar",
     "script": "electron",
