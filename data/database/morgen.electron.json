@@ -1,0 +1,21 @@
+{
+    "name": "Morgen",
+    "app_path": [
+        "/opt/Morgen/"
+    ],
+    "icons_path": [
+        "/opt/Morgen/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "static/icons/icon.png",
+            "theme": "morgen-tray"
+        },
+        "tray@2x": {
+            "original": "static/icons/icon@2x.png",
+            "theme": "morgen-tray"
+        }
+    }
+}
