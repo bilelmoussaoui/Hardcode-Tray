@@ -1,0 +1,41 @@
+{
+    "name": "Ferdium",
+    "app_path": [
+        "/opt/Ferdium/",
+        "/opt/ferdium/",
+        "/var/lib/flatpak/app/org.ferdium.Ferdium/"
+    ],
+    "icons_path": [
+        "/opt/Ferdium/resources/",
+        "/opt/ferdium/resources/",
+        "/var/lib/flatpak/app/org.ferdium.Ferdium/current/active/files/Ferdium/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/images/tray/linux/tray.png",
+            "theme": "ferdium-tray"
+        },
+        "tray@2x": {
+            "original": "assets/images/tray/linux/tray@2x.png",
+            "theme": "ferdium-tray"
+        },
+        "tray-indirect": {
+            "original": "assets/images/tray/linux/tray-indirect.png",
+            "theme": "ferdium-indirect"
+        },
+        "tray-indirect@2x": {
+            "original": "assets/images/tray/linux/tray-indirect@2x.png",
+            "theme": "ferdium-indirect"
+        },
+        "tray-unread": {
+            "original": "assets/images/tray/linux/tray-unread.png",
+            "theme": "ferdium-unread"
+        },
+        "tray-unread@2x": {
+            "original": "assets/images/tray/linux/tray-unread@2x.png",
+            "theme": "ferdium-unread"
+        }
+    }
+}
