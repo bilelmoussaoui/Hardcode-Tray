@@ -1,0 +1,21 @@
+{
+    "name": "Clockify",
+    "app_path": [
+        "/opt/Clockify/"
+    ],
+    "icons_path": [
+        "/opt/Clockify/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray-unlocked": {
+            "original": "assets/icons/blue.png",
+            "theme": "clockify-blue"
+        },
+        "tray-locked": {
+            "original": "assets/icons/white.png",
+            "theme": "clockify-tray"
+        }
+    }
+}
