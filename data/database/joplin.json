@@ -1,11 +1,13 @@
 {
     "name": "Joplin",
     "app_path": [
+    	"/usr/lib/joplin/",
         "/usr/share/joplin/",
         "/usr/share/joplin-desktop/",
         "/var/lib/flatpak/app/net.cozic.joplin_desktop/"
     ],
     "icons_path": [
+    	"/usr/lib/joplin/resources/app/build/icons/",
         "/usr/share/joplin/resources/build/icons/",
         "/usr/share/joplin/desktop/resources/build/icons/",
         "/usr/share/joplin-desktop/resources/build/icons/",
