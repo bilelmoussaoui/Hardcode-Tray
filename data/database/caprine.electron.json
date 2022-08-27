@@ -2,11 +2,13 @@
     "name": "Caprine",
     "app_path": [
         "/usr/share/caprine/",
+        "/usr/lib64/caprine/",
         "/opt/Caprine/",
         "/var/lib/flatpak/app/com.sindresorhus.Caprine"
     ],
     "icons_path": [
         "/usr/share/caprine/resources/",
+        "/usr/lib64/caprine/resources/",
         "/opt/Caprine/resources/",
         "/var/lib/flatpak/app/com.sindresorhus.Caprine/current/active/files/main/resources/"
     ],
