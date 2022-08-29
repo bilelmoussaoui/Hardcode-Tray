@@ -3,11 +3,13 @@
     "app_path": [
         "/opt/Ferdium/",
         "/opt/ferdium/",
+        "/opt/ferdium-bin/",
         "/var/lib/flatpak/app/org.ferdium.Ferdium/"
     ],
     "icons_path": [
         "/opt/Ferdium/resources/",
         "/opt/ferdium/resources/",
+        "/opt/ferdium-bin/resources/",
         "/var/lib/flatpak/app/org.ferdium.Ferdium/current/active/files/Ferdium/resources/"
     ],
     "binary": "app.asar",
