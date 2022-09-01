@@ -12,7 +12,7 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "common/assets/img/app/Tray.png",
+            "original": "common/resources/img/app/Tray.png",
             "theme": "moderndeck-tray"
         }
     }
