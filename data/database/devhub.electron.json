@@ -1,0 +1,21 @@
+{
+    "name": "DevHub",
+    "app_path": [
+        "/opt/devhub/"
+    ],
+    "icons_path": [
+        "/opt/devhub/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/icons/trayIconWhite.png",
+            "theme": "devhub-tray"
+        },
+        "notification": {
+            "original": "assets/icons/trayIconWhiteWithBadge.png",
+            "theme": "devhub-notification"
+        }
+    }
+}
