@@ -28,7 +28,7 @@ from sys import stdout
 
 from gi.repository import Gio
 
-from HardcodeTray.const import KDE_CONFIG_FILE
+from HardcodeTray.const import KDE_CONFIG_FILE, USERNAME
 from HardcodeTray.modules.log import Logger
 
 
@@ -298,3 +298,7 @@ def get_exact_folder(key, directory, condition):
         directory = directory.replace(key, exact_directory)
 
     return directory
+
+def set_user_permissions(target):
+    """Set permissions to user instead of root."""
+    execute(["chown", "-R", "%s:%s" % (USERNAME, USERNAME), target])
