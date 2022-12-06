@@ -24,7 +24,7 @@ from platform import machine
 from HardcodeTray.tools import detect_de, get_themes
 
 DB_FOLDER = path.join("@DATA_DIR@", "database", "")
-USERNAME = getenv("SUDO_USER") or getenv("USER")
+USERNAME = getenv("SUDO_USER") or getenv("DOAS_USER") or getenv("USER")
 USERHOME = path.expanduser("~" + USERNAME)
 BACKUP_FOLDER = path.join(USERHOME, ".config", "Hardcode-Tray", "")
 CONFIG_FILE = path.join(USERHOME, ".config", "hardcode-tray.json")
