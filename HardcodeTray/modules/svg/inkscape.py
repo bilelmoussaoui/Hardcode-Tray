@@ -21,6 +21,9 @@ along with Hardcode-Tray. If not, see <http://www.gnu.org/licenses/>.
 from HardcodeTray.modules.svg.svg import SVG, SVGNotInstalled
 from HardcodeTray.utils import execute
 
+from semantic_version import Version
+from subprocess import run, PIPE
+
 
 class Inkscape(SVG):
     """Inkscape implemntation of SVG Interface."""
@@ -30,13 +33,22 @@ class Inkscape(SVG):
         super(Inkscape, self).__init__(colors)
 
         self.cmd = "inkscape"
+        self.check_version()
         if not self.is_installed():
             raise SVGNotInstalled
 
+    def check_version(self):
+        out = run([self.cmd, '--version'], stdout=PIPE)
+        version_str = out.split(' ')[1]
+        self.version = Version(version_str)
+
     def convert_to_png(self, input_file, output_file, width=None, height=None):
         """Convert svg to png."""
-        cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
-
+        if self.version.major == 0:
+            cmd = [self.cmd, "-z", "-f", input_file, "-e", output_file]
+        else:
+            cmd = [self.cmd, "-z", input_file, "-o",
+                   output_file, "--export-type", "png"]
         if width and height:
             cmd.extend(["-w", str(width), "-h", str(height)])
 

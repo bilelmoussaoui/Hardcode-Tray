@@ -87,8 +87,8 @@ class SVG:
     def to_bin(self, input_file, width=None, height=None):
         """Convert svg to binary."""
         with NamedTemporaryFile(delete=False) as temppng:
-            self.to_png(input_file, temppng.name, width, height)
-            temppng_path = temppng.name
+            temppng_path = f"{temppng.name}.png"
+            self.to_png(input_file, temppng_path, width, height)
         del temppng
 
         # Changes to `temppng` made by the conversion tool may not be picked up
