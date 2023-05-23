@@ -1,0 +1,17 @@
+{
+    "name": "Tidal Hifi",
+    "app_path": [
+        "/opt/tidal-hifi/"
+    ],
+    "icons_path": [
+        "/opt/tidal-hifi/resources/"
+    ],
+    "binary": "app.asar",
+    "script": "electron",
+    "icons": {
+        "tray": {
+            "original": "assets/icon.png",
+            "theme": "tidal"
+        }
+    }
+}
