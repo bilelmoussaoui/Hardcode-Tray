@@ -1,11 +1,13 @@
 {
     "name": "ProtonVPN GUI",
     "app_path": [
+        "/usr/lib/python3.11/site-packages/protonvpn_gui/",
         "/usr/lib/python3.10/site-packages/protonvpn_gui/",
         "/usr/lib/python3.9/site-packages/protonvpn_gui/",
         "/usr/lib/python3.8/site-packages/protonvpn_gui/",
         "/usr/lib/python3.7/site-packages/protonvpn_gui/",
         "/usr/lib/python3.6/site-packages/protonvpn_gui/",
+        "{userhome}/.local/lib/python3.11/site-packages/protonvpn_gui/",
         "{userhome}/.local/lib/python3.10/site-packages/protonvpn_gui/",
         "{userhome}/.local/lib/python3.9/site-packages/protonvpn_gui/",
         "{userhome}/.local/lib/python3.8/site-packages/protonvpn_gui/",
@@ -13,11 +15,13 @@
         "{userhome}/.local/lib/python3.6/site-packages/protonvpn_gui/"
     ],
     "icons_path": [
+        "/usr/lib/python3.11/site-packages/protonvpn_gui/assets/icons/",
         "/usr/lib/python3.10/site-packages/protonvpn_gui/assets/icons/",
         "/usr/lib/python3.9/site-packages/protonvpn_gui/assets/icons/",
         "/usr/lib/python3.8/site-packages/protonvpn_gui/assets/icons/",
         "/usr/lib/python3.7/site-packages/protonvpn_gui/assets/icons/",
         "/usr/lib/python3.6/site-packages/protonvpn_gui/assets/icons/",
+        "{userhome}/.local/lib/python3.11/site-packages/protonvpn_gui/assets/icons/",
         "{userhome}/.local/lib/python3.10/site-packages/protonvpn_gui/assets/icons/",
         "{userhome}/.local/lib/python3.9/site-packages/protonvpn_gui/assets/icons/",
         "{userhome}/.local/lib/python3.8/site-packages/protonvpn_gui/assets/icons/",
