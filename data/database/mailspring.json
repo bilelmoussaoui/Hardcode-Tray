@@ -9,18 +9,6 @@
     "script": "electron",
     "binary": "app.asar",
     "icons": {
-        "empty@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero@2x.png",
-            "theme": "mailspring-tray-empty"
-        },
-        "full@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full@2x.png",
-            "theme": "mailspring-tray-full"
-        },
-        "newitems@2x": {
-            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems@2x.png",
-            "theme": "mailspring-tray-full-newitems"
-        },
         "empty": {
             "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Zero.png",
             "theme": "mailspring-tray-empty"
@@ -31,6 +19,10 @@
         },
         "newitems": {
             "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-NewItems.png",
+            "theme": "mailspring-tray-full-newitems"
+        },
+        "unreaditems": {
+            "original": "internal_packages/system-tray/assets/linux/MenuItem-Inbox-Full-UnreadItems.png",
             "theme": "mailspring-tray-full-newitems"
         }
     }
