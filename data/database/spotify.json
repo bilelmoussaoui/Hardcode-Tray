@@ -1,0 +1,47 @@
+{
+    "name": "Spotify",
+    "app_path": [
+        "/opt/spotify/"
+    ],
+    "icons_path": [
+        "/opt/spotify/icons"
+    ],
+    "icons": {
+        "spotify_icon16": {
+            "original": "spotify-linux-16.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon22": {
+            "original": "spotify-linux-22.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon24": {
+            "original": "spotify-linux-24.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon32": {
+            "original": "spotify-linux-32.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon48": {
+            "original": "spotify-linux-48.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon64": {
+            "original": "spotify-linux-64.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon128": {
+            "original": "spotify-linux-128.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon256": {
+            "original": "spotify-linux-256.png",
+            "theme": "spotify-indicator"
+        },
+        "spotify_icon512": {
+            "original": "spotify-linux-512.png",
+            "theme": "spotify-indicator"
+        }
+    }
+}
