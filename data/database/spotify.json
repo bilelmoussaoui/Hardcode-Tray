@@ -1,10 +1,14 @@
 {
     "name": "Spotify",
     "app_path": [
-        "/opt/spotify/"
+        "/opt/spotify/",
+        "/var/lib/flatpak/app/com.spotify.Client/",
+        "{userhome}/.var/app/com.spotify.Client/"
     ],
     "icons_path": [
-        "/opt/spotify/icons"
+        "/opt/spotify/icons",
+        "/var/lib/flatpak/app/com.spotify.Client/current/active/files/extra/share/spotify/icons",
+        "{userhome}/.local/share/flatpak/app/com.spotify.Client/current/active/files/extra/share/spotify/icons"
     ],
     "icons": {
         "spotify_icon16": {
