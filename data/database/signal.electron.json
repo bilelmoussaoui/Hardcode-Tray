@@ -14,47 +14,47 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "images/icon_256.png",
+            "original": "images/icon_32.png",
             "theme": "signal-tray"
         },
         "tray-unread-1": {
-            "original": "images/alert/256/1.png",
+            "original": "images/alert/32/1.png",
             "theme": "signal-unread-1"
         },
         "tray-unread-2": {
-            "original": "images/alert/256/2.png",
+            "original": "images/alert/32/2.png",
             "theme": "signal-unread-2"
         },
         "tray-unread-3": {
-            "original": "images/alert/256/3.png",
+            "original": "images/alert/32/3.png",
             "theme": "signal-unread-3"
         },
         "tray-unread-4": {
-            "original": "images/alert/256/4.png",
+            "original": "images/alert/32/4.png",
             "theme": "signal-unread-4"
         },
         "tray-unread-5": {
-            "original": "images/alert/256/5.png",
+            "original": "images/alert/32/5.png",
             "theme": "signal-unread-5"
         },
         "tray-unread-6": {
-            "original": "images/alert/256/6.png",
+            "original": "images/alert/32/6.png",
             "theme": "signal-unread-6"
         },
         "tray-unread-7": {
-            "original": "images/alert/256/7.png",
+            "original": "images/alert/32/7.png",
             "theme": "signal-unread-7"
         },
         "tray-unread-8": {
-            "original": "images/alert/256/8.png",
+            "original": "images/alert/32/8.png",
             "theme": "signal-unread-8"
         },
         "tray-unread-9": {
-            "original": "images/alert/256/9.png",
+            "original": "images/alert/32/9.png",
             "theme": "signal-unread-9"
         },
         "tray-10": {
-            "original": "images/alert/256/10.png",
+            "original": "images/alert/32/10.png",
             "theme": "signal-unread-10"
         }
     }
