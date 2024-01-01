@@ -6,7 +6,8 @@
         "/usr/lib/joplin-desktop/",
         "/usr/share/joplin/",
         "/usr/share/joplin-desktop/",
-        "/var/lib/flatpak/app/net.cozic.joplin_desktop/"
+        "/var/lib/flatpak/app/net.cozic.joplin_desktop/",
+        "{userhome}/.local/share/flatpak/app/net.cozic.joplin_desktop/current/active/files/joplin-desktop/resources/build/icons/"
     ],
     "icons_path": [
     	"/usr/lib/joplin/resources/app/build/icons/",
@@ -14,7 +15,8 @@
         "/usr/share/joplin/resources/build/icons/",
         "/usr/share/joplin/desktop/resources/build/icons/",
         "/usr/share/joplin-desktop/resources/build/icons/",
-        "/var/lib/flatpak/app/net.cozic.joplin_desktop/current/active/files/joplin-desktop/resources/build/icons/"
+        "/var/lib/flatpak/app/net.cozic.joplin_desktop/current/active/files/joplin-desktop/resources/build/icons/",
+        "{userhome}/.local/share/flatpak/app/net.cozic.joplin_desktop/current/active/files/joplin-desktop/resources/build/icons/"
     ],
     "icons": {
         "icon16": {
