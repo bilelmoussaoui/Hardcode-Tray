@@ -14,47 +14,179 @@
     "script": "electron",
     "icons": {
         "tray": {
-            "original": "images/icon_256.png",
+            "original": "images/tray-icons/base/signal-tray-icon-16x16-base.png",
             "theme": "signal-tray"
         },
-        "tray-unread-1": {
-            "original": "images/alert/256/1.png",
+        "tray-2": {
+            "original": "images/tray-icons/base/signal-tray-icon-32x32-base.png",
+            "theme": "signal-tray"
+        },
+        "tray-3": {
+            "original": "images/tray-icons/base/signal-tray-icon-48x48-base.png",
+            "theme": "signal-tray"
+        },
+        "tray-4": {
+            "original": "images/tray-icons/base/signal-tray-icon-256x256-base.png",
+            "theme": "signal-tray"
+        },
+        "tray-unread-16-1": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-1.png",
             "theme": "signal-unread-1"
         },
-        "tray-unread-2": {
-            "original": "images/alert/256/2.png",
+        "tray-unread-16-2": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-2.png",
             "theme": "signal-unread-2"
         },
-        "tray-unread-3": {
-            "original": "images/alert/256/3.png",
+        "tray-unread-16-3": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-3.png",
             "theme": "signal-unread-3"
         },
-        "tray-unread-4": {
-            "original": "images/alert/256/4.png",
+        "tray-unread-16-4": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-4.png",
             "theme": "signal-unread-4"
         },
-        "tray-unread-5": {
-            "original": "images/alert/256/5.png",
+        "tray-unread-16-5": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-5.png",
             "theme": "signal-unread-5"
         },
-        "tray-unread-6": {
-            "original": "images/alert/256/6.png",
+        "tray-unread-16-6": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-6.png",
             "theme": "signal-unread-6"
         },
-        "tray-unread-7": {
-            "original": "images/alert/256/7.png",
+        "tray-unread-16-7": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-7.png",
             "theme": "signal-unread-7"
         },
-        "tray-unread-8": {
-            "original": "images/alert/256/8.png",
+        "tray-unread-16-8": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-8.png",
             "theme": "signal-unread-8"
         },
-        "tray-unread-9": {
-            "original": "images/alert/256/9.png",
+        "tray-unread-16-9": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-9.png",
             "theme": "signal-unread-9"
         },
-        "tray-10": {
-            "original": "images/alert/256/10.png",
+        "tray-unread-16-9+": {
+            "original": "images/tray-icons/alert/signal-tray-icon-16x16-alert-9+.png",
+            "theme": "signal-unread-10"
+        },
+        "tray-unread-32-1": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-1.png",
+            "theme": "signal-unread-1"
+        },
+        "tray-unread-32-2": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-2.png",
+            "theme": "signal-unread-2"
+        },
+        "tray-unread-32-3": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-3.png",
+            "theme": "signal-unread-3"
+        },
+        "tray-unread-32-4": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-4.png",
+            "theme": "signal-unread-4"
+        },
+        "tray-unread-32-5": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-5.png",
+            "theme": "signal-unread-5"
+        },
+        "tray-unread-32-6": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-6.png",
+            "theme": "signal-unread-6"
+        },
+        "tray-unread-32-7": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-7.png",
+            "theme": "signal-unread-7"
+        },
+        "tray-unread-32-8": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-8.png",
+            "theme": "signal-unread-8"
+        },
+        "tray-unread-32-9": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-9.png",
+            "theme": "signal-unread-9"
+        },
+        "tray-unread-32-9+": {
+            "original": "images/tray-icons/alert/signal-tray-icon-32x32-alert-9+.png",
+            "theme": "signal-unread-10"
+        },
+        "tray-unread-48-1": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-1.png",
+            "theme": "signal-unread-1"
+        },
+        "tray-unread-48-2": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-2.png",
+            "theme": "signal-unread-2"
+        },
+        "tray-unread-48-3": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-3.png",
+            "theme": "signal-unread-3"
+        },
+        "tray-unread-48-4": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-4.png",
+            "theme": "signal-unread-4"
+        },
+        "tray-unread-48-5": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-5.png",
+            "theme": "signal-unread-5"
+        },
+        "tray-unread-48-6": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-6.png",
+            "theme": "signal-unread-6"
+        },
+        "tray-unread-48-7": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-7.png",
+            "theme": "signal-unread-7"
+        },
+        "tray-unread-48-8": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-8.png",
+            "theme": "signal-unread-8"
+        },
+        "tray-unread-48-9": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-9.png",
+            "theme": "signal-unread-9"
+        },
+        "tray-unread-48-9+": {
+            "original": "images/tray-icons/alert/signal-tray-icon-48x48-alert-9+.png",
+            "theme": "signal-unread-10"
+        },
+        "tray-unread-256-1": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-1.png",
+            "theme": "signal-unread-1"
+        },
+        "tray-unread-256-2": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-2.png",
+            "theme": "signal-unread-2"
+        },
+        "tray-unread-256-3": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-3.png",
+            "theme": "signal-unread-3"
+        },
+        "tray-unread-256-4": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-4.png",
+            "theme": "signal-unread-4"
+        },
+        "tray-unread-256-5": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-5.png",
+            "theme": "signal-unread-5"
+        },
+        "tray-unread-256-6": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-6.png",
+            "theme": "signal-unread-6"
+        },
+        "tray-unread-256-7": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-7.png",
+            "theme": "signal-unread-7"
+        },
+        "tray-unread-256-8": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-8.png",
+            "theme": "signal-unread-8"
+        },
+        "tray-unread-256-9": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-9.png",
+            "theme": "signal-unread-9"
+        },
+        "tray-unread-256-9+": {
+            "original": "images/tray-icons/alert/signal-tray-icon-256x256-alert-9+.png",
             "theme": "signal-unread-10"
         }
     }
